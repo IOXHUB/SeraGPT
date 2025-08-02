@@ -1268,10 +1268,10 @@ export default function UserjotCloneSection() {
                 Yasal
               </h3>
               <div className="space-y-3">
-                <a href="#" className="block text-sm text-gray-600 hover:text-gray-900 transition-colors">
+                <a href="/privacy" className="block text-sm text-gray-600 hover:text-gray-900 transition-colors">
                   Gizlilik
                 </a>
-                <a href="#" className="block text-sm text-gray-600 hover:text-gray-900 transition-colors">
+                <a href="/terms" className="block text-sm text-gray-600 hover:text-gray-900 transition-colors">
                   Koşullar
                 </a>
               </div>
