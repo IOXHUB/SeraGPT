@@ -474,6 +474,157 @@ export default function UserjotCloneSection() {
           </motion.div>
         </div>
       </div>
+
+      {/* Roadmap Section */}
+      <div className="py-20 bg-white">
+        <div className="max-w-6xl mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+              Geli��tirme planınızı<br />
+              kalma sebebine dönüştürün
+            </h2>
+            <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+              Herkese açık geliştirme planı, kullanıcılara <span className="font-semibold text-gray-900">talep ettikleri özelliklerin
+              gerçekten yapıldığını</span> gösterir. Zaman çizelgelerini görürler, ilerlemeyi takip ederler ve
+              hayal kırıklığı yerine heyecanlanırlar. Artık "bu ne zaman gelecek?" e-postaları yok.
+            </p>
+          </motion.div>
+
+          {/* Roadmap Mockup */}
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="relative"
+          >
+            <div className="bg-gray-100 rounded-2xl p-8 shadow-2xl">
+              <div className="bg-white rounded-xl shadow-lg overflow-hidden">
+                {/* Header */}
+                <div className="bg-white border-b border-gray-200 px-6 py-4">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center space-x-4">
+                      <div className="flex items-center space-x-3">
+                        <div className="w-8 h-8 bg-black rounded-lg flex items-center justify-center">
+                          <span className="text-white text-sm font-bold">S</span>
+                        </div>
+                        <span className="text-lg font-semibold text-gray-900">SeraGPT</span>
+                      </div>
+
+                      <nav className="flex space-x-6">
+                        <a href="#" className="text-gray-500 hover:text-gray-700 font-medium">Geri Bildirim</a>
+                        <a href="#" className="text-gray-900 font-medium border-b-2 border-gray-900 pb-1">Geliştirme Planı</a>
+                        <a href="#" className="text-gray-500 hover:text-gray-700 font-medium">Güncellemeler</a>
+                      </nav>
+                    </div>
+
+                    <div className="flex items-center space-x-3">
+                      <div className="w-8 h-8 bg-gray-800 rounded-full"></div>
+                      <div className="w-8 h-8 bg-gray-600 rounded-full"></div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Content */}
+                <div className="p-6">
+                  <div className="flex items-center justify-between mb-6">
+                    <h1 className="text-2xl font-bold text-gray-900">Ürün Geliştirme Planı</h1>
+                    <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    </svg>
+                  </div>
+
+                  <div className="space-y-6">
+                    {/* Feature 1 */}
+                    <div className="border border-gray-200 rounded-lg p-4">
+                      <div className="flex items-start justify-between">
+                        <div className="flex-1">
+                          <div className="flex items-center space-x-3 mb-2">
+                            <h3 className="text-lg font-semibold text-gray-900">Mobil uygulama sık sık çöküyor.</h3>
+                            <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+                          </div>
+                          <p className="text-gray-600 text-sm mb-3">
+                            Android uygulaması sera fotoğrafları yüklenmeye çalışıldığında çöküyor.
+                            Bu ASAP düzeltilmesi gerekiyor.
+                          </p>
+                          <div className="flex items-center space-x-2">
+                            <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-purple-100 text-purple-800">
+                              • Devam Ediyor
+                            </span>
+                          </div>
+                        </div>
+
+                        <div className="ml-4 text-right">
+                          <div className="text-sm text-gray-500 mb-1">Bir şey eksik mi?</div>
+                          <button className="bg-black text-white px-4 py-2 rounded text-sm font-medium">
+                            Gönderi Oluştur
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Feature 2 */}
+                    <div className="border border-gray-200 rounded-lg p-4">
+                      <div className="flex items-start justify-between">
+                        <div className="flex-1">
+                          <h3 className="text-lg font-semibold text-gray-900 mb-2">Google Calendar ile entegrasyon.</h3>
+                          <p className="text-gray-600 text-sm mb-3">
+                            Sera bakım zamanlaması için Google Calendar ile senkronizasyon olsa harika olur.
+                          </p>
+                          <div className="flex items-center space-x-2">
+                            <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                              • Planlandı
+                            </span>
+                          </div>
+                        </div>
+
+                        <div className="ml-4 text-right">
+                          <div className="text-sm text-gray-500 mb-2">Uygulama sorunu çözülemiyor,</div>
+                          <div className="text-sm text-gray-500 mb-2">geçerli şifreler tanınmıyor.</div>
+                          <div className="flex items-center space-x-2 text-sm text-gray-600">
+                            <div className="w-6 h-6 bg-gray-300 rounded-full"></div>
+                            <div>
+                              <div className="font-medium">Şeyran Taslın</div>
+                              <div className="text-xs text-gray-500">3 gün önce</div>
+                            </div>
+                          </div>
+                          <div className="mt-2">
+                            <button className="text-sm text-blue-600 hover:text-blue-700">
+                              Tüm Güncellemeler
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Feature 3 */}
+                    <div className="border border-gray-200 rounded-lg p-4">
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">'Tümünü okundu işaretle' butonu ekle.</h3>
+                      <p className="text-gray-600 text-sm">
+                        Bildirimler bölümüne toplu işaretleme özelliği.
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Footer */}
+                  <div className="mt-8 pt-6 border-t border-gray-200 text-center">
+                    <p className="text-xs text-gray-500">SeraGPT tarafından desteklenmektedir</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </div>
     </div>
   );
 }
