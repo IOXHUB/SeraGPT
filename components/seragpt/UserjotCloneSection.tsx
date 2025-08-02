@@ -387,7 +387,7 @@ export default function UserjotCloneSection() {
                 <div className="flex-1 p-6">
                   <div className="mb-6">
                     <h2 className="text-xl font-bold text-gray-900 mb-2">
-                      Sera içi widget'lar�� için geri bildirim toplama.
+                      Sera içi widget'ları için geri bildirim toplama.
                     </h2>
                     <p className="text-gray-600 text-sm leading-relaxed">
                       Sera içi gömülü widget'ları uygulayın; geri bildirim toplamak, roadmap'i görüntülemek ve
@@ -520,7 +520,7 @@ export default function UserjotCloneSection() {
                       <nav className="flex space-x-6">
                         <a href="#" className="text-gray-500 hover:text-gray-700 font-medium">Geri Bildirim</a>
                         <a href="#" className="text-gray-900 font-medium border-b-2 border-gray-900 pb-1">Geliştirme Planı</a>
-                        <a href="#" className="text-gray-500 hover:text-gray-700 font-medium">Güncellemeler</a>
+                        <a href="#" className="text-gray-500 hover:text-gray-700 font-medium">G��ncellemeler</a>
                       </nav>
                     </div>
 
@@ -608,7 +608,7 @@ export default function UserjotCloneSection() {
 
                     {/* Feature 3 */}
                     <div className="border border-gray-200 rounded-lg p-4">
-                      <h3 className="text-lg font-semibold text-gray-900 mb-2">'Tümünü okundu işaretle' butonu ekle.</h3>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">'Tüm��nü okundu işaretle' butonu ekle.</h3>
                       <p className="text-gray-600 text-sm">
                         Bildirimler bölümüne toplu işaretleme özelliği.
                       </p>
@@ -641,7 +641,7 @@ export default function UserjotCloneSection() {
               geliştirin ve onlara anlatın
             </h2>
             <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-              Ürün geliştirmedeki en güzel an? Birine <span className="font-semibold text-gray-900">"Bunu istedin,
+              ��rün geliştirmedeki en güzel an? Birine <span className="font-semibold text-gray-900">"Bunu istedin,
               biz de yaptık"</span> demek. Güzel değişiklik günlükleri <span className="font-semibold text-gray-900">her sürümü sergiler</span>
               ve istekte bulunanları otomatik olarak bilgilendirir. Müşterileri savunucuya dönüştürün.
             </p>
@@ -1036,6 +1036,170 @@ export default function UserjotCloneSection() {
           </motion.div>
         </div>
       </div>
+
+      {/* Vision Section */}
+      <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
+        className="bg-white py-20"
+      >
+        <div className="max-w-4xl mx-auto px-6 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="mb-8"
+          >
+            <div className="w-20 h-20 bg-gray-900 rounded-full flex items-center justify-center mx-auto mb-8">
+              <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center">
+                <span className="text-2xl">🌱</span>
+              </div>
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="space-y-6 mb-12"
+          >
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight">
+              Kullanıcılarınızın bir vizyonu var.<br />
+              Onların hayata geçirmesine yardım edin.
+            </h2>
+            <p className="text-xl text-gray-600 leading-relaxed max-w-3xl mx-auto">
+              Birisi bir fikir paylaştığında, inşa ettiğiniz şeye inandığını söylüyor.
+              Gerçekten dinlediğinizde, sadece ürün geliştirmiyorsunuz.
+              <span className="font-semibold text-gray-900"> İlişkiler kuruyorsunuz</span>.
+              İşte fark yaratan bu.
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            viewport={{ once: true }}
+          >
+            <button className="bg-gray-900 hover:bg-gray-800 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-colors inline-flex items-center space-x-3">
+              <span>Başlayın</span>
+              <div className="w-2 h-2 bg-white rounded-full"></div>
+            </button>
+            <p className="text-gray-500 text-sm mt-4">
+              kredi kartı gerekmez. kurulum baş ağrısı yok.
+            </p>
+          </motion.div>
+        </div>
+      </motion.div>
+
+      {/* FAQ Section */}
+      <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
+        className="bg-gray-50 py-20"
+      >
+        <div className="max-w-4xl mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              Sıkça sorulan sorular
+            </h2>
+          </motion.div>
+
+          <div className="space-y-4">
+            {[
+              {
+                question: "Ne kadar hızlı sera analizi toplamaya başlayabilirim?",
+                answer: "SeraGPT'yi dakikalar içinde kurabilir ve hemen sera projelerinizi analiz etmeye başlayabilirsiniz."
+              },
+              {
+                question: "Analiz deneyimini özelleştirebilir miyim?",
+                answer: "Evet, SeraGPT'yi markanıza uygun şekilde özelleştirebilir ve kendi domain adresinizi kullanabilirsiniz."
+              },
+              {
+                question: "Çok fazla geri bildirim alırsam ne olur?",
+                answer: "SeraGPT otomatik olarak geri bildirimleri önceliklendirir ve en önemli konulara odaklanmanızı sağlar."
+              },
+              {
+                question: "SeraGPT kullanıcı geri bildirimlerini önceliklendirmeme nasıl yardımcı olur?",
+                answer: "Akıllı algoritma sistemi, kullanıcı oyları ve etkileşim verilerine dayanarak en kritik konuları öne çıkarır."
+              },
+              {
+                question: "SeraGPT müşteri kaybını azaltmaya yardımcı olabilir mi?",
+                answer: "Evet, müşteri ihtiyaçlarını önceden tespit ederek ve hızlı çözümler sunarak müşteri memnuniyetini artırır."
+              },
+              {
+                question: "SeraGPT SaaS şirketleri için uygun mu?",
+                answer: "Kesinlikle. SeraGPT özellikle hızla büyüyen teknoloji şirketleri için tasarlanmıştır."
+              },
+              {
+                question: "SeraGPT'yi ürün yol haritası yazılımı olarak kullanabilir miyim?",
+                answer: "Evet, toplanan geri bildirimler otomatik olarak ürün yol haritanızla entegre edilir."
+              },
+              {
+                question: "SeraGPT geri bildirim takibi sunuyor mu?",
+                answer: "Her geri bildirim başından sonuna kadar izlenir ve müşteriler ilerleme hakkında bilgilendirilir."
+              },
+              {
+                question: "SeraGPT ile ürün değişiklik günlüğü oluşturabilir miyim?",
+                answer: "Evet, tüm güncellemeler otomatik olarak profesyonel değişiklik günlüklerine dönüştürülür."
+              },
+              {
+                question: "SeraGPT müşteri deneyimi yönetimini nasıl geliştirir?",
+                answer: "Merkezi bir platform sağlayarak müşteri sesini dinleme ve yanıtlama sürecini kolaylaştırır."
+              },
+              {
+                question: "SeraGPT konuk veya anonim geri bildirimleri destekliyor mu?",
+                answer: "Evet, hem kayıtlı kullanıcılardan hem de anonim ziyaretçilerden geri bildirim toplayabilirsiniz."
+              },
+              {
+                question: "SeraGPT'yi markama uygun şekilde özelleştirebilir miyim?",
+                answer: "Tamamen. Logonuzdan renklerinize kadar her detayı markanıza uygun şekilde düzenleyebilirsiniz."
+              },
+              {
+                question: "SeraGPT hangi entegrasyonları sunuyor?",
+                answer: "Slack, Teams, Jira, GitHub ve daha birçok popüler araçla entegrasyon imkanı sunar."
+              }
+            ].map((faq, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="bg-white rounded-2xl border border-gray-200 overflow-hidden"
+              >
+                <button className="w-full p-6 text-left hover:bg-gray-50 transition-colors group">
+                  <div className="flex items-center justify-between">
+                    <h3 className="text-lg font-medium text-gray-900 group-hover:text-gray-700">
+                      {faq.question}
+                    </h3>
+                    <svg
+                      className="w-5 h-5 text-gray-400 group-hover:text-gray-600 transition-transform group-hover:rotate-180"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </div>
+                </button>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </motion.div>
     </div>
   );
 }
