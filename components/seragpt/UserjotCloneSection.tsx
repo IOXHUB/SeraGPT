@@ -520,7 +520,7 @@ export default function UserjotCloneSection() {
                       <nav className="flex space-x-6">
                         <a href="#" className="text-gray-500 hover:text-gray-700 font-medium">Geri Bildirim</a>
                         <a href="#" className="text-gray-900 font-medium border-b-2 border-gray-900 pb-1">Geliştirme Planı</a>
-                        <a href="#" className="text-gray-500 hover:text-gray-700 font-medium">G��ncellemeler</a>
+                        <a href="#" className="text-gray-500 hover:text-gray-700 font-medium">Güncellemeler</a>
                       </nav>
                     </div>
 
@@ -608,7 +608,7 @@ export default function UserjotCloneSection() {
 
                     {/* Feature 3 */}
                     <div className="border border-gray-200 rounded-lg p-4">
-                      <h3 className="text-lg font-semibold text-gray-900 mb-2">'Tüm��nü okundu işaretle' butonu ekle.</h3>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">'Tümünü okundu işaretle' butonu ekle.</h3>
                       <p className="text-gray-600 text-sm">
                         Bildirimler bölümüne toplu işaretleme özelliği.
                       </p>
@@ -641,7 +641,7 @@ export default function UserjotCloneSection() {
               geliştirin ve onlara anlatın
             </h2>
             <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-              ��rün geliştirmedeki en güzel an? Birine <span className="font-semibold text-gray-900">"Bunu istedin,
+              Ürün geliştirmedeki en güzel an? Birine <span className="font-semibold text-gray-900">"Bunu istedin,
               biz de yaptık"</span> demek. Güzel değişiklik günlükleri <span className="font-semibold text-gray-900">her sürümü sergiler</span>
               ve istekte bulunanları otomatik olarak bilgilendirir. Müşterileri savunucuya dönüştürün.
             </p>
@@ -1200,6 +1200,126 @@ export default function UserjotCloneSection() {
           </div>
         </div>
       </motion.div>
+
+      {/* Footer */}
+      <footer className="bg-white border-t border-gray-200 py-16">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
+            {/* Product Column */}
+            <div>
+              <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wider mb-4">
+                Ürün
+              </h3>
+              <div className="space-y-3">
+                <a href="#" className="block text-sm text-gray-600 hover:text-gray-900 transition-colors">
+                  Başlayın
+                </a>
+                <a href="#" className="block text-sm text-gray-600 hover:text-gray-900 transition-colors">
+                  Fiyatlandırma
+                </a>
+                <a href="#" className="block text-sm text-gray-600 hover:text-gray-900 transition-colors">
+                  Sera Analizi
+                </a>
+                <a href="#" className="block text-sm text-gray-600 hover:text-gray-900 transition-colors">
+                  Güncellemeler
+                </a>
+                <a href="#" className="block text-sm text-gray-600 hover:text-gray-900 transition-colors">
+                  Yol Haritası
+                </a>
+                <a href="#" className="block text-sm text-gray-600 hover:text-gray-900 transition-colors">
+                  Kullanım Senaryoları
+                </a>
+                <a href="#" className="block text-sm text-gray-600 hover:text-gray-900 transition-colors">
+                  Araçlar
+                </a>
+              </div>
+            </div>
+
+            {/* Support Column */}
+            <div>
+              <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wider mb-4">
+                Destek
+              </h3>
+              <div className="space-y-3">
+                <a href="#" className="block text-sm text-gray-600 hover:text-gray-900 transition-colors">
+                  İletişim
+                </a>
+                <a href="#" className="block text-sm text-gray-600 hover:text-gray-900 transition-colors">
+                  Dokümantasyon
+                </a>
+                <a href="#" className="block text-sm text-gray-600 hover:text-gray-900 transition-colors">
+                  Blog
+                </a>
+                <a href="#" className="block text-sm text-gray-600 hover:text-gray-900 transition-colors">
+                  Durum
+                </a>
+                <a href="#" className="block text-sm text-gray-600 hover:text-gray-900 transition-colors">
+                  Başarı Hikayeleri
+                </a>
+                <a href="#" className="block text-sm text-gray-600 hover:text-gray-900 transition-colors">
+                  Tanımlar
+                </a>
+              </div>
+            </div>
+
+            {/* Legal Column */}
+            <div>
+              <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wider mb-4">
+                Yasal
+              </h3>
+              <div className="space-y-3">
+                <a href="#" className="block text-sm text-gray-600 hover:text-gray-900 transition-colors">
+                  Gizlilik
+                </a>
+                <a href="#" className="block text-sm text-gray-600 hover:text-gray-900 transition-colors">
+                  Koşullar
+                </a>
+              </div>
+            </div>
+
+            {/* Resources Column */}
+            <div>
+              <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wider mb-4">
+                Kaynaklar
+              </h3>
+              <div className="space-y-3">
+                <a href="#" className="block text-sm text-gray-600 hover:text-gray-900 transition-colors">
+                  AgroConsult Alternatifi
+                </a>
+                <a href="#" className="block text-sm text-gray-600 hover:text-gray-900 transition-colors">
+                  FarmScope Alternatifi
+                </a>
+                <a href="#" className="block text-sm text-gray-600 hover:text-gray-900 transition-colors">
+                  SeraVision Alternatifi
+                </a>
+                <a href="#" className="block text-sm text-gray-600 hover:text-gray-900 transition-colors">
+                  Karşılaştır
+                </a>
+              </div>
+            </div>
+          </div>
+
+          {/* Bottom Footer */}
+          <div className="border-t border-gray-200 pt-8">
+            <div className="flex flex-col md:flex-row justify-between items-center">
+              <div className="flex items-center space-x-4 mb-4 md:mb-0">
+                <div className="flex items-center space-x-3">
+                  <div className="w-8 h-8 bg-black rounded-full flex items-center justify-center">
+                    <span className="text-white text-sm font-bold">S</span>
+                  </div>
+                  <span className="text-lg font-semibold text-gray-900">SeraGPT</span>
+                </div>
+              </div>
+
+              <div className="text-center md:text-right">
+                <p className="text-sm text-gray-500">
+                  © 2025 SeraGPT. Tüm hakları saklıdır.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
