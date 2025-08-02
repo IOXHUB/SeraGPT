@@ -156,7 +156,7 @@ export function ContactSection() {
                   </p>
                 </motion.div>
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-6">
+                <form onSubmit={handleSubmit} className="space-y-6" suppressHydrationWarning={true}>
                   <div className="grid md:grid-cols-2 gap-6">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -168,7 +168,7 @@ export function ContactSection() {
                         value={formData.name}
                         onChange={(e) => setFormData({...formData, name: e.target.value})}
                         className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
-                        placeholder="Ad��nız ve soyadınız"
+                        placeholder="Adınız ve soyadınız"
                         suppressHydrationWarning={true}
                       />
                     </div>
