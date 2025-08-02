@@ -243,6 +243,237 @@ export default function UserjotCloneSection() {
           </div>
         </div>
       </div>
+
+      {/* Understanding Section with Product Mockup */}
+      <div className="py-20 bg-gray-50">
+        <div className="max-w-6xl mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+              Her sera projesinin arkasındaki<br />
+              gerçek ihtiyacı anlayın
+            </h2>
+            <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+              Analizler hangi projelerin popüler olduğunu gösterir, tartışmalar neden önemli olduğunu ortaya çıkarır.
+              <span className="font-semibold text-gray-900"> Her müşterinin hangi özelliklere ihtiyacı olduğunu görün,
+              iş akışlarını anlayın ve gerçekten sorunları çözen sera çözümleri</span> geliştirin.
+              Tahminlerle değil, güvenle proje yapın.
+            </p>
+          </motion.div>
+
+          {/* Product Mockup */}
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="relative"
+          >
+            <div className="bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
+              {/* Browser Header */}
+              <div className="bg-gray-100 px-4 py-3 flex items-center space-x-2 border-b border-gray-200">
+                <div className="flex space-x-2">
+                  <div className="w-3 h-3 bg-red-400 rounded-full"></div>
+                  <div className="w-3 h-3 bg-yellow-400 rounded-full"></div>
+                  <div className="w-3 h-3 bg-green-400 rounded-full"></div>
+                </div>
+                <div className="flex-1 flex justify-center">
+                  <div className="bg-white rounded px-3 py-1 text-sm text-gray-600 border border-gray-300 min-w-64 text-center">
+                    seragpt.com
+                  </div>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                  </svg>
+                  <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.367 2.684 3 3 0 00-5.367-2.684z" />
+                  </svg>
+                </div>
+              </div>
+
+              {/* App Content */}
+              <div className="flex">
+                {/* Sidebar */}
+                <div className="w-64 bg-gray-50 border-r border-gray-200 p-4">
+                  <div className="flex items-center space-x-3 mb-6">
+                    <div className="w-8 h-8 bg-black rounded-full flex items-center justify-center">
+                      <span className="text-white text-sm font-bold">S</span>
+                    </div>
+                    <div>
+                      <div className="font-semibold text-gray-900">SeraGPT</div>
+                      <div className="text-xs text-gray-500">Pro Plan</div>
+                    </div>
+                  </div>
+
+                  <div className="space-y-6">
+                    <div>
+                      <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wider mb-3">PROJELER</h3>
+                      <div className="space-y-2">
+                        <div className="flex items-center justify-between py-2">
+                          <div className="flex items-center space-x-3">
+                            <div className="w-2 h-2 bg-orange-400 rounded-full"></div>
+                            <span className="text-sm text-gray-700">Beklemede</span>
+                          </div>
+                          <span className="text-xs text-gray-500">24</span>
+                        </div>
+                        <div className="flex items-center justify-between py-2">
+                          <div className="flex items-center space-x-3">
+                            <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
+                            <span className="text-sm text-gray-700">İnceleniyor</span>
+                          </div>
+                          <span className="text-xs text-gray-500">8</span>
+                        </div>
+                        <div className="flex items-center justify-between py-2 bg-gray-100 rounded px-2 -mx-2">
+                          <div className="flex items-center space-x-3">
+                            <div className="w-2 h-2 bg-purple-400 rounded-full"></div>
+                            <span className="text-sm font-medium text-gray-900">Planlandı</span>
+                          </div>
+                          <span className="text-xs font-medium text-gray-900">30</span>
+                        </div>
+                        <div className="flex items-center justify-between py-2">
+                          <div className="flex items-center space-x-3">
+                            <div className="w-2 h-2 bg-green-400 rounded-full"></div>
+                            <span className="text-sm text-gray-700">Tamamlandı</span>
+                          </div>
+                          <span className="text-xs text-gray-500">74</span>
+                        </div>
+                        <div className="flex items-center justify-between py-2">
+                          <div className="flex items-center space-x-3">
+                            <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
+                            <span className="text-sm text-gray-700">Kapalı</span>
+                          </div>
+                          <span className="text-xs text-gray-500">25</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div>
+                      <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wider mb-3">HİZMETLER</h3>
+                      <div className="space-y-2">
+                        <div className="flex items-center space-x-3 py-1">
+                          <div className="w-2 h-2 bg-green-400 rounded-full"></div>
+                          <span className="text-sm text-gray-700">Danışmanlık</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div>
+                      <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wider mb-3">ÇALIŞMA ALANLARI</h3>
+                      <div className="space-y-2">
+                        <div className="flex items-center space-x-3 py-1">
+                          <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
+                          <span className="text-sm text-gray-700">Branding</span>
+                        </div>
+                        <div className="flex items-center space-x-3 py-1">
+                          <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
+                          <span className="text-sm text-gray-700">Ayarlar</span>
+                        </div>
+                        <div className="flex items-center space-x-3 py-1">
+                          <div className="w-2 h-2 bg-purple-400 rounded-full"></div>
+                          <span className="text-sm text-gray-700">Pano</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Main Content */}
+                <div className="flex-1 p-6">
+                  <div className="mb-6">
+                    <h2 className="text-xl font-bold text-gray-900 mb-2">
+                      Sera içi widget'ları için geri bildirim toplama.
+                    </h2>
+                    <p className="text-gray-600 text-sm leading-relaxed">
+                      Sera içi gömülü widget'ları uygulayın; geri bildirim toplamak, roadmap'i görüntülemek ve
+                      güncellemeleri doğrudan uygulama içinde almak için.
+                    </p>
+                  </div>
+
+                  {/* User Comment */}
+                  <div className="bg-white border border-gray-200 rounded-lg p-4 mb-4">
+                    <div className="flex items-start space-x-3">
+                      <div className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center">
+                        <span className="text-white text-sm font-bold">ŞT</span>
+                      </div>
+                      <div className="flex-1">
+                        <div className="flex items-center space-x-2 mb-1">
+                          <span className="font-medium text-gray-900">Şeyran Taşlın</span>
+                          <span className="text-xs text-gray-500">21 May 2024</span>
+                        </div>
+                        <div className="flex items-center space-x-4 mb-3">
+                          <div className="flex items-center space-x-1">
+                            <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                            </svg>
+                            <span className="text-xs text-gray-500">15</span>
+                          </div>
+                          <div className="flex items-center space-x-1">
+                            <svg className="w-4 h-4 text-red-500" fill="currentColor" viewBox="0 0 24 24">
+                              <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                            </svg>
+                            <span className="text-xs text-gray-500">39</span>
+                          </div>
+                        </div>
+                        <div className="border-b border-gray-200">
+                          <div className="flex space-x-6 mb-4">
+                            <button className="text-sm font-medium text-gray-900 border-b-2 border-gray-900 pb-2">
+                              Yorumlar
+                            </button>
+                            <button className="text-sm text-gray-500 pb-2">
+                              Reaksiyonlar
+                            </button>
+                            <button className="text-sm text-gray-500 pb-2">
+                              Detaylar
+                            </button>
+                          </div>
+                        </div>
+                        <div className="mt-4">
+                          <input
+                            type="text"
+                            placeholder="Bir yorum yazın..."
+                            className="w-full p-3 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                          />
+                          <div className="flex justify-end mt-2">
+                            <button className="bg-black text-white px-4 py-2 rounded text-sm font-medium">
+                              Gönder
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Additional Comment */}
+                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                    <div className="flex items-start space-x-3">
+                      <div className="w-8 h-8 bg-gray-500 rounded-full flex items-center justify-center">
+                        <span className="text-white text-sm font-bold">AS</span>
+                      </div>
+                      <div className="flex-1">
+                        <div className="flex items-center space-x-2 mb-2">
+                          <span className="font-medium text-gray-900">Adem Smith</span>
+                          <span className="text-xs text-gray-500">about 3 hours ago</span>
+                        </div>
+                        <p className="text-sm text-gray-700 leading-relaxed">
+                          Bu sera yönetim sistemi için oldukça kullanışlı, ancak mevcut sera verilerimle entegrasyon konusunda endişelerim var.
+                          Mevcut sensörlerle uyumlu olup olmadığını ve özellikle yeni özellikleri duyurmak için nasıl bir widget kullanacağımızı bilmek istiyorum.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </div>
     </div>
   );
 }
