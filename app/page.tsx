@@ -1,23 +1,23 @@
-import NewHeroSection from '@/components/seragpt/NewHeroSection';
-import NewProblemSection from '@/components/seragpt/NewProblemSection';
-import NewSolutionSection from '@/components/seragpt/NewSolutionSection';
-import NewTestimonialSection from '@/components/seragpt/NewTestimonialSection';
-import NewDemoSection from '@/components/seragpt/NewDemoSection';
-import NewFAQSection from '@/components/seragpt/NewFAQSection';
-import NewFinalCTASection from '@/components/seragpt/NewFinalCTASection';
-import NewFloatingCTA from '@/components/seragpt/NewFloatingCTA';
+import CorporateHeroSection from '@/components/seragpt/CorporateHeroSection';
+import CorporateProblemSection from '@/components/seragpt/CorporateProblemSection';
+import CorporateSolutionSection from '@/components/seragpt/CorporateSolutionSection';
+import CorporateTestimonialSection from '@/components/seragpt/CorporateTestimonialSection';
+import CorporateDemoSection from '@/components/seragpt/CorporateDemoSection';
+import CorporateFAQSection from '@/components/seragpt/CorporateFAQSection';
+import CorporateFinalCTASection from '@/components/seragpt/CorporateFinalCTASection';
+import CorporateFloatingCTA from '@/components/seragpt/CorporateFloatingCTA';
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-gray-900">
-      <NewHeroSection />
-      <NewProblemSection />
-      <NewSolutionSection />
-      <NewTestimonialSection />
-      <NewDemoSection />
-      <NewFAQSection />
-      <NewFinalCTASection />
-      <NewFloatingCTA />
+    <main className="min-h-screen">
+      <CorporateHeroSection />
+      <CorporateProblemSection />
+      <CorporateSolutionSection />
+      <CorporateTestimonialSection />
+      <CorporateDemoSection />
+      <CorporateFAQSection />
+      <CorporateFinalCTASection />
+      <CorporateFloatingCTA />
     </main>
   );
 }
