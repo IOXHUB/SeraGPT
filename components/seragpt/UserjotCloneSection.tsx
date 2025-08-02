@@ -121,6 +121,128 @@ export default function UserjotCloneSection() {
           </motion.div>
         </div>
       </div>
+
+      {/* Horizontal Scrolling Features Section */}
+      <div className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <p className="text-gray-500 text-sm font-medium uppercase tracking-wider mb-4">
+              PEKİ, TAM OLARAK NE YAPABILIRSINIZ
+            </p>
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+              kullanıcıların gerçekten<br />
+              istediği projeleri nasıl yaparsınız?
+            </h2>
+            <p className="text-xl text-gray-600 max-w-4xl mx-auto">
+              SeraGPT, sera analizlerine bir yuva veriyor; mühendisler oy verir,
+              tartışır ve projenizi şekillendirmeye yardımcı olur.
+              <span className="font-semibold text-gray-900"> popüler taleplerin nasıl
+              ortaya çıktığını ve mühendislerin sevdiği özelliklere dönüştüğünü</span> izleyin.
+            </p>
+          </motion.div>
+
+          {/* Horizontal scrolling cards */}
+          <div className="relative">
+            <div className="flex overflow-x-auto scrollbar-hide gap-6 pb-6">
+              {/* Card 1 */}
+              <motion.div
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6 }}
+                viewport={{ once: true }}
+                className="flex-shrink-0 w-80 bg-gray-50 rounded-2xl p-8 border border-gray-200"
+              >
+                <div className="text-8xl font-bold text-gray-200 mb-6">01</div>
+                <div className="text-4xl mb-6">📊</div>
+                <h3 className="text-xl font-bold text-gray-900 mb-4">
+                  Analiz Toplama
+                </h3>
+                <p className="text-gray-600 leading-relaxed">
+                  Kullanıcılar sera projelerini ve geri bildirimlerini basit,
+                  sezgisel bir arayüz üzerinden gönderir. Her gönderim takip edilir.
+                </p>
+              </motion.div>
+
+              {/* Card 2 */}
+              <motion.div
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                viewport={{ once: true }}
+                className="flex-shrink-0 w-80 bg-gray-50 rounded-2xl p-8 border border-gray-200"
+              >
+                <div className="text-8xl font-bold text-gray-200 mb-6">02</div>
+                <div className="text-4xl mb-6">👍</div>
+                <h3 className="text-xl font-bold text-gray-900 mb-4">
+                  Oylama & Önceliklendirme
+                </h3>
+                <p className="text-gray-600 leading-relaxed">
+                  Topluluk en önemli konulara oy verir. Hangi özelliklerin
+                  10'dan 100'e oy aldığını anında görün.
+                </p>
+              </motion.div>
+
+              {/* Card 3 */}
+              <motion.div
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                viewport={{ once: true }}
+                className="flex-shrink-0 w-80 bg-gray-50 rounded-2xl p-8 border border-gray-200"
+              >
+                <div className="text-8xl font-bold text-gray-200 mb-6">03</div>
+                <div className="text-4xl mb-6">💬</div>
+                <h3 className="text-xl font-bold text-gray-900 mb-4">
+                  Tartışma & İyileştirme
+                </h3>
+                <p className="text-gray-600 leading-relaxed">
+                  Zengin tartışmalar her talebin arkasındaki neden anlamanıza
+                  yardımcı olur. Önemli olan bağlamı edinin.
+                </p>
+              </motion.div>
+
+              {/* Card 4 */}
+              <motion.div
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                viewport={{ once: true }}
+                className="flex-shrink-0 w-80 bg-gray-50 rounded-2xl p-8 border border-gray-200"
+              >
+                <div className="text-8xl font-bold text-gray-200 mb-6">04</div>
+                <div className="text-4xl mb-6">🚀</div>
+                <h3 className="text-xl font-bold text-gray-900 mb-4">
+                  Uygulama & Takip
+                </h3>
+                <p className="text-gray-600 leading-relaxed">
+                  Onaylanan projeler geliştirme sürecine alınır. Müşteriler
+                  ilerlemeyi takip edebilir ve sonuçları görür.
+                </p>
+              </motion.div>
+            </div>
+
+            {/* Navigation arrows */}
+            <div className="flex justify-center mt-8 space-x-4">
+              <button className="w-10 h-10 bg-gray-100 hover:bg-gray-200 rounded-full flex items-center justify-center transition-colors">
+                <svg className="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                </svg>
+              </button>
+              <button className="w-10 h-10 bg-gray-100 hover:bg-gray-200 rounded-full flex items-center justify-center transition-colors">
+                <svg className="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
