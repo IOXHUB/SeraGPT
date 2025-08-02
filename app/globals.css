@@ -133,6 +133,14 @@ body {
 }
 
 /* Utility Classes */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
 .animate-fade-in-up {
   animation: fadeInUp 0.8s ease-out;
 }
