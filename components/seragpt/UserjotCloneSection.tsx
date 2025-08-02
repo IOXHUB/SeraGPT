@@ -486,7 +486,7 @@ export default function UserjotCloneSection() {
             className="text-center mb-16"
           >
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              Geli��tirme planınızı<br />
+              Geliştirme planınızı<br />
               kalma sebebine dönüştürün
             </h2>
             <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
@@ -621,6 +621,151 @@ export default function UserjotCloneSection() {
                   </div>
                 </div>
               </div>
+            </div>
+          </motion.div>
+        </div>
+      </div>
+
+      {/* Features Announcement Section */}
+      <div className="py-20 bg-white">
+        <div className="max-w-6xl mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+              Kullanıcıların istediği özellikleri<br />
+              geliştirin ve onlara anlatın
+            </h2>
+            <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+              Ürün geliştirmedeki en güzel an? Birine <span className="font-semibold text-gray-900">"Bunu istedin,
+              biz de yaptık"</span> demek. Güzel değişiklik günlükleri <span className="font-semibold text-gray-900">her sürümü sergiler</span>
+              ve istekte bulunanları otomatik olarak bilgilendirir. Müşterileri savunucuya dönüştürün.
+            </p>
+          </motion.div>
+
+          {/* Feature Cards Grid */}
+          <div className="grid md:grid-cols-2 gap-8">
+            {/* Build Trust Card */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              viewport={{ once: true }}
+              className="bg-gray-50 rounded-2xl p-8 border border-gray-200 hover:shadow-lg transition-shadow"
+            >
+              <div className="mb-6">
+                <div className="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center mb-4">
+                  <svg className="w-6 h-6 text-red-500" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                  </svg>
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-3">
+                  Güven Oluşturun
+                </h3>
+                <p className="text-gray-600 leading-relaxed">
+                  Kullanıcılara geri bildirimlerini dinlediğinizi ve talepleri üzerinde
+                  aktif olarak çalıştığınızı gösterin.
+                </p>
+              </div>
+            </motion.div>
+
+            {/* Engage Users Card */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              viewport={{ once: true }}
+              className="bg-gray-50 rounded-2xl p-8 border border-gray-200 hover:shadow-lg transition-shadow"
+            >
+              <div className="mb-6">
+                <div className="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center mb-4">
+                  <svg className="w-6 h-6 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-3">
+                  Kullanıcıları Meşgul Edin
+                </h3>
+                <p className="text-gray-600 leading-relaxed">
+                  Otomatik güncelleme bildirimleri ile konuşmayı devam ettirin.
+                </p>
+              </div>
+            </motion.div>
+
+            {/* Control Access Card */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              viewport={{ once: true }}
+              className="bg-gray-50 rounded-2xl p-8 border border-gray-200 hover:shadow-lg transition-shadow"
+            >
+              <div className="mb-6">
+                <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mb-4">
+                  <svg className="w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-3">
+                  Erişimi Kontrol Edin
+                </h3>
+                <p className="text-gray-600 leading-relaxed">
+                  Kullanıcılarınızla neyi ve ne zaman paylaşacağınızı seçin.
+                </p>
+              </div>
+            </motion.div>
+
+            {/* Stay Organized Card */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              viewport={{ once: true }}
+              className="bg-gray-50 rounded-2xl p-8 border border-gray-200 hover:shadow-lg transition-shadow"
+            >
+              <div className="mb-6">
+                <div className="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center mb-4">
+                  <svg className="w-6 h-6 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-3">
+                  Düzenli Kalın
+                </h3>
+                <p className="text-gray-600 leading-relaxed">
+                  Geliştirme planınızla otomatik senkronize olan güzel değişiklik günlükleri.
+                </p>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Bottom CTA */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.5 }}
+            viewport={{ once: true }}
+            className="text-center mt-16"
+          >
+            <div className="bg-gray-900 rounded-2xl p-8 md:p-12 text-white">
+              <h3 className="text-2xl md:text-3xl font-bold mb-4">
+                Sera projelerinizi şeffaf şekilde yönetin
+              </h3>
+              <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
+                Kullanıcılarınız her adımda ne olduğunu bilsin, güven oluşsun ve
+                başarılı sera projeleri birlikte geliştirelim.
+              </p>
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="bg-white text-gray-900 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-gray-100 transition-colors"
+              >
+                Hemen Başlayın
+              </motion.button>
             </div>
           </motion.div>
         </div>
