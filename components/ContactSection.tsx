@@ -168,7 +168,8 @@ export function ContactSection() {
                         value={formData.name}
                         onChange={(e) => setFormData({...formData, name: e.target.value})}
                         className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
-                        placeholder="Adınız ve soyadınız"
+                        placeholder="Ad��nız ve soyadınız"
+                        suppressHydrationWarning={true}
                       />
                     </div>
                     <div>
@@ -182,6 +183,7 @@ export function ContactSection() {
                         onChange={(e) => setFormData({...formData, email: e.target.value})}
                         className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
                         placeholder="email@ornek.com"
+                        suppressHydrationWarning={true}
                       />
                     </div>
                   </div>
@@ -197,6 +199,7 @@ export function ContactSection() {
                         onChange={(e) => setFormData({...formData, phone: e.target.value})}
                         className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
                         placeholder="0532 123 45 67"
+                        suppressHydrationWarning={true}
                       />
                     </div>
                     <div>
@@ -209,6 +212,7 @@ export function ContactSection() {
                         onChange={(e) => setFormData({...formData, company: e.target.value})}
                         className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
                         placeholder="Şirket adınız"
+                        suppressHydrationWarning={true}
                       />
                     </div>
                   </div>
@@ -223,6 +227,7 @@ export function ContactSection() {
                         value={formData.projectType}
                         onChange={(e) => setFormData({...formData, projectType: e.target.value})}
                         className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                        suppressHydrationWarning={true}
                       >
                         <option value="">Seçiniz</option>
                         {projectTypes.map((type) => (
@@ -240,6 +245,7 @@ export function ContactSection() {
                         onChange={(e) => setFormData({...formData, area: e.target.value})}
                         className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
                         placeholder="Örn: 1000"
+                        suppressHydrationWarning={true}
                       />
                     </div>
                   </div>
@@ -254,6 +260,7 @@ export function ContactSection() {
                       onChange={(e) => setFormData({...formData, message: e.target.value})}
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
                       placeholder="Projeniz hakkında detaylı bilgi verebilirsiniz..."
+                      suppressHydrationWarning={true}
                     />
                   </div>
 
@@ -342,7 +349,7 @@ export function ContactSection() {
             {/* Quick Contact */}
             <div className="bg-gradient-to-r from-green-600 to-green-500 rounded-xl p-6 text-white">
               <h4 className="text-xl font-bold mb-4">
-                ⚡ H��zlı İletişim
+                ⚡ Hızlı İletişim
               </h4>
               <p className="mb-4 opacity-90">
                 Acil durumlarda 7/24 ulaşabileceğiniz direktörümüz
