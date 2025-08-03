@@ -2,6 +2,9 @@
 
 import DashboardLayout from '@/components/dashboard/DashboardLayout';
 
+// Force dynamic rendering for dashboard pages
+export const dynamic = 'force-dynamic';
+
 export default function DashboardPage() {
   const stats = [
     { name: 'Toplam Sera Projesi', value: '12', icon: '🌱', change: '+2 bu ay', changeType: 'positive' },
