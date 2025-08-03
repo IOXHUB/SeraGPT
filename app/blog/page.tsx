@@ -5,6 +5,9 @@ import { useEffect, useState } from 'react';
 import SEOHead from '@/components/SEOHead';
 import { SEOService } from '@/lib/seo';
 
+// Force dynamic rendering for blog pages
+export const dynamic = 'force-dynamic';
+
 export default function BlogPage() {
   const [seoConfig, setSeoConfig] = useState(SEOService.generateBlogPageSEO());
 
