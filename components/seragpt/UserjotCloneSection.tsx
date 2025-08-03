@@ -126,7 +126,7 @@ export default function UserjotCloneSection() {
       </div>
 
       {/* Horizontal Scrolling Features Section */}
-      <div className="py-20 bg-white">
+      <div className="py-20">
         <div className="max-w-[960px] mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -465,7 +465,7 @@ export default function UserjotCloneSection() {
                           <span className="text-xs text-gray-500">about 3 hours ago</span>
                         </div>
                         <p className="text-sm text-gray-700 leading-relaxed">
-                          Bu sera yönetim sistemi için oldukça kullanışlı, ancak mevcut sera verilerimle entegrasyon konusunda endişelerim var.
+                          Bu sera yönetim sistemi için oldukça kullan��şlı, ancak mevcut sera verilerimle entegrasyon konusunda endişelerim var.
                           Mevcut sensörlerle uyumlu olup olmadığını ve özellikle yeni özellikleri duyurmak için nasıl bir widget kullanacağımızı bilmek istiyorum.
                         </p>
                       </div>
@@ -479,7 +479,7 @@ export default function UserjotCloneSection() {
       </div>
 
       {/* Roadmap Section */}
-      <div className="py-20 bg-white">
+      <div className="py-20">
         <div className="max-w-[960px] mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -630,7 +630,7 @@ export default function UserjotCloneSection() {
       </div>
 
       {/* Features Announcement Section */}
-      <div className="py-20 bg-white">
+      <div className="py-20">
         <div className="max-w-[960px] mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -817,7 +817,7 @@ export default function UserjotCloneSection() {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                       </svg>
                     </div>
-                    <span className="text-sm text-gray-700">S��nırsız Sera Analizü</span>
+                    <span className="text-sm text-gray-700">Sınırsız Sera Analizü</span>
                   </div>
                   <div className="flex items-center space-x-3">
                     <div className="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center">
@@ -1031,7 +1031,7 @@ export default function UserjotCloneSection() {
             className="text-center"
           >
             <p className="text-gray-600 mb-4">
-              Ne kadar tasarruf edersiniz? <span className="font-semibold text-gray-900">%10 daha düşük dönem</span> tasarruf edin?
+              Ne kadar tasarruf edersiniz? <span className="font-semibold text-gray-900">%10 daha dü��ük dönem</span> tasarruf edin?
             </p>
             <button className="text-gray-900 font-medium hover:underline">
               Tasarruflarınızı hesaplayın ��
@@ -1046,7 +1046,7 @@ export default function UserjotCloneSection() {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
         viewport={{ once: true }}
-        className="bg-white py-20"
+        className="py-20"
       >
         <div className="max-w-4xl mx-auto px-6 text-center">
           <motion.div
@@ -1128,7 +1128,7 @@ export default function UserjotCloneSection() {
               },
               {
                 question: "Analiz deneyimini özelleştirebilir miyim?",
-                answer: "Evet, SeraGPT'yi markanıza uygun şekilde özelleştirebilir ve kendi domain adresinizi kullanabilirsiniz."
+                answer: "Evet, SeraGPT'yi markanıza uygun şekilde ��zelleştirebilir ve kendi domain adresinizi kullanabilirsiniz."
               },
               {
                 question: "Çok fazla geri bildirim alırsam ne olur?",
