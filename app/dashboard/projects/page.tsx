@@ -2,6 +2,9 @@
 
 import DashboardLayout from '@/components/dashboard/DashboardLayout';
 
+// Force dynamic rendering for dashboard pages
+export const dynamic = 'force-dynamic';
+
 export default function ProjectsPage() {
   const projects = [
     {
@@ -170,7 +173,7 @@ export default function ProjectsPage() {
                     ROI
                   </th>
                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Yatırım
+                    Yatır��m
                   </th>
                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     İşlemler
