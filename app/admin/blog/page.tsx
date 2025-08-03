@@ -22,7 +22,12 @@ export default function BlogAdminPage() {
     author: 'Volkan Şimşirkaya',
     tags: '',
     featured: false,
-    status: 'draft' as 'published' | 'draft'
+    status: 'draft' as 'published' | 'draft',
+    date: new Date().toLocaleDateString('tr-TR', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    })
   });
 
   useEffect(() => {
@@ -48,7 +53,12 @@ export default function BlogAdminPage() {
       const postData = {
         ...formData,
         tags: formData.tags ? formData.tags.split(',').map(tag => tag.trim()) : [],
-        slug: formData.slug || generateSlug(formData.title)
+        slug: formData.slug || generateSlug(formData.title),
+        date: formData.date || new Date().toLocaleDateString('tr-TR', {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric'
+        })
       };
 
       if (editingPost) {
@@ -81,7 +91,8 @@ export default function BlogAdminPage() {
       author: post.author || 'Volkan Şimşirkaya',
       tags: post.tags?.join(', ') || '',
       featured: post.featured || false,
-      status: post.status
+      status: post.status,
+      date: post.date
     });
     setShowForm(true);
   };
@@ -113,7 +124,12 @@ export default function BlogAdminPage() {
       author: 'Volkan Şimşirkaya',
       tags: '',
       featured: false,
-      status: 'draft'
+      status: 'draft',
+      date: new Date().toLocaleDateString('tr-TR', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      })
     });
     setEditingPost(null);
     setShowForm(false);
