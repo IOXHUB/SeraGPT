@@ -69,7 +69,7 @@ export default function BlogAdminPage() {
 
       resetForm();
       loadPosts();
-      alert(editingPost ? 'Yazı güncellendi!' : 'Yazı oluşturuldu!');
+      alert(editingPost ? 'Yazı güncellendi!' : 'Yaz�� oluşturuldu!');
     } catch (error) {
       console.error('Kaydetme hatası:', error);
       alert('Bir hata oluştu!');
@@ -278,8 +278,8 @@ export default function BlogAdminPage() {
                 />
               </div>
 
-              {/* Category & Read Time */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {/* Category, Read Time & Date */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Kategori *
@@ -308,6 +308,20 @@ export default function BlogAdminPage() {
                     required
                     className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
                     placeholder="5 dk okuma"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Yayın Tarihi *
+                  </label>
+                  <input
+                    type="text"
+                    value={formData.date}
+                    onChange={(e) => setFormData({ ...formData, date: e.target.value })}
+                    required
+                    className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+                    placeholder="29 Aralık 2025"
                   />
                 </div>
               </div>
