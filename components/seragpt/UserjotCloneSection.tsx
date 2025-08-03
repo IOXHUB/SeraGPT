@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 
 export default function UserjotCloneSection() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50">
+    <div className="min-h-screen bg-white">
       {/* Header - Full width with 960px content container */}
       <header className="w-full border-b border-gray-100">
         <div className="flex justify-between items-center p-6 max-w-[960px] mx-auto">
@@ -556,7 +556,7 @@ export default function UserjotCloneSection() {
                             </svg>
                           </div>
                           <p className="text-gray-600 text-sm mb-3">
-                            Android uygulaması sera fotoğrafları yüklenmeye çalış��ldığında çöküyor.
+                            Android uygulaması sera fotoğrafları yüklenmeye çalışıldığında çöküyor.
                             Bu ASAP düzeltilmesi gerekiyor.
                           </p>
                           <div className="flex items-center space-x-2">
