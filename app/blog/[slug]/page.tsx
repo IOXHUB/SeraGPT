@@ -1,8 +1,37 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { useEffect, useState } from 'react';
+import { useParams } from 'next/navigation';
+import SEOHead from '@/components/SEOHead';
+import { BlogService } from '@/lib/blog';
+import { SEOService } from '@/lib/seo';
 
 export default function BlogArticlePage() {
+  const params = useParams();
+  const [post, setPost] = useState<any>(null);
+  const [seoConfig, setSeoConfig] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const loadPost = async () => {
+      try {
+        const slug = params.slug as string;
+        const postData = await BlogService.getPostBySlug(slug);
+
+        if (postData) {
+          setPost(postData);
+          setSeoConfig(SEOService.generateBlogPostSEO(postData));
+        }
+      } catch (error) {
+        console.error('Post yüklenirken hata:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadPost();
+  }, [params.slug]);
   const article = {
     title: "Sera Projelerinde UAT (Kullanıcı Kabul Testi) için Komple Rehber - 2025",
     publishedDate: "29 Aralık 2025",
