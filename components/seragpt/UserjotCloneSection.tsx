@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import BlogCardsSection from './BlogCardsSection';
 
 export default function UserjotCloneSection() {
   return (
