@@ -779,6 +779,9 @@ export default function UserjotCloneSection() {
         </div>
       </div>
 
+      {/* Blog Cards Section */}
+      <BlogCardsSection />
+
       {/* Pricing Section */}
       <div className="bg-gray-50 py-20">
         <div className="max-w-[960px] mx-auto px-6">
