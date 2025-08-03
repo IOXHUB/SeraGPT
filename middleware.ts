@@ -1,18 +1,25 @@
 import { updateSession } from '@/lib/auth'
+import { NextRequest } from 'next/server'
 
-export async function middleware(request: any) {
-  return await updateSession(request)
+export async function middleware(request: NextRequest) {
+  // Only run auth middleware on protected routes
+  if (request.nextUrl.pathname.startsWith('/dashboard') ||
+      request.nextUrl.pathname.startsWith('/admin')) {
+    return await updateSession(request)
+  }
+
+  // Let other routes pass through without auth
+  return
 }
 
 export const config = {
   matcher: [
     /*
-     * Match all request paths except for the ones starting with:
-     * - _next/static (static files)
-     * - _next/image (image optimization files)
-     * - favicon.ico (favicon file)
-     * Feel free to modify this pattern to include more paths.
+     * Match only protected routes that need authentication
+     * - /dashboard (user dashboard)
+     * - /admin (admin pages)
      */
-    '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
+    '/dashboard/:path*',
+    '/admin/:path*',
   ],
 }
