@@ -59,7 +59,9 @@ export default function BlogPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <>
+      <SEOHead config={seoConfig} />
+      <div className="min-h-screen bg-gray-50">
       {/* Header */}
       <header className="w-full">
         <div className="flex justify-between items-center p-6 max-w-[960px] mx-auto">
@@ -354,6 +356,7 @@ export default function BlogPage() {
           </div>
         </div>
       </footer>
-    </div>
+      </div>
+    </>
   );
 }
