@@ -16,7 +16,7 @@ export default function PrivacyPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-gray-50">
       {/* Header */}
       <header className="w-full">
         <div className="flex justify-between items-center p-6 max-w-[960px] mx-auto">
@@ -107,7 +107,7 @@ export default function PrivacyPage() {
             <p className="text-lg leading-relaxed text-gray-700">
               Bu politika özellikle SeraGPT A.Ş. tarafından oluşturulan ve sürdürülen SeraGPT ürünü 
               için geçerlidir. Bu politika, site ziyaretçileri, potansiyel müşteriler ve müşteriler 
-              ve yetkili kullan��cılar hakkındaki bilgilerin işlenmesine uygulanır (hizmetlerin tedariki 
+              ve yetkili kullanıcılar hakkındaki bilgilerin işlenmesine uygulanır (hizmetlerin tedariki 
               ve SeraGPT ile ilişkilerinin yönetimi ile ilgili olarak). Bu politika boyunca bu kategorilerdeki 
               bireyleri topluca "siz" olarak adlandırıyoruz.
             </p>
@@ -264,7 +264,7 @@ export default function PrivacyPage() {
       </main>
 
       {/* Footer */}
-      <footer className="bg-white border-t border-gray-200 py-16">
+      <footer className="bg-gray-50 py-16">
         <div className="max-w-[960px] mx-auto px-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
             {/* Product Column */}
