@@ -32,7 +32,8 @@ export default function BlogArticlePage() {
 
     loadPost();
   }, [params.slug]);
-  const article = {
+  // Fallback article data for static content
+  const fallbackArticle = {
     title: "Sera Projelerinde UAT (Kullanıcı Kabul Testi) için Komple Rehber - 2025",
     publishedDate: "29 Aralık 2025",
     author: "Volkan Şimşirkaya",
@@ -41,6 +42,8 @@ export default function BlogArticlePage() {
     category: "Teknoloji",
     image: "https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2Fc7c9024610334b899cbc23e907d8ef5f?format=webp&width=800"
   };
+
+  const article = post || fallbackArticle;
 
   const tableOfContents = [
     { title: "UAT Nedir? (Basit Açıklama)", href: "#what-is-uat" },
