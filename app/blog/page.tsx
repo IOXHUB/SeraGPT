@@ -52,7 +52,8 @@ export default function BlogPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Header */}
-      <header className="flex justify-between items-center p-6 max-w-7xl mx-auto border-b border-gray-100">
+      <header className="w-full border-b border-gray-100">
+        <div className="flex justify-between items-center p-6 max-w-[960px] mx-auto">
         <div className="flex items-center space-x-3">
           <div className="w-8 h-8 bg-black rounded-full flex items-center justify-center">
             <span className="text-white text-sm font-bold">S</span>
@@ -83,6 +84,7 @@ export default function BlogPage() {
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
           </svg>
         </button>
+        </div>
       </header>
 
       {/* Main Content */}
@@ -230,7 +232,7 @@ export default function BlogPage() {
 
       {/* Footer */}
       <footer className="bg-gray-50 border-t border-gray-200 py-12 mt-20">
-        <div className="max-w-7xl mx-auto px-6">
+        <div className="max-w-[960px] mx-auto px-6">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="flex items-center space-x-3 mb-4 md:mb-0">
               <div className="w-8 h-8 bg-black rounded-full flex items-center justify-center">
