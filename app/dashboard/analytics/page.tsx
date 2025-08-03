@@ -2,6 +2,9 @@
 
 import DashboardLayout from '@/components/dashboard/DashboardLayout';
 
+// Force dynamic rendering for dashboard pages
+export const dynamic = 'force-dynamic';
+
 export default function AnalyticsPage() {
   const kpis = [
     { name: 'Toplam Gelir', value: '₺4,870,750', change: '+12.5%', trend: 'up' },
