@@ -126,7 +126,7 @@ export default function UserjotCloneSection() {
 
       {/* Horizontal Scrolling Features Section */}
       <div className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-6">
+        <div className="max-w-[960px] mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -248,7 +248,7 @@ export default function UserjotCloneSection() {
 
       {/* Understanding Section with Product Mockup */}
       <div className="py-20 bg-gray-50">
-        <div className="max-w-6xl mx-auto px-6">
+        <div className="max-w-[960px] mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -479,7 +479,7 @@ export default function UserjotCloneSection() {
 
       {/* Roadmap Section */}
       <div className="py-20 bg-white">
-        <div className="max-w-6xl mx-auto px-6">
+        <div className="max-w-[960px] mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -630,7 +630,7 @@ export default function UserjotCloneSection() {
 
       {/* Features Announcement Section */}
       <div className="py-20 bg-white">
-        <div className="max-w-6xl mx-auto px-6">
+        <div className="max-w-[960px] mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -775,7 +775,7 @@ export default function UserjotCloneSection() {
 
       {/* Pricing Section */}
       <div className="bg-gray-50 py-20">
-        <div className="max-w-6xl mx-auto px-6">
+        <div className="max-w-[960px] mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
               Ücretsiz başlayın, hazır olduğunuzda yükseltme yapın
@@ -784,7 +784,7 @@ export default function UserjotCloneSection() {
               Bugün geri bildirim toplamaya başlayın. <span className="font-semibold text-gray-900">Daha iyi ürünler oluşturmak için ihtiyacınız olan her şey ücretsiz</span>.
             </p>
             <p className="text-lg text-gray-500">
-              Büyüdükçe yalnızca gelişmiş özellikler için y��kseltme yapın.
+              Büyüdükçe yalnızca gelişmiş özellikler için yükseltme yapın.
             </p>
           </div>
 
@@ -1106,7 +1106,7 @@ export default function UserjotCloneSection() {
         viewport={{ once: true }}
         className="bg-gray-50 py-20"
       >
-        <div className="max-w-4xl mx-auto px-6">
+        <div className="max-w-[960px] mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -1205,7 +1205,7 @@ export default function UserjotCloneSection() {
 
       {/* Footer */}
       <footer className="bg-white border-t border-gray-200 py-16">
-        <div className="max-w-6xl mx-auto px-6">
+        <div className="max-w-[960px] mx-auto px-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
             {/* Product Column */}
             <div>
