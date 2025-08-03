@@ -6,7 +6,7 @@ export default function PrivacyPage() {
   const sections = [
     { title: "Neleri topladığımız ve neden", href: "#what-we-collect" },
     { title: "Bilgilerinize ne zaman erişiriz veya açıklarız", href: "#when-we-access" },
-    { title: "Bilgilerinizle ilgili haklarınız", href: "#your-rights" },
+    { title: "Bilgilerinizle ilgili haklar��nız", href: "#your-rights" },
     { title: "Verilerinizi nasıl güvence altına alırız", href: "#how-we-secure" },
     { title: "Ürün hesaplarınızdaki içeriği sildiğinizde ne olur", href: "#what-happens-when-delete" },
     { title: "Veri saklama", href: "#data-retention" },
@@ -18,7 +18,7 @@ export default function PrivacyPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Header */}
-      <header className="w-full border-b border-gray-100">
+      <header className="w-full">
         <div className="flex justify-between items-center p-6 max-w-[960px] mx-auto">
         <img
           src="https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2F96da5382e9584c3fb2d32eca60944359?format=webp&width=800"
@@ -241,7 +241,7 @@ export default function PrivacyPage() {
                 <li>• <strong>Aktif hesaplar:</strong> Hesap aktif olduğu sürece</li>
                 <li>• <strong>İptal edilen hesaplar:</strong> İptal sonrası 30 gün</li>
                 <li>• <strong>Yasal yükümlülükler:</strong> Gerekli yasal süre boyunca</li>
-                <li>• <strong>Anonim analitik veriler:</strong> İstatistiksel amaçlarla süresiz</li>
+                <li>��� <strong>Anonim analitik veriler:</strong> İstatistiksel amaçlarla süresiz</li>
               </ul>
             </section>
 
