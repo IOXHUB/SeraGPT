@@ -42,9 +42,9 @@ export default function UserjotCloneSection() {
         </div>
       </header>
 
-      {/* Main content - Exact match to Userjot layout */}
+      {/* Main content - 960px container */}
       <main className="flex-1 flex items-center justify-center px-6 py-20">
-        <div className="max-w-4xl mx-auto text-center">
+        <div className="max-w-[960px] mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -784,7 +784,7 @@ export default function UserjotCloneSection() {
               Bugün geri bildirim toplamaya başlayın. <span className="font-semibold text-gray-900">Daha iyi ürünler oluşturmak için ihtiyacınız olan her şey ücretsiz</span>.
             </p>
             <p className="text-lg text-gray-500">
-              Büyüdükçe yalnızca gelişmiş özellikler için yükseltme yapın.
+              Büyüdükçe yalnızca gelişmiş özellikler için y��kseltme yapın.
             </p>
           </div>
 
