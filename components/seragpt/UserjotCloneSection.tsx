@@ -58,7 +58,9 @@ export default function UserjotCloneSection() {
           >
             {/* Small text above headline */}
             <p className="text-gray-500 text-sm font-medium uppercase tracking-wider">
-              +20 YIL, +500 PROJE, +110 VERİ SETİ
+              <p>
+                <strong>+20 YIL, +500 PROJE, +110 VERİ SETİ</strong>
+              </p>
             </p>
 
             {/* Main headline */}
@@ -68,7 +70,14 @@ export default function UserjotCloneSection() {
 
             {/* Description paragraph */}
             <p className="text-xl md:text-2xl text-gray-600 leading-relaxed max-w-5xl mx-auto">
-              SeraGPT; 20 yılı aşkın mühendislik deneyimi, 500'den fazla tamamlanmış proje ve 110'dan fazla gerçek zamanlı veri setiyle, tarımsal yatırım kararlarınızı saniyeler içinde analiz eder. Her analiz, lokasyon, iklim, ürün türü, altyapı ve enerji kullanımına göre özelleştirilir. Yapay zekâ destekli sistemimiz; yatırım fizibilitesi, geri dönüş hesaplamaları ve altyapı ihtiyaçlarını yüksek doğrulukla sunar. Tüm çıktılar, uzman mühendis değerlendirmeleriyle zenginleştirilir; böylece veriye dayalı, güvenilir ve ölçülebilir sonuçlar elde edersiniz.
+              <p>
+                SeraGPT; 20 yılı aşkın mühendislik deneyimi, 500'den fazla
+                tamamlanmış proje ve 110'dan fazla gerçek zamanlı veri
+                setiyle, tarımsal yatırım kararlarınızı saniyeler içinde
+                analiz eder. Yapay zekâ destekli sistemimiz; yatırım
+                fizibilitesi, geri dönüş hesaplamaları ve altyapı
+                ihtiyaçlarını yüksek doğrulukla sunar.{" "}
+              </p>
             </p>
 
             {/* CTA Button */}
@@ -83,7 +92,9 @@ export default function UserjotCloneSection() {
 
             {/* Small text under button */}
             <p className="text-gray-500 text-sm">
-              Doğru yatırım, doğru analizle başlar.
+              <p>
+                <strong>Doğru yatırım, doğru analizle başlar.</strong>
+              </p>
             </p>
           </motion.div>
         </div>
