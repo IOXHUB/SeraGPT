@@ -29,9 +29,9 @@ export default function UserjotCloneSection() {
             <a href="#" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
               Güncellemeler
             </a>
-            <button className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
+            <a href="/auth/login" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
               Giriş Yap
-            </button>
+            </a>
           </nav>
 
           {/* Mobile menu button */}
