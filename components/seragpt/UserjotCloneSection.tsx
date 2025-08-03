@@ -5,39 +5,41 @@ import { motion } from 'framer-motion';
 export default function UserjotCloneSection() {
   return (
     <div className="min-h-screen bg-white">
-      {/* Header - Exact match to Userjot */}
-      <header className="flex justify-between items-center p-6 max-w-7xl mx-auto">
-        <div className="flex items-center space-x-3">
-          <div className="w-8 h-8 bg-black rounded-full flex items-center justify-center">
-            <span className="text-white text-sm font-bold">S</span>
+      {/* Header - Full width with 960px content container */}
+      <header className="w-full border-b border-gray-100">
+        <div className="flex justify-between items-center p-6 max-w-[960px] mx-auto">
+          <div className="flex items-center space-x-3">
+            <div className="w-8 h-8 bg-black rounded-full flex items-center justify-center">
+              <span className="text-white text-sm font-bold">S</span>
+            </div>
+            <span className="text-xl font-semibold text-gray-900">SeraGPT</span>
           </div>
-          <span className="text-xl font-semibold text-gray-900">SeraGPT</span>
-        </div>
-        
-        <nav className="hidden md:flex items-center space-x-8">
-          <a href="#" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
-            Fiyatlar
-          </a>
-          <a href="#" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
-            Yardım
-          </a>
-          <a href="#" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
-            Blog
-          </a>
-          <a href="#" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
-            Güncellemeler
-          </a>
-          <button className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
-            Giriş Yap
-          </button>
-        </nav>
 
-        {/* Mobile menu button */}
-        <button className="md:hidden">
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-          </svg>
-        </button>
+          <nav className="hidden md:flex items-center space-x-8">
+            <a href="#" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
+              Fiyatlar
+            </a>
+            <a href="#" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
+              Yardım
+            </a>
+            <a href="#" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
+              Blog
+            </a>
+            <a href="#" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
+              Güncellemeler
+            </a>
+            <button className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
+              Giriş Yap
+            </button>
+          </nav>
+
+          {/* Mobile menu button */}
+          <button className="md:hidden">
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+        </div>
       </header>
 
       {/* Main content - Exact match to Userjot layout */}
