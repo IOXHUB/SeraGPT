@@ -817,7 +817,7 @@ export default function UserjotCloneSection() {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                       </svg>
                     </div>
-                    <span className="text-sm text-gray-700">Sınırsız Sera Analizü</span>
+                    <span className="text-sm text-gray-700">S��nırsız Sera Analizü</span>
                   </div>
                   <div className="flex items-center space-x-3">
                     <div className="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center">
@@ -1147,7 +1147,7 @@ export default function UserjotCloneSection() {
                 answer: "Kesinlikle. SeraGPT özellikle hızla büyüyen teknoloji şirketleri için tasarlanmıştır."
               },
               {
-                question: "SeraGPT'yi ürün yol haritası yazıl��mı olarak kullanabilir miyim?",
+                question: "SeraGPT'yi ürün yol haritası yazılımı olarak kullanabilir miyim?",
                 answer: "Evet, toplanan geri bildirimler otomatik olarak ürün yol haritanızla entegre edilir."
               },
               {
@@ -1205,7 +1205,7 @@ export default function UserjotCloneSection() {
       </motion.div>
 
       {/* Footer */}
-      <footer className="bg-white border-t border-gray-200 py-16">
+      <footer className="bg-gray-50 py-16">
         <div className="max-w-[960px] mx-auto px-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
             {/* Product Column */}
