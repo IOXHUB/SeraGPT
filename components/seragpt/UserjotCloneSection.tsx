@@ -58,9 +58,7 @@ export default function UserjotCloneSection() {
           >
             {/* Small text above headline */}
             <p className="text-gray-500 text-sm font-medium uppercase tracking-wider">
-              <p>
-                <strong>+20 YIL, +500 PROJE, +110 VERİ SETİ</strong>
-              </p>
+              <strong>+20 YIL, +500 PROJE, +110 VERİ SETİ</strong>
             </p>
 
             {/* Main headline */}
@@ -70,14 +68,12 @@ export default function UserjotCloneSection() {
 
             {/* Description paragraph */}
             <p className="text-xl md:text-2xl text-gray-600 leading-relaxed max-w-5xl mx-auto">
-              <p>
-                SeraGPT; 20 yılı aşkın mühendislik deneyimi, 500'den fazla
-                tamamlanmış proje ve 110'dan fazla gerçek zamanlı veri
-                setiyle, tarımsal yatırım kararlarınızı saniyeler içinde
-                analiz eder. Yapay zekâ destekli sistemimiz; yatırım
-                fizibilitesi, geri dönüş hesaplamaları ve altyapı
-                ihtiyaçlarını yüksek doğrulukla sunar.{" "}
-              </p>
+              SeraGPT; 20 yılı aşkın mühendislik deneyimi, 500'den fazla
+              tamamlanmış proje ve 110'dan fazla gerçek zamanlı veri
+              setiyle, tarımsal yatırım kararlarınızı saniyeler içinde
+              analiz eder. Yapay zekâ destekli sistemimiz; yatırım
+              fizibilitesi, geri dönüş hesaplamaları ve altyapı
+              ihtiyaçlarını yüksek doğrulukla sunar.
             </p>
 
             {/* CTA Button */}
@@ -92,9 +88,7 @@ export default function UserjotCloneSection() {
 
             {/* Small text under button */}
             <p className="text-gray-500 text-sm">
-              <p>
-                <strong>Doğru yatırım, doğru analizle başlar.</strong>
-              </p>
+              <strong>Doğru yatırım, doğru analizle başlar.</strong>
             </p>
           </motion.div>
         </div>
@@ -559,7 +553,7 @@ export default function UserjotCloneSection() {
                       <div className="flex items-start justify-between">
                         <div className="flex-1">
                           <div className="flex items-center space-x-3 mb-2">
-                            <h3 className="text-lg font-semibold text-gray-900">Mobil uygulama sık sık çöküyor.</h3>
+                            <h3 className="text-lg font-semibold text-gray-900">Mobil uygulama sık sık çök��yor.</h3>
                             <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -577,7 +571,7 @@ export default function UserjotCloneSection() {
                         </div>
 
                         <div className="ml-4 text-right">
-                          <div className="text-sm text-gray-500 mb-1">Bir şey eksik mi?</div>
+                          <div className="text-sm text-gray-500 mb-1">Bir ��ey eksik mi?</div>
                           <button className="bg-black text-white px-4 py-2 rounded text-sm font-medium">
                             Gönderi Oluştur
                           </button>
@@ -870,7 +864,7 @@ export default function UserjotCloneSection() {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                       </svg>
                     </div>
-                    <span className="text-sm text-gray-700">Değişiklik Günlüğü</span>
+                    <span className="text-sm text-gray-700">Değişiklik Günl��ğü</span>
                   </div>
                 </div>
               </div>
