@@ -262,7 +262,7 @@ export default function UserjotCloneSection() {
               gerçek ihtiyacı anlayın
             </h2>
             <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-              Analizler hangi projelerin popüler olduğunu gösterir, tartışmalar neden önemli olduğunu ortaya çıkarır.
+              Analizler hangi projelerin pop��ler olduğunu gösterir, tartışmalar neden önemli olduğunu ortaya çıkarır.
               <span className="font-semibold text-gray-900"> Her müşterinin hangi özelliklere ihtiyacı olduğunu görün,
               iş akışlarını anlayın ve gerçekten sorunları çözen sera çözümleri</span> geliştirin.
               Tahminlerle değil, güvenle proje yapın.
@@ -825,7 +825,7 @@ export default function UserjotCloneSection() {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                       </svg>
                     </div>
-                    <span className="text-sm text-gray-700">S��nırsız Kullanıcı</span>
+                    <span className="text-sm text-gray-700">Sınırsız Kullanıcı</span>
                   </div>
                   <div className="flex items-center space-x-3">
                     <div className="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center">
@@ -1306,13 +1306,12 @@ export default function UserjotCloneSection() {
           <div className="border-t border-gray-200 pt-8">
             <div className="flex flex-col md:flex-row justify-between items-center">
               <div className="flex items-center space-x-4 mb-4 md:mb-0">
-                <div className="flex items-center space-x-3">
-                  <div className="w-8 h-8 bg-black rounded-full flex items-center justify-center">
-                    <span className="text-white text-sm font-bold">S</span>
-                  </div>
-                  <span className="text-lg font-semibold text-gray-900">SeraGPT</span>
-                </div>
-              </div>
+              <img
+                src="https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2F96da5382e9584c3fb2d32eca60944359?format=webp&width=800"
+                alt="SeraGPT Logo"
+                className="h-8 w-auto"
+              />
+            </div>
 
               <div className="text-center md:text-right">
                 <p className="text-sm text-gray-500">
