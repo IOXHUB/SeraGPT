@@ -30,7 +30,7 @@ export default function BlogArticlePage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Header */}
-      <header className="w-full border-b border-gray-100">
+      <header className="w-full">
         <div className="flex justify-between items-center p-6 max-w-[960px] mx-auto">
         <img
           src="https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2F96da5382e9584c3fb2d32eca60944359?format=webp&width=800"
