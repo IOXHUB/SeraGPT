@@ -26,18 +26,41 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
   }, []);
 
   async function getUser() {
-    const { data: { user } } = await supabase.auth.getUser();
-    if (user) {
-      setUser(user);
-    } else {
-      router.push('/auth/login');
+    // Check if Supabase is configured
+    if (!isSupabaseConfigured()) {
+      console.warn('Supabase not configured, skipping auth check');
+      setLoading(false);
+      return;
     }
-    setLoading(false);
+
+    try {
+      const { data: { user } } = await supabase.auth.getUser();
+      if (user) {
+        setUser(user);
+      } else {
+        router.push('/auth/login');
+      }
+    } catch (error) {
+      console.error('Error getting user:', error);
+      router.push('/auth/login');
+    } finally {
+      setLoading(false);
+    }
   }
 
   const handleSignOut = async () => {
-    await supabase.auth.signOut();
-    router.push('/');
+    if (!isSupabaseConfigured()) {
+      router.push('/');
+      return;
+    }
+
+    try {
+      await supabase.auth.signOut();
+    } catch (error) {
+      console.error('Error signing out:', error);
+    } finally {
+      router.push('/');
+    }
   };
 
   const menuItems = [
