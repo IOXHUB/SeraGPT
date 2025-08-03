@@ -19,17 +19,28 @@ export default function LoginPage() {
     setLoading(true);
     setMessage('');
 
-    const { error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    });
-
-    if (error) {
-      setMessage(error.message);
-    } else {
-      router.push('/dashboard');
+    if (!isSupabaseConfigured()) {
+      setMessage('Authentication service not configured');
+      setLoading(false);
+      return;
     }
-    setLoading(false);
+
+    try {
+      const { error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
+
+      if (error) {
+        setMessage(error.message);
+      } else {
+        router.push('/dashboard');
+      }
+    } catch (error) {
+      setMessage('Sign in failed. Please try again.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleSignUp = async (e: React.FormEvent) => {
@@ -37,20 +48,31 @@ export default function LoginPage() {
     setLoading(true);
     setMessage('');
 
-    const { error } = await supabase.auth.signUp({
-      email,
-      password,
-      options: {
-        emailRedirectTo: `${window.location.origin}/auth/callback`,
-      },
-    });
-
-    if (error) {
-      setMessage(error.message);
-    } else {
-      setMessage('E-posta adresinizi kontrol edin ve doğrulama linkine tıklayın.');
+    if (!isSupabaseConfigured()) {
+      setMessage('Authentication service not configured');
+      setLoading(false);
+      return;
     }
-    setLoading(false);
+
+    try {
+      const { error } = await supabase.auth.signUp({
+        email,
+        password,
+        options: {
+          emailRedirectTo: `${typeof window !== 'undefined' ? window.location.origin : ''}/auth/callback`,
+        },
+      });
+
+      if (error) {
+        setMessage(error.message);
+      } else {
+        setMessage('E-posta adresinizi kontrol edin ve doğrulama linkine tıklayın.');
+      }
+    } catch (error) {
+      setMessage('Sign up failed. Please try again.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -115,32 +137,34 @@ export default function LoginPage() {
             </div>
           )}
 
-          <div className="flex flex-col space-y-3">
+          <div className="space-y-3">
             <button
-              type="button"
+              type="submit"
               onClick={handleSignIn}
               disabled={loading}
-              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 disabled:opacity-50"
+              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {loading ? 'Giriş yapılıyor...' : 'Giriş Yap'}
             </button>
-
+            
             <button
               type="button"
               onClick={handleSignUp}
               disabled={loading}
-              className="group relative w-full flex justify-center py-2 px-4 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 disabled:opacity-50"
+              className="group relative w-full flex justify-center py-2 px-4 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              {loading ? 'Kayıt oluşturuluyor...' : 'Yeni Hesap Oluştur'}
+              {loading ? 'Kayıt olunuyor...' : 'Yeni Hesap Oluştur'}
             </button>
           </div>
+        </form>
 
-          <div className="text-center">
-            <a href="/" className="text-sm text-green-600 hover:text-green-500">
+        <div className="text-center">
+          <p className="text-sm text-gray-600">
+            <a href="/" className="font-medium text-green-600 hover:text-green-500">
               ← Ana sayfaya dön
             </a>
-          </div>
-        </form>
+          </p>
+        </div>
       </div>
     </div>
   );
