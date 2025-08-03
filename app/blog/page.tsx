@@ -1,8 +1,17 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { useEffect, useState } from 'react';
+import SEOHead from '@/components/SEOHead';
+import { SEOService } from '@/lib/seo';
 
 export default function BlogPage() {
+  const [seoConfig, setSeoConfig] = useState(SEOService.generateBlogPageSEO());
+
+  useEffect(() => {
+    // Update SEO config if needed
+    setSeoConfig(SEOService.generateBlogPageSEO());
+  }, []);
   const featuredPost = {
     id: 1,
     title: "Sera Yatırımları: 2025'te 500₺/m² Plan Değer mi? (Yeni Trend Analizi)",
