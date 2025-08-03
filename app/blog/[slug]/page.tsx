@@ -32,12 +32,11 @@ export default function BlogArticlePage() {
       {/* Header */}
       <header className="w-full border-b border-gray-100">
         <div className="flex justify-between items-center p-6 max-w-[960px] mx-auto">
-        <div className="flex items-center space-x-3">
-          <div className="w-8 h-8 bg-black rounded-full flex items-center justify-center">
-            <span className="text-white text-sm font-bold">S</span>
-          </div>
-          <span className="text-xl font-semibold text-gray-900">SeraGPT</span>
-        </div>
+        <img
+          src="https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2F96da5382e9584c3fb2d32eca60944359?format=webp&width=800"
+          alt="SeraGPT Logo"
+          className="h-8 w-auto"
+        />
 
         <nav className="hidden md:flex items-center space-x-8">
           <a href="#" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
