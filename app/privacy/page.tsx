@@ -203,7 +203,7 @@ export default function PrivacyPage() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
                   </div>
-                  <p className="text-lg text-gray-700"><strong>SSL Şifrelemesi:</strong> Tüm veri aktarımları 256-bit SSL ile şifrelenir</p>
+                  <p className="text-lg text-gray-700"><strong>SSL Şifrelemesi:</strong> Tüm veri aktarımlar�� 256-bit SSL ile şifrelenir</p>
                 </div>
                 <div className="flex items-start space-x-3">
                   <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center mt-1">
@@ -362,7 +362,7 @@ export default function PrivacyPage() {
           </div>
 
           {/* Bottom Footer */}
-          <div className="border-t border-gray-200 pt-8">
+          <div className="pt-8">
             <div className="flex flex-col md:flex-row justify-between items-center">
               <img
                 src="https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2F96da5382e9584c3fb2d32eca60944359?format=webp&width=800"
