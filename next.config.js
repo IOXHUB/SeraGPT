@@ -1,7 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // For Netlify deployment - keep standard build
-  // output: 'export', // Disabled for auth support
+  // Standard Next.js build for Netlify
 
   // Image optimization settings
   images: {
@@ -11,6 +10,12 @@ const nextConfig = {
 
   // No trailing slash for standard deployment
   trailingSlash: false,
+
+  // Experimental features
+  experimental: {
+    // Disable problematic features that might cause build issues
+    esmExternals: 'loose',
+  },
   
   // Base path if needed (keep empty for root domain)
   basePath: '',
