@@ -1,16 +1,16 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // For Netlify deployment - use export for static hosting
-  output: 'export',
+  // For Netlify deployment - keep standard build
+  // output: 'export', // Disabled for auth support
 
-  // Image optimization settings for static export
+  // Image optimization settings
   images: {
     domains: ['cdn.builder.io'],
-    unoptimized: true // Required for static export
+    unoptimized: false
   },
 
-  // Trailing slash for static export
-  trailingSlash: true,
+  // No trailing slash for standard deployment
+  trailingSlash: false,
   
   // Base path if needed (keep empty for root domain)
   basePath: '',
