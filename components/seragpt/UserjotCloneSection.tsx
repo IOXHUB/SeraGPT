@@ -103,24 +103,165 @@ export default function UserjotCloneSection() {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="bg-gradient-to-r from-blue-50 to-green-50 rounded-2xl border border-gray-200 p-8 md:p-12"
           >
-            <div className="text-center text-gray-400">
+            <div className="text-center">
               <div className="text-6xl mb-4">📊</div>
-              <p className="text-lg font-medium">SeraGPT Analiz Platformu</p>
-              <p className="text-sm mt-2">Sera yatırım kararlarınız için merkezi analiz merkezi</p>
-              
-              {/* Simple dashboard mockup */}
-              <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4 max-w-3xl mx-auto">
-                <div className="bg-white rounded-lg p-4 border border-gray-200">
-                  <div className="text-2xl mb-2">🌱</div>
-                  <div className="text-sm text-gray-600">Proje Analizi</div>
+              <p className="text-lg font-medium text-gray-900">SeraGPT Analiz Platformu</p>
+              <p className="text-sm mt-2 text-gray-600 mb-8">Sera yatırım kararlarınız için merkezi analiz merkezi</p>
+
+              {/* Horizontal scrolling analysis cards */}
+              <div className="relative mt-8">
+                <div className="flex overflow-x-auto scrollbar-hide gap-6 pb-6">
+                  {/* Card 1 - Yerel Uygunluk & İklim Risk Raporu */}
+                  <motion.div
+                    initial={{ opacity: 0, x: 30 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.6 }}
+                    viewport={{ once: true }}
+                    className="flex-shrink-0 w-80 bg-white rounded-2xl p-6 border border-gray-200 text-left"
+                  >
+                    <div className="text-4xl mb-4">📍</div>
+                    <h3 className="text-lg font-bold text-gray-900 mb-3">
+                      Yerel Uygunluk & İklim Risk Raporu
+                    </h3>
+                    <p className="text-sm text-gray-600 mb-4">
+                      Lokasyon bazlı yatırım yapılabilirlik analizini sunmak.
+                    </p>
+                    <div className="space-y-2 text-xs text-gray-500">
+                      <div>• 110+ veri setinden iklim profili</div>
+                      <div>• Don riski, sıcaklık aralığı, güneşlenme</div>
+                      <div>• Bitki–iklim uyum skoru</div>
+                      <div>• Risk puanı & önerilen sera tipi</div>
+                    </div>
+                  </motion.div>
+
+                  {/* Card 2 - ROI ve Karlılık Simülasyonu */}
+                  <motion.div
+                    initial={{ opacity: 0, x: 30 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.6, delay: 0.1 }}
+                    viewport={{ once: true }}
+                    className="flex-shrink-0 w-80 bg-white rounded-2xl p-6 border border-gray-200 text-left"
+                  >
+                    <div className="text-4xl mb-4">📈</div>
+                    <h3 className="text-lg font-bold text-gray-900 mb-3">
+                      Yatırım Geri Dönüş (ROI) ve Karlılık Simülasyonu
+                    </h3>
+                    <p className="text-sm text-gray-600 mb-4">
+                      Finansal fizibiliteyi göstermek.
+                    </p>
+                    <div className="space-y-2 text-xs text-gray-500">
+                      <div>• Kurulum maliyeti tahmini</div>
+                      <div>• Yıllık üretim kapasitesi (kg/ton)</div>
+                      <div>• Pazar fiyatları, satış kanalları</div>
+                      <div>• 3 yıllık ROI tahmini ve amortisman</div>
+                    </div>
+                  </motion.div>
+
+                  {/* Card 3 - Proje Modelleme & Teknik Yapı */}
+                  <motion.div
+                    initial={{ opacity: 0, x: 30 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.6, delay: 0.2 }}
+                    viewport={{ once: true }}
+                    className="flex-shrink-0 w-80 bg-white rounded-2xl p-6 border border-gray-200 text-left"
+                  >
+                    <div className="text-4xl mb-4">🧱</div>
+                    <h3 className="text-lg font-bold text-gray-900 mb-3">
+                      Proje Modelleme & Teknik Yapı Özeti
+                    </h3>
+                    <p className="text-sm text-gray-600 mb-4">
+                      Yatırıma uygun sera tipi, altyapı ve yapı önerileri
+                    </p>
+                    <div className="space-y-2 text-xs text-gray-500">
+                      <div>• Sera modeli (tünel, Venlo, tropik vs.)</div>
+                      <div>• Önerilen temel malzeme listesi</div>
+                      <div>• Enerji ve sulama sistemi</div>
+                      <div>• İnşaat alanı & proje hesaplaması</div>
+                    </div>
+                  </motion.div>
+
+                  {/* Card 4 - Pazar Talebi & Ticaret Verisi */}
+                  <motion.div
+                    initial={{ opacity: 0, x: 30 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.6, delay: 0.3 }}
+                    viewport={{ once: true }}
+                    className="flex-shrink-0 w-80 bg-white rounded-2xl p-6 border border-gray-200 text-left"
+                  >
+                    <div className="text-4xl mb-4">🌐</div>
+                    <h3 className="text-lg font-bold text-gray-900 mb-3">
+                      Pazar Talebi & Ticaret Verisi Analizi
+                    </h3>
+                    <p className="text-sm text-gray-600 mb-4">
+                      Ürün/hammadde için piyasa potansiyelini ölçmek
+                    </p>
+                    <div className="space-y-2 text-xs text-gray-500">
+                      <div>• Son 3 yıla ait ithalat-ihracat</div>
+                      <div>• Ülke içi pazar büyüklüğü</div>
+                      <div>• Satış fiyatları (toptan/perakende)</div>
+                      <div>• Talep tahmin modeli</div>
+                    </div>
+                  </motion.div>
+
+                  {/* Card 5 - Altyapı & Otomasyon */}
+                  <motion.div
+                    initial={{ opacity: 0, x: 30 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.6, delay: 0.4 }}
+                    viewport={{ once: true }}
+                    className="flex-shrink-0 w-80 bg-white rounded-2xl p-6 border border-gray-200 text-left"
+                  >
+                    <div className="text-4xl mb-4">⚙️</div>
+                    <h3 className="text-lg font-bold text-gray-900 mb-3">
+                      Altyapı & Otomasyon Öneri Raporu
+                    </h3>
+                    <p className="text-sm text-gray-600 mb-4">
+                      Enerji, iklimlendirme ve otomasyon kararları
+                    </p>
+                    <div className="space-y-2 text-xs text-gray-500">
+                      <div>• Isıtma ihtiyacı ve çözüm karşılaştırması</div>
+                      <div>• Sulama tipi önerisi (damla, misting)</div>
+                      <div>• Güneş enerjisi entegrasyon uygunluğu</div>
+                      <div>• Otomasyon seviyesi skor kartı</div>
+                    </div>
+                  </motion.div>
+
+                  {/* Card 6 - Genel Yatırım Uygunluk Özeti */}
+                  <motion.div
+                    initial={{ opacity: 0, x: 30 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.6, delay: 0.5 }}
+                    viewport={{ once: true }}
+                    className="flex-shrink-0 w-80 bg-white rounded-2xl p-6 border border-gray-200 text-left"
+                  >
+                    <div className="text-4xl mb-4">📁</div>
+                    <h3 className="text-lg font-bold text-gray-900 mb-3">
+                      Genel Yatırım Uygunluk Özeti
+                    </h3>
+                    <p className="text-sm text-gray-600 mb-4">
+                      Tüm raporların sadeleştirilmiş, görselleştirilmiş özeti
+                    </p>
+                    <div className="space-y-2 text-xs text-gray-500">
+                      <div>• SWOT benzeri yatırım karar özeti</div>
+                      <div>• Lokasyon + bitki + ROI üçgeni</div>
+                      <div>• Görseller, grafikler, karar butonları</div>
+                      <div>• PDF çıktı (yatırımcıya sunum hazır)</div>
+                    </div>
+                  </motion.div>
                 </div>
-                <div className="bg-white rounded-lg p-4 border border-gray-200">
-                  <div className="text-2xl mb-2">📈</div>
-                  <div className="text-sm text-gray-600">ROI Hesaplama</div>
-                </div>
-                <div className="bg-white rounded-lg p-4 border border-gray-200">
-                  <div className="text-2xl mb-2">👨‍💼</div>
-                  <div className="text-sm text-gray-600">Uzman Görüşü</div>
+
+                {/* Navigation arrows */}
+                <div className="flex justify-center mt-8 space-x-4">
+                  <button className="w-10 h-10 bg-gray-100 hover:bg-gray-200 rounded-full flex items-center justify-center transition-colors">
+                    <svg className="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                    </svg>
+                  </button>
+                  <button className="w-10 h-10 bg-gray-100 hover:bg-gray-200 rounded-full flex items-center justify-center transition-colors">
+                    <svg className="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </button>
                 </div>
               </div>
             </div>
