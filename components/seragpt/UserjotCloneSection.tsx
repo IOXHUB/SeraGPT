@@ -465,7 +465,7 @@ export default function UserjotCloneSection() {
                           <span className="text-xs text-gray-500">about 3 hours ago</span>
                         </div>
                         <p className="text-sm text-gray-700 leading-relaxed">
-                          Bu sera yönetim sistemi için oldukça kullan��şlı, ancak mevcut sera verilerimle entegrasyon konusunda endişelerim var.
+                          Bu sera yönetim sistemi için oldukça kullanışlı, ancak mevcut sera verilerimle entegrasyon konusunda endişelerim var.
                           Mevcut sensörlerle uyumlu olup olmadığını ve özellikle yeni özellikleri duyurmak için nasıl bir widget kullanacağımızı bilmek istiyorum.
                         </p>
                       </div>
@@ -1031,7 +1031,7 @@ export default function UserjotCloneSection() {
             className="text-center"
           >
             <p className="text-gray-600 mb-4">
-              Ne kadar tasarruf edersiniz? <span className="font-semibold text-gray-900">%10 daha dü��ük dönem</span> tasarruf edin?
+              Ne kadar tasarruf edersiniz? <span className="font-semibold text-gray-900">%10 daha düşük dönem</span> tasarruf edin?
             </p>
             <button className="text-gray-900 font-medium hover:underline">
               Tasarruflarınızı hesaplayın ��
@@ -1128,7 +1128,7 @@ export default function UserjotCloneSection() {
               },
               {
                 question: "Analiz deneyimini özelleştirebilir miyim?",
-                answer: "Evet, SeraGPT'yi markanıza uygun şekilde ��zelleştirebilir ve kendi domain adresinizi kullanabilirsiniz."
+                answer: "Evet, SeraGPT'yi markanıza uygun şekilde özelleştirebilir ve kendi domain adresinizi kullanabilirsiniz."
               },
               {
                 question: "Çok fazla geri bildirim alırsam ne olur?",
@@ -1303,7 +1303,7 @@ export default function UserjotCloneSection() {
           </div>
 
           {/* Bottom Footer */}
-          <div className="border-t border-gray-200 pt-8">
+          <div className="pt-8">
             <div className="flex flex-col md:flex-row justify-between items-center">
               <div className="flex items-center space-x-4 mb-4 md:mb-0">
               <img
