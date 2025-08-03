@@ -24,13 +24,13 @@
 
 # Branch deploy settings
 [context.production]
-  command = "npm ci && npm run build"
+  command = "npm install && npm run build"
 
 [context.deploy-preview]
-  command = "npm ci && npm run build"
+  command = "npm install && npm run build"
 
 [context.branch-deploy]
-  command = "npm ci && npm run build"
+  command = "npm install && npm run build"
 
 # API routes
 [[redirects]]
