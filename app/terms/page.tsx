@@ -183,12 +183,11 @@ export default function TermsPage() {
       <footer className="bg-gray-50 border-t border-gray-200 py-12 mt-20">
         <div className="max-w-[960px] mx-auto px-6">
           <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="flex items-center space-x-3 mb-4 md:mb-0">
-              <div className="w-8 h-8 bg-black rounded-full flex items-center justify-center">
-                <span className="text-white text-sm font-bold">S</span>
-              </div>
-              <span className="text-lg font-semibold text-gray-900">SeraGPT</span>
-            </div>
+            <img
+              src="https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2F96da5382e9584c3fb2d32eca60944359?format=webp&width=800"
+              alt="SeraGPT Logo"
+              className="h-8 w-auto mb-4 md:mb-0"
+            />
             <div className="text-center md:text-right">
               <p className="text-sm text-gray-500">
                 © 2025 SeraGPT. Tüm hakları saklıdır.
