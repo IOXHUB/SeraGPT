@@ -113,7 +113,7 @@ export default function TermsPage() {
                 <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-6">
                   <p className="text-lg leading-relaxed text-gray-700">
                     Hesabınızın ve şifrenizin güvenliğini sağlamaktan ve kullanıcılarınızın da aynısını 
-                    yapmasını sağlamaktan siz sorumlusunuz. Şirket, bu güvenlik yükümlülüğüne uymamanızdan 
+                    yapmasını sağlamaktan siz sorumlusunuz. Şirket, bu güvenlik yükümlülüğ��ne uymamanızdan 
                     kaynaklanan herhangi bir kayıp veya hasar için sorumlu tutulamaz ve sorumlu olmayacaktır. 
                     Ek güvenlik için tüm kullanıcıların iki faktörlü kimlik doğrulama kurmasını öneririz.
                   </p>
@@ -278,7 +278,7 @@ export default function TermsPage() {
           </div>
 
           {/* Bottom Footer */}
-          <div className="border-t border-gray-200 pt-8">
+          <div className="pt-8">
             <div className="flex flex-col md:flex-row justify-between items-center">
               <img
                 src="https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2F96da5382e9584c3fb2d32eca60944359?format=webp&width=800"
