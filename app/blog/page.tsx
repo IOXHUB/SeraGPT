@@ -65,7 +65,7 @@ export default function BlogPage() {
             Fiyatlar
           </a>
           <a href="#" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
-            Yardım
+            Yard��m
           </a>
           <a href="#" className="text-gray-900 font-medium border-b-2 border-gray-900 pb-1">
             Blog
@@ -73,9 +73,9 @@ export default function BlogPage() {
           <a href="#" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
             Güncellemeler
           </a>
-          <button className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
+          <a href="/auth/login" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
             Giriş Yap
-          </button>
+          </a>
         </nav>
 
         <button className="md:hidden">
