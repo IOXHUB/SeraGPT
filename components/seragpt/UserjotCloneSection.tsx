@@ -58,38 +58,32 @@ export default function UserjotCloneSection() {
           >
             {/* Small text above headline */}
             <p className="text-gray-500 text-sm font-medium uppercase tracking-wider">
-              BİR SERA MÜHENDİSİ BANA SON ZAMANLARDA SORDU
+              +20 YIL, +500 PROJE, +110 VERİ SETİ
             </p>
-            
-            {/* Main headline with quotes */}
+
+            {/* Main headline */}
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 leading-tight">
-              <span className="text-gray-400">"</span>
-              Neden yanlış sera projeleri için zaman kaybediyoruz?
-              <span className="text-gray-400">"</span>
+              Tarımsal Zekâyı Keşfedin
             </h1>
-            
+
             {/* Description paragraph */}
             <p className="text-xl md:text-2xl text-gray-600 leading-relaxed max-w-5xl mx-auto">
-              Sera yatırım kararlarınız dağınık analizler, belirsiz veriler ve 
-              güvenilmez danışmanlıklar arasında kayboldu. SeraGPT merkezi bir 
-              platform yaratıyor; <span className="font-semibold text-gray-900">
-              mühendisler analiz yapar, oy verir ve projeleri tartışır</span>, 
-              böylece her zaman bir sonraki doğru adımı bilirsiniz.
+              SeraGPT; 20 yılı aşkın mühendislik deneyimi, 500'den fazla tamamlanmış proje ve 110'dan fazla gerçek zamanlı veri setiyle, tarımsal yatırım kararlarınızı saniyeler içinde analiz eder. Her analiz, lokasyon, iklim, ürün türü, altyapı ve enerji kullanımına göre özelleştirilir. Yapay zekâ destekli sistemimiz; yatırım fizibilitesi, geri dönüş hesaplamaları ve altyapı ihtiyaçlarını yüksek doğrulukla sunar. Tüm çıktılar, uzman mühendis değerlendirmeleriyle zenginleştirilir; böylece veriye dayalı, güvenilir ve ölçülebilir sonuçlar elde edersiniz.
             </p>
-            
+
             {/* CTA Button */}
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="bg-black hover:bg-gray-800 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-colors inline-flex items-center space-x-3"
             >
-              <span>Ücretsiz Başla</span>
+              <span>Analiz Al – İlk 5 Rapor Ücretsiz</span>
               <div className="w-2 h-2 bg-green-400 rounded-full"></div>
             </motion.button>
-            
+
             {/* Small text under button */}
             <p className="text-gray-500 text-sm">
-              Kredi kartı gerekmez. Kurulum gerektirmez.
+              Doğru yatırım, doğru analizle başlar.
             </p>
           </motion.div>
         </div>
