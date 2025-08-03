@@ -284,7 +284,7 @@ export default function BlogArticlePage() {
 
       {/* Footer */}
       <footer className="bg-gray-50 border-t border-gray-200 py-12 mt-20">
-        <div className="max-w-7xl mx-auto px-6">
+        <div className="max-w-[960px] mx-auto px-6">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="flex items-center space-x-3 mb-4 md:mb-0">
               <div className="w-8 h-8 bg-black rounded-full flex items-center justify-center">
