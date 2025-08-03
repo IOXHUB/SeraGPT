@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 
 export default function UserjotCloneSection() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-gray-50">
       {/* Header - Full width with 960px content container */}
       <header className="w-full">
         <div className="flex justify-between items-center p-6 max-w-[960px] mx-auto">
@@ -1147,7 +1147,7 @@ export default function UserjotCloneSection() {
                 answer: "Kesinlikle. SeraGPT özellikle hızla büyüyen teknoloji şirketleri için tasarlanmıştır."
               },
               {
-                question: "SeraGPT'yi ürün yol haritası yazılımı olarak kullanabilir miyim?",
+                question: "SeraGPT'yi ürün yol haritası yazıl��mı olarak kullanabilir miyim?",
                 answer: "Evet, toplanan geri bildirimler otomatik olarak ürün yol haritanızla entegre edilir."
               },
               {
