@@ -15,11 +15,22 @@
   status = 200
   conditions = {Role = ["admin","editor"], Country = ["US"]}
 
-# Handle client-side routing
+# Handle client-side routing for SPA
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
+  force = false
+
+# Branch deploy settings
+[context.production]
+  command = "npm ci && npm run build"
+
+[context.deploy-preview]
+  command = "npm ci && npm run build"
+
+[context.branch-deploy]
+  command = "npm ci && npm run build"
 
 # API routes
 [[redirects]]
