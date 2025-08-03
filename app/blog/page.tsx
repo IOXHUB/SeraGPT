@@ -88,7 +88,7 @@ export default function BlogPage() {
       </header>
 
       {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-6 py-16">
+      <main className="max-w-[960px] mx-auto px-6 py-16">
         {/* Header Section */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
