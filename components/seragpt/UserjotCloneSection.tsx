@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 
 export default function UserjotCloneSection() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50">
       {/* Header - Full width with 960px content container */}
       <header className="w-full border-b border-gray-100">
         <div className="flex justify-between items-center p-6 max-w-[960px] mx-auto">
@@ -262,7 +262,7 @@ export default function UserjotCloneSection() {
               gerçek ihtiyacı anlayın
             </h2>
             <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-              Analizler hangi projelerin pop��ler olduğunu gösterir, tartışmalar neden önemli olduğunu ortaya çıkarır.
+              Analizler hangi projelerin popüler olduğunu gösterir, tartışmalar neden önemli olduğunu ortaya çıkarır.
               <span className="font-semibold text-gray-900"> Her müşterinin hangi özelliklere ihtiyacı olduğunu görün,
               iş akışlarını anlayın ve gerçekten sorunları çözen sera çözümleri</span> geliştirin.
               Tahminlerle değil, güvenle proje yapın.
@@ -556,7 +556,7 @@ export default function UserjotCloneSection() {
                             </svg>
                           </div>
                           <p className="text-gray-600 text-sm mb-3">
-                            Android uygulaması sera fotoğrafları yüklenmeye çalışıldığında çöküyor.
+                            Android uygulaması sera fotoğrafları yüklenmeye çalış��ldığında çöküyor.
                             Bu ASAP düzeltilmesi gerekiyor.
                           </p>
                           <div className="flex items-center space-x-2">
