@@ -13,7 +13,8 @@
     "export": "next build && next export",
     "lint": "next lint",
     "type-check": "tsc --noEmit",
-    "build:netlify": "next build"
+    "build:netlify": "next build",
+    "postinstall": "npm run type-check"
   },
   "dependencies": {
     "@supabase/ssr": "^0.6.1",
