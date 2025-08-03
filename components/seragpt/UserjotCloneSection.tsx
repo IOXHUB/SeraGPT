@@ -29,6 +29,9 @@ export default function UserjotCloneSection() {
             <a href="#" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
               Güncellemeler
             </a>
+            <a href="/dashboard" className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg font-medium transition-colors">
+              Dashboard
+            </a>
             <a href="/auth/login" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
               Giriş Yap
             </a>
