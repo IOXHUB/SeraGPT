@@ -50,7 +50,7 @@ export default function BlogPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-gray-50">
       {/* Header */}
       <header className="w-full">
         <div className="flex justify-between items-center p-6 max-w-[960px] mx-auto">
@@ -230,7 +230,7 @@ export default function BlogPage() {
       </main>
 
       {/* Footer */}
-      <footer className="bg-white border-t border-gray-200 py-16">
+      <footer className="bg-gray-50 py-16">
         <div className="max-w-[960px] mx-auto px-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
             {/* Product Column */}
