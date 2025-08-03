@@ -6,7 +6,7 @@ export default function UserjotCloneSection() {
   return (
     <div className="min-h-screen bg-white">
       {/* Header - Full width with 960px content container */}
-      <header className="w-full border-b border-gray-100">
+      <header className="w-full">
         <div className="flex justify-between items-center p-6 max-w-[960px] mx-auto">
           <div className="flex items-center space-x-3">
             <img
@@ -1034,7 +1034,7 @@ export default function UserjotCloneSection() {
               Ne kadar tasarruf edersiniz? <span className="font-semibold text-gray-900">%10 daha düşük dönem</span> tasarruf edin?
             </p>
             <button className="text-gray-900 font-medium hover:underline">
-              Tasarruflarınızı hesaplayın →
+              Tasarruflarınızı hesaplayın ��
             </button>
           </motion.div>
         </div>
