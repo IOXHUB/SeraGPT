@@ -18,7 +18,8 @@ export default function PrivacyPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Header */}
-      <header className="flex justify-between items-center p-6 max-w-7xl mx-auto border-b border-gray-100">
+      <header className="w-full border-b border-gray-100">
+        <div className="flex justify-between items-center p-6 max-w-[960px] mx-auto">
         <div className="flex items-center space-x-3">
           <div className="w-8 h-8 bg-black rounded-full flex items-center justify-center">
             <span className="text-white text-sm font-bold">S</span>
@@ -49,10 +50,11 @@ export default function PrivacyPage() {
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
           </svg>
         </button>
+        </div>
       </header>
 
       {/* Main Content */}
-      <main className="max-w-4xl mx-auto px-6 py-16">
+      <main className="max-w-[960px] mx-auto px-6 py-16">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
