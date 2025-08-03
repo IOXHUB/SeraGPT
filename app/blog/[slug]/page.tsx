@@ -344,7 +344,7 @@ export default function BlogArticlePage() {
                 <div className="flex items-start space-x-4">
                   <div className="w-16 h-16 bg-gray-300 rounded-full flex items-center justify-center">
                     <span className="text-xl font-bold text-gray-600">
-                      {article.author.split(' ').map(n => n[0]).join('')}
+                      {article.author.split(' ').map((n: string) => n[0]).join('')}
                     </span>
                   </div>
                   <div>
