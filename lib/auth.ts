@@ -2,6 +2,9 @@ import { createServerClient } from '@supabase/ssr'
 import { NextRequest, NextResponse } from 'next/server'
 import { cookies } from 'next/headers'
 
+// Force this to run in Node.js runtime, not Edge Runtime
+export const runtime = 'nodejs'
+
 export function createClient() {
   const cookieStore = cookies()
 
