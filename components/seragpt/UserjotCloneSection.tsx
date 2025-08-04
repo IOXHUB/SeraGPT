@@ -27,7 +27,7 @@ export default function UserjotCloneSection() {
           {/* Center navigation - 3 links */}
           <nav className="hidden md:flex items-center space-x-8">
             <a href="#" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
-              Nasıl Çalışır
+              Nasıl Çal��şır
             </a>
             <a href="#" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
               Danışmanlık
@@ -486,7 +486,7 @@ export default function UserjotCloneSection() {
                 <div className="bg-gray-100 rounded-lg h-48 flex items-center justify-center border-2 border-dashed border-gray-300">
                   <div className="text-center">
                     <div className="text-4xl mb-2">📄</div>
-                    <span className="text-gray-500 text-sm">PDF Rapor Önizleme</span>
+                    <span className="text-gray-500 text-sm">PDF Rapor ��nizleme</span>
                   </div>
                 </div>
               </motion.div>
@@ -543,7 +543,7 @@ export default function UserjotCloneSection() {
           >
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
               Yatırım sürecinizi yapay zekâ destekli<br />
-              kullanıcı panelinden yönetin
+              kullanıcı panelinden y��netin
             </h2>
             <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
               Panelinizden tüm raporlarınıza, danışmanlık taleplerinize ve teknik teklif süreçlerinize anlık erişim sağlayın.
@@ -705,7 +705,7 @@ export default function UserjotCloneSection() {
 
       {/* Visual Gallery Section */}
       <div className="py-20 bg-white">
-        <div className="max-w-[800px] mx-auto px-6">
+        <div className="max-w-[900px] mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
