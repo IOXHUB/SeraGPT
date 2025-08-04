@@ -961,8 +961,8 @@ export default function UserjotCloneSection() {
         </div>
       </div>
 
-      {/* Anahtar Teslim Sera Proje Teklifi Section */}
-      <div className="py-20 bg-gradient-to-br from-blue-50 to-indigo-50">
+      {/* Corporate Consulting Section */}
+      <div className="py-20 bg-gray-50">
         <div className="max-w-[1000px] mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
