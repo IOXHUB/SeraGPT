@@ -212,17 +212,15 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
               <a
                 key={item.name}
                 href={item.href}
-                className="flex items-center space-x-3 px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 hover:text-gray-900 transition-colors"
+                className="flex items-center px-4 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 hover:text-gray-900 transition-colors"
               >
-                <span className="text-lg">{item.icon}</span>
                 <span>{item.name}</span>
               </a>
             ))}
             <button
               onClick={handleSignOut}
-              className="w-full flex items-center space-x-3 px-3 py-2 rounded-lg text-sm font-medium text-red-600 hover:bg-red-50 transition-colors"
+              className="w-full flex items-center px-4 py-2 rounded-lg text-sm font-medium text-red-600 hover:bg-red-50 transition-colors"
             >
-              <span className="text-lg">🚪</span>
               <span>Çıkış Yap</span>
             </button>
           </div>
