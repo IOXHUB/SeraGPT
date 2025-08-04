@@ -329,16 +329,12 @@ export default function UserjotCloneSection() {
             className="text-center mb-16"
           >
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              <span>
-                <p>Size Özel Kontrol Paneli</p>
-              </span>
+              Size Özel Kontrol Paneli
             </h2>
             <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
               Panelinizden tüm raporlarınıza, danışmanlık taleplerinize ve teknik teklif süreçlerinize anlık erişim sağlayın.
               <span className="font-semibold text-gray-900"> Yapay zekâ analizleri, mühendislik değerlendirmeleri ve saha hizmetleri</span>
-              <span>
-                <p> artık tek bir merkezden yönetilebilir.</p>
-              </span>
+              artık tek bir merkezden yönetilebilir.
             </p>
           </motion.div>
 
@@ -580,7 +576,7 @@ export default function UserjotCloneSection() {
                 <div className="w-full h-full bg-gradient-to-br from-yellow-100 to-orange-100 flex items-center justify-center">
                   <div className="text-center">
                     <p className="text-gray-700 font-medium">Fide Üretim Tesisi</p>
-                    <p className="text-gray-500 text-sm">Bursa, 4.500 m²</p>
+                    <p className="text-gray-500 text-sm">Bursa, 4.500 m��</p>
                   </div>
                 </div>
               </motion.div>
