@@ -62,6 +62,14 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
   }
 
   const handleSignOut = async () => {
+    // Clear mock session if exists
+    const mockSession = localStorage.getItem('mockUserSession');
+    if (mockSession) {
+      localStorage.removeItem('mockUserSession');
+      router.push('/');
+      return;
+    }
+
     if (!isSupabaseConfigured()) {
       router.push('/');
       return;
