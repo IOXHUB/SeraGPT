@@ -708,7 +708,7 @@ export default function UserjotCloneSection() {
                 <div className="w-full h-full bg-gradient-to-br from-yellow-100 to-orange-100 flex items-center justify-center">
                   <div className="text-center">
                     <p className="text-gray-700 font-medium">Fide Üretim Tesisi</p>
-                    <p className="text-gray-500 text-sm">Bursa, 4.500 m����</p>
+                    <p className="text-gray-500 text-sm">Bursa, 4.500 m��</p>
                   </div>
                 </div>
               </motion.div>
@@ -758,7 +758,7 @@ export default function UserjotCloneSection() {
                 <div className="w-full h-full bg-gradient-to-br from-rose-100 to-pink-100 flex items-center justify-center">
                   <div className="text-center">
                     <div className="text-4xl mb-3">🌹</div>
-                    <p className="text-gray-700 font-medium">Çiçek ��retim Serası</p>
+                    <p className="text-gray-700 font-medium">Çiçek Üretim Serası</p>
                     <p className="text-gray-500 text-sm">Isparta, 1.800 m²</p>
                   </div>
                 </div>
@@ -908,7 +908,7 @@ export default function UserjotCloneSection() {
 
               },
               {
-                // icon: "📍",
+
                 question: "Raporları kimler kullanabilir?",
                 answer: "Ziraat mühendisleri, yatırımcılar, mühendislik firmaları, devlet başvurusu yapan üreticiler, proje yöneticileri ve akademisyenler raporları kullanabilir.",
 
