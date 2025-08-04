@@ -12,7 +12,7 @@ export default function UserjotCloneSection() {
     <div className="min-h-screen bg-gray-50">
       {/* Header - Full width with 960px content container */}
       <header className="w-full bg-gray-50">
-        <div className="flex justify-between items-center p-6 max-w-[960px] mx-auto">
+        <div className="flex justify-between items-center p-6 max-w-[800px] mx-auto">
           {/* Logo - clickable to homepage */}
           <div className="flex items-center space-x-3">
             <a href="/" className="flex items-center space-x-3">
