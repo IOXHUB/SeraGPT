@@ -588,6 +588,27 @@ export default function UserjotCloneSection() {
               </div>
             </div>
           </motion.div>
+
+          {/* CTA Button */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            viewport={{ once: true }}
+            className="text-center mt-12"
+          >
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="bg-blue-600 hover:bg-blue-700 text-white px-10 py-4 rounded-xl text-xl font-bold transition-colors shadow-lg hover:shadow-xl inline-flex items-center space-x-3"
+            >
+              <span className="text-2xl">📊</span>
+              <span>Kullanıcı Paneline Giriş Yapın</span>
+            </motion.button>
+            <p className="text-gray-500 text-sm mt-4">
+              Tüm sera projelerinizi tek platformdan yönetin
+            </p>
+          </motion.div>
         </div>
       </div>
 
