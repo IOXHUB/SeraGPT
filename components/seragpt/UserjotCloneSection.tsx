@@ -859,73 +859,73 @@ export default function UserjotCloneSection() {
                 answer: "Evet. Raporlar TKDK, IPARD ve Ziraat Bankası destek başvurularında ön fizibilite dosyası olarak kullanılabilir. Talep halinde ek mühendis onayı alınabilir."
               },
               {
-                icon: "👷",
+                // icon: "👷",
                 question: "Mühendis desteği sunuyor musunuz?",
                 answer: "Evet. Profesyonel kullanıcılar için mühendis danışmanlık hizmeti sağlıyoruz. Size en yakın uzmanla eşleştirilerek birebir destek sunulur.",
                 isOpen: false
               },
               {
-                icon: "🔐",
+                // icon: "🔐",
                 question: "Bilgilerim güvende mi?",
                 answer: "Kesinlikle. Tüm bilgileriniz Supabase veritabanında şifreli olarak saklanır. Raporlar yalnızca size özeldir, üçüncü taraflarla paylaşılmaz.",
                 isOpen: false
               },
               {
-                icon: "💳",
+                // icon: "💳",
                 question: "Ödeme nasıl yapılıyor?",
                 answer: "İlk 5 rapor ücretsizdir. Sonrasında, kredi kartı veya havale/EFT ile jeton (token) satın alabilirsiniz. Ödeme altyapısı %100 güvenlidir.",
                 isOpen: false
               },
               {
-                icon: "🔁",
+                // icon: "🔁",
                 question: "Jetonlar (Token) nasıl çalışır?",
                 answer: "Her analiz bir jeton harcar. 5 ücretsiz jeton ile başlayabilir, daha fazlasını paket olarak satın alabilirsiniz. Jetonlar süresiz geçerlidir.",
                 isOpen: false
               },
               {
-                icon: "⏱️",
+                // icon: "⏱️",
                 question: "Jetonların zaman aşımı var mı?",
                 answer: "Hayır. Satın aldığınız jetonlar hesabınızda süresiz olarak kalır. Dilediğiniz zaman kullanabilirsiniz.",
                 isOpen: false
               },
               {
-                icon: "💡",
+                // icon: "💡",
                 question: "Sadece yeni yatırımcılar mı kullanabilir?",
                 answer: "Hay��r. Mevcut serası olan kullanıcılar, genişletme planlayan çiftçiler, mühendisler ve yatırımcılar da SeraGPT'den faydalanabilir.",
                 isOpen: false
               },
               {
-                icon: "📦",
+                // icon: "📦",
                 question: "Anahtar teslim sera kurulumu sağlıyor musunuz?",
                 answer: "Evet. IOX partnerleri aracılığ��yla, analiz raporuna dayalı olarak anahtar teslim sera projeleri teklif edebiliyoruz. Talep formunu doldurmanız yeterlidir.",
                 isOpen: false
               },
               {
-                icon: "🧾",
+                // icon: "🧾",
                 question: "Fatura ve iade koşulları nedir?",
                 answer: "Satın alınan jetonlar dijital hizmet kapsamına girer. Kullanılmamış jetonlar için 14 gün içinde iade mümkündür. Fatura otomatik olarak e-posta ile iletilir.",
                 isOpen: false
               },
               {
-                icon: "🛠️",
+                // icon: "🛠️",
                 question: "Danışmanlık almak için ne yapmalıyım?",
                 answer: "Destek bölümünden danışman talebinde bulunabilirsiniz. Alanında uzman bir mühendis sizinle iletişime geçerek detaylı bilgi verecektir.",
                 isOpen: false
               },
               {
-                icon: "📍",
+                // icon: "📍",
                 question: "Raporları kimler kullanabilir?",
                 answer: "Ziraat mühendisleri, yatırımcılar, mühendislik firmaları, devlet başvurusu yapan üreticiler, proje yöneticileri ve akademisyenler raporları kullanabilir.",
                 isOpen: false
               },
               {
-                icon: "🧾",
+                // icon: "🧾",
                 question: "Destek kaydı nasıl açılır?",
                 answer: "Profil sayfanızdaki 'Destek Talebi' bölümünden form doldurarak teknik, veri veya danışmanlık desteği alabilirsiniz.",
                 isOpen: false
               },
               {
-                icon: "❗",
+                // icon: "❗",
                 question: "İtiraz ve düzeltme süreci nasıl işler?",
                 answer: "Rapor içeriğiyle ilgili bir hata olduğunu düşünüyorsanız, destek kaydı oluşturabilirsiniz. Mühendis ekibimiz gerekli incelemeyi yaparak düzeltme sağlar.",
                 isOpen: false
