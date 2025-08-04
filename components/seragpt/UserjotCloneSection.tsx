@@ -591,7 +591,7 @@ export default function UserjotCloneSection() {
         </div>
       </div>
 
-      {/* Features Announcement Section */}
+      {/* Corporate Consulting Section */}
       <div className="py-20">
         <div className="max-w-[960px] mx-auto px-6">
           <motion.div
