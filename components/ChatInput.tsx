@@ -48,6 +48,7 @@ export function ChatInput({ onSend, disabled, placeholder, sendText, language }:
               value={message}
               onChange={(e) => setMessage(e.target.value)}
               onKeyDown={handleKeyPress}
+              suppressHydrationWarning
               placeholder={placeholder}
               disabled={disabled}
               rows={1}
