@@ -334,7 +334,7 @@ export default function UserjotCloneSection() {
         </div>
       </div>
 
-      {/* 6 Analysis Features - Horizontal Sliding Section */}
+
       <div className="py-20 bg-white">
         <div className="max-w-[1100px] mx-auto px-6">
           <motion.div
@@ -345,8 +345,7 @@ export default function UserjotCloneSection() {
             className="text-center mb-16"
           >
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              6 Analiz ile Kapsamlı<br />
-              Raporlama
+SECTION_TO_DELETE
             </h2>
           </motion.div>
 
@@ -1364,7 +1363,7 @@ export default function UserjotCloneSection() {
               },
               {
                 question: "SeraGPT müşteri deneyimi yönetimini nasıl geliştirir?",
-                answer: "Merkezi bir platform sağlayarak müşteri sesini dinleme ve yanıtlama sürecini kolaylaştırır."
+                answer: "Merkezi bir platform sağlayarak m��şteri sesini dinleme ve yanıtlama sürecini kolaylaştırır."
               },
               {
                 question: "SeraGPT konuk veya anonim geri bildirimleri destekliyor mu?",
