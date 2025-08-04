@@ -1,53 +1,15 @@
 [build]
-  command = "npm install && npm run build"
-  functions = "netlify/functions"
-  publish = ".next"
+  publish = "out"
+  command = "npm run build"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
 
 [build.environment]
   NODE_VERSION = "20"
-  # Force fresh install to avoid cache issues
-  NPM_CONFIG_CACHE = "/tmp/.npm"
-
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
-  conditions = {Role = ["admin","editor"], Country = ["US"]}
-
-# Handle client-side routing for SPA
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
-  force = false
-
-# Branch deploy settings
-[context.production]
-  command = "npm install && npm run build"
-
-[context.deploy-preview]
-  command = "npm install && npm run build"
-
-[context.branch-deploy]
-  command = "npm install && npm run build"
-
-# API routes
-[[redirects]]
-  from = "/api/*"
-  to = "/.netlify/functions/:splat"
-  status = 200
-
-# Blog routes
-[[redirects]]
-  from = "/blog/*"
-  to = "/blog/index.html"
-  status = 200
-
-[dev]
-  command = "npm run dev"
-  port = 3000
-  publish = ".next"
-  autoLaunch = false
+  NPM_VERSION = "10"
 
 # Headers for security and performance
 [[headers]]
@@ -57,14 +19,38 @@
     X-XSS-Protection = "1; mode=block"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
-    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
 
 [[headers]]
-  for = "/assets/*"
+  for = "*.js"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
 [[headers]]
-  for = "/_next/static/*"
+  for = "*.css"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "*.png"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "*.jpg"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "*.jpeg"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "*.webp"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "*.svg"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
