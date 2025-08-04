@@ -142,6 +142,15 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
               <div className="flex-1 min-w-0">
                 <p className="text-sm font-medium text-gray-900 truncate">
                   {user?.user_metadata?.full_name || 'Kullanıcı'}
+                  {user?.user_metadata?.role && (
+                    <span className={`ml-2 px-2 py-0.5 text-xs rounded-full ${
+                      user.user_metadata.role === 'admin'
+                        ? 'bg-purple-100 text-purple-700'
+                        : 'bg-blue-100 text-blue-700'
+                    }`}>
+                      {user.user_metadata.role === 'admin' ? 'Admin' : 'Demo'}
+                    </span>
+                  )}
                 </p>
                 <p className="text-xs text-gray-500 truncate">{user?.email}</p>
               </div>
