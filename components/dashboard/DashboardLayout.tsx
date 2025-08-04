@@ -88,11 +88,12 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
   const menuItems = [
     { name: 'Dashboard', icon: '📊', href: '/dashboard', active: true },
     { name: 'SeraGPT AI', icon: '🤖', href: '/dashboard/ai-chat', active: false },
-    { name: 'Sera Projeleri', icon: '🌱', href: '/dashboard/projects', active: false },
-    { name: 'Analizler', icon: '📈', href: '/dashboard/analytics', active: false },
-    { name: 'Raporlar', icon: '📋', href: '/dashboard/reports', active: false },
-    { name: 'Geliştirme Planı', icon: '🗓️', href: '/dashboard/roadmap', active: false },
-    { name: 'Geri Bildirimler', icon: '💬', href: '/dashboard/feedback', active: false },
+    { name: 'ROI Simülasyonu', icon: '🧮', href: '/dashboard/analysis/roi', active: false },
+    { name: 'İklim Analizi', icon: '🌦️', href: '/dashboard/analysis/climate', active: false },
+    { name: 'Ekipman Listesi', icon: '🧰', href: '/dashboard/analysis/equipment', active: false },
+    { name: 'Pazar Analizi', icon: '🛰️', href: '/dashboard/analysis/market', active: false },
+    { name: 'Teknik Planlar', icon: '📐', href: '/dashboard/analysis/layout', active: false },
+    { name: 'Raporlarım', icon: '📋', href: '/dashboard/reports', active: false },
   ];
 
   const bottomMenuItems = [
