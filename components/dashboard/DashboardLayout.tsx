@@ -86,14 +86,14 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
   };
 
   const menuItems = [
-    { name: 'Dashboard', icon: '📊', href: '/dashboard', active: true },
-    { name: 'SeraGPT AI', icon: '🤖', href: '/dashboard/ai-chat', active: false },
-    { name: 'ROI Simülasyonu', icon: '🧮', href: '/dashboard/analysis/roi', active: false },
-    { name: 'İklim Analizi', icon: '🌦️', href: '/dashboard/analysis/climate', active: false },
-    { name: 'Ekipman Listesi', icon: '🧰', href: '/dashboard/analysis/equipment', active: false },
-    { name: 'Pazar Analizi', icon: '🛰️', href: '/dashboard/analysis/market', active: false },
-    { name: 'Teknik Planlar', icon: '📐', href: '/dashboard/analysis/layout', active: false },
-    { name: 'Raporlarım', icon: '📋', href: '/dashboard/reports', active: false },
+    { name: 'Dashboard', href: '/dashboard', active: true },
+    { name: 'SeraGPT AI', href: '/dashboard/ai-chat', active: false },
+    { name: 'ROI Simülasyonu', href: '/dashboard/analysis/roi', active: false },
+    { name: 'İklim Analizi', href: '/dashboard/analysis/climate', active: false },
+    { name: 'Ekipman Listesi', href: '/dashboard/analysis/equipment', active: false },
+    { name: 'Pazar Analizi', href: '/dashboard/analysis/market', active: false },
+    { name: 'Teknik Planlar', href: '/dashboard/analysis/layout', active: false },
+    { name: 'Raporlarım', href: '/dashboard/reports', active: false },
   ];
 
   const isAdmin = user?.user_metadata?.role === 'admin';
