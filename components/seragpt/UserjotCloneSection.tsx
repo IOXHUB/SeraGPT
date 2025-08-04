@@ -271,7 +271,7 @@ export default function UserjotCloneSection() {
               <div className="flex-1">
                 <div className="flex items-center space-x-3 mb-3">
                   <span className="bg-green-500 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold">3</span>
-                  <h3 className="text-xl font-bold text-gray-900">PDF Raporunu İndir</h3>
+                  <h3 className="text-lg sm:text-xl font-bold text-gray-900">PDF Raporunu İndir</h3>
                 </div>
                 <p className="text-gray-600">
                   Profesyonel raporun saniyeler içinde hazır.
@@ -289,14 +289,14 @@ export default function UserjotCloneSection() {
               className="bg-white rounded-2xl p-4 sm:p-6 md:p-8 border border-gray-200 flex flex-col sm:flex-row items-start space-y-4 sm:space-y-0 sm:space-x-6"
             >
               <div className="flex-shrink-0">
-                <div className="w-16 h-16 bg-purple-100 rounded-2xl flex items-center justify-center">
-                  <span className="text-2xl">🛠️</span>
+                <div className="w-12 h-12 sm:w-16 sm:h-16 bg-purple-100 rounded-2xl flex items-center justify-center">
+                  <span className="text-xl sm:text-2xl">🛠️</span>
                 </div>
               </div>
               <div className="flex-1">
                 <div className="flex items-center space-x-3 mb-3">
                   <span className="bg-green-500 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold">4</span>
-                  <h3 className="text-xl font-bold text-gray-900">Dilersen Proje Danışmanlık Paketimizi İncele</h3>
+                  <h3 className="text-lg sm:text-xl font-bold text-gray-900">Dilersen Proje Danışmanlık Paketimizi İncele</h3>
                 </div>
                 <p className="text-gray-600 mb-4">
                   Yatırım sürecinde yalnız değilsin.
