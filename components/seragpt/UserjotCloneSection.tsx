@@ -266,15 +266,33 @@ export default function UserjotCloneSection() {
               >
                 <div className="absolute top-6 left-6 text-6xl font-bold text-gray-100">02</div>
                 <div className="mt-16">
-                  <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-6">
-                    <span className="text-2xl">🌦️</span>
-                  </div>
                   <h3 className="text-xl font-bold text-gray-900 mb-4">İklim Uyumu & Risk Analizi</h3>
-                  <div className="space-y-2 mb-4">
-                    <p className="text-gray-600 text-xs">✅ Seçilen ürün için uygunluk skoru</p>
-                    <p className="text-gray-600 text-xs">✅ Don, rüzgar, nem riskleri</p>
-                    <p className="text-gray-600 text-xs">✅ Geçmiş yıllardaki iklim olayları</p>
+
+                  <div className="space-y-3 mb-4">
+                    <div>
+                      <p className="text-gray-800 text-xs font-semibold mb-1">🎯 3 Önemli Fayda:</p>
+                      <p className="text-gray-600 text-xs">• Seçilen ürün için uygunluk skoru</p>
+                      <p className="text-gray-600 text-xs">• Don, rüzgar, nem riskleri</p>
+                      <p className="text-gray-600 text-xs">• Geçmiş yıllardaki iklim olayları</p>
+                    </div>
+
+                    <div>
+                      <p className="text-gray-800 text-xs font-semibold mb-1">🔗 Veri Kaynakları:</p>
+                      <p className="text-gray-600 text-xs">• Open-Meteo, Copernicus Climate</p>
+                      <p className="text-gray-600 text-xs">• ERA5 verileri, MGMT</p>
+                    </div>
+
+                    <div>
+                      <p className="text-gray-800 text-xs font-semibold mb-1">👤 Kullanıcı Girdisi:</p>
+                      <p className="text-gray-600 text-xs">• İl/ilçe, bitki türü, sera tipi</p>
+                    </div>
+
+                    <div>
+                      <p className="text-gray-800 text-xs font-semibold mb-1">📄 PDF İçeriği:</p>
+                      <p className="text-gray-600 text-xs">• Uygunluk skoru ve risk matrisi</p>
+                    </div>
                   </div>
+
                   <div className="mt-4 p-3 bg-gray-50 rounded-lg">
                     <p className="text-gray-700 text-sm font-medium">"İklim bu yatırıma uygun mu?"</p>
                     <button className="mt-2 text-blue-600 text-xs font-medium hover:underline">[İklim Skorunu Gör]</button>
