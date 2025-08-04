@@ -63,17 +63,18 @@ export default function UserjotCloneSection() {
 
             {/* Main headline */}
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 leading-tight">
-              Tarımsal Zekâyı Keşfedin
+              <p>🚀 60 Saniyede </p>
+              <p>Sera Yatırım Raporun Hazır!</p>
             </h1>
 
             {/* Description paragraph */}
             <p className="text-xl md:text-2xl text-gray-600 leading-relaxed max-w-5xl mx-auto">
-              SeraGPT; 20 yılı aşkın mühendislik deneyimi, 500'den fazla
-              tamamlanmış proje ve 110'dan fazla gerçek zamanlı veri
-              setiyle, tarımsal yatırım kararlarınızı saniyeler içinde
-              analiz eder. Yapay zekâ destekli sistemimiz; yatırım
-              fizibilitesi, geri dönüş hesaplamaları ve altyapı
-              ihtiyaçlarını yüksek doğrulukla sunar.
+              <p>
+                SeraGPT; 20 yılı aşkın mühendislik deneyimi, 500'den fazla
+                tamamlanmış proje ve 110'dan fazla gerçek zamanlı veri
+                setiyle, tarımsal yatırım kararlarınızı saniyeler içinde
+                analiz eder.{" "}
+              </p>
             </p>
 
             {/* CTA Button */}
@@ -82,8 +83,7 @@ export default function UserjotCloneSection() {
               whileTap={{ scale: 0.95 }}
               className="bg-black hover:bg-gray-800 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-colors inline-flex items-center space-x-3"
             >
-              <span>Analiz Al – İlk 5 Rapor Ücretsiz</span>
-              <div className="w-2 h-2 bg-green-400 rounded-full"></div>
+              <p>Şimdi Oluştur – İlk 5 Rapor Ücretsiz</p>
             </motion.button>
 
             {/* Small text under button */}
@@ -104,9 +104,16 @@ export default function UserjotCloneSection() {
             className="bg-gradient-to-r from-blue-50 to-green-50 rounded-2xl border border-gray-200 p-8 md:p-12"
           >
             <div className="text-center">
-              <div className="text-6xl mb-4">📊</div>
-              <p className="text-lg font-medium text-gray-900">SeraGPT Analiz Platformu</p>
-              <p className="text-sm mt-2 text-gray-600 mb-8">Sera yatırım kararlarınız için merkezi analiz merkezi</p>
+              <p className="text-lg font-medium text-gray-900">
+                <h3>
+                  <strong>NASIL ÇALIŞIR?</strong>
+                </h3>
+              </p>
+              <p className="text-sm mt-2 text-gray-600 mb-8">
+                <p>
+                  <strong>🧭 3 Adımda Yatırım Fizibiliteni Al:</strong>
+                </p>
+              </p>
 
               {/* Horizontal scrolling analysis cards */}
               <div className="relative mt-8">
