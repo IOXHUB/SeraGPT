@@ -851,7 +851,7 @@ export default function UserjotCloneSection() {
             {[
               {
 
-                question: "Raporlar ne kadar doğru?",
+                question: "Raporlar ne kadar do��ru?",
                 answer: "SeraGPT, gerçek zamanlı iklim, tarım ve ticaret verilerini kullanır. Raporlar, uzman mühendislerin geliştirdiği algoritmalarla analiz edilir ve %90 üzeri doğruluk oranı sunar."
               },
               {
@@ -891,7 +891,7 @@ export default function UserjotCloneSection() {
 
               },
               {
-                // icon: "📦",
+
                 question: "Anahtar teslim sera kurulumu sağlıyor musunuz?",
                 answer: "Evet. IOX partnerleri aracılığ��yla, analiz raporuna dayalı olarak anahtar teslim sera projeleri teklif edebiliyoruz. Talep formunu doldurmanız yeterlidir.",
 
