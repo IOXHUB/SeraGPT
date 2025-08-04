@@ -685,13 +685,22 @@ export default function UserjotCloneSection() {
             viewport={{ once: true }}
             className="text-center"
           >
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="bg-green-600 hover:bg-green-700 text-white px-10 py-4 rounded-xl text-xl font-bold transition-colors shadow-lg hover:shadow-xl"
-            >
-              <p>Anahtar Teslim Fiyat Alın</p>
-            </motion.button>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="bg-green-600 hover:bg-green-700 text-white px-10 py-4 rounded-xl text-xl font-bold transition-colors shadow-lg hover:shadow-xl"
+              >
+                <p>Anahtar Teslim Fiyat Alın</p>
+              </motion.button>
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="bg-blue-600 hover:bg-blue-700 text-white px-10 py-4 rounded-xl text-xl font-bold transition-colors shadow-lg hover:shadow-xl"
+              >
+                <p>Kurumsal Danışmanlık Hizmeti</p>
+              </motion.button>
+            </div>
             <p className="text-gray-500 text-sm mt-4">
               Uzman ekibimiz size özel teklifini hazırlayacak
             </p>
@@ -699,37 +708,7 @@ export default function UserjotCloneSection() {
         </div>
       </div>
 
-      {/* Corporate Consulting Section */}
-      <div className="py-20 bg-gray-50">
-        <div className="text-section-container">
 
-          {/* Bottom CTA */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.7 }}
-            viewport={{ once: true }}
-            className="text-center mt-16"
-          >
-            <div className="bg-gradient-to-r from-green-600 to-blue-600 rounded-2xl p-8 md:p-12 text-white">
-              <h3 className="text-2xl md:text-3xl font-bold mb-4">
-                Kurumsal Sera Danışmanlığı Paketinizi İnceleyin
-              </h3>
-              <p className="text-xl text-green-100 mb-8 max-w-2xl mx-auto">
-                SeraGPT verilerinizi Hermisan & ISITMAX uzmanlığı ile birleştirerek 
-                profesyonel sera projelerinizi hayata geçirin.
-              </p>
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="bg-white text-gray-900 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-gray-100 transition-colors"
-              >
-                Kurumsal Danışmanlık Paketi
-              </motion.button>
-            </div>
-          </motion.div>
-        </div>
-      </div>
 
       {/* Blog Cards Section */}
       <BlogCardsSection />
@@ -816,7 +795,7 @@ export default function UserjotCloneSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="bg-white rounded-2xl border border-gray-200 overflow-hidden"
+                className="rounded-2xl border border-gray-200 overflow-hidden"
               >
                 <button className="w-full p-6 text-left hover:bg-gray-50 transition-colors group">
                   <div className="flex items-center justify-between">
