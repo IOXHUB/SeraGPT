@@ -8,17 +8,17 @@ export default function Footer() {
             <h3 className="text-lg font-semibold mb-6">Menü</h3>
             <ul className="space-y-3">
               <li>
-                <a href="#" className="text-gray-300 hover:text-white transition-colors">
+                <a href="#" className="text-gray-600 hover:text-gray-900 transition-colors">
                   Nasıl Çalışır?
                 </a>
               </li>
               <li>
-                <a href="#" className="text-gray-300 hover:text-white transition-colors">
+                <a href="#" className="text-gray-600 hover:text-gray-900 transition-colors">
                   Danışmanlık
                 </a>
               </li>
               <li>
-                <a href="#" className="text-gray-300 hover:text-white transition-colors">
+                <a href="#" className="text-gray-600 hover:text-gray-900 transition-colors">
                   Anahtar Teslim Proje
                 </a>
               </li>
@@ -40,12 +40,12 @@ export default function Footer() {
             <h3 className="text-lg font-semibold mb-6">DESTEK</h3>
             <ul className="space-y-3">
               <li>
-                <a href="#" className="text-gray-300 hover:text-white transition-colors">
+                <a href="#" className="text-gray-600 hover:text-gray-900 transition-colors">
                   Destek Kaydı
                 </a>
               </li>
               <li>
-                <a href="#" className="text-gray-300 hover:text-white transition-colors">
+                <a href="#" className="text-gray-600 hover:text-gray-900 transition-colors">
                   Dokümantasyon
                 </a>
               </li>
@@ -67,17 +67,17 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <a href="#" className="text-gray-300 hover:text-white transition-colors">
+                <a href="#" className="text-gray-600 hover:text-gray-900 transition-colors">
                   Veri İşleme Politikası
                 </a>
               </li>
               <li>
-                <a href="#" className="text-gray-300 hover:text-white transition-colors">
+                <a href="#" className="text-gray-600 hover:text-gray-900 transition-colors">
                   API Kullanım Şartları
                 </a>
               </li>
               <li>
-                <a href="#" className="text-gray-300 hover:text-white transition-colors">
+                <a href="#" className="text-gray-600 hover:text-gray-900 transition-colors">
                   Çerez Tercihleri
                 </a>
               </li>
@@ -89,22 +89,22 @@ export default function Footer() {
             <h3 className="text-lg font-semibold mb-6">Kaynaklar</h3>
             <ul className="space-y-3">
               <li>
-                <a href="#" className="text-gray-300 hover:text-white transition-colors">
+                <a href="#" className="text-gray-600 hover:text-gray-900 transition-colors">
                   Servisler
                 </a>
               </li>
               <li>
-                <a href="#" className="text-gray-300 hover:text-white transition-colors">
+                <a href="#" className="text-gray-600 hover:text-gray-900 transition-colors">
                   Data
                 </a>
               </li>
               <li>
-                <a href="#" className="text-gray-300 hover:text-white transition-colors">
+                <a href="#" className="text-gray-600 hover:text-gray-900 transition-colors">
                   Hermisan
                 </a>
               </li>
               <li>
-                <a href="#" className="text-gray-300 hover:text-white transition-colors">
+                <a href="#" className="text-gray-600 hover:text-gray-900 transition-colors">
                   ISITMAX
                 </a>
               </li>
