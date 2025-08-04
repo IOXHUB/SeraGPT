@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import BlogCardsSection from './BlogCardsSection';
+import Footer from '../Footer';
 
 export default function UserjotCloneSection() {
   return (
@@ -302,7 +303,7 @@ export default function UserjotCloneSection() {
                 </h3>
                 <p className="text-gray-600 mb-6 leading-relaxed">
                   Sera yatırımınızın finansal analizini detaylı şekilde hesaplar.
-                  Kurulum maliyeti, y��llık üretim kapasitesi ve geri dönüş sürelerini analiz eder.
+                  Kurulum maliyeti, yıllık üretim kapasitesi ve geri dönüş sürelerini analiz eder.
                 </p>
                 {/* Placeholder Screenshot */}
                 <div className="bg-gray-100 rounded-lg h-48 flex items-center justify-center border-2 border-dashed border-gray-300">
@@ -544,7 +545,7 @@ export default function UserjotCloneSection() {
                         <div className="ml-4 text-right">
                           <div className="text-sm text-gray-500 mb-1">Bir şey eksik mi?</div>
                           <button className="bg-black text-white px-4 py-2 rounded text-sm font-medium">
-                            Gönderi Oluştur
+                            Gönderi Olu��tur
                           </button>
                         </div>
                       </div>
@@ -567,7 +568,7 @@ export default function UserjotCloneSection() {
 
                         <div className="ml-4 text-right">
                           <div className="text-sm text-gray-500 mb-2">Uygulama sorunu çözülemiyor,</div>
-                          <div className="text-sm text-gray-500 mb-2">geçerli şifreler tanınmıyor.</div>
+                          <div className="text-sm text-gray-500 mb-2">geçerli ��ifreler tanınmıyor.</div>
                           <div className="flex items-center space-x-2 text-sm text-gray-600">
                             <div className="w-6 h-6 bg-gray-300 rounded-full"></div>
                             <div>
@@ -1210,7 +1211,7 @@ export default function UserjotCloneSection() {
                   <span className="text-gray-700">Yapay zekâ destekli teknik analiz motoru</span>
                 </div>
                 <div className="flex items-center space-x-3">
-                  <span className="text-blue-500 text-lg">��</span>
+                  <span className="text-blue-500 text-lg">🌐</span>
                   <span className="text-gray-700">T��İK, Open-Meteo, ERA5, FAO, GTIP gibi ücretli veri servisleri</span>
                 </div>
               </div>
