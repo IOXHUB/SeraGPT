@@ -679,7 +679,7 @@ export default function UserjotCloneSection() {
               >
                 <div className="w-full h-full bg-gradient-to-br from-purple-100 to-pink-100 flex items-center justify-center">
                   <div className="text-center">
-                    <div className="text-4xl mb-3">🌿</div>
+                    <div className="text-4xl mb-3">���</div>
                     <p className="text-gray-700 font-medium">Hidroponik Sera Sistemi</p>
                     <p className="text-gray-500 text-sm">İzmir, 2.800 m²</p>
                   </div>
@@ -985,10 +985,7 @@ export default function UserjotCloneSection() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              🏛️ Kurumsal Sera<br />
-              Danışmanlığı
-            </h2>
+
             <div className="bg-white rounded-2xl p-8 max-w-5xl mx-auto border border-gray-200 shadow-lg">
               <div className="text-lg text-gray-700 leading-relaxed space-y-6">
                 <p>
