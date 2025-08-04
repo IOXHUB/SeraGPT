@@ -783,6 +783,177 @@ export default function UserjotCloneSection() {
         </div>
       </div>
 
+      {/* Anahtar Teslim Sera Proje Teklifi Section */}
+      <div className="py-20 bg-gradient-to-br from-blue-50 to-indigo-50">
+        <div className="max-w-[960px] mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-8">
+              🏗️ Anahtar Teslim Sera<br />
+              Proje Teklifi
+            </h2>
+
+            {/* Slogan Section */}
+            <div className="bg-white rounded-2xl p-8 mb-12 shadow-lg border border-gray-200">
+              <div className="border-l-4 border-blue-500 pl-6">
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">📐 Slogan</h3>
+                <p className="text-xl text-gray-700 leading-relaxed font-medium">
+                  Keşiften kurulum teslimine kadar tüm süreç, mühendislik verisiyle planlanır,
+                  <span className="text-blue-600 font-bold"> Avrupa standartlarında</span> inşa edilir.
+                </p>
+              </div>
+            </div>
+
+            {/* Main Description */}
+            <div className="bg-white rounded-2xl p-8 mb-12 shadow-lg border border-gray-200">
+              <div className="text-left space-y-6">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">🧾 Proje Açıklaması</h3>
+
+                <p className="text-lg text-gray-700 leading-relaxed">
+                  <strong className="text-blue-600">ISITMAX'ın</strong> sağladığı mühendislik, keşif, projelendirme ve süpervizörlük hizmetleri;
+                </p>
+
+                <p className="text-lg text-gray-700 leading-relaxed">
+                  <strong className="text-green-600">Hermisan Spain'in</strong> üstlendiği tüm yapısal imalat, ekipman tedariği,
+                  otomasyon sistemleri ve kurulum süreçleriyle birleşerek,
+                </p>
+
+                <div className="bg-gradient-to-r from-blue-50 to-green-50 rounded-xl p-6 border-l-4 border-blue-500">
+                  <p className="text-lg text-gray-800 font-semibold">
+                    size tam entegre, sahaya özel, performans garantili
+                    <span className="text-blue-600"> anahtar teslim sera çözümleri</span> sunuyoruz.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* System Features */}
+            <div className="bg-white rounded-2xl p-8 mb-12 shadow-lg border border-gray-200">
+              <h3 className="text-2xl font-bold text-gray-900 mb-8 text-center">Bu sistem dahilinde:</h3>
+
+              <div className="grid md:grid-cols-2 gap-6">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.1 }}
+                  viewport={{ once: true }}
+                  className="bg-blue-50 rounded-xl p-6 border border-blue-200"
+                >
+                  <div className="flex items-start space-x-4">
+                    <span className="text-3xl">📍</span>
+                    <div>
+                      <p className="text-gray-800 leading-relaxed">
+                        Projeniz, lokasyon, iklim ve üretim hedeflerine göre
+                        <strong className="text-blue-600"> teknik olarak modellenir</strong>
+                      </p>
+                    </div>
+                  </div>
+                </motion.div>
+
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.2 }}
+                  viewport={{ once: true }}
+                  className="bg-green-50 rounded-xl p-6 border border-green-200"
+                >
+                  <div className="flex items-start space-x-4">
+                    <span className="text-3xl">📊</span>
+                    <div>
+                      <p className="text-gray-800 leading-relaxed">
+                        Yatırım fizibilitesi ve enerji/otomasyon senaryoları
+                        <strong className="text-green-600"> optimize edilir</strong>
+                      </p>
+                    </div>
+                  </div>
+                </motion.div>
+
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.3 }}
+                  viewport={{ once: true }}
+                  className="bg-orange-50 rounded-xl p-6 border border-orange-200"
+                >
+                  <div className="flex items-start space-x-4">
+                    <span className="text-3xl">🏗️</span>
+                    <div>
+                      <p className="text-gray-800 leading-relaxed">
+                        Malzeme ve ekipmanlar
+                        <strong className="text-orange-600"> Hermisan'ın İspanya üretim hatlarından</strong> sağlanır
+                      </p>
+                    </div>
+                  </div>
+                </motion.div>
+
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.4 }}
+                  viewport={{ once: true }}
+                  className="bg-purple-50 rounded-xl p-6 border border-purple-200"
+                >
+                  <div className="flex items-start space-x-4">
+                    <span className="text-3xl">🛠️</span>
+                    <div>
+                      <p className="text-gray-800 leading-relaxed">
+                        Kurulum <strong className="text-purple-600">ISITMAX süpervizörlüğünde</strong>,
+                        saha yönetimiyle gerçekleştirilir
+                      </p>
+                    </div>
+                  </div>
+                </motion.div>
+              </div>
+            </div>
+
+            {/* Results Section */}
+            <div className="bg-gradient-to-r from-green-600 to-blue-600 rounded-2xl p-8 mb-12 text-white shadow-xl">
+              <h3 className="text-2xl font-bold mb-6">🎯 Sonuç:</h3>
+              <div className="grid md:grid-cols-3 gap-6 text-center">
+                <div>
+                  <div className="text-4xl mb-3">🛡️</div>
+                  <p className="text-lg font-semibold">En düşük yatırım riski</p>
+                </div>
+                <div>
+                  <div className="text-4xl mb-3">📈</div>
+                  <p className="text-lg font-semibold">En yüksek verim garantisi</p>
+                </div>
+                <div>
+                  <div className="text-4xl mb-3">✅</div>
+                  <p className="text-lg font-semibold">Mühendislik onaylı saha teslimi</p>
+                </div>
+              </div>
+            </div>
+
+            {/* CTA Button */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
+              viewport={{ once: true }}
+              className="text-center"
+            >
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="bg-blue-600 hover:bg-blue-700 text-white px-12 py-5 rounded-xl text-xl font-bold transition-colors shadow-lg hover:shadow-xl inline-flex items-center space-x-3"
+              >
+                <span className="text-2xl">📄</span>
+                <span>Detaylı Teknik Teklif Talep Et</span>
+              </motion.button>
+              <p className="text-gray-600 text-sm mt-4">
+                Uzman mühendislerimiz size özel teknik teklif hazırlayacak
+              </p>
+            </motion.div>
+          </motion.div>
+        </div>
+      </div>
+
       {/* Corporate Consulting Section */}
       <div className="py-20 bg-gray-50">
         <div className="max-w-[960px] mx-auto px-6">
