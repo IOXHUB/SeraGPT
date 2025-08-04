@@ -287,7 +287,6 @@ export default function AdminDashboard() {
                   href="/admin/users"
                   className="flex flex-col items-center p-4 bg-gray-50 hover:bg-gray-100 rounded-xl transition-colors text-center"
                 >
-                  <span className="text-2xl mb-2">👥</span>
                   <h3 className="font-medium text-gray-900 mb-1">Kullanıcı Yönetimi</h3>
                   <p className="text-sm text-gray-600">Kullanıcıları görüntüle ve yönet</p>
                 </a>
@@ -295,7 +294,6 @@ export default function AdminDashboard() {
                   href="/admin/analytics"
                   className="flex flex-col items-center p-4 bg-gray-50 hover:bg-gray-100 rounded-xl transition-colors text-center"
                 >
-                  <span className="text-2xl mb-2">📊</span>
                   <h3 className="font-medium text-gray-900 mb-1">Analitik Raporları</h3>
                   <p className="text-sm text-gray-600">Detaylı kullanım istatistikleri</p>
                 </a>
@@ -303,7 +301,6 @@ export default function AdminDashboard() {
                   href="/admin/settings"
                   className="flex flex-col items-center p-4 bg-gray-50 hover:bg-gray-100 rounded-xl transition-colors text-center"
                 >
-                  <span className="text-2xl mb-2">⚙️</span>
                   <h3 className="font-medium text-gray-900 mb-1">Sistem Ayarları</h3>
                   <p className="text-sm text-gray-600">API ve sistem konfigürasyonu</p>
                 </a>
@@ -311,7 +308,6 @@ export default function AdminDashboard() {
                   href="/admin/billing"
                   className="flex flex-col items-center p-4 bg-gray-50 hover:bg-gray-100 rounded-xl transition-colors text-center"
                 >
-                  <span className="text-2xl mb-2">💳</span>
                   <h3 className="font-medium text-gray-900 mb-1">Ödeme Yönetimi</h3>
                   <p className="text-sm text-gray-600">Faturalar ve ödeme işlemleri</p>
                 </a>
