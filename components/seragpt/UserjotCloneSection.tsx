@@ -211,7 +211,7 @@ export default function UserjotCloneSection() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
-              className="bg-white rounded-2xl p-8 border border-gray-200 flex items-start space-x-6"
+              className="bg-white rounded-2xl p-4 sm:p-6 md:p-8 border border-gray-200 flex flex-col sm:flex-row items-start space-y-4 sm:space-y-0 sm:space-x-6"
             >
               <div className="flex-shrink-0">
                 <div className="w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center">
@@ -236,7 +236,7 @@ export default function UserjotCloneSection() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
               viewport={{ once: true }}
-              className="bg-white rounded-2xl p-8 border border-gray-200 flex items-start space-x-6"
+              className="bg-white rounded-2xl p-4 sm:p-6 md:p-8 border border-gray-200 flex flex-col sm:flex-row items-start space-y-4 sm:space-y-0 sm:space-x-6"
             >
               <div className="flex-shrink-0">
                 <div className="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center">
@@ -261,7 +261,7 @@ export default function UserjotCloneSection() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
               viewport={{ once: true }}
-              className="bg-white rounded-2xl p-8 border border-gray-200 flex items-start space-x-6"
+              className="bg-white rounded-2xl p-4 sm:p-6 md:p-8 border border-gray-200 flex flex-col sm:flex-row items-start space-y-4 sm:space-y-0 sm:space-x-6"
             >
               <div className="flex-shrink-0">
                 <div className="w-16 h-16 bg-red-100 rounded-2xl flex items-center justify-center">
@@ -286,7 +286,7 @@ export default function UserjotCloneSection() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
               viewport={{ once: true }}
-              className="bg-white rounded-2xl p-8 border border-gray-200 flex items-start space-x-6"
+              className="bg-white rounded-2xl p-4 sm:p-6 md:p-8 border border-gray-200 flex flex-col sm:flex-row items-start space-y-4 sm:space-y-0 sm:space-x-6"
             >
               <div className="flex-shrink-0">
                 <div className="w-16 h-16 bg-purple-100 rounded-2xl flex items-center justify-center">
@@ -317,7 +317,7 @@ export default function UserjotCloneSection() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
               viewport={{ once: true }}
-              className="bg-white rounded-2xl p-8 border border-gray-200 flex items-start space-x-6"
+              className="bg-white rounded-2xl p-4 sm:p-6 md:p-8 border border-gray-200 flex flex-col sm:flex-row items-start space-y-4 sm:space-y-0 sm:space-x-6"
             >
               <div className="flex-shrink-0">
                 <div className="w-16 h-16 bg-yellow-100 rounded-2xl flex items-center justify-center">
@@ -692,7 +692,7 @@ export default function UserjotCloneSection() {
               whileTap={{ scale: 0.95 }}
               className="bg-blue-600 hover:bg-blue-700 text-white px-10 py-4 rounded-xl text-xl font-bold transition-colors shadow-lg hover:shadow-xl inline-flex items-center space-x-3"
             >
-              <span className="text-2xl">📊</span>
+              <span className="text-2xl">���</span>
               <span>Kullanıcı Paneline Giriş Yapın</span>
             </motion.button>
             <p className="text-gray-500 text-sm mt-4">
