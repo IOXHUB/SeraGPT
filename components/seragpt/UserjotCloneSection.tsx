@@ -7,6 +7,7 @@ import Footer from '../Footer';
 
 export default function UserjotCloneSection() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [openFAQ, setOpenFAQ] = useState<number | null>(0); // First FAQ open by default
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -893,7 +894,7 @@ export default function UserjotCloneSection() {
               {
                 icon: "💡",
                 question: "Sadece yeni yatırımcılar mı kullanabilir?",
-                answer: "Hayır. Mevcut serası olan kullanıcılar, genişletme planlayan çiftçiler, mühendisler ve yatırımcılar da SeraGPT'den faydalanabilir.",
+                answer: "Hay��r. Mevcut serası olan kullanıcılar, genişletme planlayan çiftçiler, mühendisler ve yatırımcılar da SeraGPT'den faydalanabilir.",
                 isOpen: false
               },
               {
