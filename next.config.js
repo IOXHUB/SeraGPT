@@ -1,26 +1,48 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Enable static export for Netlify
-  output: 'export',
-  
-  // Disable image optimization for static export
+  // Image optimization settings
   images: {
-    unoptimized: true
+    domains: ['cdn.builder.io'],
+    unoptimized: false
   },
 
-  // Add trailing slash for static export
-  trailingSlash: true,
+  // No trailing slash for standard deployment
+  trailingSlash: false,
 
+  // Experimental features
+  experimental: {
+    // Disable problematic features that might cause build issues
+    esmExternals: 'loose',
+  },
+  
   // Base path if needed (keep empty for root domain)
   basePath: '',
   
-  // Disable server-side features for static export
+  // Asset prefix for CDN (keep empty for same domain)
+  assetPrefix: '',
+  
+  // Environment variables that should be available in the browser
+  env: {
+    NEXT_PUBLIC_SUPABASE_URL: process.env.NEXT_PUBLIC_SUPABASE_URL,
+    NEXT_PUBLIC_SUPABASE_ANON_KEY: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
+  },
+  
+  // Webpack configuration for better builds
+  webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
+    // Important: return the modified config
+    return config;
+  },
+  
+  // Performance and optimization
   poweredByHeader: false,
   
-  // React strict mode
-  reactStrictMode: false,
+  // Compression
+  compress: true,
   
-  // SWC minification
+  // React strict mode - disabled in dev to reduce hydration warnings from browser extensions
+  reactStrictMode: process.env.NODE_ENV === 'production',
+  
+  // SWC minification (faster than Terser)
   swcMinify: true,
 }
 
