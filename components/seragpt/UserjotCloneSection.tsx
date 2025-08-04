@@ -1068,7 +1068,7 @@ export default function UserjotCloneSection() {
 
       {/* Corporate Consulting Section */}
       <div className="py-20 bg-gray-50">
-        <div className="max-w-[800px] mx-auto px-6">
+        <div className="max-w-[720px] mx-auto px-6">
 
 
           {/* Bottom CTA */}
@@ -1125,7 +1125,7 @@ export default function UserjotCloneSection() {
               className="bg-white rounded-2xl p-8 shadow-lg border-2 border-green-200 relative"
             >
               <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                <span className="bg-green-500 text-white px-4 py-1 rounded-full text-sm font-medium">🟩 BAŞLANGIÇ</span>
+                <span className="bg-green-500 text-white px-4 py-1 rounded-full text-sm font-medium">�� BAŞLANGIÇ</span>
               </div>
 
               <div className="mb-8 mt-4">
@@ -1275,7 +1275,7 @@ export default function UserjotCloneSection() {
             viewport={{ once: true }}
             className="bg-white rounded-2xl p-8 shadow-lg border border-gray-200"
           >
-            <h3 className="text-xl font-bold text-gray-900 mb-6 text-center">������ Tüm planlarda şunlar geçerlidir:</h3>
+            <h3 className="text-xl font-bold text-gray-900 mb-6 text-center">���� Tüm planlarda şunlar geçerlidir:</h3>
 
             <div className="grid md:grid-cols-2 gap-6">
               <div className="space-y-3">
