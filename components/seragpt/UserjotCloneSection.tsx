@@ -451,13 +451,13 @@ export default function UserjotCloneSection() {
             className="text-center mb-16"
           >
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              Geliştirme planınızı<br />
-              kalma sebebine dönüştürün
+              Yatırım sürecinizi yapay zekâ destekli<br />
+              kullanıcı panelinden yönetin
             </h2>
             <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-              Herkese açık geliştirme planı, kullanıcılara <span className="font-semibold text-gray-900">talep ettikleri özelliklerin
-              gerçekten yapıldığını</span> gösterir. Zaman çizelgelerini görürler, ilerlemeyi takip ederler ve
-              hayal kırıklığı yerine heyecanlanırlar. Artık "bu ne zaman gelecek?" e-postaları yok.
+              Panelinizden tüm raporlarınıza, danışmanlık taleplerinize ve teknik teklif süreçlerinize anlık erişim sağlayın.
+              <span className="font-semibold text-gray-900"> Yapay zekâ analizleri, mühendislik değerlendirmeleri ve saha hizmetleri</span>
+              artık tek bir merkezden yönetilebilir.
             </p>
           </motion.div>
 
