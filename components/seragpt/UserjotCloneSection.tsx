@@ -1130,7 +1130,7 @@ export default function UserjotCloneSection() {
 
       {/* Corporate Consulting Section */}
       <div className="py-20 bg-gray-50">
-        <div className="max-w-[720px] mx-auto px-6">
+        <div className="text-section-container">
 
 
           {/* Bottom CTA */}
@@ -1143,7 +1143,7 @@ export default function UserjotCloneSection() {
           >
             <div className="bg-gradient-to-r from-green-600 to-blue-600 rounded-2xl p-8 md:p-12 text-white">
               <h3 className="text-2xl md:text-3xl font-bold mb-4">
-                Kurumsal Sera Danışmanl��ğı Paketinizi İnceleyin
+                Kurumsal Sera Danışmanlığı Paketinizi İnceleyin
               </h3>
               <p className="text-xl text-green-100 mb-8 max-w-2xl mx-auto">
                 SeraGPT verilerinizi Hermisan & ISITMAX uzmanlığı ile birleştirerek 
