@@ -222,10 +222,10 @@ export default function UserjotCloneSection() {
               <div className="flex-1">
                 <div className="flex items-center space-x-3 mb-3">
                   <span className="bg-green-500 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold">1</span>
-                  <h3 className="text-lg sm:text-xl font-bold text-gray-900">Lokasyonunu ve ��rünü Gir</h3>
+                  <h3 className="text-lg sm:text-xl font-bold text-gray-900">Lokasyonunu ve Ürünü Gir</h3>
                 </div>
                 <p className="text-gray-600">
-                  Bulunduğun yeri ve yetiştirmek istediğin ��rünü belirt.
+                  Bulunduğun yeri ve yetiştirmek istediğin ürünü belirt.
                   İl, ilçe, ürün türü ve hedef pazar bilgilerini girerek analiz sürecini başlat.
                 </p>
               </div>
@@ -270,7 +270,7 @@ export default function UserjotCloneSection() {
                 </div>
                 <p className="text-gray-600">
                   Profesyonel raporun saniyeler içinde hazır.
-                  Yatırım fizibiliteni detaylı analiz i��eren PDF formatında indir ve kararını ver.
+                  Yatırım fizibiliteni detaylı analiz içeren PDF formatında indir ve kararını ver.
                 </p>
               </div>
             </motion.div>
@@ -323,197 +323,13 @@ export default function UserjotCloneSection() {
                   Arazi yapına özel olarak tam uyumlu anahtar teslim sera projeni planlayıp detaylı teknik teklif hazırlarız.
                 </p>
                 <a href="#" className="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium">
-                  📅 Saha Ziyareti Talep Et
+                  ��� Saha Ziyareti Talep Et
                   <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
                 </a>
               </div>
             </motion.div>
-          </div>
-        </div>
-      </div>
-
-
-      <div className="py-20 bg-white">
-        <div className="max-w-[1100px] mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-SECTION_TO_DELETE
-            </h2>
-          </motion.div>
-
-          {/* Horizontal Sliding Cards */}
-          <div className="relative">
-            <div className="flex overflow-x-auto scrollbar-hide gap-8 pb-6">
-
-              {/* Card 1 - ROI Hesabı */}
-              <motion.div
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6 }}
-                viewport={{ once: true }}
-                className="flex-shrink-0 w-96 bg-gradient-to-br from-green-50 to-blue-50 rounded-2xl p-8 border border-gray-200"
-              >
-                <div className="text-3xl mb-4">✅</div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3">
-                  Yatırım Geri Dönüş (ROI) Hesabı
-                </h3>
-                <p className="text-gray-600 mb-6 leading-relaxed">
-                  Sera yatırımınızın finansal analizini detaylı şekilde hesaplar.
-                  Kurulum maliyeti, yıllık üretim kapasitesi ve geri dönüş sürelerini analiz eder.
-                </p>
-                {/* Placeholder Screenshot */}
-                <div className="bg-gray-100 rounded-lg h-48 flex items-center justify-center border-2 border-dashed border-gray-300">
-                  <div className="text-center">
-                    <div className="text-4xl mb-2">📊</div>
-                    <span className="text-gray-500 text-sm">ROI Analiz Ekranı</span>
-                  </div>
-                </div>
-              </motion.div>
-
-              {/* Card 2 - İklim Uyumu */}
-              <motion.div
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: 0.1 }}
-                viewport={{ once: true }}
-                className="flex-shrink-0 w-96 bg-gradient-to-br from-blue-50 to-purple-50 rounded-2xl p-8 border border-gray-200"
-              >
-                <div className="text-3xl mb-4">✅</div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3">
-                  İklim Uyumu ve Risk Skoru
-                </h3>
-                <p className="text-gray-600 mb-6 leading-relaxed">
-                  110+ veri kaynağından lokasyonunuzun iklim profili çıkarılır.
-                  Don riski, sıcaklık aralığı ve ürün-iklim uyum skoru hesaplanır.
-                </p>
-                {/* Placeholder Screenshot */}
-                <div className="bg-gray-100 rounded-lg h-48 flex items-center justify-center border-2 border-dashed border-gray-300">
-                  <div className="text-center">
-                    <div className="text-4xl mb-2">🌤️</div>
-                    <span className="text-gray-500 text-sm">İklim Analiz Ekranı</span>
-                  </div>
-                </div>
-              </motion.div>
-
-              {/* Card 3 - Ekipman Listesi */}
-              <motion.div
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                viewport={{ once: true }}
-                className="flex-shrink-0 w-96 bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl p-8 border border-gray-200"
-              >
-                <div className="text-3xl mb-4">✅</div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3">
-                  Mühendis Onaylı Ekipman Listesi
-                </h3>
-                <p className="text-gray-600 mb-6 leading-relaxed">
-                  Uzman mühendisler tarafından onaylanmış sera ekipmanları ve malzeme listesi.
-                  Sera tipine özel öneriler ve teknik spesifikasyonlar.
-                </p>
-                {/* Placeholder Screenshot */}
-                <div className="bg-gray-100 rounded-lg h-48 flex items-center justify-center border-2 border-dashed border-gray-300">
-                  <div className="text-center">
-                    <div className="text-4xl mb-2">🔧</div>
-                    <span className="text-gray-500 text-sm">Ekipman Listesi Ekranı</span>
-                  </div>
-                </div>
-              </motion.div>
-
-              {/* Card 4 - Tar��m ve Ticaret Verileri */}
-              <motion.div
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-                viewport={{ once: true }}
-                className="flex-shrink-0 w-96 bg-gradient-to-br from-yellow-50 to-orange-50 rounded-2xl p-8 border border-gray-200"
-              >
-                <div className="text-3xl mb-4">✅</div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3">
-                  Gerçek Zamanlı Tar��m ve Ticaret Verileri
-                </h3>
-                <p className="text-gray-600 mb-6 leading-relaxed">
-                  Güncel pazar fiyatları, ithalat-ihracat verileri ve talep tahminleri.
-                  Son 3 yıla ait piyasa analizi ve trend projeksiyonları.
-                </p>
-                {/* Placeholder Screenshot */}
-                <div className="bg-gray-100 rounded-lg h-48 flex items-center justify-center border-2 border-dashed border-gray-300">
-                  <div className="text-center">
-                    <div className="text-4xl mb-2">📈</div>
-                    <span className="text-gray-500 text-sm">Ticaret Verileri Ekranı</span>
-                  </div>
-                </div>
-              </motion.div>
-
-              {/* Card 5 - PDF Raporu */}
-              <motion.div
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: 0.4 }}
-                viewport={{ once: true }}
-                className="flex-shrink-0 w-96 bg-gradient-to-br from-red-50 to-pink-50 rounded-2xl p-8 border border-gray-200"
-              >
-                <div className="text-3xl mb-4">✅</div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3">
-                  PDF Raporu – Anında İndirilebilir
-                </h3>
-                <p className="text-gray-600 mb-6 leading-relaxed">
-                  Tüm analizlerin bir araya geldiği profesyonel PDF raporu.
-                  Yatırımcılara sunum yapmak için hazır, detaylı fizibilite belgesi.
-                </p>
-                {/* Placeholder Screenshot */}
-                <div className="bg-gray-100 rounded-lg h-48 flex items-center justify-center border-2 border-dashed border-gray-300">
-                  <div className="text-center">
-                    <div className="text-4xl mb-2">📄</div>
-                    <span className="text-gray-500 text-sm">PDF Rapor Önizleme</span>
-                  </div>
-                </div>
-              </motion.div>
-
-              {/* Card 6 - API Sim��lasyon */}
-              <motion.div
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: 0.5 }}
-                viewport={{ once: true }}
-                className="flex-shrink-0 w-96 bg-gradient-to-br from-indigo-50 to-blue-50 rounded-2xl p-8 border border-gray-200"
-              >
-                <div className="text-3xl mb-4">✅</div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3">
-                  API ile Lokasyon ve Pazar Bazlı Simülasyon
-                </h3>
-                <p className="text-gray-600 mb-6 leading-relaxed">
-                  API entegrasyonu ile lokasyon ve pazar verilerinin gerçek zamanlı simülasyonu.
-                  Dinamik analiz ve güncellenen pazar koşulları.
-                </p>
-                {/* Placeholder Screenshot */}
-                <div className="bg-gray-100 rounded-lg h-48 flex items-center justify-center border-2 border-dashed border-gray-300">
-                  <div className="text-center">
-                    <div className="text-4xl mb-2">🔗</div>
-                    <span className="text-gray-500 text-sm">API Dashboard Ekranı</span>
-                  </div>
-                </div>
-              </motion.div>
-
-            </div>
-
-            {/* Navigation Indicators */}
-            <div className="flex justify-center mt-8 space-x-2">
-              <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
-              <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
-              <div className="w-2 h-2 bg-gray-900 rounded-full"></div>
-              <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
-              <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
-              <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
-            </div>
           </div>
         </div>
       </div>
@@ -609,7 +425,7 @@ SECTION_TO_DELETE
                         <div className="ml-4 text-right">
                           <div className="text-sm text-gray-500 mb-1">Bir şey eksik mi?</div>
                           <button className="bg-black text-white px-4 py-2 rounded text-sm font-medium">
-                            Gönderi Olu��tur
+                            Gönderi Oluştur
                           </button>
                         </div>
                       </div>
@@ -631,8 +447,8 @@ SECTION_TO_DELETE
                         </div>
 
                         <div className="ml-4 text-right">
-                          <div className="text-sm text-gray-500 mb-2">Uygulama sorunu ��özülemiyor,</div>
-                          <div className="text-sm text-gray-500 mb-2">geçerli ��ifreler tanınmıyor.</div>
+                          <div className="text-sm text-gray-500 mb-2">Uygulama sorunu çözülemiyor,</div>
+                          <div className="text-sm text-gray-500 mb-2">geçerli şifreler tanınmıyor.</div>
                           <div className="flex items-center space-x-2 text-sm text-gray-600">
                             <div className="w-6 h-6 bg-gray-300 rounded-full"></div>
                             <div>
@@ -680,7 +496,7 @@ SECTION_TO_DELETE
               whileTap={{ scale: 0.95 }}
               className="bg-blue-600 hover:bg-blue-700 text-white px-10 py-4 rounded-xl text-xl font-bold transition-colors shadow-lg hover:shadow-xl inline-flex items-center space-x-3"
             >
-              <span className="text-2xl">����</span>
+              <span className="text-2xl">🚀</span>
               <span>Kullanıcı Paneline Giriş Yapın</span>
             </motion.button>
             <p className="text-gray-500 text-sm mt-4">
@@ -874,7 +690,7 @@ SECTION_TO_DELETE
               whileTap={{ scale: 0.95 }}
               className="bg-green-600 hover:bg-green-700 text-white px-10 py-4 rounded-xl text-xl font-bold transition-colors shadow-lg hover:shadow-xl"
             >
-<p>Anahtar Teslim Fiyat Alın</p>
+              <p>Anahtar Teslim Fiyat Alın</p>
             </motion.button>
             <p className="text-gray-500 text-sm mt-4">
               Uzman ekibimiz size özel teklifini hazırlayacak
@@ -885,179 +701,7 @@ SECTION_TO_DELETE
 
       {/* Corporate Consulting Section */}
       <div className="py-20 bg-gray-50">
-        <div className="max-w-[1000px] mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-8">
-              🏗️ Anahtar Teslim Sera<br />
-              Proje Teklifi
-            </h2>
-
-            {/* Slogan Section */}
-            <div className="bg-white rounded-2xl p-8 mb-12 shadow-lg border border-gray-200">
-              <div className="border-l-4 border-blue-500 pl-6">
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">📐 Slogan</h3>
-                <p className="text-xl text-gray-700 leading-relaxed font-medium">
-                  Keşiften kurulum teslimine kadar tüm süreç, mühendislik verisiyle planlanır,
-                  <span className="text-blue-600 font-bold"> Avrupa standartlarında</span> inşa edilir.
-                </p>
-              </div>
-            </div>
-
-            {/* Main Description */}
-            <div className="bg-white rounded-2xl p-8 mb-12 shadow-lg border border-gray-200">
-              <div className="text-left space-y-6">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">�� Proje Açıklaması</h3>
-
-                <p className="text-lg text-gray-700 leading-relaxed">
-                  <strong className="text-blue-600">ISITMAX'ın</strong> sağladığı mühendislik, keşif, projelendirme ve süpervizörlük hizmetleri;
-                </p>
-
-                <p className="text-lg text-gray-700 leading-relaxed">
-                  <strong className="text-green-600">Hermisan Spain'in</strong> üstlendiği tüm yapısal imalat, ekipman tedariği,
-                  otomasyon sistemleri ve kurulum süreçleriyle birleşerek,
-                </p>
-
-                <div className="bg-gradient-to-r from-blue-50 to-green-50 rounded-xl p-6 border-l-4 border-blue-500">
-                  <p className="text-lg text-gray-800 font-semibold">
-                    size tam entegre, sahaya özel, performans garantili
-                    <span className="text-blue-600"> anahtar teslim sera çözümleri</span> sunuyoruz.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* System Features */}
-            <div className="bg-white rounded-2xl p-8 mb-12 shadow-lg border border-gray-200">
-              <h3 className="text-2xl font-bold text-gray-900 mb-8 text-center">Bu sistem dahilinde:</h3>
-
-              <div className="grid md:grid-cols-2 gap-6">
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.1 }}
-                  viewport={{ once: true }}
-                  className="bg-blue-50 rounded-xl p-6 border border-blue-200"
-                >
-                  <div className="flex items-start space-x-4">
-                    <span className="text-3xl">📍</span>
-                    <div>
-                      <p className="text-gray-800 leading-relaxed">
-                        Projeniz, lokasyon, iklim ve üretim hedeflerine göre
-                        <strong className="text-blue-600"> teknik olarak modellenir</strong>
-                      </p>
-                    </div>
-                  </div>
-                </motion.div>
-
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.2 }}
-                  viewport={{ once: true }}
-                  className="bg-green-50 rounded-xl p-6 border border-green-200"
-                >
-                  <div className="flex items-start space-x-4">
-                    <span className="text-3xl">📊</span>
-                    <div>
-                      <p className="text-gray-800 leading-relaxed">
-                        Yatırım fizibilitesi ve enerji/otomasyon senaryoları
-                        <strong className="text-green-600"> optimize edilir</strong>
-                      </p>
-                    </div>
-                  </div>
-                </motion.div>
-
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.3 }}
-                  viewport={{ once: true }}
-                  className="bg-orange-50 rounded-xl p-6 border border-orange-200"
-                >
-                  <div className="flex items-start space-x-4">
-                    <span className="text-3xl">🏗️</span>
-                    <div>
-                      <p className="text-gray-800 leading-relaxed">
-                        Malzeme ve ekipmanlar
-                        <strong className="text-orange-600"> Hermisan'ın İspanya üretim hatlarından</strong> sağlanır
-                      </p>
-                    </div>
-                  </div>
-                </motion.div>
-
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.4 }}
-                  viewport={{ once: true }}
-                  className="bg-purple-50 rounded-xl p-6 border border-purple-200"
-                >
-                  <div className="flex items-start space-x-4">
-                    <span className="text-3xl">🛠️</span>
-                    <div>
-                      <p className="text-gray-800 leading-relaxed">
-                        Kurulum <strong className="text-purple-600">ISITMAX süpervizörlüğünde</strong>,
-                        saha yönetimiyle gerçekleştirilir
-                      </p>
-                    </div>
-                  </div>
-                </motion.div>
-              </div>
-            </div>
-
-            {/* Results Section */}
-            <div className="bg-gradient-to-r from-green-600 to-blue-600 rounded-2xl p-8 mb-12 text-white shadow-xl">
-              <h3 className="text-2xl font-bold mb-6">🎯 Sonuç:</h3>
-              <div className="grid md:grid-cols-3 gap-6 text-center">
-                <div>
-                  <div className="text-4xl mb-3">🛡️</div>
-                  <p className="text-lg font-semibold">En düşük yatırım riski</p>
-                </div>
-                <div>
-                  <div className="text-4xl mb-3">📈</div>
-                  <p className="text-lg font-semibold">En yüksek verim garantisi</p>
-                </div>
-                <div>
-                  <div className="text-4xl mb-3">✅</div>
-                  <p className="text-lg font-semibold">Mühendislik onaylı saha teslimi</p>
-                </div>
-              </div>
-            </div>
-
-            {/* CTA Button */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-              viewport={{ once: true }}
-              className="text-center"
-            >
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="bg-blue-600 hover:bg-blue-700 text-white px-12 py-5 rounded-xl text-xl font-bold transition-colors shadow-lg hover:shadow-xl inline-flex items-center space-x-3"
-              >
-                <span className="text-2xl">📄</span>
-                <span>Detaylı Teknik Teklif Talep Et</span>
-              </motion.button>
-              <p className="text-gray-600 text-sm mt-4">
-                Uzman mühendislerimiz size özel teknik teklif hazırlayacak
-              </p>
-            </motion.div>
-          </motion.div>
-        </div>
-      </div>
-
-      {/* Corporate Consulting Section */}
-      <div className="py-20 bg-gray-50">
         <div className="text-section-container">
-
 
           {/* Bottom CTA */}
           <motion.div
@@ -1089,218 +733,6 @@ SECTION_TO_DELETE
 
       {/* Blog Cards Section */}
       <BlogCardsSection />
-
-      {/* AI-Powered Analysis Pricing Section */}
-      <div className="bg-gray-50 py-20">
-        <div className="max-w-[1100px] mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-6">
-              🤖 Yapay Zekâ Destekli Sera Analizleri<br />
-              İçin Planınızı Seçin
-            </h2>
-            <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-              Tüm planlar aynı gü��lü veriye erişir. Fark, <span className="font-semibold text-gray-900">ne kadar çok analiz yapacağınızda</span>.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8 mb-12">
-            {/* Başlangıç Plan - Free */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              viewport={{ once: true }}
-              className="bg-white rounded-2xl p-8 shadow-lg border-2 border-green-200 relative"
-            >
-              <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                <span className="bg-green-500 text-white px-4 py-1 rounded-full text-sm font-medium">🟩 BAŞLANGIÇ</span>
-              </div>
-
-              <div className="mb-8 mt-4">
-                <div className="flex items-baseline mb-4">
-                  <span className="text-gray-600 text-lg">₺</span>
-                  <span className="text-5xl font-bold text-gray-900">0</span>
-                </div>
-                <p className="text-gray-600 font-medium">Ücretsiz – hemen başlayın</p>
-              </div>
-
-              <div className="mb-8">
-                <div className="space-y-3">
-                  <div className="flex items-center space-x-3">
-                    <span className="text-green-500 text-lg">✔</span>
-                    <span className="text-sm text-gray-700"><strong>5 Ücretsiz Token</strong></span>
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    <span className="text-green-500 text-lg">✔</span>
-                    <span className="text-sm text-gray-700">Tüm analiz türlerine erişim</span>
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    <span className="text-green-500 text-lg">✔</span>
-                    <span className="text-sm text-gray-700">Open-Meteo, TÜİK, FAO, GTIP, ERA5 API verileri</span>
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    <span className="text-green-500 text-lg">✔</span>
-                    <span className="text-sm text-gray-700">PDF çıktı, panel erişimi, gelişmiş kullanıcı arayüzü</span>
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    <span className="text-green-500 text-lg">✔</span>
-                    <span className="text-sm text-gray-700">Süre kısıtı yok</span>
-                  </div>
-                </div>
-              </div>
-
-              <button className="w-full bg-green-600 text-white py-3 rounded-lg font-medium hover:bg-green-700 transition-colors">
-                Ücretsiz Başla
-              </button>
-            </motion.div>
-
-            {/* 10 Token Paketi */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              viewport={{ once: true }}
-              className="bg-white rounded-2xl p-8 shadow-lg border-2 border-blue-200 relative"
-            >
-              <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                <span className="bg-blue-500 text-white px-4 py-1 rounded-full text-sm font-medium">🟦 10 TOKEN PAKETİ</span>
-              </div>
-
-              <div className="mb-8 mt-4">
-                <div className="flex items-baseline mb-4">
-                  <span className="text-gray-600 text-lg">₺</span>
-                  <span className="text-5xl font-bold text-gray-900">890</span>
-                </div>
-                <p className="text-gray-600 font-medium">Daha fazla analiz, daha derin içgörü</p>
-              </div>
-
-              <div className="mb-8">
-                <div className="space-y-3">
-                  <div className="flex items-center space-x-3">
-                    <span className="text-green-500 text-lg">✔</span>
-                    <span className="text-sm text-gray-700"><strong>10 Token (10 analiz hakkı)</strong></span>
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    <span className="text-green-500 text-lg">✔</span>
-                    <span className="text-sm text-gray-700">Open-Meteo, T��İK, FAO, GTIP, ERA5 API verileri</span>
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    <span className="text-green-500 text-lg">✔</span>
-                    <span className="text-sm text-gray-700"><strong>Rapor başı maliyet: ₺89</strong></span>
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    <span className="text-green-500 text-lg">✔</span>
-                    <span className="text-sm text-gray-700">Mevcut raporları yeniden düzenleme</span>
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    <span className="text-green-500 text-lg">✔</span>
-                    <span className="text-sm text-gray-700">Süre kısıtı yok</span>
-                  </div>
-                </div>
-              </div>
-
-              <button className="w-full bg-blue-600 text-white py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors">
-                10 Token Al
-              </button>
-            </motion.div>
-
-            {/* 100 Token Paketi - Professional */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              viewport={{ once: true }}
-              className="bg-white rounded-2xl p-8 shadow-lg border-2 border-yellow-200 relative transform scale-105"
-            >
-              <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                <span className="bg-yellow-500 text-white px-4 py-1 rounded-full text-sm font-medium">🟨 100 TOKEN (PROFESYONEL)</span>
-              </div>
-
-              <div className="mb-8 mt-4">
-                <div className="flex items-baseline mb-4">
-                  <span className="text-gray-600 text-lg">₺</span>
-                  <span className="text-5xl font-bold text-gray-900">4.900</span>
-                </div>
-                <p className="text-gray-600 font-medium">Sık analiz yapan kullanıcılar ve danışman ekipler için</p>
-              </div>
-
-              <div className="mb-8">
-                <div className="space-y-3">
-                  <div className="flex items-center space-x-3">
-                    <span className="text-green-500 text-lg">✔</span>
-                    <span className="text-sm text-gray-700"><strong>100 Token (100 analiz hakkı)</strong></span>
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    <span className="text-green-500 text-lg">✔</span>
-                    <span className="text-sm text-gray-700"><strong>Rapor başı maliyet: ₺49 (en uygun)</strong></span>
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    <span className="text-green-500 text-lg">✔</span>
-                    <span className="text-sm text-gray-700">Open-Meteo, TÜİK, FAO, GTIP, ERA5 API verileri</span>
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    <span className="text-green-500 text-lg">✔</span>
-                    <span className="text-sm text-gray-700">Çoklu proje yönetimi & API entegrasyon opsiyonu</span>
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    <span className="text-green-500 text-lg">✔</span>
-                    <span className="text-sm text-gray-700">Süre kısıtı yok</span>
-                  </div>
-                </div>
-              </div>
-
-              <button className="w-full bg-yellow-600 text-white py-3 rounded-lg font-medium hover:bg-yellow-700 transition-colors">
-                100 Token Al
-              </button>
-            </motion.div>
-          </div>
-
-          {/* Common Features */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            viewport={{ once: true }}
-            className="bg-white rounded-2xl p-8 shadow-lg border border-gray-200"
-          >
-            <h3 className="text-xl font-bold text-gray-900 mb-6 text-center">���� Tüm planlarda şunlar geçerlidir:</h3>
-
-            <div className="grid md:grid-cols-2 gap-6">
-              <div className="space-y-3">
-                <div className="flex items-center space-x-3">
-                  <span className="text-blue-500 text-lg">📄</span>
-                  <span className="text-gray-700">ROI, İklim, Ticaret, Ekipman ve Simülasyon Analizleri</span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <span className="text-blue-500 text-lg">🧠</span>
-                  <span className="text-gray-700">Yapay zekâ destekli teknik analiz motoru</span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <span className="text-blue-500 text-lg">🌐</span>
-                  <span className="text-gray-700">T��İK, Open-Meteo, ERA5, FAO, GTIP gibi ücretli veri servisleri</span>
-                </div>
-              </div>
-
-              <div className="space-y-3">
-                <div className="flex items-center space-x-3">
-                  <span className="text-blue-500 text-lg">📥</span>
-                  <span className="text-gray-700">PDF çıktı + kullanıcı paneli erişimi</span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <span className="text-blue-500 text-lg">⏱️</span>
-                  <span className="text-gray-700">Ortalama 40–60 saniyede sonuç</span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <span className="text-blue-500 text-lg">💡</span>
-                  <span className="text-gray-700">Tokenlar süresiz geçerlidir, analiz başına 1 token kullanılır</span>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </div>
-
-
 
       {/* FAQ Section */}
       <motion.div
@@ -1339,7 +771,7 @@ SECTION_TO_DELETE
               },
               {
                 question: "SeraGPT kullanıcı geri bildirimlerini önceliklendirmeme nasıl yardımcı olur?",
-                answer: "Akıllı algoritma sistemi, kullanıcı oylar�� ve etkileşim verilerine dayanarak en kritik konuları öne çıkarır."
+                answer: "Akıllı algoritma sistemi, kullanıcı oyları ve etkileşim verilerine dayanarak en kritik konuları öne çıkarır."
               },
               {
                 question: "SeraGPT müşteri kaybını azaltmaya yardımcı olabilir mi?",
@@ -1363,7 +795,7 @@ SECTION_TO_DELETE
               },
               {
                 question: "SeraGPT müşteri deneyimi yönetimini nasıl geliştirir?",
-                answer: "Merkezi bir platform sağlayarak m��şteri sesini dinleme ve yanıtlama sürecini kolaylaştırır."
+                answer: "Merkezi bir platform sa��layarak müşteri sesini dinleme ve yanıtlama sürecini kolaylaştırır."
               },
               {
                 question: "SeraGPT konuk veya anonim geri bildirimleri destekliyor mu?",
@@ -1375,7 +807,7 @@ SECTION_TO_DELETE
               },
               {
                 question: "SeraGPT hangi entegrasyonları sunuyor?",
-                answer: "Slack, Teams, Jira, GitHub ve daha bir��ok popüler araçla entegrasyon imkanı sunar."
+                answer: "Slack, Teams, Jira, GitHub ve daha birçok popüler araçla entegrasyon imkanı sunar."
               }
             ].map((faq, index) => (
               <motion.div
