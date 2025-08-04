@@ -79,7 +79,7 @@ export default function UserjotCloneSection() {
             transition={{ duration: 0.2 }}
             className="md:hidden bg-gray-50 border-t border-gray-200"
           >
-            <div className="max-w-[960px] mx-auto px-6 py-4 space-y-4">
+            <div className="max-w-[800px] mx-auto px-6 py-4 space-y-4">
               {/* Center navigation links */}
               <div className="space-y-3">
                 <a
@@ -1382,7 +1382,7 @@ export default function UserjotCloneSection() {
                 answer: "Evet, hem kayıtlı kullanıcılardan hem de anonim ziyaretçilerden geri bildirim toplayabilirsiniz."
               },
               {
-                question: "SeraGPT'yi markama uygun şekilde özelleştirebilir miyim?",
+                question: "SeraGPT'yi markama uygun şekilde özelle��tirebilir miyim?",
                 answer: "Tamamen. Logonuzdan renklerinize kadar her detayı markanıza uygun şekilde düzenleyebilirsiniz."
               },
               {
