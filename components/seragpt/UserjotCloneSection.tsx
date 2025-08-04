@@ -222,15 +222,33 @@ export default function UserjotCloneSection() {
               >
                 <div className="absolute top-6 left-6 text-6xl font-bold text-gray-100">01</div>
                 <div className="mt-16">
-                  <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-6">
-                    <span className="text-2xl">🧮</span>
-                  </div>
                   <h3 className="text-xl font-bold text-gray-900 mb-4">Yatırım Geri Dönüş (ROI) Simülasyonu</h3>
-                  <div className="space-y-2 mb-4">
-                    <p className="text-gray-600 text-xs">✅ Yatırımın geri dönüş süresi</p>
-                    <p className="text-gray-600 text-xs">✅ Kar marjı ve yıllık getiri tahmini</p>
-                    <p className="text-gray-600 text-xs">✅ İşletme maliyetleri kıyaslaması</p>
+
+                  <div className="space-y-3 mb-4">
+                    <div>
+                      <p className="text-gray-800 text-xs font-semibold mb-1">🎯 3 Önemli Fayda:</p>
+                      <p className="text-gray-600 text-xs">• Yatırımın geri dönüş süresi</p>
+                      <p className="text-gray-600 text-xs">• Kar marjı ve yıllık getiri tahmini</p>
+                      <p className="text-gray-600 text-xs">• İşletme maliyetleri kıyaslaması</p>
+                    </div>
+
+                    <div>
+                      <p className="text-gray-800 text-xs font-semibold mb-1">🔗 Veri Kaynakları:</p>
+                      <p className="text-gray-600 text-xs">• OpenWeather, FAO & TUİK</p>
+                      <p className="text-gray-600 text-xs">• Seraburada / e-Tarım API</p>
+                    </div>
+
+                    <div>
+                      <p className="text-gray-800 text-xs font-semibold mb-1">👤 Kullanıcı Girdisi:</p>
+                      <p className="text-gray-600 text-xs">• Lokasyon, bitki türü, üretim hedefi</p>
+                    </div>
+
+                    <div>
+                      <p className="text-gray-800 text-xs font-semibold mb-1">📄 PDF İçeriği:</p>
+                      <p className="text-gray-600 text-xs">• ROI tablosu ve 3 yıllık projeksiyonu</p>
+                    </div>
                   </div>
+
                   <div className="mt-4 p-3 bg-gray-50 rounded-lg">
                     <p className="text-gray-700 text-sm font-medium">"Yatırımınız size ne zaman geri döner?"</p>
                     <button className="mt-2 text-blue-600 text-xs font-medium hover:underline">[PDF'yi Örnekle Gör]</button>
@@ -617,7 +635,7 @@ export default function UserjotCloneSection() {
                 <div className="w-full h-full bg-gradient-to-br from-yellow-100 to-orange-100 flex items-center justify-center">
                   <div className="text-center">
                     <p className="text-gray-700 font-medium">Fide Üretim Tesisi</p>
-                    <p className="text-gray-500 text-sm">Bursa, 4.500 m����</p>
+                    <p className="text-gray-500 text-sm">Bursa, 4.500 m��</p>
                   </div>
                 </div>
               </motion.div>
