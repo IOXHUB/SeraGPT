@@ -195,10 +195,9 @@ export default function UserjotCloneSection() {
           >
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 flex flex-col max-w-[700px] mx-auto">
               <span className="mx-auto">
-                <p>Yatırım sürecinizi yapay zekâ destekli</p>
+                <p>Yatırımınızı Tek Panelden Yönetin</p>
               </span>
               <br />
-              <span>kullanıcı panelinden yönetin</span>
             </h2>
             <p className="text-xl text-gray-600 max-w-[896px]">
               <span>
@@ -512,7 +511,7 @@ export default function UserjotCloneSection() {
               >
                 <div className="text-3xl mb-4">✅</div>
                 <h3 className="text-xl font-bold text-gray-900 mb-3">
-                  Gerçek Zamanlı Tar��m ve Ticaret Verileri
+                  Gerçek Zamanlı Tarım ve Ticaret Verileri
                 </h3>
                 <p className="text-gray-600 mb-6 leading-relaxed">
                   Güncel pazar fiyatları, ithalat-ihracat verileri ve talep tahminleri.
@@ -705,7 +704,7 @@ export default function UserjotCloneSection() {
                         </div>
 
                         <div className="ml-4 text-right">
-                          <div className="text-sm text-gray-500 mb-2">Uygulama sorunu ��özülemiyor,</div>
+                          <div className="text-sm text-gray-500 mb-2">Uygulama sorunu çözülemiyor,</div>
                           <div className="text-sm text-gray-500 mb-2">geçerli ��ifreler tanınmıyor.</div>
                           <div className="flex items-center space-x-2 text-sm text-gray-600">
                             <div className="w-6 h-6 bg-gray-300 rounded-full"></div>
@@ -902,7 +901,7 @@ export default function UserjotCloneSection() {
                   <div className="text-center">
                     <div className="text-4xl mb-3">🌹</div>
                     <p className="text-gray-700 font-medium">Çiçek Üretim Serası</p>
-                    <p className="text-gray-500 text-sm">Isparta, 1.800 m²</p>
+                    <p className="text-gray-500 text-sm">Isparta, 1.800 m��</p>
                   </div>
                 </div>
               </motion.div>
