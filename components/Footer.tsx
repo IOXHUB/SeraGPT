@@ -1,8 +1,8 @@
 export default function Footer() {
   return (
-    <footer className="bg-gray-50 text-gray-900 py-16">
-      <div className="max-w-[960px] mx-auto px-6">
-        <div className="grid md:grid-cols-4 gap-8">
+    <footer className="bg-gray-50 text-gray-900 py-12 sm:py-16">
+      <div className="max-w-[960px] mx-auto px-4 sm:px-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
           {/* 1. Menü */}
           <div>
             <h3 className="text-lg font-semibold mb-6 text-gray-900">Menü</h3>
