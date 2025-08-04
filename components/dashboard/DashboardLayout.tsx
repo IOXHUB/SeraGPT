@@ -65,6 +65,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
 
   const menuItems = [
     { name: 'Dashboard', icon: '📊', href: '/dashboard', active: true },
+    { name: 'SeraGPT AI', icon: '🤖', href: '/dashboard/ai-chat', active: false },
     { name: 'Sera Projeleri', icon: '🌱', href: '/dashboard/projects', active: false },
     { name: 'Analizler', icon: '📈', href: '/dashboard/analytics', active: false },
     { name: 'Raporlar', icon: '📋', href: '/dashboard/reports', active: false },
