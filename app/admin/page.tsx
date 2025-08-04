@@ -85,15 +85,12 @@ export default function AdminDashboard() {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 className="bg-white rounded-2xl p-6 shadow-sm border border-gray-200"
               >
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-sm text-gray-600 mb-1">{stat.name}</p>
-                    <p className="text-2xl font-bold text-gray-900 mb-2">{stat.value}</p>
-                    <p className={`text-sm ${stat.changeType === 'positive' ? 'text-green-600' : 'text-red-600'}`}>
-                      {stat.change}
-                    </p>
-                  </div>
-                  <div className="text-3xl">{stat.icon}</div>
+                <div>
+                  <p className="text-sm text-gray-600 mb-1">{stat.name}</p>
+                  <p className="text-2xl font-bold text-gray-900 mb-2">{stat.value}</p>
+                  <p className={`text-sm ${stat.changeType === 'positive' ? 'text-green-600' : 'text-red-600'}`}>
+                    {stat.change}
+                  </p>
                 </div>
               </motion.div>
             ))}
