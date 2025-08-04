@@ -197,9 +197,8 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
                   <a
                     key={item.name}
                     href={item.href}
-                    className="flex items-center space-x-3 px-3 py-2 rounded-lg text-sm font-medium text-purple-700 hover:bg-purple-50 hover:text-purple-900 transition-colors"
+                    className="flex items-center px-4 py-2 rounded-lg text-sm font-medium text-purple-700 hover:bg-purple-50 hover:text-purple-900 transition-colors"
                   >
-                    <span className="text-lg">{item.icon}</span>
                     <span>{item.name}</span>
                   </a>
                 ))}
