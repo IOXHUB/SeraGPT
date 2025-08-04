@@ -655,7 +655,7 @@ export default function UserjotCloneSection() {
                           </div>
                           <div className="mt-2">
                             <button className="text-sm text-blue-600 hover:text-blue-700">
-                              Tüm G��ncellemeler
+                              Tüm Güncellemeler
                             </button>
                           </div>
                         </div>
@@ -705,7 +705,7 @@ export default function UserjotCloneSection() {
 
       {/* Visual Gallery Section */}
       <div className="py-20 bg-white">
-        <div className="max-w-[900px] mx-auto px-6">
+        <div className="max-w-[1200px] mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -1175,7 +1175,7 @@ export default function UserjotCloneSection() {
               className="bg-white rounded-2xl p-8 shadow-lg border-2 border-blue-200 relative"
             >
               <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                <span className="bg-blue-500 text-white px-4 py-1 rounded-full text-sm font-medium">🟦 10 TOKEN PAKETİ</span>
+                <span className="bg-blue-500 text-white px-4 py-1 rounded-full text-sm font-medium">🟦 10 TOKEN PAKET��</span>
               </div>
 
               <div className="mb-8 mt-4">
@@ -1299,7 +1299,7 @@ export default function UserjotCloneSection() {
                   <span className="text-gray-700">PDF çıktı + kullanıcı paneli erişimi</span>
                 </div>
                 <div className="flex items-center space-x-3">
-                  <span className="text-blue-500 text-lg">⏱���</span>
+                  <span className="text-blue-500 text-lg">⏱️</span>
                   <span className="text-gray-700">Ortalama 40–60 saniyede sonuç</span>
                 </div>
                 <div className="flex items-center space-x-3">
