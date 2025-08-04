@@ -50,7 +50,7 @@ export default function UserjotCloneSection() {
             </a>
 
             {/* For first time visitors */}
-            <a href="#" className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg font-medium transition-colors">
+            <a href="/dashboard" className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg font-medium transition-colors">
               Ücretsiz Başla
             </a>
           </div>
@@ -608,7 +608,7 @@ export default function UserjotCloneSection() {
                             </svg>
                           </div>
                           <p className="text-gray-600 text-sm mb-3">
-                            Android uygulaması sera foto��rafları yüklenmeye çalışıldığında çöküyor.
+                            Android uygulaması sera fotoğrafları yüklenmeye çalışıldığında çöküyor.
                             Bu ASAP düzeltilmesi gerekiyor.
                           </p>
                           <div className="flex items-center space-x-2">
@@ -1353,7 +1353,7 @@ export default function UserjotCloneSection() {
                 answer: "Akıllı algoritma sistemi, kullanıcı oylar�� ve etkileşim verilerine dayanarak en kritik konuları öne çıkarır."
               },
               {
-                question: "SeraGPT müşteri kaybını azaltmaya yardımcı olabilir mi?",
+                question: "SeraGPT müşteri kaybını azaltmaya yard��mcı olabilir mi?",
                 answer: "Evet, müşteri ihtiyaçlarını önceden tespit ederek ve hızlı çözümler sunarak müşteri memnuniyetini artırır."
               },
               {
