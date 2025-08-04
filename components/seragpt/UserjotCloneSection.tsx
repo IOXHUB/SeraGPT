@@ -12,7 +12,7 @@ export default function UserjotCloneSection() {
     <div className="min-h-screen bg-gray-50">
       {/* Header - Full width with 960px content container */}
       <header className="w-full bg-gray-50">
-        <div className="flex justify-between items-center p-6 max-w-7xl mx-auto">
+        <div className="navbar-footer-container">
           {/* Logo - clickable to homepage */}
           <div className="flex items-center space-x-3">
             <a href="/" className="flex items-center space-x-3">
@@ -153,7 +153,7 @@ export default function UserjotCloneSection() {
 
             {/* Main headline */}
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 leading-tight flex flex-col">
-              <p className="text-gray-600 text-[40px] max-w-[700px] mx-auto">🚀 60 Saniyede </p>
+              <p className="text-gray-600 text-[40px] max-w-[700px] mx-auto">���� 60 Saniyede </p>
               <p className="text-gray-600 text-[40px] max-w-[700px] mx-auto">Sera Yatırım Raporun Hazır!</p>
             </h1>
 
@@ -1295,7 +1295,7 @@ export default function UserjotCloneSection() {
                   <span className="text-gray-600 text-lg">₺</span>
                   <span className="text-5xl font-bold text-gray-900">4.900</span>
                 </div>
-                <p className="text-gray-600 font-medium">Sık analiz yapan kullanıcılar ve danışman ekipler için</p>
+                <p className="text-gray-600 font-medium">S��k analiz yapan kullanıcılar ve danışman ekipler için</p>
               </div>
 
               <div className="mb-8">
