@@ -63,7 +63,7 @@ export default function BlogPage() {
 
   return (
     <>
-{/* SEOHead disabled for static export */}
+      <SEOHead config={seoConfig} />
       <div className="min-h-screen bg-gray-50">
       {/* Header */}
       <header className="w-full">
