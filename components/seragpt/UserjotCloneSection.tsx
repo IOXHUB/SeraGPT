@@ -187,7 +187,7 @@ export default function UserjotCloneSection() {
 
       {/* How It Works Section - 5 Steps */}
       <div className="py-20 bg-gray-50">
-        <div className="max-w-[960px] mx-auto px-6">
+        <div className="max-w-[800px] mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -222,7 +222,7 @@ export default function UserjotCloneSection() {
               <div className="flex-1">
                 <div className="flex items-center space-x-3 mb-3">
                   <span className="bg-green-500 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold">1</span>
-                  <h3 className="text-lg sm:text-xl font-bold text-gray-900">Lokasyonunu ve Ürünü Gir</h3>
+                  <h3 className="text-lg sm:text-xl font-bold text-gray-900">Lokasyonunu ve ��rünü Gir</h3>
                 </div>
                 <p className="text-gray-600">
                   Bulunduğun yeri ve yetiştirmek istediğin ��rünü belirt.
@@ -348,7 +348,7 @@ export default function UserjotCloneSection() {
 
       {/* 6 Analysis Features - Horizontal Sliding Section */}
       <div className="py-20 bg-white">
-        <div className="max-w-[960px] mx-auto px-6">
+        <div className="max-w-[800px] mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -533,7 +533,7 @@ export default function UserjotCloneSection() {
 
       {/* Roadmap Section */}
       <div className="py-20">
-        <div className="max-w-[960px] mx-auto px-6">
+        <div className="max-w-[800px] mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -546,7 +546,7 @@ export default function UserjotCloneSection() {
               kullanıcı panelinden yönetin
             </h2>
             <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-              Panelinizden tüm raporlarınıza, dan��şmanlık taleplerinize ve teknik teklif süreçlerinize anlık erişim sağlayın.
+              Panelinizden tüm raporlarınıza, danışmanlık taleplerinize ve teknik teklif süreçlerinize anlık erişim sağlayın.
               <span className="font-semibold text-gray-900"> Yapay zekâ analizleri, mühendislik değerlendirmeleri ve saha hizmetleri</span>
               artık tek bir merkezden yönetilebilir.
             </p>
@@ -693,7 +693,7 @@ export default function UserjotCloneSection() {
               whileTap={{ scale: 0.95 }}
               className="bg-blue-600 hover:bg-blue-700 text-white px-10 py-4 rounded-xl text-xl font-bold transition-colors shadow-lg hover:shadow-xl inline-flex items-center space-x-3"
             >
-              <span className="text-2xl">���</span>
+              <span className="text-2xl">����</span>
               <span>Kullanıcı Paneline Giriş Yapın</span>
             </motion.button>
             <p className="text-gray-500 text-sm mt-4">
@@ -705,7 +705,7 @@ export default function UserjotCloneSection() {
 
       {/* Visual Gallery Section */}
       <div className="py-20 bg-white">
-        <div className="max-w-[960px] mx-auto px-6">
+        <div className="max-w-[800px] mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -897,7 +897,7 @@ export default function UserjotCloneSection() {
 
       {/* Anahtar Teslim Sera Proje Teklifi Section */}
       <div className="py-20 bg-gradient-to-br from-blue-50 to-indigo-50">
-        <div className="max-w-[960px] mx-auto px-6">
+        <div className="max-w-[800px] mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -1068,7 +1068,7 @@ export default function UserjotCloneSection() {
 
       {/* Corporate Consulting Section */}
       <div className="py-20 bg-gray-50">
-        <div className="max-w-[960px] mx-auto px-6">
+        <div className="max-w-[800px] mx-auto px-6">
 
 
           {/* Bottom CTA */}
@@ -1104,7 +1104,7 @@ export default function UserjotCloneSection() {
 
       {/* AI-Powered Analysis Pricing Section */}
       <div className="bg-gray-50 py-20">
-        <div className="max-w-[960px] mx-auto px-6">
+        <div className="max-w-[800px] mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-6">
               🤖 Yapay Zekâ Destekli Sera Analizleri<br />
@@ -1322,7 +1322,7 @@ export default function UserjotCloneSection() {
         viewport={{ once: true }}
         className="bg-gray-50 py-20"
       >
-        <div className="max-w-[960px] mx-auto px-6">
+        <div className="max-w-[800px] mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
