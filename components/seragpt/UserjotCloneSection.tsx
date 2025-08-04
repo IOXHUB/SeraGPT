@@ -30,7 +30,7 @@ export default function UserjotCloneSection() {
               Nasıl Çalışır
             </a>
             <a href="#" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
-              Danışmanl��k
+              Danışmanlık
             </a>
             <a href="#" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
               Anahtar Teslim
@@ -491,7 +491,7 @@ export default function UserjotCloneSection() {
                 </div>
               </motion.div>
 
-              {/* Card 6 - API Simülasyon */}
+              {/* Card 6 - API Sim��lasyon */}
               <motion.div
                 initial={{ opacity: 0, x: 30 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -1247,7 +1247,7 @@ export default function UserjotCloneSection() {
                     <span className="text-sm text-gray-700"><strong>Rapor başı maliyet: ₺49 (en uygun)</strong></span>
                   </div>
                   <div className="flex items-center space-x-3">
-                    <span className="text-green-500 text-lg">��</span>
+                    <span className="text-green-500 text-lg">✔</span>
                     <span className="text-sm text-gray-700">Open-Meteo, TÜİK, FAO, GTIP, ERA5 API verileri</span>
                   </div>
                   <div className="flex items-center space-x-3">
@@ -1322,7 +1322,7 @@ export default function UserjotCloneSection() {
         viewport={{ once: true }}
         className="bg-gray-50 py-20"
       >
-        <div className="max-w-[900px] mx-auto px-6">
+        <div className="max-w-[720px] mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
