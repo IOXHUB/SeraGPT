@@ -21,10 +21,10 @@ export default function DashboardPage() {
   ];
 
   const quickActions = [
-    { name: 'Yeni Sera Projesi', icon: '➕', description: 'Yeni bir sera projesi analizine başlayın' },
-    { name: 'Rapor Oluştur', icon: '📄', description: 'Mevcut verilerden detaylı rapor oluşturun' },
-    { name: 'Veri İçe Aktarım', icon: '📥', description: 'Excel dosyasından sera verilerini aktarın' },
-    { name: 'AI Öneriler', icon: '🤖', description: 'AI destekli sera optimizasyon önerileri alın' },
+    { name: 'SeraGPT AI ile Sohbet Et', icon: '🤖', description: 'Sera analizleri ve raporlarınızı AI ile oluşturun', href: '/dashboard/ai-chat' },
+    { name: 'Yeni Sera Projesi', icon: '➕', description: 'Yeni bir sera projesi analizine başlayın', href: '/dashboard/projects' },
+    { name: 'Rapor Oluştur', icon: '📄', description: 'Mevcut verilerden detaylı rapor oluşturun', href: '/dashboard/reports' },
+    { name: 'Veri İçe Aktarım', icon: '📥', description: 'Excel dosyasından sera verilerini aktarın', href: '/dashboard/analytics' },
   ];
 
   return (
