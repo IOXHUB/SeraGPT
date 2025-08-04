@@ -138,13 +138,13 @@ export default function UserjotCloneSection() {
       </header>
 
       {/* Main content - 960px container */}
-      <main className="flex-1 flex items-center justify-center px-4 sm:px-6 py-12 sm:py-20">
-        <div className="max-w-[1000px] mx-auto text-center">
+      <main className="flex-1 flex items-center justify-center px-4 sm:px-6 py-20">
+        <div className="max-w-[1000px] mx-auto text-center flex flex-col">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="space-y-8"
+            className="flex flex-col justify-start items-center leading-[26px] mt-[100px] mx-auto"
           >
             {/* Small text above headline */}
             <p className="text-gray-500 text-sm font-medium uppercase tracking-wider max-w-[700px] w-[700px] mx-auto">
@@ -524,7 +524,7 @@ export default function UserjotCloneSection() {
             </h2>
             <p className="text-xl text-gray-600 max-w-[700px] mx-auto leading-relaxed">
               <span>
-                Hermisan & ISITMAX iş birliğiyle tamamlanan sera projelerinden seçilmiş görüntüler.
+                Hermisan & ISITMAX iş birli��iyle tamamlanan sera projelerinden seçilmiş görüntüler.
               </span>
               <span className="font-semibold text-gray-900">500+ başarılı proje</span>
               <span> deneyimimizden örnekler.</span>
