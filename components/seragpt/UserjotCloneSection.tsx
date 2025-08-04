@@ -166,13 +166,14 @@ export default function UserjotCloneSection() {
             </p>
 
             {/* CTA Button */}
-            <motion.button
+            <motion.a
+              href="/dashboard"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="bg-black hover:bg-gray-800 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg text-base sm:text-lg font-semibold transition-colors inline-flex items-center space-x-3"
             >
               <span className="text-center">Şimdi Oluştur – İlk 5 Rapor Ücretsiz</span>
-            </motion.button>
+            </motion.a>
 
             {/* Small text under button */}
             <p className="text-gray-500 text-sm">
