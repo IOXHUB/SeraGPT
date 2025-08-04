@@ -112,19 +112,7 @@ export default function BlogCardsSection() {
                       className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105"
                     />
                     
-                    {/* Category Badge */}
-                    <div className="absolute top-4 left-4">
-                      <span className="bg-white/90 backdrop-blur-sm text-gray-900 px-3 py-1 rounded-full text-sm font-medium">
-                        {post.category}
-                      </span>
-                    </div>
-                    
-                    {/* Read Time Badge */}
-                    <div className="absolute top-4 right-4">
-                      <span className="bg-black/70 text-white px-3 py-1 rounded-full text-sm">
-                        {post.readTime}
-                      </span>
-                    </div>
+
                   </div>
 
                   {/* Content */}
