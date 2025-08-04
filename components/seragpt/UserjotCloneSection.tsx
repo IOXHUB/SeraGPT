@@ -212,7 +212,7 @@ export default function UserjotCloneSection() {
           {/* Horizontal Scrolling Cards */}
           <div className="relative">
             <div className="flex overflow-x-auto scrollbar-hide space-x-6 pb-6">
-              {/* Card 1 */}
+              {/* Card 1 - ROI Simülasyonu */}
               <motion.div
                 initial={{ opacity: 0, x: 30 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -222,19 +222,23 @@ export default function UserjotCloneSection() {
               >
                 <div className="absolute top-6 left-6 text-6xl font-bold text-gray-100">01</div>
                 <div className="mt-16">
-                  <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-6">
-                    <svg className="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-                    </svg>
+                  <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-6">
+                    <span className="text-2xl">🧮</span>
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-4">Collect Feedback</h3>
-                  <p className="text-gray-600 text-sm leading-relaxed">
-                    Users submit ideas and feedback through a simple, intuitive interface. Every submission gets tracked.
-                  </p>
+                  <h3 className="text-xl font-bold text-gray-900 mb-4">Yatırım Geri Dönüş (ROI) Simülasyonu</h3>
+                  <div className="space-y-2 mb-4">
+                    <p className="text-gray-600 text-xs">✅ Yatırımın geri dönüş süresi</p>
+                    <p className="text-gray-600 text-xs">✅ Kar marjı ve yıllık getiri tahmini</p>
+                    <p className="text-gray-600 text-xs">✅ İşletme maliyetleri kıyaslaması</p>
+                  </div>
+                  <div className="mt-4 p-3 bg-gray-50 rounded-lg">
+                    <p className="text-gray-700 text-sm font-medium">"Yatırımınız size ne zaman geri döner?"</p>
+                    <button className="mt-2 text-blue-600 text-xs font-medium hover:underline">[PDF'yi Örnekle Gör]</button>
+                  </div>
                 </div>
               </motion.div>
 
-              {/* Card 2 */}
+              {/* Card 2 - İklim Analizi */}
               <motion.div
                 initial={{ opacity: 0, x: 30 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -245,18 +249,22 @@ export default function UserjotCloneSection() {
                 <div className="absolute top-6 left-6 text-6xl font-bold text-gray-100">02</div>
                 <div className="mt-16">
                   <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-6">
-                    <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5" />
-                    </svg>
+                    <span className="text-2xl">🌦️</span>
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-4">Vote & Prioritize</h3>
-                  <p className="text-gray-600 text-sm leading-relaxed">
-                    Community votes reveal what matters most. See which features have 10 vs 100 votes instantly.
-                  </p>
+                  <h3 className="text-xl font-bold text-gray-900 mb-4">İklim Uyumu & Risk Analizi</h3>
+                  <div className="space-y-2 mb-4">
+                    <p className="text-gray-600 text-xs">✅ Seçilen ürün için uygunluk skoru</p>
+                    <p className="text-gray-600 text-xs">✅ Don, rüzgar, nem riskleri</p>
+                    <p className="text-gray-600 text-xs">✅ Geçmiş yıllardaki iklim olayları</p>
+                  </div>
+                  <div className="mt-4 p-3 bg-gray-50 rounded-lg">
+                    <p className="text-gray-700 text-sm font-medium">"İklim bu yatırıma uygun mu?"</p>
+                    <button className="mt-2 text-blue-600 text-xs font-medium hover:underline">[İklim Skorunu Gör]</button>
+                  </div>
                 </div>
               </motion.div>
 
-              {/* Card 3 */}
+              {/* Card 3 - Ekipman Listesi */}
               <motion.div
                 initial={{ opacity: 0, x: 30 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -266,19 +274,23 @@ export default function UserjotCloneSection() {
               >
                 <div className="absolute top-6 left-6 text-6xl font-bold text-gray-100">03</div>
                 <div className="mt-16">
-                  <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-6">
-                    <svg className="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z" />
-                    </svg>
+                  <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-6">
+                    <span className="text-2xl">🧰</span>
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-4">Discuss & Refine</h3>
-                  <p className="text-gray-600 text-sm leading-relaxed">
-                    Rich discussions help you understand the why behind each request. Get context that matters.
-                  </p>
+                  <h3 className="text-xl font-bold text-gray-900 mb-4">Mühendis Onaylı Ekipman Listesi</h3>
+                  <div className="space-y-2 mb-4">
+                    <p className="text-gray-600 text-xs">✅ Bölgeye uygun yapı ve iklimlendirme</p>
+                    <p className="text-gray-600 text-xs">✅ Anahtar teslim modüler öneriler</p>
+                    <p className="text-gray-600 text-xs">✅ Genişletilebilirlik alternatifleri</p>
+                  </div>
+                  <div className="mt-4 p-3 bg-gray-50 rounded-lg">
+                    <p className="text-gray-700 text-sm font-medium">"Mühendislerin önerdiği en doğru sistem"</p>
+                    <button className="mt-2 text-blue-600 text-xs font-medium hover:underline">[Ekipman Listesine Bak]</button>
+                  </div>
                 </div>
               </motion.div>
 
-              {/* Card 4 - Additional if needed */}
+              {/* Card 4 - Pazar Verisi */}
               <motion.div
                 initial={{ opacity: 0, x: 30 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -289,14 +301,44 @@ export default function UserjotCloneSection() {
                 <div className="absolute top-6 left-6 text-6xl font-bold text-gray-100">04</div>
                 <div className="mt-16">
                   <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mb-6">
-                    <svg className="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
+                    <span className="text-2xl">🛰️</span>
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-4">Build & Ship</h3>
-                  <p className="text-gray-600 text-sm leading-relaxed">
-                    Turn validated ideas into features your users will love. Close the feedback loop.
-                  </p>
+                  <h3 className="text-xl font-bold text-gray-900 mb-4">Pazar ve Tarım Verisi Entegrasyonu</h3>
+                  <div className="space-y-2 mb-4">
+                    <p className="text-gray-600 text-xs">✅ Bitki türüne göre pazar fiyat analizi</p>
+                    <p className="text-gray-600 text-xs">✅ Bölgeye göre verim ortalamaları</p>
+                    <p className="text-gray-600 text-xs">✅ Hasat-zamanlama optimizasyonu</p>
+                  </div>
+                  <div className="mt-4 p-3 bg-gray-50 rounded-lg">
+                    <p className="text-gray-700 text-sm font-medium">"Pazarlar ne diyor? Bitkiniz değerli mi?"</p>
+                    <button className="mt-2 text-blue-600 text-xs font-medium hover:underline">[Verileri Göster]</button>
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Card 5 - Teknik Plan */}
+              <motion.div
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                viewport={{ once: true }}
+                className="flex-shrink-0 w-80 bg-white rounded-2xl p-8 border border-gray-200 relative"
+              >
+                <div className="absolute top-6 left-6 text-6xl font-bold text-gray-100">05</div>
+                <div className="mt-16">
+                  <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mb-6">
+                    <span className="text-2xl">📐</span>
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-4">Yerleşim ve Teknik Plan Görselleştirmesi</h3>
+                  <div className="space-y-2 mb-4">
+                    <p className="text-gray-600 text-xs">✅ Sera yerleşim planı (2D çizim)</p>
+                    <p className="text-gray-600 text-xs">✅ Elektrik ve sulama hat planı</p>
+                    <p className="text-gray-600 text-xs">✅ Teknik kabin, depo gösterimi</p>
+                  </div>
+                  <div className="mt-4 p-3 bg-gray-50 rounded-lg">
+                    <p className="text-gray-700 text-sm font-medium">"2D/3D Yerleşim Planı Hazır!"</p>
+                    <button className="mt-2 text-blue-600 text-xs font-medium hover:underline">[Planı Önizle]</button>
+                  </div>
                 </div>
               </motion.div>
             </div>
@@ -435,7 +477,7 @@ export default function UserjotCloneSection() {
                           <div className="flex items-center space-x-2 text-sm text-gray-600">
                             <div className="w-6 h-6 bg-gray-300 rounded-full"></div>
                             <div>
-                              <div className="font-medium">��eyran Taslın</div>
+                              <div className="font-medium">Şeyran Taslın</div>
                               <div className="text-xs text-gray-500">3 gün önce</div>
                             </div>
                           </div>
@@ -575,7 +617,7 @@ export default function UserjotCloneSection() {
                 <div className="w-full h-full bg-gradient-to-br from-yellow-100 to-orange-100 flex items-center justify-center">
                   <div className="text-center">
                     <p className="text-gray-700 font-medium">Fide Üretim Tesisi</p>
-                    <p className="text-gray-500 text-sm">Bursa, 4.500 m��</p>
+                    <p className="text-gray-500 text-sm">Bursa, 4.500 m����</p>
                   </div>
                 </div>
               </motion.div>
