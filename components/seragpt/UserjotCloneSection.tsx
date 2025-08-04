@@ -354,15 +354,33 @@ export default function UserjotCloneSection() {
               >
                 <div className="absolute top-6 left-6 text-6xl font-bold text-gray-100">04</div>
                 <div className="mt-16">
-                  <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mb-6">
-                    <span className="text-2xl">🛰️</span>
-                  </div>
                   <h3 className="text-xl font-bold text-gray-900 mb-4">Pazar ve Tarım Verisi Entegrasyonu</h3>
-                  <div className="space-y-2 mb-4">
-                    <p className="text-gray-600 text-xs">✅ Bitki türüne göre pazar fiyat analizi</p>
-                    <p className="text-gray-600 text-xs">✅ Bölgeye göre verim ortalamaları</p>
-                    <p className="text-gray-600 text-xs">✅ Hasat-zamanlama optimizasyonu</p>
+
+                  <div className="space-y-3 mb-4">
+                    <div>
+                      <p className="text-gray-800 text-xs font-semibold mb-1">🎯 3 Önemli Fayda:</p>
+                      <p className="text-gray-600 text-xs">• Bitki türüne göre pazar fiyat analizi</p>
+                      <p className="text-gray-600 text-xs">• Bölgeye göre verim ortalamaları</p>
+                      <p className="text-gray-600 text-xs">• Hasat-zamanlama optimizasyonu</p>
+                    </div>
+
+                    <div>
+                      <p className="text-gray-800 text-xs font-semibold mb-1">🔗 Veri Kaynakları:</p>
+                      <p className="text-gray-600 text-xs">• TUİK, FAO, Türkiye Hal Fiyatları</p>
+                      <p className="text-gray-600 text-xs">• TMO & Ziraat Odası verileri</p>
+                    </div>
+
+                    <div>
+                      <p className="text-gray-800 text-xs font-semibold mb-1">👤 Kullanıcı Girdisi:</p>
+                      <p className="text-gray-600 text-xs">• Bitki türü, sezon, pazarlama hedefi</p>
+                    </div>
+
+                    <div>
+                      <p className="text-gray-800 text-xs font-semibold mb-1">📄 PDF İçeriği:</p>
+                      <p className="text-gray-600 text-xs">• Fiyat analizi ve hasat çizelgesi</p>
+                    </div>
                   </div>
+
                   <div className="mt-4 p-3 bg-gray-50 rounded-lg">
                     <p className="text-gray-700 text-sm font-medium">"Pazarlar ne diyor? Bitkiniz değerli mi?"</p>
                     <button className="mt-2 text-blue-600 text-xs font-medium hover:underline">[Verileri Göster]</button>
