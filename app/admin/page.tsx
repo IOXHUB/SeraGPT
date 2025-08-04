@@ -8,10 +8,10 @@ export default function AdminDashboard() {
   const [timeRange, setTimeRange] = useState('7days');
 
   const systemStats = [
-    { name: 'Toplam Kullanıcı', value: '1,247', icon: '👥', change: '+12 bu hafta', changeType: 'positive' },
-    { name: 'Aktif Analizler', value: '89', icon: '📊', change: '+23 bugün', changeType: 'positive' },
-    { name: 'Jeton Kullanımı', value: '2,456', icon: '🪙', change: '+156 bu hafta', changeType: 'positive' },
-    { name: 'Sistem Durumu', value: '99.9%', icon: '🟢', change: 'Tüm sistemler aktif', changeType: 'positive' },
+    { name: 'Toplam Kullanıcı', value: '1,247', change: '+12 bu hafta', changeType: 'positive' },
+    { name: 'Aktif Analizler', value: '89', change: '+23 bugün', changeType: 'positive' },
+    { name: 'Jeton Kullanımı', value: '2,456', change: '+156 bu hafta', changeType: 'positive' },
+    { name: 'Sistem Durumu', value: '99.9%', change: 'Tüm sistemler aktif', changeType: 'positive' },
   ];
 
   const recentUsers = [
