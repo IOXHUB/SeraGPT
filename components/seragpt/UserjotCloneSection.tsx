@@ -8,7 +8,7 @@ export default function UserjotCloneSection() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header - Full width with 960px content container */}
-      <header className="w-full bg-white shadow-sm">
+      <header className="w-full bg-gray-50">
         <div className="flex justify-between items-center p-6 max-w-[960px] mx-auto">
           {/* Logo - clickable to homepage */}
           <div className="flex items-center space-x-3">
@@ -568,7 +568,7 @@ export default function UserjotCloneSection() {
 
                         <div className="ml-4 text-right">
                           <div className="text-sm text-gray-500 mb-2">Uygulama sorunu çözülemiyor,</div>
-                          <div className="text-sm text-gray-500 mb-2">geçerli ��ifreler tanınmıyor.</div>
+                          <div className="text-sm text-gray-500 mb-2">geçerli ���ifreler tanınmıyor.</div>
                           <div className="flex items-center space-x-2 text-sm text-gray-600">
                             <div className="w-6 h-6 bg-gray-300 rounded-full"></div>
                             <div>
@@ -1117,7 +1117,7 @@ export default function UserjotCloneSection() {
                   </div>
                   <div className="flex items-center space-x-3">
                     <span className="text-green-500 text-lg">✔</span>
-                    <span className="text-sm text-gray-700">Open-Meteo, T���İK, FAO, GTIP, ERA5 API verileri</span>
+                    <span className="text-sm text-gray-700">Open-Meteo, T��İK, FAO, GTIP, ERA5 API verileri</span>
                   </div>
                   <div className="flex items-center space-x-3">
                     <span className="text-green-500 text-lg">✔</span>
