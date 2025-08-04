@@ -99,10 +99,10 @@ export default function DashboardPage() {
   ];
 
   const stats = [
-    { name: 'Kullanılabilir Jeton', value: userTokens.toString(), icon: '🪙', change: `${userTokens} analiz hakkınız var`, changeType: 'neutral' },
-    { name: 'Toplam Analizler', value: '0', icon: '📊', change: 'Henüz analiz yapılmadı', changeType: 'neutral' },
-    { name: 'Tamamlanan Raporlar', value: '0', icon: '📋', change: 'İlk raporunuzu oluşturun', changeType: 'neutral' },
-    { name: 'Ortalama ROI', value: '-', icon: '💰', change: 'Analiz sonrası görünür', changeType: 'neutral' },
+    { name: 'Kullanılabilir Jeton', value: userTokens.toString(), change: `${userTokens} analiz hakkınız var`, changeType: 'neutral' },
+    { name: 'Toplam Analizler', value: '0', change: 'Henüz analiz yapılmadı', changeType: 'neutral' },
+    { name: 'Tamamlanan Raporlar', value: '0', change: 'İlk raporunuzu oluşturun', changeType: 'neutral' },
+    { name: 'Ortalama ROI', value: '-', change: 'Analiz sonrası görünür', changeType: 'neutral' },
   ];
 
   const recentActivity = [
@@ -117,7 +117,7 @@ export default function DashboardPage() {
     {
       type: 'tip',
       title: 'İpucu: ROI Analizinden Başlayın',
-      description: 'En popüler analiz aracımız ile yatırımınızın geri dönüşünü hesaplayın',
+      description: 'En popüler analiz aracımız ile yatırımınızın geri dönüş��nü hesaplayın',
       time: '1 dk önce',
       icon: '💡',
       color: 'bg-yellow-100 text-yellow-600'
