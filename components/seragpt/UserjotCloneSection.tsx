@@ -281,19 +281,16 @@ export default function UserjotCloneSection() {
           </motion.div>
 
           {/* 5 Step Process */}
-          <div className="space-y-8">
+          <div className="space-y-8 flex flex-col">
             {/* Step 1 */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
-              className="bg-white rounded-2xl p-4 sm:p-6 md:p-8 border border-gray-200 flex flex-col sm:flex-row items-start space-y-4 sm:space-y-0 sm:space-x-6"
+              className="bg-white rounded-2xl p-4 sm:p-6 md:p-8 border border-gray-200 flex flex-col sm:flex-row items-start space-y-4 sm:space-y-0 sm:space-x-6 mx-auto"
             >
               <div className="flex-shrink-0">
-                <div className="w-12 h-12 sm:w-16 sm:h-16 bg-green-100 rounded-2xl flex items-center justify-center">
-                  <span className="text-xl sm:text-2xl">📍</span>
-                </div>
               </div>
               <div className="flex-1">
                 <div className="flex items-center space-x-3 mb-3">
@@ -316,9 +313,6 @@ export default function UserjotCloneSection() {
               className="bg-white rounded-2xl p-4 sm:p-6 md:p-8 border border-gray-200 flex flex-col sm:flex-row items-start space-y-4 sm:space-y-0 sm:space-x-6"
             >
               <div className="flex-shrink-0">
-                <div className="w-12 h-12 sm:w-16 sm:h-16 bg-blue-100 rounded-2xl flex items-center justify-center">
-                  <span className="text-xl sm:text-2xl">🧠</span>
-                </div>
               </div>
               <div className="flex-1">
                 <div className="flex items-center space-x-3 mb-3">
@@ -341,9 +335,6 @@ export default function UserjotCloneSection() {
               className="bg-white rounded-2xl p-4 sm:p-6 md:p-8 border border-gray-200 flex flex-col sm:flex-row items-start space-y-4 sm:space-y-0 sm:space-x-6"
             >
               <div className="flex-shrink-0">
-                <div className="w-16 h-16 bg-red-100 rounded-2xl flex items-center justify-center">
-                  <span className="text-2xl">📄</span>
-                </div>
               </div>
               <div className="flex-1">
                 <div className="flex items-center space-x-3 mb-3">
@@ -366,9 +357,6 @@ export default function UserjotCloneSection() {
               className="bg-white rounded-2xl p-4 sm:p-6 md:p-8 border border-gray-200 flex flex-col sm:flex-row items-start space-y-4 sm:space-y-0 sm:space-x-6"
             >
               <div className="flex-shrink-0">
-                <div className="w-12 h-12 sm:w-16 sm:h-16 bg-purple-100 rounded-2xl flex items-center justify-center">
-                  <span className="text-xl sm:text-2xl">🛠️</span>
-                </div>
               </div>
               <div className="flex-1">
                 <div className="flex items-center space-x-3 mb-3">
@@ -394,12 +382,9 @@ export default function UserjotCloneSection() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
               viewport={{ once: true }}
-              className="bg-white rounded-2xl p-4 sm:p-6 md:p-8 border border-gray-200 flex flex-col sm:flex-row items-start space-y-4 sm:space-y-0 sm:space-x-6"
+              className="bg-white rounded-2xl p-4 sm:p-6 md:p-8 border border-gray-200 flex flex-col sm:flex-row items-start space-y-4 sm:space-y-0 sm:space-x-6 max-w-[700px]"
             >
               <div className="flex-shrink-0">
-                <div className="w-12 h-12 sm:w-16 sm:h-16 bg-yellow-100 rounded-2xl flex items-center justify-center">
-                  <span className="text-xl sm:text-2xl">🚜</span>
-                </div>
               </div>
               <div className="flex-1">
                 <div className="flex items-center space-x-3 mb-3">
@@ -505,7 +490,7 @@ export default function UserjotCloneSection() {
                   Mühendis Onaylı Ekipman Listesi
                 </h3>
                 <p className="text-gray-600 mb-6 leading-relaxed">
-                  Uzman mühendisler tarafından onaylanmış sera ekipmanları ve malzeme listesi.
+                  Uzman m��hendisler tarafından onaylanmış sera ekipmanları ve malzeme listesi.
                   Sera tipine özel öneriler ve teknik spesifikasyonlar.
                 </p>
                 {/* Placeholder Screenshot */}
@@ -932,7 +917,7 @@ export default function UserjotCloneSection() {
                 <div className="w-full h-full bg-gradient-to-br from-amber-100 to-yellow-100 flex items-center justify-center">
                   <div className="text-center">
                     <div className="text-4xl mb-3">🥬</div>
-                    <p className="text-gray-700 font-medium">Organik Sebze Serası</p>
+                    <p className="text-gray-700 font-medium">Organik Sebze Seras��</p>
                     <p className="text-gray-500 text-sm">Çanakkale, 3.700 m²</p>
                   </div>
                 </div>
@@ -1091,7 +1076,7 @@ export default function UserjotCloneSection() {
                     <div>
                       <p className="text-gray-800 leading-relaxed">
                         Kurulum <strong className="text-purple-600">ISITMAX süpervizörlüğünde</strong>,
-                        saha y��netimiyle gerçekleştirilir
+                        saha yönetimiyle gerçekleştirilir
                       </p>
                     </div>
                   </div>
@@ -1380,7 +1365,7 @@ export default function UserjotCloneSection() {
                 </div>
                 <div className="flex items-center space-x-3">
                   <span className="text-blue-500 text-lg">💡</span>
-                  <span className="text-gray-700">Tokenlar süresiz geçerlidir, analiz başına 1 token kullanıl��r</span>
+                  <span className="text-gray-700">Tokenlar süresiz geçerlidir, analiz başına 1 token kullanılır</span>
                 </div>
               </div>
             </div>
