@@ -1,8 +1,10 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import DashboardLayout from '@/components/dashboard/DashboardLayout';
+import { weatherService, ClimateAnalysis, WeatherData } from '@/lib/services/weather-service';
+import { pdfService } from '@/lib/services/pdf-service';
 
 export default function ClimateAnalysisPage() {
   const [formData, setFormData] = useState({
