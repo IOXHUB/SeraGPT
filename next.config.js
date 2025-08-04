@@ -46,8 +46,8 @@ const nextConfig = {
   // Compression
   compress: true,
   
-  // React strict mode
-  reactStrictMode: true,
+  // React strict mode - disabled in dev to reduce hydration warnings from browser extensions
+  reactStrictMode: process.env.NODE_ENV === 'production',
   
   // SWC minification (faster than Terser)
   swcMinify: true,
