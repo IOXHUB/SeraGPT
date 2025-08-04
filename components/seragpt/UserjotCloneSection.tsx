@@ -27,7 +27,7 @@ export default function UserjotCloneSection() {
           {/* Center navigation - 3 links */}
           <nav className="hidden md:flex items-center space-x-8">
             <a href="#" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
-              Nasıl Çalı��ır
+              Nasıl Çalışır
             </a>
             <a href="#" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
               Danışmanlık
@@ -327,7 +327,7 @@ export default function UserjotCloneSection() {
               <div className="flex-1">
                 <div className="flex items-center space-x-3 mb-3">
                   <span className="bg-green-500 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold">5</span>
-                  <h3 className="text-xl font-bold text-gray-900">Dilersen Saha Ziyareti Yapalım ve Anahtar Teslim Sera Teklifi Oluşturalım</h3>
+                  <h3 className="text-lg sm:text-xl font-bold text-gray-900">Dilersen Saha Ziyareti Yapalım ve Anahtar Teslim Sera Teklifi Oluşturalım</h3>
                 </div>
                 <p className="text-gray-600 mb-4">
                   Uzman ekibimiz lokasyonunu yerinde inceleyebilir.
@@ -608,7 +608,7 @@ export default function UserjotCloneSection() {
                             </svg>
                           </div>
                           <p className="text-gray-600 text-sm mb-3">
-                            Android uygulaması sera fotoğrafları yüklenmeye çalışıldığında çöküyor.
+                            Android uygulaması sera foto��rafları yüklenmeye çalışıldığında çöküyor.
                             Bu ASAP düzeltilmesi gerekiyor.
                           </p>
                           <div className="flex items-center space-x-2">
