@@ -96,9 +96,19 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
     { name: 'Raporlarım', icon: '📋', href: '/dashboard/reports', active: false },
   ];
 
+  const isAdmin = user?.user_metadata?.role === 'admin';
+
   const bottomMenuItems = [
+    { name: 'Jeton Satın Al', icon: '🪙', href: '/dashboard/tokens', active: false },
+    { name: 'Danışmanlık', icon: '👷', href: '/dashboard/consulting', active: false },
     { name: 'Ayarlar', icon: '⚙️', href: '/dashboard/settings', active: false },
     { name: 'Yardım', icon: '❓', href: '/dashboard/help', active: false },
+  ];
+
+  const adminMenuItems = [
+    { name: 'Admin Panel', icon: '👑', href: '/admin', active: false },
+    { name: 'Kullanıcılar', icon: '👥', href: '/admin/users', active: false },
+    { name: 'Sistem Ayarları', icon: '🔧', href: '/admin/settings', active: false },
   ];
 
   if (loading) {
