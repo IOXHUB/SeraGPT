@@ -113,7 +113,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom copyright area */}
-        <div className="border-t border-gray-800 mt-12 pt-8 text-center">
+        <div className="border-t border-gray-200 mt-12 pt-8 text-center">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="flex items-center space-x-3 mb-4 md:mb-0">
               <img
