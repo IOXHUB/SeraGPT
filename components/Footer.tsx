@@ -125,7 +125,7 @@ export default function Footer() {
                 © 2024 SeraGPT. Tüm hakları saklıdır.
               </span>
             </div>
-            <div className="text-gray-400 text-sm">
+            <div className="text-gray-600 text-sm">
               Hermisan & ISITMAX iş birliğiyle
             </div>
           </div>
