@@ -139,7 +139,7 @@ export default function UserjotCloneSection() {
 
       {/* Main content - 960px container */}
       <main className="flex-1 flex items-center justify-center px-4 sm:px-6 py-12 sm:py-20">
-        <div className="max-w-[960px] mx-auto text-center">
+        <div className="max-w-[900px] mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -546,7 +546,7 @@ export default function UserjotCloneSection() {
               kullanıcı panelinden yönetin
             </h2>
             <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-              Panelinizden tüm raporlarınıza, danışmanlık taleplerinize ve teknik teklif süreçlerinize anlık erişim sağlayın.
+              Panelinizden tüm raporlarınıza, dan��şmanlık taleplerinize ve teknik teklif süreçlerinize anlık erişim sağlayın.
               <span className="font-semibold text-gray-900"> Yapay zekâ analizleri, mühendislik değerlendirmeleri ve saha hizmetleri</span>
               artık tek bir merkezden yönetilebilir.
             </p>
@@ -1382,7 +1382,7 @@ export default function UserjotCloneSection() {
                 answer: "Evet, hem kayıtlı kullanıcılardan hem de anonim ziyaretçilerden geri bildirim toplayabilirsiniz."
               },
               {
-                question: "SeraGPT'yi markama uygun şekilde özelle��tirebilir miyim?",
+                question: "SeraGPT'yi markama uygun şekilde özelleştirebilir miyim?",
                 answer: "Tamamen. Logonuzdan renklerinize kadar her detayı markanıza uygun şekilde düzenleyebilirsiniz."
               },
               {
