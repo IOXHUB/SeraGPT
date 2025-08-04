@@ -96,9 +96,10 @@ export default function DashboardPage() {
             <div className="p-6">
               <div className="space-y-4">
                 {quickActions.map((action, index) => (
-                  <button
+                  <a
                     key={index}
-                    className="w-full text-left p-4 bg-gray-50 hover:bg-gray-100 rounded-lg transition-colors"
+                    href={action.href}
+                    className="block w-full text-left p-4 bg-gray-50 hover:bg-gray-100 rounded-lg transition-colors"
                   >
                     <div className="flex items-start space-x-3">
                       <span className="text-2xl">{action.icon}</span>
@@ -107,7 +108,7 @@ export default function DashboardPage() {
                         <p className="text-sm text-gray-600">{action.description}</p>
                       </div>
                     </div>
-                  </button>
+                  </a>
                 ))}
               </div>
             </div>
