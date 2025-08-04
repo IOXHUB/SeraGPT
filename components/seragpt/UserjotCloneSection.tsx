@@ -919,7 +919,7 @@ export default function UserjotCloneSection() {
 
               },
               {
-                // icon: "❗",
+
                 question: "İtiraz ve düzeltme süreci nasıl işler?",
                 answer: "Rapor içeriğiyle ilgili bir hata olduğunu düş��nüyorsanız, destek kaydı oluşturabilirsiniz. Mühendis ekibimiz gerekli incelemeyi yaparak düzeltme sağlar.",
 
