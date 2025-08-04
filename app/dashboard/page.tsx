@@ -53,7 +53,7 @@ export default function DashboardPage() {
       tokensRequired: 1,
       status: 'available',
       benefits: [
-        'Bölgeye uygun yap�� ve iklimlendirme',
+        'Bölgeye uygun yapı ve iklimlendirme',
         'Anahtar teslim modüler öneriler',
         'Genişletilebilirlik alternatifleri'
       ],
@@ -326,9 +326,7 @@ export default function DashboardPage() {
                   <div className="space-y-4">
                     {recentActivity.map((activity, index) => (
                       <div key={index} className="flex items-start space-x-4">
-                        <div className={`w-8 h-8 rounded-full flex items-center justify-center ${activity.color}`}>
-                          <span className="text-sm">{activity.icon}</span>
-                        </div>
+                        <div className={`w-3 h-3 rounded-full mt-2 ${activity.color}`}></div>
                         <div className="flex-1 min-w-0">
                           <p className="text-sm font-medium text-gray-900">{activity.title}</p>
                           <p className="text-xs text-gray-600">{activity.description}</p>
