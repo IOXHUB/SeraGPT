@@ -79,7 +79,7 @@ export default function UserjotCloneSection() {
             transition={{ duration: 0.2 }}
             className="md:hidden bg-gray-50 border-t border-gray-200"
           >
-            <div className="max-w-7xl mx-auto px-6 py-4 space-y-4">
+            <div className="text-section-container py-4 space-y-4">
               {/* Center navigation links */}
               <div className="space-y-3">
                 <a
@@ -153,7 +153,7 @@ export default function UserjotCloneSection() {
 
             {/* Main headline */}
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 leading-tight flex flex-col">
-              <p className="text-gray-600 text-[40px] max-w-[700px] mx-auto">���� 60 Saniyede </p>
+              <p className="text-gray-600 text-[40px] max-w-[700px] mx-auto">🚀 60 Saniyede </p>
               <p className="text-gray-600 text-[40px] max-w-[700px] mx-auto">Sera Yatırım Raporun Hazır!</p>
             </h1>
 
@@ -1295,7 +1295,7 @@ export default function UserjotCloneSection() {
                   <span className="text-gray-600 text-lg">₺</span>
                   <span className="text-5xl font-bold text-gray-900">4.900</span>
                 </div>
-                <p className="text-gray-600 font-medium">S��k analiz yapan kullanıcılar ve danışman ekipler için</p>
+                <p className="text-gray-600 font-medium">Sık analiz yapan kullanıcılar ve danışman ekipler için</p>
               </div>
 
               <div className="mb-8">
