@@ -409,7 +409,7 @@ export default function UserjotCloneSection() {
                     </div>
 
                     <div>
-                      <p className="text-gray-800 text-xs font-semibold mb-1">🔗 Veri Kaynakları:</p>
+                      <p className="text-gray-800 text-xs font-semibold mb-1">��� Veri Kaynakları:</p>
                       <p className="text-gray-600 text-xs">• Planner 2D, CAD AI Tools</p>
                       <p className="text-gray-600 text-xs">• HerbaTools yerleşim kütüphanesi</p>
                     </div>
@@ -508,7 +508,7 @@ export default function UserjotCloneSection() {
                 {/* Content */}
                 <div className="p-6">
                   <div className="flex items-center justify-between mb-6">
-                    <h1 className="text-2xl font-bold text-gray-900">Ürün Geliştirme Planı</h1>
+                    <h1 className="text-2xl font-bold text-gray-900">��rün Geliştirme Planı</h1>
                     <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                     </svg>
@@ -842,45 +842,94 @@ export default function UserjotCloneSection() {
             className="text-center mb-16"
           >
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              Frequently asked questions
+              Sıkça Sorulan Sorular (SSS)
             </h2>
           </motion.div>
 
           <div className="space-y-2">
             {[
               {
-                question: "How quickly can I start collecting feedback?",
-                answer: "You can start collecting user feedback immediately after signing up. Our feedback management software requires no complicated setup.",
+                icon: "📊",
+                question: "Raporlar ne kadar doğru?",
+                answer: "SeraGPT, gerçek zamanlı iklim, tarım ve ticaret verilerini kullanır. Raporlar, uzman mühendislerin geliştirdiği algoritmalarla analiz edilir ve %90 üzeri doğruluk oranı sunar.",
                 isOpen: true
               },
               {
-                question: "Can I customize the feedback experience?",
-                answer: "Yes, you can fully customize the feedback experience to match your brand and requirements.",
+                icon: "💼",
+                question: "Devlet teşviklerine uygun mu?",
+                answer: "Evet. Raporlar TKDK, IPARD ve Ziraat Bankası destek başvurularında ön fizibilite dosyası olarak kullanılabilir. Talep halinde ek mühendis onayı alınabilir.",
                 isOpen: false
               },
               {
-                question: "What if I receive too much feedback?",
-                answer: "Our system automatically prioritizes feedback and helps you focus on the most important issues.",
+                icon: "👷",
+                question: "Mühendis desteği sunuyor musunuz?",
+                answer: "Evet. Profesyonel kullanıcılar için mühendis danışmanlık hizmeti sağlıyoruz. Size en yakın uzmanla eşleştirilerek birebir destek sunulur.",
                 isOpen: false
               },
               {
-                question: "How does UserJot help me prioritize user feedback?",
-                answer: "Our intelligent algorithm system prioritizes the most critical issues based on user votes and engagement data.",
+                icon: "🔐",
+                question: "Bilgilerim güvende mi?",
+                answer: "Kesinlikle. Tüm bilgileriniz Supabase veritabanında şifreli olarak saklanır. Raporlar yalnızca size özeldir, üçüncü taraflarla paylaşılmaz.",
                 isOpen: false
               },
               {
-                question: "Can UserJot help reduce customer churn?",
-                answer: "Yes, by identifying customer needs in advance and providing quick solutions, it increases customer satisfaction.",
+                icon: "💳",
+                question: "Ödeme nasıl yapılıyor?",
+                answer: "İlk 5 rapor ücretsizdir. Sonrasında, kredi kartı veya havale/EFT ile jeton (token) satın alabilirsiniz. Ödeme altyapısı %100 güvenlidir.",
                 isOpen: false
               },
               {
-                question: "Is UserJot suitable for SaaS companies?",
-                answer: "Absolutely. UserJot is specifically designed for rapidly growing technology companies.",
+                icon: "🔁",
+                question: "Jetonlar (Token) nasıl çalışır?",
+                answer: "Her analiz bir jeton harcar. 5 ücretsiz jeton ile başlayabilir, daha fazlasını paket olarak satın alabilirsiniz. Jetonlar süresiz geçerlidir.",
                 isOpen: false
               },
               {
-                question: "Can I use UserJot as a product roadmap software?",
-                answer: "Yes, collected feedback is automatically integrated with your product roadmap.",
+                icon: "⏱️",
+                question: "Jetonların zaman aşımı var mı?",
+                answer: "Hayır. Satın aldığınız jetonlar hesabınızda süresiz olarak kalır. Dilediğiniz zaman kullanabilirsiniz.",
+                isOpen: false
+              },
+              {
+                icon: "💡",
+                question: "Sadece yeni yatırımcılar mı kullanabilir?",
+                answer: "Hayır. Mevcut serası olan kullanıcılar, genişletme planlayan çiftçiler, mühendisler ve yatırımcılar da SeraGPT'den faydalanabilir.",
+                isOpen: false
+              },
+              {
+                icon: "📦",
+                question: "Anahtar teslim sera kurulumu sağlıyor musunuz?",
+                answer: "Evet. IOX partnerleri aracılığ��yla, analiz raporuna dayalı olarak anahtar teslim sera projeleri teklif edebiliyoruz. Talep formunu doldurmanız yeterlidir.",
+                isOpen: false
+              },
+              {
+                icon: "🧾",
+                question: "Fatura ve iade koşulları nedir?",
+                answer: "Satın alınan jetonlar dijital hizmet kapsamına girer. Kullanılmamış jetonlar için 14 gün içinde iade mümkündür. Fatura otomatik olarak e-posta ile iletilir.",
+                isOpen: false
+              },
+              {
+                icon: "🛠️",
+                question: "Danışmanlık almak için ne yapmalıyım?",
+                answer: "Destek bölümünden danışman talebinde bulunabilirsiniz. Alanında uzman bir mühendis sizinle iletişime geçerek detaylı bilgi verecektir.",
+                isOpen: false
+              },
+              {
+                icon: "📍",
+                question: "Raporları kimler kullanabilir?",
+                answer: "Ziraat mühendisleri, yatırımcılar, mühendislik firmaları, devlet başvurusu yapan üreticiler, proje yöneticileri ve akademisyenler raporları kullanabilir.",
+                isOpen: false
+              },
+              {
+                icon: "🧾",
+                question: "Destek kaydı nasıl açılır?",
+                answer: "Profil sayfanızdaki 'Destek Talebi' bölümünden form doldurarak teknik, veri veya danışmanlık desteği alabilirsiniz.",
+                isOpen: false
+              },
+              {
+                icon: "❗",
+                question: "İtiraz ve düzeltme süreci nasıl işler?",
+                answer: "Rapor içeriğiyle ilgili bir hata olduğunu düşünüyorsanız, destek kaydı oluşturabilirsiniz. Mühendis ekibimiz gerekli incelemeyi yaparak düzeltme sağlar.",
                 isOpen: false
               }
             ].map((faq, index) => (
@@ -894,9 +943,12 @@ export default function UserjotCloneSection() {
               >
                 <button className="w-full p-6 text-left hover:bg-gray-100 transition-colors group">
                   <div className="flex items-center justify-between">
-                    <h3 className="text-lg font-medium text-gray-900 group-hover:text-gray-700 pr-4">
-                      {faq.question}
-                    </h3>
+                    <div className="flex items-center space-x-3 pr-4">
+                      <span className="text-lg">{faq.icon}</span>
+                      <h3 className="text-lg font-medium text-gray-900 group-hover:text-gray-700">
+                        {faq.question}
+                      </h3>
+                    </div>
                     <svg
                       className={`w-5 h-5 text-gray-400 group-hover:text-gray-600 transition-transform flex-shrink-0 ${
                         faq.isOpen ? 'rotate-180' : ''
@@ -913,7 +965,7 @@ export default function UserjotCloneSection() {
                       initial={{ opacity: 0, height: 0 }}
                       animate={{ opacity: 1, height: 'auto' }}
                       transition={{ duration: 0.3 }}
-                      className="mt-4 text-gray-600 leading-relaxed"
+                      className="mt-4 ml-8 text-gray-600 leading-relaxed"
                     >
                       {faq.answer}
                     </motion.div>
