@@ -220,7 +220,12 @@ export default function UserjotCloneSection() {
             viewport={{ once: true }}
             className="relative flex flex-col"
           >
-            <div className="bg-gray-100 rounded-2xl p-8 shadow-2xl max-w-[700px] mx-auto">
+            <div className="bg-gray-100 rounded-2xl p-8 shadow-2xl max-w-[700px] mx-auto" style={{
+              backgroundImage: 'url(https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2Fa28feffd96054633955a00b083fabad6)',
+              backgroundRepeat: 'no-repeat',
+              backgroundPosition: 'center',
+              backgroundSize: 'cover'
+            }}>
               <div className="bg-white rounded-xl shadow-lg overflow-hidden">
                 {/* Empty dashboard mockup */}
               </div>
@@ -883,7 +888,7 @@ export default function UserjotCloneSection() {
                 <div className="w-full h-full bg-gradient-to-br from-emerald-100 to-teal-100 flex items-center justify-center">
                   <div className="text-center">
                     <div className="text-4xl mb-3">🥒</div>
-                    <p className="text-gray-700 font-medium">Salatalık Üretim Seras��</p>
+                    <p className="text-gray-700 font-medium">Salatalık Üretim Serası</p>
                     <p className="text-gray-500 text-sm">Muğla, 2.100 m²</p>
                   </div>
                 </div>
