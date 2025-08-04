@@ -75,7 +75,7 @@ export default function DashboardPage() {
         'Hasat-zamanlama optimizasyonu'
       ],
       dataSources: ['TUİK', 'FAO', 'Türkiye Hal Fiyatları', 'TMO'],
-      userInputs: ['Bitki türü', 'Sezon planı', 'Pazarlama hedefi'],
+      userInputs: ['Bitki t��rü', 'Sezon planı', 'Pazarlama hedefi'],
       pdfOutput: 'Fiyat analizi ve hasat çizelgesi',
       href: '/dashboard/analysis/market'
     },
@@ -125,31 +125,27 @@ export default function DashboardPage() {
   ];
 
   const quickActions = [
-    { 
-      name: 'Ücretsiz Jeton Al', 
-      icon: '🎁', 
-      description: 'İlk 5 analiz ücretsiz, hemen ba��layın', 
+    {
+      name: 'Ücretsiz Jeton Al',
+      description: 'İlk 5 analiz ücretsiz, hemen başlayın',
       href: '/dashboard/analysis/roi',
       primary: true
     },
-    { 
-      name: 'AI Sohbet', 
-      icon: '🤖', 
-      description: 'SeraGPT AI ile sera sorularınızı sorun', 
+    {
+      name: 'AI Sohbet',
+      description: 'SeraGPT AI ile sera sorularınızı sorun',
       href: '/dashboard/ai-chat',
       primary: false
     },
-    { 
-      name: 'Örnek Rapor Görüntüle', 
-      icon: '👁️', 
-      description: 'Hangi raporları alabileceğinizi görün', 
+    {
+      name: 'Örnek Rapor Görüntüle',
+      description: 'Hangi raporları alabileceğinizi görün',
       href: '/dashboard/examples',
       primary: false
     },
-    { 
-      name: 'Mühendis Desteği', 
-      icon: '👷', 
-      description: 'Uzman desteği için randevu alın', 
+    {
+      name: 'Mühendis Desteği',
+      description: 'Uzman desteği için randevu alın',
       href: '/dashboard/consulting',
       primary: false
     },
