@@ -239,14 +239,14 @@ export default function UserjotCloneSection() {
               className="bg-white rounded-2xl p-4 sm:p-6 md:p-8 border border-gray-200 flex flex-col sm:flex-row items-start space-y-4 sm:space-y-0 sm:space-x-6"
             >
               <div className="flex-shrink-0">
-                <div className="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center">
-                  <span className="text-2xl">🧠</span>
+                <div className="w-12 h-12 sm:w-16 sm:h-16 bg-blue-100 rounded-2xl flex items-center justify-center">
+                  <span className="text-xl sm:text-2xl">🧠</span>
                 </div>
               </div>
               <div className="flex-1">
                 <div className="flex items-center space-x-3 mb-3">
                   <span className="bg-green-500 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold">2</span>
-                  <h3 className="text-xl font-bold text-gray-900">SeraGPT Analiz Etsin</h3>
+                  <h3 className="text-lg sm:text-xl font-bold text-gray-900">SeraGPT Analiz Etsin</h3>
                 </div>
                 <p className="text-gray-600">
                   Yapay zekâ destekli motorumuz, 110+ veri kaynağını tarar.
@@ -923,7 +923,7 @@ export default function UserjotCloneSection() {
             {/* Main Description */}
             <div className="bg-white rounded-2xl p-8 mb-12 shadow-lg border border-gray-200">
               <div className="text-left space-y-6">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">🧾 Proje Açıklaması</h3>
+                <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">�� Proje Açıklaması</h3>
 
                 <p className="text-lg text-gray-700 leading-relaxed">
                   <strong className="text-blue-600">ISITMAX'ın</strong> sağladığı mühendislik, keşif, projelendirme ve süpervizörlük hizmetleri;
