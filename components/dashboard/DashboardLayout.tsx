@@ -175,13 +175,12 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
               <a
                 key={item.name}
                 href={item.href}
-                className={`flex items-center space-x-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
+                className={`flex items-center px-4 py-3 rounded-lg text-sm font-medium transition-colors ${
                   item.active
-                    ? 'bg-green-50 text-green-700 border border-green-200'
+                    ? 'bg-gray-600 text-white'
                     : 'text-gray-700 hover:bg-gray-50 hover:text-gray-900'
                 }`}
               >
-                <span className="text-lg">{item.icon}</span>
                 <span>{item.name}</span>
               </a>
             ))}
