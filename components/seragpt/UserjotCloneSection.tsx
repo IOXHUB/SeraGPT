@@ -894,7 +894,7 @@ export default function UserjotCloneSection() {
               {
                 icon: "💡",
                 question: "Sadece yeni yatırımcılar mı kullanabilir?",
-                answer: "Hay��r. Mevcut serası olan kullanıcılar, genişletme planlayan çiftçiler, mühendisler ve yatırımcılar da SeraGPT'den faydalanabilir.",
+                answer: "Hay��r. Mevcut serası olan kullan��cılar, genişletme planlayan çiftçiler, mühendisler ve yatırımcılar da SeraGPT'den faydalanabilir.",
                 isOpen: false
               },
               {
@@ -942,17 +942,17 @@ export default function UserjotCloneSection() {
                 viewport={{ once: true }}
                 className="bg-gray-50 rounded-xl overflow-hidden"
               >
-                <button className="w-full p-6 text-left hover:bg-gray-100 transition-colors group">
+                <button
+                  className="w-full p-6 text-left hover:bg-gray-100 transition-colors group"
+                  onClick={() => setOpenFAQ(openFAQ === index ? null : index)}
+                >
                   <div className="flex items-center justify-between">
-                    <div className="flex items-center space-x-3 pr-4">
-                      <span className="text-lg">{faq.icon}</span>
-                      <h3 className="text-lg font-medium text-gray-900 group-hover:text-gray-700">
-                        {faq.question}
-                      </h3>
-                    </div>
+                    <h3 className="text-lg font-medium text-gray-900 group-hover:text-gray-700 pr-4">
+                      {faq.question}
+                    </h3>
                     <svg
                       className={`w-5 h-5 text-gray-400 group-hover:text-gray-600 transition-transform flex-shrink-0 ${
-                        faq.isOpen ? 'rotate-180' : ''
+                        openFAQ === index ? 'rotate-180' : ''
                       }`}
                       fill="none"
                       stroke="currentColor"
@@ -961,17 +961,18 @@ export default function UserjotCloneSection() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                     </svg>
                   </div>
-                  {faq.isOpen && (
-                    <motion.div
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: 'auto' }}
-                      transition={{ duration: 0.3 }}
-                      className="mt-4 ml-8 text-gray-600 leading-relaxed"
-                    >
-                      {faq.answer}
-                    </motion.div>
-                  )}
                 </button>
+                {openFAQ === index && (
+                  <motion.div
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: 'auto' }}
+                    exit={{ opacity: 0, height: 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="px-6 pb-6 text-gray-600 leading-relaxed"
+                  >
+                    {faq.answer}
+                  </motion.div>
+                )}
               </motion.div>
             ))}
           </div>
