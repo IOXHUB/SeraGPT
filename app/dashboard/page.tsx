@@ -19,7 +19,7 @@ export default function DashboardPage() {
       tokensRequired: 1,
       status: 'available',
       benefits: [
-        'Yatırımın geri dönüş süresi (amortisman)',
+        'Yatır��mın geri dönüş süresi (amortisman)',
         'Kar marjı ve yıllık getiri tahmini',
         'İşletme maliyetleri kıyaslaması'
       ],
@@ -164,7 +164,7 @@ export default function DashboardPage() {
               Sera Yatırım Analiz Merkezi
             </h1>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              20 yıllık mühendislik deneyimi ve 110+ veri setiyle desteklenen yapay zeka analizleri ile 
+              20 y��llık mühendislik deneyimi ve 110+ veri setiyle desteklenen yapay zeka analizleri ile 
               yatırım kararlarınızı bilimsel verilerle destekleyin.
             </p>
           </motion.div>
@@ -353,20 +353,17 @@ export default function DashboardPage() {
             <div className="p-6">
               <div className="grid md:grid-cols-3 gap-6">
                 <div className="text-center">
-                  <div className="text-3xl mb-2">🪙</div>
                   <h4 className="font-semibold text-gray-900 mb-1">Mevcut Jetonlar</h4>
-                  <p className="text-2xl font-bold text-gray-900">{userTokens}</p>
+                  <p className="text-2xl font-bold text-gray-900 mb-2">{userTokens}</p>
                   <p className="text-sm text-gray-600">Kullanılabilir jeton</p>
                 </div>
                 <div className="text-center">
-                  <div className="text-3xl mb-2">🎁</div>
                   <h4 className="font-semibold text-gray-900 mb-1">Ücretsiz Hak</h4>
-                  <p className="text-2xl font-bold text-green-600">5</p>
+                  <p className="text-2xl font-bold text-green-600 mb-2">5</p>
                   <p className="text-sm text-gray-600">Başlangıç jetonu</p>
                 </div>
                 <div className="text-center">
-                  <div className="text-3xl mb-2">💳</div>
-                  <h4 className="font-semibold text-gray-900 mb-1">Jeton Satın Al</h4>
+                  <h4 className="font-semibold text-gray-900 mb-3">Jeton Satın Al</h4>
                   <button className="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
                     Paketleri Gör
                   </button>
