@@ -183,7 +183,78 @@ export default function UserjotCloneSection() {
         </div>
       </main>
 
+      {/* User Panel Section */}
+      <div className="py-20">
+        <div className="max-w-[720px] mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center mb-16 flex flex-col"
+          >
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 flex flex-col max-w-[700px] mx-auto">
+              <span className="mx-auto">
+                <p>Yatırım sürecinizi yapay zekâ destekli</p>
+              </span>
+              <br />
+              <span>kullanıcı panelinden yönetin</span>
+            </h2>
+            <p className="text-xl text-gray-600 max-w-[896px]">
+              <span>
+                Panelinizden tüm raporlarınıza, danışmanlık taleplerinize ve
+                teknik teklif süreçlerinize anlık erişim sağlayın.
+              </span>
+              <span className="font-semibold text-gray-900">
+                {" "}
+                Yapay zekâ analizleri, mühendislik değerlendirmeleri ve saha
+                hizmetleri
+              </span>
+              <span>artık tek bir merkezden yönetilebilir.</span>
+            </p>
+          </motion.div>
 
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="relative flex flex-col"
+          >
+            <div className="bg-gray-100 rounded-2xl p-8 shadow-2xl max-w-[700px] mx-auto">
+              <div className="bg-white rounded-xl shadow-lg overflow-hidden">
+                {/* Empty dashboard mockup */}
+              </div>
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            viewport={{ once: true }}
+            className="text-center mt-12 flex flex-col"
+          >
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="bg-blue-600 hover:bg-blue-700 text-white px-10 py-4 rounded-xl text-xl font-bold transition-colors shadow-lg hover:shadow-xl inline-flex items-center space-x-3 mx-auto"
+            >
+              <span className="text-2xl">
+                <p>
+                  <br />
+                </p>
+              </span>
+              <span className="mx-auto">
+                Kullanıcı Paneline Giriş Yapın
+              </span>
+            </motion.button>
+            <p className="text-gray-500 text-sm mt-4 max-w-[574px] mx-auto">
+              Tüm sera projelerinizi tek platformdan yönetin
+            </p>
+          </motion.div>
+        </div>
+      </div>
 
       {/* How It Works Section - 5 Steps */}
       <div className="py-20 bg-gray-50">
@@ -193,14 +264,19 @@ export default function UserjotCloneSection() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="text-center mb-16 flex flex-col"
           >
-            <p className="text-gray-500 text-sm font-medium uppercase tracking-wider mb-4">
+            <p className="text-gray-500 text-sm font-medium uppercase tracking-wider max-w-[700px] mx-auto mb-4">
               ⚙️ NASIL ÇALIŞIR?
             </p>
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              🧭 5 Adımda Yatırım<br />
-              Fizibiliteni Al
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mx-auto mb-6">
+              <span>
+                <p>5 Adımda</p>
+              </span>
+              <br />
+              <span>
+                <p>Yatırım Fizibiliteni Al</p>
+              </span>
             </h2>
           </motion.div>
 
@@ -1015,7 +1091,7 @@ export default function UserjotCloneSection() {
                     <div>
                       <p className="text-gray-800 leading-relaxed">
                         Kurulum <strong className="text-purple-600">ISITMAX süpervizörlüğünde</strong>,
-                        saha yönetimiyle gerçekleştirilir
+                        saha y��netimiyle gerçekleştirilir
                       </p>
                     </div>
                   </div>
@@ -1280,7 +1356,7 @@ export default function UserjotCloneSection() {
             <div className="grid md:grid-cols-2 gap-6">
               <div className="space-y-3">
                 <div className="flex items-center space-x-3">
-                  <span className="text-blue-500 text-lg">���</span>
+                  <span className="text-blue-500 text-lg">📄</span>
                   <span className="text-gray-700">ROI, İklim, Ticaret, Ekipman ve Simülasyon Analizleri</span>
                 </div>
                 <div className="flex items-center space-x-3">
@@ -1304,7 +1380,7 @@ export default function UserjotCloneSection() {
                 </div>
                 <div className="flex items-center space-x-3">
                   <span className="text-blue-500 text-lg">💡</span>
-                  <span className="text-gray-700">Tokenlar süresiz geçerlidir, analiz başına 1 token kullanılır</span>
+                  <span className="text-gray-700">Tokenlar süresiz geçerlidir, analiz başına 1 token kullanıl��r</span>
                 </div>
               </div>
             </div>
