@@ -26,6 +26,19 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
   }, []);
 
   async function getUser() {
+    // Check for mock session first (for demo)
+    const mockSession = localStorage.getItem('mockUserSession');
+    if (mockSession) {
+      try {
+        const mockUser = JSON.parse(mockSession);
+        setUser(mockUser);
+        setLoading(false);
+        return;
+      } catch (error) {
+        localStorage.removeItem('mockUserSession');
+      }
+    }
+
     // Check if Supabase is configured
     if (!isSupabaseConfigured()) {
       console.warn('Supabase not configured, skipping auth check');
