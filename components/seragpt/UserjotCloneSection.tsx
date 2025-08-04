@@ -886,7 +886,6 @@ export default function UserjotCloneSection() {
 
               },
               {
-                // icon: "💡",
                 question: "Sadece yeni yatırımcılar mı kullanabilir?",
                 answer: "Hay��r. Mevcut serası olan kullanıcılar, genişletme planlayan çiftçiler, mühendisler ve yatırımcılar da SeraGPT'den faydalanabilir.",
 
@@ -924,7 +923,7 @@ export default function UserjotCloneSection() {
               {
                 // icon: "❗",
                 question: "İtiraz ve düzeltme süreci nasıl işler?",
-                answer: "Rapor içeriğiyle ilgili bir hata olduğunu düşünüyorsanız, destek kaydı oluşturabilirsiniz. Mühendis ekibimiz gerekli incelemeyi yaparak düzeltme sağlar.",
+                answer: "Rapor içeriğiyle ilgili bir hata olduğunu düş��nüyorsanız, destek kaydı oluşturabilirsiniz. Mühendis ekibimiz gerekli incelemeyi yaparak düzeltme sağlar.",
 
               }
             ].map((faq, index) => (
