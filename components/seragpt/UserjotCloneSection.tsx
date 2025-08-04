@@ -30,7 +30,7 @@ export default function UserjotCloneSection() {
               Nasıl Çalışır
             </a>
             <a href="#" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
-              Danışmanlık
+              Danışmanl��k
             </a>
             <a href="#" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
               Anahtar Teslim
@@ -1104,7 +1104,7 @@ export default function UserjotCloneSection() {
 
       {/* AI-Powered Analysis Pricing Section */}
       <div className="bg-gray-50 py-20">
-        <div className="max-w-[900px] mx-auto px-6">
+        <div className="max-w-[1100px] mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-6">
               🤖 Yapay Zekâ Destekli Sera Analizleri<br />
@@ -1125,7 +1125,7 @@ export default function UserjotCloneSection() {
               className="bg-white rounded-2xl p-8 shadow-lg border-2 border-green-200 relative"
             >
               <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                <span className="bg-green-500 text-white px-4 py-1 rounded-full text-sm font-medium">�� BAŞLANGIÇ</span>
+                <span className="bg-green-500 text-white px-4 py-1 rounded-full text-sm font-medium">🟩 BAŞLANGIÇ</span>
               </div>
 
               <div className="mb-8 mt-4">
@@ -1247,7 +1247,7 @@ export default function UserjotCloneSection() {
                     <span className="text-sm text-gray-700"><strong>Rapor başı maliyet: ₺49 (en uygun)</strong></span>
                   </div>
                   <div className="flex items-center space-x-3">
-                    <span className="text-green-500 text-lg">✔</span>
+                    <span className="text-green-500 text-lg">��</span>
                     <span className="text-sm text-gray-700">Open-Meteo, TÜİK, FAO, GTIP, ERA5 API verileri</span>
                   </div>
                   <div className="flex items-center space-x-3">
