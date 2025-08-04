@@ -881,7 +881,6 @@ export default function UserjotCloneSection() {
 
               },
               {
-                // icon: "⏱️",
                 question: "Jetonların zaman aşımı var mı?",
                 answer: "Hayır. Satın aldığınız jetonlar hesabınızda süresiz olarak kalır. Dilediğiniz zaman kullanabilirsiniz.",
 
