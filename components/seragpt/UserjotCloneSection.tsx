@@ -134,7 +134,7 @@ export default function UserjotCloneSection() {
                   <h3 className="text-xl font-bold text-gray-900">Lokasyonunu ve Ürünü Gir</h3>
                 </div>
                 <p className="text-gray-600">
-                  Bulunduğun yeri ve yetiştirmek istediğin ürünü belirt.
+                  Bulunduğun yeri ve yetiştirmek istediğin ��rünü belirt.
                   İl, ilçe, ürün türü ve hedef pazar bilgilerini girerek analiz sürecini başlat.
                 </p>
               </div>
@@ -185,7 +185,7 @@ export default function UserjotCloneSection() {
                 </div>
                 <p className="text-gray-600">
                   Profesyonel raporun saniyeler içinde hazır.
-                  Yatırım fizibiliteni detaylı analiz içeren PDF formatında indir ve kararını ver.
+                  Yatırım fizibiliteni detaylı analiz i��eren PDF formatında indir ve kararını ver.
                 </p>
               </div>
             </motion.div>
@@ -511,7 +511,7 @@ export default function UserjotCloneSection() {
                       <div className="flex items-start justify-between">
                         <div className="flex-1">
                           <div className="flex items-center space-x-3 mb-2">
-                            <h3 className="text-lg font-semibold text-gray-900">Mobil uygulama sık sık çök��yor.</h3>
+                            <h3 className="text-lg font-semibold text-gray-900">Mobil uygulama sık sık çöküyor.</h3>
                             <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -529,7 +529,7 @@ export default function UserjotCloneSection() {
                         </div>
 
                         <div className="ml-4 text-right">
-                          <div className="text-sm text-gray-500 mb-1">Bir ��ey eksik mi?</div>
+                          <div className="text-sm text-gray-500 mb-1">Bir şey eksik mi?</div>
                           <button className="bg-black text-white px-4 py-2 rounded text-sm font-medium">
                             Gönderi Oluştur
                           </button>
@@ -605,104 +605,186 @@ export default function UserjotCloneSection() {
               🏛️ Kurumsal Sera<br />
               Danışmanlığı
             </h2>
-            <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-              Ürün geliştirmedeki en güzel an? Birine <span className="font-semibold text-gray-900">"Bunu istedin,
-              biz de yaptık"</span> demek. Güzel değişiklik günlükleri <span className="font-semibold text-gray-900">her sürümü sergiler</span>
-              ve istekte bulunanları otomatik olarak bilgilendirir. Müşterileri savunucuya dönüşt����rün.
-            </p>
+            <div className="bg-white rounded-2xl p-8 max-w-5xl mx-auto border border-gray-200 shadow-lg">
+              <div className="text-lg text-gray-700 leading-relaxed space-y-6">
+                <p>
+                  <strong>Hermisan & ISITMAX</strong> iş birliğiyle <strong>+500 projede test edilmiş</strong> 
+                  mühendislik gücüyle tanışın.
+                </p>
+                
+                <div className="border-l-4 border-blue-500 pl-6">
+                  <p className="mb-4">
+                    📌 Her sera yatırımı, yerinde analiz ve mühendislik doğrulaması ister. 
+                    SeraGPT üzerinden alınan veriler size güçlü bir temel sunar. 
+                    Ama arazi koşulları, özel amaçlı üretim hedefleri ve yatırım büyüklüğü arttıkça;
+                  </p>
+                  <div className="grid md:grid-cols-3 gap-4 mb-4">
+                    <div className="flex items-center space-x-2">
+                      <span className="text-green-500">✅</span>
+                      <span className="font-medium">mühendislik hesapları</span>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <span className="text-green-500">✅</span>
+                      <span className="font-medium">proje planlama</span>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <span className="text-green-500">✅</span>
+                      <span className="font-medium">doğru bütçe çıkartımı</span>
+                    </div>
+                  </div>
+                  <p>uzmanlık gerektirir.</p>
+                </div>
+
+                <div className="bg-blue-50 rounded-xl p-6">
+                  <p className="mb-4">
+                    🛠️ İ��te bu noktada, <strong>Hermisan ve ISITMAX</strong> iş birliğiyle sunduğumuz 
+                    <strong>"Kurumsal Danışmanlık"</strong> devreye giriyor:
+                  </p>
+                  <div className="grid md:grid-cols-2 gap-4">
+                    <div className="flex items-center space-x-3">
+                      <span className="text-blue-600">🔹</span>
+                      <span className="font-semibold">+20 Yıllık Proje Deneyimi</span>
+                    </div>
+                    <div className="flex items-center space-x-3">
+                      <span className="text-blue-600">🔹</span>
+                      <span className="font-semibold">500'den Fazla Tamamlanmış Proje</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </motion.div>
 
           {/* Feature Cards Grid */}
-          <div className="grid md:grid-cols-2 gap-8">
-            {/* Build Trust Card */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* Engineering Analysis Card */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
               viewport={{ once: true }}
-              className="bg-gray-50 rounded-2xl p-8 border border-gray-200 hover:shadow-lg transition-shadow"
+              className="bg-white rounded-2xl p-8 border border-gray-200 hover:shadow-lg transition-shadow"
             >
               <div className="mb-6">
-                <div className="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center mb-4">
-                  <svg className="w-6 h-6 text-red-500" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-                  </svg>
+                <div className="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center mb-4">
+                  <span className="text-2xl">🔧</span>
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-3">
-                  Güven Oluşturun
+                  Mühendislik Hesapları
                 </h3>
                 <p className="text-gray-600 leading-relaxed">
-                  Kullanıcılara geri bildirimlerini dinlediğinizi ve talepleri üzerinde
-                  aktif olarak çalıştığınızı gösterin.
+                  Arazi koşullarına özel statik ve hidrolik hesaplamalar ile 
+                  teknik doğrulama süreçleri.
                 </p>
               </div>
             </motion.div>
 
-            {/* Engage Users Card */}
+            {/* Project Planning Card */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
               viewport={{ once: true }}
-              className="bg-gray-50 rounded-2xl p-8 border border-gray-200 hover:shadow-lg transition-shadow"
+              className="bg-white rounded-2xl p-8 border border-gray-200 hover:shadow-lg transition-shadow"
             >
               <div className="mb-6">
-                <div className="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center mb-4">
-                  <svg className="w-6 h-6 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-                  </svg>
+                <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mb-4">
+                  <span className="text-2xl">📋</span>
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-3">
-                  Kullanıcıları Meşgul Edin
+                  Proje Planlama
                 </h3>
                 <p className="text-gray-600 leading-relaxed">
-                  Otomatik güncelleme bildirimleri ile konuşmayı devam ettirin.
+                  Detaylı zaman çizelgesi, kaynak planlaması ve 
+                  aşamalı uygulama stratejileri.
                 </p>
               </div>
             </motion.div>
 
-            {/* Control Access Card */}
+            {/* Budget Optimization Card */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
               viewport={{ once: true }}
-              className="bg-gray-50 rounded-2xl p-8 border border-gray-200 hover:shadow-lg transition-shadow"
+              className="bg-white rounded-2xl p-8 border border-gray-200 hover:shadow-lg transition-shadow"
             >
               <div className="mb-6">
-                <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mb-4">
-                  <svg className="w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
+                <div className="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center mb-4">
+                  <span className="text-2xl">💰</span>
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-3">
-                  Erişimi Kontrol Edin
+                  Doğru Bütçe Çıkartımı
                 </h3>
                 <p className="text-gray-600 leading-relaxed">
-                  Kullanıcılarınızla neyi ve ne zaman paylaşacağınızı seçin.
+                  Gerçek piyasa verileri ile optimize edilmiş 
+                  maliyet analizi ve bütçe planlaması.
                 </p>
               </div>
             </motion.div>
 
-            {/* Stay Organized Card */}
+            {/* Site Analysis Card */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
               viewport={{ once: true }}
-              className="bg-gray-50 rounded-2xl p-8 border border-gray-200 hover:shadow-lg transition-shadow"
+              className="bg-white rounded-2xl p-8 border border-gray-200 hover:shadow-lg transition-shadow"
             >
               <div className="mb-6">
-                <div className="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center mb-4">
-                  <svg className="w-6 h-6 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                  </svg>
+                <div className="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center mb-4">
+                  <span className="text-2xl">🗺️</span>
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-3">
-                  Düzenli Kalın
+                  Yerinde Analiz
                 </h3>
                 <p className="text-gray-600 leading-relaxed">
-                  Geliştirme planınızla otomatik senkronize olan güzel değişiklik günlükleri.
+                  Uzman ekip tarafından arazi koşulları, 
+                  altyapı durumu ve çevresel faktörlerin incelenmesi.
+                </p>
+              </div>
+            </motion.div>
+
+            {/* Custom Production Card */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.5 }}
+              viewport={{ once: true }}
+              className="bg-white rounded-2xl p-8 border border-gray-200 hover:shadow-lg transition-shadow"
+            >
+              <div className="mb-6">
+                <div className="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center mb-4">
+                  <span className="text-2xl">🎯</span>
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-3">
+                  Özel Üretim Hedefleri
+                </h3>
+                <p className="text-gray-600 leading-relaxed">
+                  Hedef ürün ve pazar analizine özel 
+                  sera tasarımı ve ekipman seçimi.
+                </p>
+              </div>
+            </motion.div>
+
+            {/* Experience Card */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.6 }}
+              viewport={{ once: true }}
+              className="bg-white rounded-2xl p-8 border border-gray-200 hover:shadow-lg transition-shadow"
+            >
+              <div className="mb-6">
+                <div className="w-12 h-12 bg-yellow-100 rounded-xl flex items-center justify-center mb-4">
+                  <span className="text-2xl">🏆</span>
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-3">
+                  Kanıtlanmış Deneyim
+                </h3>
+                <p className="text-gray-600 leading-relaxed">
+                  20+ yıllık deneyim ve 500+ başarılı proje ile 
+                  test edilmiş mühendislik çözümleri.
                 </p>
               </div>
             </motion.div>
@@ -712,24 +794,24 @@ export default function UserjotCloneSection() {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
+            transition={{ duration: 0.8, delay: 0.7 }}
             viewport={{ once: true }}
             className="text-center mt-16"
           >
-            <div className="bg-gray-900 rounded-2xl p-8 md:p-12 text-white">
+            <div className="bg-gradient-to-r from-green-600 to-blue-600 rounded-2xl p-8 md:p-12 text-white">
               <h3 className="text-2xl md:text-3xl font-bold mb-4">
-                Sera projelerinizi şeffaf şekilde yönetin
+                Kurumsal Sera Danışmanlığı Paketinizi İnceleyin
               </h3>
-              <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-                Kullanıcılarınız her adımda ne olduğunu bilsin, güven oluşsun ve
-                ba��arılı sera projeleri birlikte geliştirelim.
+              <p className="text-xl text-green-100 mb-8 max-w-2xl mx-auto">
+                SeraGPT verilerinizi Hermisan & ISITMAX uzmanlığı ile birleştirerek 
+                profesyonel sera projelerinizi hayata geçirin.
               </p>
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="bg-white text-gray-900 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-gray-100 transition-colors"
               >
-                Hemen Başlayın
+                Kurumsal Danışmanlık Paketi
               </motion.button>
             </div>
           </motion.div>
@@ -822,7 +904,7 @@ export default function UserjotCloneSection() {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                       </svg>
                     </div>
-                    <span className="text-sm text-gray-700">Değişiklik Günl��ğü</span>
+                    <span className="text-sm text-gray-700">Değişiklik Günlüğü</span>
                   </div>
                 </div>
               </div>
@@ -999,7 +1081,7 @@ export default function UserjotCloneSection() {
               Ne kadar tasarruf edersiniz? <span className="font-semibold text-gray-900">%10 daha düşük dönem</span> tasarruf edin?
             </p>
             <button className="text-gray-900 font-medium hover:underline">
-              Tasarruflarınızı hesaplayın ��
+              Tasarruflarınızı hesaplayın →
             </button>
           </motion.div>
         </div>
