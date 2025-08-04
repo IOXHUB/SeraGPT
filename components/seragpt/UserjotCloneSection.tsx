@@ -850,7 +850,7 @@ export default function UserjotCloneSection() {
           <div className="space-y-2">
             {[
               {
-                icon: "📊",
+
                 question: "Raporlar ne kadar doğru?",
                 answer: "SeraGPT, gerçek zamanlı iklim, tarım ve ticaret verilerini kullanır. Raporlar, uzman mühendislerin geliştirdiği algoritmalarla analiz edilir ve %90 üzeri doğruluk oranı sunar.",
                 isOpen: true
@@ -894,7 +894,7 @@ export default function UserjotCloneSection() {
               {
                 icon: "💡",
                 question: "Sadece yeni yatırımcılar mı kullanabilir?",
-                answer: "Hay��r. Mevcut serası olan kullan��cılar, genişletme planlayan çiftçiler, mühendisler ve yatırımcılar da SeraGPT'den faydalanabilir.",
+                answer: "Hay��r. Mevcut serası olan kullanıcılar, genişletme planlayan çiftçiler, mühendisler ve yatırımcılar da SeraGPT'den faydalanabilir.",
                 isOpen: false
               },
               {
