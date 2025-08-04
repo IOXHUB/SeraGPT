@@ -56,12 +56,85 @@ export default function UserjotCloneSection() {
           </div>
 
           {/* Mobile menu button - hamburger icon */}
-          <button className="md:hidden p-2">
+          <button
+            className="md:hidden p-2"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          >
             <svg className="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              {isMobileMenuOpen ? (
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              ) : (
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              )}
             </svg>
           </button>
         </div>
+
+        {/* Mobile Menu */}
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.2 }}
+            className="md:hidden bg-gray-50 border-t border-gray-200"
+          >
+            <div className="max-w-[960px] mx-auto px-6 py-4 space-y-4">
+              {/* Center navigation links */}
+              <div className="space-y-3">
+                <a
+                  href="#"
+                  className="block text-gray-700 hover:text-gray-900 font-medium transition-colors py-2"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Nasıl Çalışır
+                </a>
+                <a
+                  href="#"
+                  className="block text-gray-700 hover:text-gray-900 font-medium transition-colors py-2"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Danışmanlık
+                </a>
+                <a
+                  href="#"
+                  className="block text-gray-700 hover:text-gray-900 font-medium transition-colors py-2"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Anahtar Teslim
+                </a>
+              </div>
+
+              {/* Divider */}
+              <div className="border-t border-gray-200 my-4"></div>
+
+              {/* Right menu actions */}
+              <div className="space-y-3">
+                <a
+                  href="/dashboard"
+                  className="block text-gray-700 hover:text-gray-900 font-medium transition-colors py-2"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Dashboard
+                </a>
+                <a
+                  href="/auth/login"
+                  className="block text-gray-700 hover:text-gray-900 font-medium transition-colors py-2"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Giriş Yap
+                </a>
+                <a
+                  href="#"
+                  className="block bg-green-600 hover:bg-green-700 text-white px-4 py-3 rounded-lg font-medium transition-colors text-center"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Ücretsiz Başla
+                </a>
+              </div>
+            </div>
+          </motion.div>
+        )}
       </header>
 
       {/* Main content - 960px container */}
@@ -883,7 +956,7 @@ export default function UserjotCloneSection() {
                   className="bg-blue-50 rounded-xl p-6 border border-blue-200"
                 >
                   <div className="flex items-start space-x-4">
-                    <span className="text-3xl">���</span>
+                    <span className="text-3xl">📍</span>
                     <div>
                       <p className="text-gray-800 leading-relaxed">
                         Projeniz, lokasyon, iklim ve üretim hedeflerine göre
