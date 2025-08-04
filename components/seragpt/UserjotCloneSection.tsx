@@ -216,7 +216,7 @@ export default function UserjotCloneSection() {
             >
               <div className="flex-shrink-0">
                 <div className="w-12 h-12 sm:w-16 sm:h-16 bg-green-100 rounded-2xl flex items-center justify-center">
-                  <span className="text-xl sm:text-2xl">����</span>
+                  <span className="text-xl sm:text-2xl">📍</span>
                 </div>
               </div>
               <div className="flex-1">
@@ -533,7 +533,7 @@ export default function UserjotCloneSection() {
 
       {/* Roadmap Section */}
       <div className="py-20">
-        <div className="max-w-[800px] mx-auto px-6">
+        <div className="max-w-[720px] mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -655,7 +655,7 @@ export default function UserjotCloneSection() {
                           </div>
                           <div className="mt-2">
                             <button className="text-sm text-blue-600 hover:text-blue-700">
-                              Tüm Güncellemeler
+                              Tüm G��ncellemeler
                             </button>
                           </div>
                         </div>
@@ -1299,7 +1299,7 @@ export default function UserjotCloneSection() {
                   <span className="text-gray-700">PDF çıktı + kullanıcı paneli erişimi</span>
                 </div>
                 <div className="flex items-center space-x-3">
-                  <span className="text-blue-500 text-lg">⏱️</span>
+                  <span className="text-blue-500 text-lg">⏱���</span>
                   <span className="text-gray-700">Ortalama 40–60 saniyede sonuç</span>
                 </div>
                 <div className="flex items-center space-x-3">
