@@ -490,7 +490,7 @@ export default function UserjotCloneSection() {
                   Mühendis Onaylı Ekipman Listesi
                 </h3>
                 <p className="text-gray-600 mb-6 leading-relaxed">
-                  Uzman m��hendisler tarafından onaylanmış sera ekipmanları ve malzeme listesi.
+                  Uzman mühendisler tarafından onaylanmış sera ekipmanları ve malzeme listesi.
                   Sera tipine özel öneriler ve teknik spesifikasyonlar.
                 </p>
                 {/* Placeholder Screenshot */}
@@ -502,7 +502,7 @@ export default function UserjotCloneSection() {
                 </div>
               </motion.div>
 
-              {/* Card 4 - Tarım ve Ticaret Verileri */}
+              {/* Card 4 - Tar��m ve Ticaret Verileri */}
               <motion.div
                 initial={{ opacity: 0, x: 30 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -765,22 +765,27 @@ export default function UserjotCloneSection() {
       </div>
 
       {/* Visual Gallery Section */}
-      <div className="py-20 bg-white">
-        <div className="max-w-[1200px] mx-auto px-6">
+      <div className="py-20 bg-gray-50">
+        <div className="max-w-[1200px] mx-auto px-6 bg-gray-50">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="text-center mb-16 flex flex-col"
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              🏗️ Projelerimizden<br />
-              Görüntüler
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 flex flex-col max-w-[700px] mx-auto">
+              <span className="mx-auto">
+                <p>Projeler</p>
+              </span>
+              <br />
             </h2>
-            <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-              Hermisan & ISITMAX iş birliğiyle tamamlanan sera projelerinden seçilmiş görüntüler.
-              <span className="font-semibold text-gray-900">500+ başarılı proje</span> deneyimimizden örnekler.
+            <p className="text-xl text-gray-600 max-w-[700px] mx-auto leading-relaxed">
+              <span>
+                Hermisan & ISITMAX iş birliğiyle tamamlanan sera projelerinden seçilmiş görüntüler.
+              </span>
+              <span className="font-semibold text-gray-900">500+ başarılı proje</span>
+              <span> deneyimimizden örnekler.</span>
             </p>
           </motion.div>
 
@@ -797,7 +802,6 @@ export default function UserjotCloneSection() {
               >
                 <div className="w-full h-full bg-gradient-to-br from-green-100 to-blue-100 flex items-center justify-center">
                   <div className="text-center">
-                    <div className="text-4xl mb-3">🏢</div>
                     <p className="text-gray-700 font-medium">Modern Sera Kompleksi</p>
                     <p className="text-gray-500 text-sm">Antalya, 5.000 m²</p>
                   </div>
@@ -814,7 +818,6 @@ export default function UserjotCloneSection() {
               >
                 <div className="w-full h-full bg-gradient-to-br from-orange-100 to-red-100 flex items-center justify-center">
                   <div className="text-center">
-                    <div className="text-4xl mb-3">🍅</div>
                     <p className="text-gray-700 font-medium">Domates Üretim Serası</p>
                     <p className="text-gray-500 text-sm">Mersin, 3.200 m²</p>
                   </div>
@@ -831,7 +834,6 @@ export default function UserjotCloneSection() {
               >
                 <div className="w-full h-full bg-gradient-to-br from-purple-100 to-pink-100 flex items-center justify-center">
                   <div className="text-center">
-                    <div className="text-4xl mb-3">🌿</div>
                     <p className="text-gray-700 font-medium">Hidroponik Sera Sistemi</p>
                     <p className="text-gray-500 text-sm">İzmir, 2.800 m²</p>
                   </div>
@@ -848,7 +850,6 @@ export default function UserjotCloneSection() {
               >
                 <div className="w-full h-full bg-gradient-to-br from-yellow-100 to-orange-100 flex items-center justify-center">
                   <div className="text-center">
-                    <div className="text-4xl mb-3">🌱</div>
                     <p className="text-gray-700 font-medium">Fide Üretim Tesisi</p>
                     <p className="text-gray-500 text-sm">Bursa, 4.500 m²</p>
                   </div>
@@ -917,7 +918,7 @@ export default function UserjotCloneSection() {
                 <div className="w-full h-full bg-gradient-to-br from-amber-100 to-yellow-100 flex items-center justify-center">
                   <div className="text-center">
                     <div className="text-4xl mb-3">🥬</div>
-                    <p className="text-gray-700 font-medium">Organik Sebze Seras��</p>
+                    <p className="text-gray-700 font-medium">Organik Sebze Serası</p>
                     <p className="text-gray-500 text-sm">Çanakkale, 3.700 m²</p>
                   </div>
                 </div>
