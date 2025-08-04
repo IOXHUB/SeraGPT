@@ -25,7 +25,7 @@ export default function BlogCardsSection() {
 
   if (loading) {
     return (
-      <div className="py-20 bg-gray-50">
+      <div className="py-20 bg-gray-50 text-gray-600">
         <div className="max-w-[960px] mx-auto px-6">
           <div className="text-center mb-12">
             <motion.div
@@ -61,7 +61,7 @@ export default function BlogCardsSection() {
   }
 
   return (
-    <div className="py-20 bg-gray-50">
+    <div className="py-20 bg-gray-50 text-gray-600">
       <div className="max-w-[960px] mx-auto px-6">
         <div className="text-center mb-12">
           <motion.div
