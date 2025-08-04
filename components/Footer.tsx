@@ -121,7 +121,7 @@ export default function Footer() {
                 alt="SeraGPT Logo"
                 className="h-6 w-auto"
               />
-              <span className="text-gray-400 text-sm">
+              <span className="text-gray-600 text-sm">
                 © 2024 SeraGPT. Tüm hakları saklıdır.
               </span>
             </div>
