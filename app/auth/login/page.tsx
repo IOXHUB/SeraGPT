@@ -105,8 +105,25 @@ export default function LoginPage() {
     }, 1000);
   };
 
+  // Prevent hydration mismatch
+  if (!mounted) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+        <div className="animate-pulse">
+          <div className="h-12 w-48 bg-gray-200 rounded mx-auto mb-6"></div>
+          <div className="space-y-4 w-80">
+            <div className="h-4 bg-gray-200 rounded"></div>
+            <div className="h-10 bg-gray-200 rounded"></div>
+            <div className="h-10 bg-gray-200 rounded"></div>
+            <div className="h-10 bg-gray-200 rounded"></div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gray-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8" suppressHydrationWarning>
       <div className="max-w-md w-full space-y-8">
         <div>
           <div className="mx-auto h-12 w-auto">
