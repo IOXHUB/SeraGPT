@@ -54,7 +54,7 @@ export default function Footer() {
 
           {/* 3. YASAL */}
           <div>
-            <h3 className="text-lg font-semibold mb-6">YASAL</h3>
+            <h3 className="text-lg font-semibold mb-6 text-gray-900">YASAL</h3>
             <ul className="space-y-3">
               <li>
                 <a href="/privacy" className="text-gray-300 hover:text-white transition-colors">
