@@ -138,7 +138,7 @@ export default function UserjotCloneSection() {
       </header>
 
       {/* Main content - 960px container */}
-      <main className="flex-1 flex items-center justify-center px-6 py-20">
+      <main className="flex-1 flex items-center justify-center px-4 sm:px-6 py-12 sm:py-20">
         <div className="max-w-[960px] mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
