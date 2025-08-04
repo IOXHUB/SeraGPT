@@ -195,10 +195,9 @@ export default function UserjotCloneSection() {
           >
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 flex flex-col max-w-[700px] mx-auto">
               <span className="mx-auto">
-                <p>Yatırım sürecinizi yapay zekâ destekli</p>
+                <p>Yatırımınızı Tek Panelden Yönetin</p>
               </span>
               <br />
-              <span>kullanıcı panelinden yönetin</span>
             </h2>
             <p className="text-xl text-gray-600 max-w-[896px]">
               <span>
@@ -884,7 +883,7 @@ export default function UserjotCloneSection() {
                 <div className="w-full h-full bg-gradient-to-br from-emerald-100 to-teal-100 flex items-center justify-center">
                   <div className="text-center">
                     <div className="text-4xl mb-3">🥒</div>
-                    <p className="text-gray-700 font-medium">Salatalık Üretim Serası</p>
+                    <p className="text-gray-700 font-medium">Salatalık Üretim Seras��</p>
                     <p className="text-gray-500 text-sm">Muğla, 2.100 m²</p>
                   </div>
                 </div>
