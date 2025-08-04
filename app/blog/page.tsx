@@ -2,10 +2,11 @@
 
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
-// import SEOHead from '@/components/SEOHead';
+import SEOHead from '@/components/SEOHead';
 import { SEOService } from '@/lib/seo';
 
-// Static export compatible
+// Force dynamic rendering for blog pages
+export const dynamic = 'force-dynamic';
 
 export default function BlogPage() {
   const [seoConfig, setSeoConfig] = useState(SEOService.generateBlogPageSEO());
