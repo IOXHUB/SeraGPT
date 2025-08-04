@@ -216,7 +216,7 @@ export default function UserjotCloneSection() {
             >
               <div className="flex-shrink-0">
                 <div className="w-12 h-12 sm:w-16 sm:h-16 bg-green-100 rounded-2xl flex items-center justify-center">
-                  <span className="text-xl sm:text-2xl">📍</span>
+                  <span className="text-xl sm:text-2xl">����</span>
                 </div>
               </div>
               <div className="flex-1">
@@ -348,7 +348,7 @@ export default function UserjotCloneSection() {
 
       {/* 6 Analysis Features - Horizontal Sliding Section */}
       <div className="py-20 bg-white">
-        <div className="max-w-[800px] mx-auto px-6">
+        <div className="max-w-[1100px] mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
