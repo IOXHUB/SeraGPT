@@ -1322,7 +1322,7 @@ export default function UserjotCloneSection() {
         viewport={{ once: true }}
         className="bg-gray-50 py-20"
       >
-        <div className="max-w-[800px] mx-auto px-6">
+        <div className="max-w-[900px] mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
