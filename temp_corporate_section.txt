@@ -1,0 +1,164 @@
+{/* Corporate Consulting Section */}
+      <div className="py-20 bg-gray-50">
+        <div className="max-w-[960px] mx-auto px-6">
+          {/* Header */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+              🏛️ Kurumsal Sera<br />
+              Danışmanlığı
+            </h2>
+            <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+              <strong>Hermisan & ISITMAX</strong> iş birliğiyle +500 projede test edilmiş 
+              mühendislik gücüyle tanışın.
+            </p>
+          </motion.div>
+
+          {/* Main Content */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="bg-white rounded-2xl p-8 md:p-12 border border-gray-200 mb-12"
+          >
+            {/* Problem Statement */}
+            <div className="mb-8">
+              <h3 className="text-xl font-bold text-gray-900 mb-4 flex items-center">
+                <span className="text-2xl mr-3">📌</span>
+                Her sera yatırımı, yerinde analiz ve mühendislik doğrulaması ister.
+              </h3>
+              <div className="space-y-4 text-gray-700 leading-relaxed">
+                <p>
+                  SeraGPT üzerinden alınan veriler size güçlü bir temel sunar.
+                  Ama arazi koşulları, özel amaçlı üretim hedefleri ve yatırım büyüklüğü arttıkça;
+                </p>
+                <div className="grid md:grid-cols-3 gap-4 my-6">
+                  <div className="flex items-center space-x-2">
+                    <span className="text-green-500">✅</span>
+                    <span className="font-medium">mühendislik hesapları,</span>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <span className="text-green-500">✅</span>
+                    <span className="font-medium">proje planlama,</span>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <span className="text-green-500">✅</span>
+                    <span className="font-medium">ve doğru bütçe çıkartımı</span>
+                  </div>
+                </div>
+                <p className="font-medium">uzmanlık gerektirir.</p>
+              </div>
+            </div>
+
+            {/* Solution */}
+            <div className="mb-8">
+              <h3 className="text-xl font-bold text-gray-900 mb-4 flex items-center">
+                <span className="text-2xl mr-3">🛠️</span>
+                İşte bu noktada, Hermisan ve ISITMAX iş birliğiyle sunduğumuz "Kurumsal Danışmanlık" devreye giriyor:
+              </h3>
+              <div className="grid md:grid-cols-2 gap-4">
+                <div className="space-y-3">
+                  <div className="flex items-center space-x-3">
+                    <span className="text-blue-500">🔹</span>
+                    <span>+20 Yıllık Proje Deneyimi</span>
+                  </div>
+                  <div className="flex items-center space-x-3">
+                    <span className="text-blue-500">🔹</span>
+                    <span>500'den Fazla Anahtar Teslim Sera Kurulumu</span>
+                  </div>
+                  <div className="flex items-center space-x-3">
+                    <span className="text-blue-500">🔹</span>
+                    <span>Enerji, otomasyon ve iklim kontrol sistemleri uzmanlığı</span>
+                  </div>
+                </div>
+                <div className="space-y-3">
+                  <div className="flex items-center space-x-3">
+                    <span className="text-blue-500">🔹</span>
+                    <span>Uluslararası standarda uygun mühendislik ve ekipman seçimi</span>
+                  </div>
+                  <div className="flex items-center space-x-3">
+                    <span className="text-blue-500">🔹</span>
+                    <span>Tarım Bakanlığı hibe ve destek süreçlerine uygun fizibilite danışmanlığı</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* CTA Section */}
+            <div className="text-center mb-8">
+              <h3 className="text-xl font-bold text-gray-900 mb-4 flex items-center justify-center">
+                <span className="text-2xl mr-3">🎯</span>
+                Yatırımınız için sadece bilgi değil, yol haritası arıyorsanız…
+              </h3>
+              <p className="text-lg text-gray-700 mb-6 flex items-center justify-center">
+                <span className="text-2xl mr-3">📐</span>
+                Kurumsal Proje Danışmanlık Hizmetimize Başvurun.
+              </p>
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-colors inline-flex items-center space-x-3"
+              >
+                <span>📩</span>
+                <span>Danışmanlık Talebi Gönder</span>
+              </motion.button>
+            </div>
+
+            {/* Service Scope */}
+            <div className="mb-8">
+              <h3 className="text-xl font-bold text-gray-900 mb-4 flex items-center">
+                <span className="text-2xl mr-3">🧾</span>
+                Hizmet kapsamı:
+              </h3>
+              <div className="grid md:grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <div className="flex items-start space-x-2">
+                    <span className="text-gray-400 mt-1">•</span>
+                    <span className="text-gray-700">Yerinde keşif veya uzaktan mühendislik analizi</span>
+                  </div>
+                  <div className="flex items-start space-x-2">
+                    <span className="text-gray-400 mt-1">•</span>
+                    <span className="text-gray-700">Proje çizimi ve ekipman seçimi</span>
+                  </div>
+                  <div className="flex items-start space-x-2">
+                    <span className="text-gray-400 mt-1">•</span>
+                    <span className="text-gray-700">Hedef üretim hacmine uygun yatırım modeli</span>
+                  </div>
+                </div>
+                <div className="space-y-2">
+                  <div className="flex items-start space-x-2">
+                    <span className="text-gray-400 mt-1">•</span>
+                    <span className="text-gray-700">Raporlama ve teklif dosyası oluşturma (PDF + CAD destekli)</span>
+                  </div>
+                  <div className="flex items-start space-x-2">
+                    <span className="text-gray-400 mt-1">•</span>
+                    <span className="text-gray-700">Dilerseniz: Anahtar teslim kurulum hizmeti</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Additional Assurance */}
+            <div className="bg-blue-50 rounded-xl p-6 border border-blue-200">
+              <h3 className="text-lg font-bold text-gray-900 mb-3 flex items-center">
+                <span className="text-2xl mr-3">💡</span>
+                Ek Güvence:
+              </h3>
+              <div className="space-y-3">
+                <p className="text-gray-700 italic">
+                  "Raporun ötesine geçmek isteyen profesyoneller için tasarlandı."
+                </p>
+                <p className="text-gray-700 font-medium">
+                  İlk görüşme ücretsizdir. Başvuru sonrasında teknik ekibimiz sizi arar.
+                </p>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </div>
