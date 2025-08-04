@@ -196,16 +196,16 @@ export default function UserjotCloneSection() {
             className="text-center mb-16"
           >
             <p className="text-gray-500 text-sm font-medium uppercase tracking-wider mb-4">
-              SO I ASKED WHAT IF YOU COULD
+              HER ANALİZ İÇİN DETAYLı ÇÖZÜM
             </p>
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              build exactly what<br />
-              users actually want?
+              5 Adımda Sera Yatırım<br />
+              Analizi Tamamla
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
-              UserJot gives feedback a home where users vote,<br />
-              discuss, and help shape your product. Watch as <strong>popular<br />
-              requests bubble up and turn into features users love</strong>.
+              20 yıllık mühendislik deneyimi ve 110+ veri setiyle<br />
+              desteklenen <strong>yapay zeka analizleri</strong> ile yatırım kararlarınızı<br />
+              <strong>bilimsel verilerle destekleyin</strong>.
             </p>
           </motion.div>
 
@@ -435,7 +435,7 @@ export default function UserjotCloneSection() {
                           <div className="flex items-center space-x-2 text-sm text-gray-600">
                             <div className="w-6 h-6 bg-gray-300 rounded-full"></div>
                             <div>
-                              <div className="font-medium">Şeyran Taslın</div>
+                              <div className="font-medium">��eyran Taslın</div>
                               <div className="text-xs text-gray-500">3 gün önce</div>
                             </div>
                           </div>
