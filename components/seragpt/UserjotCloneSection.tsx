@@ -334,7 +334,7 @@ export default function UserjotCloneSection() {
         </div>
       </div>
 
-      {/* 6 Analysis Features - Horizontal Sliding Section */}
+
       <div className="py-20 bg-white">
         <div className="max-w-[1100px] mx-auto px-6">
           <motion.div
