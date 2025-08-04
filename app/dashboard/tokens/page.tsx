@@ -1,271 +1,410 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import DashboardLayout from '@/components/dashboard/DashboardLayout';
-
-interface TokenPackage {
-  id: string;
-  name: string;
-  tokens: number;
-  price: number;
-  popular?: boolean;
-  features: string[];
-}
+import { tokenService, TokenPackage, UserTokens, TokenTransaction } from '@/lib/services/token-service';
 
 export default function TokensPage() {
+  const [packages, setPackages] = useState<TokenPackage[]>([]);
+  const [userTokens, setUserTokens] = useState<UserTokens | null>(null);
+  const [tokenHistory, setTokenHistory] = useState<TokenTransaction[]>([]);
+  const [loading, setLoading] = useState(false);
   const [selectedPackage, setSelectedPackage] = useState<string | null>(null);
-  const [userTokens] = useState(5); // Current user tokens
+  const [error, setError] = useState<string>('');
 
-  const tokenPackages: TokenPackage[] = [
-    {
-      id: 'starter',
-      name: 'Starter',
-      tokens: 25,
-      price: 49,
-      features: [
-        '25 analiz hakkı',
-        'Temel PDF raporları',
-        'Email desteği',
-        '1 ay geçerlilik'
-      ]
-    },
-    {
-      id: 'pro',
-      name: 'Pro',
-      tokens: 100,
-      price: 149,
-      popular: true,
-      features: [
-        '100 analiz hakkı',
-        'Detaylı PDF raporları',
-        'Öncelikli destek',
-        '6 ay geçerlilik',
-        'AI sohbet sınırsız'
-      ]
-    },
-    {
-      id: 'enterprise',
-      name: 'Enterprise',
-      tokens: 500,
-      price: 599,
-      features: [
-        '500 analiz hakkı',
-        'Özel raporlar',
-        'Mühendis danışmanlığı',
-        '1 yıl geçerlilik',
-        'Öncelikli işlem',
-        'Özel fiyat listesi'
-      ]
+  useEffect(() => {
+    loadData();
+  }, []);
+
+  const loadData = async () => {
+    setLoading(true);
+    
+    try {
+      // Load token packages
+      const packagesResponse = await tokenService.getTokenPackages();
+      if (packagesResponse.success && packagesResponse.data) {
+        setPackages(packagesResponse.data);
+      }
+
+      // Load user tokens
+      const userTokensResponse = await tokenService.getUserTokens('user_123');
+      if (userTokensResponse.success && userTokensResponse.data) {
+        setUserTokens(userTokensResponse.data);
+      }
+
+      // Load token history
+      const historyResponse = await tokenService.getTokenHistory('user_123');
+      if (historyResponse.success && historyResponse.data) {
+        setTokenHistory(historyResponse.data);
+      }
+    } catch (err) {
+      setError('Veriler yüklenirken hata oluştu');
+    } finally {
+      setLoading(false);
     }
-  ];
-
-  const purchaseHistory = [
-    {
-      id: '1',
-      packageName: 'Pro',
-      tokens: 100,
-      price: 149,
-      date: '2024-01-10',
-      status: 'completed'
-    },
-    {
-      id: '2',
-      packageName: 'Starter',
-      tokens: 25,
-      price: 49,
-      date: '2024-01-05',
-      status: 'completed'
-    }
-  ];
-
-  const handlePurchase = (packageId: string) => {
-    setSelectedPackage(packageId);
-    // Here you would integrate with payment system
-    alert(`${packageId} paketi satın alma işlemi başlatıldı!`);
   };
+
+  const handlePurchasePackage = async (packageId: string) => {
+    setLoading(true);
+    setError('');
+    setSelectedPackage(packageId);
+
+    try {
+      // Create payment intent
+      const paymentResponse = await tokenService.createPaymentIntent(packageId, 'user_123');
+      
+      if (paymentResponse.success && paymentResponse.data) {
+        // In production, integrate with Stripe Elements for actual payment
+        // For demo, simulate successful payment
+        setTimeout(async () => {
+          const purchaseResponse = await tokenService.processTokenPurchase(
+            paymentResponse.data!.id,
+            'user_123',
+            packageId
+          );
+          
+          if (purchaseResponse.success) {
+            // Reload user tokens
+            const userTokensResponse = await tokenService.getUserTokens('user_123');
+            if (userTokensResponse.success && userTokensResponse.data) {
+              setUserTokens(userTokensResponse.data);
+            }
+            
+            // Reload history
+            const historyResponse = await tokenService.getTokenHistory('user_123');
+            if (historyResponse.success && historyResponse.data) {
+              setTokenHistory(historyResponse.data);
+            }
+
+            alert(`Paket başarıyla satın alındı! ${purchaseResponse.data?.tokensAdded} jeton hesabınıza eklendi.`);
+          } else {
+            setError(purchaseResponse.error || 'Satın alma işlemi başarısız');
+          }
+          
+          setLoading(false);
+          setSelectedPackage(null);
+        }, 2000); // Simulate processing time
+      } else {
+        setError(paymentResponse.error || 'Ödeme başlatılamadı');
+        setLoading(false);
+        setSelectedPackage(null);
+      }
+    } catch (err) {
+      setError('Beklenmeyen bir hata oluştu');
+      setLoading(false);
+      setSelectedPackage(null);
+    }
+  };
+
+  const getTransactionIcon = (type: string) => {
+    switch (type) {
+      case 'purchase': return '💳';
+      case 'usage': return '📊';
+      case 'refund': return '↩️';
+      case 'bonus': return '🎁';
+      default: return '📝';
+    }
+  };
+
+  const getTransactionTypeText = (type: string) => {
+    switch (type) {
+      case 'purchase': return 'Satın Alma';
+      case 'usage': return 'Kullanım';
+      case 'refund': return 'İade';
+      case 'bonus': return 'Bonus';
+      default: return type;
+    }
+  };
+
+  if (loading && !packages.length) {
+    return (
+      <DashboardLayout>
+        <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+          <div className="animate-pulse text-gray-500">Jeton bilgileri yükleniyor...</div>
+        </div>
+      </DashboardLayout>
+    );
+  }
 
   return (
     <DashboardLayout>
       <div className="min-h-screen bg-gray-50 text-gray-600">
         <div className="max-w-6xl mx-auto space-y-8">
-          {/* Page Header */}
+          {/* Header */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-center"
           >
-            <h1 className="text-3xl font-bold text-gray-900 mb-4">Jeton Satın Al</h1>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Sera analizleriniz için jeton satın alın. Her analiz 1 jeton harcar ve 
-              jetonlarınız süresiz geçerlidir.
-            </p>
+            <h1 className="text-3xl font-bold text-gray-900">Jeton Satın Al</h1>
+            <p className="text-gray-600 mt-1">Analiz paketleri satın alın ve jetonlarınızı yönetin</p>
           </motion.div>
 
-          {/* Current Tokens */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="bg-white rounded-2xl shadow-sm border border-gray-200 p-6"
-          >
-            <div className="text-center">
-              <h2 className="text-xl font-semibold text-gray-900 mb-2">Mevcut Bakiyeniz</h2>
-              <div className="text-4xl font-bold text-gray-900 mb-2">{userTokens}</div>
-              <p className="text-gray-600">Kullanılabilir jeton</p>
+          {/* Current Balance */}
+          {userTokens && (
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="bg-gradient-to-r from-gray-600 to-gray-700 rounded-2xl text-white p-6"
+            >
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+                <div className="text-center">
+                  <p className="text-3xl font-bold">{userTokens.remainingTokens}</p>
+                  <p className="text-gray-300">Kalan Jeton</p>
+                </div>
+                <div className="text-center">
+                  <p className="text-3xl font-bold">{userTokens.usedTokens}</p>
+                  <p className="text-gray-300">Kullanılan</p>
+                </div>
+                <div className="text-center">
+                  <p className="text-3xl font-bold">{userTokens.freeTokens}</p>
+                  <p className="text-gray-300">Ücretsiz</p>
+                </div>
+                <div className="text-center">
+                  <p className="text-3xl font-bold">{userTokens.purchasedTokens}</p>
+                  <p className="text-gray-300">Satın Alınan</p>
+                </div>
+              </div>
+            </motion.div>
+          )}
+
+          {/* Error Message */}
+          {error && (
+            <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+              <p className="text-red-600">{error}</p>
             </div>
-          </motion.div>
+          )}
 
           {/* Token Packages */}
-          <div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-center mb-8"
-            >
-              <h2 className="text-2xl font-bold text-gray-900 mb-2">Jeton Paketleri</h2>
-              <p className="text-gray-600">İhtiyacınıza uygun paketi seçin</p>
-            </motion.div>
-
-            <div className="grid md:grid-cols-3 gap-6">
-              {tokenPackages.map((pkg, index) => (
-                <motion.div
-                  key={pkg.id}
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.3 + index * 0.1 }}
-                  className={`bg-white rounded-2xl shadow-sm border-2 transition-colors ${
-                    pkg.popular 
-                      ? 'border-gray-600' 
-                      : 'border-gray-200'
-                  } relative`}
-                >
-                  {pkg.popular && (
-                    <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                      <span className="bg-gray-600 text-white px-3 py-1 rounded-full text-sm font-medium">
-                        En Popüler
-                      </span>
-                    </div>
-                  )}
-                  
-                  <div className="p-6">
-                    <div className="text-center mb-6">
-                      <h3 className="text-xl font-bold text-gray-900 mb-2">{pkg.name}</h3>
-                      <div className="text-3xl font-bold text-gray-900 mb-1">₺{pkg.price}</div>
-                      <p className="text-gray-600">{pkg.tokens} jeton</p>
-                    </div>
-
-                    <ul className="space-y-3 mb-6">
-                      {pkg.features.map((feature, idx) => (
-                        <li key={idx} className="flex items-center text-sm text-gray-600">
-                          <svg className="w-4 h-4 text-green-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                          </svg>
-                          {feature}
-                        </li>
-                      ))}
-                    </ul>
-
-                    <button
-                      onClick={() => handlePurchase(pkg.id)}
-                      className={`w-full py-3 px-6 rounded-xl font-semibold transition-colors ${
-                        pkg.popular
-                          ? 'bg-gray-600 hover:bg-gray-700 text-white'
-                          : 'bg-gray-100 hover:bg-gray-200 text-gray-900'
-                      }`}
-                    >
-                      Satın Al
-                    </button>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-
-          {/* Purchase History */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.7 }}
-            className="bg-white rounded-2xl shadow-sm border border-gray-200"
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
           >
-            <div className="p-6 border-b border-gray-200">
-              <h2 className="text-lg font-semibold text-gray-900">Satın Alma Geçmişi</h2>
-            </div>
-            <div className="p-6">
-              {purchaseHistory.length === 0 ? (
-                <div className="text-center py-8">
-                  <div className="text-gray-400 mb-4">
-                    <svg className="w-12 h-12 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
-                    </svg>
+            {packages.map((pkg, index) => (
+              <div
+                key={pkg.id}
+                className={`relative bg-white rounded-2xl shadow-sm border-2 p-6 transition-all ${
+                  pkg.popular 
+                    ? 'border-gray-600 shadow-lg transform scale-105' 
+                    : 'border-gray-200 hover:border-gray-300'
+                }`}
+              >
+                {pkg.popular && (
+                  <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
+                    <span className="bg-gray-600 text-white px-3 py-1 rounded-full text-sm font-medium">
+                      En Popüler
+                    </span>
                   </div>
-                  <p className="text-gray-600">Henüz jeton satın almamışsınız</p>
+                )}
+
+                <div className="text-center mb-4">
+                  <h3 className="text-xl font-semibold text-gray-900 mb-2">{pkg.name}</h3>
+                  <p className="text-gray-600 text-sm mb-4">{pkg.description}</p>
+                  
+                  <div className="mb-4">
+                    <span className="text-4xl font-bold text-gray-900">₺{pkg.price}</span>
+                    <div className="text-sm text-gray-600 mt-1">
+                      {pkg.tokenCount} jeton
+                    </div>
+                    {pkg.discountPercentage > 0 && (
+                      <div className="text-sm text-green-600 font-medium">
+                        %{pkg.discountPercentage} indirim
+                      </div>
+                    )}
+                  </div>
+
+                  <div className="text-center text-sm text-gray-600 mb-4">
+                    ₺{pkg.pricePerToken.toFixed(2)} / jeton
+                  </div>
                 </div>
-              ) : (
-                <div className="space-y-4">
-                  {purchaseHistory.map((purchase) => (
-                    <div key={purchase.id} className="flex items-center justify-between p-4 border border-gray-200 rounded-xl">
-                      <div>
-                        <h3 className="font-medium text-gray-900">{purchase.packageName} Paketi</h3>
-                        <p className="text-sm text-gray-600">
-                          {purchase.tokens} jeton • {new Date(purchase.date).toLocaleDateString('tr-TR')}
-                        </p>
-                      </div>
-                      <div className="text-right">
-                        <p className="font-semibold text-gray-900">₺{purchase.price}</p>
-                        <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
-                          Tamamlandı
-                        </span>
-                      </div>
+
+                <div className="space-y-2 mb-6">
+                  {pkg.features.map((feature, i) => (
+                    <div key={i} className="flex items-center text-sm">
+                      <span className="text-green-500 mr-2">✓</span>
+                      <span className="text-gray-700">{feature}</span>
                     </div>
                   ))}
                 </div>
-              )}
-            </div>
+
+                <button
+                  onClick={() => handlePurchasePackage(pkg.id)}
+                  disabled={loading && selectedPackage === pkg.id}
+                  className={`w-full py-3 rounded-lg font-medium transition-colors ${
+                    pkg.popular
+                      ? 'bg-gray-600 hover:bg-gray-700 text-white'
+                      : 'bg-gray-100 hover:bg-gray-200 text-gray-900'
+                  } disabled:opacity-50 disabled:cursor-not-allowed`}
+                >
+                  {loading && selectedPackage === pkg.id ? (
+                    <div className="flex items-center justify-center">
+                      <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-current" fill="none" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" className="opacity-25"></circle>
+                        <path fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" className="opacity-75"></path>
+                      </svg>
+                      İşleniyor...
+                    </div>
+                  ) : (
+                    'Satın Al'
+                  )}
+                </button>
+
+                {tokenService.calculateSavings(pkg.id) > 0 && (
+                  <div className="mt-2 text-center text-sm text-green-600">
+                    ₺{tokenService.calculateSavings(pkg.id).toFixed(2)} tasarruf
+                  </div>
+                )}
+              </div>
+            ))}
           </motion.div>
 
-          {/* Payment Methods */}
+          {/* Token Usage Info */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.8 }}
-            className="bg-white rounded-2xl shadow-sm border border-gray-200"
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="bg-white rounded-2xl shadow-sm border border-gray-200 p-6"
           >
-            <div className="p-6 border-b border-gray-200">
-              <h2 className="text-lg font-semibold text-gray-900">Ödeme Yöntemleri</h2>
+            <h2 className="text-xl font-semibold text-gray-900 mb-6">Jeton Kullanımı</h2>
+            
+            <div className="grid grid-cols-1 md:grid-cols-5 gap-6">
+              <div className="text-center">
+                <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-2">
+                  <span className="text-blue-600 text-xl">📊</span>
+                </div>
+                <h3 className="font-medium text-gray-900">ROI Analizi</h3>
+                <p className="text-sm text-gray-600 mt-1">1 jeton</p>
+              </div>
+              
+              <div className="text-center">
+                <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-2">
+                  <span className="text-green-600 text-xl">🌤️</span>
+                </div>
+                <h3 className="font-medium text-gray-900">İklim Analizi</h3>
+                <p className="text-sm text-gray-600 mt-1">1 jeton</p>
+              </div>
+              
+              <div className="text-center">
+                <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-2">
+                  <span className="text-purple-600 text-xl">📈</span>
+                </div>
+                <h3 className="font-medium text-gray-900">Pazar Analizi</h3>
+                <p className="text-sm text-gray-600 mt-1">1 jeton</p>
+              </div>
+              
+              <div className="text-center">
+                <div className="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-2">
+                  <span className="text-yellow-600 text-xl">🔧</span>
+                </div>
+                <h3 className="font-medium text-gray-900">Ekipman Listesi</h3>
+                <p className="text-sm text-gray-600 mt-1">1 jeton</p>
+              </div>
+              
+              <div className="text-center">
+                <div className="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-2">
+                  <span className="text-red-600 text-xl">📐</span>
+                </div>
+                <h3 className="font-medium text-gray-900">Layout Planlama</h3>
+                <p className="text-sm text-gray-600 mt-1">1 jeton</p>
+              </div>
             </div>
-            <div className="p-6">
-              <div className="grid md:grid-cols-3 gap-6">
-                <div className="text-center">
-                  <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-3">
-                    <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
-                    </svg>
+
+            <div className="mt-6 p-4 bg-gray-50 rounded-lg">
+              <h3 className="font-medium text-gray-900 mb-2">💬 AI Sohbet</h3>
+              <p className="text-sm text-gray-600">
+                AI sohbet özelliği <strong>sınırsız</strong> kullanım sunar. 
+                Yapılan analizler hakkında istediğiniz kadar soru sorabilirsiniz.
+              </p>
+            </div>
+          </motion.div>
+
+          {/* Token History */}
+          {tokenHistory.length > 0 && (
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="bg-white rounded-2xl shadow-sm border border-gray-200 p-6"
+            >
+              <h2 className="text-xl font-semibold text-gray-900 mb-6">Jeton Geçmişi</h2>
+              
+              <div className="space-y-4">
+                {tokenHistory.map((transaction) => (
+                  <div key={transaction.id} className="flex items-center justify-between p-4 border border-gray-200 rounded-lg">
+                    <div className="flex items-center space-x-3">
+                      <span className="text-2xl">{getTransactionIcon(transaction.type)}</span>
+                      <div>
+                        <p className="font-medium text-gray-900">{transaction.description}</p>
+                        <p className="text-sm text-gray-600">
+                          {transaction.timestamp.toLocaleDateString('tr-TR', {
+                            year: 'numeric',
+                            month: 'long',
+                            day: 'numeric',
+                            hour: '2-digit',
+                            minute: '2-digit'
+                          })}
+                        </p>
+                      </div>
+                    </div>
+                    
+                    <div className="text-right">
+                      <p className={`font-medium ${
+                        transaction.amount > 0 ? 'text-green-600' : 'text-red-600'
+                      }`}>
+                        {transaction.amount > 0 ? '+' : ''}{transaction.amount} jeton
+                      </p>
+                      <p className="text-sm text-gray-600">
+                        {getTransactionTypeText(transaction.type)}
+                      </p>
+                    </div>
                   </div>
-                  <h3 className="font-medium text-gray-900 mb-1">Kredi Kartı</h3>
-                  <p className="text-sm text-gray-600">Visa, Mastercard kabul edilir</p>
-                </div>
-                <div className="text-center">
-                  <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-3">
-                    <svg className="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" />
-                    </svg>
-                  </div>
-                  <h3 className="font-medium text-gray-900 mb-1">Havale/EFT</h3>
-                  <p className="text-sm text-gray-600">Banka transferi ile ödeme</p>
-                </div>
-                <div className="text-center">
-                  <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mx-auto mb-3">
-                    <svg className="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                    </svg>
-                  </div>
-                  <h3 className="font-medium text-gray-900 mb-1">Güvenli Ödeme</h3>
-                  <p className="text-sm text-gray-600">SSL şifreli güvenli altyapı</p>
-                </div>
+                ))}
+              </div>
+              
+              <div className="mt-6 text-center">
+                <button className="text-gray-600 hover:text-gray-900 text-sm font-medium">
+                  Tüm geçmişi görüntüle →
+                </button>
+              </div>
+            </motion.div>
+          )}
+
+          {/* FAQ */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
+            className="bg-white rounded-2xl shadow-sm border border-gray-200 p-6"
+          >
+            <h2 className="text-xl font-semibold text-gray-900 mb-6">Sık Sorulan Sorular</h2>
+            
+            <div className="space-y-4">
+              <div>
+                <h3 className="font-medium text-gray-900 mb-2">Jetonlar ne kadar süre geçerli?</h3>
+                <p className="text-gray-600 text-sm">
+                  Jetonlar satın alma tarihinden itibaren paket türüne göre 30-90 gün geçerlidir. 
+                  Ücretsiz jetonlar sınırsız geçerliliğe sahiptir.
+                </p>
+              </div>
+              
+              <div>
+                <h3 className="font-medium text-gray-900 mb-2">Kullanılmayan jetonlar iade edilir mi?</h3>
+                <p className="text-gray-600 text-sm">
+                  Kullanılmayan jetonlar 14 gün içinde tam iade garantisi ile iade edilebilir.
+                  Bu süre sonunda jetonlar hesabınızda kalır.
+                </p>
+              </div>
+              
+              <div>
+                <h3 className="font-medium text-gray-900 mb-2">Fatura alabilir miyim?</h3>
+                <p className="text-gray-600 text-sm">
+                  Evet, tüm satın alımlarınız için fatura düzenlenebilir. 
+                  Satın alma sırasında fatura bilgilerinizi girebilirsiniz.
+                </p>
               </div>
             </div>
           </motion.div>
