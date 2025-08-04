@@ -75,6 +75,31 @@ export default function LoginPage() {
     }
   };
 
+  // Demo login function for development
+  const handleDemoLogin = (userType: 'demo' | 'admin') => {
+    setLoading(true);
+    setMessage('');
+
+    // Create mock user session in localStorage
+    const mockUser = {
+      id: userType === 'admin' ? 'admin-123' : 'demo-456',
+      email: userType === 'admin' ? 'admin@seragpt.com' : 'demo@seragpt.com',
+      user_metadata: {
+        full_name: userType === 'admin' ? 'Admin Kullanıcı' : 'Demo Kullanıcı',
+        role: userType
+      }
+    };
+
+    // Store mock session
+    localStorage.setItem('mockUserSession', JSON.stringify(mockUser));
+
+    setMessage(`${userType === 'admin' ? 'Admin' : 'Demo'} kullanıcı olarak giriş yapıldı`);
+
+    setTimeout(() => {
+      router.push('/dashboard');
+    }, 1000);
+  };
+
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8">
