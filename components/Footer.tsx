@@ -23,12 +23,12 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <a href="/dashboard" className="text-gray-300 hover:text-white transition-colors">
+                <a href="/dashboard" className="text-gray-600 hover:text-gray-900 transition-colors">
                   Kullanıcı Paneli
                 </a>
               </li>
               <li>
-                <a href="/blog" className="text-gray-300 hover:text-white transition-colors">
+                <a href="/blog" className="text-gray-600 hover:text-gray-900 transition-colors">
                   Blog
                 </a>
               </li>
@@ -57,12 +57,12 @@ export default function Footer() {
             <h3 className="text-lg font-semibold mb-6 text-gray-900">YASAL</h3>
             <ul className="space-y-3">
               <li>
-                <a href="/privacy" className="text-gray-300 hover:text-white transition-colors">
+                <a href="/privacy" className="text-gray-600 hover:text-gray-900 transition-colors">
                   Gizlilik Politikası
                 </a>
               </li>
               <li>
-                <a href="/terms" className="text-gray-300 hover:text-white transition-colors">
+                <a href="/terms" className="text-gray-600 hover:text-gray-900 transition-colors">
                   Kullanım Koşulları
                 </a>
               </li>
@@ -121,7 +121,7 @@ export default function Footer() {
                 alt="SeraGPT Logo"
                 className="h-6 w-auto"
               />
-              <span className="text-gray-600 text-sm">
+              <span className="text-gray-600 text-sm mt-0.5 ml-3">
                 © 2024 SeraGPT. Tüm hakları saklıdır.
               </span>
             </div>
