@@ -4,8 +4,7 @@ import { useState, useEffect } from 'react';
 import { supabase, isSupabaseConfigured } from '@/lib/supabase';
 import { useRouter } from 'next/navigation';
 
-// Force dynamic rendering
-export const dynamic = 'force-dynamic';
+// Static export compatible
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
