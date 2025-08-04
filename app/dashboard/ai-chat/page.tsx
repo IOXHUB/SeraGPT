@@ -1,206 +1,336 @@
-'use client'
+'use client';
 
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef, useEffect } from 'react';
+import { motion } from 'framer-motion';
 import DashboardLayout from '@/components/dashboard/DashboardLayout';
-import { ChatMessage } from '@/components/ChatMessage'
-import { ChatInput } from '@/components/ChatInput'
-import { TokenCounter } from '@/components/TokenCounter'
-import { LanguageToggle } from '@/components/LanguageToggle'
-import { EmailModal } from '@/components/EmailModal'
-import { PDFPreview } from '@/components/PDFPreview'
 
 // Force dynamic rendering for dashboard pages
 export const dynamic = 'force-dynamic';
 
 interface Message {
-  id: string
-  content: string
-  role: 'user' | 'assistant'
-  timestamp: Date
-  hasPdf?: boolean
+  id: string;
+  content: string;
+  role: 'user' | 'assistant';
+  timestamp: Date;
+  analysisType?: string;
+}
+
+interface UserAnalysis {
+  id: string;
+  type: string;
+  title: string;
+  date: string;
+  status: 'completed' | 'processing';
+  summary: string;
 }
 
 export default function DashboardAIChatPage() {
-  const [messages, setMessages] = useState<Message[]>([])
-  const [isLoading, setIsLoading] = useState(false)
-  const [tokens, setTokens] = useState(10)
-  const [language, setLanguage] = useState<'tr' | 'en'>('tr')
-  const [showEmailModal, setShowEmailModal] = useState(false)
-  const [showPdfPreview, setShowPdfPreview] = useState(false)
-  const [pendingPdfContent, setPendingPdfContent] = useState<string>('')
-  const messagesEndRef = useRef<HTMLDivElement>(null)
+  const [messages, setMessages] = useState<Message[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [inputValue, setInputValue] = useState('');
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  // Mock user analyses - this would come from API in real implementation
+  const userAnalyses: UserAnalysis[] = [
+    {
+      id: '1',
+      type: 'ROI Simülasyonu',
+      title: 'Antalya Domates Serası ROI Analizi',
+      date: '2 gün önce',
+      status: 'completed',
+      summary: 'Yatırım geri dönüş süresi: 2.8 yıl, ROI: %34.2'
+    },
+    {
+      id: '2',
+      type: 'İklim Analizi',
+      title: 'İzmir Salatalık Üretimi İklim Uygunluğu',
+      date: '5 gün önce',
+      status: 'completed',
+      summary: 'Uygunluk skoru: %87, Düşük risk seviyesi'
+    },
+    {
+      id: '3',
+      type: 'Ekipman Listesi',
+      title: 'Bursa Biber Serası Ekipman Önerileri',
+      date: '1 hafta önce',
+      status: 'completed',
+      summary: 'Toplam maliyet: ₺285,000, 23 ekipman önerisi'
+    }
+  ];
 
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
-  }
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
 
   useEffect(() => {
-    scrollToBottom()
-  }, [messages])
+    scrollToBottom();
+  }, [messages]);
 
-  const handleSendMessage = async (content: string) => {
-    if (!content.trim() || tokens <= 0) return
+  // Welcome message
+  useEffect(() => {
+    if (messages.length === 0) {
+      const welcomeMessage: Message = {
+        id: 'welcome',
+        content: `Merhaba! Ben SeraGPT AI asistanınızım. 
+
+Önceden yaptığınız analizler ve raporlar hakkında sorularınızı yanıtlayabilirim:
+
+📊 **Mevcut Analizleriniz:**
+${userAnalyses.map(analysis => `• ${analysis.title} (${analysis.summary})`).join('\n')}
+
+**Örnek sorular:**
+• "Antalya domates projemde maliyetleri nasıl optimize edebilirim?"
+• "İzmir salatalık serası için risk faktörleri neler?"
+• "Bursa biber serası ekipmanlarından hangilerini önceleyebilirim?"
+
+Bu sohbet tamamen ücretsizdir. Analizleriniz hakkında istediğiniz kadar soru sorabilirsiniz! 🌱`,
+        role: 'assistant',
+        timestamp: new Date()
+      };
+      setMessages([welcomeMessage]);
+    }
+  }, []);
+
+  const handleSendMessage = async () => {
+    if (!inputValue.trim()) return;
 
     const userMessage: Message = {
       id: Date.now().toString(),
-      content,
+      content: inputValue,
       role: 'user',
       timestamp: new Date()
-    }
+    };
 
-    setMessages(prev => [...prev, userMessage])
-    setIsLoading(true)
-    setTokens(prev => prev - 1)
+    setMessages(prev => [...prev, userMessage]);
+    setInputValue('');
+    setIsLoading(true);
 
-    // Simulate AI response
+    // Simulate AI response with context about user's analyses
     setTimeout(() => {
+      const relevantAnalysis = userAnalyses.find(analysis => 
+        inputValue.toLowerCase().includes(analysis.type.toLowerCase()) ||
+        inputValue.toLowerCase().includes('antalya') ||
+        inputValue.toLowerCase().includes('domates') ||
+        inputValue.toLowerCase().includes('roi')
+      );
+
+      let response = '';
+      
+      if (relevantAnalysis) {
+        response = `${relevantAnalysis.title} analizinize göre:
+
+**Mevcut Durum:**
+${relevantAnalysis.summary}
+
+**AI Önerisi:**
+Bu analiz sonuçlarına göre, projenizdeki temel parametreler oldukça uygun görünüyor. Ancak şu noktalara dikkat etmenizi öneriyorum:
+
+1. **Maliyet Optimizasyonu:** İklim kontrol sistemlerinde enerji verimliliği
+2. **Risk Yönetimi:** Mevsimsel fiyat dalgalanmalarına karşı çeşitlendirme
+3. **Verimlilik:** Sulama sisteminin optimizasyonu
+
+Daha detaylı bir analiz için hangi konuda derinlemesine bilgi almak istersiniz?`;
+      } else {
+        response = `Sorununuzu anladım. Mevcut analizlerinize dayanarak genel önerilerim:
+
+**Mevcut Projeleriniz:**
+${userAnalyses.map(a => `• ${a.title}: ${a.summary}`).join('\n')}
+
+Bu projeler ışığında, hangi spesifik konuda yardıma ihtiyacınız var? Örneğin:
+- Maliyet optimizasyonu
+- Risk analizi
+- Ekipman seçimi
+- Pazarlama stratejisi
+
+Size daha hedefe yönelik öneriler verebilirim.`;
+      }
+
       const assistantMessage: Message = {
         id: (Date.now() + 1).toString(),
-        content: language === 'tr' 
-          ? 'Bu, SeraGPT\'den örnek bir yanıttır. Gerçek AI entegrasyonu için lütfen bir AI servisi bağlayın. Bu raporu PDF olarak görüntülemek ister misiniz?'
-          : 'This is a sample response from SeraGPT. Please connect an AI service for real AI integration. Would you like to view this report as PDF?',
+        content: response,
         role: 'assistant',
         timestamp: new Date(),
-        hasPdf: true
-      }
-      setMessages(prev => [...prev, assistantMessage])
-      setIsLoading(false)
-    }, 2000)
-  }
+        analysisType: relevantAnalysis?.type
+      };
 
-  const handlePdfRequest = (content: string) => {
-    setPendingPdfContent(content)
-    setShowEmailModal(true)
-  }
+      setMessages(prev => [...prev, assistantMessage]);
+      setIsLoading(false);
+    }, 1500);
+  };
 
-  const handleEmailSubmit = (email: string) => {
-    console.log('Email collected:', email)
-    // Here you would send to CRM
-    setShowEmailModal(false)
-    setShowPdfPreview(true)
-  }
-
-  const translations = {
-    tr: {
-      title: 'SeraGPT AI Asistan',
-      subtitle: 'Yapay Zeka Destekli Sera Analizi',
-      placeholder: 'Sera projeleriniz hakkında soru sorun...',
-      send: 'Gönder',
-      tokensLeft: 'Kalan Token',
-      newChat: 'Yeni Sohbet'
-    },
-    en: {
-      title: 'SeraGPT AI Assistant',
-      subtitle: 'AI-Powered Greenhouse Analysis',
-      placeholder: 'Ask questions about your greenhouse projects...',
-      send: 'Send',
-      tokensLeft: 'Tokens Left',
-      newChat: 'New Chat'
+  const handleKeyPress = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      handleSendMessage();
     }
-  }
+  };
 
-  const t = translations[language]
+  const startNewChat = () => {
+    setMessages([]);
+    // Re-trigger welcome message
+    setTimeout(() => {
+      const welcomeMessage: Message = {
+        id: 'welcome-new',
+        content: `Yeni sohbet başlatıldı! 
+
+Analizleriniz ve raporlarınız hakkında yeni sorularınızı sorabilirsiniz. Hangi proje üzerinde konuşmak istersiniz?
+
+📊 **Mevcut Analizleriniz:**
+${userAnalyses.map(analysis => `• ${analysis.title}`).join('\n')}`,
+        role: 'assistant',
+        timestamp: new Date()
+      };
+      setMessages([welcomeMessage]);
+    }, 100);
+  };
 
   return (
     <DashboardLayout>
-      <div className="h-[calc(100vh-200px)] flex flex-col bg-white rounded-lg shadow-sm border border-gray-200">
-        {/* Chat Header */}
-        <div className="flex items-center justify-between p-4 border-b border-gray-200">
-          <div>
-            <h1 className="text-xl font-bold text-gray-900">{t.title}</h1>
-            <p className="text-sm text-gray-600">{t.subtitle}</p>
-          </div>
-          <div className="flex items-center space-x-4">
-            <TokenCounter tokens={tokens} label={t.tokensLeft} />
-            <LanguageToggle 
-              language={language} 
-              onToggle={() => setLanguage(prev => prev === 'tr' ? 'en' : 'tr')} 
-            />
-            <button
-              onClick={() => setMessages([])}
-              className="px-3 py-1.5 text-sm bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
-            >
-              {t.newChat}
-            </button>
-          </div>
-        </div>
-
-        {/* Messages */}
-        <div className="flex-1 overflow-y-auto p-4 space-y-4">
-          {messages.length === 0 ? (
-            <div className="text-center text-gray-500 mt-20">
-              <div className="mb-4">
-                <div className="w-16 h-16 bg-green-500 rounded-full mx-auto mb-4 flex items-center justify-center">
-                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-                  </svg>
+      <div className="min-h-screen bg-gray-50 text-gray-600">
+        <div className="max-w-4xl mx-auto">
+          <div className="bg-white rounded-2xl shadow-sm border border-gray-200 h-[calc(100vh-150px)] flex flex-col">
+            {/* Chat Header */}
+            <div className="flex items-center justify-between p-6 border-b border-gray-200">
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6 }}
+              >
+                <h1 className="text-2xl font-bold text-gray-900">SeraGPT AI Asistan</h1>
+                <p className="text-sm text-gray-600">Analizleriniz ve raporlarınız hakkında konuşun</p>
+              </motion.div>
+              <div className="flex items-center space-x-4">
+                <div className="bg-green-50 px-3 py-1 rounded-full">
+                  <span className="text-green-700 text-sm font-medium">Ücretsiz</span>
                 </div>
+                <button
+                  onClick={startNewChat}
+                  className="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors"
+                >
+                  Yeni Sohbet
+                </button>
               </div>
-              <h3 className="text-lg font-medium text-gray-900 mb-2">
-                {language === 'tr' ? 'SeraGPT AI Asistan' : 'SeraGPT AI Assistant'}
-              </h3>
-              <p className="text-sm mb-4">
-                {language === 'tr' 
-                  ? 'Sera projeleriniz ve analizleriniz hakkında sorularınızı sorun'
-                  : 'Ask questions about your greenhouse projects and analyses'
-                }
+            </div>
+
+            {/* Messages */}
+            <div className="flex-1 overflow-y-auto p-6 space-y-6">
+              {messages.map((message) => (
+                <motion.div
+                  key={message.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5 }}
+                  className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
+                >
+                  <div className={`max-w-3xl ${
+                    message.role === 'user'
+                      ? 'bg-gray-600 text-white'
+                      : 'bg-gray-50 text-gray-900'
+                  } rounded-2xl px-6 py-4 shadow-sm`}>
+                    {message.role === 'assistant' && (
+                      <div className="flex items-center space-x-2 mb-3">
+                        <div className="w-6 h-6 bg-gray-600 rounded-full flex items-center justify-center">
+                          <span className="text-white text-xs font-bold">AI</span>
+                        </div>
+                        <span className="text-sm font-medium text-gray-600">SeraGPT</span>
+                      </div>
+                    )}
+                    <div className="whitespace-pre-wrap text-sm leading-relaxed">
+                      {message.content}
+                    </div>
+                    {message.analysisType && (
+                      <div className="mt-3 pt-3 border-t border-gray-200">
+                        <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                          {message.analysisType} referansı
+                        </span>
+                      </div>
+                    )}
+                  </div>
+                </motion.div>
+              ))}
+              
+              {isLoading && (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  className="flex justify-start"
+                >
+                  <div className="bg-gray-50 rounded-2xl px-6 py-4 shadow-sm">
+                    <div className="flex items-center space-x-2 mb-2">
+                      <div className="w-6 h-6 bg-gray-600 rounded-full flex items-center justify-center">
+                        <span className="text-white text-xs font-bold">AI</span>
+                      </div>
+                      <span className="text-sm font-medium text-gray-600">SeraGPT</span>
+                    </div>
+                    <div className="flex space-x-1">
+                      <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
+                      <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
+                      <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+                    </div>
+                  </div>
+                </motion.div>
+              )}
+              <div ref={messagesEndRef} />
+            </div>
+
+            {/* Input */}
+            <div className="border-t border-gray-200 p-6">
+              <div className="flex space-x-4">
+                <div className="flex-1">
+                  <textarea
+                    value={inputValue}
+                    onChange={(e) => setInputValue(e.target.value)}
+                    onKeyPress={handleKeyPress}
+                    placeholder="Analizleriniz hakkında sorunuzu yazın... (örn: 'Antalya domates projemde ROI nasıl artırırım?')"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-gray-500 focus:border-transparent resize-none"
+                    rows={3}
+                    disabled={isLoading}
+                  />
+                </div>
+                <button
+                  onClick={handleSendMessage}
+                  disabled={!inputValue.trim() || isLoading}
+                  className="bg-gray-600 hover:bg-gray-700 disabled:bg-gray-300 text-white px-6 py-3 rounded-xl font-medium transition-colors self-end"
+                >
+                  Gönder
+                </button>
+              </div>
+              <p className="text-xs text-gray-500 mt-2">
+                Bu sohbet tamamen ücretsizdir. İstediğiniz kadar soru sorabilirsiniz.
               </p>
-              <div className="text-xs text-gray-400 space-y-1">
-                <p>🌱 "Antalya'da domates serası için iklim analizi yap"</p>
-                <p>📊 "Son projelerimde ROI hesabı nasıl?"</p>
-                <p>💡 "Bu sera için ekipman önerisi ver"</p>
-              </div>
             </div>
-          ) : (
-            messages.map((message) => (
-              <ChatMessage 
-                key={message.id} 
-                message={message} 
-                onPdfRequest={handlePdfRequest}
-                language={language}
-              />
-            ))
-          )}
-          {isLoading && (
-            <div className="flex justify-start">
-              <div className="bg-gray-50 p-4 rounded-lg shadow-sm max-w-xs">
-                <div className="flex space-x-1">
-                  <div className="w-2 h-2 bg-green-500 rounded-full animate-bounce"></div>
-                  <div className="w-2 h-2 bg-green-500 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
-                  <div className="w-2 h-2 bg-green-500 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
-                </div>
-              </div>
+          </div>
+
+          {/* Analysis Quick Access */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="mt-6 bg-white rounded-2xl shadow-sm border border-gray-200 p-6"
+          >
+            <h3 className="text-lg font-semibold text-gray-900 mb-4">Analizlerinize Hızlı Erişim</h3>
+            <div className="grid md:grid-cols-3 gap-4">
+              {userAnalyses.map((analysis) => (
+                <button
+                  key={analysis.id}
+                  onClick={() => setInputValue(`${analysis.title} hakkında detay ver`)}
+                  className="text-left p-4 bg-gray-50 hover:bg-gray-100 rounded-xl transition-colors"
+                >
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-sm font-medium text-gray-900">{analysis.type}</span>
+                    <span className={`w-2 h-2 rounded-full ${
+                      analysis.status === 'completed' ? 'bg-green-500' : 'bg-yellow-500'
+                    }`}></span>
+                  </div>
+                  <h4 className="font-medium text-gray-900 mb-1 text-sm">{analysis.title}</h4>
+                  <p className="text-xs text-gray-600 mb-2">{analysis.summary}</p>
+                  <p className="text-xs text-gray-500">{analysis.date}</p>
+                </button>
+              ))}
             </div>
-          )}
-          <div ref={messagesEndRef} />
+          </motion.div>
         </div>
-
-        {/* Input */}
-        <div className="border-t border-gray-200">
-          <ChatInput 
-            onSend={handleSendMessage}
-            disabled={tokens <= 0}
-            placeholder={t.placeholder}
-            sendText={t.send}
-            language={language}
-          />
-        </div>
-
-        {/* Modals */}
-        <EmailModal 
-          isOpen={showEmailModal}
-          onClose={() => setShowEmailModal(false)}
-          onSubmit={handleEmailSubmit}
-          language={language}
-        />
-
-        <PDFPreview 
-          isOpen={showPdfPreview}
-          onClose={() => setShowPdfPreview(false)}
-          content={pendingPdfContent}
-          language={language}
-        />
       </div>
     </DashboardLayout>
-  )
+  );
 }
