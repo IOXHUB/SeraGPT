@@ -329,13 +329,16 @@ export default function UserjotCloneSection() {
             className="text-center mb-16"
           >
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              Yatırım sürecinizi yapay zekâ destekli<br />
-              kullanıcı panelinden yönetin
+              <span>
+                <p>Size Özel Kontrol Paneli</p>
+              </span>
             </h2>
             <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
               Panelinizden tüm raporlarınıza, danışmanlık taleplerinize ve teknik teklif süreçlerinize anlık erişim sağlayın.
               <span className="font-semibold text-gray-900"> Yapay zekâ analizleri, mühendislik değerlendirmeleri ve saha hizmetleri</span>
-              artık tek bir merkezden yönetilebilir.
+              <span>
+                <p> artık tek bir merkezden yönetilebilir.</p>
+              </span>
             </p>
           </motion.div>
 
