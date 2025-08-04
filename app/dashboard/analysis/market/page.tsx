@@ -3,6 +3,8 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import DashboardLayout from '@/components/dashboard/DashboardLayout';
+import { marketService, MarketPrice, MarketAnalysis, CropCalendar } from '@/lib/services/market-service';
+import { pdfService } from '@/lib/services/pdf-service';
 
 export default function MarketAnalysisPage() {
   const [formData, setFormData] = useState({
