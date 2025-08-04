@@ -3,6 +3,8 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import DashboardLayout from '@/components/dashboard/DashboardLayout';
+import { roiCalculator, GreenhouseSpecs, CropSpecs, OperationalCosts, ROICalculation } from '@/lib/services/roi-calculator';
+import { pdfService } from '@/lib/services/pdf-service';
 
 export default function ROIAnalysisPage() {
   const [formData, setFormData] = useState({
