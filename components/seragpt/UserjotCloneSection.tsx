@@ -12,7 +12,7 @@ export default function UserjotCloneSection() {
     <div className="min-h-screen bg-gray-50">
       {/* Header - Full width with 960px content container */}
       <header className="w-full bg-gray-50">
-        <div className="flex justify-between items-center p-6 max-w-[800px] mx-auto">
+        <div className="flex justify-between items-center p-6 max-w-7xl mx-auto">
           {/* Logo - clickable to homepage */}
           <div className="flex items-center space-x-3">
             <a href="/" className="flex items-center space-x-3">
@@ -241,7 +241,7 @@ export default function UserjotCloneSection() {
             >
               <div className="flex-shrink-0">
                 <div className="w-12 h-12 sm:w-16 sm:h-16 bg-blue-100 rounded-2xl flex items-center justify-center">
-                  <span className="text-xl sm:text-2xl">🧠</span>
+                  <span className="text-xl sm:text-2xl">��</span>
                 </div>
               </div>
               <div className="flex-1">
