@@ -383,16 +383,68 @@ body {
   @apply text-gray-600 hover:text-green-600 hover:bg-green-50;
 }
 
+/* Typography base styles */
+h1 {
+  font-size: 2.5rem;
+  line-height: 1.2;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 1.5rem;
+}
+
+h2 {
+  font-size: 2rem;
+  line-height: 1.3;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 1.25rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+  line-height: 1.4;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 1rem;
+}
+
+/* Optimal reading width - 60-75 characters */
+p, .text-content {
+  max-width: 75ch;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 /* Responsive design helpers */
 @media (max-width: 768px) {
+  body {
+    font-size: 14px;
+    line-height: 1.4;
+  }
+
+  h1 {
+    font-size: 2rem;
+    line-height: 1.2;
+  }
+
+  h2 {
+    font-size: 1.75rem;
+    line-height: 1.3;
+  }
+
+  h3 {
+    font-size: 1.25rem;
+    line-height: 1.4;
+  }
+
   .heading-primary {
     @apply text-3xl;
   }
-  
+
   .heading-secondary {
     @apply text-xl;
   }
-  
+
   .btn-primary,
   .btn-secondary,
   .btn-outline {
