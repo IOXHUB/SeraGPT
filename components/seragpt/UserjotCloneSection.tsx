@@ -94,7 +94,7 @@ export default function UserjotCloneSection() {
                   className="block text-gray-700 hover:text-gray-900 font-medium transition-colors py-2"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
-                  Danışmanlık
+                  Dan��şmanlık
                 </a>
                 <a
                   href="#"
@@ -398,15 +398,33 @@ export default function UserjotCloneSection() {
               >
                 <div className="absolute top-6 left-6 text-6xl font-bold text-gray-100">05</div>
                 <div className="mt-16">
-                  <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mb-6">
-                    <span className="text-2xl">📐</span>
-                  </div>
                   <h3 className="text-xl font-bold text-gray-900 mb-4">Yerleşim ve Teknik Plan Görselleştirmesi</h3>
-                  <div className="space-y-2 mb-4">
-                    <p className="text-gray-600 text-xs">✅ Sera yerleşim planı (2D çizim)</p>
-                    <p className="text-gray-600 text-xs">✅ Elektrik ve sulama hat planı</p>
-                    <p className="text-gray-600 text-xs">✅ Teknik kabin, depo gösterimi</p>
+
+                  <div className="space-y-3 mb-4">
+                    <div>
+                      <p className="text-gray-800 text-xs font-semibold mb-1">🎯 3 Önemli Fayda:</p>
+                      <p className="text-gray-600 text-xs">• Sera yerleşim planı (2D çizim)</p>
+                      <p className="text-gray-600 text-xs">• Elektrik ve sulama hat plan��</p>
+                      <p className="text-gray-600 text-xs">• Teknik kabin, depo gösterimi</p>
+                    </div>
+
+                    <div>
+                      <p className="text-gray-800 text-xs font-semibold mb-1">🔗 Veri Kaynakları:</p>
+                      <p className="text-gray-600 text-xs">• Planner 2D, CAD AI Tools</p>
+                      <p className="text-gray-600 text-xs">• HerbaTools yerleşim kütüphanesi</p>
+                    </div>
+
+                    <div>
+                      <p className="text-gray-800 text-xs font-semibold mb-1">👤 Kullanıcı Girdisi:</p>
+                      <p className="text-gray-600 text-xs">• Parsel ölçüleri, teknik bölmeler</p>
+                    </div>
+
+                    <div>
+                      <p className="text-gray-800 text-xs font-semibold mb-1">📄 PDF İçeriği:</p>
+                      <p className="text-gray-600 text-xs">• Teknik çizim ve montaj önerileri</p>
+                    </div>
                   </div>
+
                   <div className="mt-4 p-3 bg-gray-50 rounded-lg">
                     <p className="text-gray-700 text-sm font-medium">"2D/3D Yerleşim Planı Hazır!"</p>
                     <button className="mt-2 text-blue-600 text-xs font-medium hover:underline">[Planı Önizle]</button>
