@@ -897,7 +897,7 @@ export default function UserjotCloneSection() {
 
       {/* Anahtar Teslim Sera Proje Teklifi Section */}
       <div className="py-20 bg-gradient-to-br from-blue-50 to-indigo-50">
-        <div className="max-w-[900px] mx-auto px-6">
+        <div className="max-w-[1000px] mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -1175,7 +1175,7 @@ export default function UserjotCloneSection() {
               className="bg-white rounded-2xl p-8 shadow-lg border-2 border-blue-200 relative"
             >
               <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                <span className="bg-blue-500 text-white px-4 py-1 rounded-full text-sm font-medium">🟦 10 TOKEN PAKET��</span>
+                <span className="bg-blue-500 text-white px-4 py-1 rounded-full text-sm font-medium">🟦 10 TOKEN PAKETİ</span>
               </div>
 
               <div className="mb-8 mt-4">
@@ -1275,7 +1275,7 @@ export default function UserjotCloneSection() {
             viewport={{ once: true }}
             className="bg-white rounded-2xl p-8 shadow-lg border border-gray-200"
           >
-            <h3 className="text-xl font-bold text-gray-900 mb-6 text-center">���� Tüm planlarda şunlar geçerlidir:</h3>
+            <h3 className="text-xl font-bold text-gray-900 mb-6 text-center">������ Tüm planlarda şunlar geçerlidir:</h3>
 
             <div className="grid md:grid-cols-2 gap-6">
               <div className="space-y-3">
