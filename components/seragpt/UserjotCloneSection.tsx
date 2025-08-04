@@ -147,18 +147,18 @@ export default function UserjotCloneSection() {
             className="space-y-8"
           >
             {/* Small text above headline */}
-            <p className="text-gray-500 text-sm font-medium uppercase tracking-wider">
-              <strong>+20 YIL, +500 PROJE, +110 VERİ SETİ</strong>
+            <p className="text-gray-500 text-sm font-medium uppercase tracking-wider max-w-[700px] w-[700px] mx-auto">
+              +20 YIL, +500 PROJE, +110 VERİ SETİ
             </p>
 
             {/* Main headline */}
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 leading-tight">
-              <p>🚀 60 Saniyede </p>
-              <p>Sera Yatırım Raporun Hazır!</p>
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 leading-tight flex flex-col">
+              <p className="text-gray-600 text-[40px] max-w-[700px] mx-auto">🚀 60 Saniyede </p>
+              <p className="text-gray-600 text-[40px] max-w-[700px] mx-auto">Sera Yatırım Raporun Hazır!</p>
             </h1>
 
             {/* Description paragraph */}
-            <p className="text-xl md:text-2xl text-gray-600 leading-relaxed text-content">
+            <p className="text-[20px] text-gray-600 leading-relaxed max-w-[700px]">
               SeraGPT; 20 yılı aşkın mühendislik deneyimi, 500'den fazla
               tamamlanmış proje ve 110'dan fazla gerçek zamanlı veri
               setiyle, tarımsal yatırım kararlarınızı saniyeler içinde
@@ -167,17 +167,17 @@ export default function UserjotCloneSection() {
 
             {/* CTA Button */}
             <motion.a
-              href="/dashboard"
+              href="https://17ddca60910e4daea7522c0f6038c4a4-dd51946acbf540e29f8c9d1d0.fly.dev/dashboard"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="bg-black hover:bg-gray-800 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg text-base sm:text-lg font-semibold transition-colors inline-flex items-center space-x-3"
+              className="bg-black hover:bg-gray-800 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg text-base sm:text-lg font-semibold transition-colors inline-flex items-center space-x-3 max-w-[700px]"
             >
               <span className="text-center">Şimdi Oluştur – İlk 5 Rapor Ücretsiz</span>
             </motion.a>
 
             {/* Small text under button */}
-            <p className="text-gray-500 text-sm">
-              <strong>Doğru yatırım, doğru analizle başlar.</strong>
+            <p className="text-gray-500 text-sm max-w-[574px]">
+              Doğru yatırım, doğru analizle başlar.
             </p>
           </motion.div>
         </div>
@@ -1280,7 +1280,7 @@ export default function UserjotCloneSection() {
             <div className="grid md:grid-cols-2 gap-6">
               <div className="space-y-3">
                 <div className="flex items-center space-x-3">
-                  <span className="text-blue-500 text-lg">📄</span>
+                  <span className="text-blue-500 text-lg">���</span>
                   <span className="text-gray-700">ROI, İklim, Ticaret, Ekipman ve Simülasyon Analizleri</span>
                 </div>
                 <div className="flex items-center space-x-3">
