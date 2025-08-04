@@ -1205,268 +1205,212 @@ export default function UserjotCloneSection() {
       {/* Blog Cards Section */}
       <BlogCardsSection />
 
-      {/* Pricing Section */}
+      {/* AI-Powered Analysis Pricing Section */}
       <div className="bg-gray-50 py-20">
         <div className="max-w-[960px] mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              Ücretsiz başlayın, hazır olduğunuzda yükseltme yapın
+            <h2 className="text-4xl font-bold text-gray-900 mb-6">
+              🤖 Yapay Zekâ Destekli Sera Analizleri<br />
+              İçin Planınızı Seçin
             </h2>
-            <p className="text-xl text-gray-600 mb-2">
-              Bugün geri bildirim toplamaya başlayın. <span className="font-semibold text-gray-900">Daha iyi ürünler oluşturmak için ihtiyacınız olan her şey ücretsiz</span>.
-            </p>
-            <p className="text-lg text-gray-500">
-              Büyüdükçe yalnızca gelişmiş özellikler için yükseltme yapın.
+            <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+              Tüm planlar aynı güçlü veriye erişir. Fark, <span className="font-semibold text-gray-900">ne kadar çok analiz yapacağınızda</span>.
             </p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8 mb-12">
-            {/* Free Plan */}
+            {/* Başlangıç Plan - Free */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
               viewport={{ once: true }}
-              className="bg-white rounded-2xl p-8 shadow-lg border border-gray-200"
+              className="bg-white rounded-2xl p-8 shadow-lg border-2 border-green-200 relative"
             >
-              <div className="mb-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-2">Ücretsiz</h3>
+              <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
+                <span className="bg-green-500 text-white px-4 py-1 rounded-full text-sm font-medium">🟩 BAŞLANGIÇ</span>
+              </div>
+
+              <div className="mb-8 mt-4">
                 <div className="flex items-baseline mb-4">
                   <span className="text-gray-600 text-lg">₺</span>
-                  <span className="text-4xl font-bold text-gray-900">0</span>
-                  <span className="text-gray-600 text-lg ml-1">aylık</span>
+                  <span className="text-5xl font-bold text-gray-900">0</span>
                 </div>
-                <p className="text-gray-600">Ücretsiz, sonsuza kadar.</p>
+                <p className="text-gray-600 font-medium">Ücretsiz – hemen başlayın</p>
               </div>
 
               <div className="mb-8">
-                <p className="text-sm font-medium text-gray-900 mb-4">Dahil olanlar</p>
                 <div className="space-y-3">
                   <div className="flex items-center space-x-3">
-                    <div className="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center">
-                      <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                    </div>
-                    <span className="text-sm text-gray-700">Sınırsız Sera Analizü</span>
+                    <span className="text-green-500 text-lg">✔</span>
+                    <span className="text-sm text-gray-700"><strong>5 Ücretsiz Token</strong></span>
                   </div>
                   <div className="flex items-center space-x-3">
-                    <div className="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center">
-                      <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                    </div>
-                    <span className="text-sm text-gray-700">Sınırsız Kullanıcı</span>
+                    <span className="text-green-500 text-lg">✔</span>
+                    <span className="text-sm text-gray-700">Tüm analiz türlerine erişim</span>
                   </div>
                   <div className="flex items-center space-x-3">
-                    <div className="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center">
-                      <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                    </div>
-                    <span className="text-sm text-gray-700">3 Yönetici Rolü</span>
+                    <span className="text-green-500 text-lg">✔</span>
+                    <span className="text-sm text-gray-700">Open-Meteo, TÜİK, FAO, GTIP, ERA5 API verileri</span>
                   </div>
                   <div className="flex items-center space-x-3">
-                    <div className="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center">
-                      <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                    </div>
-                    <span className="text-sm text-gray-700">2 Geri Bildirim Panosu</span>
+                    <span className="text-green-500 text-lg">✔</span>
+                    <span className="text-sm text-gray-700">PDF çıktı, panel erişimi, gelişmiş kullanıcı arayüzü</span>
                   </div>
                   <div className="flex items-center space-x-3">
-                    <div className="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center">
-                      <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                    </div>
-                    <span className="text-sm text-gray-700">Geliştirme Planı</span>
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    <div className="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center">
-                      <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                    </div>
-                    <span className="text-sm text-gray-700">Değişiklik Günlüğü</span>
+                    <span className="text-green-500 text-lg">✔</span>
+                    <span className="text-sm text-gray-700">Süre kısıtı yok</span>
                   </div>
                 </div>
               </div>
 
-              <button className="w-full bg-gray-900 text-white py-3 rounded-lg font-medium hover:bg-gray-800 transition-colors">
+              <button className="w-full bg-green-600 text-white py-3 rounded-lg font-medium hover:bg-green-700 transition-colors">
                 Ücretsiz Başla
               </button>
             </motion.div>
 
-            {/* Starter Plan */}
+            {/* 10 Token Paketi */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
               viewport={{ once: true }}
-              className="bg-white rounded-2xl p-8 shadow-lg border border-gray-200"
+              className="bg-white rounded-2xl p-8 shadow-lg border-2 border-blue-200 relative"
             >
-              <div className="mb-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-2">Başlangıç</h3>
+              <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
+                <span className="bg-blue-500 text-white px-4 py-1 rounded-full text-sm font-medium">🟦 10 TOKEN PAKETİ</span>
+              </div>
+
+              <div className="mb-8 mt-4">
                 <div className="flex items-baseline mb-4">
                   <span className="text-gray-600 text-lg">₺</span>
-                  <span className="text-4xl font-bold text-gray-900">150</span>
-                  <span className="text-gray-600 text-lg ml-1">aylık</span>
+                  <span className="text-5xl font-bold text-gray-900">890</span>
                 </div>
-                <p className="text-gray-600">Küçük takımlar için.</p>
+                <p className="text-gray-600 font-medium">Daha fazla analiz, daha derin içgörü</p>
               </div>
 
               <div className="mb-8">
-                <p className="text-sm font-medium text-gray-900 mb-4">Dahil olanlar</p>
                 <div className="space-y-3">
                   <div className="flex items-center space-x-3">
-                    <div className="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center">
-                      <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                    </div>
-                    <span className="text-sm text-gray-700">Özel Domain</span>
+                    <span className="text-green-500 text-lg">✔</span>
+                    <span className="text-sm text-gray-700"><strong>10 Token (10 analiz hakkı)</strong></span>
                   </div>
                   <div className="flex items-center space-x-3">
-                    <div className="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center">
-                      <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                    </div>
-                    <span className="text-sm text-gray-700">Özel Markalama</span>
+                    <span className="text-green-500 text-lg">✔</span>
+                    <span className="text-sm text-gray-700">Open-Meteo, T��İK, FAO, GTIP, ERA5 API verileri</span>
                   </div>
                   <div className="flex items-center space-x-3">
-                    <div className="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center">
-                      <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                    </div>
-                    <span className="text-sm text-gray-700">Konuk Gönderileri</span>
+                    <span className="text-green-500 text-lg">✔</span>
+                    <span className="text-sm text-gray-700"><strong>Rapor başı maliyet: ₺89</strong></span>
                   </div>
                   <div className="flex items-center space-x-3">
-                    <div className="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center">
-                      <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                    </div>
-                    <span className="text-sm text-gray-700">5 Geri Bildirim Panosu</span>
+                    <span className="text-green-500 text-lg">✔</span>
+                    <span className="text-sm text-gray-700">Mevcut raporları yeniden düzenleme</span>
                   </div>
                   <div className="flex items-center space-x-3">
-                    <div className="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center">
-                      <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                    </div>
-                    <span className="text-sm text-gray-700">Özel Panolar</span>
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    <div className="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center">
-                      <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                    </div>
-                    <span className="text-sm text-gray-700">Bir Entegrasyon</span>
+                    <span className="text-green-500 text-lg">✔</span>
+                    <span className="text-sm text-gray-700">Süre kısıtı yok</span>
                   </div>
                 </div>
               </div>
 
-              <button className="w-full bg-gray-900 text-white py-3 rounded-lg font-medium hover:bg-gray-800 transition-colors">
-                Başlangıç Al
+              <button className="w-full bg-blue-600 text-white py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors">
+                10 Token Al
               </button>
             </motion.div>
 
-            {/* Professional Plan */}
+            {/* 100 Token Paketi - Professional */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
               viewport={{ once: true }}
-              className="bg-white rounded-2xl p-8 shadow-lg border border-gray-200"
+              className="bg-white rounded-2xl p-8 shadow-lg border-2 border-yellow-200 relative transform scale-105"
             >
-              <div className="mb-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-2">Profesyonel</h3>
+              <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
+                <span className="bg-yellow-500 text-white px-4 py-1 rounded-full text-sm font-medium">🟨 100 TOKEN (PROFESYONEL)</span>
+              </div>
+
+              <div className="mb-8 mt-4">
                 <div className="flex items-baseline mb-4">
                   <span className="text-gray-600 text-lg">₺</span>
-                  <span className="text-4xl font-bold text-gray-900">305</span>
-                  <span className="text-gray-600 text-lg ml-1">aylık</span>
+                  <span className="text-5xl font-bold text-gray-900">4.900</span>
                 </div>
-                <p className="text-gray-600">Büyüyen takımlar için.</p>
+                <p className="text-gray-600 font-medium">Sık analiz yapan kullanıcılar ve danışman ekipler için</p>
               </div>
 
               <div className="mb-8">
-                <p className="text-sm font-medium text-gray-900 mb-4">Dahil olanlar</p>
                 <div className="space-y-3">
                   <div className="flex items-center space-x-3">
-                    <div className="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center">
-                      <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                    </div>
-                    <span className="text-sm text-gray-700">Sınırsız Panolar</span>
+                    <span className="text-green-500 text-lg">✔</span>
+                    <span className="text-sm text-gray-700"><strong>100 Token (100 analiz hakkı)</strong></span>
                   </div>
                   <div className="flex items-center space-x-3">
-                    <div className="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center">
-                      <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                    </div>
-                    <span className="text-sm text-gray-700">Gelişmiş Arama</span>
+                    <span className="text-green-500 text-lg">✔</span>
+                    <span className="text-sm text-gray-700"><strong>Rapor başı maliyet: ₺49 (en uygun)</strong></span>
                   </div>
                   <div className="flex items-center space-x-3">
-                    <div className="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center">
-                      <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                    </div>
-                    <span className="text-sm text-gray-700">Konuk Gönderileri</span>
+                    <span className="text-green-500 text-lg">✔</span>
+                    <span className="text-sm text-gray-700">Open-Meteo, TÜİK, FAO, GTIP, ERA5 API verileri</span>
                   </div>
                   <div className="flex items-center space-x-3">
-                    <div className="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center">
-                      <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                    </div>
-                    <span className="text-sm text-gray-700">Tek Oturum Açma</span>
+                    <span className="text-green-500 text-lg">✔</span>
+                    <span className="text-sm text-gray-700">Çoklu proje yönetimi & API entegrasyon opsiyonu</span>
                   </div>
                   <div className="flex items-center space-x-3">
-                    <div className="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center">
-                      <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                    </div>
-                    <span className="text-sm text-gray-700">Sınırsız Entegrasyonlar</span>
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    <div className="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center">
-                      <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                    </div>
-                    <span className="text-sm text-gray-700">Sınırsız Yönetici Rolleri</span>
+                    <span className="text-green-500 text-lg">✔</span>
+                    <span className="text-sm text-gray-700">Süre kısıtı yok</span>
                   </div>
                 </div>
               </div>
 
-              <button className="w-full bg-gray-900 text-white py-3 rounded-lg font-medium hover:bg-gray-800 transition-colors">
-                Pro Al
+              <button className="w-full bg-yellow-600 text-white py-3 rounded-lg font-medium hover:bg-yellow-700 transition-colors">
+                100 Token Al
               </button>
             </motion.div>
           </div>
 
-          {/* Bottom section */}
+          {/* Common Features */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
             viewport={{ once: true }}
-            className="text-center"
+            className="bg-white rounded-2xl p-8 shadow-lg border border-gray-200"
           >
-            <p className="text-gray-600 mb-4">
-              Ne kadar tasarruf edersiniz? <span className="font-semibold text-gray-900">%10 daha düşük dönem</span> tasarruf edin?
-            </p>
-            <button className="text-gray-900 font-medium hover:underline">
-              Tasarruflarınızı hesaplayın →
-            </button>
+            <h3 className="text-xl font-bold text-gray-900 mb-6 text-center">📌 Tüm planlarda şunlar geçerlidir:</h3>
+
+            <div className="grid md:grid-cols-2 gap-6">
+              <div className="space-y-3">
+                <div className="flex items-center space-x-3">
+                  <span className="text-blue-500 text-lg">📄</span>
+                  <span className="text-gray-700">ROI, İklim, Ticaret, Ekipman ve Simülasyon Analizleri</span>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <span className="text-blue-500 text-lg">🧠</span>
+                  <span className="text-gray-700">Yapay zekâ destekli teknik analiz motoru</span>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <span className="text-blue-500 text-lg">🌐</span>
+                  <span className="text-gray-700">TÜİK, Open-Meteo, ERA5, FAO, GTIP gibi ücretli veri servisleri</span>
+                </div>
+              </div>
+
+              <div className="space-y-3">
+                <div className="flex items-center space-x-3">
+                  <span className="text-blue-500 text-lg">📥</span>
+                  <span className="text-gray-700">PDF çıktı + kullanıcı paneli erişimi</span>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <span className="text-blue-500 text-lg">⏱️</span>
+                  <span className="text-gray-700">Ortalama 40–60 saniyede sonuç</span>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <span className="text-blue-500 text-lg">💡</span>
+                  <span className="text-gray-700">Tokenlar süresiz geçerlidir, analiz başına 1 token kullanılır</span>
+                </div>
+              </div>
+            </div>
           </motion.div>
         </div>
       </div>
