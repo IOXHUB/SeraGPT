@@ -1,19 +1,19 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Standard Next.js build for Netlify
-
-  // Image optimization settings
+  // Enable static export for Netlify
+  output: 'export',
+  
+  // Disable image optimization for static export
   images: {
     domains: ['cdn.builder.io'],
-    unoptimized: false
+    unoptimized: true
   },
 
-  // No trailing slash for standard deployment
-  trailingSlash: false,
+  // Add trailing slash for static export
+  trailingSlash: true,
 
-  // Experimental features
+  // Disable server-side features
   experimental: {
-    // Disable problematic features that might cause build issues
     esmExternals: 'loose',
   },
   
@@ -22,11 +22,6 @@ const nextConfig = {
   
   // Asset prefix for CDN (keep empty for same domain)
   assetPrefix: '',
-  
-  // Disable server-side features for static export
-  experimental: {
-    // Disable features that require server
-  },
   
   // Environment variables that should be available in the browser
   env: {
@@ -46,7 +41,7 @@ const nextConfig = {
   // Compression
   compress: true,
   
-  // React strict mode - disabled in dev to reduce hydration warnings from browser extensions
+  // React strict mode
   reactStrictMode: process.env.NODE_ENV === 'production',
   
   // SWC minification (faster than Terser)
