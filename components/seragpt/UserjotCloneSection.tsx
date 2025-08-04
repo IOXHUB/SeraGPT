@@ -1,10 +1,13 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { useState } from 'react';
 import BlogCardsSection from './BlogCardsSection';
 import Footer from '../Footer';
 
 export default function UserjotCloneSection() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header - Full width with 960px content container */}
@@ -568,7 +571,7 @@ export default function UserjotCloneSection() {
 
                         <div className="ml-4 text-right">
                           <div className="text-sm text-gray-500 mb-2">Uygulama sorunu çözülemiyor,</div>
-                          <div className="text-sm text-gray-500 mb-2">geçerli ���ifreler tanınmıyor.</div>
+                          <div className="text-sm text-gray-500 mb-2">geçerli ��ifreler tanınmıyor.</div>
                           <div className="flex items-center space-x-2 text-sm text-gray-600">
                             <div className="w-6 h-6 bg-gray-300 rounded-full"></div>
                             <div>
@@ -880,7 +883,7 @@ export default function UserjotCloneSection() {
                   className="bg-blue-50 rounded-xl p-6 border border-blue-200"
                 >
                   <div className="flex items-start space-x-4">
-                    <span className="text-3xl">📍</span>
+                    <span className="text-3xl">���</span>
                     <div>
                       <p className="text-gray-800 leading-relaxed">
                         Projeniz, lokasyon, iklim ve üretim hedeflerine göre
