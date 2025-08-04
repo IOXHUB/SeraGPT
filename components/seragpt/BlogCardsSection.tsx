@@ -144,20 +144,6 @@ export default function BlogCardsSection() {
                       {post.excerpt}
                     </p>
                     
-                    {/* Tags */}
-                    {post.tags && post.tags.length > 0 && (
-                      <div className="flex flex-wrap gap-2">
-                        {post.tags.slice(0, 2).map((tag, tagIndex) => (
-                          <span 
-                            key={tagIndex}
-                            className="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded-full"
-                          >
-                            {tag}
-                          </span>
-                        ))}
-                      </div>
-                    )}
-                    
                     {/* Read More */}
                     <div className="flex items-center justify-between pt-2">
                       {post.author && (
