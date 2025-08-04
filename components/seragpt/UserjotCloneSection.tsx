@@ -214,8 +214,8 @@ export default function UserjotCloneSection() {
               className="bg-white rounded-2xl p-4 sm:p-6 md:p-8 border border-gray-200 flex flex-col sm:flex-row items-start space-y-4 sm:space-y-0 sm:space-x-6"
             >
               <div className="flex-shrink-0">
-                <div className="w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center">
-                  <span className="text-2xl">📍</span>
+                <div className="w-12 h-12 sm:w-16 sm:h-16 bg-green-100 rounded-2xl flex items-center justify-center">
+                  <span className="text-xl sm:text-2xl">📍</span>
                 </div>
               </div>
               <div className="flex-1">
@@ -334,7 +334,7 @@ export default function UserjotCloneSection() {
                   Arazi yapına özel olarak tam uyumlu anahtar teslim sera projeni planlayıp detaylı teknik teklif hazırlarız.
                 </p>
                 <a href="#" className="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium">
-                  📅 Saha Ziyareti Talep Et
+                  �� Saha Ziyareti Talep Et
                   <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
