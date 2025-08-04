@@ -183,153 +183,135 @@ export default function UserjotCloneSection() {
         </div>
       </main>
 
-      {/* How It Works Section - 5 Steps */}
+      {/* How It Works Section - Horizontal Scrolling */}
       <div className="py-20 bg-gray-50">
-        <div className="text-section-container">
+        <div className="max-w-6xl mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="text-center mb-16 flex flex-col"
+            className="text-center mb-16"
           >
-            <p className="text-gray-500 text-sm font-medium uppercase tracking-wider max-w-[700px] mx-auto mb-4">
-              ⚙️ NASIL ÇALIŞIR?
+            <p className="text-gray-500 text-sm font-medium uppercase tracking-wider mb-4">
+              SO I ASKED WHAT IF YOU COULD
             </p>
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mx-auto mb-6">
-              <span>
-                <p>5 Adımda</p>
-              </span>
-              <br />
-              <span>
-                <p>Yatırım Fizibiliteni Al</p>
-              </span>
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+              build exactly what<br />
+              users actually want?
             </h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
+              UserJot gives feedback a home where users vote,<br />
+              discuss, and help shape your product. Watch as <strong>popular<br />
+              requests bubble up and turn into features users love</strong>.
+            </p>
           </motion.div>
 
-          {/* 5 Step Process */}
-          <div className="space-y-8 flex flex-col">
-            {/* Step 1 */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-              className="bg-white rounded-2xl p-4 sm:p-6 md:p-8 border border-gray-200 flex flex-col sm:flex-row items-start space-y-4 sm:space-y-0 sm:space-x-6 mx-auto"
-            >
-              <div className="flex-shrink-0">
-              </div>
-              <div className="flex-1">
-                <div className="flex items-center space-x-3 mb-3">
-                  <span className="bg-green-500 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold">1</span>
-                  <h3 className="text-lg sm:text-xl font-bold text-gray-900">Lokasyonunu ve Ürünü Gir</h3>
+          {/* Horizontal Scrolling Cards */}
+          <div className="relative">
+            <div className="flex overflow-x-auto scrollbar-hide space-x-6 pb-6">
+              {/* Card 1 */}
+              <motion.div
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6 }}
+                viewport={{ once: true }}
+                className="flex-shrink-0 w-80 bg-white rounded-2xl p-8 border border-gray-200 relative"
+              >
+                <div className="absolute top-6 left-6 text-6xl font-bold text-gray-100">01</div>
+                <div className="mt-16">
+                  <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-6">
+                    <svg className="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                    </svg>
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-4">Collect Feedback</h3>
+                  <p className="text-gray-600 text-sm leading-relaxed">
+                    Users submit ideas and feedback through a simple, intuitive interface. Every submission gets tracked.
+                  </p>
                 </div>
-                <p className="text-gray-600">
-                  Bulunduğun yeri ve yetiştirmek istediğin ürünü belirt.
-                  İl, ilçe, ürün türü ve hedef pazar bilgilerini girerek analiz sürecini başlat.
-                </p>
-              </div>
-            </motion.div>
+              </motion.div>
 
-            {/* Step 2 */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              viewport={{ once: true }}
-              className="bg-white rounded-2xl p-4 sm:p-6 md:p-8 border border-gray-200 flex flex-col sm:flex-row items-start space-y-4 sm:space-y-0 sm:space-x-6"
-            >
-              <div className="flex-shrink-0">
-              </div>
-              <div className="flex-1">
-                <div className="flex items-center space-x-3 mb-3">
-                  <span className="bg-green-500 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold">2</span>
-                  <h3 className="text-lg sm:text-xl font-bold text-gray-900">SeraGPT Analiz Etsin</h3>
+              {/* Card 2 */}
+              <motion.div
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                viewport={{ once: true }}
+                className="flex-shrink-0 w-80 bg-white rounded-2xl p-8 border border-gray-200 relative"
+              >
+                <div className="absolute top-6 left-6 text-6xl font-bold text-gray-100">02</div>
+                <div className="mt-16">
+                  <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-6">
+                    <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5" />
+                    </svg>
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-4">Vote & Prioritize</h3>
+                  <p className="text-gray-600 text-sm leading-relaxed">
+                    Community votes reveal what matters most. See which features have 10 vs 100 votes instantly.
+                  </p>
                 </div>
-                <p className="text-gray-600">
-                  Yapay zekâ destekli motorumuz, 110+ veri kaynağını tarar.
-                  İklim, altyapı, ROI, ticaret verileri ve ekipman ihtiyaçlarını saniyeler içinde analiz eder.
-                </p>
-              </div>
-            </motion.div>
+              </motion.div>
 
-            {/* Step 3 */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              viewport={{ once: true }}
-              className="bg-white rounded-2xl p-4 sm:p-6 md:p-8 border border-gray-200 flex flex-col sm:flex-row items-start space-y-4 sm:space-y-0 sm:space-x-6"
-            >
-              <div className="flex-shrink-0">
-              </div>
-              <div className="flex-1">
-                <div className="flex items-center space-x-3 mb-3">
-                  <span className="bg-green-500 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold">3</span>
-                  <h3 className="text-lg sm:text-xl font-bold text-gray-900">PDF Raporunu İndir</h3>
+              {/* Card 3 */}
+              <motion.div
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                viewport={{ once: true }}
+                className="flex-shrink-0 w-80 bg-white rounded-2xl p-8 border border-gray-200 relative"
+              >
+                <div className="absolute top-6 left-6 text-6xl font-bold text-gray-100">03</div>
+                <div className="mt-16">
+                  <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-6">
+                    <svg className="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z" />
+                    </svg>
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-4">Discuss & Refine</h3>
+                  <p className="text-gray-600 text-sm leading-relaxed">
+                    Rich discussions help you understand the why behind each request. Get context that matters.
+                  </p>
                 </div>
-                <p className="text-gray-600">
-                  Profesyonel raporun saniyeler içinde hazır.
-                  Yatırım fizibiliteni detaylı analiz içeren PDF formatında indir ve kararını ver.
-                </p>
-              </div>
-            </motion.div>
+              </motion.div>
 
-            {/* Step 4 */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              viewport={{ once: true }}
-              className="bg-white rounded-2xl p-4 sm:p-6 md:p-8 border border-gray-200 flex flex-col sm:flex-row items-start space-y-4 sm:space-y-0 sm:space-x-6"
-            >
-              <div className="flex-shrink-0">
-              </div>
-              <div className="flex-1">
-                <div className="flex items-center space-x-3 mb-3">
-                  <span className="bg-green-500 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold">4</span>
-                  <h3 className="text-lg sm:text-xl font-bold text-gray-900">Dilersen Proje Danışmanlık Paketimizi İncele</h3>
+              {/* Card 4 - Additional if needed */}
+              <motion.div
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                viewport={{ once: true }}
+                className="flex-shrink-0 w-80 bg-white rounded-2xl p-8 border border-gray-200 relative"
+              >
+                <div className="absolute top-6 left-6 text-6xl font-bold text-gray-100">04</div>
+                <div className="mt-16">
+                  <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mb-6">
+                    <svg className="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-4">Build & Ship</h3>
+                  <p className="text-gray-600 text-sm leading-relaxed">
+                    Turn validated ideas into features your users will love. Close the feedback loop.
+                  </p>
                 </div>
-                <p className="text-gray-600 mb-4">
-                  Yatırım sürecinde yalnız değilsin.
-                  Sera planlama, mühendislik doğrulama, bütçe optimizasyonu ve hibe danışmanlığı dahil olan danışmanlık paketimizle yatırımını profesyonelleştir.
-                </p>
-                <a href="#" className="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium">
-                  Proje Danışmanlık Paketi
-                  <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
-                </a>
-              </div>
-            </motion.div>
+              </motion.div>
+            </div>
 
-            {/* Step 5 */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              viewport={{ once: true }}
-              className="bg-white rounded-2xl p-4 sm:p-6 md:p-8 border border-gray-200 flex flex-col sm:flex-row items-start space-y-4 sm:space-y-0 sm:space-x-6 max-w-[700px]"
-            >
-              <div className="flex-shrink-0">
-              </div>
-              <div className="flex-1">
-                <div className="flex items-center space-x-3 mb-3">
-                  <span className="bg-green-500 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold">5</span>
-                  <h3 className="text-lg sm:text-xl font-bold text-gray-900">Dilersen Saha Ziyareti Yapalım ve Anahtar Teslim Sera Teklifi Oluşturalım</h3>
-                </div>
-                <p className="text-gray-600 mb-4">
-                  Uzman ekibimiz lokasyonunu yerinde inceleyebilir.
-                  Arazi yapına özel olarak tam uyumlu anahtar teslim sera projeni planlayıp detaylı teknik teklif hazırlarız.
-                </p>
-                <a href="#" className="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium">
-                  ��� Saha Ziyareti Talep Et
-                  <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
-                </a>
-              </div>
-            </motion.div>
+            {/* Navigation Arrows */}
+            <div className="flex justify-end mt-6 space-x-2">
+              <button className="w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-50">
+                <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                </svg>
+              </button>
+              <button className="w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-50">
+                <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -524,7 +506,7 @@ export default function UserjotCloneSection() {
             </h2>
             <p className="text-xl text-gray-600 max-w-[700px] mx-auto leading-relaxed">
               <span>
-                Hermisan & ISITMAX iş birli��iyle tamamlanan sera projelerinden seçilmiş görüntüler.
+                Hermisan & ISITMAX iş birliğiyle tamamlanan sera projelerinden seçilmiş görüntüler.
               </span>
               <span className="font-semibold text-gray-900">500+ başarılı proje</span>
               <span> deneyimimizden örnekler.</span>
@@ -707,8 +689,6 @@ export default function UserjotCloneSection() {
           </motion.div>
         </div>
       </div>
-
-
 
       {/* Blog Cards Section */}
       <BlogCardsSection />
