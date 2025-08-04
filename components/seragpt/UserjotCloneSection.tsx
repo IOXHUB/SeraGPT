@@ -914,7 +914,6 @@ export default function UserjotCloneSection() {
 
               },
               {
-                // icon: "🧾",
                 question: "Destek kaydı nasıl açılır?",
                 answer: "Profil sayfanızdaki 'Destek Talebi' bölümünden form doldurarak teknik, veri veya danışmanlık desteği alabilirsiniz.",
 
