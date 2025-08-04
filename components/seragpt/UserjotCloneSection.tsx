@@ -125,7 +125,7 @@ export default function UserjotCloneSection() {
                   Giriş Yap
                 </a>
                 <a
-                  href="#"
+                  href="/dashboard"
                   className="block bg-green-600 hover:bg-green-700 text-white px-4 py-3 rounded-lg font-medium transition-colors text-center"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
@@ -1353,7 +1353,7 @@ export default function UserjotCloneSection() {
                 answer: "Akıllı algoritma sistemi, kullanıcı oylar�� ve etkileşim verilerine dayanarak en kritik konuları öne çıkarır."
               },
               {
-                question: "SeraGPT müşteri kaybını azaltmaya yard��mcı olabilir mi?",
+                question: "SeraGPT müşteri kaybını azaltmaya yardımcı olabilir mi?",
                 answer: "Evet, müşteri ihtiyaçlarını önceden tespit ederek ve hızlı çözümler sunarak müşteri memnuniyetini artırır."
               },
               {
