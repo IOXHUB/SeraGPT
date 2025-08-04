@@ -185,7 +185,7 @@ export default function UserjotCloneSection() {
 
       {/* User Panel Section */}
       <div className="py-20">
-        <div className="max-w-[720px] mx-auto px-6">
+        <div className="text-section-container">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -885,7 +885,7 @@ export default function UserjotCloneSection() {
                   <div className="text-center">
                     <div className="text-4xl mb-3">🥒</div>
                     <p className="text-gray-700 font-medium">Salatalık Üretim Serası</p>
-                    <p className="text-gray-500 text-sm">Muğla, 2.100 m²</p>
+                    <p className="text-gray-500 text-sm">Muğla, 2.100 m��</p>
                   </div>
                 </div>
               </motion.div>
