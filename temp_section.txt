@@ -1,0 +1,150 @@
+      {/* How It Works Section - 5 Steps */}
+      <div className="py-20 bg-gray-50">
+        <div className="text-section-container">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center mb-16 flex flex-col"
+          >
+            <p className="text-gray-500 text-sm font-medium uppercase tracking-wider max-w-[700px] mx-auto mb-4">
+              ⚙️ NASIL ÇALIŞIR?
+            </p>
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mx-auto mb-6">
+              <span>
+                <p>5 Adımda</p>
+              </span>
+              <br />
+              <span>
+                <p>Yatırım Fizibiliteni Al</p>
+              </span>
+            </h2>
+          </motion.div>
+
+          {/* 5 Step Process */}
+          <div className="space-y-8 flex flex-col">
+            {/* Step 1 */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              className="bg-white rounded-2xl p-4 sm:p-6 md:p-8 border border-gray-200 flex flex-col sm:flex-row items-start space-y-4 sm:space-y-0 sm:space-x-6 mx-auto"
+            >
+              <div className="flex-shrink-0">
+              </div>
+              <div className="flex-1">
+                <div className="flex items-center space-x-3 mb-3">
+                  <span className="bg-green-500 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold">1</span>
+                  <h3 className="text-lg sm:text-xl font-bold text-gray-900">Lokasyonunu ve ��rünü Gir</h3>
+                </div>
+                <p className="text-gray-600">
+                  Bulunduğun yeri ve yetiştirmek istediğin ��rünü belirt.
+                  İl, ilçe, ürün türü ve hedef pazar bilgilerini girerek analiz sürecini başlat.
+                </p>
+              </div>
+            </motion.div>
+
+            {/* Step 2 */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              viewport={{ once: true }}
+              className="bg-white rounded-2xl p-4 sm:p-6 md:p-8 border border-gray-200 flex flex-col sm:flex-row items-start space-y-4 sm:space-y-0 sm:space-x-6"
+            >
+              <div className="flex-shrink-0">
+              </div>
+              <div className="flex-1">
+                <div className="flex items-center space-x-3 mb-3">
+                  <span className="bg-green-500 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold">2</span>
+                  <h3 className="text-lg sm:text-xl font-bold text-gray-900">SeraGPT Analiz Etsin</h3>
+                </div>
+                <p className="text-gray-600">
+                  Yapay zekâ destekli motorumuz, 110+ veri kaynağını tarar.
+                  İklim, altyapı, ROI, ticaret verileri ve ekipman ihtiyaçlarını saniyeler içinde analiz eder.
+                </p>
+              </div>
+            </motion.div>
+
+            {/* Step 3 */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              viewport={{ once: true }}
+              className="bg-white rounded-2xl p-4 sm:p-6 md:p-8 border border-gray-200 flex flex-col sm:flex-row items-start space-y-4 sm:space-y-0 sm:space-x-6"
+            >
+              <div className="flex-shrink-0">
+              </div>
+              <div className="flex-1">
+                <div className="flex items-center space-x-3 mb-3">
+                  <span className="bg-green-500 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold">3</span>
+                  <h3 className="text-lg sm:text-xl font-bold text-gray-900">PDF Raporunu İndir</h3>
+                </div>
+                <p className="text-gray-600">
+                  Profesyonel raporun saniyeler içinde hazır.
+                  Yatırım fizibiliteni detaylı analiz i��eren PDF formatında indir ve kararını ver.
+                </p>
+              </div>
+            </motion.div>
+
+            {/* Step 4 */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              viewport={{ once: true }}
+              className="bg-white rounded-2xl p-4 sm:p-6 md:p-8 border border-gray-200 flex flex-col sm:flex-row items-start space-y-4 sm:space-y-0 sm:space-x-6"
+            >
+              <div className="flex-shrink-0">
+              </div>
+              <div className="flex-1">
+                <div className="flex items-center space-x-3 mb-3">
+                  <span className="bg-green-500 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold">4</span>
+                  <h3 className="text-lg sm:text-xl font-bold text-gray-900">Dilersen Proje Danışmanlık Paketimizi İncele</h3>
+                </div>
+                <p className="text-gray-600 mb-4">
+                  Yatırım sürecinde yalnız değilsin.
+                  Sera planlama, mühendislik doğrulama, bütçe optimizasyonu ve hibe danışmanlığı dahil olan danışmanlık paketimizle yatırımını profesyonelleştir.
+                </p>
+                <a href="#" className="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium">
+                  Proje Danışmanlık Paketi
+                  <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </a>
+              </div>
+            </motion.div>
+
+            {/* Step 5 */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              viewport={{ once: true }}
+              className="bg-white rounded-2xl p-4 sm:p-6 md:p-8 border border-gray-200 flex flex-col sm:flex-row items-start space-y-4 sm:space-y-0 sm:space-x-6 max-w-[700px]"
+            >
+              <div className="flex-shrink-0">
+              </div>
+              <div className="flex-1">
+                <div className="flex items-center space-x-3 mb-3">
+                  <span className="bg-green-500 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold">5</span>
+                  <h3 className="text-lg sm:text-xl font-bold text-gray-900">Dilersen Saha Ziyareti Yapalım ve Anahtar Teslim Sera Teklifi Oluşturalım</h3>
+                </div>
+                <p className="text-gray-600 mb-4">
+                  Uzman ekibimiz lokasyonunu yerinde inceleyebilir.
+                  Arazi yapına özel olarak tam uyumlu anahtar teslim sera projeni planlayıp detaylı teknik teklif hazırlarız.
+                </p>
+                <a href="#" className="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium">
+                  📅 Saha Ziyareti Talep Et
+                  <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </a>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </div>
