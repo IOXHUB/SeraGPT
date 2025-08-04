@@ -79,7 +79,7 @@ export default function UserjotCloneSection() {
             transition={{ duration: 0.2 }}
             className="md:hidden bg-gray-50 border-t border-gray-200"
           >
-            <div className="max-w-[800px] mx-auto px-6 py-4 space-y-4">
+            <div className="max-w-7xl mx-auto px-6 py-4 space-y-4">
               {/* Center navigation links */}
               <div className="space-y-3">
                 <a
@@ -241,7 +241,7 @@ export default function UserjotCloneSection() {
             >
               <div className="flex-shrink-0">
                 <div className="w-12 h-12 sm:w-16 sm:h-16 bg-blue-100 rounded-2xl flex items-center justify-center">
-                  <span className="text-xl sm:text-2xl">��</span>
+                  <span className="text-xl sm:text-2xl">🧠</span>
                 </div>
               </div>
               <div className="flex-1">
