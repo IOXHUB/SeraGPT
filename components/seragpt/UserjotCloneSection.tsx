@@ -592,7 +592,7 @@ export default function UserjotCloneSection() {
       </div>
 
       {/* Corporate Consulting Section */}
-      <div className="py-20">
+      <div className="py-20 bg-gray-50">
         <div className="max-w-[960px] mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
