@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import DashboardLayout from '@/components/dashboard/DashboardLayout';
+import { aiService, ChatMessage, ChatSession, AIAnalysisInsight } from '@/lib/services/ai-service';
 
 // Force dynamic rendering for dashboard pages
 export const dynamic = 'force-dynamic';
