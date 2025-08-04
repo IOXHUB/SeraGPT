@@ -117,7 +117,7 @@ export default function DashboardPage() {
     {
       type: 'tip',
       title: 'İpucu: ROI Analizinden Başlayın',
-      description: 'En popüler analiz aracımız ile yatırımınızın geri dönüş��nü hesaplayın',
+      description: 'En popüler analiz aracımız ile yatırımınızın geri dönüşünü hesaplayın',
       time: '1 dk önce',
       icon: '💡',
       color: 'bg-yellow-100 text-yellow-600'
@@ -128,7 +128,7 @@ export default function DashboardPage() {
     { 
       name: 'Ücretsiz Jeton Al', 
       icon: '🎁', 
-      description: 'İlk 5 analiz ücretsiz, hemen başlayın', 
+      description: 'İlk 5 analiz ücretsiz, hemen ba��layın', 
       href: '/dashboard/analysis/roi',
       primary: true
     },
@@ -185,15 +185,12 @@ export default function DashboardPage() {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 className="bg-white rounded-2xl p-6 shadow-sm border border-gray-200"
               >
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-sm text-gray-600 mb-1">{stat.name}</p>
-                    <p className="text-2xl font-bold text-gray-900 mb-2">{stat.value}</p>
-                    <p className="text-sm text-gray-500">
-                      {stat.change}
-                    </p>
-                  </div>
-                  <div className="text-3xl">{stat.icon}</div>
+                <div>
+                  <p className="text-sm text-gray-600 mb-1">{stat.name}</p>
+                  <p className="text-2xl font-bold text-gray-900 mb-2">{stat.value}</p>
+                  <p className="text-sm text-gray-500">
+                    {stat.change}
+                  </p>
                 </div>
               </motion.div>
             ))}
