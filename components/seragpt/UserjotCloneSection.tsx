@@ -137,28 +137,28 @@ export default function UserjotCloneSection() {
         )}
       </header>
 
-      {/* Main content - 960px container */}
-      <main className="flex-1 flex items-center justify-center px-4 sm:px-6 py-20">
-        <div className="max-w-[1000px] mx-auto text-center flex flex-col">
+      {/* Main content - Full viewport hero */}
+      <main className="min-h-screen flex items-center justify-center px-4 sm:px-6">
+        <div className="max-w-[700px] mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="flex flex-col justify-start items-center leading-[26px] mt-[100px] mx-auto"
+            className="space-y-8"
           >
             {/* Small text above headline */}
-            <p className="text-gray-500 text-sm font-medium uppercase tracking-wider max-w-[700px] w-[700px] mx-auto">
+            <p className="text-gray-500 text-sm font-medium uppercase tracking-wider">
               +20 YIL, +500 PROJE, +110 VERİ SETİ
             </p>
 
             {/* Main headline */}
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 leading-tight flex flex-col">
-              <p className="text-gray-600 text-[40px] max-w-[700px] mx-auto">🚀 60 Saniyede </p>
-              <p className="text-gray-600 text-[40px] max-w-[700px] mx-auto">Sera Yatırım Raporun Hazır!</p>
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 leading-relaxed space-y-2">
+              <div className="text-gray-600 text-[40px] sm:text-[48px] md:text-[56px]">🚀 60 Saniyede</div>
+              <div className="text-gray-600 text-[40px] sm:text-[48px] md:text-[56px]">Sera Yatırım Raporun Hazır!</div>
             </h1>
 
             {/* Description paragraph */}
-            <p className="text-[20px] text-gray-600 leading-relaxed max-w-[700px]">
+            <p className="text-[18px] sm:text-[20px] text-gray-600 leading-relaxed px-4 mt-8">
               SeraGPT; 20 yılı aşkın mühendislik deneyimi, 500'den fazla
               tamamlanmış proje ve 110'dan fazla gerçek zamanlı veri
               setiyle, tarımsal yatırım kararlarınızı saniyeler içinde
@@ -166,17 +166,19 @@ export default function UserjotCloneSection() {
             </p>
 
             {/* CTA Button */}
-            <motion.a
-              href="https://17ddca60910e4daea7522c0f6038c4a4-dd51946acbf540e29f8c9d1d0.fly.dev/dashboard"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="bg-black hover:bg-gray-800 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg text-base sm:text-lg font-semibold transition-colors inline-flex items-center space-x-3 max-w-[700px]"
-            >
-              <span className="text-center">Şimdi Oluştur – İlk 5 Rapor Ücretsiz</span>
-            </motion.a>
+            <div className="mt-10">
+              <motion.a
+                href="https://17ddca60910e4daea7522c0f6038c4a4-dd51946acbf540e29f8c9d1d0.fly.dev/dashboard"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="bg-black hover:bg-gray-800 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-colors inline-flex items-center space-x-3"
+              >
+                <span className="text-center">Şimdi Oluştur – İlk 5 Rapor Ücretsiz</span>
+              </motion.a>
+            </div>
 
             {/* Small text under button */}
-            <p className="text-gray-500 text-sm max-w-[574px]">
+            <p className="text-gray-500 text-sm mt-6">
               Doğru yatırım, doğru analizle başlar.
             </p>
           </motion.div>
