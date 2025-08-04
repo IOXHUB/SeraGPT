@@ -34,7 +34,7 @@ export default function UserjotCloneSection() {
               Dashboard
             </a>
             <a href="/auth/login" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
-              Giriş Yap
+              Giri�� Yap
             </a>
           </nav>
 
@@ -1221,64 +1221,7 @@ export default function UserjotCloneSection() {
         </div>
       </div>
 
-      {/* Vision Section */}
-      <motion.div
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        viewport={{ once: true }}
-        className="py-20"
-      >
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="mb-8"
-          >
-            <div className="w-20 h-20 bg-gray-900 rounded-full flex items-center justify-center mx-auto mb-8">
-              <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center">
-                <span className="text-2xl">🌱</span>
-              </div>
-            </div>
-          </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            viewport={{ once: true }}
-            className="space-y-6 mb-12"
-          >
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight">
-              Kullanıcılarınızın bir vizyonu var.<br />
-              Onların hayata geçirmesine yardım edin.
-            </h2>
-            <p className="text-xl text-gray-600 leading-relaxed max-w-3xl mx-auto">
-              Birisi bir fikir paylaştığında, inşa ettiğiniz şeye inandığını söylüyor.
-              Gerçekten dinlediğinizde, sadece ürün geliştirmiyorsunuz.
-              <span className="font-semibold text-gray-900"> İlişkiler kuruyorsunuz</span>.
-              İşte fark yaratan bu.
-            </p>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            viewport={{ once: true }}
-          >
-            <button className="bg-gray-900 hover:bg-gray-800 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-colors inline-flex items-center space-x-3">
-              <span>Başlayın</span>
-              <div className="w-2 h-2 bg-white rounded-full"></div>
-            </button>
-            <p className="text-gray-500 text-sm mt-4">
-              kredi kartı gerekmez. kurulum baş ağrısı yok.
-            </p>
-          </motion.div>
-        </div>
-      </motion.div>
 
       {/* FAQ Section */}
       <motion.div
