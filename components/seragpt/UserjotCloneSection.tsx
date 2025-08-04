@@ -512,7 +512,7 @@ export default function UserjotCloneSection() {
               >
                 <div className="text-3xl mb-4">✅</div>
                 <h3 className="text-xl font-bold text-gray-900 mb-3">
-                  Gerçek Zamanlı Tarım ve Ticaret Verileri
+                  Gerçek Zamanlı Tar��m ve Ticaret Verileri
                 </h3>
                 <p className="text-gray-600 mb-6 leading-relaxed">
                   Güncel pazar fiyatları, ithalat-ihracat verileri ve talep tahminleri.
@@ -705,7 +705,7 @@ export default function UserjotCloneSection() {
                         </div>
 
                         <div className="ml-4 text-right">
-                          <div className="text-sm text-gray-500 mb-2">Uygulama sorunu çözülemiyor,</div>
+                          <div className="text-sm text-gray-500 mb-2">Uygulama sorunu ��özülemiyor,</div>
                           <div className="text-sm text-gray-500 mb-2">geçerli ��ifreler tanınmıyor.</div>
                           <div className="flex items-center space-x-2 text-sm text-gray-600">
                             <div className="w-6 h-6 bg-gray-300 rounded-full"></div>
@@ -1384,7 +1384,7 @@ export default function UserjotCloneSection() {
         viewport={{ once: true }}
         className="bg-gray-50 py-20"
       >
-        <div className="max-w-[720px] mx-auto px-6">
+        <div className="text-section-container">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
