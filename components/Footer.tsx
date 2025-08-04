@@ -5,7 +5,7 @@ export default function Footer() {
         <div className="grid md:grid-cols-4 gap-8">
           {/* 1. Menü */}
           <div>
-            <h3 className="text-lg font-semibold mb-6">Menü</h3>
+            <h3 className="text-lg font-semibold mb-6 text-gray-900">Menü</h3>
             <ul className="space-y-3">
               <li>
                 <a href="#" className="text-gray-600 hover:text-gray-900 transition-colors">
