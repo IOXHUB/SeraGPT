@@ -591,6 +591,198 @@ export default function UserjotCloneSection() {
         </div>
       </div>
 
+      {/* Visual Gallery Section */}
+      <div className="py-20 bg-white">
+        <div className="max-w-[960px] mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+              🏗️ Projelerimizden<br />
+              Görüntüler
+            </h2>
+            <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+              Hermisan & ISITMAX iş birliğiyle tamamlanan sera projelerinden seçilmiş görüntüler.
+              <span className="font-semibold text-gray-900">500+ başarılı proje</span> deneyimimizden örnekler.
+            </p>
+          </motion.div>
+
+          {/* Horizontal Scrolling Gallery */}
+          <div className="relative mb-12">
+            <div className="flex overflow-x-auto scrollbar-hide gap-6 pb-6">
+              {/* Gallery Image 1 */}
+              <motion.div
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6 }}
+                viewport={{ once: true }}
+                className="flex-shrink-0 w-80 h-60 bg-gray-200 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
+              >
+                <div className="w-full h-full bg-gradient-to-br from-green-100 to-blue-100 flex items-center justify-center">
+                  <div className="text-center">
+                    <div className="text-4xl mb-3">🏢</div>
+                    <p className="text-gray-700 font-medium">Modern Sera Kompleksi</p>
+                    <p className="text-gray-500 text-sm">Antalya, 5.000 m²</p>
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Gallery Image 2 */}
+              <motion.div
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                viewport={{ once: true }}
+                className="flex-shrink-0 w-80 h-60 bg-gray-200 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
+              >
+                <div className="w-full h-full bg-gradient-to-br from-orange-100 to-red-100 flex items-center justify-center">
+                  <div className="text-center">
+                    <div className="text-4xl mb-3">🍅</div>
+                    <p className="text-gray-700 font-medium">Domates Üretim Serası</p>
+                    <p className="text-gray-500 text-sm">Mersin, 3.200 m²</p>
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Gallery Image 3 */}
+              <motion.div
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                viewport={{ once: true }}
+                className="flex-shrink-0 w-80 h-60 bg-gray-200 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
+              >
+                <div className="w-full h-full bg-gradient-to-br from-purple-100 to-pink-100 flex items-center justify-center">
+                  <div className="text-center">
+                    <div className="text-4xl mb-3">🌿</div>
+                    <p className="text-gray-700 font-medium">Hidroponik Sera Sistemi</p>
+                    <p className="text-gray-500 text-sm">İzmir, 2.800 m²</p>
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Gallery Image 4 */}
+              <motion.div
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                viewport={{ once: true }}
+                className="flex-shrink-0 w-80 h-60 bg-gray-200 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
+              >
+                <div className="w-full h-full bg-gradient-to-br from-yellow-100 to-orange-100 flex items-center justify-center">
+                  <div className="text-center">
+                    <div className="text-4xl mb-3">🌱</div>
+                    <p className="text-gray-700 font-medium">Fide Üretim Tesisi</p>
+                    <p className="text-gray-500 text-sm">Bursa, 4.500 m²</p>
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Gallery Image 5 */}
+              <motion.div
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                viewport={{ once: true }}
+                className="flex-shrink-0 w-80 h-60 bg-gray-200 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
+              >
+                <div className="w-full h-full bg-gradient-to-br from-blue-100 to-indigo-100 flex items-center justify-center">
+                  <div className="text-center">
+                    <div className="text-4xl mb-3">❄️</div>
+                    <p className="text-gray-700 font-medium">İklim Kontrollü Sera</p>
+                    <p className="text-gray-500 text-sm">Konya, 6.000 m²</p>
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Gallery Image 6 */}
+              <motion.div
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: 0.5 }}
+                viewport={{ once: true }}
+                className="flex-shrink-0 w-80 h-60 bg-gray-200 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
+              >
+                <div className="w-full h-full bg-gradient-to-br from-emerald-100 to-teal-100 flex items-center justify-center">
+                  <div className="text-center">
+                    <div className="text-4xl mb-3">🥒</div>
+                    <p className="text-gray-700 font-medium">Salatalık Üretim Serası</p>
+                    <p className="text-gray-500 text-sm">Muğla, 2.100 m²</p>
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Gallery Image 7 */}
+              <motion.div
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: 0.6 }}
+                viewport={{ once: true }}
+                className="flex-shrink-0 w-80 h-60 bg-gray-200 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
+              >
+                <div className="w-full h-full bg-gradient-to-br from-rose-100 to-pink-100 flex items-center justify-center">
+                  <div className="text-center">
+                    <div className="text-4xl mb-3">🌹</div>
+                    <p className="text-gray-700 font-medium">Çiçek Üretim Serası</p>
+                    <p className="text-gray-500 text-sm">Isparta, 1.800 m²</p>
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Gallery Image 8 */}
+              <motion.div
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: 0.7 }}
+                viewport={{ once: true }}
+                className="flex-shrink-0 w-80 h-60 bg-gray-200 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
+              >
+                <div className="w-full h-full bg-gradient-to-br from-amber-100 to-yellow-100 flex items-center justify-center">
+                  <div className="text-center">
+                    <div className="text-4xl mb-3">🥬</div>
+                    <p className="text-gray-700 font-medium">Organik Sebze Serası</p>
+                    <p className="text-gray-500 text-sm">Çanakkale, 3.700 m²</p>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+
+            {/* Scroll indicators */}
+            <div className="flex justify-center mt-6 space-x-2">
+              <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
+              <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
+              <div className="w-2 h-2 bg-gray-900 rounded-full"></div>
+              <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
+              <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
+            </div>
+          </div>
+
+          {/* CTA Button */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            viewport={{ once: true }}
+            className="text-center"
+          >
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="bg-green-600 hover:bg-green-700 text-white px-10 py-4 rounded-xl text-xl font-bold transition-colors shadow-lg hover:shadow-xl"
+            >
+              🏗️ Anahtar Teslim Fiyat Alın
+            </motion.button>
+            <p className="text-gray-500 text-sm mt-4">
+              Uzman ekibimiz size özel teklifini hazırlayacak
+            </p>
+          </motion.div>
+        </div>
+      </div>
+
       {/* Corporate Consulting Section */}
       <div className="py-20 bg-gray-50">
         <div className="max-w-[960px] mx-auto px-6">
