@@ -75,7 +75,7 @@ export default function DashboardPage() {
         'Hasat-zamanlama optimizasyonu'
       ],
       dataSources: ['TUİK', 'FAO', 'Türkiye Hal Fiyatları', 'TMO'],
-      userInputs: ['Bitki t��rü', 'Sezon planı', 'Pazarlama hedefi'],
+      userInputs: ['Bitki türü', 'Sezon planı', 'Pazarlama hedefi'],
       pdfOutput: 'Fiyat analizi ve hasat çizelgesi',
       href: '/dashboard/analysis/market'
     },
@@ -293,21 +293,18 @@ export default function DashboardPage() {
                         key={index}
                         href={action.href}
                         className={`block p-4 rounded-xl transition-colors ${
-                          action.primary 
-                            ? 'bg-gray-600 hover:bg-gray-700 text-white' 
+                          action.primary
+                            ? 'bg-gray-600 hover:bg-gray-700 text-white'
                             : 'bg-gray-50 hover:bg-gray-100 text-gray-900'
                         }`}
                       >
-                        <div className="flex items-start space-x-3">
-                          <span className="text-2xl">{action.icon}</span>
-                          <div>
-                            <h4 className={`font-medium ${action.primary ? 'text-white' : 'text-gray-900'}`}>
-                              {action.name}
-                            </h4>
-                            <p className={`text-sm ${action.primary ? 'text-gray-200' : 'text-gray-600'}`}>
-                              {action.description}
-                            </p>
-                          </div>
+                        <div>
+                          <h4 className={`font-medium mb-2 ${action.primary ? 'text-white' : 'text-gray-900'}`}>
+                            {action.name}
+                          </h4>
+                          <p className={`text-sm ${action.primary ? 'text-gray-200' : 'text-gray-600'}`}>
+                            {action.description}
+                          </p>
                         </div>
                       </a>
                     ))}
