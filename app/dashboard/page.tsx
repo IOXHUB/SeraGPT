@@ -53,7 +53,7 @@ export default function DashboardPage() {
       tokensRequired: 1,
       status: 'available',
       benefits: [
-        'Bölgeye uygun yapı ve iklimlendirme',
+        'Bölgeye uygun yap�� ve iklimlendirme',
         'Anahtar teslim modüler öneriler',
         'Genişletilebilirlik alternatifleri'
       ],
@@ -111,7 +111,6 @@ export default function DashboardPage() {
       title: 'SeraGPT\'ye hoş geldiniz!',
       description: '5 ücretsiz analiz hakkınız ile başlayabilirsiniz',
       time: 'Şimdi',
-      icon: '👋',
       color: 'bg-blue-100 text-blue-600'
     },
     {
@@ -119,7 +118,6 @@ export default function DashboardPage() {
       title: 'İpucu: ROI Analizinden Başlayın',
       description: 'En popüler analiz aracımız ile yatırımınızın geri dönüşünü hesaplayın',
       time: '1 dk önce',
-      icon: '💡',
       color: 'bg-yellow-100 text-yellow-600'
     }
   ];
