@@ -50,7 +50,7 @@ export default function UserjotCloneSection() {
             </a>
 
             {/* For first time visitors */}
-            <a href="/dashboard" className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg font-medium transition-colors">
+            <a href="/dashboard" className="text-gray-600 hover:text-gray-900 px-4 py-2 rounded-lg font-medium transition-colors">
               Ücretsiz Başla
             </a>
           </div>
@@ -186,7 +186,7 @@ export default function UserjotCloneSection() {
       </main>
 
       {/* How It Works Section - Horizontal Scrolling */}
-      <div className="py-20 bg-gray-50">
+      <div className="py-20 bg-gray-50 text-gray-600">
         <div className="max-w-6xl mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -319,7 +319,7 @@ export default function UserjotCloneSection() {
       </div>
 
       {/* Roadmap Section */}
-      <div className="py-20">
+      <div className="py-20 text-gray-600">
         <div className="text-section-container">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -477,10 +477,9 @@ export default function UserjotCloneSection() {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="bg-blue-600 hover:bg-blue-700 text-white px-10 py-4 rounded-xl text-xl font-bold transition-colors shadow-lg hover:shadow-xl inline-flex items-center space-x-3"
+              className="bg-gray-600 hover:bg-gray-700 text-white px-10 py-4 rounded-xl text-xl font-bold transition-colors shadow-lg hover:shadow-xl"
             >
-              <span className="text-2xl">🚀</span>
-              <span>Kullanıcı Paneline Giriş Yapın</span>
+              Kullanıcı Paneline Giriş Yapın
             </motion.button>
             <p className="text-gray-500 text-sm mt-4">
               Tüm sera projelerinizi tek platformdan yönetin
@@ -490,7 +489,7 @@ export default function UserjotCloneSection() {
       </div>
 
       {/* Visual Gallery Section */}
-      <div className="py-20 bg-gray-50">
+      <div className="py-20 bg-gray-50 text-gray-600">
         <div className="max-w-[1200px] mx-auto px-6 bg-gray-50">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -672,14 +671,14 @@ export default function UserjotCloneSection() {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="bg-green-600 hover:bg-green-700 text-white px-10 py-4 rounded-xl text-xl font-bold transition-colors shadow-lg hover:shadow-xl"
+                className="bg-gray-600 hover:bg-gray-700 text-white px-10 py-4 rounded-xl text-xl font-bold transition-colors shadow-lg hover:shadow-xl"
               >
                 <p>Anahtar Teslim Fiyat Alın</p>
               </motion.button>
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="bg-blue-600 hover:bg-blue-700 text-white px-10 py-4 rounded-xl text-xl font-bold transition-colors shadow-lg hover:shadow-xl"
+                className="bg-gray-600 hover:bg-gray-700 text-white px-10 py-4 rounded-xl text-xl font-bold transition-colors shadow-lg hover:shadow-xl"
               >
                 <p>Kurumsal Danışmanlık Hizmeti</p>
               </motion.button>
@@ -700,7 +699,7 @@ export default function UserjotCloneSection() {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
         viewport={{ once: true }}
-        className="bg-white py-20"
+        className="bg-white py-20 text-gray-600"
       >
         <div className="max-w-3xl mx-auto px-6">
           <motion.div
