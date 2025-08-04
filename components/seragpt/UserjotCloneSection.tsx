@@ -427,7 +427,7 @@ export default function UserjotCloneSection() {
                   </div>
 
                   <div className="mt-4 p-3 bg-gray-50 rounded-lg">
-                    <p className="text-gray-700 text-sm font-medium">"2D/3D Yerleşim Planı Hazır!"</p>
+                    <p className="text-gray-700 text-sm font-medium">"2D/3D Yerleşim Planı Haz��r!"</p>
                     <button className="mt-2 text-blue-600 text-xs font-medium hover:underline">[Planı Önizle]</button>
                   </div>
                 </div>
@@ -865,7 +865,6 @@ export default function UserjotCloneSection() {
 
               },
               {
-                // icon: "🔐",
                 question: "Bilgilerim güvende mi?",
                 answer: "Kesinlikle. Tüm bilgileriniz Supabase veritabanında şifreli olarak saklanır. Raporlar yalnızca size özeldir, üçüncü taraflarla paylaşılmaz.",
 
@@ -927,7 +926,7 @@ export default function UserjotCloneSection() {
               {
                 // icon: "❗",
                 question: "İtiraz ve düzeltme süreci nasıl işler?",
-                answer: "Rapor içeriğiyle ilgili bir hata olduğunu düşünüyorsanız, destek kaydı oluşturabilirsiniz. Mühendis ekibimiz gerekli incelemeyi yaparak düzeltme sağlar.",
+                answer: "Rapor i��eriğiyle ilgili bir hata olduğunu düşünüyorsanız, destek kaydı oluşturabilirsiniz. Mühendis ekibimiz gerekli incelemeyi yaparak düzeltme sağlar.",
 
               }
             ].map((faq, index) => (
