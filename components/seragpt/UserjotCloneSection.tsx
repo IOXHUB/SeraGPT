@@ -27,7 +27,7 @@ export default function UserjotCloneSection() {
           {/* Center navigation - 3 links */}
           <nav className="hidden md:flex items-center space-x-8">
             <a href="#" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
-              Nasıl Çalışır
+              Nasıl Çalı��ır
             </a>
             <a href="#" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
               Danışmanlık
@@ -320,8 +320,8 @@ export default function UserjotCloneSection() {
               className="bg-white rounded-2xl p-4 sm:p-6 md:p-8 border border-gray-200 flex flex-col sm:flex-row items-start space-y-4 sm:space-y-0 sm:space-x-6"
             >
               <div className="flex-shrink-0">
-                <div className="w-16 h-16 bg-yellow-100 rounded-2xl flex items-center justify-center">
-                  <span className="text-2xl">🚜</span>
+                <div className="w-12 h-12 sm:w-16 sm:h-16 bg-yellow-100 rounded-2xl flex items-center justify-center">
+                  <span className="text-xl sm:text-2xl">🚜</span>
                 </div>
               </div>
               <div className="flex-1">
