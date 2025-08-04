@@ -719,9 +719,9 @@ export default function UserjotCloneSection() {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
         viewport={{ once: true }}
-        className="bg-gray-50 py-20"
+        className="bg-white py-20"
       >
-        <div className="text-section-container">
+        <div className="max-w-3xl mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -730,80 +730,65 @@ export default function UserjotCloneSection() {
             className="text-center mb-16"
           >
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              Sıkça sorulan sorular
+              Frequently asked questions
             </h2>
           </motion.div>
 
-          <div className="space-y-4">
+          <div className="space-y-2">
             {[
               {
-                question: "Ne kadar hızlı sera analizi toplamaya başlayabilirim?",
-                answer: "SeraGPT'yi dakikalar içinde kurabilir ve hemen sera projelerinizi analiz etmeye başlayabilirsiniz."
+                question: "How quickly can I start collecting feedback?",
+                answer: "You can start collecting user feedback immediately after signing up. Our feedback management software requires no complicated setup.",
+                isOpen: true
               },
               {
-                question: "Analiz deneyimini özelleştirebilir miyim?",
-                answer: "Evet, SeraGPT'yi markanıza uygun şekilde özelleştirebilir ve kendi domain adresinizi kullanabilirsiniz."
+                question: "Can I customize the feedback experience?",
+                answer: "Yes, you can fully customize the feedback experience to match your brand and requirements.",
+                isOpen: false
               },
               {
-                question: "Çok fazla geri bildirim alırsam ne olur?",
-                answer: "SeraGPT otomatik olarak geri bildirimleri önceliklendirir ve en önemli konulara odaklanmanızı sağlar."
+                question: "What if I receive too much feedback?",
+                answer: "Our system automatically prioritizes feedback and helps you focus on the most important issues.",
+                isOpen: false
               },
               {
-                question: "SeraGPT kullanıcı geri bildirimlerini önceliklendirmeme nasıl yardımcı olur?",
-                answer: "Akıllı algoritma sistemi, kullanıcı oyları ve etkileşim verilerine dayanarak en kritik konuları öne çıkarır."
+                question: "How does UserJot help me prioritize user feedback?",
+                answer: "Our intelligent algorithm system prioritizes the most critical issues based on user votes and engagement data.",
+                isOpen: false
               },
               {
-                question: "SeraGPT müşteri kaybını azaltmaya yardımcı olabilir mi?",
-                answer: "Evet, müşteri ihtiyaçlarını önceden tespit ederek ve hızlı çözümler sunarak müşteri memnuniyetini artırır."
+                question: "Can UserJot help reduce customer churn?",
+                answer: "Yes, by identifying customer needs in advance and providing quick solutions, it increases customer satisfaction.",
+                isOpen: false
               },
               {
-                question: "SeraGPT SaaS şirketleri için uygun mu?",
-                answer: "Kesinlikle. SeraGPT özellikle hızla büyüyen teknoloji şirketleri için tasarlanmıştır."
+                question: "Is UserJot suitable for SaaS companies?",
+                answer: "Absolutely. UserJot is specifically designed for rapidly growing technology companies.",
+                isOpen: false
               },
               {
-                question: "SeraGPT'yi ürün yol haritası yazılımı olarak kullanabilir miyim?",
-                answer: "Evet, toplanan geri bildirimler otomatik olarak ürün yol haritanızla entegre edilir."
-              },
-              {
-                question: "SeraGPT geri bildirim takibi sunuyor mu?",
-                answer: "Her geri bildirim başından sonuna kadar izlenir ve müşteriler ilerleme hakkında bilgilendirilir."
-              },
-              {
-                question: "SeraGPT ile ürün değişiklik günlüğü oluşturabilir miyim?",
-                answer: "Evet, tüm güncellemeler otomatik olarak profesyonel değişiklik günlüklerine dönüştürülür."
-              },
-              {
-                question: "SeraGPT müşteri deneyimi yönetimini nasıl geliştirir?",
-                answer: "Merkezi bir platform sa��layarak müşteri sesini dinleme ve yanıtlama sürecini kolaylaştırır."
-              },
-              {
-                question: "SeraGPT konuk veya anonim geri bildirimleri destekliyor mu?",
-                answer: "Evet, hem kayıtlı kullanıcılardan hem de anonim ziyaretçilerden geri bildirim toplayabilirsiniz."
-              },
-              {
-                question: "SeraGPT'yi markama uygun şekilde özelleştirebilir miyim?",
-                answer: "Tamamen. Logonuzdan renklerinize kadar her detayı markanıza uygun şekilde düzenleyebilirsiniz."
-              },
-              {
-                question: "SeraGPT hangi entegrasyonları sunuyor?",
-                answer: "Slack, Teams, Jira, GitHub ve daha birçok popüler araçla entegrasyon imkanı sunar."
+                question: "Can I use UserJot as a product roadmap software?",
+                answer: "Yes, collected feedback is automatically integrated with your product roadmap.",
+                isOpen: false
               }
             ].map((faq, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
+                transition={{ duration: 0.6, delay: index * 0.05 }}
                 viewport={{ once: true }}
-                className="rounded-2xl border border-gray-200 overflow-hidden"
+                className="bg-gray-50 rounded-xl overflow-hidden"
               >
-                <button className="w-full p-6 text-left hover:bg-gray-50 transition-colors group">
+                <button className="w-full p-6 text-left hover:bg-gray-100 transition-colors group">
                   <div className="flex items-center justify-between">
-                    <h3 className="text-lg font-medium text-gray-900 group-hover:text-gray-700">
+                    <h3 className="text-lg font-medium text-gray-900 group-hover:text-gray-700 pr-4">
                       {faq.question}
                     </h3>
                     <svg
-                      className="w-5 h-5 text-gray-400 group-hover:text-gray-600 transition-transform group-hover:rotate-180"
+                      className={`w-5 h-5 text-gray-400 group-hover:text-gray-600 transition-transform flex-shrink-0 ${
+                        faq.isOpen ? 'rotate-180' : ''
+                      }`}
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -811,6 +796,16 @@ export default function UserjotCloneSection() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                     </svg>
                   </div>
+                  {faq.isOpen && (
+                    <motion.div
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: 'auto' }}
+                      transition={{ duration: 0.3 }}
+                      className="mt-4 text-gray-600 leading-relaxed"
+                    >
+                      {faq.answer}
+                    </motion.div>
+                  )}
                 </button>
               </motion.div>
             ))}
