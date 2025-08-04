@@ -978,201 +978,7 @@ export default function UserjotCloneSection() {
       {/* Corporate Consulting Section */}
       <div className="py-20 bg-gray-50">
         <div className="max-w-[960px] mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              🏛️ Kurumsal Sera<br />
-              Danışmanlığı
-            </h2>
-            <div className="bg-white rounded-2xl p-8 max-w-5xl mx-auto border border-gray-200 shadow-lg">
-              <div className="text-lg text-gray-700 leading-relaxed space-y-6">
-                <p>
-                  <strong>Hermisan & ISITMAX</strong> iş birliğiyle <strong>+500 projede test edilmiş</strong> 
-                  mühendislik gücüyle tanışın.
-                </p>
-                
-                <div className="border-l-4 border-blue-500 pl-6">
-                  <p className="mb-4">
-                    📌 Her sera yatırımı, yerinde analiz ve mühendislik doğrulaması ister. 
-                    SeraGPT üzerinden alınan veriler size güçlü bir temel sunar. 
-                    Ama arazi koşulları, özel amaçlı üretim hedefleri ve yatırım büyüklüğü arttıkça;
-                  </p>
-                  <div className="grid md:grid-cols-3 gap-4 mb-4">
-                    <div className="flex items-center space-x-2">
-                      <span className="text-green-500">✅</span>
-                      <span className="font-medium">mühendislik hesapları</span>
-                    </div>
-                    <div className="flex items-center space-x-2">
-                      <span className="text-green-500">✅</span>
-                      <span className="font-medium">proje planlama</span>
-                    </div>
-                    <div className="flex items-center space-x-2">
-                      <span className="text-green-500">✅</span>
-                      <span className="font-medium">doğru bütçe çıkartımı</span>
-                    </div>
-                  </div>
-                  <p>uzmanlık gerektirir.</p>
-                </div>
 
-                <div className="bg-blue-50 rounded-xl p-6">
-                  <p className="mb-4">
-                    🛠️ İ��te bu noktada, <strong>Hermisan ve ISITMAX</strong> iş birliğiyle sunduğumuz 
-                    <strong>"Kurumsal Danışmanlık"</strong> devreye giriyor:
-                  </p>
-                  <div className="grid md:grid-cols-2 gap-4">
-                    <div className="flex items-center space-x-3">
-                      <span className="text-blue-600">🔹</span>
-                      <span className="font-semibold">+20 Yıllık Proje Deneyimi</span>
-                    </div>
-                    <div className="flex items-center space-x-3">
-                      <span className="text-blue-600">🔹</span>
-                      <span className="font-semibold">500'den Fazla Tamamlanmış Proje</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Feature Cards Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {/* Engineering Analysis Card */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              viewport={{ once: true }}
-              className="bg-white rounded-2xl p-8 border border-gray-200 hover:shadow-lg transition-shadow"
-            >
-              <div className="mb-6">
-                <div className="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center mb-4">
-                  <span className="text-2xl">🔧</span>
-                </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3">
-                  Mühendislik Hesapları
-                </h3>
-                <p className="text-gray-600 leading-relaxed">
-                  Arazi koşullarına özel statik ve hidrolik hesaplamalar ile 
-                  teknik doğrulama süreçleri.
-                </p>
-              </div>
-            </motion.div>
-
-            {/* Project Planning Card */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              viewport={{ once: true }}
-              className="bg-white rounded-2xl p-8 border border-gray-200 hover:shadow-lg transition-shadow"
-            >
-              <div className="mb-6">
-                <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mb-4">
-                  <span className="text-2xl">📋</span>
-                </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3">
-                  Proje Planlama
-                </h3>
-                <p className="text-gray-600 leading-relaxed">
-                  Detaylı zaman çizelgesi, kaynak planlaması ve 
-                  aşamalı uygulama stratejileri.
-                </p>
-              </div>
-            </motion.div>
-
-            {/* Budget Optimization Card */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              viewport={{ once: true }}
-              className="bg-white rounded-2xl p-8 border border-gray-200 hover:shadow-lg transition-shadow"
-            >
-              <div className="mb-6">
-                <div className="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center mb-4">
-                  <span className="text-2xl">💰</span>
-                </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3">
-                  Doğru Bütçe Çıkartımı
-                </h3>
-                <p className="text-gray-600 leading-relaxed">
-                  Gerçek piyasa verileri ile optimize edilmiş 
-                  maliyet analizi ve bütçe planlaması.
-                </p>
-              </div>
-            </motion.div>
-
-            {/* Site Analysis Card */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              viewport={{ once: true }}
-              className="bg-white rounded-2xl p-8 border border-gray-200 hover:shadow-lg transition-shadow"
-            >
-              <div className="mb-6">
-                <div className="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center mb-4">
-                  <span className="text-2xl">🗺️</span>
-                </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3">
-                  Yerinde Analiz
-                </h3>
-                <p className="text-gray-600 leading-relaxed">
-                  Uzman ekip tarafından arazi koşulları, 
-                  altyapı durumu ve çevresel faktörlerin incelenmesi.
-                </p>
-              </div>
-            </motion.div>
-
-            {/* Custom Production Card */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.5 }}
-              viewport={{ once: true }}
-              className="bg-white rounded-2xl p-8 border border-gray-200 hover:shadow-lg transition-shadow"
-            >
-              <div className="mb-6">
-                <div className="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center mb-4">
-                  <span className="text-2xl">🎯</span>
-                </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3">
-                  Özel Üretim Hedefleri
-                </h3>
-                <p className="text-gray-600 leading-relaxed">
-                  Hedef ürün ve pazar analizine özel 
-                  sera tasarımı ve ekipman seçimi.
-                </p>
-              </div>
-            </motion.div>
-
-            {/* Experience Card */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.6 }}
-              viewport={{ once: true }}
-              className="bg-white rounded-2xl p-8 border border-gray-200 hover:shadow-lg transition-shadow"
-            >
-              <div className="mb-6">
-                <div className="w-12 h-12 bg-yellow-100 rounded-xl flex items-center justify-center mb-4">
-                  <span className="text-2xl">🏆</span>
-                </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3">
-                  Kanıtlanmış Deneyim
-                </h3>
-                <p className="text-gray-600 leading-relaxed">
-                  20+ yıllık deneyim ve 500+ başarılı proje ile 
-                  test edilmiş mühendislik çözümleri.
-                </p>
-              </div>
-            </motion.div>
-          </div>
 
           {/* Bottom CTA */}
           <motion.div
@@ -1392,7 +1198,7 @@ export default function UserjotCloneSection() {
                 </div>
                 <div className="flex items-center space-x-3">
                   <span className="text-blue-500 text-lg">🌐</span>
-                  <span className="text-gray-700">TÜİK, Open-Meteo, ERA5, FAO, GTIP gibi ücretli veri servisleri</span>
+                  <span className="text-gray-700">T��İK, Open-Meteo, ERA5, FAO, GTIP gibi ücretli veri servisleri</span>
                 </div>
               </div>
 
@@ -1511,7 +1317,7 @@ export default function UserjotCloneSection() {
               },
               {
                 question: "SeraGPT kullanıcı geri bildirimlerini önceliklendirmeme nasıl yardımcı olur?",
-                answer: "Akıllı algoritma sistemi, kullanıcı oyları ve etkileşim verilerine dayanarak en kritik konuları öne çıkarır."
+                answer: "Akıllı algoritma sistemi, kullanıcı oylar�� ve etkileşim verilerine dayanarak en kritik konuları öne çıkarır."
               },
               {
                 question: "SeraGPT müşteri kaybını azaltmaya yardımcı olabilir mi?",
