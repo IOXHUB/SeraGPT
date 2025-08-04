@@ -851,7 +851,7 @@ export default function UserjotCloneSection() {
             {[
               {
 
-                question: "Raporlar ne kadar do��ru?",
+                question: "Raporlar ne kadar doğru?",
                 answer: "SeraGPT, gerçek zamanlı iklim, tarım ve ticaret verilerini kullanır. Raporlar, uzman mühendislerin geliştirdiği algoritmalarla analiz edilir ve %90 üzeri doğruluk oranı sunar."
               },
               {
@@ -897,7 +897,6 @@ export default function UserjotCloneSection() {
 
               },
               {
-                // icon: "🧾",
                 question: "Fatura ve iade koşulları nedir?",
                 answer: "Satın alınan jetonlar dijital hizmet kapsamına girer. Kullanılmamış jetonlar için 14 gün içinde iade mümkündür. Fatura otomatik olarak e-posta ile iletilir.",
 
