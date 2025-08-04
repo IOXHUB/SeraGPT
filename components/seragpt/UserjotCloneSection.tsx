@@ -602,8 +602,8 @@ export default function UserjotCloneSection() {
             className="text-center mb-16"
           >
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              Kullanıcıların istediği özellikleri<br />
-              geliştirin ve onlara anlatın
+              🏛️ Kurumsal Sera<br />
+              Danışmanlığı
             </h2>
             <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
               Ürün geliştirmedeki en güzel an? Birine <span className="font-semibold text-gray-900">"Bunu istedin,
@@ -722,7 +722,7 @@ export default function UserjotCloneSection() {
               </h3>
               <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
                 Kullanıcılarınız her adımda ne olduğunu bilsin, güven oluşsun ve
-                başarılı sera projeleri birlikte geliştirelim.
+                ba��arılı sera projeleri birlikte geliştirelim.
               </p>
               <motion.button
                 whileHover={{ scale: 1.05 }}
