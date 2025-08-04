@@ -1104,7 +1104,7 @@ export default function UserjotCloneSection() {
 
       {/* AI-Powered Analysis Pricing Section */}
       <div className="bg-gray-50 py-20">
-        <div className="max-w-[800px] mx-auto px-6">
+        <div className="max-w-[900px] mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-6">
               🤖 Yapay Zekâ Destekli Sera Analizleri<br />
