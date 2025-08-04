@@ -948,7 +948,7 @@ export default function UserjotCloneSection() {
               whileTap={{ scale: 0.95 }}
               className="bg-green-600 hover:bg-green-700 text-white px-10 py-4 rounded-xl text-xl font-bold transition-colors shadow-lg hover:shadow-xl"
             >
-              🏗️ Anahtar Teslim Fiyat Alın
+<p>Anahtar Teslim Fiyat Alın</p>
             </motion.button>
             <p className="text-gray-500 text-sm mt-4">
               Uzman ekibimiz size özel teklifini hazırlayacak
@@ -1173,7 +1173,7 @@ export default function UserjotCloneSection() {
               İçin Planınızı Seçin
             </h2>
             <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-              Tüm planlar aynı güçlü veriye erişir. Fark, <span className="font-semibold text-gray-900">ne kadar çok analiz yapacağınızda</span>.
+              Tüm planlar aynı gü��lü veriye erişir. Fark, <span className="font-semibold text-gray-900">ne kadar çok analiz yapacağınızda</span>.
             </p>
           </div>
 
@@ -1449,7 +1449,7 @@ export default function UserjotCloneSection() {
               },
               {
                 question: "SeraGPT hangi entegrasyonları sunuyor?",
-                answer: "Slack, Teams, Jira, GitHub ve daha birçok popüler araçla entegrasyon imkanı sunar."
+                answer: "Slack, Teams, Jira, GitHub ve daha bir��ok popüler araçla entegrasyon imkanı sunar."
               }
             ].map((faq, index) => (
               <motion.div
