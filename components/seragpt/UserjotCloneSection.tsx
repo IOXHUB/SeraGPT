@@ -315,7 +315,7 @@ export default function UserjotCloneSection() {
 
                   <div className="space-y-3 mb-4">
                     <div>
-                      <p className="text-gray-800 text-xs font-semibold mb-1">🎯 3 Önemli Fayda:</p>
+                      <p className="text-gray-800 text-xs font-semibold mb-1">�� 3 Önemli Fayda:</p>
                       <p className="text-gray-600 text-xs">• Bölgeye uygun yapı ve iklimlendirme</p>
                       <p className="text-gray-600 text-xs">• Anahtar teslim modüler öneriler</p>
                       <p className="text-gray-600 text-xs">• Genişletilebilirlik alternatifleri</p>
@@ -859,7 +859,7 @@ export default function UserjotCloneSection() {
                 answer: "Evet. Raporlar TKDK, IPARD ve Ziraat Bankası destek başvurularında ön fizibilite dosyası olarak kullanılabilir. Talep halinde ek mühendis onayı alınabilir."
               },
               {
-                // icon: "👷",
+
                 question: "Mühendis desteği sunuyor musunuz?",
                 answer: "Evet. Profesyonel kullanıcılar için mühendis danışmanlık hizmeti sağlıyoruz. Size en yakın uzmanla eşleştirilerek birebir destek sunulur.",
 
