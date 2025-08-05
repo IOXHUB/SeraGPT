@@ -186,137 +186,6 @@ export default function UserjotCloneSection() {
         </div>
       </main>
 
-      {/* Dashboard Preview Section - Positioned after hero */}
-      <div className="relative -mt-20 z-10">
-        <div className="max-w-[900px] mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.2 }}
-            viewport={{ once: true }}
-            className="relative"
-          >
-            <div className="bg-gradient-to-br from-blue-50 to-indigo-100 rounded-2xl p-8 shadow-2xl" style={{boxShadow: '0 25px 50px -12px rgba(59, 130, 246, 0.25), 0 0 0 1px rgba(59, 130, 246, 0.05)'}}>
-              <div className="bg-white rounded-xl shadow-lg overflow-hidden">
-                {/* Header */}
-                <div className="bg-white border-b border-gray-200 px-6 py-4">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center space-x-4">
-                      <div className="flex items-center space-x-3">
-                        <div className="w-8 h-8 bg-black rounded-lg flex items-center justify-center">
-                          <span className="text-white text-sm font-bold">S</span>
-                        </div>
-                        <span className="text-lg font-semibold text-gray-900">SeraGPT Dashboard</span>
-                      </div>
-
-                      <nav className="flex space-x-6">
-                        <a href="#" className="text-gray-900 font-medium border-b-2 border-black pb-1">Analizler</a>
-                        <a href="#" className="text-gray-500 hover:text-gray-700 font-medium">Raporlar</a>
-                        <a href="#" className="text-gray-500 hover:text-gray-700 font-medium">Jetonlar</a>
-                      </nav>
-                    </div>
-
-                    <div className="flex items-center space-x-3">
-                      <div className="w-8 h-8 bg-gray-800 rounded-full"></div>
-                      <div className="w-8 h-8 bg-gray-600 rounded-full"></div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Content */}
-                <div className="p-6">
-                  <div className="flex items-center justify-between mb-6">
-                    <h1 className="text-2xl font-bold text-gray-900">Sera Yatırım Analiz Merkezi</h1>
-                    <div className="flex items-center space-x-2">
-                      <span className="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">5 Ücretsiz Jeton</span>
-                    </div>
-                  </div>
-
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
-                    {/* Analysis Card 1 */}
-                    <div className="border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow">
-                      <div className="flex items-center justify-between mb-3">
-                        <h3 className="font-semibold text-gray-900">ROI Simülasyonu</h3>
-                        <span className="text-2xl">🧮</span>
-                      </div>
-                      <p className="text-gray-600 text-sm mb-3">
-                        Yatırımın geri dönüş süresi ve kar marjı analizi
-                      </p>
-                      <button className="w-full bg-black text-white py-2 rounded-lg text-sm font-medium">
-                        Analizi Başlat (1 jeton)
-                      </button>
-                    </div>
-
-                    {/* Analysis Card 2 */}
-                    <div className="border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow">
-                      <div className="flex items-center justify-between mb-3">
-                        <h3 className="font-semibold text-gray-900">İklim Analizi</h3>
-                        <span className="text-2xl">🌦️</span>
-                      </div>
-                      <p className="text-gray-600 text-sm mb-3">
-                        Don, rüzgar, nem riskleri ve uygunluk skorları
-                      </p>
-                      <button className="w-full bg-black text-white py-2 rounded-lg text-sm font-medium">
-                        Analizi Başlat (1 jeton)
-                      </button>
-                    </div>
-
-                    {/* Analysis Card 3 */}
-                    <div className="border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow">
-                      <div className="flex items-center justify-between mb-3">
-                        <h3 className="font-semibold text-gray-900">Ekipman Listesi</h3>
-                        <span className="text-2xl">🧰</span>
-                      </div>
-                      <p className="text-gray-600 text-sm mb-3">
-                        Bölgeye uygun yapı ve iklimlendirme ekipmanları
-                      </p>
-                      <button className="w-full bg-black text-white py-2 rounded-lg text-sm font-medium">
-                        Analizi Başlat (1 jeton)
-                      </button>
-                    </div>
-                  </div>
-
-                  {/* Recent Activity */}
-                  <div className="border-t border-gray-200 pt-4">
-                    <h3 className="font-semibold text-gray-900 mb-3">Son Aktiviteler</h3>
-                    <div className="space-y-2">
-                      <div className="flex items-center space-x-3 p-2 bg-blue-50 rounded-lg">
-                        <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
-                        <span className="text-sm text-gray-700">SeraGPT'ye hoş geldiniz! 5 ücretsiz analiz hakkınız var.</span>
-                      </div>
-                      <div className="flex items-center space-x-3 p-2 bg-yellow-50 rounded-lg">
-                        <div className="w-2 h-2 bg-yellow-600 rounded-full"></div>
-                        <span className="text-sm text-gray-700">İpucu: ROI analizinden başlayarak yatırımınızın geri dönüşünü hesaplayın.</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* CTA Button */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            viewport={{ once: true }}
-            className="text-center mt-12"
-          >
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="bg-black hover:bg-gray-800 text-white px-10 py-4 rounded-xl text-xl font-bold transition-colors shadow-lg hover:shadow-xl"
-            >
-              Kullanıcı Paneline Giriş Yapın
-            </motion.button>
-            <p className="text-gray-500 text-sm mt-4">
-              Tüm sera projelerinizi tek platformdan yönetin
-            </p>
-          </motion.div>
-        </div>
-      </div>
-
       {/* How It Works Section - Horizontal Scrolling */}
       <div className="py-20 bg-gray-50 text-gray-600">
         <div className="page-section-container">
@@ -328,13 +197,16 @@ export default function UserjotCloneSection() {
             className="text-center mb-16"
           >
             <p className="text-gray-500 text-sm font-medium uppercase tracking-wider mb-4">
-              KURUMSAL RAPORLAMA SİSTEMİ
+              HER ANALİZ İÇİN DETAYLı ÇÖZÜM
             </p>
             <h2 className="text-xl font-bold text-gray-900 mb-6">
-              Tarımsal Zeka İle Detaylı ve Kurumsal Raporlar
+              5 Adımda Sera Yatırım<br />
+              Analizi Tamamla
             </h2>
             <p className="text-sm text-gray-600 text-section-container leading-relaxed">
-              Yatırım kararlarınızı bilimsel verilerle destekleyin.
+              20 yıllık mühendislik deneyimi ve 110+ veri setiyle<br />
+              desteklenen <strong>yapay zeka analizleri</strong> ile yatırım kararlarınızı<br />
+              <strong>bilimsel verilerle destekleyin</strong>.
             </p>
           </motion.div>
 
@@ -582,6 +454,22 @@ export default function UserjotCloneSection() {
       {/* Roadmap Section */}
       <div className="py-20 text-gray-600">
         <div className="text-section-container">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-xl font-bold text-gray-900 mb-6">
+              Size Özel Kontrol Paneli
+            </h2>
+            <p className="text-sm text-gray-600 max-w-[576px] mx-auto leading-relaxed">
+              Panelinizden tüm raporlarınıza, danışmanlık taleplerinize ve teknik teklif süreçlerinize anlık erişim sağlayın.
+              <span className="font-semibold text-gray-900"> Yapay zekâ analizleri, mühendislik değerlendirmeleri ve saha hizmetleri</span>
+              artık tek bir merkezden yönetilebilir.
+            </p>
+          </motion.div>
 
           {/* Roadmap Mockup */}
           <motion.div
@@ -972,7 +860,7 @@ export default function UserjotCloneSection() {
               },
               {
 
-                question: "M��hendis desteği sunuyor musunuz?",
+                question: "Mühendis desteği sunuyor musunuz?",
                 answer: "Evet. Profesyonel kullanıcılar için mühendis danışmanlık hizmeti sağlıyoruz. Size en yakın uzmanla eşleştirilerek birebir destek sunulur.",
 
               },
