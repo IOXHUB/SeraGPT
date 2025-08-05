@@ -119,27 +119,38 @@ export default function UserjotCloneSection() {
 
               {/* Right menu actions */}
               <div className="space-y-3">
-                <a
-                  href="/dashboard"
-                  className="block text-gray-700 hover:text-gray-900 font-medium transition-colors py-2"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  Dashboard
-                </a>
-                <a
-                  href="/auth/login"
-                  className="block text-gray-700 hover:text-gray-900 font-medium transition-colors py-2"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  Giriş Yap
-                </a>
-                <a
-                  href="/dashboard"
-                  className="block bg-black hover:bg-gray-800 text-white px-4 py-3 rounded-xl font-medium transition-colors text-center"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  Ücretsiz Başla
-                </a>
+                {!loading && (
+                  <>
+                    {user ? (
+                      // For logged in users - show Dashboard
+                      <a
+                        href="/dashboard"
+                        className="block text-gray-700 hover:text-gray-900 font-medium transition-colors py-2"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                      >
+                        Dashboard
+                      </a>
+                    ) : (
+                      // For logged out users - show Login and Sign Up
+                      <>
+                        <a
+                          href="/auth/login"
+                          className="block text-gray-700 hover:text-gray-900 font-medium transition-colors py-2"
+                          onClick={() => setIsMobileMenuOpen(false)}
+                        >
+                          Giriş Yap
+                        </a>
+                        <a
+                          href="/dashboard"
+                          className="block bg-black hover:bg-gray-800 text-white px-4 py-3 rounded-xl font-medium transition-colors text-center"
+                          onClick={() => setIsMobileMenuOpen(false)}
+                        >
+                          Ücretsiz Başla
+                        </a>
+                      </>
+                    )}
+                  </>
+                )}
               </div>
             </div>
           </motion.div>
@@ -574,7 +585,7 @@ export default function UserjotCloneSection() {
           >
             <h2 className="text-xl font-bold text-gray-900 mb-6 flex flex-col max-w-[576px] mx-auto">
               <span className="mx-auto text-3xl">
-                Yatırımcılarımızın Tercih Ettiği Sera Çözümleri
+                Yatırımcılarımızın Tercih Ettiği Sera ��özümleri
               </span>
               <br />
             </h2>
