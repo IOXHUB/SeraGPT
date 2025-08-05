@@ -281,7 +281,7 @@ export default function UserjotCloneSection() {
 
       {/* Dashboard Preview Section */}
       <section className="relative py-16 bg-gray-50">
-        <div className="max-w-5xl mx-auto px-6">
+        <div className="max-w-4xl -mt-15 mx-auto px-6">
           {/* Dashboard Image with colored border */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
