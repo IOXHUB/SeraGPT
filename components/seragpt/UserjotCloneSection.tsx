@@ -623,8 +623,9 @@ export default function UserjotCloneSection() {
                     </div>
 
                     <div className="flex items-center space-x-3">
+                      <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                      <span className="text-sm text-gray-600">Aktif</span>
                       <div className="w-8 h-8 bg-gray-800 rounded-full"></div>
-                      <div className="w-8 h-8 bg-gray-600 rounded-full"></div>
                     </div>
                   </div>
                 </div>
@@ -975,7 +976,7 @@ export default function UserjotCloneSection() {
               {
 
                 question: "Raporlar ne kadar doğru?",
-                answer: "SeraGPT, gerçek zamanl���� iklim, tarım ve ticaret verilerini kullanır. Raporlar, uzman mühendislerin geliştirdiği algoritmalarla analiz edilir ve %90 üzeri doğruluk oranı sunar."
+                answer: "SeraGPT, gerçek zamanl�� iklim, tarım ve ticaret verilerini kullanır. Raporlar, uzman mühendislerin geliştirdiği algoritmalarla analiz edilir ve %90 üzeri doğruluk oranı sunar."
               },
               {
                 question: "Devlet teşviklerine uygun mu?",
