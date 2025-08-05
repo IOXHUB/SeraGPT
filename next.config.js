@@ -29,6 +29,19 @@ const nextConfig = {
   
   // Webpack configuration for better builds
   webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
+    // HMR optimization for development
+    if (dev && !isServer) {
+      config.watchOptions = {
+        poll: 1000,
+        aggregateTimeout: 300,
+        ignored: ['**/node_modules/**', '**/.git/**']
+      };
+
+      // Optimize HMR fetch behavior
+      config.output.hotUpdateChunkFilename = 'static/webpack/[id].[fullhash].hot-update.js';
+      config.output.hotUpdateMainFilename = 'static/webpack/[fullhash].hot-update.json';
+    }
+
     // Important: return the modified config
     return config;
   },
