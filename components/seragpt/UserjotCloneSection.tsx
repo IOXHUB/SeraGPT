@@ -672,7 +672,48 @@ export default function UserjotCloneSection() {
                       </div>
                     </div>
 
-                    {/* Feature 2 */}
+                    {/* User Follow-up Message */}
+                    <div className="flex justify-end">
+                      <div className="bg-blue-500 text-white rounded-lg p-4 max-w-xs">
+                        <p className="text-sm">Hidroponik sistem için ne kadar ek maliyet gerekir?</p>
+                        <span className="text-xs opacity-75 mt-2 block">11:45</span>
+                      </div>
+                    </div>
+
+                    {/* AI Detailed Response */}
+                    <div className="flex justify-start">
+                      <div className="bg-gray-100 text-gray-900 rounded-lg p-4 max-w-md">
+                        <div className="flex items-center space-x-2 mb-2">
+                          <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center">
+                            <span className="text-white text-xs">🤖</span>
+                          </div>
+                          <span className="font-semibold text-sm">SeraGPT AI</span>
+                        </div>
+                        <p className="text-sm mb-3">
+                          <strong>Hidroponik Sistemi Maliyet Analizi:</strong>
+                        </p>
+                        <div className="bg-white rounded p-3 mb-3 text-xs">
+                          <div className="flex justify-between mb-1">
+                            <span>NFT Sistemi (1000m²)</span>
+                            <span className="font-semibold">₺85,000</span>
+                          </div>
+                          <div className="flex justify-between mb-1">
+                            <span>Besleyici Tankı</span>
+                            <span className="font-semibold">₺15,000</span>
+                          </div>
+                          <div className="flex justify-between border-t pt-1">
+                            <span className="font-semibold">Toplam Ek Maliyet</span>
+                            <span className="font-bold text-green-600">₺100,000</span>
+                          </div>
+                        </div>
+                        <p className="text-xs text-gray-600">
+                          Bu yatırımla yıllık verimin %40 artması beklenir.
+                        </p>
+                        <span className="text-xs text-gray-500 mt-2 block">11:46</span>
+                      </div>
+                    </div>
+
+                    {/* Feature 2 - Now keeping for context */}
                     <div className="border border-gray-200 rounded-lg p-4">
                       <div className="flex items-start justify-between">
                         <div className="flex-1">
