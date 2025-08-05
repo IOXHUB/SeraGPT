@@ -541,7 +541,7 @@ export default function UserjotCloneSection() {
 
                     <div>
                       <p className="text-gray-800 text-xs font-semibold mb-1">👤 Kullanıcı Girdisi:</p>
-                      <p className="text-gray-600 text-xs">• Parsel ölçüleri, teknik bölmeler</p>
+                      <p className="text-gray-600 text-xs">• Parsel öl��üleri, teknik bölmeler</p>
                     </div>
 
                     <div>
@@ -905,7 +905,7 @@ export default function UserjotCloneSection() {
                 <div className="w-full h-full bg-gradient-to-br from-yellow-100 to-orange-100 flex items-center justify-center">
                   <div className="text-center">
                     <p className="text-gray-700 font-medium">Fide Üretim Tesisi</p>
-                    <p className="text-gray-500 text-sm">Bursa, 4.500 m��</p>
+                    <p className="text-gray-500 text-sm">Bursa, 4.500 m²</p>
                   </div>
                 </div>
               </motion.div>
