@@ -220,10 +220,31 @@ export default function UserjotCloneSection() {
 
                 {/* Chat Messages - Single View */}
                 <div className="space-y-4">
-                  <div className="flex items-center justify-between mb-6">
-                    <h1 className="text-2xl font-bold text-gray-900">Sera Yatırım Analiz Merkezi</h1>
-                    <div className="flex items-center space-x-2">
-                      <span className="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">5 Ücretsiz Jeton</span>
+                  {/* User Message 1 */}
+                  <div className="flex justify-end">
+                    <div className="bg-blue-600 text-white px-4 py-2 rounded-lg max-w-sm">
+                      <p className="text-sm">Bu ROI hesabında enerji maliyetleri nasıl değerlendirildi?</p>
+                    </div>
+                  </div>
+
+                  {/* AI Response 1 */}
+                  <div className="flex items-start space-x-3">
+                    <div className="w-8 h-8 bg-black rounded-lg flex items-center justify-center flex-shrink-0">
+                      <span className="text-white text-xs">🤖</span>
+                    </div>
+                    <div className="bg-white border border-gray-200 px-4 py-3 rounded-lg max-w-lg">
+                      <p className="text-sm text-gray-700 mb-2">
+                        Enerji maliyetleri hesaplamasında şu faktörleri dikkate aldım:
+                      </p>
+                      <ul className="text-xs text-gray-600 space-y-1 mb-3">
+                        <li>• Antalya elektrik tarifesi: 2.18 ₺/kWh</li>
+                        <li>• Sera ısıtma ihtiyacı: 180 gün/yıl</li>
+                        <li>• LED aydınlatma: 12 saat/gün</li>
+                        <li>• Soğutma sistemi: Mayıs-Ekim arası</li>
+                      </ul>
+                      <div className="bg-gray-50 p-2 rounded text-xs">
+                        <strong>Yıllık enerji maliyeti: ₺142,000</strong>
+                      </div>
                     </div>
                   </div>
 
@@ -432,7 +453,7 @@ export default function UserjotCloneSection() {
 
                   <div className="space-y-3 mb-4">
                     <div>
-                      <p className="text-gray-800 text-xs font-semibold mb-1">�� 3 Önemli Fayda:</p>
+                      <p className="text-gray-800 text-xs font-semibold mb-1">��� 3 Önemli Fayda:</p>
                       <p className="text-gray-600 text-xs">• Bölgeye uygun yapı ve iklimlendirme</p>
                       <p className="text-gray-600 text-xs">• Anahtar teslim modüler öneriler</p>
                       <p className="text-gray-600 text-xs">• Genişletilebilirlik alternatifleri</p>
@@ -851,7 +872,7 @@ export default function UserjotCloneSection() {
               >
                 <div className="w-full h-full bg-gradient-to-br from-blue-100 to-indigo-100 flex items-center justify-center">
                   <div className="text-center">
-                    <div className="text-4xl mb-3">❄️</div>
+                    <div className="text-4xl mb-3">���️</div>
                     <p className="text-gray-700 font-medium">İklim Kontrollü Sera</p>
                     <p className="text-gray-500 text-sm">Konya, 6.000 m²</p>
                   </div>
