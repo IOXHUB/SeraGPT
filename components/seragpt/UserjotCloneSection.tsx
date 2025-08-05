@@ -368,7 +368,7 @@ export default function UserjotCloneSection() {
                 <div className="space-y-4">
                   {/* User Message 1 */}
                   <div className="flex justify-end">
-                    <div className="bg-blue-600 text-white px-4 py-2 rounded-lg max-w-sm">
+                    <div className="bg-gray-600 text-white px-4 py-2 rounded-lg max-w-sm">
                       <p className="text-sm">Bu ROI hesabında enerji maliyetleri nasıl değerlendirildi?</p>
                     </div>
                   </div>
