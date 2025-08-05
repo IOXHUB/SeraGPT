@@ -197,23 +197,96 @@ export default function UserjotCloneSection() {
             className="relative"
           >
             <div className="bg-gradient-to-br from-blue-50 to-indigo-100 rounded-2xl p-8" style={{boxShadow: '0 25px 50px -12px rgba(59, 130, 246, 0.25), 0 0 0 1px rgba(59, 130, 246, 0.05)'}}>
-              <div className="bg-gray-50 rounded-xl p-6 space-y-6">
+              <div className="bg-white rounded-xl shadow-lg overflow-hidden">
+                {/* Header */}
+                <div className="bg-white border-b border-gray-200 px-6 py-4">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center space-x-4">
+                      <div className="flex items-center space-x-3">
+                        <div className="w-8 h-8 bg-black rounded-lg flex items-center justify-center">
+                          <span className="text-white text-sm font-bold">S</span>
+                        </div>
+                        <span className="text-lg font-semibold text-gray-900">SeraGPT Dashboard</span>
+                      </div>
 
-                {/* ROI Analysis Display */}
-                <div className="p-4 bg-white rounded-lg border border-gray-200 mb-6">
-                  <h3 className="font-semibold text-gray-900 mb-3">ROI Analiz Raporu - Antalya Sera Projesi</h3>
-                  <div className="grid grid-cols-3 gap-4 text-sm">
-                    <div className="text-center">
-                      <div className="text-2xl font-bold text-green-600">%24</div>
-                      <div className="text-gray-600">Yıllık Getiri</div>
+                      <nav className="flex space-x-6">
+                        <a href="#" className="text-gray-900 font-medium border-b-2 border-black pb-1">Analizler</a>
+                        <a href="#" className="text-gray-500 hover:text-gray-700 font-medium">Raporlar</a>
+                        <a href="#" className="text-gray-500 hover:text-gray-700 font-medium">Jetonlar</a>
+                      </nav>
                     </div>
-                    <div className="text-center">
-                      <div className="text-2xl font-bold text-blue-600">3.2</div>
-                      <div className="text-gray-600">Geri Dönüş (Yıl)</div>
+
+                    <div className="flex items-center space-x-3">
+                      <div className="w-8 h-8 bg-gray-800 rounded-full"></div>
                     </div>
-                    <div className="text-center">
-                      <div className="text-2xl font-bold text-purple-600">₺2.1M</div>
-                      <div className="text-gray-600">Toplam Yatırım</div>
+                  </div>
+                </div>
+
+                {/* Content */}
+                <div className="p-6">
+                  <div className="flex items-center justify-between mb-6">
+                    <h1 className="text-2xl font-bold text-gray-900">Sera Yatırım Analiz Merkezi</h1>
+                    <div className="flex items-center space-x-2">
+                      <span className="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">5 Ücretsiz Jeton</span>
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+                    {/* Analysis Card 1 */}
+                    <div className="border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow">
+                      <div className="flex items-center justify-between mb-3">
+                        <h3 className="font-semibold text-gray-900">ROI Simülasyonu</h3>
+                        <span className="text-2xl">🧮</span>
+                      </div>
+                      <p className="text-gray-600 text-sm mb-3">
+                        Yatırımın geri dönüş süresi ve kar marjı analizi
+                      </p>
+                      <button className="w-full bg-black text-white py-2 rounded-lg text-sm font-medium">
+                        Analizi Başlat (1 jeton)
+                      </button>
+                    </div>
+
+                    {/* Analysis Card 2 */}
+                    <div className="border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow">
+                      <div className="flex items-center justify-between mb-3">
+                        <h3 className="font-semibold text-gray-900">İklim Analizi</h3>
+                        <span className="text-2xl">🌦️</span>
+                      </div>
+                      <p className="text-gray-600 text-sm mb-3">
+                        Don, rüzgar, nem riskleri ve uygunluk skorları
+                      </p>
+                      <button className="w-full bg-black text-white py-2 rounded-lg text-sm font-medium">
+                        Analizi Başlat (1 jeton)
+                      </button>
+                    </div>
+
+                    {/* Analysis Card 3 */}
+                    <div className="border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow">
+                      <div className="flex items-center justify-between mb-3">
+                        <h3 className="font-semibold text-gray-900">Ekipman Listesi</h3>
+                        <span className="text-2xl">🧰</span>
+                      </div>
+                      <p className="text-gray-600 text-sm mb-3">
+                        Bölgeye uygun yapı ve iklimlendirme ekipmanları
+                      </p>
+                      <button className="w-full bg-black text-white py-2 rounded-lg text-sm font-medium">
+                        Analizi Başlat (1 jeton)
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Recent Activity */}
+                  <div className="border-t border-gray-200 pt-4">
+                    <h3 className="font-semibold text-gray-900 mb-3">Son Aktiviteler</h3>
+                    <div className="space-y-2">
+                      <div className="flex items-center space-x-3 p-2 bg-blue-50 rounded-lg">
+                        <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
+                        <span className="text-sm text-gray-700">SeraGPT'ye hoş geldiniz! 5 ücretsiz analiz hakkınız var.</span>
+                      </div>
+                      <div className="flex items-center space-x-3 p-2 bg-yellow-50 rounded-lg">
+                        <div className="w-2 h-2 bg-yellow-600 rounded-full"></div>
+                        <span className="text-sm text-gray-700">İpucu: ROI analizinden başlayarak yatırımınızın geri dönüşünü hesaplayın.</span>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -980,7 +1053,7 @@ export default function UserjotCloneSection() {
               >
                 <div className="w-full h-full bg-gradient-to-br from-amber-100 to-yellow-100 flex items-center justify-center">
                   <div className="text-center">
-                    <div className="text-4xl mb-3">🥬</div>
+                    <div className="text-4xl mb-3">����</div>
                     <p className="text-gray-700 font-medium">Organik Sebze Serası</p>
                     <p className="text-gray-500 text-sm">Çanakkale, 3.700 m²</p>
                   </div>
