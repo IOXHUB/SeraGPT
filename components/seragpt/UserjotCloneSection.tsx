@@ -186,7 +186,7 @@ export default function UserjotCloneSection() {
         </div>
       </main>
 
-      {/* Dashboard Preview Section - Hero overflow */}
+      {/* AI Chat Section - Single View */}
       <div className="relative -mt-20 z-10">
         <div className="max-w-[900px] mx-auto px-6">
           <motion.div
@@ -197,7 +197,7 @@ export default function UserjotCloneSection() {
             className="relative"
           >
             <div className="bg-gradient-to-br from-blue-50 to-indigo-100 rounded-2xl p-8" style={{boxShadow: '0 25px 50px -12px rgba(59, 130, 246, 0.25), 0 0 0 1px rgba(59, 130, 246, 0.05)'}}>
-              <div className="bg-white rounded-xl shadow-lg overflow-hidden">
+              <div className="bg-gray-50 rounded-xl p-6 space-y-6">
                 {/* Header */}
                 <div className="bg-white border-b border-gray-200 px-6 py-4">
                   <div className="flex items-center justify-between">
