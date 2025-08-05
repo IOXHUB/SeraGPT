@@ -1,10 +1,10 @@
 [build]
-  publish = "out"
-  command = "npm run build"
+  publish = ".next"
+  command = "npm run build:netlify"
 
 [[redirects]]
   from = "/*"
-  to = "/index.html"
+  to = "/.netlify/functions/___netlify-handler"
   status = 200
 
 [build.environment]

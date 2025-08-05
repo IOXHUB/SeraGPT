@@ -3,8 +3,11 @@ const nextConfig = {
   // Image optimization settings
   images: {
     domains: ['cdn.builder.io'],
-    unoptimized: false
+    unoptimized: true // Required for Netlify
   },
+
+  // Output for Netlify deployment
+  output: 'standalone',
 
   // No trailing slash for standard deployment
   trailingSlash: false,
