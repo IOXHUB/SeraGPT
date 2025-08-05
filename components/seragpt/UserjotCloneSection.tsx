@@ -109,7 +109,7 @@ export default function UserjotCloneSection() {
                   onClick={handleSignOut}
                   className="text-gray-600 hover:text-gray-900 px-4 py-2 rounded-lg font-medium transition-colors border border-gray-300 hover:border-gray-400"
                 >
-                  ��ıkış Yap
+                  Çıkış Yap
                 </button>
               </>
             ) : (
@@ -812,7 +812,7 @@ export default function UserjotCloneSection() {
               AI Sohbet Özelliğini Deneyin
             </motion.button>
             <p className="text-gray-500 text-sm mt-4">
-              Tüm sera projelerinizi tek platformdan yönetin
+              Raporlarınızla yapay zeka destekli sohbet deneyimi
             </p>
           </motion.div>
         </div>
@@ -1079,7 +1079,7 @@ export default function UserjotCloneSection() {
               },
               {
                 question: "Jetonların zaman aşımı var mı?",
-                answer: "Hayır. Satın aldığınız jetonlar hesabınızda süresiz olarak kalır. Dilediğiniz zaman kullanabilirsiniz.",
+                answer: "Hayır. Satın aldığın��z jetonlar hesabınızda süresiz olarak kalır. Dilediğiniz zaman kullanabilirsiniz.",
 
               },
               {
