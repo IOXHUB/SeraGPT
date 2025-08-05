@@ -7,7 +7,7 @@ import Footer from '../Footer';
 
 export default function UserjotCloneSection() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [openFAQ, setOpenFAQ] = useState<number | null>(0); // First FAQ open by default
+  const [openFAQ, setOpenFAQ] = useState<number | null>(null); // No FAQ open by default
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -481,7 +481,7 @@ export default function UserjotCloneSection() {
                   <div className="space-y-3 mb-4">
                     <div>
                       <p className="text-gray-800 text-xs font-semibold mb-1">🎯 3 Önemli Fayda:</p>
-                      <p className="text-gray-600 text-xs">• Bitki türüne göre pazar fiyat analizi</p>
+                      <p className="text-gray-600 text-xs">�� Bitki türüne göre pazar fiyat analizi</p>
                       <p className="text-gray-600 text-xs">• Bölgeye göre verim ortalamaları</p>
                       <p className="text-gray-600 text-xs">• Hasat-zamanlama optimizasyonu</p>
                     </div>
