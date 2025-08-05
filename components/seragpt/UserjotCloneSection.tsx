@@ -361,7 +361,7 @@ export default function UserjotCloneSection() {
                     <div>
                       <p className="text-gray-800 text-xs font-semibold mb-1">🎯 3 Önemli Fayda:</p>
                       <p className="text-gray-600 text-xs">• Bitki türüne göre pazar fiyat analizi</p>
-                      <p className="text-gray-600 text-xs">• Bölgeye göre verim ortalamaları</p>
+                      <p className="text-gray-600 text-xs">�� Bölgeye göre verim ortalamaları</p>
                       <p className="text-gray-600 text-xs">• Hasat-zamanlama optimizasyonu</p>
                     </div>
 
@@ -842,7 +842,7 @@ export default function UserjotCloneSection() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl font-bold text-gray-900 mb-4 mobile-section-heading">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
               Sıkça Sorulan Sorular (SSS)
             </h2>
           </motion.div>
@@ -898,7 +898,7 @@ export default function UserjotCloneSection() {
               },
               {
                 question: "Fatura ve iade koşulları nedir?",
-                answer: "Satın alınan jetonlar dijital hizmet kapsamına girer. Kullanılmamış jetonlar için 14 gün içinde iade mümkündür. Fatura otomatik olarak e-posta ile iletilir.",
+                answer: "Satın alınan jetonlar dijital hizmet kapsamına girer. Kullanılmam��ş jetonlar için 14 gün içinde iade mümkündür. Fatura otomatik olarak e-posta ile iletilir.",
 
               },
               {
