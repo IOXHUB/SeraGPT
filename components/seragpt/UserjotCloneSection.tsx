@@ -722,7 +722,7 @@ export default function UserjotCloneSection() {
               >
                 <div className="w-full h-full bg-gradient-to-br from-amber-100 to-yellow-100 flex items-center justify-center">
                   <div className="text-center">
-                    <div className="text-4xl mb-3">����</div>
+                    <div className="text-4xl mb-3">🥬</div>
                     <p className="text-gray-700 font-medium">Organik Sebze Serası</p>
                     <p className="text-gray-500 text-sm">Çanakkale, 3.700 m²</p>
                   </div>
