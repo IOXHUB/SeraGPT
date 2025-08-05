@@ -647,7 +647,7 @@ export default function UserjotCloneSection() {
           </motion.div>
 
           {/* Horizontal Scrolling Gallery */}
-          <div className="relative mb-12">
+          <div className="relative mb-12 visual-section-container">
             <div className="flex overflow-x-auto scrollbar-hide gap-6 pb-6">
               {/* Gallery Image 1 */}
               <motion.div
