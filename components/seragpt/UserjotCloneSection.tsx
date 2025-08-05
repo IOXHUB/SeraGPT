@@ -637,7 +637,7 @@ export default function UserjotCloneSection() {
               </span>
               <br />
             </h2>
-            <p className="text-xl text-gray-600 max-w-[700px] mx-auto leading-relaxed">
+            <p className="text-xl text-gray-600 max-w-[896px] mx-auto leading-relaxed">
               <span>
                 Hermisan & ISITMAX iş birliğiyle tamamlanan sera projelerinden seçilmiş görüntüler.
               </span>
@@ -708,7 +708,7 @@ export default function UserjotCloneSection() {
                 <div className="w-full h-full bg-gradient-to-br from-yellow-100 to-orange-100 flex items-center justify-center">
                   <div className="text-center">
                     <p className="text-gray-700 font-medium">Fide Üretim Tesisi</p>
-                    <p className="text-gray-500 text-sm">Bursa, 4.500 m����</p>
+                    <p className="text-gray-500 text-sm">Bursa, 4.500 m��</p>
                   </div>
                 </div>
               </motion.div>
