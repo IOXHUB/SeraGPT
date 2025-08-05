@@ -250,7 +250,7 @@ export default function UserjotCloneSection() {
                     <div className="border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow">
                       <div className="flex items-center justify-between mb-3">
                         <h3 className="font-semibold text-gray-900">İklim Analizi</h3>
-                        <span className="text-2xl">🌦️</span>
+                        <span className="text-2xl">��️</span>
                       </div>
                       <p className="text-gray-600 text-sm mb-3">
                         Don, rüzgar, nem riskleri ve uygunluk skorları
@@ -714,7 +714,7 @@ export default function UserjotCloneSection() {
 
                     <div>
                       <p className="text-gray-800 text-xs font-semibold mb-1">👤 Kullanıcı Girdisi:</p>
-                      <p className="text-gray-600 text-xs">• Bitki türü, sezon, pazarlama hedefi</p>
+                      <p className="text-gray-600 text-xs">• Bitki t��rü, sezon, pazarlama hedefi</p>
                     </div>
 
                     <div>
@@ -752,7 +752,7 @@ export default function UserjotCloneSection() {
 
                     <div>
                       <p className="text-gray-800 text-xs font-semibold mb-1">��� Veri Kaynakları:</p>
-                      <p className="text-gray-600 text-xs">��� Planner 2D, CAD AI Tools</p>
+                      <p className="text-gray-600 text-xs">• Planner 2D, CAD AI Tools</p>
                       <p className="text-gray-600 text-xs">• HerbaTools yerleşim kütüphanesi</p>
                     </div>
 
@@ -983,9 +983,9 @@ export default function UserjotCloneSection() {
             viewport={{ once: true }}
             className="text-center mb-16 flex flex-col"
           >
-            <h2 className="text-xl font-bold text-gray-900 mb-6 flex flex-col max-w-[576px] mx-auto">
-              <span className="mx-auto">
-                <p>Projeler</p>
+            <h2 className="text-xl font-bold text-gray-900 mb-6 flex flex-col max-w-[576px] mx-auto" style={{margin: '0 auto -10px'}}>
+              <span className="mx-auto" style={{fontSize: '28px', paddingTop: '-3px'}}>
+                Projeler
               </span>
               <br />
             </h2>
