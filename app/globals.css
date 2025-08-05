@@ -414,41 +414,33 @@ p, .text-content {
   margin-right: auto;
 }
 
-/* Mobile-First Responsive Design - Proportional Typography */
+/* Mobile-First Responsive Design - Clean Typography */
 @media (max-width: 768px) {
   body {
     font-size: 16px;
     line-height: 26px;
-    text-align: left;
-    padding: 0;
   }
 
-  /* Mobile Typography Hierarchy - Proportional Scaling */
+  /* Mobile Typography Hierarchy */
   h1 {
     font-size: 32px;
     line-height: 40px;
     font-weight: 700;
-    color: #111827;
     margin-bottom: 1.5rem;
-    text-align: center;
   }
 
   h2 {
     font-size: 28px;
     line-height: 36px;
     font-weight: 600;
-    color: #111827;
     margin-bottom: 1.25rem;
-    text-align: center;
   }
 
   h3 {
     font-size: 20px;
     line-height: 28px;
     font-weight: 600;
-    color: #111827;
     margin-bottom: 1rem;
-    text-align: left;
   }
 
   /* Mobile-specific text content containers */
