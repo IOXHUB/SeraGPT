@@ -11,8 +11,7 @@ const nextConfig = {
 
   // Experimental features
   experimental: {
-    // Disable problematic features that might cause build issues
-    esmExternals: 'loose',
+    // Turbopack compatible experimental features only
   },
   
   // Base path if needed (keep empty for root domain)
