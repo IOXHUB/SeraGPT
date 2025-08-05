@@ -178,29 +178,53 @@ export default function UserjotCloneSection() {
               {/* Divider */}
               <div className="border-t border-gray-200 my-4"></div>
 
-              {/* Right menu actions */}
+              {/* Right menu actions - conditional */}
               <div className="space-y-3">
-                <a
-                  href="/dashboard"
-                  className="block text-gray-700 hover:text-gray-900 font-medium transition-colors py-2"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  Dashboard
-                </a>
-                <a
-                  href="/auth/login"
-                  className="block text-gray-700 hover:text-gray-900 font-medium transition-colors py-2"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  Giriş Yap
-                </a>
-                <a
-                  href="/dashboard"
-                  className="block bg-green-600 hover:bg-green-700 text-white px-4 py-3 rounded-lg font-medium transition-colors text-center"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  Ücretsiz Başla
-                </a>
+                {loading ? (
+                  // Loading state
+                  <>
+                    <div className="h-8 bg-gray-200 rounded animate-pulse"></div>
+                    <div className="h-10 bg-gray-200 rounded animate-pulse"></div>
+                  </>
+                ) : user ? (
+                  // Logged in user
+                  <>
+                    <a
+                      href="/dashboard"
+                      className="block text-gray-700 hover:text-gray-900 font-medium transition-colors py-2"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      Dashboard
+                    </a>
+                    <button
+                      onClick={() => {
+                        handleSignOut();
+                        setIsMobileMenuOpen(false);
+                      }}
+                      className="block w-full text-left text-gray-700 hover:text-gray-900 font-medium transition-colors py-2 border border-gray-300 rounded-lg px-4"
+                    >
+                      Çıkış Yap
+                    </button>
+                  </>
+                ) : (
+                  // Not logged in
+                  <>
+                    <a
+                      href="/auth/login"
+                      className="block text-gray-700 hover:text-gray-900 font-medium transition-colors py-2"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      Giriş Yap
+                    </a>
+                    <a
+                      href="/auth/login"
+                      className="block bg-green-600 hover:bg-green-700 text-white px-4 py-3 rounded-lg font-medium transition-colors text-center"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      Ücretsiz Başla
+                    </a>
+                  </>
+                )}
               </div>
             </div>
           </motion.div>
