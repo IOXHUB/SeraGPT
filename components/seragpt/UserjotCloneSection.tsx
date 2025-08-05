@@ -369,7 +369,7 @@ export default function UserjotCloneSection() {
                     </div>
 
                     <div>
-                      <p className="text-gray-800 text-xs font-semibold mb-1">📄 PDF İçeriği:</p>
+                      <p className="text-gray-800 text-xs font-semibold mb-1">📄 PDF ��çeriği:</p>
                       <p className="text-gray-600 text-xs">• ROI tablosu ve 3 yıllık projeksiyonu</p>
                     </div>
                   </div>
@@ -589,9 +589,8 @@ export default function UserjotCloneSection() {
               Yapay Zeka ile Rapor Analizi
             </h2>
             <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-              Panelinizden tüm raporlarınıza, danışmanlık taleplerinize ve teknik teklif süreçlerinize anlık erişim sağlayın.
-              <span className="font-semibold text-gray-900"> Yapay zekâ analizleri, mühendislik değerlendirmeleri ve saha hizmetleri</span>
-              artık tek bir merkezden yönetilebilir.
+              Dashboard'da üretilen her rapor ve analiz üzerinden <span className="font-semibold text-gray-900">yapay zeka ile sohbet edebilirsiniz</span>.
+              Detayları sorgulayın, alternatifler keşfedin ve <span className="font-semibold text-gray-900">daha derinlemesine analizler</span> elde edin.
             </p>
           </motion.div>
 
