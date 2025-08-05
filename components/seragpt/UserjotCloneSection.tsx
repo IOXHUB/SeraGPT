@@ -139,7 +139,7 @@ export default function UserjotCloneSection() {
       </header>
 
       {/* Main content - Full viewport hero */}
-      <main className="min-h-screen flex items-center justify-center px-4 sm:px-6">
+      <main className="min-h-screen flex items-center justify-center px-4 sm:px-6" style={{marginTop: '-50px'}}>
         <div className="max-w-[576px] mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -563,7 +563,7 @@ export default function UserjotCloneSection() {
                         </div>
 
                         <div className="ml-4 text-right">
-                          <div className="text-sm text-gray-500 mb-2">Uygulama sorunu çöz��lemiyor,</div>
+                          <div className="text-sm text-gray-500 mb-2">Uygulama sorunu çözülemiyor,</div>
                           <div className="text-sm text-gray-500 mb-2">geçerli şifreler tanınmıyor.</div>
                           <div className="flex items-center space-x-2 text-sm text-gray-600">
                             <div className="w-6 h-6 bg-gray-300 rounded-full"></div>
