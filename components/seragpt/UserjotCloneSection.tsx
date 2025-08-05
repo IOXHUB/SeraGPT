@@ -631,13 +631,13 @@ export default function UserjotCloneSection() {
             viewport={{ once: true }}
             className="text-center mb-16 flex flex-col"
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 flex flex-col max-w-[576px] mx-auto mobile-section-heading">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6 flex flex-col max-w-[576px] mx-auto">
               <span className="mx-auto">
                 <p>Projeler</p>
               </span>
               <br />
             </h2>
-            <p className="text-xl text-gray-600 max-w-[576px] mx-auto leading-relaxed mobile-section-text">
+            <p className="text-lg md:text-xl text-gray-600 max-w-[576px] mx-auto leading-relaxed">
               <span>
                 Hermisan & ISITMAX iş birliğiyle tamamlanan sera projelerinden seçilmiş görüntüler.
               </span>
