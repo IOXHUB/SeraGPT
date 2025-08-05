@@ -95,7 +95,7 @@ export default function UserjotCloneSection() {
                   className="block text-gray-700 hover:text-gray-900 font-medium transition-colors py-2"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
-                  Dan��şmanlık
+                  Anahtar Teslim Proje
                 </a>
                 <a
                   href="#"
