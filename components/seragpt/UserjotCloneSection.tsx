@@ -1090,7 +1090,7 @@ export default function UserjotCloneSection() {
               {
 
                 question: "Anahtar teslim sera kurulumu sağlıyor musunuz?",
-                answer: "Evet. IOX partnerleri aracılığ��yla, analiz raporuna dayalı olarak anahtar teslim sera projeleri teklif edebiliyoruz. Talep formunu doldurmanız yeterlidir.",
+                answer: "Evet. IOX partnerleri aracılığıyla, analiz raporuna dayalı olarak anahtar teslim sera projeleri teklif edebiliyoruz. Talep formunu doldurmanız yeterlidir.",
 
               },
               {
