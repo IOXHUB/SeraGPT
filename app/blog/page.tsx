@@ -45,13 +45,13 @@ export default function BlogPage() {
       slug: "gizli-maliyetler-sera-yatirimi",
       title: "Gizli Maliyetler: Sera Yatırımında Dikkat Edilmesi Gerekenler",
       excerpt: "Sera kurulumunda öngörülmeyen masraflar ve bunlardan nasıl kaçınılır?",
-      image: "https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2F8d7e72b1c294492c836f9b95c0d5196d?format=webp&width=800",
+      image: "https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2Fa9783275f0b14277aa1513bc9ca47a7b",
       date: "12 Ocak 2025"
     },
     {
       id: 3,
       slug: "roi-maliyet-analizi",
-      title: "ROI & Maliyet Analizi: Sera Yatırımının Geri D��nüşü",
+      title: "ROI & Maliyet Analizi: Sera Yatırımının Geri Dönüşü",
       excerpt: "Sera yatırımının karlılık analizi ve geri dönüş süresi hesaplamaları.",
       image: "https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2F8d7e72b1c294492c836f9b95c0d5196d?format=webp&width=800",
       date: "10 Ocak 2025"
