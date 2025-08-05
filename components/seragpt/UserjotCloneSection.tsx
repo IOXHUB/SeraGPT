@@ -28,13 +28,13 @@ export default function UserjotCloneSection() {
           {/* Center navigation - 3 links */}
           <nav className="hidden md:flex items-center space-x-8">
             <a href="#" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
-              Nasıl Çalışır
-            </a>
-            <a href="#" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
               Danışmanlık
             </a>
             <a href="#" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
-              Anahtar Teslim
+              Anahtar Teslim Proje
+            </a>
+            <a href="#" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
+              Destek
             </a>
           </nav>
 
@@ -893,7 +893,7 @@ export default function UserjotCloneSection() {
               {
 
                 question: "Anahtar teslim sera kurulumu sağlıyor musunuz?",
-                answer: "Evet. IOX partnerleri aracılığ��yla, analiz raporuna dayalı olarak anahtar teslim sera projeleri teklif edebiliyoruz. Talep formunu doldurmanız yeterlidir.",
+                answer: "Evet. IOX partnerleri aracılığ����yla, analiz raporuna dayalı olarak anahtar teslim sera projeleri teklif edebiliyoruz. Talep formunu doldurmanız yeterlidir.",
 
               },
               {
