@@ -38,7 +38,7 @@ export default function BlogPage() {
       id: 2,
       slug: "gizli-maliyetler-sera-yatirimi",
       title: "Gizli Maliyetler: Sera Yatırımında Dikkat Edilmesi Gerekenler",
-      excerpt: "Sera kurulumunda öngörülmeyen masraflar ve bunlardan nasıl kaçınılır?",
+      excerpt: "Sera kurulumunda öng��rülmeyen masraflar ve bunlardan nasıl kaçınılır?",
       image: "https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2F8d7e72b1c294492c836f9b95c0d5196d?format=webp&width=800",
       date: "12 Ocak 2025"
     },
@@ -152,17 +152,18 @@ export default function BlogPage() {
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {categories.map((category, index) => (
-                <motion.div
+                <motion.a
                   key={category.name}
+                  href={`/blog/category/${category.slug}`}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.1 * index }}
-                  className={`${category.color} rounded-lg p-6 hover:shadow-lg transition-shadow cursor-pointer`}
+                  className={`${category.color} rounded-lg p-6 hover:shadow-lg transition-shadow cursor-pointer block group`}
                 >
-                  <h3 className={`text-lg font-semibold ${category.textColor}`}>
+                  <h3 className={`text-lg font-semibold ${category.textColor} group-hover:opacity-80 transition-opacity`}>
                     {category.name}
                   </h3>
-                </motion.div>
+                </motion.a>
               ))}
             </div>
           </motion.div>
