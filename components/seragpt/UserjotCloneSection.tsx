@@ -412,7 +412,7 @@ export default function UserjotCloneSection() {
 
                     <div>
                       <p className="text-gray-800 text-xs font-semibold mb-1">👤 Kullanıcı Girdisi:</p>
-                      <p className="text-gray-600 text-xs">• Bitki türü, sezon, pazarlama hedefi</p>
+                      <p className="text-gray-600 text-xs">�� Bitki türü, sezon, pazarlama hedefi</p>
                     </div>
 
                     <div>
@@ -779,79 +779,24 @@ export default function UserjotCloneSection() {
           <div className="space-y-2">
             {[
               {
-
                 question: "Raporlar ne kadar doğru?",
                 answer: "SeraGPT, gerçek zamanlı iklim, tarım ve ticaret verilerini kullanır. Raporlar, uzman mühendislerin geliştirdiği algoritmalarla analiz edilir ve %90 üzeri doğruluk oranı sunar."
               },
               {
                 question: "Devlet teşviklerine uygun mu?",
-                answer: "Evet. Raporlar TKDK, IPARD ve Ziraat Bankası destek başvurular��nda ön fizibilite dosyası olarak kullanılabilir. Talep halinde ek mühendis onayı alınabilir."
+                answer: "Evet. Raporlar TKDK, IPARD ve Ziraat Bankası destek başvurularında ön fizibilite dosyası olarak kullanılabilir. Talep halinde ek mühendis onayı alınabilir."
               },
               {
-
                 question: "Mühendis desteği sunuyor musunuz?",
-                answer: "Evet. Profesyonel kullanıcılar için mühendis danışmanlık hizmeti sağlıyoruz. Size en yakın uzmanla eşleştirilerek birebir destek sunulur.",
-
+                answer: "Evet. Profesyonel kullanıcılar için mühendis danışmanlık hizmeti sağlıyoruz. Size en yakın uzmanla eşleştirilerek birebir destek sunulur."
               },
               {
                 question: "Bilgilerim güvende mi?",
-                answer: "Kesinlikle. Tüm bilgileriniz Supabase veritabanında şifreli olarak saklanır. Raporlar yaln��zca size özeldir, üç��ncü taraflarla paylaşılmaz.",
-
+                answer: "Kesinlikle. Tüm bilgileriniz Supabase veritabanında şifreli olarak saklanır. Raporlar yalnızca size özeldir, üçüncü taraflarla paylaşılmaz."
               },
               {
                 question: "Ödeme nasıl yapılıyor?",
-                answer: "İlk 5 rapor ücretsizdir. Sonrasında, kredi kartı veya havale/EFT ile jeton (token) satın alabilirsiniz. Ödeme altyapıs��� %100 güvenlidir.",
-
-              },
-              {
-
-                question: "Jetonlar (Token) nasıl çalışır?",
-                answer: "Her analiz bir jeton harcar. 5 ücretsiz jeton ile başlayabilir, daha fazlasını paket olarak satın alabilirsiniz. Jetonlar süresiz geçerlidir.",
-
-              },
-              {
-                question: "Jetonların zaman aşımı var mı?",
-                answer: "Hayır. Satın aldığınız jetonlar hesabınızda süresiz olarak kalır. Dilediğiniz zaman kullanabilirsiniz.",
-
-              },
-              {
-                question: "Sadece yeni yatırımcılar mı kullanabilir?",
-                answer: "Hay��r. Mevcut serası olan kullanıcılar, genişletme planlayan çiftçiler, mühendisler ve yatırımcılar da SeraGPT'den faydalanabilir.",
-
-              },
-              {
-
-                question: "Anahtar teslim sera kurulumu sağlıyor musunuz?",
-                answer: "Evet. IOX partnerleri aracılığ����yla, analiz raporuna dayalı olarak anahtar teslim sera projeleri teklif edebiliyoruz. Talep formunu doldurmanız yeterlidir.",
-
-              },
-              {
-                question: "Fatura ve iade koşulları nedir?",
-                answer: "Satın alınan jetonlar dijital hizmet kapsamına girer. Kullanılmamış jetonlar için 14 gün içinde iade mümkündür. Fatura otomatik olarak e-posta ile iletilir.",
-
-              },
-              {
-
-                question: "Danışmanlık almak için ne yapmalıyım?",
-                answer: "Destek bölümünden danışman talebinde bulunabilirsiniz. Alanında uzman bir mühendis sizinle iletişime geçerek detaylı bilgi verecektir.",
-
-              },
-              {
-
-                question: "Raporları kimler kullanabilir?",
-                answer: "Ziraat mühendisleri, yatırımcılar, mühendislik firmaları, devlet başvurusu yapan üreticiler, proje yöneticileri ve akademisyenler raporları kullanabilir.",
-
-              },
-              {
-                question: "Destek kaydı nasıl açılır?",
-                answer: "Profil sayfanızdaki 'Destek Talebi' bölümünden form doldurarak teknik, veri veya danışmanlık desteği alabilirsiniz.",
-
-              },
-              {
-
-                question: "İtiraz ve düzeltme süreci nasıl işler?",
-                answer: "Rapor içeriğiyle ilgili bir hata olduğunu düş��nüyorsanız, destek kaydı oluşturabilirsiniz. Mühendis ekibimiz gerekli incelemeyi yaparak düzeltme sağlar.",
-
+                answer: "İlk 5 rapor ücretsizdir. Sonrasında, kredi kartı veya havale/EFT ile jeton (token) satın alabilirsiniz. Ödeme altyapısı %100 güvenlidir."
               }
             ].map((faq, index) => (
               <motion.div
