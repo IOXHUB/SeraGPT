@@ -11,7 +11,7 @@ export function AboutSection() {
       color: 'from-green-500 to-emerald-500'
     },
     {
-      icon: '🌍',
+      icon: '����',
       title: 'Uluslararası Deneyim',
       description: '15+ ülkede başarılı proje uygulamaları',
       color: 'from-blue-500 to-cyan-500'
@@ -23,7 +23,7 @@ export function AboutSection() {
       color: 'from-purple-500 to-indigo-500'
     },
     {
-      icon: '����',
+      icon: '🔬',
       title: 'Ar-Ge Çalışmaları',
       description: 'Sürekli inovasyon ve teknoloji geliştirme',
       color: 'from-orange-500 to-red-500'
