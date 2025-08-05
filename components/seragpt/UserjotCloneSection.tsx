@@ -938,7 +938,7 @@ export default function UserjotCloneSection() {
                   onClick={() => setOpenFAQ(openFAQ === index ? null : index)}
                 >
                   <div className="flex items-center justify-between">
-                    <h3 className="text-lg font-medium text-gray-900 group-hover:text-gray-700 pr-4">
+                    <h3 className="text-lg font-medium text-gray-900 group-hover:text-gray-700 pr-4 mobile-faq-question">
                       {faq.question}
                     </h3>
                     <svg
