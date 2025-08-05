@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 export default function TestimonialSection() {
   return (
     <section className="py-20 bg-gradient-to-br from-blue-50 to-green-50">
-      <div className="max-w-6xl mx-auto px-4">
+      <div className="visual-content-container">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -24,7 +24,7 @@ export default function TestimonialSection() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
           viewport={{ once: true }}
-          className="max-w-4xl mx-auto"
+          className="body-content-container"
         >
           <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12">
             <div className="flex flex-col md:flex-row items-center gap-8">
