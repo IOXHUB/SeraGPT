@@ -631,7 +631,7 @@ export default function UserjotCloneSection() {
             viewport={{ once: true }}
             className="text-center mb-16 flex flex-col"
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 flex flex-col max-w-[896px] mx-auto">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 flex flex-col max-w-[576px] mx-auto">
               <span className="mx-auto">
                 <p>Projeler</p>
               </span>
