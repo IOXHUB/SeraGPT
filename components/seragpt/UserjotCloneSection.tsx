@@ -203,7 +203,7 @@ export default function UserjotCloneSection() {
               5 Adımda Sera Yatırım<br />
               Analizi Tamamla
             </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-xl text-gray-600 max-w-[576px] mx-auto leading-relaxed">
               20 yıllık mühendislik deneyimi ve 110+ veri setiyle<br />
               desteklenen <strong>yapay zeka analizleri</strong> ile yatırım kararlarınızı<br />
               <strong>bilimsel verilerle destekleyin</strong>.
