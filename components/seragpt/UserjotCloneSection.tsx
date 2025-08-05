@@ -356,7 +356,7 @@ export default function UserjotCloneSection() {
 
                     <div>
                       <p className="text-gray-800 text-xs font-semibold mb-1">🔗 Veri Kaynakları:</p>
-                      <p className="text-gray-600 text-xs">• OpenWeather, FAO & TU��K</p>
+                      <p className="text-gray-600 text-xs">• OpenWeather, FAO & TU����K</p>
                       <p className="text-gray-600 text-xs">• Seraburada / e-Tarım API</p>
                     </div>
 
@@ -543,7 +543,7 @@ export default function UserjotCloneSection() {
 
                     <div>
                       <p className="text-gray-800 text-xs font-semibold mb-1">📄 PDF İçeriği:</p>
-                      <p className="text-gray-600 text-xs">• Teknik çizim ve montaj önerileri</p>
+                      <p className="text-gray-600 text-xs">• Teknik çizim ve montaj ��nerileri</p>
                     </div>
                   </div>
 
@@ -932,7 +932,7 @@ export default function UserjotCloneSection() {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="bg-gray-600 hover:bg-gray-700 text-white px-10 py-4 rounded-xl text-xl font-bold transition-colors shadow-lg hover:shadow-xl" style={{marginTop: '48px'}}
+                className="bg-gray-600 hover:bg-gray-700 text-white px-10 py-4 rounded-xl text-xl font-bold transition-colors shadow-lg hover:shadow-xl mt-12"
               >
                 <p>Anahtar Teslim Fiyat Alın</p>
               </motion.button>
