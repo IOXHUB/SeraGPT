@@ -360,7 +360,7 @@ export default function UserjotCloneSection() {
                   <div className="space-y-3 mb-4">
                     <div>
                       <p className="text-gray-800 text-xs font-semibold mb-1">🎯 3 Önemli Fayda:</p>
-                      <p className="text-gray-600 text-xs">• Bitki tür��ne göre pazar fiyat analizi</p>
+                      <p className="text-gray-600 text-xs">• Bitki türüne göre pazar fiyat analizi</p>
                       <p className="text-gray-600 text-xs">• Bölgeye göre verim ortalamaları</p>
                       <p className="text-gray-600 text-xs">• Hasat-zamanlama optimizasyonu</p>
                     </div>
@@ -871,7 +871,7 @@ export default function UserjotCloneSection() {
               },
               {
                 question: "Ödeme nasıl yapılıyor?",
-                answer: "İlk 5 rapor ücretsizdir. Sonrasında, kredi kart�� veya havale/EFT ile jeton (token) satın alabilirsiniz. Ödeme altyapıs�� %100 güvenlidir.",
+                answer: "İlk 5 rapor ücretsizdir. Sonrasında, kredi kartı veya havale/EFT ile jeton (token) satın alabilirsiniz. Ödeme altyapıs�� %100 güvenlidir.",
 
               },
               {
@@ -959,7 +959,7 @@ export default function UserjotCloneSection() {
                     animate={{ opacity: 1, height: 'auto' }}
                     exit={{ opacity: 0, height: 0 }}
                     transition={{ duration: 0.3 }}
-                    className="px-6 pb-6 text-gray-600 leading-relaxed mobile-faq-answer"
+                    className="px-6 pb-6 text-sm md:text-base text-gray-600 leading-relaxed"
                   >
                     {faq.answer}
                   </motion.div>
