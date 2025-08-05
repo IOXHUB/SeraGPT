@@ -102,7 +102,7 @@ export default function UserjotCloneSection() {
                   className="block text-gray-700 hover:text-gray-900 font-medium transition-colors py-2"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
-                  Anahtar Teslim
+                  Destek
                 </a>
               </div>
 
@@ -876,7 +876,7 @@ export default function UserjotCloneSection() {
               },
               {
 
-                question: "Jetonlar (Token) nasıl çalışır?",
+                question: "Jetonlar (Token) nasıl çalış��r?",
                 answer: "Her analiz bir jeton harcar. 5 ücretsiz jeton ile başlayabilir, daha fazlasını paket olarak satın alabilirsiniz. Jetonlar süresiz geçerlidir.",
 
               },
