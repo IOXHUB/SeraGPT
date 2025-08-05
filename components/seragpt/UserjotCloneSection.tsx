@@ -318,14 +318,14 @@ export default function UserjotCloneSection() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="text-center mb-16 flex flex-col"
           >
             <p className="text-gray-500 text-sm font-medium uppercase tracking-wider mb-4">
               HER ANALİZ İÇİN DETAYLı ÇÖZÜM
             </p>
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-              5 Adımda Sera Yatırım<br />
-              Analizi Tamamla
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mx-auto mb-6">
+              <p>Tarımsal Zeka İle</p><br />
+              <p>Detaylı ve Kurumsal Raporlar</p>
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
               20 yıllık mühendislik deneyimi ve 110+ veri setiyle<br />
@@ -369,7 +369,7 @@ export default function UserjotCloneSection() {
                     </div>
 
                     <div>
-                      <p className="text-gray-800 text-xs font-semibold mb-1">📄 PDF ��çeriği:</p>
+                      <p className="text-gray-800 text-xs font-semibold mb-1">📄 PDF İçeriği:</p>
                       <p className="text-gray-600 text-xs">• ROI tablosu ve 3 yıllık projeksiyonu</p>
                     </div>
                   </div>
@@ -496,7 +496,7 @@ export default function UserjotCloneSection() {
                     </div>
 
                     <div>
-                      <p className="text-gray-800 text-xs font-semibold mb-1">�� Kullanıcı Girdisi:</p>
+                      <p className="text-gray-800 text-xs font-semibold mb-1">👤 Kullanıcı Girdisi:</p>
                       <p className="text-gray-600 text-xs">• Bitki türü, sezon, pazarlama hedefi</p>
                     </div>
 
@@ -586,11 +586,12 @@ export default function UserjotCloneSection() {
             className="text-center mb-16"
           >
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              Yapay Zeka ile Rapor Analizi
+              Size Özel Kontrol Paneli
             </h2>
             <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-              Dashboard'da üretilen her rapor ve analiz üzerinden <span className="font-semibold text-gray-900">yapay zeka ile sohbet edebilirsiniz</span>.
-              Detayları sorgulayın, alternatifler keşfedin ve <span className="font-semibold text-gray-900">daha derinlemesine analizler</span> elde edin.
+              Panelinizden tüm raporlarınıza, danışmanlık taleplerinize ve teknik teklif süreçlerinize anlık erişim sağlayın.
+              <span className="font-semibold text-gray-900"> Yapay zekâ analizleri, mühendislik değerlendirmeleri ve saha hizmetleri</span>
+              artık tek bir merkezden yönetilebilir.
             </p>
           </motion.div>
 
@@ -616,16 +617,15 @@ export default function UserjotCloneSection() {
                       </div>
 
                       <nav className="flex space-x-6">
-                        <a href="#" className="text-gray-500 hover:text-gray-700 font-medium">Raporlarım</a>
-                        <a href="#" className="text-gray-900 font-medium border-b-2 border-green-500 pb-1">🤖 AI Sohbet</a>
-                        <a href="#" className="text-gray-500 hover:text-gray-700 font-medium">Analizler</a>
+                        <a href="#" className="text-gray-500 hover:text-gray-700 font-medium">Geri Bildirim</a>
+                        <a href="#" className="text-gray-900 font-medium border-b-2 border-gray-900 pb-1">Geliştirme Planı</a>
+                        <a href="#" className="text-gray-500 hover:text-gray-700 font-medium">Güncellemeler</a>
                       </nav>
                     </div>
 
                     <div className="flex items-center space-x-3">
-                      <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                      <span className="text-sm text-gray-600">Aktif</span>
                       <div className="w-8 h-8 bg-gray-800 rounded-full"></div>
+                      <div className="w-8 h-8 bg-gray-600 rounded-full"></div>
                     </div>
                   </div>
                 </div>
@@ -633,88 +633,15 @@ export default function UserjotCloneSection() {
                 {/* Content */}
                 <div className="p-6">
                   <div className="flex items-center justify-between mb-6">
-                    <h1 className="text-2xl font-bold text-gray-900">ROI Analizi ile Sohbet</h1>
-                    <div className="flex items-center space-x-2">
-                      <span className="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">Çevrimiçi</span>
-                    </div>
+                    <h1 className="text-2xl font-bold text-gray-900">��rün Geliştirme Planı</h1>
+                    <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    </svg>
                   </div>
 
-                  <div className="space-y-4">
-                    {/* User Message */}
-                    <div className="flex justify-end">
-                      <div className="bg-blue-500 text-white rounded-lg p-4 max-w-xs">
-                        <p className="text-sm">Bu ROI analizinde geri dönüş süresini nasıl kısaltabilirim?</p>
-                        <span className="text-xs opacity-75 mt-2 block">11:42</span>
-                      </div>
-                    </div>
-
-                    {/* AI Response */}
-                    <div className="flex justify-start">
-                      <div className="bg-gray-100 text-gray-900 rounded-lg p-4 max-w-md">
-                        <div className="flex items-center space-x-2 mb-2">
-                          <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center">
-                            <span className="text-white text-xs">🤖</span>
-                          </div>
-                          <span className="font-semibold text-sm">SeraGPT AI</span>
-                        </div>
-                        <p className="text-sm mb-3">
-                          Analizinize göre 3 temel optimizasyon önerisi:
-                        </p>
-                        <ul className="text-sm space-y-1 mb-3">
-                          <li>• Enerji maliyetlerini %25 azaltın (isı pompası)</li>
-                          <li>• Üretim verimliliğini %15 artırın (hidroponik)</li>
-                          <li>• Pazarlama sürecini 2 ay öne alın</li>
-                        </ul>
-                        <div className="flex items-center space-x-2">
-                          <span className="bg-green-100 text-green-800 text-xs px-2 py-1 rounded">✓ Analiz Edildi</span>
-                        </div>
-                        <span className="text-xs text-gray-500 mt-2 block">11:43</span>
-                      </div>
-                    </div>
-
-                    {/* User Follow-up */}
-                    <div className="flex justify-end">
-                      <div className="bg-blue-500 text-white rounded-lg p-4 max-w-xs">
-                        <p className="text-sm">Hidroponik sistem için ne kadar ek maliyet gerekir?</p>
-                        <span className="text-xs opacity-75 mt-2 block">11:45</span>
-                      </div>
-                    </div>
-
-                    {/* Detailed AI Response */}
-                    <div className="flex justify-start">
-                      <div className="bg-gray-100 text-gray-900 rounded-lg p-4 max-w-md">
-                        <div className="flex items-center space-x-2 mb-2">
-                          <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center">
-                            <span className="text-white text-xs">🤖</span>
-                          </div>
-                          <span className="font-semibold text-sm">SeraGPT AI</span>
-                        </div>
-                        <p className="text-sm mb-3">
-                          <strong>Hidroponik Sistemi Maliyet Analizi:</strong>
-                        </p>
-                        <div className="bg-white rounded p-3 mb-3 text-xs">
-                          <div className="flex justify-between mb-1">
-                            <span>NFT Sistemi (1000m²)</span>
-                            <span className="font-semibold">₺85,000</span>
-                          </div>
-                          <div className="flex justify-between mb-1">
-                            <span>Besleyici Tankı</span>
-                            <span className="font-semibold">₺15,000</span>
-                          </div>
-                          <div className="flex justify-between border-t pt-1">
-                            <span className="font-semibold">Toplam Ek Maliyet</span>
-                            <span className="font-bold text-green-600">₺100,000</span>
-                          </div>
-                        </div>
-                        <p className="text-xs text-gray-600">
-                          Bu yatırımla yıllık verimin %40 artması beklenir.
-                        </p>
-                        <span className="text-xs text-gray-500 mt-2 block">11:46</span>
-                      </div>
-                    </div>
-
-                    {/* Chat Input Area */}
-                    <div className="mt-6 p-4 bg-gray-50 rounded-lg border-2 border-dashed border-gray-300">
+                  <div className="space-y-6">
+                    {/* Feature 1 */}
+                    <div className="border border-gray-200 rounded-lg p-4">
                       <div className="flex items-start justify-between">
                         <div className="flex-1">
                           <div className="flex items-center space-x-3 mb-2">
@@ -809,10 +736,10 @@ export default function UserjotCloneSection() {
               whileTap={{ scale: 0.95 }}
               className="bg-gray-600 hover:bg-gray-700 text-white px-10 py-4 rounded-xl text-xl font-bold transition-colors shadow-lg hover:shadow-xl"
             >
-              AI Sohbet Özelliğini Deneyin
+              Kullanıcı Paneline Giriş Yapın
             </motion.button>
             <p className="text-gray-500 text-sm mt-4">
-              Raporlarınızla yapay zeka destekli sohbet deneyimi
+              Tüm sera projelerinizi tek platformdan yönetin
             </p>
           </motion.div>
         </div>
