@@ -715,9 +715,13 @@ export default function UserjotCloneSection() {
 
                     {/* Chat Input Area */}
                     <div className="mt-6 p-4 bg-gray-50 rounded-lg border-2 border-dashed border-gray-300">
-                      <div className="flex items-start justify-between">
+                      <div className="flex items-center space-x-3">
                         <div className="flex-1">
-                          <h3 className="text-lg font-semibold text-gray-900 mb-2">Google Calendar ile entegrasyon.</h3>
+                          <input
+                            type="text"
+                            placeholder="Raporunuz hakkında soru sorun..."
+                            className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-green-500"
+                          />
                           <p className="text-gray-600 text-sm mb-3">
                             Sera bakım zamanlaması için Google Calendar ile senkronizasyon olsa harika olur.
                           </p>
