@@ -351,7 +351,7 @@ export default function UserjotCloneSection() {
 
                   <div className="space-y-3 mb-4">
                     <div>
-                      <p className="text-gray-800 text-xs font-semibold mb-1">🎯 3 Önemli Fayda:</p>
+                      <p className="text-gray-800 text-xs font-semibold mb-1">�� 3 Önemli Fayda:</p>
                       <p className="text-gray-600 text-xs">• Yatırımın geri dönüş süresi</p>
                       <p className="text-gray-600 text-xs">• Kar marjı ve yıllık getiri tahmini</p>
                       <p className="text-gray-600 text-xs">• İşletme maliyetleri kıyaslaması</p>
@@ -396,7 +396,7 @@ export default function UserjotCloneSection() {
                   <div className="space-y-3 mb-4">
                     <div>
                       <p className="text-gray-800 text-xs font-semibold mb-1">🎯 3 Önemli Fayda:</p>
-                      <p className="text-gray-600 text-xs">• Se��ilen ürün için uygunluk skoru</p>
+                      <p className="text-gray-600 text-xs">• Seçilen ürün için uygunluk skoru</p>
                       <p className="text-gray-600 text-xs">• Don, rüzgar, nem riskleri</p>
                       <p className="text-gray-600 text-xs">• Geçmiş yıllardaki iklim olayları</p>
                     </div>
@@ -589,7 +589,7 @@ export default function UserjotCloneSection() {
               Yapay Zeka ile Rapor Analizi
             </h2>
             <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-              Dashboard'da üretilen her rapor ve analiz üzerinden <span className="font-semibold text-gray-900">yapay zeka ile sohbet edebilirsiniz</span>.
+              Dashboard'da ��retilen her rapor ve analiz üzerinden <span className="font-semibold text-gray-900">yapay zeka ile sohbet edebilirsiniz</span>.
               Detayları sorgulayın, alternatifler keşfedin ve <span className="font-semibold text-gray-900">daha derinlemesine analizler</span> elde edin.
             </p>
           </motion.div>
@@ -1058,7 +1058,7 @@ export default function UserjotCloneSection() {
               {
 
                 question: "Mühendis desteği sunuyor musunuz?",
-                answer: "Evet. Profesyonel kullanıcılar için mühendis danı��manlık hizmeti sağlıyoruz. Size en yakın uzmanla eşleştirilerek birebir destek sunulur.",
+                answer: "Evet. Profesyonel kullanıcılar için mühendis danışmanlık hizmeti sağlıyoruz. Size en yakın uzmanla eşleştirilerek birebir destek sunulur.",
 
               },
               {
