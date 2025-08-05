@@ -305,7 +305,7 @@ export default function UserjotCloneSection() {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="bg-black hover:bg-gray-800 text-white px-10 py-4 rounded-xl text-xl font-bold transition-colors shadow-lg hover:shadow-xl"
+              className="bg-gray-600 hover:bg-gray-800 text-white px-10 py-4 rounded-xl text-xl font-bold transition-colors shadow-lg hover:shadow-xl"
             >
               Kullanıcı Paneline Giriş Yapın
             </motion.button>
@@ -1208,7 +1208,7 @@ export default function UserjotCloneSection() {
               },
               {
                 question: "Devlet teşviklerine uygun mu?",
-                answer: "Evet. Raporlar TKDK, IPARD ve Ziraat Bankası destek başvurular��nda ön fizibilite dosyası olarak kullanılabilir. Talep halinde ek mühendis onayı al��nabilir."
+                answer: "Evet. Raporlar TKDK, IPARD ve Ziraat Bankası destek başvurular��nda ön fizibilite dosyası olarak kullanılabilir. Talep halinde ek mühendis onayı alınabilir."
               },
               {
 
