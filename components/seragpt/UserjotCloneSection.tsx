@@ -156,11 +156,11 @@ export default function UserjotCloneSection() {
               {/* Center navigation links */}
               <div className="space-y-3">
                 <a
-                  href="/support"
+                  href="/how-it-works"
                   className="block text-gray-700 hover:text-gray-900 font-medium transition-colors py-2"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
-                  Destek
+                  Nasıl Çalışır
                 </a>
                 <a
                   href="/consulting"
@@ -170,11 +170,18 @@ export default function UserjotCloneSection() {
                   Danışmanlık
                 </a>
                 <a
-                  href="#"
+                  href="/turnkey"
                   className="block text-gray-700 hover:text-gray-900 font-medium transition-colors py-2"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   Anahtar Teslim
+                </a>
+                <a
+                  href="/support"
+                  className="block text-gray-700 hover:text-gray-900 font-medium transition-colors py-2"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Destek
                 </a>
               </div>
 
@@ -646,7 +653,7 @@ export default function UserjotCloneSection() {
                     {/* User Message */}
                     <div className="flex justify-end">
                       <div className="bg-blue-500 text-white rounded-lg p-4 max-w-xs">
-                        <p className="text-sm">Bu ROI analizinde geri dönüş süresini nasıl kısaltabilirim?</p>
+                        <p className="text-sm">Bu ROI analizinde geri dönüş s��resini nasıl kısaltabilirim?</p>
                         <span className="text-xs opacity-75 mt-2 block">11:42</span>
                       </div>
                     </div>
