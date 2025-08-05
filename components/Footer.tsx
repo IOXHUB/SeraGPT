@@ -1,12 +1,12 @@
 export default function Footer() {
   return (
     <div>
-      <footer className="bg-gray-50 text-gray-900 py-12 sm:py-16">
-        <div className="navbar-footer-container">
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 max-w-4xl mx-auto">
+      <footer className="bg-gray-50 text-gray-900 py-12 sm:py-16 flex flex-col">
+        <div className="navbar-footer-container flex justify-center flex-col items-center">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 w-full">
             {/* 1. Menü */}
             <div>
-              <h3 className="text-lg font-semibold mb-6 text-gray-900">Menü</h3>
+              <h3 className="text-lg mb-6 text-gray-900">Menü</h3>
               <ul className="space-y-3">
                 <li>
                   <a href="/support" className="text-gray-600 hover:text-gray-900 transition-colors">
@@ -38,7 +38,7 @@ export default function Footer() {
 
             {/* 2. Blog Kategorileri */}
             <div>
-              <h3 className="text-lg font-semibold mb-6 text-gray-900">Blog</h3>
+              <h3 className="text-lg mb-6 text-gray-900">Blog</h3>
               <ul className="space-y-3">
                 <li>
                   <a href="/blog/roi-analizi" className="text-gray-600 hover:text-gray-900 transition-colors">
@@ -70,7 +70,7 @@ export default function Footer() {
 
             {/* 3. YASAL */}
             <div>
-              <h3 className="text-lg font-semibold mb-6 text-gray-900">YASAL</h3>
+              <h3 className="text-lg mb-6 text-gray-900">YASAL</h3>
               <ul className="space-y-3">
                 <li>
                   <a href="/privacy" className="text-gray-600 hover:text-gray-900 transition-colors">
@@ -110,7 +110,7 @@ export default function Footer() {
             <img
               src="https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2F96da5382e9584c3fb2d32eca60944359?format=webp&width=800"
               alt="SeraGPT Logo"
-              className="h-6 w-auto"
+              className="h-6 w-auto mt-0.5"
             />
             <span className="text-gray-600 text-sm">
               © 2024 SeraGPT. Tüm hakları saklıdır. ISITMAX A.Ş.
