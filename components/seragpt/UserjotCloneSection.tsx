@@ -199,11 +199,11 @@ export default function UserjotCloneSection() {
             <p className="text-gray-500 text-sm font-medium uppercase tracking-wider mb-4">
               HER ANALİZ İÇİN DETAYLı ÇÖZÜM
             </p>
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 mobile-section-heading">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
               5 Adımda Sera Yatırım<br />
               Analizi Tamamla
             </h2>
-            <p className="text-xl text-gray-600 max-w-[576px] mx-auto leading-relaxed mobile-section-text">
+            <p className="text-lg md:text-xl text-gray-600 max-w-[576px] mx-auto leading-relaxed">
               20 yıllık mühendislik deneyimi ve 110+ veri setiyle<br />
               desteklenen <strong>yapay zeka analizleri</strong> ile yatırım kararlarınızı<br />
               <strong>bilimsel verilerle destekleyin</strong>.
