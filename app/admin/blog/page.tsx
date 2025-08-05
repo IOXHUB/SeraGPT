@@ -69,7 +69,7 @@ export default function BlogAdminPage() {
 
       resetForm();
       loadPosts();
-      alert(editingPost ? 'Yazı güncellendi!' : 'Yaz�� oluşturuldu!');
+      alert(editingPost ? 'Yazı güncellendi!' : 'Yazı oluşturuldu!');
     } catch (error) {
       console.error('Kaydetme hatası:', error);
       alert('Bir hata oluştu!');
