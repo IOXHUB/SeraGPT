@@ -8,18 +8,18 @@ export default function Footer() {
             <h3 className="text-lg font-semibold mb-6 text-gray-900">Menü</h3>
             <ul className="space-y-3">
               <li>
+                <a href="/dashboard/help" className="text-gray-600 hover:text-gray-900 transition-colors">
+                  Destek
+                </a>
+              </li>
+              <li>
                 <a href="#" className="text-gray-600 hover:text-gray-900 transition-colors">
                   Danışmanlık
                 </a>
               </li>
               <li>
                 <a href="#" className="text-gray-600 hover:text-gray-900 transition-colors">
-                  Anahtar Teslim Proje
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-gray-600 hover:text-gray-900 transition-colors">
-                  Destek
+                  Anahtar Teslim Sera
                 </a>
               </li>
               <li>
@@ -35,26 +35,61 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* 2. DESTEK */}
+          {/* 2. Blog */}
           <div>
-            <h3 className="text-lg font-semibold mb-6 text-gray-900">DESTEK</h3>
+            <h3 className="text-lg font-semibold mb-6 text-gray-900">Blog</h3>
             <ul className="space-y-3">
               <li>
-                <a href="#" className="text-gray-600 hover:text-gray-900 transition-colors">
-                  Destek Kaydı
+                <a href="/blog/veriye-dayali-tarim" className="text-gray-600 hover:text-gray-900 transition-colors">
+                  Veriye Dayalı Tarım
                 </a>
               </li>
               <li>
-                <a href="#" className="text-gray-600 hover:text-gray-900 transition-colors">
-                  Dokümantasyon
+                <a href="/blog/gizli-maliyetler" className="text-gray-600 hover:text-gray-900 transition-colors">
+                  Gizli Maliyetler
+                </a>
+              </li>
+              <li>
+                <a href="/blog/akilli-sera-modelleri" className="text-gray-600 hover:text-gray-900 transition-colors">
+                  Akıllı Sera Modelleri
+                </a>
+              </li>
+              <li>
+                <a href="/blog/tarimsal-zeka" className="text-gray-600 hover:text-gray-900 transition-colors">
+                  Tarımsal Zeka
+                </a>
+              </li>
+              <li>
+                <a href="/blog/roi-maliyet" className="text-gray-600 hover:text-gray-900 transition-colors">
+                  ROI & Maliyet İçerikleri
+                </a>
+              </li>
+              <li>
+                <a href="/blog/iklim-krizi-tarim" className="text-gray-600 hover:text-gray-900 transition-colors">
+                  İklim Krizi ve Tarım
+                </a>
+              </li>
+              <li>
+                <a href="/blog/ticari-urun-rehberi" className="text-gray-600 hover:text-gray-900 transition-colors">
+                  Ticari Ürün Rehberi
+                </a>
+              </li>
+              <li>
+                <a href="/blog/tarimda-kadin-eli" className="text-gray-600 hover:text-gray-900 transition-colors">
+                  Tarımda Kadın Eli
+                </a>
+              </li>
+              <li>
+                <a href="/blog/sera-mimarligi-tasarim" className="text-gray-600 hover:text-gray-900 transition-colors">
+                  Sera Mimarlığı & Tasarım
                 </a>
               </li>
             </ul>
           </div>
 
-          {/* 3. YASAL */}
+          {/* 3. Yasal */}
           <div>
-            <h3 className="text-lg font-semibold mb-6 text-gray-900">YASAL</h3>
+            <h3 className="text-lg font-semibold mb-6 text-gray-900">Yasal</h3>
             <ul className="space-y-3">
               <li>
                 <a href="/privacy" className="text-gray-600 hover:text-gray-900 transition-colors">
@@ -81,31 +116,46 @@ export default function Footer() {
                   Çerez Tercihleri
                 </a>
               </li>
+              <li>
+                <a href="#" className="text-gray-600 hover:text-gray-900 transition-colors">
+                  IYZICO
+                </a>
+              </li>
             </ul>
           </div>
 
-          {/* 4. Kaynaklar */}
+          {/* 4. Çözüm Ortaklarımız */}
           <div>
-            <h3 className="text-lg font-semibold mb-6 text-gray-900">Kaynaklar</h3>
+            <h3 className="text-lg font-semibold mb-6 text-gray-900">Çözüm Ortaklarımız</h3>
             <ul className="space-y-3">
               <li>
                 <a href="#" className="text-gray-600 hover:text-gray-900 transition-colors">
-                  Servisler
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-gray-600 hover:text-gray-900 transition-colors">
-                  Data
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-gray-600 hover:text-gray-900 transition-colors">
-                  Hermisan
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-gray-600 hover:text-gray-900 transition-colors">
                   ISITMAX
+                </a>
+              </li>
+              <li>
+                <a href="#" className="text-gray-600 hover:text-gray-900 transition-colors">
+                  SERAPOLI
+                </a>
+              </li>
+              <li>
+                <a href="#" className="text-gray-600 hover:text-gray-900 transition-colors">
+                  SISELTARIM
+                </a>
+              </li>
+              <li>
+                <a href="#" className="text-gray-600 hover:text-gray-900 transition-colors">
+                  IOX
+                </a>
+              </li>
+              <li>
+                <a href="#" className="text-gray-600 hover:text-gray-900 transition-colors">
+                  KAIZEN
+                </a>
+              </li>
+              <li>
+                <a href="#" className="text-gray-600 hover:text-gray-900 transition-colors">
+                  DHERMA
                 </a>
               </li>
             </ul>
