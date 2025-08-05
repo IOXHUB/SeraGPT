@@ -140,7 +140,7 @@ export default function UserjotCloneSection() {
 
       {/* Main content - Full viewport hero */}
       <main className="min-h-screen flex items-center justify-center px-4 sm:px-6">
-        <div className="max-w-[700px] mx-auto text-center">
+        <div className="max-w-[896px] mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -813,7 +813,7 @@ export default function UserjotCloneSection() {
                 whileTap={{ scale: 0.95 }}
                 className="bg-gray-600 hover:bg-gray-700 text-white px-10 py-4 rounded-xl text-xl font-bold transition-colors shadow-lg hover:shadow-xl"
               >
-                <p>Kurumsal Danışmanlık Hizmeti</p>
+                <p>Kurumsal Danı��manlık Hizmeti</p>
               </motion.button>
             </div>
             <p className="text-gray-500 text-sm mt-4">
