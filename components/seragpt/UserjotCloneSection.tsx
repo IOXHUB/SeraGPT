@@ -616,9 +616,9 @@ export default function UserjotCloneSection() {
                       </div>
 
                       <nav className="flex space-x-6">
-                        <a href="#" className="text-gray-500 hover:text-gray-700 font-medium">Geri Bildirim</a>
-                        <a href="#" className="text-gray-900 font-medium border-b-2 border-gray-900 pb-1">Geliştirme Planı</a>
-                        <a href="#" className="text-gray-500 hover:text-gray-700 font-medium">Güncellemeler</a>
+                        <a href="#" className="text-gray-500 hover:text-gray-700 font-medium">Raporlarım</a>
+                        <a href="#" className="text-gray-900 font-medium border-b-2 border-green-500 pb-1">🤖 AI Sohbet</a>
+                        <a href="#" className="text-gray-500 hover:text-gray-700 font-medium">Analizler</a>
                       </nav>
                     </div>
 
@@ -975,7 +975,7 @@ export default function UserjotCloneSection() {
               {
 
                 question: "Raporlar ne kadar doğru?",
-                answer: "SeraGPT, gerçek zamanl�� iklim, tarım ve ticaret verilerini kullanır. Raporlar, uzman mühendislerin geliştirdiği algoritmalarla analiz edilir ve %90 üzeri doğruluk oranı sunar."
+                answer: "SeraGPT, gerçek zamanl��� iklim, tarım ve ticaret verilerini kullanır. Raporlar, uzman mühendislerin geliştirdiği algoritmalarla analiz edilir ve %90 üzeri doğruluk oranı sunar."
               },
               {
                 question: "Devlet teşviklerine uygun mu?",
