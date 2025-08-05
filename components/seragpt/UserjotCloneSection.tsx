@@ -198,96 +198,14 @@ export default function UserjotCloneSection() {
           >
             <div className="bg-gradient-to-br from-blue-50 to-indigo-100 rounded-2xl p-8 shadow-2xl shadow-blue-500/25 border border-blue-100">
               <div className="bg-white rounded-xl shadow-lg overflow-hidden">
-                {/* Header */}
-                <div className="bg-white border-b border-gray-200 px-6 py-4">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center space-x-4">
-                      <div className="flex items-center space-x-3">
-                        <div className="w-8 h-8 bg-black rounded-lg flex items-center justify-center">
-                          <span className="text-white text-sm font-bold">S</span>
-                        </div>
-                        <span className="text-lg font-semibold text-gray-900">SeraGPT</span>
-                      </div>
-
-                      <nav className="flex space-x-6">
-                        <a href="#" className="text-gray-900 font-medium border-b-2 border-black pb-1">Analizler</a>
-                        <a href="#" className="text-gray-500 hover:text-gray-700 font-medium">Raporlar</a>
-                        <a href="#" className="text-gray-500 hover:text-gray-700 font-medium">Jetonlar</a>
-                      </nav>
+                {/* Placeholder Image for User Panel */}
+                <div className="w-full h-96 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
+                  <div className="text-center">
+                    <div className="w-16 h-16 bg-gray-300 rounded-lg mx-auto mb-4 flex items-center justify-center">
+                      <span className="text-2xl">📊</span>
                     </div>
-
-                    <div className="flex items-center space-x-3">
-                      <div className="w-8 h-8 bg-gray-800 rounded-full text-gray-600"></div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Content */}
-                <div className="p-6">
-                  <div className="flex items-center justify-between mb-6">
-                    <h1 className="text-2xl font-bold text-gray-900">Sera Yatırım Analiz Merkezi</h1>
-                    <div className="flex items-center space-x-2">
-                      <span className="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">5 Ücretsiz Jeton</span>
-                    </div>
-                  </div>
-
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
-                    {/* Analysis Card 1 */}
-                    <div className="border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow">
-                      <div className="flex items-center justify-between mb-3">
-                        <h3 className="font-semibold text-gray-900">ROI Simülasyonu</h3>
-                        <span className="text-2xl">🧮</span>
-                      </div>
-                      <p className="text-gray-600 text-sm mb-3">
-                        Yatırımın geri dönüş süresi ve kar marjı analizi
-                      </p>
-                      <button className="w-full bg-gray-600 text-white py-2 rounded-lg text-sm font-medium">
-                        Analizi Başlat (1 jeton)
-                      </button>
-                    </div>
-
-                    {/* Analysis Card 2 */}
-                    <div className="border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow">
-                      <div className="flex items-center justify-between mb-3">
-                        <h3 className="font-semibold text-gray-900">İklim Analizi</h3>
-                        <span className="text-2xl">🌦️</span>
-                      </div>
-                      <p className="text-gray-600 text-sm mb-3">
-                        Don, rüzgar, nem riskleri ve uygunluk skorları
-                      </p>
-                      <button className="w-full bg-gray-600 text-white py-2 rounded-lg text-sm font-medium">
-                        Analizi Başlat (1 jeton)
-                      </button>
-                    </div>
-
-                    {/* Analysis Card 3 */}
-                    <div className="border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow">
-                      <div className="flex items-center justify-between mb-3">
-                        <h3 className="font-semibold text-gray-900">Ekipman Listesi</h3>
-                        <span className="text-2xl">🧰</span>
-                      </div>
-                      <p className="text-gray-600 text-sm mb-3">
-                        Bölgeye uygun yapı ve iklimlendirme ekipmanları
-                      </p>
-                      <button className="w-full bg-gray-600 text-white py-2 rounded-lg text-sm font-medium">
-                        Analizi Başlat (1 jeton)
-                      </button>
-                    </div>
-                  </div>
-
-                  {/* Recent Activity */}
-                  <div className="border-t border-gray-200 pt-4">
-                    <h3 className="font-semibold text-gray-900 mb-3">Son Aktiviteler</h3>
-                    <div className="space-y-2">
-                      <div className="flex items-center space-x-3 p-2 bg-blue-50 rounded-lg">
-                        <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
-                        <span className="text-sm text-gray-700">SeraGPT'ye hoş geldiniz! 5 ücretsiz analiz hakkınız var.</span>
-                      </div>
-                      <div className="flex items-center space-x-3 p-2 bg-yellow-50 rounded-lg">
-                        <div className="w-2 h-2 bg-yellow-600 rounded-full"></div>
-                        <span className="text-sm text-gray-700">İpucu: ROI analizinden başlayarak yatırımınızın geri dönüşünü hesaplayın.</span>
-                      </div>
-                    </div>
+                    <h3 className="text-lg font-semibold text-gray-700 mb-2">Kullanıcı Paneli</h3>
+                    <p className="text-sm text-gray-500">Sera Yatırım Analiz Merkezi Önizlemesi</p>
                   </div>
                 </div>
               </div>
@@ -600,131 +518,14 @@ export default function UserjotCloneSection() {
           >
             <div className="bg-gradient-to-br from-blue-50 to-indigo-100 rounded-2xl p-8 shadow-2xl shadow-blue-500/25 border border-blue-100">
               <div className="bg-gray-50 rounded-xl p-6 space-y-6">
-                {/* Header */}
-                <div className="bg-white border-b border-gray-200 px-6 py-4">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center space-x-4">
-                      <div className="flex items-center space-x-3">
-                        <div className="w-8 h-8 bg-black rounded-lg flex items-center justify-center">
-                          <span className="text-white text-sm font-bold">🤖</span>
-                        </div>
-                        <span className="text-lg font-semibold text-gray-900">SeraGPT AI Asistan</span>
-                      </div>
-
-                      <nav className="flex space-x-6">
-                        <a href="#" className="text-gray-900 font-medium border-b-2 border-black pb-1">ROI Sohbeti</a>
-                        <a href="#" className="text-gray-500 hover:text-gray-700 font-medium">İklim Analizi</a>
-                        <a href="#" className="text-gray-500 hover:text-gray-700 font-medium">Ekipman</a>
-                      </nav>
+                {/* Placeholder Image for AI Assistant */}
+                <div className="w-full h-96 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center rounded-lg">
+                  <div className="text-center">
+                    <div className="w-16 h-16 bg-gray-300 rounded-lg mx-auto mb-4 flex items-center justify-center">
+                      <span className="text-2xl">🤖</span>
                     </div>
-
-                    <div className="flex items-center space-x-3">
-                      <span className="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">Aktif</span>
-                      <div className="w-8 h-8 bg-gray-800 rounded-full"></div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Chat Content */}
-                <div className="p-6 bg-gray-50 max-h-96 overflow-y-auto">
-                  {/* ROI Analysis Display */}
-                  <div className="mb-6 p-4 bg-white rounded-lg border border-gray-200">
-                    <h3 className="font-semibold text-gray-900 mb-3">ROI Analiz Raporu - Antalya Sera Projesi</h3>
-                    <div className="grid grid-cols-3 gap-4 text-sm">
-                      <div className="text-center">
-                        <div className="text-2xl font-bold text-green-600">%24</div>
-                        <div className="text-gray-600">Yıllık Getiri</div>
-                      </div>
-                      <div className="text-center">
-                        <div className="text-2xl font-bold text-blue-600">3.2</div>
-                        <div className="text-gray-600">Geri Dönüş (Yıl)</div>
-                      </div>
-                      <div className="text-center">
-                        <div className="text-2xl font-bold text-purple-600">₺2.1M</div>
-                        <div className="text-gray-600">Toplam Yatırım</div>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Chat Messages */}
-                  <div className="space-y-4">
-                    {/* Feature 1 */}
-                    <div className="border border-gray-200 rounded-lg p-4">
-                      <div className="flex items-start justify-between">
-                        <div className="flex-1">
-                          <div className="flex items-center space-x-3 mb-2">
-                            <h3 className="text-lg font-semibold text-gray-900">Mobil uygulama sık sık çöküyor.</h3>
-                            <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                            </svg>
-                          </div>
-                          <p className="text-gray-600 text-sm mb-3">
-                            Android uygulaması sera fotoğrafları y��klenmeye çalışıldığında çöküyor.
-                            Bu ASAP düzeltilmesi gerekiyor.
-                          </p>
-                          <div className="flex items-center space-x-2">
-                            <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-purple-100 text-purple-800">
-                              �� Devam Ediyor
-                            </span>
-                          </div>
-                        </div>
-
-                        <div className="ml-4 text-right">
-                          <div className="text-sm text-gray-500 mb-1">Bir şey eksik mi?</div>
-                          <button className="bg-black text-white px-4 py-2 rounded text-sm font-medium">
-                            Gönderi Oluştur
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Feature 2 */}
-                    <div className="border border-gray-200 rounded-lg p-4">
-                      <div className="flex items-start justify-between">
-                        <div className="flex-1">
-                          <h3 className="text-lg font-semibold text-gray-900 mb-2">Google Calendar ile entegrasyon.</h3>
-                          <p className="text-gray-600 text-sm mb-3">
-                            Sera bakım zamanlaması için Google Calendar ile senkronizasyon olsa harika olur.
-                          </p>
-                          <div className="flex items-center space-x-2">
-                            <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
-                              • Planlandı
-                            </span>
-                          </div>
-                        </div>
-
-                        <div className="ml-4 text-right">
-                          <div className="text-sm text-gray-500 mb-2">Uygulama sorunu çözülemiyor,</div>
-                          <div className="text-sm text-gray-500 mb-2">geçerli şifreler tanınmıyor.</div>
-                          <div className="flex items-center space-x-2 text-sm text-gray-600">
-                            <div className="w-6 h-6 bg-gray-300 rounded-full"></div>
-                            <div>
-                              <div className="font-medium">Şeyran Taslın</div>
-                              <div className="text-xs text-gray-500">3 gün önce</div>
-                            </div>
-                          </div>
-                          <div className="mt-2">
-                            <button className="text-sm text-blue-600 hover:text-blue-700">
-                              Tüm Güncellemeler
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Feature 3 */}
-                    <div className="border border-gray-200 rounded-lg p-4">
-                      <h3 className="text-lg font-semibold text-gray-900 mb-2">'Tümünü okundu işaretle' butonu ekle.</h3>
-                      <p className="text-gray-600 text-sm">
-                        Bildirimler bölümüne toplu işaretleme özelliği.
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Footer */}
-                  <div className="mt-8 pt-6 border-t border-gray-200 text-center">
-                    <p className="text-xs text-gray-500">SeraGPT tarafından desteklenmektedir</p>
+                    <h3 className="text-lg font-semibold text-gray-700 mb-2">AI Asistan</h3>
+                    <p className="text-sm text-gray-500">SeraGPT AI Sohbet Arayüzü Önizlemesi</p>
                   </div>
                 </div>
               </div>
