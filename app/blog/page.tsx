@@ -28,7 +28,7 @@ export default function BlogPage() {
   };
 
   const categories = [
-    { name: "Veriye Dayalı Tarım", color: "bg-blue-100", textColor: "text-blue-900", slug: "veriye-dayali-tarim" },
+    { name: "Veriye Dayal�� Tarım", color: "bg-blue-100", textColor: "text-blue-900", slug: "veriye-dayali-tarim" },
     { name: "Gizli Maliyetler", color: "bg-red-100", textColor: "text-red-900", slug: "gizli-maliyetler" },
     { name: "Akıllı Sera Modelleri", color: "bg-purple-100", textColor: "text-purple-900", slug: "akilli-sera-modelleri" },
     { name: "Tarımsal Zeka", color: "bg-yellow-100", textColor: "text-yellow-900", slug: "tarimsal-zeka" },
@@ -61,7 +61,7 @@ export default function BlogPage() {
       slug: "iklim-krizi-tarim",
       title: "İklim Krizi ve Tarım: Sürdürülebilir Çözümler",
       excerpt: "İklim değişikliğinin tarıma etkileri ve sera teknolojileri ile alınacak önlemler.",
-      image: "https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2F8d7e72b1c294492c836f9b95c0d5196d?format=webp&width=800",
+      image: "https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2F10278e2b44aa42168429a20e4e5a9fb8",
       date: "8 Ocak 2025"
     },
     {
