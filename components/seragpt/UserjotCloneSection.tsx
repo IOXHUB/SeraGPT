@@ -586,12 +586,11 @@ export default function UserjotCloneSection() {
             className="text-center mb-16"
           >
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              Size Özel Kontrol Paneli
+              Yapay Zeka ile Rapor Analizi
             </h2>
             <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-              Panelinizden tüm raporlarınıza, danışmanlık taleplerinize ve teknik teklif süreçlerinize anlık erişim sağlayın.
-              <span className="font-semibold text-gray-900"> Yapay zekâ analizleri, mühendislik değerlendirmeleri ve saha hizmetleri</span>
-              artık tek bir merkezden yönetilebilir.
+              Dashboard'da üretilen her rapor ve analiz üzerinden <span className="font-semibold text-gray-900">yapay zeka ile sohbet edebilirsiniz</span>.
+              Detayları sorgulayın, alternatifler keşfedin ve <span className="font-semibold text-gray-900">daha derinlemesine analizler</span> elde edin.
             </p>
           </motion.div>
 
