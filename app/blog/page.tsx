@@ -38,7 +38,7 @@ export default function BlogPage() {
       id: 2,
       slug: "gizli-maliyetler-sera-yatirimi",
       title: "Gizli Maliyetler: Sera Yatırımında Dikkat Edilmesi Gerekenler",
-      excerpt: "Sera kurulumunda öng��rülmeyen masraflar ve bunlardan nasıl kaçınılır?",
+      excerpt: "Sera kurulumunda öngörülmeyen masraflar ve bunlardan nasıl kaçınılır?",
       image: "https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2F8d7e72b1c294492c836f9b95c0d5196d?format=webp&width=800",
       date: "12 Ocak 2025"
     },
@@ -186,29 +186,34 @@ export default function BlogPage() {
                   transition={{ duration: 0.6, delay: 0.1 * index }}
                   className="group cursor-pointer"
                 >
-                  <div className="relative overflow-hidden rounded-lg mb-4">
-                    <img
-                      src={post.image}
-                      alt={post.title}
-                      className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
-                  </div>
-                  <div className="space-y-3">
-                    <div className="text-sm text-gray-500">
-                      {post.date}
+                  <a href={`/blog/${post.slug}`} className="block">
+                    <div className="relative overflow-hidden rounded-lg mb-4">
+                      <img
+                        src={post.image}
+                        alt={post.title}
+                        className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                      />
                     </div>
-                    <h3 className="text-lg font-semibold text-gray-900 group-hover:text-gray-700 transition-colors leading-tight">
-                      {post.title}
-                    </h3>
-                    <p className="text-gray-600 text-sm leading-relaxed">
-                      {post.excerpt}
-                    </p>
-                  </div>
+                    <div className="space-y-3">
+                      <div className="text-sm text-gray-500">
+                        {post.date}
+                      </div>
+                      <h3 className="text-lg font-semibold text-gray-900 group-hover:text-gray-700 transition-colors leading-tight">
+                        {post.title}
+                      </h3>
+                      <p className="text-gray-600 text-sm leading-relaxed">
+                        {post.excerpt}
+                      </p>
+                    </div>
+                  </a>
                 </motion.article>
               ))}
             </div>
           </motion.div>
         </main>
+
+        {/* Footer */}
+        <Footer />
       </div>
     </>
   );
