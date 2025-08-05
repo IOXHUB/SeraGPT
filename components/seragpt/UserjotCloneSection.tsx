@@ -284,7 +284,7 @@ export default function UserjotCloneSection() {
                     </div>
 
                     <div>
-                      <p className="text-gray-800 text-xs font-semibold mb-1">📄 PDF İçeriği:</p>
+                      <p className="text-gray-800 text-xs font-semibold mb-1">��� PDF İçeriği:</p>
                       <p className="text-gray-600 text-xs">• ROI tablosu ve 3 yıll��k projeksiyonu</p>
                     </div>
                   </div>
@@ -357,7 +357,7 @@ export default function UserjotCloneSection() {
                       <p className="text-gray-800 text-xs font-semibold mb-1">����� 3 Önemli Fayda:</p>
                       <p className="text-gray-600 text-xs">• Bölgeye uygun yapı ve iklimlendirme</p>
                       <p className="text-gray-600 text-xs">• Anahtar teslim modüler öneriler</p>
-                      <p className="text-gray-600 text-xs">• Genişletilebilirlik alternatifleri</p>
+                      <p className="text-gray-600 text-xs">• Geni��letilebilirlik alternatifleri</p>
                     </div>
 
                     <div>
@@ -566,12 +566,12 @@ export default function UserjotCloneSection() {
           >
             <h2 className="text-xl font-bold text-gray-900 mb-6 flex flex-col max-w-[576px] mx-auto">
               <span className="mx-auto text-3xl">
-                Projeler
+                Yatırımcılarımızın Tercih Ettiği Sera Çözümleri
               </span>
               <br />
             </h2>
             <p className="text-sm text-gray-900 max-w-[576px] mx-auto leading-relaxed">
-              Son Eklenen Referanslarımız
+              Çözüm ortaklarımız ile hayata geçirilen sera projelerimiz
             </p>
           </motion.div>
 
@@ -780,7 +780,7 @@ export default function UserjotCloneSection() {
             {[
               {
                 question: "Raporlar ne kadar doğru?",
-                answer: "SeraGPT, gerçek zamanlı iklim, tarım ve ticaret verilerini kullanır. Raporlar, uzman mühendislerin geliştirdiği algoritmalarla analiz edilir ve %90 üzeri doğruluk oranı sunar."
+                answer: "SeraGPT, gerçek zamanlı iklim, tarım ve ticaret verilerini kullanır. Raporlar, uzman mühendislerin geliştirdi��i algoritmalarla analiz edilir ve %90 üzeri doğruluk oranı sunar."
               },
               {
                 question: "Devlet teşviklerine uygun mu?",
