@@ -345,7 +345,7 @@ class LayoutService {
           specifications: {
             climateControl: specs.requirements.automationLevel === 'advanced',
             irrigationControl: true,
-            monitoring: specs.requirements.automationLevel !== 'basic'
+            monitoring: specs.requirements.automationLevel !== 'none'
           }
         }
       });

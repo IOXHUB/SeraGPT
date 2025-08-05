@@ -143,7 +143,11 @@ export default function ClimateAnalysisPage() {
                   onChange={(e) => {
                     const selectedCity = cities.find(city => city.name === e.target.value);
                     if (selectedCity) {
-                      setLocation(selectedCity);
+                      setLocation({
+                        city: selectedCity.name,
+                        lat: selectedCity.lat,
+                        lon: selectedCity.lon
+                      });
                     }
                   }}
                   className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-500 focus:border-transparent"
