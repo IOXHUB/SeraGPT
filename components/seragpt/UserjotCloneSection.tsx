@@ -606,21 +606,21 @@ export default function UserjotCloneSection() {
                     <div className="flex items-center space-x-4">
                       <div className="flex items-center space-x-3">
                         <div className="w-8 h-8 bg-black rounded-lg flex items-center justify-center">
-                          <span className="text-white text-sm font-bold">S</span>
+                          <span className="text-white text-sm font-bold">🤖</span>
                         </div>
-                        <span className="text-lg font-semibold text-gray-900">SeraGPT</span>
+                        <span className="text-lg font-semibold text-gray-900">SeraGPT AI Asistan</span>
                       </div>
 
                       <nav className="flex space-x-6">
-                        <a href="#" className="text-gray-500 hover:text-gray-700 font-medium">Geri Bildirim</a>
-                        <a href="#" className="text-gray-900 font-medium border-b-2 border-gray-900 pb-1">Geliştirme Planı</a>
-                        <a href="#" className="text-gray-500 hover:text-gray-700 font-medium">Güncellemeler</a>
+                        <a href="#" className="text-gray-900 font-medium border-b-2 border-black pb-1">ROI Sohbeti</a>
+                        <a href="#" className="text-gray-500 hover:text-gray-700 font-medium">İklim Analizi</a>
+                        <a href="#" className="text-gray-500 hover:text-gray-700 font-medium">Ekipman</a>
                       </nav>
                     </div>
 
                     <div className="flex items-center space-x-3">
+                      <span className="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">Aktif</span>
                       <div className="w-8 h-8 bg-gray-800 rounded-full"></div>
-                      <div className="w-8 h-8 bg-gray-600 rounded-full"></div>
                     </div>
                   </div>
                 </div>
