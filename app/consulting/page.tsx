@@ -456,13 +456,6 @@ export default function ConsultingPage() {
               {/* Center navigation links */}
               <div className="space-y-3">
                 <a
-                  href="/how-it-works"
-                  className="block text-gray-700 hover:text-gray-900 font-medium transition-colors py-2"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  Nasıl Çalışır
-                </a>
-                <a
                   href="/consulting"
                   className="block text-green-600 hover:text-green-700 font-medium transition-colors py-2"
                   onClick={() => setIsMobileMenuOpen(false)}
