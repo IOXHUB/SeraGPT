@@ -396,7 +396,7 @@ export default function UserjotCloneSection() {
                   <div className="space-y-3 mb-4">
                     <div>
                       <p className="text-gray-800 text-xs font-semibold mb-1">🎯 3 Önemli Fayda:</p>
-                      <p className="text-gray-600 text-xs">• Seçilen ürün için uygunluk skoru</p>
+                      <p className="text-gray-600 text-xs">• Se��ilen ürün için uygunluk skoru</p>
                       <p className="text-gray-600 text-xs">• Don, rüzgar, nem riskleri</p>
                       <p className="text-gray-600 text-xs">• Geçmiş yıllardaki iklim olayları</p>
                     </div>
@@ -1049,7 +1049,7 @@ export default function UserjotCloneSection() {
               {
 
                 question: "Raporlar ne kadar doğru?",
-                answer: "SeraGPT, gerçek zamanl�� iklim, tarım ve ticaret verilerini kullanır. Raporlar, uzman mühendislerin geliştirdiği algoritmalarla analiz edilir ve %90 üzeri doğruluk oranı sunar."
+                answer: "SeraGPT, gerçek zamanlı iklim, tarım ve ticaret verilerini kullanır. Raporlar, uzman mühendislerin geliştirdiği algoritmalarla analiz edilir ve %90 üzeri doğruluk oranı sunar."
               },
               {
                 question: "Devlet teşviklerine uygun mu?",
