@@ -28,7 +28,7 @@ export default function BlogPage() {
   };
 
   const categories = [
-    { name: "Veriye Dayal�� Tarım", color: "bg-blue-100", textColor: "text-blue-900", slug: "veriye-dayali-tarim" },
+    { name: "Veriye Dayalı Tarım", color: "bg-blue-100", textColor: "text-blue-900", slug: "veriye-dayali-tarim" },
     { name: "Gizli Maliyetler", color: "bg-red-100", textColor: "text-red-900", slug: "gizli-maliyetler" },
     { name: "Akıllı Sera Modelleri", color: "bg-purple-100", textColor: "text-purple-900", slug: "akilli-sera-modelleri" },
     { name: "Tarımsal Zeka", color: "bg-yellow-100", textColor: "text-yellow-900", slug: "tarimsal-zeka" },
@@ -69,7 +69,7 @@ export default function BlogPage() {
       slug: "ticari-urun-rehberi",
       title: "Ticari Ürün Rehberi: Hangi Sebze En Karlı?",
       excerpt: "Sera üretiminde en karlı sebze türleri ve pazar analizi.",
-      image: "https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2F8d7e72b1c294492c836f9b95c0d5196d?format=webp&width=800",
+      image: "https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2F4abcdd109aff4ed9bb3759b448e84aef",
       date: "5 Ocak 2025"
     },
     {
