@@ -637,7 +637,7 @@ export default function UserjotCloneSection() {
               </span>
               <br />
             </h2>
-            <p className="text-xl text-gray-600 max-w-[896px] mx-auto leading-relaxed">
+            <p className="text-xl text-gray-600 max-w-[576px] mx-auto leading-relaxed">
               <span>
                 Hermisan & ISITMAX iş birliğiyle tamamlanan sera projelerinden seçilmiş görüntüler.
               </span>
