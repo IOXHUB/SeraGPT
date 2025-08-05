@@ -625,13 +625,25 @@ export default function UserjotCloneSection() {
                   </div>
                 </div>
 
-                {/* Content */}
-                <div className="p-6">
-                  <div className="flex items-center justify-between mb-6">
-                    <h1 className="text-2xl font-bold text-gray-900">��rün Geliştirme Planı</h1>
-                    <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                    </svg>
+                {/* Chat Content */}
+                <div className="p-6 bg-gray-50 max-h-96 overflow-y-auto">
+                  {/* ROI Analysis Display */}
+                  <div className="mb-6 p-4 bg-white rounded-lg border border-gray-200">
+                    <h3 className="font-semibold text-gray-900 mb-3">ROI Analiz Raporu - Antalya Sera Projesi</h3>
+                    <div className="grid grid-cols-3 gap-4 text-sm">
+                      <div className="text-center">
+                        <div className="text-2xl font-bold text-green-600">%24</div>
+                        <div className="text-gray-600">Yıllık Getiri</div>
+                      </div>
+                      <div className="text-center">
+                        <div className="text-2xl font-bold text-blue-600">3.2</div>
+                        <div className="text-gray-600">Geri Dönüş (Yıl)</div>
+                      </div>
+                      <div className="text-center">
+                        <div className="text-2xl font-bold text-purple-600">₺2.1M</div>
+                        <div className="text-gray-600">Toplam Yatırım</div>
+                      </div>
+                    </div>
                   </div>
 
                   <div className="space-y-6">
