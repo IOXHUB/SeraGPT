@@ -468,7 +468,7 @@ export default function UserjotCloneSection() {
                     </div>
 
                     <div>
-                      <p className="text-gray-800 text-xs font-semibold mb-1">��� Veri Kaynakları:</p>
+                      <p className="text-gray-800 text-xs font-semibold mb-1">🔗 Veri Kaynakları:</p>
                       <p className="text-gray-600 text-xs">• Planner 2D, CAD AI Tools</p>
                       <p className="text-gray-600 text-xs">• HerbaTools yerleşim kütüphanesi</p>
                     </div>
@@ -541,7 +541,7 @@ export default function UserjotCloneSection() {
                 <div className="w-full h-96 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center rounded-lg">
                   <div className="text-center">
                     <div className="w-16 h-16 bg-gray-300 rounded-lg mx-auto mb-4 flex items-center justify-center">
-                      <span className="text-2xl">��</span>
+                      <span className="text-2xl">📊</span>
                     </div>
                     <h3 className="text-lg font-semibold text-gray-700 mb-2">AI Asistan</h3>
                     <p className="text-sm text-gray-500">SeraGPT AI Sohbet Arayüzü Önizlemesi</p>
@@ -585,7 +585,7 @@ export default function UserjotCloneSection() {
           >
             <h2 className="text-xl font-bold text-gray-900 mb-6 flex flex-col max-w-[576px] mx-auto">
               <span className="mx-auto text-3xl">
-                Yatırımcılarımızın Tercih Ettiği Sera ��özümleri
+                Yatırımcılarımızın Tercih Ettiği Sera Çözümleri
               </span>
               <br />
             </h2>
@@ -656,7 +656,7 @@ export default function UserjotCloneSection() {
                 <div className="w-full h-full bg-gradient-to-br from-yellow-100 to-orange-100 flex items-center justify-center">
                   <div className="text-center">
                     <p className="text-gray-700 font-medium">Fide Üretim Tesisi</p>
-                    <p className="text-gray-500 text-sm">Bursa, 4.500 m��</p>
+                    <p className="text-gray-500 text-sm">Bursa, 4.500 m²</p>
                   </div>
                 </div>
               </motion.div>
@@ -671,7 +671,7 @@ export default function UserjotCloneSection() {
               >
                 <div className="w-full h-full bg-gradient-to-br from-blue-100 to-indigo-100 flex items-center justify-center">
                   <div className="text-center">
-                    <div className="text-4xl mb-3">�����️</div>
+                    <div className="text-4xl mb-3">🌡️</div>
                     <p className="text-gray-700 font-medium">İklim Kontrollü Sera</p>
                     <p className="text-gray-500 text-sm">Konya, 6.000 m²</p>
                   </div>
