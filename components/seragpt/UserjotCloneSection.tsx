@@ -598,7 +598,7 @@ export default function UserjotCloneSection() {
             viewport={{ once: true }}
             className="relative"
           >
-            <div className="bg-gray-100 rounded-2xl p-8 shadow-2xl">
+            <div className="bg-gradient-to-br from-blue-50 to-indigo-100 rounded-2xl p-8" style={{boxShadow: '0 25px 50px -12px rgba(59, 130, 246, 0.25), 0 0 0 1px rgba(59, 130, 246, 0.05)'}}>
               <div className="bg-white rounded-xl shadow-lg overflow-hidden">
                 {/* Header */}
                 <div className="bg-white border-b border-gray-200 px-6 py-4">
