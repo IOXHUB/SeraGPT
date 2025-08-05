@@ -318,14 +318,14 @@ export default function UserjotCloneSection() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="text-center mb-16 flex flex-col"
           >
             <p className="text-gray-500 text-sm font-medium uppercase tracking-wider mb-4">
               HER ANALİZ İÇİN DETAYLı ÇÖZÜM
             </p>
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-              5 Adımda Sera Yatırım<br />
-              Analizi Tamamla
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mx-auto mb-6">
+              <p>Tarımsal Zeka İle</p><br />
+              <p>Detaylı ve Kurumsal Raporlar</p>
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
               20 yıllık mühendislik deneyimi ve 110+ veri setiyle<br />
