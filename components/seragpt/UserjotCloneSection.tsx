@@ -157,7 +157,7 @@ export default function UserjotCloneSection() {
                   className="block text-gray-700 hover:text-gray-900 font-medium transition-colors py-2"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
-                  Nasıl Çal��şır
+                  Nasıl Çalışır
                 </a>
                 <a
                   href="#"
@@ -586,11 +586,12 @@ export default function UserjotCloneSection() {
             className="text-center mb-16"
           >
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              Yapay Zeka ile Rapor Analizi
+              Size Özel Kontrol Paneli
             </h2>
             <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-              Dashboard'da üretilen her rapor ve analiz üzerinden <span className="font-semibold text-gray-900">yapay zeka ile sohbet edebilirsiniz</span>.
-              Detayları sorgulayın, alternatifler keşfedin ve <span className="font-semibold text-gray-900">daha derinlemesine analizler</span> elde edin.
+              Panelinizden tüm raporlarınıza, danışmanlık taleplerinize ve teknik teklif süreçlerinize anlık erişim sağlayın.
+              <span className="font-semibold text-gray-900"> Yapay zekâ analizleri, mühendislik değerlendirmeleri ve saha hizmetleri</span>
+              artık tek bir merkezden yönetilebilir.
             </p>
           </motion.div>
 
@@ -616,16 +617,15 @@ export default function UserjotCloneSection() {
                       </div>
 
                       <nav className="flex space-x-6">
-                        <a href="#" className="text-gray-500 hover:text-gray-700 font-medium">Raporlarım</a>
-                        <a href="#" className="text-gray-900 font-medium border-b-2 border-green-500 pb-1">🤖 AI Sohbet</a>
-                        <a href="#" className="text-gray-500 hover:text-gray-700 font-medium">Analizler</a>
+                        <a href="#" className="text-gray-500 hover:text-gray-700 font-medium">Geri Bildirim</a>
+                        <a href="#" className="text-gray-900 font-medium border-b-2 border-gray-900 pb-1">Geliştirme Planı</a>
+                        <a href="#" className="text-gray-500 hover:text-gray-700 font-medium">Güncellemeler</a>
                       </nav>
                     </div>
 
                     <div className="flex items-center space-x-3">
-                      <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                      <span className="text-sm text-gray-600">Aktif</span>
                       <div className="w-8 h-8 bg-gray-800 rounded-full"></div>
+                      <div className="w-8 h-8 bg-gray-600 rounded-full"></div>
                     </div>
                   </div>
                 </div>
@@ -633,10 +633,10 @@ export default function UserjotCloneSection() {
                 {/* Content */}
                 <div className="p-6">
                   <div className="flex items-center justify-between mb-6">
-                    <h1 className="text-2xl font-bold text-gray-900">ROI Analizi ile Sohbet</h1>
-                    <div className="flex items-center space-x-2">
-                      <span className="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">Çevrimiçi</span>
-                    </div>
+                    <h1 className="text-2xl font-bold text-gray-900">��rün Geliştirme Planı</h1>
+                    <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    </svg>
                   </div>
 
                   <div className="space-y-6">
@@ -976,7 +976,7 @@ export default function UserjotCloneSection() {
               {
 
                 question: "Raporlar ne kadar doğru?",
-                answer: "SeraGPT, gerçek zamanl��� iklim, tarım ve ticaret verilerini kullanır. Raporlar, uzman mühendislerin geliştirdiği algoritmalarla analiz edilir ve %90 üzeri doğruluk oranı sunar."
+                answer: "SeraGPT, gerçek zamanl�� iklim, tarım ve ticaret verilerini kullanır. Raporlar, uzman mühendislerin geliştirdiği algoritmalarla analiz edilir ve %90 üzeri doğruluk oranı sunar."
               },
               {
                 question: "Devlet teşviklerine uygun mu?",
