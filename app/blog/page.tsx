@@ -38,7 +38,7 @@ export default function BlogPage() {
       id: 2,
       slug: "gizli-maliyetler-sera-yatirimi",
       title: "Gizli Maliyetler: Sera Yatırımında Dikkat Edilmesi Gerekenler",
-      excerpt: "Sera kurulumunda öngör��lmeyen masraflar ve bunlardan nasıl kaçınılır?",
+      excerpt: "Sera kurulumunda öngörülmeyen masraflar ve bunlardan nasıl kaçınılır?",
       image: "https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2F8d7e72b1c294492c836f9b95c0d5196d?format=webp&width=800",
       date: "12 Ocak 2025"
     },
@@ -115,13 +115,13 @@ export default function BlogPage() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="mb-16"
           >
-            <div className="flex gap-8 items-start">
+            <a href={`/blog/${featuredPost.slug}`} className="flex gap-8 items-start group">
               <div className="w-80 flex-shrink-0">
                 <div className="relative overflow-hidden rounded-lg">
                   <img
                     src={featuredPost.image}
                     alt={featuredPost.title}
-                    className="w-full h-48 object-cover"
+                    className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
                   />
                 </div>
               </div>
@@ -130,14 +130,14 @@ export default function BlogPage() {
                   <span>{featuredPost.date}</span>
                   <span>{featuredPost.category}</span>
                 </div>
-                <h2 className="text-2xl font-semibold text-gray-900 leading-tight">
+                <h2 className="text-2xl font-semibold text-gray-900 leading-tight group-hover:text-gray-700 transition-colors">
                   {featuredPost.title}
                 </h2>
                 <p className="text-gray-600 leading-relaxed">
                   {featuredPost.excerpt}
                 </p>
               </div>
-            </div>
+            </a>
           </motion.div>
 
           {/* Categories */}
