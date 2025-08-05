@@ -88,7 +88,7 @@ export default function UserjotCloneSection() {
                   className="block text-gray-700 hover:text-gray-900 font-medium transition-colors py-2"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
-                  Danışmanlık
+                  Anahtar Teslim Proje
                 </a>
                 <a
                   href="#"
@@ -904,7 +904,7 @@ export default function UserjotCloneSection() {
               {
 
                 question: "Danışmanlık almak için ne yapmalıyım?",
-                answer: "Destek bölümünden danışman talebinde bulunabilirsiniz. Alanında uzman bir mühendis sizinle ileti��ime geçerek detaylı bilgi verecektir.",
+                answer: "Destek bölümünden danışman talebinde bulunabilirsiniz. Alanında uzman bir mühendis sizinle iletişime geçerek detaylı bilgi verecektir.",
 
               },
               {
