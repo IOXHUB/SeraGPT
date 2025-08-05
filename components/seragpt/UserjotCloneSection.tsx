@@ -252,7 +252,7 @@ export default function UserjotCloneSection() {
             </h1>
 
             {/* Description paragraph */}
-            <p className="text-[16px] sm:text-[18px] text-gray-600 leading-relaxed px-4 mt-8">
+            <p className="text-[16px] sm:text-[18px] text-gray-600 leading-relaxed px-4 mt-8 max-w-lg mx-auto">
               SeraGPT; 20 yılı aşkın mühendislik deneyimi, 500'den fazla
               tamamlanmış proje ve 110'dan fazla gerçek zamanlı veri
               setiyle, tarımsal yatırım kararlarınızı saniyeler içinde
