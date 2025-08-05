@@ -45,13 +45,13 @@ export default function UserjotCloneSection() {
               Dashboard
             </a>
 
-            {/* For logged out users */}
+            {/* For logged out users - first time visitors */}
             <a href="/auth/login" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
               Giriş Yap
             </a>
 
-            {/* For first time visitors */}
-            <a href="/dashboard" className="text-gray-600 hover:text-gray-900 px-4 py-2 rounded-lg font-medium transition-colors">
+            {/* CTA Button for new users */}
+            <a href="/dashboard" className="bg-black text-white px-6 py-2 rounded-xl font-semibold hover:bg-gray-800 transition-colors">
               Ücretsiz Başla
             </a>
           </div>
@@ -252,7 +252,7 @@ export default function UserjotCloneSection() {
 
                   <div className="mt-4 p-3 bg-gray-50 rounded-lg">
                     <p className="text-gray-700 text-sm font-medium">"Yatırımınız size ne zaman geri döner?"</p>
-                    <button className="mt-2 text-blue-600 text-xs font-medium hover:underline">[PDF'yi Örnekle G��r]</button>
+                    <button className="mt-2 text-blue-600 text-xs font-medium hover:underline">[PDF'yi Örnekle Gör]</button>
                   </div>
                 </div>
               </motion.div>
@@ -399,7 +399,7 @@ export default function UserjotCloneSection() {
               >
                 <div className="absolute top-6 left-6 text-6xl font-bold text-gray-100">05</div>
                 <div className="mt-16">
-                  <h3 className="text-xl font-bold text-gray-900 mb-4">Yerle��im ve Teknik Plan Görselleştirmesi</h3>
+                  <h3 className="text-xl font-bold text-gray-900 mb-4">Yerleşim ve Teknik Plan Görselleştirmesi</h3>
 
                   <div className="space-y-3 mb-4">
                     <div>
@@ -871,7 +871,7 @@ export default function UserjotCloneSection() {
               },
               {
                 question: "Ödeme nasıl yapılıyor?",
-                answer: "İlk 5 rapor ücretsizdir. Sonrasında, kredi kartı veya havale/EFT ile jeton (token) satın alabilirsiniz. Ödeme altyapıs�� %100 güvenlidir.",
+                answer: "İlk 5 rapor ücretsizdir. Sonrasında, kredi kartı veya havale/EFT ile jeton (token) satın alabilirsiniz. Ödeme altyapıs��� %100 güvenlidir.",
 
               },
               {
