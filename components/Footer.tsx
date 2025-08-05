@@ -3,7 +3,7 @@ export default function Footer() {
     <div>
       <footer className="bg-gray-50 text-gray-900 py-12 sm:py-16 flex flex-col">
         <div className="navbar-footer-container flex justify-center flex-col items-center">
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 w-full">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-12 sm:gap-16 md:gap-24 lg:gap-32 w-full justify-items-center md:justify-items-start">
             {/* 1. Menü */}
             <div>
               <h3 className="text-lg mb-6 text-gray-900">Menü</h3>
