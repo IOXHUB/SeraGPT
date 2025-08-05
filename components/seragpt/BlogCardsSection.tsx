@@ -4,43 +4,6 @@ import { motion } from 'framer-motion';
 
 export default function BlogCardsSection() {
 
-  if (loading) {
-    return (
-      <div className="py-20 bg-gray-50 text-gray-600">
-        <div className="max-w-[960px] mx-auto px-6">
-          <div className="text-center mb-12">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-            >
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                Son Blog Yazıları
-              </h2>
-              <p className="text-lg text-gray-600">
-                Sera teknolojileri ve yatırım analizi üzerine en güncel içerikler
-              </p>
-            </motion.div>
-          </div>
-          
-          <div className="flex space-x-6 overflow-x-auto pb-6">
-            {[...Array(5)].map((_, index) => (
-              <div key={index} className="flex-shrink-0 w-80 animate-pulse">
-                <div className="bg-gray-200 rounded-2xl h-48 mb-4"></div>
-                <div className="space-y-3">
-                  <div className="h-4 bg-gray-200 rounded w-3/4"></div>
-                  <div className="h-4 bg-gray-200 rounded w-1/2"></div>
-                  <div className="h-3 bg-gray-200 rounded w-full"></div>
-                  <div className="h-3 bg-gray-200 rounded w-2/3"></div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    );
-  }
-
   return (
     <div className="py-20 bg-white text-gray-600">
       <div className="max-w-[960px] mx-auto px-6">
