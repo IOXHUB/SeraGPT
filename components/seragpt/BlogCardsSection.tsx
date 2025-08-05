@@ -100,11 +100,9 @@ export default function BlogCardsSection() {
 
               {/* Content */}
               <div className="flex-1 space-y-3">
-                {/* Date and Category */}
+                {/* Date */}
                 <div className="flex items-center space-x-2 text-sm">
                   <span className="text-gray-500">15 Ocak 2025</span>
-                  <span className="text-gray-400">•</span>
-                  <span className="text-gray-700 bg-gray-100 px-2 py-1 rounded text-xs font-medium">Tarım Teknolojisi</span>
                 </div>
 
                 {/* Title */}
