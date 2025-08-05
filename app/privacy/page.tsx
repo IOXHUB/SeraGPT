@@ -23,7 +23,7 @@ export default function PrivacyPage() {
       <Header />
 
       {/* Main Content */}
-      <main className="max-w-[960px] mx-auto px-6 py-16">
+      <main className="body-content-container py-16">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -42,7 +42,7 @@ export default function PrivacyPage() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="prose prose-lg max-w-none"
+          className="prose prose-lg text-section-container"
         >
           <div className="space-y-8">
             <div className="bg-blue-50 border-l-4 border-blue-500 p-6 rounded-r-lg">
