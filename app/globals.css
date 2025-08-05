@@ -578,7 +578,7 @@ p, .text-content {
 
 /* Custom container styles as per design specifications */
 .navbar-footer-container {
-  max-width: 1700px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 16px 24px;
   display: flex;
