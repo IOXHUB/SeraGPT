@@ -42,20 +42,26 @@ export default function UserjotCloneSection() {
 
           {/* Right menu - conditional based on user state */}
           <div className="hidden md:flex items-center space-x-4">
-            {/* For logged in users */}
-            <a href="/dashboard" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
-              Dashboard
-            </a>
-
-            {/* For logged out users - first time visitors */}
-            <a href="/auth/login" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
-              Giriş Yap
-            </a>
-
-            {/* CTA Button for new users */}
-            <a href="/dashboard" className="bg-gray-600 text-white px-6 py-2 rounded-xl font-semibold hover:bg-gray-800 transition-colors">
-              Ücretsiz Başla
-            </a>
+            {!loading && (
+              <>
+                {user ? (
+                  // For logged in users - show Dashboard
+                  <a href="/dashboard" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
+                    Dashboard
+                  </a>
+                ) : (
+                  // For logged out users - show Login or Sign Up CTA
+                  <>
+                    <a href="/auth/login" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
+                      Giriş Yap
+                    </a>
+                    <a href="/dashboard" className="bg-gray-600 text-white px-6 py-2 rounded-xl font-semibold hover:bg-gray-800 transition-colors">
+                      Ücretsiz Başla
+                    </a>
+                  </>
+                )}
+              </>
+            )}
           </div>
 
           {/* Mobile menu button - hamburger icon */}
