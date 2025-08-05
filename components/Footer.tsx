@@ -2,7 +2,7 @@ export default function Footer() {
   return (
     <footer className="bg-gray-50 text-gray-900 py-12 sm:py-16">
       <div className="navbar-footer-container">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">
           {/* 1. Menü */}
           <div>
             <h3 className="text-lg font-semibold mb-6 text-gray-900">Menü</h3>
@@ -35,9 +35,9 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* 2. Blog Kategorileri - ROI & İklim */}
+          {/* 2. Blog Kategorileri */}
           <div>
-            <h3 className="text-lg font-semibold mb-6 text-gray-900">Analiz & Blog</h3>
+            <h3 className="text-lg font-semibold mb-6 text-gray-900">Blog</h3>
             <ul className="space-y-3">
               <li>
                 <a href="/blog/roi-analizi" className="text-gray-600 hover:text-gray-900 transition-colors">
@@ -98,55 +98,20 @@ export default function Footer() {
               </li>
             </ul>
           </div>
-
-          {/* 4. İletişim & Şirket */}
-          <div>
-            <h3 className="text-lg font-semibold mb-6 text-gray-900">İletişim</h3>
-            <ul className="space-y-3">
-              <li>
-                <a href="/support" className="text-gray-600 hover:text-gray-900 transition-colors">
-                  Destek Merkezi
-                </a>
-              </li>
-              <li>
-                <a href="mailto:info@seragpt.com" className="text-gray-600 hover:text-gray-900 transition-colors">
-                  info@seragpt.com
-                </a>
-              </li>
-              <li>
-                <a href="tel:+902125550123" className="text-gray-600 hover:text-gray-900 transition-colors">
-                  +90 (212) 555-0123
-                </a>
-              </li>
-              <li>
-                <a href="/consulting" className="text-gray-600 hover:text-gray-900 transition-colors">
-                  Proje Danışmanlığı
-                </a>
-              </li>
-              <li>
-                <a href="https://isitmax.com" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-gray-900 transition-colors">
-                  ISITMAX A.Ş.
-                </a>
-              </li>
-            </ul>
-          </div>
         </div>
 
         {/* Bottom copyright area */}
         <div className="border-t border-gray-200 mt-12 pt-8 text-center">
-          <div className="navbar-footer-container flex-col md:flex-row">
-            <div className="flex items-center space-x-3 mb-4 md:mb-0">
+          <div className="flex flex-col items-center space-y-3">
+            <div className="flex items-center space-x-3">
               <img
                 src="https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2F96da5382e9584c3fb2d32eca60944359?format=webp&width=800"
                 alt="SeraGPT Logo"
                 className="h-6 w-auto"
               />
-              <span className="text-gray-600 text-sm mt-0.5 ml-3">
-                © 2024 SeraGPT. Tüm hakları saklıdır.
+              <span className="text-gray-600 text-sm">
+                © 2024 SeraGPT. Tüm hakları saklıdır. ISITMAX A.Ş.
               </span>
-            </div>
-            <div className="text-gray-600 text-sm">
-              <p>ISITMAX A.Ş.</p>
             </div>
           </div>
         </div>
