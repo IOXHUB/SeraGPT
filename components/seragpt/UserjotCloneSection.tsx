@@ -1084,7 +1084,7 @@ export default function UserjotCloneSection() {
               },
               {
                 question: "Sadece yeni yatırımcılar mı kullanabilir?",
-                answer: "Hay��r. Mevcut serası olan kullanıcılar, genişletme planlayan çiftçiler, mühendisler ve yatırımcılar da SeraGPT'den faydalanabilir.",
+                answer: "Hayır. Mevcut serası olan kullanıcılar, genişletme planlayan çiftçiler, mühendisler ve yatırımcılar da SeraGPT'den faydalanabilir.",
 
               },
               {
