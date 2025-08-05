@@ -415,40 +415,182 @@ p, .text-content {
   margin-right: auto;
 }
 
-/* Responsive design helpers */
+/* Mobile-First Responsive Design - Proportional Typography */
 @media (max-width: 768px) {
   body {
     font-size: 14px;
-    line-height: 1.5;
+    line-height: 24px; /* Proportional to 16px/28px ratio */
+    text-align: center;
+    padding: 0 12px;
   }
 
+  /* Mobile Typography Hierarchy - Proportional Scaling */
   h1 {
-    font-size: 2rem;
-    line-height: 1.2;
+    font-size: 28px; /* Scaled from 36px */
+    line-height: 36px; /* Maintains proportion */
+    font-weight: 600;
+    color: #525252;
+    margin-bottom: 1rem;
+    text-align: center;
   }
 
   h2 {
-    font-size: 1.75rem;
-    line-height: 1.3;
+    font-size: 24px; /* Scaled from 28px */
+    line-height: 32px;
+    font-weight: 600;
+    color: #525252;
+    margin-bottom: 0.875rem;
+    text-align: center;
   }
 
   h3 {
-    font-size: 1.25rem;
-    line-height: 1.4;
+    font-size: 18px; /* Scaled from 24px */
+    line-height: 26px;
+    font-weight: 600;
+    color: #525252;
+    margin-bottom: 0.75rem;
+    text-align: center;
   }
 
+  /* Mobile-specific text content containers */
+  .text-section-container {
+    max-width: 100%;
+    padding: 0 20px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .visual-section-container {
+    max-width: 100%;
+    padding: 0 16px;
+    margin: 0 auto;
+  }
+
+  .navbar-footer-container {
+    max-width: 100%;
+    padding: 12px 16px;
+    margin: 0 auto;
+  }
+
+  /* Mobile paragraph and text content */
+  p, .text-content {
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 14px;
+    line-height: 24px;
+    text-align: center;
+    padding: 0 8px;
+  }
+
+  /* Mobile button adjustments */
+  .btn-primary,
+  .btn-secondary,
+  .btn-outline {
+    @apply py-3 px-6 text-sm;
+    font-size: 14px;
+    line-height: 20px;
+    text-align: center;
+    margin: 0 auto;
+    display: inline-block;
+  }
+
+  /* Mobile heading utilities */
   .heading-primary {
-    @apply text-3xl;
+    font-size: 28px !important;
+    line-height: 36px !important;
+    text-align: center;
   }
 
   .heading-secondary {
-    @apply text-xl;
+    font-size: 24px !important;
+    line-height: 32px !important;
+    text-align: center;
+  }
+
+  /* Mobile spacing adjustments */
+  .space-y-8 > * + * {
+    margin-top: 1.5rem;
+  }
+
+  .space-y-6 > * + * {
+    margin-top: 1.25rem;
+  }
+
+  .space-y-4 > * + * {
+    margin-top: 1rem;
+  }
+
+  /* Mobile-specific hero section */
+  .min-h-screen {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  /* Mobile card adjustments */
+  .card-corporate {
+    margin: 0 8px;
+    padding: 1rem;
+  }
+
+  /* Mobile form adjustments */
+  .form-input {
+    font-size: 16px; /* Prevents zoom on iOS */
+    line-height: 24px;
+    padding: 12px 16px;
+  }
+}
+
+/* Extra small devices (phones in portrait) */
+@media (max-width: 480px) {
+  body {
+    font-size: 13px;
+    line-height: 22px;
+    padding: 0 8px;
+  }
+
+  h1 {
+    font-size: 24px;
+    line-height: 32px;
+  }
+
+  h2 {
+    font-size: 20px;
+    line-height: 28px;
+  }
+
+  h3 {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  p, .text-content {
+    font-size: 13px;
+    line-height: 22px;
+    padding: 0 4px;
+  }
+
+  .text-section-container {
+    padding: 0 12px;
+  }
+
+  .visual-section-container {
+    padding: 0 8px;
+  }
+
+  .navbar-footer-container {
+    padding: 8px 12px;
   }
 
   .btn-primary,
   .btn-secondary,
   .btn-outline {
-    @apply py-2 px-4 text-sm;
+    font-size: 13px;
+    line-height: 18px;
+    padding: 10px 20px;
   }
 }
 
