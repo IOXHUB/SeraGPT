@@ -534,7 +534,7 @@ export default function UserjotCloneSection() {
                     </div>
 
                     <div>
-                      <p className="text-gray-800 text-xs font-semibold mb-1">��� Veri Kaynakları:</p>
+                      <p className="text-gray-800 text-xs font-semibold mb-1">����� Veri Kaynakları:</p>
                       <p className="text-gray-600 text-xs">• Planner 2D, CAD AI Tools</p>
                       <p className="text-gray-600 text-xs">• HerbaTools yerleşim kütüphanesi</p>
                     </div>
@@ -634,9 +634,9 @@ export default function UserjotCloneSection() {
                 <div className="p-6">
                   <div className="flex items-center justify-between mb-6">
                     <h1 className="text-2xl font-bold text-gray-900">ROI Analizi ile Sohbet</h1>
-                    <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                    </svg>
+                    <div className="flex items-center space-x-2">
+                      <span className="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">Çevrimiçi</span>
+                    </div>
                   </div>
 
                   <div className="space-y-6">
