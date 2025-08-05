@@ -460,59 +460,21 @@ p, .text-content {
   .btn-primary,
   .btn-secondary,
   .btn-outline {
-    @apply py-3 px-6 text-sm;
-    font-size: 14px;
-    line-height: 20px;
-    text-align: center;
-    margin: 0 auto;
-    display: inline-block;
+    @apply py-3 px-6 text-base;
   }
 
   /* Mobile heading utilities */
   .heading-primary {
-    font-size: 28px !important;
-    line-height: 36px !important;
-    text-align: center;
+    @apply text-3xl;
   }
 
   .heading-secondary {
-    font-size: 24px !important;
-    line-height: 32px !important;
-    text-align: center;
-  }
-
-  /* Mobile spacing adjustments */
-  .space-y-8 > * + * {
-    margin-top: 1.5rem;
-  }
-
-  .space-y-6 > * + * {
-    margin-top: 1.25rem;
-  }
-
-  .space-y-4 > * + * {
-    margin-top: 1rem;
-  }
-
-  /* Mobile-specific hero section */
-  .min-h-screen {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-  }
-
-  /* Mobile card adjustments */
-  .card-corporate {
-    margin: 0 8px;
-    padding: 1rem;
+    @apply text-2xl;
   }
 
   /* Mobile form adjustments */
   .form-input {
     font-size: 16px; /* Prevents zoom on iOS */
-    line-height: 24px;
     padding: 12px 16px;
   }
 }
