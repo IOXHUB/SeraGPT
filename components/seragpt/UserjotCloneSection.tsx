@@ -436,7 +436,7 @@ export default function UserjotCloneSection() {
 
                   <div className="space-y-3 mb-4">
                     <div>
-                      <p className="text-gray-800 text-xs font-semibold mb-1">��� 3 Önemli Fayda:</p>
+                      <p className="text-gray-800 text-xs font-semibold mb-1">����� 3 Önemli Fayda:</p>
                       <p className="text-gray-600 text-xs">• Bölgeye uygun yapı ve iklimlendirme</p>
                       <p className="text-gray-600 text-xs">• Anahtar teslim modüler öneriler</p>
                       <p className="text-gray-600 text-xs">• Genişletilebilirlik alternatifleri</p>
@@ -770,7 +770,7 @@ export default function UserjotCloneSection() {
               <br />
             </h2>
             <p className="text-sm text-gray-900 max-w-[576px] mx-auto leading-relaxed">
-              <p>Son Eklenen Referanslar��mız</p>
+              Son Eklenen Referanslarımız
             </p>
           </motion.div>
 
@@ -994,7 +994,7 @@ export default function UserjotCloneSection() {
               },
               {
                 question: "Bilgilerim güvende mi?",
-                answer: "Kesinlikle. Tüm bilgileriniz Supabase veritabanında şifreli olarak saklanır. Raporlar yaln��zca size özeldir, üçüncü taraflarla paylaşılmaz.",
+                answer: "Kesinlikle. Tüm bilgileriniz Supabase veritabanında şifreli olarak saklanır. Raporlar yaln��zca size özeldir, üç��ncü taraflarla paylaşılmaz.",
 
               },
               {
