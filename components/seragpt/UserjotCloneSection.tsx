@@ -763,13 +763,13 @@ export default function UserjotCloneSection() {
             viewport={{ once: true }}
             className="text-center mb-16 flex flex-col"
           >
-            <h2 className="text-xl font-bold text-gray-900 mb-6 flex flex-col max-w-[576px] mx-auto" style={{margin: '0 auto -10px'}}>
-              <span className="mx-auto" style={{fontSize: '28px', paddingTop: '-3px'}}>
+            <h2 className="text-xl font-bold text-gray-900 mb-6 flex flex-col max-w-[576px] mx-auto">
+              <span className="mx-auto text-3xl">
                 Projeler
               </span>
               <br />
             </h2>
-            <p className="text-sm text-gray-900 max-w-[576px] mx-auto leading-relaxed" style={{paddingTop: '-3px'}}>
+            <p className="text-sm text-gray-900 max-w-[576px] mx-auto leading-relaxed">
               <p>Son Eklenen Referanslarımız</p>
             </p>
           </motion.div>
