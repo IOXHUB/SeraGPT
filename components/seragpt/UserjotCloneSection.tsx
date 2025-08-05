@@ -145,7 +145,7 @@ export default function UserjotCloneSection() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="space-y-8"
+            className="space-y-5"
           >
             {/* Small text above headline */}
             <p className="text-gray-500 text-sm font-medium uppercase tracking-wider">
@@ -153,13 +153,13 @@ export default function UserjotCloneSection() {
             </p>
 
             {/* Main headline */}
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight space-y-2">
+            <h1 className="text-4xl font-bold text-gray-900 leading-tight space-y-2">
               <div className="text-gray-600">🚀 60 Saniyede</div>
               <div className="text-gray-600">Sera Yatırım Raporun Hazır!</div>
             </h1>
 
             {/* Description paragraph */}
-            <p className="text-base sm:text-lg md:text-xl text-gray-600 leading-relaxed px-4 mt-8">
+            <p className="text-sm text-gray-600 leading-relaxed px-4 mt-5">
               SeraGPT; 20 yılı aşkın mühendislik deneyimi, 500'den fazla
               tamamlanmış proje ve 110'dan fazla gerçek zamanlı veri
               setiyle, tarımsal yatırım kararlarınızı saniyeler içinde
@@ -167,19 +167,19 @@ export default function UserjotCloneSection() {
             </p>
 
             {/* CTA Button */}
-            <div className="mt-10">
+            <div className="mt-5">
               <motion.a
                 href="https://17ddca60910e4daea7522c0f6038c4a4-dd51946acbf540e29f8c9d1d0.fly.dev/dashboard"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="bg-black hover:bg-gray-800 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-colors inline-flex items-center space-x-3"
+                className="bg-black hover:bg-gray-800 text-white px-8 py-4 rounded-xl text-lg font-semibold transition-colors inline-flex items-center space-x-3"
               >
                 <span className="text-center">Şimdi Oluştur – İlk 5 Rapor Ücretsiz</span>
               </motion.a>
             </div>
 
             {/* Small text under button */}
-            <p className="text-gray-500 text-sm mt-6">
+            <p className="text-gray-500 text-sm pb-10">
               Doğru yatırım, doğru analizle başlar.
             </p>
           </motion.div>
@@ -871,7 +871,7 @@ export default function UserjotCloneSection() {
               },
               {
                 question: "Ödeme nasıl yapılıyor?",
-                answer: "İlk 5 rapor ücretsizdir. Sonrasında, kredi kartı veya havale/EFT ile jeton (token) satın alabilirsiniz. Ödeme altyapıs�� %100 güvenlidir.",
+                answer: "İlk 5 rapor ücretsizdir. Sonrasında, kredi kartı veya havale/EFT ile jeton (token) satın alabilirsiniz. ��deme altyapıs�� %100 güvenlidir.",
 
               },
               {
