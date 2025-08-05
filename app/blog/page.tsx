@@ -22,7 +22,7 @@ export default function BlogPage() {
     slug: "sera-teknolojilerinde-2025-yenilikleri",
     title: "Sera Teknolojilerinde 2025 Yenilikleri",
     excerpt: "Modern sera teknolojileri ile tarımsal verimliliği artırmanın yolları. İklim kontrolü, otomasyon sistemleri ve sürdürülebilir tarım uygulamalarında son gelişmeler.",
-    image: "https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2F8d7e72b1c294492c836f9b95c0d5196d?format=webp&width=800",
+    image: "https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2F382157220f6b4482a9c765091441c587",
     date: "15 Ocak 2025",
     category: "Tarım Teknolojisi"
   };
@@ -45,7 +45,7 @@ export default function BlogPage() {
     {
       id: 3,
       slug: "roi-maliyet-analizi",
-      title: "ROI & Maliyet Analizi: Sera Yatırım��nın Geri Dönüşü",
+      title: "ROI & Maliyet Analizi: Sera Yatırımının Geri Dönüşü",
       excerpt: "Sera yatırımının karlılık analizi ve geri dönüş süresi hesaplamaları.",
       image: "https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2F8d7e72b1c294492c836f9b95c0d5196d?format=webp&width=800",
       date: "10 Ocak 2025"
