@@ -484,7 +484,7 @@ p, .text-content {
 
 /* Custom container styles as per design specifications */
 .navbar-footer-container {
-  max-width: 1200px;
+  max-width: 1700px;
   margin: 0 auto;
   padding: 16px 24px;
   display: flex;
@@ -493,7 +493,7 @@ p, .text-content {
 }
 
 .text-section-container {
-  max-width: 720px;
+  max-width: 896px;
   margin: 0 auto;
   padding: 0 16px;
 }
@@ -504,7 +504,7 @@ p, .text-content {
   gap: 48px;
   align-items: center;
   justify-content: center;
-  max-width: 1200px;
+  max-width: 1700px;
   margin: 0 auto;
   padding: 64px 16px;
 }
