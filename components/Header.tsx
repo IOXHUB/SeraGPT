@@ -114,27 +114,38 @@ export default function Header() {
 
             {/* Right menu actions */}
             <div className="space-y-3">
-              <a
-                href="/dashboard"
-                className="block text-gray-700 hover:text-gray-900 font-medium transition-colors py-2"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                Dashboard
-              </a>
-              <a
-                href="/auth/login"
-                className="block text-gray-700 hover:text-gray-900 font-medium transition-colors py-2"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                Giriş Yap
-              </a>
-              <a
-                href="/dashboard"
-                className="block bg-gray-600 hover:bg-gray-800 text-white px-4 py-3 rounded-xl font-medium transition-colors text-center"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                Ücretsiz Başla
-              </a>
+              {!loading && (
+                <>
+                  {user ? (
+                    // For logged in users - show Dashboard
+                    <a
+                      href="/dashboard"
+                      className="block text-gray-700 hover:text-gray-900 font-medium transition-colors py-2"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      Dashboard
+                    </a>
+                  ) : (
+                    // For logged out users - show Login and Sign Up
+                    <>
+                      <a
+                        href="/auth/login"
+                        className="block text-gray-700 hover:text-gray-900 font-medium transition-colors py-2"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                      >
+                        Giriş Yap
+                      </a>
+                      <a
+                        href="/dashboard"
+                        className="block bg-gray-600 hover:bg-gray-800 text-white px-4 py-3 rounded-xl font-medium transition-colors text-center"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                      >
+                        Ücretsiz Başla
+                      </a>
+                    </>
+                  )}
+                </>
+              )}
             </div>
           </div>
         </motion.div>
