@@ -349,6 +349,9 @@ export default function BlogPostPage({ params }: BlogPostProps) {
             </div>
           </div>
         </div>
+
+        {/* Footer */}
+        <Footer />
       </div>
     </>
   );
