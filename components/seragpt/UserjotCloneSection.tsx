@@ -247,7 +247,7 @@ export default function UserjotCloneSection() {
 
             {/* Main headline */}
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 leading-relaxed space-y-2">
-              <div className="text-gray-600 text-[32px] sm:text-[38px] md:text-[44px]">🚀 60 Saniyede</div>
+              <div className="text-gray-600 text-[32px] sm:text-[38px] md:text-[44px]">�� 60 Saniyede</div>
               <div className="text-gray-600 text-[32px] sm:text-[38px] md:text-[44px]">Sera Yatırım Raporun Hazır!</div>
             </h1>
 
@@ -586,12 +586,11 @@ export default function UserjotCloneSection() {
             className="text-center mb-16"
           >
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              Size Özel Kontrol Paneli
+              Yapay Zeka ile Rapor Analizi
             </h2>
             <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-              Panelinizden tüm raporlarınıza, danışmanlık taleplerinize ve teknik teklif süreçlerinize anlık erişim sağlayın.
-              <span className="font-semibold text-gray-900"> Yapay zekâ analizleri, mühendislik değerlendirmeleri ve saha hizmetleri</span>
-              artık tek bir merkezden yönetilebilir.
+              Dashboard'da üretilen her rapor ve analiz üzerinden <span className="font-semibold text-gray-900">yapay zeka ile sohbet edebilirsiniz</span>.
+              Detayları sorgulayın, alternatifler keşfedin ve <span className="font-semibold text-gray-900">daha derinlemesine analizler</span> elde edin.
             </p>
           </motion.div>
 
