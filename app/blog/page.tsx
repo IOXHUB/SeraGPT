@@ -51,7 +51,7 @@ export default function BlogPage() {
     {
       id: 3,
       slug: "roi-maliyet-analizi",
-      title: "ROI & Maliyet Analizi: Sera Yatırımının Geri Dönüşü",
+      title: "ROI & Maliyet Analizi: Sera Yatırımının Geri D��nüşü",
       excerpt: "Sera yatırımının karlılık analizi ve geri dönüş süresi hesaplamaları.",
       image: "https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2F8d7e72b1c294492c836f9b95c0d5196d?format=webp&width=800",
       date: "10 Ocak 2025"
@@ -153,21 +153,23 @@ export default function BlogPage() {
             <h2 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-6">
               KATEGORİLER
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              {categories.map((category, index) => (
-                <motion.a
-                  key={category.name}
-                  href={`/blog/category/${category.slug}`}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.1 * index }}
-                  className={`${category.color} rounded-lg p-6 hover:shadow-lg transition-shadow cursor-pointer block group`}
-                >
-                  <h3 className={`text-lg font-semibold ${category.textColor} group-hover:opacity-80 transition-opacity`}>
-                    {category.name}
-                  </h3>
-                </motion.a>
-              ))}
+            <div className="relative">
+              <div className="flex overflow-x-auto scrollbar-hide space-x-4 pb-6">
+                {categories.map((category, index) => (
+                  <motion.a
+                    key={category.name}
+                    href={`/blog/category/${category.slug}`}
+                    initial={{ opacity: 0, x: 30 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.6, delay: 0.1 * index }}
+                    className={`${category.color} rounded-lg p-4 hover:shadow-lg transition-shadow cursor-pointer block group flex-shrink-0 min-w-max`}
+                  >
+                    <h3 className={`text-sm font-semibold ${category.textColor} group-hover:opacity-80 transition-opacity whitespace-nowrap`}>
+                      {category.name}
+                    </h3>
+                  </motion.a>
+                ))}
+              </div>
             </div>
           </motion.div>
 
