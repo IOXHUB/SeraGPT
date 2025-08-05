@@ -78,16 +78,19 @@ export default function UserjotCloneSection() {
             </a>
           </div>
 
-          {/* Center navigation - 3 links */}
+          {/* Center navigation - 4 links */}
           <nav className="hidden md:flex items-center space-x-8">
-            <a href="/support" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
-              Destek
+            <a href="/how-it-works" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
+              Nasıl Çalışır
             </a>
             <a href="/consulting" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
               Danışmanlık
             </a>
-            <a href="#" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
+            <a href="/turnkey" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
               Anahtar Teslim
+            </a>
+            <a href="/support" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
+              Destek
             </a>
           </nav>
 
