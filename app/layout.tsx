@@ -31,12 +31,27 @@ export default function RootLayout({
                   typeof args[0] === 'string' &&
                   (args[0].includes('Extra attributes from the server') ||
                    args[0].includes('__gchrome_uniqueid') ||
-                   args[0].includes('Hydration'))
+                   args[0].includes('Hydration') ||
+                   args[0].includes('Failed to fetch'))
                 ) {
                   return;
                 }
                 originalError.apply(console, args);
               };
+
+              // Handle HMR fetch errors gracefully
+              if (typeof window !== 'undefined' && window.fetch) {
+                const originalFetch = window.fetch;
+                window.fetch = function(...args) {
+                  return originalFetch.apply(this, args).catch(error => {
+                    if (error.message.includes('HMR') || error.message.includes('webpack')) {
+                      console.warn('HMR fetch failed, ignoring:', error.message);
+                      return Promise.resolve(new Response('{}', {status: 200}));
+                    }
+                    throw error;
+                  });
+                };
+              }
             `}
           </Script>
         )}
