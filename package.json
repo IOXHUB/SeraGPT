@@ -13,7 +13,7 @@
     "export": "next build && next export",
     "lint": "next lint",
     "type-check": "tsc --noEmit",
-    "build:netlify": "next build",
+    "build:netlify": "next build && cp -r .next/standalone/. .next/ && cp -r .next/static .next/standalone/.next/",
     "postinstall": "npm run type-check"
   },
   "dependencies": {
