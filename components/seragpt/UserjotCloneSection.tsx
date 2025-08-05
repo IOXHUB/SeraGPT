@@ -80,8 +80,8 @@ export default function UserjotCloneSection() {
 
           {/* Center navigation - 3 links */}
           <nav className="hidden md:flex items-center space-x-8">
-            <a href="/how-it-works" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
-              Nasıl Çalışır
+            <a href="/support" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
+              Destek
             </a>
             <a href="#" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
               Danışmanlık
@@ -347,7 +347,7 @@ export default function UserjotCloneSection() {
               >
                 <div className="absolute top-6 left-6 text-6xl font-bold text-gray-100">01</div>
                 <div className="mt-16">
-                  <h3 className="text-xl font-bold text-gray-900 mb-4">Yatırım Geri Dönüş (ROI) Simülasyonu</h3>
+                  <h3 className="text-xl font-bold text-gray-900 mb-4">Yatırım Geri D��nüş (ROI) Simülasyonu</h3>
 
                   <div className="space-y-3 mb-4">
                     <div>
