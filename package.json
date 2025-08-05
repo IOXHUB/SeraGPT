@@ -13,7 +13,7 @@
     "export": "next build && next export",
     "lint": "next lint",
     "type-check": "tsc --noEmit",
-    "build:netlify": "next build",
+    "build:vercel": "next build",
     "postinstall": "npm run type-check"
   },
   "dependencies": {
