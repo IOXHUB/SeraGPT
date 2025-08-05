@@ -136,7 +136,7 @@ export default function SupportPage() {
             <li>• "ROI'mi nasıl daha da artırabilirim?"</li>
             <li>• "Bu iklim koşullarında hangi alternatif bitkiler yetiştirebilirim?"</li>
             <li>• "Ekipman maliyetlerimi nasıl düşürebilirim?"</li>
-            <li>• "Pazarda hangi dönemlerde daha çok kar edebilirim?"</li>
+            <li>• "Pazarda hangi d��nemlerde daha çok kar edebilirim?"</li>
           </ul>
 
           <h3>AI Sohbet Avantajları</h3>
@@ -267,7 +267,7 @@ export default function SupportPage() {
             <a href="/how-it-works" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
               Nasıl Çalışır
             </a>
-            <a href="#" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
+            <a href="/consulting" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
               Danışmanlık
             </a>
             <a href="/support" className="text-green-600 hover:text-green-700 font-medium transition-colors border-b-2 border-green-500 pb-1">
