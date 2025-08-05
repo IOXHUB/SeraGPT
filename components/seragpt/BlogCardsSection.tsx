@@ -1,27 +1,8 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { useEffect, useState } from 'react';
-import { BlogService, BlogPost } from '@/lib/blog';
 
 export default function BlogCardsSection() {
-  const [posts, setPosts] = useState<BlogPost[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchPosts = async () => {
-      try {
-        const latestPosts = await BlogService.getLatestPosts(5);
-        setPosts(latestPosts);
-      } catch (error) {
-        console.error('Blog yazıları yüklenirken hata:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchPosts();
-  }, []);
 
   if (loading) {
     return (
