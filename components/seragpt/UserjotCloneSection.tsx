@@ -197,16 +197,13 @@ export default function UserjotCloneSection() {
             className="text-center mb-16"
           >
             <p className="text-gray-500 text-sm font-medium uppercase tracking-wider mb-4">
-              HER ANALİZ İÇİN DETAYLı ÇÖZÜM
+              KURUMSAL RAPORLAMA SİSTEMİ
             </p>
             <h2 className="text-xl font-bold text-gray-900 mb-6">
-              5 Adımda Sera Yatırım<br />
-              Analizi Tamamla
+              Tarımsal Zeka İle Detaylı ve Kurumsal Raporlar
             </h2>
             <p className="text-sm text-gray-600 text-section-container leading-relaxed">
-              20 yıllık mühendislik deneyimi ve 110+ veri setiyle<br />
-              desteklenen <strong>yapay zeka analizleri</strong> ile yatırım kararlarınızı<br />
-              <strong>bilimsel verilerle destekleyin</strong>.
+              Yatırım kararlarınızı bilimsel verilerle destekleyin.
             </p>
           </motion.div>
 
@@ -860,7 +857,7 @@ export default function UserjotCloneSection() {
               },
               {
 
-                question: "Mühendis desteği sunuyor musunuz?",
+                question: "M��hendis desteği sunuyor musunuz?",
                 answer: "Evet. Profesyonel kullanıcılar için mühendis danışmanlık hizmeti sağlıyoruz. Size en yakın uzmanla eşleştirilerek birebir destek sunulur.",
 
               },
