@@ -160,11 +160,11 @@ export default function UserjotCloneSection() {
                   Destek
                 </a>
                 <a
-                  href="#"
+                  href="/consulting"
                   className="block text-gray-700 hover:text-gray-900 font-medium transition-colors py-2"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
-                  Dan��şmanlık
+                  Danışmanlık
                 </a>
                 <a
                   href="#"
