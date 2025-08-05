@@ -51,7 +51,7 @@ export default function UserjotCloneSection() {
             </a>
 
             {/* CTA Button for new users */}
-            <a href="/dashboard" className="bg-black text-white px-6 py-2 rounded-xl font-semibold hover:bg-gray-800 transition-colors">
+            <a href="/dashboard" className="bg-gray-600 text-white px-6 py-2 rounded-xl font-semibold hover:bg-gray-800 transition-colors">
               Ücretsiz Başla
             </a>
           </div>
@@ -172,7 +172,7 @@ export default function UserjotCloneSection() {
                 href="https://17ddca60910e4daea7522c0f6038c4a4-dd51946acbf540e29f8c9d1d0.fly.dev/dashboard"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="bg-black hover:bg-gray-800 text-white px-8 py-4 rounded-xl text-lg font-semibold transition-colors inline-flex items-center space-x-3"
+                className="bg-gray-600 hover:bg-gray-800 text-white px-8 py-4 rounded-xl text-lg font-semibold transition-colors inline-flex items-center space-x-3"
               >
                 <span className="text-center">Şimdi Oluştur – İlk 5 Rapor Ücretsiz</span>
               </motion.a>
@@ -206,7 +206,7 @@ export default function UserjotCloneSection() {
                         <div className="w-8 h-8 bg-black rounded-lg flex items-center justify-center">
                           <span className="text-white text-sm font-bold">S</span>
                         </div>
-                        <span className="text-lg font-semibold text-gray-900">SeraGPT Dashboard</span>
+                        <span className="text-lg font-semibold text-gray-900"><p>SeraGPT </p></span>
                       </div>
 
                       <nav className="flex space-x-6">
@@ -217,7 +217,7 @@ export default function UserjotCloneSection() {
                     </div>
 
                     <div className="flex items-center space-x-3">
-                      <div className="w-8 h-8 bg-gray-800 rounded-full"></div>
+                      <div className="w-8 h-8 bg-gray-800 rounded-full" style={{color: 'rgba(75, 85, 99, 1)'}}></div>
                     </div>
                   </div>
                 </div>
