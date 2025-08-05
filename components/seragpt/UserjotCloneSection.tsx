@@ -464,7 +464,7 @@ export default function UserjotCloneSection() {
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
               Size Özel Kontrol Paneli
             </h2>
-            <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+            <p className="text-xl text-gray-600 max-w-[576px] mx-auto leading-relaxed">
               Panelinizden tüm raporlarınıza, danışmanlık taleplerinize ve teknik teklif süreçlerinize anlık erişim sağlayın.
               <span className="font-semibold text-gray-900"> Yapay zekâ analizleri, mühendislik değerlendirmeleri ve saha hizmetleri</span>
               artık tek bir merkezden yönetilebilir.
