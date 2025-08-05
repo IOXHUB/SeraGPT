@@ -735,7 +735,7 @@ export default function UserjotCloneSection() {
               whileTap={{ scale: 0.95 }}
               className="bg-gray-600 hover:bg-gray-700 text-white px-10 py-4 rounded-xl text-xl font-bold transition-colors shadow-lg hover:shadow-xl"
             >
-              Kullanıcı Paneline Giriş Yapın
+              AI Sohbet Özelliğini Deneyin
             </motion.button>
             <p className="text-gray-500 text-sm mt-4">
               Tüm sera projelerinizi tek platformdan yönetin
@@ -989,7 +989,7 @@ export default function UserjotCloneSection() {
               },
               {
                 question: "Bilgilerim güvende mi?",
-                answer: "Kesinlikle. Tüm bilgileriniz Supabase veritabanında şifreli olarak saklanır. Raporlar yalnızca size özeldir, üçüncü taraflarla paylaşılmaz.",
+                answer: "Kesinlikle. Tüm bilgileriniz Supabase veritabanında ��ifreli olarak saklanır. Raporlar yalnızca size özeldir, üçüncü taraflarla paylaşılmaz.",
 
               },
               {
