@@ -381,7 +381,7 @@ export default function UserjotCloneSection() {
 
                     <div>
                       <p className="text-gray-800 text-xs font-semibold mb-1">🔗 Veri Kaynakları:</p>
-                      <p className="text-gray-600 text-xs">�� Internal equipment DB</p>
+                      <p className="text-gray-600 text-xs">• Internal equipment DB</p>
                       <p className="text-gray-600 text-xs">• Mühendis doğrulama kütüphanesi</p>
                     </div>
 
@@ -391,7 +391,7 @@ export default function UserjotCloneSection() {
                     </div>
 
                     <div>
-                      <p className="text-gray-800 text-xs font-semibold mb-1">���� PDF İçeriği:</p>
+                      <p className="text-gray-800 text-xs font-semibold mb-1">📄 PDF İçeriği:</p>
                       <p className="text-gray-600 text-xs">• Modüler ekipman ve maliyet listesi</p>
                     </div>
                   </div>
@@ -418,7 +418,7 @@ export default function UserjotCloneSection() {
                   <div className="space-y-3 mb-4">
                     <div>
                       <p className="text-gray-800 text-xs font-semibold mb-1">🎯 3 Önemli Fayda:</p>
-                      <p className="text-gray-600 text-xs">�� Bitki türüne göre pazar fiyat analizi</p>
+                      <p className="text-gray-600 text-xs">• Bitki türüne göre pazar fiyat analizi</p>
                       <p className="text-gray-600 text-xs">• Bölgeye göre verim ortalamaları</p>
                       <p className="text-gray-600 text-xs">• Hasat-zamanlama optimizasyonu</p>
                     </div>
@@ -431,7 +431,7 @@ export default function UserjotCloneSection() {
 
                     <div>
                       <p className="text-gray-800 text-xs font-semibold mb-1">👤 Kullanıcı Girdisi:</p>
-                      <p className="text-gray-600 text-xs">�� Bitki türü, sezon, pazarlama hedefi</p>
+                      <p className="text-gray-600 text-xs">• Bitki türü, sezon, pazarlama hedefi</p>
                     </div>
 
                     <div>
@@ -463,7 +463,7 @@ export default function UserjotCloneSection() {
                     <div>
                       <p className="text-gray-800 text-xs font-semibold mb-1">🎯 3 Önemli Fayda:</p>
                       <p className="text-gray-600 text-xs">• Sera yerleşim planı (2D çizim)</p>
-                      <p className="text-gray-600 text-xs">• Elektrik ve sulama hat plan��</p>
+                      <p className="text-gray-600 text-xs">• Elektrik ve sulama hat planı</p>
                       <p className="text-gray-600 text-xs">• Teknik kabin, depo gösterimi</p>
                     </div>
 
@@ -474,7 +474,7 @@ export default function UserjotCloneSection() {
                     </div>
 
                     <div>
-                      <p className="text-gray-800 text-xs font-semibold mb-1">���� Kullanıcı Girdisi:</p>
+                      <p className="text-gray-800 text-xs font-semibold mb-1">👤 Kullanıcı Girdisi:</p>
                       <p className="text-gray-600 text-xs">• Parsel ölçüleri, teknik bölmeler</p>
                     </div>
 
@@ -671,7 +671,7 @@ export default function UserjotCloneSection() {
               >
                 <div className="w-full h-full bg-gradient-to-br from-blue-100 to-indigo-100 flex items-center justify-center">
                   <div className="text-center">
-                    <div className="text-4xl mb-3">���️</div>
+                    <div className="text-4xl mb-3">�����️</div>
                     <p className="text-gray-700 font-medium">İklim Kontrollü Sera</p>
                     <p className="text-gray-500 text-sm">Konya, 6.000 m²</p>
                   </div>
