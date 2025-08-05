@@ -623,7 +623,7 @@ export default function UserjotCloneSection() {
 
       {/* Visual Gallery Section */}
       <div className="py-20 bg-gray-50 text-gray-600">
-        <div className="max-w-[1700px] mx-auto px-6 bg-gray-50">
+        <div className="page-section-container bg-gray-50">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
