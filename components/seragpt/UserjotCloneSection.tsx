@@ -429,7 +429,7 @@ export default function UserjotCloneSection() {
 
                   {/* User Message 3 */}
                   <div className="flex justify-end">
-                    <div className="bg-blue-600 text-white px-4 py-2 rounded-lg max-w-sm">
+                    <div className="bg-gray-600 text-white px-4 py-2 rounded-lg max-w-sm">
                       <p className="text-sm">İklim riskleri bu hesaplamalara nasıl yansıyor?</p>
                     </div>
                   </div>
@@ -1208,7 +1208,7 @@ export default function UserjotCloneSection() {
               },
               {
                 question: "Devlet teşviklerine uygun mu?",
-                answer: "Evet. Raporlar TKDK, IPARD ve Ziraat Bankası destek başvurular��nda ön fizibilite dosyası olarak kullanılabilir. Talep halinde ek mühendis onayı alınabilir."
+                answer: "Evet. Raporlar TKDK, IPARD ve Ziraat Bankası destek başvurular��nda ön fizibilite dosyası olarak kullanılabilir. Talep halinde ek mühendis onayı al��nabilir."
               },
               {
 
