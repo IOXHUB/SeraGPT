@@ -231,8 +231,8 @@ export default function UserjotCloneSection() {
         )}
       </header>
 
-      {/* Main content - Full viewport hero */}
-      <main className="min-h-screen flex items-center justify-center px-4 sm:px-6">
+      {/* Hero section - Reduced height */}
+      <main className="pt-20 pb-16 px-4 sm:px-6">
         <div className="max-w-[600px] mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -278,6 +278,146 @@ export default function UserjotCloneSection() {
           </motion.div>
         </div>
       </main>
+
+      {/* Dashboard Preview Section */}
+      <section className="relative py-16 bg-gray-50">
+        <div className="max-w-6xl mx-auto px-6">
+          {/* Small preview on initial load */}
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <p className="text-gray-500 text-sm font-medium uppercase tracking-wider mb-4">
+              KULLANICILARIN GÖRDÜKLERİ
+            </p>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              Platform İçinden Görünüm
+            </h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              Kullanıcıların gerçekte hangi ekranları gördüğünü ve nasıl raporlar aldığını inceleyin
+            </p>
+          </motion.div>
+
+          {/* Dashboard Image with colored border */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="relative"
+          >
+            {/* Gradient border frame */}
+            <div className="p-4 bg-gradient-to-br from-blue-500 via-purple-500 to-blue-600 rounded-3xl shadow-2xl">
+              <div className="bg-white rounded-2xl overflow-hidden">
+                <img
+                  src="https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2Fe751727c240e46aea32c2b8b628c9767?format=webp&width=800"
+                  alt="Dashboard Preview"
+                  className="w-full h-auto"
+                />
+              </div>
+            </div>
+
+            {/* Floating elements for visual enhancement */}
+            <div className="absolute -top-6 -left-6 w-12 h-12 bg-green-500 rounded-full opacity-20 animate-pulse"></div>
+            <div className="absolute -bottom-4 -right-4 w-8 h-8 bg-blue-500 rounded-full opacity-30 animate-pulse" style={{ animationDelay: '1s' }}></div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Full Dashboard Section - Visible on scroll */}
+      <section className="relative py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+              Detaylı Dashboard Görünümü
+            </h2>
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+              Kullanıcı dostu arayüzle tüm raporlarınızı kolayca yönetin, takip edin ve analiz edin
+            </p>
+          </motion.div>
+
+          {/* Full dashboard image */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="relative"
+          >
+            {/* Enhanced gradient border */}
+            <div className="p-6 bg-gradient-to-br from-indigo-500 via-purple-600 to-pink-500 rounded-3xl shadow-2xl">
+              <div className="bg-white rounded-2xl overflow-hidden shadow-inner">
+                <img
+                  src="https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2Fc3ee1c110c5445729dabbdfc4caec470?format=webp&width=800"
+                  alt="Full Dashboard View"
+                  className="w-full h-auto"
+                />
+              </div>
+            </div>
+
+            {/* Interactive floating badges */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5, delay: 0.5 }}
+              viewport={{ once: true }}
+              className="absolute top-8 right-8 bg-green-500 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg"
+            >
+              ✓ Aktif
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, scale: 0 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5, delay: 0.7 }}
+              viewport={{ once: true }}
+              className="absolute bottom-8 left-8 bg-blue-500 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg"
+            >
+              📊 Real-time Data
+            </motion.div>
+          </motion.div>
+
+          {/* Feature highlights */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            viewport={{ once: true }}
+            className="grid md:grid-cols-3 gap-8 mt-16"
+          >
+            <div className="text-center">
+              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-2xl">📋</span>
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Proje Yönetimi</h3>
+              <p className="text-gray-600 text-sm">Tüm projelerinizi tek ekrandan takip edin</p>
+            </div>
+            <div className="text-center">
+              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-2xl">⚡</span>
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Hızlı Analiz</h3>
+              <p className="text-gray-600 text-sm">60 saniyede detaylı rapor hazır</p>
+            </div>
+            <div className="text-center">
+              <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-2xl">📈</span>
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Gerçek Zamanlı</h3>
+              <p className="text-gray-600 text-sm">Anlık veri güncellemeleri</p>
+            </div>
+          </motion.div>
+        </div>
+      </section>
 
       {/* How It Works Section - Horizontal Scrolling */}
       <div className="py-20 bg-gray-50 text-gray-600">
