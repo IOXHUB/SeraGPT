@@ -408,9 +408,9 @@ h3 {
   margin-bottom: 1rem;
 }
 
-/* Optimal reading width - 576px for text content */
+/* Optimal reading width - 896px for text content as per screenshot */
 p, .text-content {
-  max-width: 576px;
+  max-width: 896px;
   margin-left: auto;
   margin-right: auto;
 }
