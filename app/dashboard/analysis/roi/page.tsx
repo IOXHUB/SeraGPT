@@ -88,7 +88,14 @@ export default function ROIAnalysisPage() {
       title: 'ROI Analiz Raporu',
       generatedAt: new Date().toISOString(),
       projectName: `${cropSpecs.type} Sera Projesi`,
-      location: greenhouseSpecs.location,
+      location: {
+        city: greenhouseSpecs.location.city,
+        region: greenhouseSpecs.location.region,
+        coordinates: {
+          lat: greenhouseSpecs.location.lat,
+          lon: greenhouseSpecs.location.lon
+        }
+      },
       user: {
         name: 'Kullanıcı',
         email: 'user@example.com'
