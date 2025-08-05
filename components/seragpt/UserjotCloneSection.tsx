@@ -218,8 +218,8 @@ export default function UserjotCloneSection() {
                   </div>
                 </div>
 
-                {/* Content */}
-                <div className="p-6">
+                {/* Chat Messages - Single View */}
+                <div className="space-y-4">
                   <div className="flex items-center justify-between mb-6">
                     <h1 className="text-2xl font-bold text-gray-900">Sera Yatırım Analiz Merkezi</h1>
                     <div className="flex items-center space-x-2">
@@ -994,7 +994,7 @@ export default function UserjotCloneSection() {
               },
               {
                 question: "Bilgilerim güvende mi?",
-                answer: "Kesinlikle. Tüm bilgileriniz Supabase veritabanında şifreli olarak saklanır. Raporlar yalnızca size özeldir, üçüncü taraflarla paylaşılmaz.",
+                answer: "Kesinlikle. Tüm bilgileriniz Supabase veritabanında şifreli olarak saklanır. Raporlar yaln��zca size özeldir, üçüncü taraflarla paylaşılmaz.",
 
               },
               {
