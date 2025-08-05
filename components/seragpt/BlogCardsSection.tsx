@@ -70,10 +70,12 @@ export default function BlogCardsSection() {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <p className="text-sm text-gray-500 mb-2 font-medium">Tarım & Teknoloji</p>
-            <h2 className="text-2xl font-normal text-gray-900 mb-6">
-              Sera teknolojileri, tarım analizi ve yatırım stratejileri üzerine düşünceler.
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">
+              Sera Teknolojilerinde İnovasyon ve Geleceğin Tarımı
             </h2>
+            <p className="text-lg text-gray-600 mb-6">
+              Modern tarım teknolojileri, sürdürülebilir sera çözümleri ve akıllı yatırım stratejileri ile tarımsal dönüşümün merkezindeyiz.
+            </p>
           </motion.div>
         </div>
 
@@ -90,7 +92,7 @@ export default function BlogCardsSection() {
               {/* Image */}
               <div className="relative overflow-hidden rounded-lg md:w-80 flex-shrink-0">
                 <img
-                  src="https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2Fdcdb2909e4ef4487898c31667192e2c6?format=webp&width=800"
+                  src="https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2F96da5382e9584c3fb2d32eca60944359?format=webp&width=800"
                   alt="Sera Teknolojilerinde Yenilikler"
                   className="w-full h-48 md:h-full object-cover transition-transform duration-300 group-hover:scale-105"
                 />
