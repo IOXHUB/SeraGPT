@@ -223,7 +223,7 @@ export default function UserjotCloneSection() {
               >
                 <div className="absolute top-6 left-6 text-6xl font-bold text-gray-100">01</div>
                 <div className="mt-16">
-                  <h3 className="text-xl font-bold text-gray-900 mb-4 mobile-card-heading">Yatırım Geri Dönüş (ROI) Simülasyonu</h3>
+                  <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-4">Yatırım Geri Dönüş (ROI) Simülasyonu</h3>
 
                   <div className="space-y-3 mb-4">
                     <div>
