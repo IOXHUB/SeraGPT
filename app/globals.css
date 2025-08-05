@@ -423,9 +423,9 @@ p {
   color: #4B5563;
 }
 
-/* Optimal reading width - 896px for text content as per screenshot */
+/* Optimal reading width - 576px for text content */
 p, .text-content {
-  max-width: 896px;
+  max-width: 576px;
   margin-left: auto;
   margin-right: auto;
 }
