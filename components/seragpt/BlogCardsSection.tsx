@@ -61,33 +61,19 @@ export default function BlogCardsSection() {
   }
 
   return (
-    <div className="py-20 bg-gray-50 text-gray-600">
+    <div className="py-20 bg-white text-gray-600">
       <div className="max-w-[960px] mx-auto px-6">
-        <div className="text-center mb-12">
+        <div className="text-left mb-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Son Blog Yazıları
+            <p className="text-sm text-gray-500 mb-2 font-medium">Tarım & Teknoloji</p>
+            <h2 className="text-2xl font-normal text-gray-900 mb-6">
+              Sera teknolojileri, tarım analizi ve yatırım stratejileri üzerine düşünceler.
             </h2>
-            <p className="text-lg text-gray-600 mb-6">
-              Sera teknolojileri ve yatırım analizi üzerine en güncel içerikler
-            </p>
-            
-            <div className="flex justify-center">
-              <a 
-                href="/blog"
-                className="inline-flex items-center space-x-2 text-gray-900 font-medium hover:underline transition-colors"
-              >
-                <span>Tüm yazıları görüntüle</span>
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </a>
-            </div>
           </motion.div>
         </div>
 
