@@ -53,7 +53,7 @@ export default function BlogPage() {
       slug: "roi-maliyet-analizi",
       title: "ROI & Maliyet Analizi: Sera Yatırımının Geri Dönüşü",
       excerpt: "Sera yatırımının karlılık analizi ve geri dönüş süresi hesaplamaları.",
-      image: "https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2F8d7e72b1c294492c836f9b95c0d5196d?format=webp&width=800",
+      image: "https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2Fd1956ad26a134fa1b292da0acfb10217",
       date: "10 Ocak 2025"
     },
     {
