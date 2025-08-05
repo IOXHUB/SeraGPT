@@ -136,7 +136,7 @@ export default function SupportPage() {
             <li>• "ROI'mi nasıl daha da artırabilirim?"</li>
             <li>• "Bu iklim koşullarında hangi alternatif bitkiler yetiştirebilirim?"</li>
             <li>• "Ekipman maliyetlerimi nasıl düşürebilirim?"</li>
-            <li>• "Pazarda hangi d��nemlerde daha çok kar edebilirim?"</li>
+            <li>• "Pazarda hangi dönemlerde daha çok kar edebilirim?"</li>
           </ul>
 
           <h3>AI Sohbet Avantajları</h3>
@@ -344,7 +344,7 @@ export default function SupportPage() {
                   Nasıl Çalışır
                 </a>
                 <a
-                  href="#"
+                  href="/consulting"
                   className="block text-gray-700 hover:text-gray-900 font-medium transition-colors py-2"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
