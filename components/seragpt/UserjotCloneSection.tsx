@@ -349,7 +349,7 @@ export default function UserjotCloneSection() {
                     </div>
                   </div>
 
-                  {/* Recent Activity */}
+                  {/* Chat Input */}
                   <div className="border-t border-gray-200 pt-4">
                     <h3 className="font-semibold text-gray-900 mb-3">Son Aktiviteler</h3>
                     <div className="space-y-2">
@@ -1062,7 +1062,7 @@ export default function UserjotCloneSection() {
               },
               {
                 question: "Devlet teşviklerine uygun mu?",
-                answer: "Evet. Raporlar TKDK, IPARD ve Ziraat Bankası destek başvurularında ön fizibilite dosyası olarak kullanılabilir. Talep halinde ek mühendis onayı alınabilir."
+                answer: "Evet. Raporlar TKDK, IPARD ve Ziraat Bankası destek başvurular��nda ön fizibilite dosyası olarak kullanılabilir. Talep halinde ek mühendis onayı alınabilir."
               },
               {
 
