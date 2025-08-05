@@ -153,7 +153,7 @@ export default function UserjotCloneSection() {
               {/* Center navigation links */}
               <div className="space-y-3">
                 <a
-                  href="#"
+                  href="/how-it-works"
                   className="block text-gray-700 hover:text-gray-900 font-medium transition-colors py-2"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
