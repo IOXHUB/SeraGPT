@@ -1079,7 +1079,7 @@ export default function UserjotCloneSection() {
               },
               {
                 question: "Jetonların zaman aşımı var mı?",
-                answer: "Hayır. Satın aldığın��z jetonlar hesabınızda süresiz olarak kalır. Dilediğiniz zaman kullanabilirsiniz.",
+                answer: "Hayır. Satın aldığınız jetonlar hesabınızda süresiz olarak kalır. Dilediğiniz zaman kullanabilirsiniz.",
 
               },
               {
