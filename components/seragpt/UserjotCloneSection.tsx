@@ -196,7 +196,7 @@ export default function UserjotCloneSection() {
             viewport={{ once: true }}
             className="relative"
           >
-            <div className="bg-gradient-to-br from-blue-50 to-indigo-100 rounded-2xl p-8" style={{boxShadow: '0 25px 50px -12px rgba(59, 130, 246, 0.25), 0 0 0 1px rgba(59, 130, 246, 0.05)'}}>
+            <div className="bg-gradient-to-br from-blue-50 to-indigo-100 rounded-2xl p-8 shadow-2xl shadow-blue-500/25 border border-blue-100">
               <div className="bg-white rounded-xl shadow-lg overflow-hidden">
                 {/* Header */}
                 <div className="bg-white border-b border-gray-200 px-6 py-4">
@@ -217,7 +217,7 @@ export default function UserjotCloneSection() {
                     </div>
 
                     <div className="flex items-center space-x-3">
-                      <div className="w-8 h-8 bg-gray-800 rounded-full" style={{color: 'rgba(75, 85, 99, 1)'}}></div>
+                      <div className="w-8 h-8 bg-gray-800 rounded-full text-gray-600"></div>
                     </div>
                   </div>
                 </div>
@@ -770,7 +770,7 @@ export default function UserjotCloneSection() {
               <br />
             </h2>
             <p className="text-sm text-gray-900 max-w-[576px] mx-auto leading-relaxed">
-              <p>Son Eklenen Referanslarımız</p>
+              <p>Son Eklenen Referanslar��mız</p>
             </p>
           </motion.div>
 
