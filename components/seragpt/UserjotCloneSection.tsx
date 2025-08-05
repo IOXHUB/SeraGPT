@@ -139,7 +139,7 @@ export default function UserjotCloneSection() {
       </header>
 
       {/* Main content - Full viewport hero */}
-      <main className="min-h-screen flex items-center justify-center px-4 sm:px-6" style={{marginTop: '-50px'}}>
+      <main className="min-h-screen flex items-center justify-center px-4 sm:px-6 -mt-12">
         <div className="max-w-[576px] mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -206,7 +206,7 @@ export default function UserjotCloneSection() {
                         <div className="w-8 h-8 bg-black rounded-lg flex items-center justify-center">
                           <span className="text-white text-sm font-bold">S</span>
                         </div>
-                        <span className="text-lg font-semibold text-gray-900"><p>SeraGPT </p></span>
+                        <span className="text-lg font-semibold text-gray-900">SeraGPT</span>
                       </div>
 
                       <nav className="flex space-x-6">
@@ -598,7 +598,7 @@ export default function UserjotCloneSection() {
             viewport={{ once: true }}
             className="relative max-w-[900px] mx-auto"
           >
-            <div className="bg-gradient-to-br from-blue-50 to-indigo-100 rounded-2xl p-8" style={{boxShadow: '0 25px 50px -12px rgba(59, 130, 246, 0.25), 0 0 0 1px rgba(59, 130, 246, 0.05)'}}>
+            <div className="bg-gradient-to-br from-blue-50 to-indigo-100 rounded-2xl p-8 shadow-2xl shadow-blue-500/25 border border-blue-100">
               <div className="bg-gray-50 rounded-xl p-6 space-y-6">
                 {/* Header */}
                 <div className="bg-white border-b border-gray-200 px-6 py-4">
@@ -744,10 +744,10 @@ export default function UserjotCloneSection() {
               whileTap={{ scale: 0.95 }}
               className="bg-gray-600 hover:bg-gray-800 text-white px-10 py-4 rounded-xl text-xl font-bold transition-colors shadow-lg hover:shadow-xl"
             >
-              <p>AI Asistanınızı Test Edin</p>
+              AI Asistanınızı Test Edin
             </motion.button>
             <p className="text-gray-500 text-sm mt-4">
-              <p>Adil Kullanım Kotası İle Birlikte Ücretsizdir</p>
+              Adil Kullanım Kotası İle Birlikte Ücretsizdir
             </p>
           </motion.div>
         </div>
@@ -934,14 +934,14 @@ export default function UserjotCloneSection() {
                 whileTap={{ scale: 0.95 }}
                 className="bg-gray-600 hover:bg-gray-700 text-white px-10 py-4 rounded-xl text-xl font-bold transition-colors shadow-lg hover:shadow-xl mt-12"
               >
-                <p>Anahtar Teslim Fiyat Alın</p>
+                Anahtar Teslim Fiyat Alın
               </motion.button>
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="bg-gray-600 hover:bg-gray-700 text-white px-10 py-4 rounded-xl text-xl font-bold transition-colors shadow-lg hover:shadow-xl mt-12"
               >
-                <p>Kurumsal Danışmanlık Hizmeti</p>
+                Kurumsal Danışmanlık Hizmeti
               </motion.button>
             </div>
             <p className="text-gray-500 text-sm mt-4">
