@@ -11,7 +11,7 @@ export default function TermsPage() {
       <Header />
 
       {/* Main Content */}
-      <main className="max-w-[960px] mx-auto px-6 py-16">
+      <main className="body-content-container py-16">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -30,7 +30,7 @@ export default function TermsPage() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="prose prose-lg max-w-none"
+          className="prose prose-lg text-section-container"
         >
           <div className="space-y-8">
             <div className="bg-blue-50 border-l-4 border-blue-500 p-6 rounded-r-lg">
@@ -60,7 +60,7 @@ export default function TermsPage() {
 
                 <div className="border-l-4 border-gray-200 pl-6">
                   <p className="text-lg leading-relaxed text-gray-700">
-                    <strong>"Hizmetler"</strong> web sitemizi, seragpt.com'u ve SeraGPT A.Ş. tarafından 
+                    <strong>"Hizmetler"</strong> web sitemizi, seragpt.com'u ve SeraGPT A.Ş. taraf��ndan 
                     oluşturulan ve sürdürülen sera analizi toplama, tartışma, oylama, yol haritası oluşturma 
                     ve değişiklik günlüğü özellikleri dahil olmak üzere herhangi bir ürünü ifade eder; 
                     ister web tarayıcısı, masaüstü uygulaması, mobil uygulama veya başka bir format 
