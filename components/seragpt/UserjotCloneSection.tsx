@@ -153,9 +153,9 @@ export default function UserjotCloneSection() {
             </p>
 
             {/* Main headline */}
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 leading-relaxed space-y-2">
-              <div className="text-gray-600 text-[40px] sm:text-[48px] md:text-[56px]">🚀 60 Saniyede</div>
-              <div className="text-gray-600 text-[40px] sm:text-[48px] md:text-[56px]">Sera Yatırım Raporun Hazır!</div>
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 leading-relaxed space-y-2 mobile-main-heading">
+              <div className="text-gray-600 text-[24px] sm:text-[48px] md:text-[56px] mobile-hero-text">🚀 60 Saniyede</div>
+              <div className="text-gray-600 text-[24px] sm:text-[48px] md:text-[56px] mobile-hero-text">Sera Yatırım Raporun Hazır!</div>
             </h1>
 
             {/* Description paragraph */}
@@ -417,7 +417,7 @@ export default function UserjotCloneSection() {
 
                     <div>
                       <p className="text-gray-800 text-xs font-semibold mb-1">👤 Kullanıcı Girdisi:</p>
-                      <p className="text-gray-600 text-xs">• Parsel ölçüleri, teknik bölmeler</p>
+                      <p className="text-gray-600 text-xs">• Parsel öl��üleri, teknik bölmeler</p>
                     </div>
 
                     <div>
@@ -861,7 +861,7 @@ export default function UserjotCloneSection() {
               {
 
                 question: "Mühendis desteği sunuyor musunuz?",
-                answer: "Evet. Profesyonel kullanıcılar için mühendis danışmanlık hizmeti sağlıyoruz. Size en yakın uzmanla eşleştirilerek birebir destek sunulur.",
+                answer: "Evet. Profesyonel kullanıcılar i��in mühendis danışmanlık hizmeti sağlıyoruz. Size en yakın uzmanla eşleştirilerek birebir destek sunulur.",
 
               },
               {
