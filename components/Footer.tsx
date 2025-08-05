@@ -9,17 +9,17 @@ export default function Footer() {
             <ul className="space-y-3">
               <li>
                 <a href="#" className="text-gray-600 hover:text-gray-900 transition-colors">
-                  Nasıl Çalışır?
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-gray-600 hover:text-gray-900 transition-colors">
                   Danışmanlık
                 </a>
               </li>
               <li>
                 <a href="#" className="text-gray-600 hover:text-gray-900 transition-colors">
                   Anahtar Teslim Proje
+                </a>
+              </li>
+              <li>
+                <a href="#" className="text-gray-600 hover:text-gray-900 transition-colors">
+                  Destek
                 </a>
               </li>
               <li>
