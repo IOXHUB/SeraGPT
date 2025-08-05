@@ -356,7 +356,7 @@ export default function UserjotCloneSection() {
 
                     <div>
                       <p className="text-gray-800 text-xs font-semibold mb-1">🔗 Veri Kaynakları:</p>
-                      <p className="text-gray-600 text-xs">• OpenWeather, FAO & TUİK</p>
+                      <p className="text-gray-600 text-xs">• OpenWeather, FAO & TU��K</p>
                       <p className="text-gray-600 text-xs">• Seraburada / e-Tarım API</p>
                     </div>
 
@@ -742,12 +742,12 @@ export default function UserjotCloneSection() {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="bg-gray-600 hover:bg-gray-700 text-white px-10 py-4 rounded-xl text-xl font-bold transition-colors shadow-lg hover:shadow-xl"
+              className="bg-black hover:bg-gray-800 text-white px-10 py-4 rounded-xl text-xl font-bold transition-colors shadow-lg hover:shadow-xl"
             >
-              Kullanıcı Paneline Giriş Yapın
+              AI Asistanla Sohbet Başlat
             </motion.button>
             <p className="text-gray-500 text-sm mt-4">
-              Tüm sera projelerinizi tek platformdan yönetin
+              Analizleriniz üzerine derinlemesine konuşun, tamamen ücretsiz
             </p>
           </motion.div>
         </div>
