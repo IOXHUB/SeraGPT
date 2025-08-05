@@ -153,13 +153,6 @@ export default function UserjotCloneSection() {
               {/* Center navigation links */}
               <div className="space-y-3">
                 <a
-                  href="/how-it-works"
-                  className="block text-gray-700 hover:text-gray-900 font-medium transition-colors py-2"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  Nasıl Çalışır
-                </a>
-                <a
                   href="/consulting"
                   className="block text-gray-700 hover:text-gray-900 font-medium transition-colors py-2"
                   onClick={() => setIsMobileMenuOpen(false)}
@@ -464,7 +457,7 @@ export default function UserjotCloneSection() {
                     </div>
 
                     <div>
-                      <p className="text-gray-800 text-xs font-semibold mb-1">📄 PDF İçeriği:</p>
+                      <p className="text-gray-800 text-xs font-semibold mb-1">�� PDF İçeriği:</p>
                       <p className="text-gray-600 text-xs">�� Modüler ekipman ve maliyet listesi</p>
                     </div>
                   </div>
