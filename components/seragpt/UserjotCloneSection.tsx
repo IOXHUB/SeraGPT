@@ -199,11 +199,11 @@ export default function UserjotCloneSection() {
             <p className="text-gray-500 text-sm font-medium uppercase tracking-wider mb-4">
               HER ANALİZ İÇİN DETAYLı ÇÖZÜM
             </p>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+            <h2 className="text-xl font-bold text-gray-900 mb-6">
               5 Adımda Sera Yatırım<br />
               Analizi Tamamla
             </h2>
-            <p className="text-lg md:text-xl text-gray-600 max-w-[576px] mx-auto leading-relaxed">
+            <p className="text-sm text-gray-600 text-section-container leading-relaxed">
               20 yıllık mühendislik deneyimi ve 110+ veri setiyle<br />
               desteklenen <strong>yapay zeka analizleri</strong> ile yatırım kararlarınızı<br />
               <strong>bilimsel verilerle destekleyin</strong>.
@@ -921,7 +921,7 @@ export default function UserjotCloneSection() {
               {
 
                 question: "İtiraz ve düzeltme süreci nasıl işler?",
-                answer: "Rapor içeriğiyle ilgili bir hata olduğunu düş��nüyorsanız, destek kaydı oluşturabilirsiniz. Mühendis ekibimiz gerekli incelemeyi yaparak düzeltme sağlar.",
+                answer: "Rapor içeri��iyle ilgili bir hata olduğunu düş��nüyorsanız, destek kaydı oluşturabilirsiniz. Mühendis ekibimiz gerekli incelemeyi yaparak düzeltme sağlar.",
 
               }
             ].map((faq, index) => (
