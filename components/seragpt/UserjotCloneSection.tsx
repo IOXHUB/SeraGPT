@@ -241,7 +241,7 @@ export default function UserjotCloneSection() {
                       <p className="text-gray-600 text-sm mb-3">
                         Yatırımın geri dönüş süresi ve kar marjı analizi
                       </p>
-                      <button className="w-full bg-black text-white py-2 rounded-lg text-sm font-medium">
+                      <button className="w-full bg-gray-600 text-white py-2 rounded-lg text-sm font-medium">
                         Analizi Başlat (1 jeton)
                       </button>
                     </div>
@@ -255,7 +255,7 @@ export default function UserjotCloneSection() {
                       <p className="text-gray-600 text-sm mb-3">
                         Don, rüzgar, nem riskleri ve uygunluk skorları
                       </p>
-                      <button className="w-full bg-black text-white py-2 rounded-lg text-sm font-medium">
+                      <button className="w-full bg-gray-600 text-white py-2 rounded-lg text-sm font-medium">
                         Analizi Başlat (1 jeton)
                       </button>
                     </div>
@@ -269,7 +269,7 @@ export default function UserjotCloneSection() {
                       <p className="text-gray-600 text-sm mb-3">
                         Bölgeye uygun yapı ve iklimlendirme ekipmanları
                       </p>
-                      <button className="w-full bg-black text-white py-2 rounded-lg text-sm font-medium">
+                      <button className="w-full bg-gray-600 text-white py-2 rounded-lg text-sm font-medium">
                         Analizi Başlat (1 jeton)
                       </button>
                     </div>
