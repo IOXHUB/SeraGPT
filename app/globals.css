@@ -605,7 +605,7 @@ p, .text-content {
 }
 
 .page-section-container {
-  max-width: 1700px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 0 24px;
 }
@@ -616,7 +616,7 @@ p, .text-content {
   gap: 48px;
   align-items: center;
   justify-content: center;
-  max-width: 1700px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 64px 24px;
 }
