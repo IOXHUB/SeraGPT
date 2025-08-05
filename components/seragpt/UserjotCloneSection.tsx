@@ -88,7 +88,7 @@ export default function UserjotCloneSection() {
                   className="block text-gray-700 hover:text-gray-900 font-medium transition-colors py-2"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
-                  Anahtar Teslim Proje
+                  Danışmanlık
                 </a>
                 <a
                   href="#"
@@ -252,7 +252,7 @@ export default function UserjotCloneSection() {
 
                   <div className="mt-4 p-3 bg-gray-50 rounded-lg">
                     <p className="text-gray-700 text-sm font-medium">"Yatırımınız size ne zaman geri döner?"</p>
-                    <button className="mt-2 text-blue-600 text-xs font-medium hover:underline">[PDF'yi Örnekle Gör]</button>
+                    <button className="mt-2 text-blue-600 text-xs font-medium hover:underline">[PDF'yi Örnekle G��r]</button>
                   </div>
                 </div>
               </motion.div>
@@ -399,7 +399,7 @@ export default function UserjotCloneSection() {
               >
                 <div className="absolute top-6 left-6 text-6xl font-bold text-gray-100">05</div>
                 <div className="mt-16">
-                  <h3 className="text-xl font-bold text-gray-900 mb-4">Yerleşim ve Teknik Plan Görselleştirmesi</h3>
+                  <h3 className="text-xl font-bold text-gray-900 mb-4">Yerle��im ve Teknik Plan Görselleştirmesi</h3>
 
                   <div className="space-y-3 mb-4">
                     <div>
@@ -876,7 +876,7 @@ export default function UserjotCloneSection() {
               },
               {
 
-                question: "Jetonlar (Token) nasıl çalış��r?",
+                question: "Jetonlar (Token) nasıl çalışır?",
                 answer: "Her analiz bir jeton harcar. 5 ücretsiz jeton ile başlayabilir, daha fazlasını paket olarak satın alabilirsiniz. Jetonlar süresiz geçerlidir.",
 
               },
