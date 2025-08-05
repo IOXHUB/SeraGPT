@@ -290,6 +290,79 @@ export default function UserjotCloneSection() {
                     </div>
                   </div>
                 </div>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* CTA Button */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            viewport={{ once: true }}
+            className="text-center mt-12"
+          >
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="bg-black hover:bg-gray-800 text-white px-10 py-4 rounded-xl text-xl font-bold transition-colors shadow-lg hover:shadow-xl"
+            >
+              Kullanıcı Paneline Giriş Yapın
+            </motion.button>
+            <p className="text-gray-500 text-sm mt-4">
+              Tüm sera projelerinizi tek platformdan yönetin
+            </p>
+          </motion.div>
+        </div>
+      </div>
+
+      {/* AI Chat Section */}
+      <div className="py-20 text-gray-600">
+        <div className="text-section-container">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-xl font-bold text-gray-900 mb-6">
+              Tarımsal Zeka Panelinizde Sizi Bekliyor!
+            </h2>
+            <p className="text-sm text-gray-600 text-section-container leading-relaxed">
+              Proje çıktılarınız üzerine sohbet edebileceğiniz, derinlemesine araştırma yapabileceğiniz özel asistanınız panelinizde sizi bekliyor, üstelik tamamen ücretsiz
+            </p>
+          </motion.div>
+
+          {/* AI Chat Flow */}
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="relative max-w-[900px] mx-auto"
+          >
+            <div className="bg-gradient-to-br from-blue-50 to-indigo-100 rounded-2xl p-8" style={{boxShadow: '0 25px 50px -12px rgba(59, 130, 246, 0.25), 0 0 0 1px rgba(59, 130, 246, 0.05)'}}>
+              <div className="bg-gray-50 rounded-xl p-6 space-y-6">
+
+                {/* ROI Analysis Display */}
+                <div className="p-4 bg-white rounded-lg border border-gray-200">
+                  <h3 className="font-semibold text-gray-900 mb-3">ROI Analiz Raporu - Antalya Sera Projesi</h3>
+                  <div className="grid grid-cols-3 gap-4 text-sm">
+                    <div className="text-center">
+                      <div className="text-2xl font-bold text-green-600">%24</div>
+                      <div className="text-gray-600">Yıllık Getiri</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-2xl font-bold text-blue-600">3.2</div>
+                      <div className="text-gray-600">Geri Dönüş (Yıl)</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-2xl font-bold text-purple-600">₺2.1M</div>
+                      <div className="text-gray-600">Toplam Yatırım</div>
+                    </div>
+                  </div>
+                </div>
 
                 {/* Chat Messages - Single View */}
                 <div className="space-y-4">
