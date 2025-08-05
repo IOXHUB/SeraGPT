@@ -77,7 +77,7 @@ export default function BlogPage() {
       slug: "tarimda-kadin-eli",
       title: "Tarımda Kadın Eli: Teknoloji ve Fırsat Eşitliği",
       excerpt: "Tarım sektöründe kadın girişimciler ve teknolojinin rolü.",
-      image: "https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2F8d7e72b1c294492c836f9b95c0d5196d?format=webp&width=800",
+      image: "https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2F405802b9b3874e1ea1f0d929fac155b6",
       date: "3 Ocak 2025"
     },
     {
