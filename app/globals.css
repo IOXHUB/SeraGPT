@@ -572,9 +572,11 @@ p, .text-content {
 }
 
 .text-section-container {
-  max-width: 576px;
+  max-width: 896px;
+  width: 896px;
   margin: 0 auto;
-  padding: 0 16px;
+  padding: 96px 0;
+  display: block;
 }
 
 .visual-section-container {
