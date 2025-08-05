@@ -443,33 +443,17 @@ p, .text-content {
     margin-bottom: 1rem;
   }
 
-  /* Mobile-specific text content containers */
+  /* Mobile containers */
   .text-section-container {
-    max-width: 100%;
-    padding: 0 16px;
-    margin: 0 auto;
+    padding: 0 20px;
   }
 
   .visual-section-container {
-    max-width: 100%;
     padding: 0 16px;
-    margin: 0 auto;
   }
 
   .navbar-footer-container {
-    max-width: 100%;
     padding: 16px 20px;
-    margin: 0 auto;
-  }
-
-  /* Mobile paragraph and text content */
-  p, .text-content {
-    max-width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-    font-size: 16px;
-    line-height: 26px;
-    padding: 0;
   }
 
   /* Mobile button adjustments */
