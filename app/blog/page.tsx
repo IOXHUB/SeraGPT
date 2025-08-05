@@ -45,7 +45,7 @@ export default function BlogPage() {
     {
       id: 3,
       slug: "roi-maliyet-analizi",
-      title: "ROI & Maliyet Analizi: Sera Yatırımının Geri Dönüşü",
+      title: "ROI & Maliyet Analizi: Sera Yatırım��nın Geri Dönüşü",
       excerpt: "Sera yatırımının karlılık analizi ve geri dönüş süresi hesaplamaları.",
       image: "https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2F8d7e72b1c294492c836f9b95c0d5196d?format=webp&width=800",
       date: "10 Ocak 2025"
@@ -98,13 +98,10 @@ export default function BlogPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="mb-12"
+            className="mb-12 flex flex-col"
           >
-            <p className="text-gray-600 text-sm mb-4">
-              Tarım & Teknoloji
-            </p>
-            <h1 className="text-4xl font-normal text-gray-900 mb-12">
-              Sera teknolojileri, tarım analizi ve yatırım stratejileri üzerine düşünceler.
+            <h1 className="text-4xl font-semibold text-gray-900 mb-12 self-center">
+              BLOG
             </h1>
           </motion.div>
 
