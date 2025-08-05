@@ -646,7 +646,8 @@ export default function UserjotCloneSection() {
                     </div>
                   </div>
 
-                  <div className="space-y-6">
+                  {/* Chat Messages */}
+                  <div className="space-y-4">
                     {/* Feature 1 */}
                     <div className="border border-gray-200 rounded-lg p-4">
                       <div className="flex items-start justify-between">
