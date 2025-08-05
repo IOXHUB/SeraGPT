@@ -323,8 +323,8 @@ export default function UserjotCloneSection() {
             <p className="text-gray-500 text-sm font-medium uppercase tracking-wider mb-4">
               HER ANALİZ İÇİN DETAYLı ÇÖZÜM
             </p>
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 flex flex-col justify-start items-center mt-0.5 mx-auto mb-6">
-              <p>Tarımsal Zeka İle</p><br />
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 flex flex-col justify-start items-center mt-0.5 mx-auto mb-6 leading-tight">
+              <p>Tarımsal Zeka İle</p>
               <p>Detaylı ve Kurumsal Raporlar</p>
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
