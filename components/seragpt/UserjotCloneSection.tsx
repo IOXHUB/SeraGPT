@@ -360,8 +360,8 @@ export default function UserjotCloneSection() {
                   <div className="space-y-3 mb-4">
                     <div>
                       <p className="text-gray-800 text-xs font-semibold mb-1">🎯 3 Önemli Fayda:</p>
-                      <p className="text-gray-600 text-xs">• Bitki türüne göre pazar fiyat analizi</p>
-                      <p className="text-gray-600 text-xs">�� Bölgeye göre verim ortalamaları</p>
+                      <p className="text-gray-600 text-xs">• Bitki tür��ne göre pazar fiyat analizi</p>
+                      <p className="text-gray-600 text-xs">• Bölgeye göre verim ortalamaları</p>
                       <p className="text-gray-600 text-xs">• Hasat-zamanlama optimizasyonu</p>
                     </div>
 
@@ -871,7 +871,7 @@ export default function UserjotCloneSection() {
               },
               {
                 question: "Ödeme nasıl yapılıyor?",
-                answer: "İlk 5 rapor ücretsizdir. Sonrasında, kredi kartı veya havale/EFT ile jeton (token) satın alabilirsiniz. Ödeme altyapıs�� %100 güvenlidir.",
+                answer: "İlk 5 rapor ücretsizdir. Sonrasında, kredi kart�� veya havale/EFT ile jeton (token) satın alabilirsiniz. Ödeme altyapıs�� %100 güvenlidir.",
 
               },
               {
@@ -898,7 +898,7 @@ export default function UserjotCloneSection() {
               },
               {
                 question: "Fatura ve iade koşulları nedir?",
-                answer: "Satın alınan jetonlar dijital hizmet kapsamına girer. Kullanılmam��ş jetonlar için 14 gün içinde iade mümkündür. Fatura otomatik olarak e-posta ile iletilir.",
+                answer: "Satın alınan jetonlar dijital hizmet kapsamına girer. Kullanılmamış jetonlar için 14 gün içinde iade mümkündür. Fatura otomatik olarak e-posta ile iletilir.",
 
               },
               {
@@ -938,7 +938,7 @@ export default function UserjotCloneSection() {
                   onClick={() => setOpenFAQ(openFAQ === index ? null : index)}
                 >
                   <div className="flex items-center justify-between">
-                    <h3 className="text-lg font-medium text-gray-900 group-hover:text-gray-700 pr-4 mobile-faq-question">
+                    <h3 className="text-base md:text-lg font-medium text-gray-900 group-hover:text-gray-700 pr-4">
                       {faq.question}
                     </h3>
                     <svg
