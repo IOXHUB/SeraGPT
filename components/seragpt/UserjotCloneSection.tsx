@@ -461,10 +461,10 @@ export default function UserjotCloneSection() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 mobile-section-heading">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
               Size Özel Kontrol Paneli
             </h2>
-            <p className="text-xl text-gray-600 max-w-[576px] mx-auto leading-relaxed mobile-section-text">
+            <p className="text-lg md:text-xl text-gray-600 max-w-[576px] mx-auto leading-relaxed">
               Panelinizden tüm raporlarınıza, danışmanlık taleplerinize ve teknik teklif süreçlerinize anlık erişim sağlayın.
               <span className="font-semibold text-gray-900"> Yapay zekâ analizleri, mühendislik değerlendirmeleri ve saha hizmetleri</span>
               artık tek bir merkezden yönetilebilir.
