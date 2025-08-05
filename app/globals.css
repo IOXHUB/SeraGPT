@@ -605,7 +605,7 @@ p, .text-content {
 }
 
 .page-section-container {
-  max-width: 1200px;
+  max-width: 1700px;
   margin: 0 auto;
   padding: 0 24px;
 }
@@ -616,9 +616,25 @@ p, .text-content {
   gap: 48px;
   align-items: center;
   justify-content: center;
-  max-width: 1200px;
+  max-width: 896px;
   margin: 0 auto;
   padding: 64px 24px;
+}
+
+/* Typography specifications */
+h1 {
+  font-size: 36px;
+  line-height: 1.2;
+}
+
+h2 {
+  font-size: 20px;
+  line-height: 1.3;
+}
+
+p {
+  font-size: 14px;
+  line-height: 1.6;
 }
 
 @media (max-width: 768px) {
