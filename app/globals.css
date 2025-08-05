@@ -23,7 +23,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 1.625;
 }
 
@@ -288,11 +288,11 @@ body {
 
 /* Professional typography */
 .heading-primary {
-  @apply text-4xl md:text-5xl font-bold text-gray-900 leading-tight;
+  @apply text-3xl md:text-4xl font-bold text-gray-900 leading-tight;
 }
 
 .heading-secondary {
-  @apply text-2xl md:text-3xl font-bold text-gray-900;
+  @apply text-xl md:text-2xl font-bold text-gray-900;
 }
 
 .text-corporate {
@@ -385,7 +385,7 @@ body {
 
 /* Typography base styles */
 h1 {
-  font-size: 36px;
+  font-size: 28px;
   line-height: 1.4;
   font-weight: 600;
   color: #111827;
@@ -393,7 +393,7 @@ h1 {
 }
 
 h2 {
-  font-size: 28px;
+  font-size: 24px;
   line-height: 1.4;
   font-weight: 500;
   color: #111827;
@@ -401,16 +401,16 @@ h2 {
 }
 
 h3 {
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   line-height: 1.4;
   font-weight: 600;
   color: #111827;
   margin-bottom: 1rem;
 }
 
-/* Optimal reading width - 60-75 characters */
+/* Optimal reading width - 50-65 characters for focused reading */
 p, .text-content {
-  max-width: 65ch;
+  max-width: 55ch;
   margin-left: auto;
   margin-right: auto;
 }
@@ -418,31 +418,31 @@ p, .text-content {
 /* Responsive design helpers */
 @media (max-width: 768px) {
   body {
-    font-size: 14px;
+    font-size: 13px;
     line-height: 1.5;
   }
 
   h1 {
-    font-size: 2rem;
+    font-size: 1.75rem;
     line-height: 1.2;
   }
 
   h2 {
-    font-size: 1.75rem;
+    font-size: 1.5rem;
     line-height: 1.3;
   }
 
   h3 {
-    font-size: 1.25rem;
+    font-size: 1.125rem;
     line-height: 1.4;
   }
 
   .heading-primary {
-    @apply text-3xl;
+    @apply text-2xl;
   }
 
   .heading-secondary {
-    @apply text-xl;
+    @apply text-lg;
   }
 
   .btn-primary,
@@ -493,7 +493,7 @@ p, .text-content {
 }
 
 .text-section-container {
-  max-width: 720px;
+  max-width: 600px;
   margin: 0 auto;
   padding: 0 16px;
 }
@@ -504,7 +504,7 @@ p, .text-content {
   gap: 48px;
   align-items: center;
   justify-content: center;
-  max-width: 1200px;
+  max-width: 600px;
   margin: 0 auto;
   padding: 64px 16px;
 }
