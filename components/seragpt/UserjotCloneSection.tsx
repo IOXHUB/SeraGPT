@@ -713,8 +713,8 @@ export default function UserjotCloneSection() {
                       </div>
                     </div>
 
-                    {/* Feature 2 - Now keeping for context */}
-                    <div className="border border-gray-200 rounded-lg p-4">
+                    {/* Chat Input Area */}
+                    <div className="mt-6 p-4 bg-gray-50 rounded-lg border-2 border-dashed border-gray-300">
                       <div className="flex items-start justify-between">
                         <div className="flex-1">
                           <h3 className="text-lg font-semibold text-gray-900 mb-2">Google Calendar ile entegrasyon.</h3>
