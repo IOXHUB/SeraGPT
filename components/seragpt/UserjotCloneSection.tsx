@@ -109,7 +109,7 @@ export default function UserjotCloneSection() {
                   onClick={handleSignOut}
                   className="text-gray-600 hover:text-gray-900 px-4 py-2 rounded-lg font-medium transition-colors border border-gray-300 hover:border-gray-400"
                 >
-                  Çıkış Yap
+                  ��ıkış Yap
                 </button>
               </>
             ) : (
@@ -809,7 +809,7 @@ export default function UserjotCloneSection() {
               whileTap={{ scale: 0.95 }}
               className="bg-gray-600 hover:bg-gray-700 text-white px-10 py-4 rounded-xl text-xl font-bold transition-colors shadow-lg hover:shadow-xl"
             >
-              Kullanıcı Paneline Giriş Yapın
+              AI Sohbet Özelliğini Deneyin
             </motion.button>
             <p className="text-gray-500 text-sm mt-4">
               Tüm sera projelerinizi tek platformdan yönetin
