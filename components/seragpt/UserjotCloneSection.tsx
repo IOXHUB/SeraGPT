@@ -153,11 +153,11 @@ export default function UserjotCloneSection() {
               {/* Center navigation links */}
               <div className="space-y-3">
                 <a
-                  href="/how-it-works"
+                  href="/support"
                   className="block text-gray-700 hover:text-gray-900 font-medium transition-colors py-2"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
-                  Nasıl Çalışır
+                  Destek
                 </a>
                 <a
                   href="#"
@@ -347,7 +347,7 @@ export default function UserjotCloneSection() {
               >
                 <div className="absolute top-6 left-6 text-6xl font-bold text-gray-100">01</div>
                 <div className="mt-16">
-                  <h3 className="text-xl font-bold text-gray-900 mb-4">Yatırım Geri D��nüş (ROI) Simülasyonu</h3>
+                  <h3 className="text-xl font-bold text-gray-900 mb-4">Yatırım Geri Dönüş (ROI) Simülasyonu</h3>
 
                   <div className="space-y-3 mb-4">
                     <div>
@@ -658,7 +658,7 @@ export default function UserjotCloneSection() {
                           <span className="font-semibold text-sm">SeraGPT AI</span>
                         </div>
                         <p className="text-sm mb-3">
-                          Analizinize göre 3 temel optimizasyon önerisi:
+                          Analizinize göre 3 temel optimizasyon ��nerisi:
                         </p>
                         <ul className="text-sm space-y-1 mb-3">
                           <li>• Enerji maliyetlerini %25 azaltın (ısı pompası)</li>
@@ -1068,7 +1068,7 @@ export default function UserjotCloneSection() {
               },
               {
                 question: "Ödeme nasıl yapılıyor?",
-                answer: "İlk 5 rapor ücretsizdir. Sonrasında, kredi kartı veya havale/EFT ile jeton (token) satın alabilirsiniz. Ödeme altyapıs�� %100 güvenlidir.",
+                answer: "İlk 5 rapor ücretsizdir. Sonrasında, kredi kartı veya havale/EFT ile jeton (token) satın alabilirsiniz. Ödeme altyapıs���� %100 güvenlidir.",
 
               },
               {
@@ -1095,7 +1095,7 @@ export default function UserjotCloneSection() {
               },
               {
                 question: "Fatura ve iade koşulları nedir?",
-                answer: "Satın alınan jetonlar dijital hizmet kapsamına girer. Kullanılmamış jetonlar için 14 gün içinde iade mümkündür. Fatura otomatik olarak e-posta ile iletilir.",
+                answer: "Satın alınan jetonlar dijital hizmet kapsam��na girer. Kullanılmamış jetonlar için 14 gün içinde iade mümkündür. Fatura otomatik olarak e-posta ile iletilir.",
 
               },
               {
