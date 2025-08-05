@@ -3,6 +3,8 @@
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import SEOHead from '@/components/SEOHead';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 import { SEOService } from '@/lib/seo';
 
 // Force dynamic rendering for blog pages
