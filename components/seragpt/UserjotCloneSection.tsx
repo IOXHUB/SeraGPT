@@ -590,16 +590,16 @@ export default function UserjotCloneSection() {
             </p>
           </motion.div>
 
-          {/* Roadmap Mockup */}
+          {/* AI Chat Flow */}
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.2 }}
             viewport={{ once: true }}
-            className="relative"
+            className="relative max-w-[900px] mx-auto"
           >
             <div className="bg-gradient-to-br from-blue-50 to-indigo-100 rounded-2xl p-8" style={{boxShadow: '0 25px 50px -12px rgba(59, 130, 246, 0.25), 0 0 0 1px rgba(59, 130, 246, 0.05)'}}>
-              <div className="bg-white rounded-xl shadow-lg overflow-hidden">
+              <div className="bg-gray-50 rounded-xl p-6 space-y-6">
                 {/* Header */}
                 <div className="bg-white border-b border-gray-200 px-6 py-4">
                   <div className="flex items-center justify-between">
