@@ -496,7 +496,7 @@ export default function UserjotCloneSection() {
                     </div>
 
                     <div>
-                      <p className="text-gray-800 text-xs font-semibold mb-1">👤 Kullanıcı Girdisi:</p>
+                      <p className="text-gray-800 text-xs font-semibold mb-1">�� Kullanıcı Girdisi:</p>
                       <p className="text-gray-600 text-xs">• Bitki türü, sezon, pazarlama hedefi</p>
                     </div>
 
@@ -738,7 +738,7 @@ export default function UserjotCloneSection() {
               AI Sohbet Özelliğini Deneyin
             </motion.button>
             <p className="text-gray-500 text-sm mt-4">
-              Tüm sera projelerinizi tek platformdan yönetin
+              Raporlarınızla yapay zeka destekli sohbet deneyimi
             </p>
           </motion.div>
         </div>
@@ -989,7 +989,7 @@ export default function UserjotCloneSection() {
               },
               {
                 question: "Bilgilerim güvende mi?",
-                answer: "Kesinlikle. Tüm bilgileriniz Supabase veritabanında ��ifreli olarak saklanır. Raporlar yalnızca size özeldir, üçüncü taraflarla paylaşılmaz.",
+                answer: "Kesinlikle. Tüm bilgileriniz Supabase veritabanında şifreli olarak saklanır. Raporlar yalnızca size özeldir, üçüncü taraflarla paylaşılmaz.",
 
               },
               {
