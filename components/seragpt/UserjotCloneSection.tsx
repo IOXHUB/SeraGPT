@@ -639,35 +639,36 @@ export default function UserjotCloneSection() {
                     </div>
                   </div>
 
-                  <div className="space-y-6">
-                    {/* Feature 1 */}
-                    <div className="border border-gray-200 rounded-lg p-4">
-                      <div className="flex items-start justify-between">
-                        <div className="flex-1">
-                          <div className="flex items-center space-x-3 mb-2">
-                            <h3 className="text-lg font-semibold text-gray-900">Mobil uygulama sık sık çöküyor.</h3>
-                            <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                            </svg>
-                          </div>
-                          <p className="text-gray-600 text-sm mb-3">
-                            Android uygulaması sera fotoğrafları yüklenmeye çalışıldığında çöküyor.
-                            Bu ASAP düzeltilmesi gerekiyor.
-                          </p>
-                          <div className="flex items-center space-x-2">
-                            <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-purple-100 text-purple-800">
-                              • Devam Ediyor
-                            </span>
-                          </div>
-                        </div>
+                  <div className="space-y-4">
+                    {/* User Message */}
+                    <div className="flex justify-end">
+                      <div className="bg-blue-500 text-white rounded-lg p-4 max-w-xs">
+                        <p className="text-sm">Bu ROI analizinde geri dönüş süresini nasıl kısaltabilirim?</p>
+                        <span className="text-xs opacity-75 mt-2 block">11:42</span>
+                      </div>
+                    </div>
 
-                        <div className="ml-4 text-right">
-                          <div className="text-sm text-gray-500 mb-1">Bir şey eksik mi?</div>
-                          <button className="bg-black text-white px-4 py-2 rounded text-sm font-medium">
-                            Gönderi Oluştur
-                          </button>
+                    {/* AI Response */}
+                    <div className="flex justify-start">
+                      <div className="bg-gray-100 text-gray-900 rounded-lg p-4 max-w-md">
+                        <div className="flex items-center space-x-2 mb-2">
+                          <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center">
+                            <span className="text-white text-xs">🤖</span>
+                          </div>
+                          <span className="font-semibold text-sm">SeraGPT AI</span>
                         </div>
+                        <p className="text-sm mb-3">
+                          Analizinize göre 3 temel optimizasyon önerisi:
+                        </p>
+                        <ul className="text-sm space-y-1 mb-3">
+                          <li>• Enerji maliyetlerini %25 azaltın (isı pompası)</li>
+                          <li>• Üretim verimliliğini %15 artırın (hidroponik)</li>
+                          <li>• Pazarlama sürecini 2 ay öne alın</li>
+                        </ul>
+                        <div className="flex items-center space-x-2">
+                          <span className="bg-green-100 text-green-800 text-xs px-2 py-1 rounded">✓ Analiz Edildi</span>
+                        </div>
+                        <span className="text-xs text-gray-500 mt-2 block">11:43</span>
                       </div>
                     </div>
 
@@ -707,7 +708,7 @@ export default function UserjotCloneSection() {
 
                     {/* Feature 3 */}
                     <div className="border border-gray-200 rounded-lg p-4">
-                      <h3 className="text-lg font-semibold text-gray-900 mb-2">'Tümünü okundu işaretle' butonu ekle.</h3>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">'Tümünü okundu i��aretle' butonu ekle.</h3>
                       <p className="text-gray-600 text-sm">
                         Bildirimler bölümüne toplu işaretleme özelliği.
                       </p>
