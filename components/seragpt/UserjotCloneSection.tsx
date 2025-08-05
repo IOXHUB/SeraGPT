@@ -159,7 +159,7 @@ export default function UserjotCloneSection() {
             </h1>
 
             {/* Description paragraph */}
-            <p className="text-[18px] sm:text-[20px] text-gray-600 leading-relaxed px-4 mt-8">
+            <p className="text-[14px] sm:text-[20px] text-gray-600 leading-relaxed px-4 mt-8 mobile-description">
               SeraGPT; 20 yılı aşkın mühendislik deneyimi, 500'den fazla
               tamamlanmış proje ve 110'dan fazla gerçek zamanlı veri
               setiyle, tarımsal yatırım kararlarınızı saniyeler içinde
@@ -417,7 +417,7 @@ export default function UserjotCloneSection() {
 
                     <div>
                       <p className="text-gray-800 text-xs font-semibold mb-1">👤 Kullanıcı Girdisi:</p>
-                      <p className="text-gray-600 text-xs">• Parsel öl��üleri, teknik bölmeler</p>
+                      <p className="text-gray-600 text-xs">• Parsel ölçüleri, teknik bölmeler</p>
                     </div>
 
                     <div>
@@ -861,7 +861,7 @@ export default function UserjotCloneSection() {
               {
 
                 question: "Mühendis desteği sunuyor musunuz?",
-                answer: "Evet. Profesyonel kullanıcılar i��in mühendis danışmanlık hizmeti sağlıyoruz. Size en yakın uzmanla eşleştirilerek birebir destek sunulur.",
+                answer: "Evet. Profesyonel kullanıcılar için mühendis danışmanlık hizmeti sağlıyoruz. Size en yakın uzmanla eşleştirilerek birebir destek sunulur.",
 
               },
               {
