@@ -447,7 +447,7 @@ export default function UserjotCloneSection() {
 
                     <div>
                       <p className="text-gray-800 text-xs font-semibold mb-1">🔗 Veri Kaynakları:</p>
-                      <p className="text-gray-600 text-xs">��� Internal equipment DB</p>
+                      <p className="text-gray-600 text-xs">• Internal equipment DB</p>
                       <p className="text-gray-600 text-xs">• Mühendis doğrulama kütüphanesi</p>
                     </div>
 
@@ -534,7 +534,7 @@ export default function UserjotCloneSection() {
                     </div>
 
                     <div>
-                      <p className="text-gray-800 text-xs font-semibold mb-1">��� Veri Kaynakları:</p>
+                      <p className="text-gray-800 text-xs font-semibold mb-1">📊 Veri Kaynakları:</p>
                       <p className="text-gray-600 text-xs">• Planner 2D, CAD AI Tools</p>
                       <p className="text-gray-600 text-xs">• HerbaTools yerleşim kütüphanesi</p>
                     </div>
