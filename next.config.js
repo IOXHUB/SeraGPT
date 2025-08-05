@@ -6,7 +6,7 @@ const nextConfig = {
     unoptimized: false
   },
 
-  // No trailing slash for standard deployment
+  // Optimized for Vercel deployment
   trailingSlash: false,
 
   // Experimental features
