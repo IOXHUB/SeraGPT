@@ -281,26 +281,7 @@ export default function UserjotCloneSection() {
 
       {/* Dashboard Preview Section */}
       <section className="relative py-16 bg-gray-50">
-        <div className="max-w-6xl mx-auto px-6">
-          {/* Small preview on initial load */}
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center mb-12"
-          >
-            <p className="text-gray-500 text-sm font-medium uppercase tracking-wider mb-4">
-              KULLANICILARIN GÖRDÜKLERİ
-            </p>
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Platform İçinden Görünüm
-            </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Kullanıcıların gerçekte hangi ekranları gördüğünü ve nasıl raporlar aldığını inceleyin
-            </p>
-          </motion.div>
-
+        <div className="max-w-5xl mx-auto px-6">
           {/* Dashboard Image with colored border */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -1085,7 +1066,7 @@ export default function UserjotCloneSection() {
               {
 
                 question: "Raporlar ne kadar doğru?",
-                answer: "SeraGPT, gerçek zamanlı iklim, tarım ve ticaret verilerini kullanır. Raporlar, uzman mühendislerin geliştirdiği algoritmalarla analiz edilir ve %90 üzeri doğruluk oranı sunar."
+                answer: "SeraGPT, gerçek zamanl�� iklim, tarım ve ticaret verilerini kullanır. Raporlar, uzman mühendislerin geliştirdiği algoritmalarla analiz edilir ve %90 üzeri doğruluk oranı sunar."
               },
               {
                 question: "Devlet teşviklerine uygun mu?",
