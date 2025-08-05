@@ -381,11 +381,8 @@ export default function ConsultingPage() {
             </a>
           </div>
 
-          {/* Center navigation - 4 links */}
+          {/* Center navigation - 3 links */}
           <nav className="hidden md:flex items-center space-x-8">
-            <a href="/how-it-works" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
-              Nasıl Çalışır
-            </a>
             <a href="/consulting" className="text-green-600 hover:text-green-700 font-medium transition-colors border-b-2 border-green-500 pb-1">
               Danışmanlık
             </a>
