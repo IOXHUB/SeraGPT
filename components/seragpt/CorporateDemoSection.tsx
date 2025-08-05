@@ -18,12 +18,12 @@ export default function CorporateDemoSection() {
             Platform Demosu
           </div>
           
-          <h2 className="text-4xl lg:text-5xl font-bold text-slate-800 mb-8 leading-tight">
+          <h2 className="text-3xl lg:text-4xl font-bold text-slate-800 mb-8 leading-tight">
             Enterprise Platform<br />
             <span className="text-purple-600">Gücünü Deneyimleyin</span>
           </h2>
-          
-          <p className="text-xl text-slate-600 max-w-4xl mx-auto leading-relaxed">
+
+          <p className="text-lg text-slate-600 max-w-3xl mx-auto leading-relaxed">
             Kurumsal standartlarda hazırlanmış sera yatırım analiz raporlarını inceleyin.<br />
             <span className="text-purple-700 font-semibold">Executive dashboard, detaylı finansal projeksiyon ve risk analizi</span>
           </p>
