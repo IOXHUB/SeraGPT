@@ -198,26 +198,22 @@ export default function UserjotCloneSection() {
           >
             <div className="bg-gradient-to-br from-blue-50 to-indigo-100 rounded-2xl p-8" style={{boxShadow: '0 25px 50px -12px rgba(59, 130, 246, 0.25), 0 0 0 1px rgba(59, 130, 246, 0.05)'}}>
               <div className="bg-gray-50 rounded-xl p-6 space-y-6">
-                {/* Header */}
-                <div className="bg-white border-b border-gray-200 px-6 py-4">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center space-x-4">
-                      <div className="flex items-center space-x-3">
-                        <div className="w-8 h-8 bg-black rounded-lg flex items-center justify-center">
-                          <span className="text-white text-sm font-bold">S</span>
-                        </div>
-                        <span className="text-lg font-semibold text-gray-900">SeraGPT Dashboard</span>
-                      </div>
 
-                      <nav className="flex space-x-6">
-                        <a href="#" className="text-gray-900 font-medium border-b-2 border-black pb-1">Analizler</a>
-                        <a href="#" className="text-gray-500 hover:text-gray-700 font-medium">Raporlar</a>
-                        <a href="#" className="text-gray-500 hover:text-gray-700 font-medium">Jetonlar</a>
-                      </nav>
+                {/* ROI Analysis Display */}
+                <div className="p-4 bg-white rounded-lg border border-gray-200 mb-6">
+                  <h3 className="font-semibold text-gray-900 mb-3">ROI Analiz Raporu - Antalya Sera Projesi</h3>
+                  <div className="grid grid-cols-3 gap-4 text-sm">
+                    <div className="text-center">
+                      <div className="text-2xl font-bold text-green-600">%24</div>
+                      <div className="text-gray-600">Yıllık Getiri</div>
                     </div>
-
-                    <div className="flex items-center space-x-3">
-                      <div className="w-8 h-8 bg-gray-800 rounded-full"></div>
+                    <div className="text-center">
+                      <div className="text-2xl font-bold text-blue-600">3.2</div>
+                      <div className="text-gray-600">Geri Dönüş (Yıl)</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-2xl font-bold text-purple-600">₺2.1M</div>
+                      <div className="text-gray-600">Toplam Yatırım</div>
                     </div>
                   </div>
                 </div>
@@ -392,7 +388,7 @@ export default function UserjotCloneSection() {
 
                   <div className="space-y-3 mb-4">
                     <div>
-                      <p className="text-gray-800 text-xs font-semibold mb-1">🎯 3 Önemli Fayda:</p>
+                      <p className="text-gray-800 text-xs font-semibold mb-1">��� 3 Önemli Fayda:</p>
                       <p className="text-gray-600 text-xs">• Seçilen ürün için uygunluk skoru</p>
                       <p className="text-gray-600 text-xs">• Don, rüzgar, nem riskleri</p>
                       <p className="text-gray-600 text-xs">• Ge��miş yıllardaki iklim olayları</p>
