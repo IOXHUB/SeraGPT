@@ -1118,7 +1118,7 @@ export default function UserjotCloneSection() {
               {
 
                 question: "İtiraz ve düzeltme süreci nasıl işler?",
-                answer: "Rapor içeriğiyle ilgili bir hata olduğunu düş��nüyorsanız, destek kaydı oluşturabilirsiniz. Mühendis ekibimiz gerekli incelemeyi yaparak düzeltme sağlar.",
+                answer: "Rapor içeriğiyle ilgili bir hata olduğunu düşünüyorsanız, destek kaydı oluşturabilirsiniz. Mühendis ekibimiz gerekli incelemeyi yaparak düzeltme sağlar.",
 
               }
             ].map((faq, index) => (
