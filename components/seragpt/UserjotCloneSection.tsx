@@ -4,10 +4,12 @@ import { motion } from 'framer-motion';
 import { useState } from 'react';
 import BlogCardsSection from './BlogCardsSection';
 import Footer from '../Footer';
+import { useAuth } from '../../lib/hooks/useAuth';
 
 export default function UserjotCloneSection() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [openFAQ, setOpenFAQ] = useState<number | null>(null); // No FAQ open by default
+  const { user, loading } = useAuth();
 
   return (
     <div className="min-h-screen bg-gray-50">
