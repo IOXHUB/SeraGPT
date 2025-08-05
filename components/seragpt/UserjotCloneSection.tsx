@@ -293,7 +293,7 @@ export default function UserjotCloneSection() {
 
                     <div>
                       <p className="text-gray-800 text-xs font-semibold mb-1">🔗 Veri Kaynakları:</p>
-                      <p className="text-gray-600 text-xs">• OpenWeather, FAO & TU��K</p>
+                      <p className="text-gray-600 text-xs">• OpenWeather, FAO & TÜİK</p>
                       <p className="text-gray-600 text-xs">• Seraburada / e-Tarım API</p>
                     </div>
 
@@ -304,7 +304,7 @@ export default function UserjotCloneSection() {
 
                     <div>
                       <p className="text-gray-800 text-xs font-semibold mb-1">📄 PDF İçeriği:</p>
-                      <p className="text-gray-600 text-xs">• ROI tablosu ve 3 yıll��k projeksiyonu</p>
+                      <p className="text-gray-600 text-xs">• ROI tablosu ve 3 yıllık projeksiyonu</p>
                     </div>
                   </div>
 
@@ -329,10 +329,10 @@ export default function UserjotCloneSection() {
 
                   <div className="space-y-3 mb-4">
                     <div>
-                      <p className="text-gray-800 text-xs font-semibold mb-1">��� 3 Önemli Fayda:</p>
+                      <p className="text-gray-800 text-xs font-semibold mb-1">🎯 3 Önemli Fayda:</p>
                       <p className="text-gray-600 text-xs">• Seçilen ürün için uygunluk skoru</p>
                       <p className="text-gray-600 text-xs">• Don, rüzgar, nem riskleri</p>
-                      <p className="text-gray-600 text-xs">• Ge��miş yıllardaki iklim olayları</p>
+                      <p className="text-gray-600 text-xs">• Geçmiş yıllardaki iklim olayları</p>
                     </div>
 
                     <div>
@@ -373,7 +373,7 @@ export default function UserjotCloneSection() {
 
                   <div className="space-y-3 mb-4">
                     <div>
-                      <p className="text-gray-800 text-xs font-semibold mb-1">����� 3 Önemli Fayda:</p>
+                      <p className="text-gray-800 text-xs font-semibold mb-1">🏗️ 3 Önemli Fayda:</p>
                       <p className="text-gray-600 text-xs">• Bölgeye uygun yapı ve iklimlendirme</p>
                       <p className="text-gray-600 text-xs">• Anahtar teslim modüler öneriler</p>
                       <p className="text-gray-600 text-xs">• Genişletilebilirlik alternatifleri</p>
@@ -474,7 +474,7 @@ export default function UserjotCloneSection() {
                     </div>
 
                     <div>
-                      <p className="text-gray-800 text-xs font-semibold mb-1">👤 Kullanıcı Girdisi:</p>
+                      <p className="text-gray-800 text-xs font-semibold mb-1">���� Kullanıcı Girdisi:</p>
                       <p className="text-gray-600 text-xs">• Parsel ölçüleri, teknik bölmeler</p>
                     </div>
 
