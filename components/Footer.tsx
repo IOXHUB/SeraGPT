@@ -126,7 +126,7 @@ export default function Footer() {
               </span>
             </div>
             <div className="text-gray-600 text-sm">
-              Hermisan & ISITMAX iş birliğiyle
+              <p>ISITMAX A.Ş.</p>
             </div>
           </div>
         </div>
