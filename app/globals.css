@@ -581,17 +581,27 @@ p, .text-content {
 }
 
 .text-section-container {
-  max-width: 896px;
-  width: 896px;
+  max-width: 576px;
   margin: 0 auto;
-  padding: 96px 0;
-  display: block;
+  padding: 0 24px;
+}
+
+.body-section-container {
+  max-width: 896px;
+  margin: 0 auto;
+  padding: 0 24px;
 }
 
 .visual-section-container {
   max-width: 896px;
   margin: 0 auto;
-  padding: 0 16px;
+  padding: 0 24px;
+}
+
+.page-section-container {
+  max-width: 1700px;
+  margin: 0 auto;
+  padding: 0 24px;
 }
 
 .hero-section-container {
@@ -602,7 +612,7 @@ p, .text-content {
   justify-content: center;
   max-width: 1700px;
   margin: 0 auto;
-  padding: 64px 16px;
+  padding: 64px 24px;
 }
 
 @media (max-width: 768px) {
