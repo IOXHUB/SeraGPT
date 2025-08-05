@@ -1,13 +1,66 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { supabase } from '@/lib/supabase';
 import BlogCardsSection from './BlogCardsSection';
 import Footer from '../Footer';
 
 export default function UserjotCloneSection() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [openFAQ, setOpenFAQ] = useState<number | null>(0); // First FAQ open by default
+  const [user, setUser] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // Check for existing session
+    const checkUser = async () => {
+      try {
+        const { data: { session } } = await supabase.auth.getSession();
+        setUser(session?.user || null);
+      } catch (error) {
+        console.error('Error checking user session:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    // Check for mock session (development)
+    const mockSession = typeof window !== 'undefined'
+      ? localStorage.getItem('mockUserSession')
+      : null;
+
+    if (mockSession) {
+      try {
+        setUser(JSON.parse(mockSession));
+        setLoading(false);
+      } catch {
+        setLoading(false);
+      }
+    } else {
+      checkUser();
+    }
+
+    // Listen for auth changes
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(
+      (event, session) => {
+        setUser(session?.user || null);
+      }
+    );
+
+    return () => subscription.unsubscribe();
+  }, []);
+
+  const handleSignOut = async () => {
+    // Clear mock session
+    if (typeof window !== 'undefined') {
+      localStorage.removeItem('mockUserSession');
+    }
+
+    // Sign out from Supabase
+    await supabase.auth.signOut();
+    setUser(null);
+  };
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -40,20 +93,36 @@ export default function UserjotCloneSection() {
 
           {/* Right menu - conditional based on user state */}
           <div className="hidden md:flex items-center space-x-4">
-            {/* For logged in users */}
-            <a href="/dashboard" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
-              Dashboard
-            </a>
-
-            {/* For logged out users */}
-            <a href="/auth/login" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
-              Giriş Yap
-            </a>
-
-            {/* For first time visitors */}
-            <a href="/dashboard" className="text-gray-600 hover:text-gray-900 px-4 py-2 rounded-lg font-medium transition-colors">
-              Ücretsiz Başla
-            </a>
+            {loading ? (
+              // Loading state
+              <div className="flex items-center space-x-4">
+                <div className="w-20 h-6 bg-gray-200 rounded animate-pulse"></div>
+                <div className="w-24 h-8 bg-gray-200 rounded animate-pulse"></div>
+              </div>
+            ) : user ? (
+              // Logged in user
+              <>
+                <a href="/dashboard" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
+                  Dashboard
+                </a>
+                <button
+                  onClick={handleSignOut}
+                  className="text-gray-600 hover:text-gray-900 px-4 py-2 rounded-lg font-medium transition-colors border border-gray-300 hover:border-gray-400"
+                >
+                  Çıkış Yap
+                </button>
+              </>
+            ) : (
+              // Not logged in
+              <>
+                <a href="/auth/login" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
+                  Giriş Yap
+                </a>
+                <a href="/auth/login" className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg font-medium transition-colors">
+                  Ücretsiz Başla
+                </a>
+              </>
+            )}
           </div>
 
           {/* Mobile menu button - hamburger icon */}
@@ -334,7 +403,7 @@ export default function UserjotCloneSection() {
 
                     <div>
                       <p className="text-gray-800 text-xs font-semibold mb-1">📄 PDF İçeriği:</p>
-                      <p className="text-gray-600 text-xs">• Modüler ekipman ve maliyet listesi</p>
+                      <p className="text-gray-600 text-xs">�� Modüler ekipman ve maliyet listesi</p>
                     </div>
                   </div>
 
