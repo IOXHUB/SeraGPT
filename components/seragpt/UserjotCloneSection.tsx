@@ -365,7 +365,7 @@ export default function UserjotCloneSection() {
 
                     <div>
                       <p className="text-gray-800 text-xs font-semibold mb-1">👤 Kullanıcı Girdisi:</p>
-                      <p className="text-gray-600 text-xs">• Lokasyon, bitki türü, üretim hedefi</p>
+                      <p className="text-gray-600 text-xs">�� Lokasyon, bitki türü, üretim hedefi</p>
                     </div>
 
                     <div>
@@ -1140,29 +1140,17 @@ export default function UserjotCloneSection() {
         className="bg-gray-50 py-16 sm:py-24"
       >
         <div className="text-section-container text-center">
-          {/* Icon */}
+          {/* SeraGPT Text Logo */}
           <div className="flex justify-center mb-8">
-            <div className="w-16 h-16 bg-gray-800 rounded-full flex items-center justify-center relative">
-              <span className="text-2xl">😊</span>
-              <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-red-500 rounded-full flex items-center justify-center">
-                <span className="text-white text-xs">❤️</span>
-              </div>
-            </div>
+            <h1 className="text-4xl font-bold text-purple-900">SeraGPT</h1>
           </div>
 
-          {/* Headline */}
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 mb-8 leading-tight">
-            Kullanıcılarınızın bir vizyonu var.
-            <br />
-            Onu gerçekleştirmelerine yardım edin.
-          </h2>
-
           {/* Description */}
-          <div className="max-w-2xl mx-auto mb-12">
+          <div className="max-w-3xl mx-auto mb-12">
             <p className="text-lg text-gray-600 leading-relaxed">
-              Birisi bir fikir paylaştığında, inşa ettiğiniz şeye inanır.
-              <strong className="text-gray-900"> Gerçekten dinlediğinizde, sadece ürün değil</strong>
-              <strong className="text-gray-900"> ilişkiler kurarsınız.</strong> İşte fark yaratan budur.
+              Yapay zekâyı, mühendisliği ve tarım verilerini bir araya getiren SeraGPT ile her doğru karar,
+              <strong className="text-gray-900"> bir üretimi</strong>; Her üretim,
+              <strong className="text-gray-900"> bir geleceği</strong> büyütür.
             </p>
           </div>
 
