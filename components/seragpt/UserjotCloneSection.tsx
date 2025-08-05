@@ -284,7 +284,7 @@ export default function UserjotCloneSection() {
                     </div>
 
                     <div>
-                      <p className="text-gray-800 text-xs font-semibold mb-1">��� PDF İçeriği:</p>
+                      <p className="text-gray-800 text-xs font-semibold mb-1">📄 PDF İçeriği:</p>
                       <p className="text-gray-600 text-xs">• ROI tablosu ve 3 yıll��k projeksiyonu</p>
                     </div>
                   </div>
@@ -357,7 +357,7 @@ export default function UserjotCloneSection() {
                       <p className="text-gray-800 text-xs font-semibold mb-1">����� 3 Önemli Fayda:</p>
                       <p className="text-gray-600 text-xs">• Bölgeye uygun yapı ve iklimlendirme</p>
                       <p className="text-gray-600 text-xs">• Anahtar teslim modüler öneriler</p>
-                      <p className="text-gray-600 text-xs">• Geni��letilebilirlik alternatifleri</p>
+                      <p className="text-gray-600 text-xs">• Genişletilebilirlik alternatifleri</p>
                     </div>
 
                     <div>
@@ -780,7 +780,7 @@ export default function UserjotCloneSection() {
             {[
               {
                 question: "Raporlar ne kadar doğru?",
-                answer: "SeraGPT, gerçek zamanlı iklim, tarım ve ticaret verilerini kullanır. Raporlar, uzman mühendislerin geliştirdi��i algoritmalarla analiz edilir ve %90 üzeri doğruluk oranı sunar."
+                answer: "SeraGPT, gerçek zamanlı iklim, tarım ve ticaret verilerini kullanır. Raporlar, uzman mühendislerin geliştirdiği algoritmalarla analiz edilir ve %90 üzeri doğruluk oranı sunar."
               },
               {
                 question: "Devlet teşviklerine uygun mu?",
@@ -841,6 +841,28 @@ export default function UserjotCloneSection() {
               </motion.div>
             ))}
           </div>
+
+          {/* Support Link */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            viewport={{ once: true }}
+            className="text-center mt-12"
+          >
+            <p className="text-gray-600 mb-4">
+              Sorunuza cevap bulamadınız mı?
+            </p>
+            <a
+              href="/dashboard/help"
+              className="inline-flex items-center space-x-2 bg-gray-600 hover:bg-gray-700 text-white px-6 py-3 rounded-lg font-medium transition-colors"
+            >
+              <span>Destek Sayfamıza Gidin</span>
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </a>
+          </motion.div>
         </div>
       </motion.div>
 
