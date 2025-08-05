@@ -156,7 +156,7 @@ export default function PrivacyPage() {
                   </p>
                 </div>
                 <div className="bg-purple-50 border border-purple-200 rounded-lg p-6">
-                  <h3 className="text-lg font-semibold text-purple-800 mb-3">Taşınabilirlik Hakk��</h3>
+                  <h3 className="text-lg font-semibold text-purple-800 mb-3">Taşınabilirlik Hakkı</h3>
                   <p className="text-purple-700 text-sm">
                     Verilerinizi başka bir platforma aktarabilir formatta alabilirsiniz.
                   </p>
@@ -173,7 +173,7 @@ export default function PrivacyPage() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
                   </div>
-                  <p className="text-lg text-gray-700"><strong>SSL Şifrelemesi:</strong> Tüm veri aktarımlar�� 256-bit SSL ile şifrelenir</p>
+                  <p className="text-lg text-gray-700"><strong>SSL Şifrelemesi:</strong> Tüm veri aktarımları 256-bit SSL ile şifrelenir</p>
                 </div>
                 <div className="flex items-start space-x-3">
                   <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center mt-1">

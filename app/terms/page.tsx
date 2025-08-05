@@ -60,7 +60,7 @@ export default function TermsPage() {
 
                 <div className="border-l-4 border-gray-200 pl-6">
                   <p className="text-lg leading-relaxed text-gray-700">
-                    <strong>"Hizmetler"</strong> web sitemizi, seragpt.com'u ve SeraGPT A.Ş. taraf��ndan 
+                    <strong>"Hizmetler"</strong> web sitemizi, seragpt.com'u ve SeraGPT A.Ş. tarafından 
                     oluşturulan ve sürdürülen sera analizi toplama, tartışma, oylama, yol haritası oluşturma 
                     ve değişiklik günlüğü özellikleri dahil olmak üzere herhangi bir ürünü ifade eder; 
                     ister web tarayıcısı, masaüstü uygulaması, mobil uygulama veya başka bir format 
@@ -83,7 +83,7 @@ export default function TermsPage() {
                 <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-6">
                   <p className="text-lg leading-relaxed text-gray-700">
                     Hesabınızın ve şifrenizin güvenliğini sağlamaktan ve kullanıcılarınızın da aynısını 
-                    yapmasını sağlamaktan siz sorumlusunuz. Şirket, bu güvenlik yükümlülüğ��ne uymamanızdan 
+                    yapmasını sağlamaktan siz sorumlusunuz. Şirket, bu güvenlik yükümlülüğüne uymamanızdan 
                     kaynaklanan herhangi bir kayıp veya hasar için sorumlu tutulamaz ve sorumlu olmayacaktır. 
                     Ek güvenlik için tüm kullanıcıların iki faktörlü kimlik doğrulama kurmasını öneririz.
                   </p>
@@ -110,7 +110,7 @@ export default function TermsPage() {
             <section>
               <h2 className="text-3xl font-bold text-gray-900 mb-6">Gizlilik ve Veri Koruma</h2>
               <p className="text-lg leading-relaxed text-gray-700 mb-4">
-                Gizliliğinizi ciddiye alıyoruz. Kişisel verilerinizin nasıl toplandığı, kullanıldığ�� 
+                Gizliliğinizi ciddiye alıyoruz. Kişisel verilerinizin nasıl toplandığı, kullanıldığı 
                 ve korunduğu hakkında ayrıntılı bilgi için 
                 <a href="/privacy" className="text-blue-600 hover:text-blue-800 font-medium"> Gizlilik Politikamızı</a> 
                 inceleyin.
