@@ -20,39 +20,7 @@ export default function PrivacyPage() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <header className="w-full">
-        <div className="flex justify-between items-center p-6 max-w-[960px] mx-auto">
-        <img
-          src="https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2F96da5382e9584c3fb2d32eca60944359?format=webp&width=800"
-          alt="SeraGPT Logo"
-          className="h-8 w-auto"
-        />
-
-        <nav className="hidden md:flex items-center space-x-8">
-          <a href="/" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
-            Ana Sayfa
-          </a>
-          <a href="#" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
-            Fiyatlar
-          </a>
-          <a href="#" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
-            Yardım
-          </a>
-          <a href="/blog" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
-            Blog
-          </a>
-          <button className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
-            Giriş Yap
-          </button>
-        </nav>
-
-        <button className="md:hidden">
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-          </svg>
-        </button>
-        </div>
-      </header>
+      <Header />
 
       {/* Main Content */}
       <main className="max-w-[960px] mx-auto px-6 py-16">
