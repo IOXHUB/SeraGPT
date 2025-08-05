@@ -2,9 +2,11 @@
 
 import { motion } from 'framer-motion';
 import { useState } from 'react';
+import { useAuth } from '../lib/hooks/useAuth';
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { user, loading } = useAuth();
 
   return (
     <header className="w-full bg-gray-50">
