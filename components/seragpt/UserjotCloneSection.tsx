@@ -188,7 +188,7 @@ export default function UserjotCloneSection() {
 
       {/* How It Works Section - Horizontal Scrolling */}
       <div className="py-20 bg-gray-50 text-gray-600">
-        <div className="max-w-[1700px] mx-auto px-6">
+        <div className="page-section-container">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -871,7 +871,7 @@ export default function UserjotCloneSection() {
               },
               {
                 question: "Ödeme nasıl yapılıyor?",
-                answer: "İlk 5 rapor ücretsizdir. Sonrasında, kredi kartı veya havale/EFT ile jeton (token) satın alabilirsiniz. ��deme altyapıs�� %100 güvenlidir.",
+                answer: "İlk 5 rapor ücretsizdir. Sonrasında, kredi kartı veya havale/EFT ile jeton (token) satın alabilirsiniz. Ödeme altyapıs�� %100 güvenlidir.",
 
               },
               {
