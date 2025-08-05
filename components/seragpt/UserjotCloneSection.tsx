@@ -582,22 +582,6 @@ export default function UserjotCloneSection() {
       {/* Roadmap Section */}
       <div className="py-20 text-gray-600">
         <div className="text-section-container">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-xl font-bold text-gray-900 mb-6">
-              Size Özel Kontrol Paneli
-            </h2>
-            <p className="text-sm text-gray-600 max-w-[576px] mx-auto leading-relaxed">
-              Panelinizden tüm raporlarınıza, danışmanlık taleplerinize ve teknik teklif süreçlerinize anlık erişim sağlayın.
-              <span className="font-semibold text-gray-900"> Yapay zekâ analizleri, mühendislik değerlendirmeleri ve saha hizmetleri</span>
-              artık tek bir merkezden yönetilebilir.
-            </p>
-          </motion.div>
 
           {/* Roadmap Mockup */}
           <motion.div
