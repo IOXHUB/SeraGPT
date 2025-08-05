@@ -78,11 +78,8 @@ export default function UserjotCloneSection() {
             </a>
           </div>
 
-          {/* Center navigation - 4 links */}
+          {/* Center navigation - 3 links */}
           <nav className="hidden md:flex items-center space-x-8">
-            <a href="/how-it-works" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
-              Nasıl Çalışır
-            </a>
             <a href="/consulting" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
               Danışmanlık
             </a>
@@ -653,7 +650,7 @@ export default function UserjotCloneSection() {
                     {/* User Message */}
                     <div className="flex justify-end">
                       <div className="bg-blue-500 text-white rounded-lg p-4 max-w-xs">
-                        <p className="text-sm">Bu ROI analizinde geri dönüş s��resini nasıl kısaltabilirim?</p>
+                        <p className="text-sm">Bu ROI analizinde geri dönüş süresini nasıl kısaltabilirim?</p>
                         <span className="text-xs opacity-75 mt-2 block">11:42</span>
                       </div>
                     </div>
