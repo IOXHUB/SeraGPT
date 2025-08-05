@@ -159,7 +159,7 @@ export default function UserjotCloneSection() {
 
       {/* Main content - Full viewport hero */}
       <main className="min-h-screen flex items-center justify-center px-4 sm:px-6 -mt-12">
-        <div className="max-w-[576px] mx-auto text-center">
+        <div className="text-section-container text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -541,7 +541,7 @@ export default function UserjotCloneSection() {
                 <div className="w-full h-96 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center rounded-lg">
                   <div className="text-center">
                     <div className="w-16 h-16 bg-gray-300 rounded-lg mx-auto mb-4 flex items-center justify-center">
-                      <span className="text-2xl">🤖</span>
+                      <span className="text-2xl">��</span>
                     </div>
                     <h3 className="text-lg font-semibold text-gray-700 mb-2">AI Asistan</h3>
                     <p className="text-sm text-gray-500">SeraGPT AI Sohbet Arayüzü Önizlemesi</p>
