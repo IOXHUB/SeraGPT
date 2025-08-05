@@ -631,7 +631,7 @@ export default function UserjotCloneSection() {
             viewport={{ once: true }}
             className="text-center mb-16 flex flex-col"
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 flex flex-col max-w-[700px] mx-auto">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 flex flex-col max-w-[896px] mx-auto">
               <span className="mx-auto">
                 <p>Projeler</p>
               </span>
@@ -708,7 +708,7 @@ export default function UserjotCloneSection() {
                 <div className="w-full h-full bg-gradient-to-br from-yellow-100 to-orange-100 flex items-center justify-center">
                   <div className="text-center">
                     <p className="text-gray-700 font-medium">Fide Üretim Tesisi</p>
-                    <p className="text-gray-500 text-sm">Bursa, 4.500 m��</p>
+                    <p className="text-gray-500 text-sm">Bursa, 4.500 m����</p>
                   </div>
                 </div>
               </motion.div>
