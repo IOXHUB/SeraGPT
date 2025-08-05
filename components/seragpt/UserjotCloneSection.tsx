@@ -247,7 +247,7 @@ export default function UserjotCloneSection() {
 
             {/* Main headline */}
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 leading-relaxed space-y-2">
-              <div className="text-gray-600 text-[32px] sm:text-[38px] md:text-[44px]">�� 60 Saniyede</div>
+              <div className="text-gray-600 text-[32px] sm:text-[38px] md:text-[44px]">⚡ 60 Saniyede</div>
               <div className="text-gray-600 text-[32px] sm:text-[38px] md:text-[44px]">Sera Yatırım Raporun Hazır!</div>
             </h1>
 
