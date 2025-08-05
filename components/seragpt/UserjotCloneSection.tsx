@@ -140,7 +140,7 @@ export default function UserjotCloneSection() {
 
       {/* Main content - Full viewport hero */}
       <main className="min-h-screen flex items-center justify-center px-4 sm:px-6">
-        <div className="max-w-[576px] mx-auto text-center mobile-hero-container">
+        <div className="max-w-[576px] mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -725,7 +725,7 @@ export default function UserjotCloneSection() {
                   <div className="text-center">
                     <div className="text-4xl mb-3">❄️</div>
                     <p className="text-gray-700 font-medium">İklim Kontrollü Sera</p>
-                    <p className="text-gray-500 text-sm">Konya, 6.000 m��</p>
+                    <p className="text-gray-500 text-sm">Konya, 6.000 m²</p>
                   </div>
                 </div>
               </motion.div>
