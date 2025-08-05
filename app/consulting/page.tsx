@@ -473,6 +473,13 @@ export default function ConsultingPage() {
                   Danışmanlık
                 </a>
                 <a
+                  href="/turnkey"
+                  className="block text-gray-700 hover:text-gray-900 font-medium transition-colors py-2"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Anahtar Teslim
+                </a>
+                <a
                   href="/support"
                   className="block text-gray-700 hover:text-gray-900 font-medium transition-colors py-2"
                   onClick={() => setIsMobileMenuOpen(false)}
