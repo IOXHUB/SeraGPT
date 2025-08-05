@@ -493,6 +493,12 @@ p, .text-content {
 }
 
 .text-section-container {
+  max-width: 576px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.visual-section-container {
   max-width: 896px;
   margin: 0 auto;
   padding: 0 16px;
