@@ -455,9 +455,8 @@ p, .text-content {
   /* Mobile-specific text content containers */
   .text-section-container {
     max-width: 100%;
-    padding: 0 20px;
+    padding: 0 16px;
     margin: 0 auto;
-    text-align: center;
   }
 
   .visual-section-container {
@@ -468,7 +467,7 @@ p, .text-content {
 
   .navbar-footer-container {
     max-width: 100%;
-    padding: 12px 16px;
+    padding: 16px 20px;
     margin: 0 auto;
   }
 
@@ -477,10 +476,9 @@ p, .text-content {
     max-width: 100%;
     margin-left: auto;
     margin-right: auto;
-    font-size: 14px;
-    line-height: 24px;
-    text-align: center;
-    padding: 0 8px;
+    font-size: 16px;
+    line-height: 26px;
+    padding: 0;
   }
 
   /* Mobile button adjustments */
