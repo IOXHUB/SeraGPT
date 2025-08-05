@@ -77,76 +77,46 @@ export default function BlogCardsSection() {
           </motion.div>
         </div>
 
-        {/* Horizontal Scrolling Cards */}
+        {/* Single Featured Blog Card */}
         <div className="relative">
-          <div className="flex overflow-x-auto scrollbar-hide space-x-6 pb-6">
-            {posts.map((post, index) => (
-              <motion.article
-                key={post.id}
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="flex-shrink-0 w-80 group cursor-pointer"
-              >
-                <a href={`/blog/${post.slug}`} className="block">
-                  {/* Image */}
-                  <div className="relative overflow-hidden rounded-2xl mb-4">
-                    <img
-                      src={post.image}
-                      alt={post.title}
-                      className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105"
-                    />
-                    
+          <motion.article
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="flex flex-col md:flex-row gap-6 group cursor-pointer"
+          >
+            <a href="/blog/sera-teknolojilerinde-yenilikler" className="flex flex-col md:flex-row gap-6 w-full">
+              {/* Image */}
+              <div className="relative overflow-hidden rounded-lg md:w-80 flex-shrink-0">
+                <img
+                  src="https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2Fdcdb2909e4ef4487898c31667192e2c6?format=webp&width=800"
+                  alt="Sera Teknolojilerinde Yenilikler"
+                  className="w-full h-48 md:h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                />
+              </div>
 
-                  </div>
+              {/* Content */}
+              <div className="flex-1 space-y-3">
+                {/* Date and Category */}
+                <div className="flex items-center space-x-2 text-sm">
+                  <span className="text-gray-500">15 Ocak 2025</span>
+                  <span className="text-gray-400">•</span>
+                  <span className="text-gray-700 bg-gray-100 px-2 py-1 rounded text-xs font-medium">Tarım Teknolojisi</span>
+                </div>
 
-                  {/* Content */}
-                  <div className="space-y-3">
-                    {/* Date */}
-                    <div className="text-sm text-gray-500">
-                      {post.date}
-                    </div>
-                    
-                    {/* Title */}
-                    <h3 className="text-lg font-semibold text-gray-900 group-hover:text-gray-700 transition-colors leading-tight line-clamp-2">
-                      {post.title}
-                    </h3>
-                    
-                    {/* Excerpt */}
-                    <p className="text-gray-600 text-sm leading-relaxed line-clamp-3">
-                      {post.excerpt}
-                    </p>
-                    
-                    {/* Read More */}
-                    <div className="flex items-center justify-between pt-2">
-                      {post.author && (
-                        <span className="text-xs text-gray-500">
-                          {post.author}
-                        </span>
-                      )}
-                      <span className="text-sm font-medium text-gray-900 group-hover:underline">
-                        Oku →
-                      </span>
-                    </div>
-                  </div>
-                </a>
-              </motion.article>
-            ))}
-          </div>
+                {/* Title */}
+                <h3 className="text-xl font-semibold text-gray-900 group-hover:text-gray-700 transition-colors leading-tight">
+                  Sera Teknolojilerinde 2025 Yenilikleri ve Sürdürülebilir Tarım
+                </h3>
 
-          {/* Navigation Hint */}
-          <div className="flex justify-center mt-8">
-            <div className="flex items-center space-x-2 text-sm text-gray-500">
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16l-4-4m0 0l4-4m-4 4h18" />
-              </svg>
-              <span>Kaydırarak daha fazla yazı görüntüleyin</span>
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
-            </div>
-          </div>
+                {/* Excerpt */}
+                <p className="text-gray-600 leading-relaxed">
+                  Modern sera teknolojileri ile tarımsal verimliliği artırmanın yolları. İklim kontrolü, otomasyon sistemleri ve sürdürülebilir tarım uygulamalarında son gelişmeler.
+                </p>
+              </div>
+            </a>
+          </motion.article>
         </div>
       </div>
     </div>
