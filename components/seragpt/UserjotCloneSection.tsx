@@ -327,7 +327,7 @@ export default function UserjotCloneSection() {
             className="text-center mb-16"
           >
             <h2 className="text-xl font-bold text-gray-900 mb-6">
-              Panelde Sizi Bekleyen Analiz Türleri ve Özellikleri
+              Panelde Sizi Bekleyen Analiz Türleri ve ��zellikleri
             </h2>
           </motion.div>
 
@@ -572,9 +572,23 @@ export default function UserjotCloneSection() {
         </div>
       </div>
 
-      {/* Roadmap Section */}
+      {/* AI Chat Section */}
       <div className="py-20 text-gray-600">
         <div className="text-section-container">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-xl font-bold text-gray-900 mb-6">
+              Tarımsal Zeka Panelinizde Sizi Bekliyor!
+            </h2>
+            <p className="text-sm text-gray-600 text-section-container leading-relaxed">
+              Proje çıktılarınız üzerine sohbet edebileceğiniz, derinlemesine araştırma yapabileceğiniz özel asistanınız panelinizde sizi bekliyor, üstelik tamamen ücretsiz
+            </p>
+          </motion.div>
 
           {/* Roadmap Mockup */}
           <motion.div
