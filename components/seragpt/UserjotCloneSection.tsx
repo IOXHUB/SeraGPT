@@ -80,7 +80,7 @@ export default function UserjotCloneSection() {
 
           {/* Center navigation - 3 links */}
           <nav className="hidden md:flex items-center space-x-8">
-            <a href="#" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
+            <a href="/how-it-works" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
               Nasıl Çalışır
             </a>
             <a href="#" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
