@@ -127,7 +127,7 @@ export default function UserjotCloneSection() {
                 </a>
                 <a
                   href="/dashboard"
-                  className="block bg-green-600 hover:bg-green-700 text-white px-4 py-3 rounded-lg font-medium transition-colors text-center"
+                  className="block bg-black hover:bg-gray-800 text-white px-4 py-3 rounded-xl font-medium transition-colors text-center"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   Ücretsiz Başla
@@ -563,7 +563,7 @@ export default function UserjotCloneSection() {
                         </div>
 
                         <div className="ml-4 text-right">
-                          <div className="text-sm text-gray-500 mb-2">Uygulama sorunu çözülemiyor,</div>
+                          <div className="text-sm text-gray-500 mb-2">Uygulama sorunu çöz��lemiyor,</div>
                           <div className="text-sm text-gray-500 mb-2">geçerli şifreler tanınmıyor.</div>
                           <div className="flex items-center space-x-2 text-sm text-gray-600">
                             <div className="w-6 h-6 bg-gray-300 rounded-full"></div>
