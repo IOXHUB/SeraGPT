@@ -959,7 +959,7 @@ export default function UserjotCloneSection() {
                     animate={{ opacity: 1, height: 'auto' }}
                     exit={{ opacity: 0, height: 0 }}
                     transition={{ duration: 0.3 }}
-                    className="px-6 pb-6 text-gray-600 leading-relaxed"
+                    className="px-6 pb-6 text-gray-600 leading-relaxed mobile-faq-answer"
                   >
                     {faq.answer}
                   </motion.div>
