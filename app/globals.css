@@ -419,7 +419,7 @@ p, .text-content {
 @media (max-width: 768px) {
   body {
     font-size: 16px;
-    line-height: 26px;
+    line-height: 24px;
   }
 
   /* Mobile Typography Hierarchy */
