@@ -418,38 +418,38 @@ p, .text-content {
 /* Mobile-First Responsive Design - Proportional Typography */
 @media (max-width: 768px) {
   body {
-    font-size: 14px;
-    line-height: 24px; /* Proportional to 16px/28px ratio */
-    text-align: center;
-    padding: 0 12px;
+    font-size: 16px;
+    line-height: 26px;
+    text-align: left;
+    padding: 0;
   }
 
   /* Mobile Typography Hierarchy - Proportional Scaling */
   h1 {
-    font-size: 28px; /* Scaled from 36px */
-    line-height: 36px; /* Maintains proportion */
-    font-weight: 600;
-    color: #525252;
-    margin-bottom: 1rem;
+    font-size: 32px;
+    line-height: 40px;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 1.5rem;
     text-align: center;
   }
 
   h2 {
-    font-size: 24px; /* Scaled from 28px */
-    line-height: 32px;
+    font-size: 28px;
+    line-height: 36px;
     font-weight: 600;
-    color: #525252;
-    margin-bottom: 0.875rem;
+    color: #111827;
+    margin-bottom: 1.25rem;
     text-align: center;
   }
 
   h3 {
-    font-size: 18px; /* Scaled from 24px */
-    line-height: 26px;
+    font-size: 20px;
+    line-height: 28px;
     font-weight: 600;
-    color: #525252;
-    margin-bottom: 0.75rem;
-    text-align: center;
+    color: #111827;
+    margin-bottom: 1rem;
+    text-align: left;
   }
 
   /* Mobile-specific text content containers */
