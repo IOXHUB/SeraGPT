@@ -254,7 +254,7 @@ export default function UserjotCloneSection() {
             {/* Description paragraph */}
             <p className="text-[16px] sm:text-[18px] text-gray-600 leading-relaxed px-4 mt-8 max-w-lg mx-auto">
               SeraGPT; 20 yılı aşkın mühendislik deneyimi, 500'den fazla
-              tamamlanmış proje ve 110'dan fazla gerçek zamanlı veri
+              tamamlanmış proje ve 110'dan fazla gerçek zamanl�� veri
               setiyle, tarımsal yatırım kararlarınızı saniyeler içinde
               analiz eder.
             </p>
@@ -575,7 +575,7 @@ export default function UserjotCloneSection() {
         </div>
       </div>
 
-      {/* Roadmap Section */}
+      {/* AI Chat Dashboard Section */}
       <div className="py-20 text-gray-600">
         <div className="text-section-container">
           <motion.div
@@ -586,12 +586,11 @@ export default function UserjotCloneSection() {
             className="text-center mb-16"
           >
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              Size Özel Kontrol Paneli
+              Yapay Zeka ile Rapor Analizi
             </h2>
             <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-              Panelinizden tüm raporlarınıza, danışmanlık taleplerinize ve teknik teklif süreçlerinize anlık erişim sağlayın.
-              <span className="font-semibold text-gray-900"> Yapay zekâ analizleri, mühendislik değerlendirmeleri ve saha hizmetleri</span>
-              artık tek bir merkezden yönetilebilir.
+              Dashboard'da üretilen her rapor ve analiz üzerinden <span className="font-semibold text-gray-900">yapay zeka ile sohbet edebilirsiniz</span>.
+              Detayları sorgulayın, alternatifler keşfedin ve <span className="font-semibold text-gray-900">daha derinlemesine analizler</span> elde edin.
             </p>
           </motion.div>
 
@@ -633,7 +632,7 @@ export default function UserjotCloneSection() {
                 {/* Content */}
                 <div className="p-6">
                   <div className="flex items-center justify-between mb-6">
-                    <h1 className="text-2xl font-bold text-gray-900">��rün Geliştirme Planı</h1>
+                    <h1 className="text-2xl font-bold text-gray-900">����rün Geliştirme Planı</h1>
                     <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                     </svg>
@@ -1027,7 +1026,7 @@ export default function UserjotCloneSection() {
               },
               {
 
-                question: "Danışmanlık almak için ne yapmalıyım?",
+                question: "Dan��şmanlık almak için ne yapmalıyım?",
                 answer: "Destek bölümünden danışman talebinde bulunabilirsiniz. Alanında uzman bir mühendis sizinle iletişime geçerek detaylı bilgi verecektir.",
 
               },
