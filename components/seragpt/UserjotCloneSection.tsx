@@ -285,7 +285,7 @@ export default function UserjotCloneSection() {
                       </div>
                       <div className="flex items-center space-x-3 p-2 bg-yellow-50 rounded-lg">
                         <div className="w-2 h-2 bg-yellow-600 rounded-full"></div>
-                        <span className="text-sm text-gray-700">İpucu: ROI analizinden başlayarak yatırımınızın geri dönüşünü hesaplayın.</span>
+                        <span className="text-sm text-gray-700">İpucu: ROI analizinden başlayarak yatırımınızın geri dönüş��nü hesaplayın.</span>
                       </div>
                     </div>
                   </div>
@@ -326,18 +326,9 @@ export default function UserjotCloneSection() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <p className="text-gray-500 text-sm font-medium uppercase tracking-wider mb-4">
-              HER ANALİZ İÇİN DETAYLı ÇÖZÜM
-            </p>
             <h2 className="text-xl font-bold text-gray-900 mb-6">
-              5 Adımda Sera Yatırım<br />
-              Analizi Tamamla
+              Panelde Sizi Bekleyen Analiz Türleri ve Özellikleri
             </h2>
-            <p className="text-sm text-gray-600 text-section-container leading-relaxed">
-              20 yıllık mühendislik deneyimi ve 110+ veri setiyle<br />
-              desteklenen <strong>yapay zeka analizleri</strong> ile yatırım kararlarınızı<br />
-              <strong>bilimsel verilerle destekleyin</strong>.
-            </p>
           </motion.div>
 
           {/* Horizontal Scrolling Cards */}
@@ -453,7 +444,7 @@ export default function UserjotCloneSection() {
 
                     <div>
                       <p className="text-gray-800 text-xs font-semibold mb-1">🔗 Veri Kaynakları:</p>
-                      <p className="text-gray-600 text-xs">• Internal equipment DB</p>
+                      <p className="text-gray-600 text-xs">�� Internal equipment DB</p>
                       <p className="text-gray-600 text-xs">• Mühendis doğrulama kütüphanesi</p>
                     </div>
 
