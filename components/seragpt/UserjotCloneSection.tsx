@@ -188,7 +188,7 @@ export default function UserjotCloneSection() {
 
       {/* How It Works Section - Horizontal Scrolling */}
       <div className="py-20 bg-gray-50 text-gray-600">
-        <div className="max-w-6xl mx-auto px-6">
+        <div className="max-w-[1700px] mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -813,7 +813,7 @@ export default function UserjotCloneSection() {
                 whileTap={{ scale: 0.95 }}
                 className="bg-gray-600 hover:bg-gray-700 text-white px-10 py-4 rounded-xl text-xl font-bold transition-colors shadow-lg hover:shadow-xl"
               >
-                <p>Kurumsal Danı��manlık Hizmeti</p>
+                <p>Kurumsal Danışmanlık Hizmeti</p>
               </motion.button>
             </div>
             <p className="text-gray-500 text-sm mt-4">
