@@ -248,11 +248,11 @@ export default function UserjotCloneSection() {
             {/* Main headline */}
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 leading-relaxed space-y-2">
               <div className="text-gray-600 text-[40px] sm:text-[48px] md:text-[56px]">🚀 60 Saniyede</div>
-              <div className="text-gray-600 text-[40px] sm:text-[48px] md:text-[56px]">Sera Yatırım Raporun Hazır!</div>
+              <div className="text-gray-600 text-[32px] sm:text-[38px] md:text-[44px]">Sera Yatırım Raporun Hazır!</div>
             </h1>
 
             {/* Description paragraph */}
-            <p className="text-[18px] sm:text-[20px] text-gray-600 leading-relaxed px-4 mt-8">
+            <p className="text-[16px] sm:text-[18px] text-gray-600 leading-relaxed px-4 mt-8">
               SeraGPT; 20 yılı aşkın mühendislik deneyimi, 500'den fazla
               tamamlanmış proje ve 110'dan fazla gerçek zamanlı veri
               setiyle, tarımsal yatırım kararlarınızı saniyeler içinde
@@ -292,11 +292,11 @@ export default function UserjotCloneSection() {
             <p className="text-gray-500 text-sm font-medium uppercase tracking-wider mb-4">
               HER ANALİZ İÇİN DETAYLı ÇÖZÜM
             </p>
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
               5 Adımda Sera Yatırım<br />
               Analizi Tamamla
             </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
               20 yıllık mühendislik deneyimi ve 110+ veri setiyle<br />
               desteklenen <strong>yapay zeka analizleri</strong> ile yatırım kararlarınızı<br />
               <strong>bilimsel verilerle destekleyin</strong>.
@@ -496,7 +496,7 @@ export default function UserjotCloneSection() {
 
                   <div className="space-y-3 mb-4">
                     <div>
-                      <p className="text-gray-800 text-xs font-semibold mb-1">🎯 3 Önemli Fayda:</p>
+                      <p className="text-gray-800 text-xs font-semibold mb-1">��� 3 Önemli Fayda:</p>
                       <p className="text-gray-600 text-xs">• Sera yerleşim planı (2D çizim)</p>
                       <p className="text-gray-600 text-xs">• Elektrik ve sulama hat plan��</p>
                       <p className="text-gray-600 text-xs">• Teknik kabin, depo gösterimi</p>
