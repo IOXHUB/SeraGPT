@@ -248,47 +248,104 @@ export default function UserjotCloneSection() {
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
-                    {/* Analysis Card 1 */}
-                    <div className="border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow">
-                      <div className="flex items-center justify-between mb-3">
-                        <h3 className="font-semibold text-gray-900">ROI Simülasyonu</h3>
-                        <span className="text-2xl">🧮</span>
-                      </div>
-                      <p className="text-gray-600 text-sm mb-3">
-                        Yatırımın geri dönüş süresi ve kar marjı analizi
-                      </p>
-                      <button className="w-full bg-black text-white py-2 rounded-lg text-sm font-medium">
-                        Analizi Başlat (1 jeton)
-                      </button>
+                  {/* User Message 2 */}
+                  <div className="flex justify-end">
+                    <div className="bg-blue-600 text-white px-4 py-2 rounded-lg max-w-sm">
+                      <p className="text-sm">Güneş paneli yatır��mı ROI'yi nasıl etkiler?</p>
                     </div>
+                  </div>
 
-                    {/* Analysis Card 2 */}
-                    <div className="border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow">
-                      <div className="flex items-center justify-between mb-3">
-                        <h3 className="font-semibold text-gray-900">İklim Analizi</h3>
-                        <span className="text-2xl">🌦️</span>
-                      </div>
-                      <p className="text-gray-600 text-sm mb-3">
-                        Don, rüzgar, nem riskleri ve uygunluk skorları
-                      </p>
-                      <button className="w-full bg-black text-white py-2 rounded-lg text-sm font-medium">
-                        Analizi Başlat (1 jeton)
-                      </button>
+                  {/* AI Response 2 */}
+                  <div className="flex items-start space-x-3">
+                    <div className="w-8 h-8 bg-black rounded-lg flex items-center justify-center flex-shrink-0">
+                      <span className="text-white text-xs">🤖</span>
                     </div>
-
-                    {/* Analysis Card 3 */}
-                    <div className="border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow">
-                      <div className="flex items-center justify-between mb-3">
-                        <h3 className="font-semibold text-gray-900">Ekipman Listesi</h3>
-                        <span className="text-2xl">🧰</span>
-                      </div>
-                      <p className="text-gray-600 text-sm mb-3">
-                        Bölgeye uygun yapı ve iklimlendirme ekipmanları
+                    <div className="bg-white border border-gray-200 px-4 py-3 rounded-lg max-w-lg">
+                      <p className="text-sm text-gray-700 mb-3">
+                        100kW güneş paneli sistemi ile önemli iyileşmeler:
                       </p>
-                      <button className="w-full bg-black text-white py-2 rounded-lg text-sm font-medium">
-                        Analizi Başlat (1 jeton)
-                      </button>
+                      <div className="bg-green-50 p-3 rounded border border-green-200 text-xs space-y-2">
+                        <div className="flex justify-between">
+                          <span>Enerji tasarrufu:</span>
+                          <span className="font-semibold">₺89,000/yıl</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span>Yeni ROI:</span>
+                          <span className="font-semibold text-green-600">%31.2 (↗7.2%)</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span>Geri dönüş süresi:</span>
+                          <span className="font-semibold text-green-600">2.4 yıl (↘0.8 yıl)</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* User Message 3 */}
+                  <div className="flex justify-end">
+                    <div className="bg-blue-600 text-white px-4 py-2 rounded-lg max-w-sm">
+                      <p className="text-sm">İklim riskleri bu hesaplamalara nasıl yansıyor?</p>
+                    </div>
+                  </div>
+
+                  {/* AI Response 3 */}
+                  <div className="flex items-start space-x-3">
+                    <div className="w-8 h-8 bg-black rounded-lg flex items-center justify-center flex-shrink-0">
+                      <span className="text-white text-xs">🤖</span>
+                    </div>
+                    <div className="bg-white border border-gray-200 px-4 py-3 rounded-lg max-w-lg">
+                      <p className="text-sm text-gray-700 mb-3">
+                        Antalya için iklim risk analizi:
+                      </p>
+                      <div className="space-y-2 text-xs">
+                        <div className="bg-yellow-50 p-2 rounded border border-yellow-200">
+                          <div className="font-semibold text-yellow-800">Orta Risk: Yıllık 3-4 dolu riski (%2-3 hasar)</div>
+                        </div>
+                        <div className="bg-blue-50 p-2 rounded border border-blue-200">
+                          <div className="font-semibold text-blue-800">Risk Azaltma: Sigorta ₺12,000/yıl</div>
+                        </div>
+                        <div className="bg-gray-50 p-2 rounded border border-gray-200">
+                          <div className="font-semibold">Düzeltilmiş ROI: <span className="text-green-600">%28.5</span></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* User Message 4 */}
+                  <div className="flex justify-end">
+                    <div className="bg-blue-600 text-white px-4 py-2 rounded-lg max-w-sm">
+                      <p className="text-sm">5 yıllık finansal projeksiyon verebilir misin?</p>
+                    </div>
+                  </div>
+
+                  {/* AI Response 4 */}
+                  <div className="flex items-start space-x-3">
+                    <div className="w-8 h-8 bg-black rounded-lg flex items-center justify-center flex-shrink-0">
+                      <span className="text-white text-xs">🤖</span>
+                    </div>
+                    <div className="bg-white border border-gray-200 px-4 py-3 rounded-lg max-w-lg">
+                      <p className="text-sm text-gray-700 mb-3">5 Yıllık Finansal Projeksiyon:</p>
+                      <div className="bg-gray-50 p-3 rounded text-xs">
+                        <table className="w-full">
+                          <thead>
+                            <tr className="border-b">
+                              <th className="text-left py-1">Yıl</th>
+                              <th className="text-right py-1">Gelir</th>
+                              <th className="text-right py-1">Net Kar</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr><td>2024</td><td className="text-right">₺580K</td><td className="text-right font-semibold text-green-600">₺160K</td></tr>
+                            <tr><td>2025</td><td className="text-right">₺612K</td><td className="text-right font-semibold text-green-600">₺171K</td></tr>
+                            <tr><td>2026</td><td className="text-right">₺646K</td><td className="text-right font-semibold text-green-600">₺183K</td></tr>
+                            <tr><td>2027</td><td className="text-right">₺681K</td><td className="text-right font-semibold text-green-600">₺195K</td></tr>
+                            <tr><td>2028</td><td className="text-right">₺718K</td><td className="text-right font-semibold text-green-600">₺208K</td></tr>
+                          </tbody>
+                        </table>
+                        <div className="mt-2 pt-2 border-t font-semibold">
+                          Toplam 5 yıl kar: <span className="text-green-600">₺917K</span>
+                        </div>
+                      </div>
                     </div>
                   </div>
 
