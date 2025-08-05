@@ -250,7 +250,7 @@ export default function UserjotCloneSection() {
                     <div className="border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow">
                       <div className="flex items-center justify-between mb-3">
                         <h3 className="font-semibold text-gray-900">İklim Analizi</h3>
-                        <span className="text-2xl">��️</span>
+                        <span className="text-2xl">🌦️</span>
                       </div>
                       <p className="text-gray-600 text-sm mb-3">
                         Don, rüzgar, nem riskleri ve uygunluk skorları
@@ -714,7 +714,7 @@ export default function UserjotCloneSection() {
 
                     <div>
                       <p className="text-gray-800 text-xs font-semibold mb-1">👤 Kullanıcı Girdisi:</p>
-                      <p className="text-gray-600 text-xs">• Bitki t��rü, sezon, pazarlama hedefi</p>
+                      <p className="text-gray-600 text-xs">• Bitki türü, sezon, pazarlama hedefi</p>
                     </div>
 
                     <div>
@@ -989,12 +989,8 @@ export default function UserjotCloneSection() {
               </span>
               <br />
             </h2>
-            <p className="text-sm text-gray-600 max-w-[576px] mx-auto leading-relaxed">
-              <span>
-                Hermisan & ISITMAX iş birliğiyle tamamlanan sera projelerinden seçilmiş görüntüler.
-              </span>
-              <span className="font-semibold text-gray-900">500+ başarılı proje</span>
-              <span> deneyimimizden örnekler.</span>
+            <p className="text-sm text-gray-900 max-w-[576px] mx-auto leading-relaxed" style={{paddingTop: '-3px'}}>
+              <p>Son Eklenen Referanslarımız</p>
             </p>
           </motion.div>
 
