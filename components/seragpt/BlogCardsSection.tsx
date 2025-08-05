@@ -117,6 +117,25 @@ export default function BlogCardsSection() {
               </div>
             </a>
           </motion.article>
+
+          {/* All Blog Posts Button */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="text-center mt-8"
+          >
+            <a
+              href="/blog"
+              className="inline-flex items-center space-x-2 bg-gray-600 hover:bg-gray-700 text-white px-6 py-3 rounded-lg font-medium transition-colors"
+            >
+              <span>Tüm Blog Yazılarımız</span>
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </a>
+          </motion.div>
         </div>
       </div>
     </div>
