@@ -1109,6 +1109,80 @@ export default function UserjotCloneSection() {
               </motion.div>
             ))}
           </div>
+
+          {/* Support Page Link */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-center mt-8"
+          >
+            <a
+              href="/support"
+              className="inline-flex items-center text-green-600 hover:text-green-700 font-medium transition-colors"
+            >
+              Tüm soru ve cevaplar için Destek sayfamızı ziyaret edin
+              <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </a>
+          </motion.div>
+        </div>
+      </motion.div>
+
+      {/* User Vision Section - Based on Screenshot */}
+      <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
+        className="bg-gray-50 py-16 sm:py-24"
+      >
+        <div className="text-section-container text-center">
+          {/* Icon */}
+          <div className="flex justify-center mb-8">
+            <div className="w-16 h-16 bg-gray-800 rounded-full flex items-center justify-center relative">
+              <span className="text-2xl">😊</span>
+              <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-red-500 rounded-full flex items-center justify-center">
+                <span className="text-white text-xs">❤️</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Headline */}
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 mb-8 leading-tight">
+            Kullanıcılarınızın bir vizyonu var.
+            <br />
+            Onu gerçekleştirmelerine yardım edin.
+          </h2>
+
+          {/* Description */}
+          <div className="max-w-2xl mx-auto mb-12">
+            <p className="text-lg text-gray-600 leading-relaxed">
+              Birisi bir fikir paylaştığında, inşa ettiğiniz şeye inanır.
+              <strong className="text-gray-900"> Gerçekten dinlediğinizde, sadece ürün değil</strong>
+              <strong className="text-gray-900"> ilişkiler kurarsınız.</strong> İşte fark yaratan budur.
+            </p>
+          </div>
+
+          {/* CTA Button */}
+          <motion.a
+            href="/dashboard"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="inline-flex items-center bg-gray-900 hover:bg-gray-800 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-colors space-x-2"
+          >
+            <span>Hemen Başlayın</span>
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+          </motion.a>
+
+          {/* Bottom Text */}
+          <p className="text-gray-500 text-sm mt-6">
+            kredi kartı gerekmez. kurulum zorluğu yok.
+          </p>
         </div>
       </motion.div>
 
