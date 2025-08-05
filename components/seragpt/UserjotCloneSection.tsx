@@ -233,7 +233,7 @@ export default function UserjotCloneSection() {
 
       {/* Main content - Full viewport hero */}
       <main className="min-h-screen flex items-center justify-center px-4 sm:px-6">
-        <div className="max-w-[700px] mx-auto text-center">
+        <div className="max-w-[600px] mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -247,7 +247,7 @@ export default function UserjotCloneSection() {
 
             {/* Main headline */}
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 leading-relaxed space-y-2">
-              <div className="text-gray-600 text-[40px] sm:text-[48px] md:text-[56px]">🚀 60 Saniyede</div>
+              <div className="text-gray-600 text-[32px] sm:text-[38px] md:text-[44px]">🚀 60 Saniyede</div>
               <div className="text-gray-600 text-[32px] sm:text-[38px] md:text-[44px]">Sera Yatırım Raporun Hazır!</div>
             </h1>
 
