@@ -280,7 +280,7 @@ export default function UserjotCloneSection() {
       </main>
 
       {/* Dashboard Preview Section */}
-      <section className="relative py-16 bg-gray-50">
+      <section className="relative pb-16 bg-gray-50">
         <div className="max-w-4xl -mt-15 mx-auto px-6">
           {/* Dashboard Image with colored border */}
           <motion.div
@@ -985,7 +985,7 @@ export default function UserjotCloneSection() {
               {
 
                 question: "Mühendis desteği sunuyor musunuz?",
-                answer: "Evet. Profesyonel kullanıcılar için mühendis danışmanlık hizmeti sağlıyoruz. Size en yakın uzmanla eşleştirilerek birebir destek sunulur.",
+                answer: "Evet. Profesyonel kullanıcılar için mühendis danı��manlık hizmeti sağlıyoruz. Size en yakın uzmanla eşleştirilerek birebir destek sunulur.",
 
               },
               {
