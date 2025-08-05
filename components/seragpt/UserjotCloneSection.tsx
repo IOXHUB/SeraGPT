@@ -180,7 +180,7 @@ export default function UserjotCloneSection() {
 
             {/* Small text under button */}
             <p className="text-gray-500 text-sm mt-6">
-              Doğru yatırım, doğru analizle başlar.
+              Doğru yatır��m, doğru analizle başlar.
             </p>
           </motion.div>
         </div>
@@ -279,7 +279,7 @@ export default function UserjotCloneSection() {
 
                     <div>
                       <p className="text-gray-800 text-xs font-semibold mb-1">🔗 Veri Kaynakları:</p>
-                      <p className="text-gray-600 text-xs">• Open-Meteo, Copernicus Climate</p>
+                      <p className="text-gray-600 text-xs">��� Open-Meteo, Copernicus Climate</p>
                       <p className="text-gray-600 text-xs">• ERA5 verileri, MGMT</p>
                     </div>
 
@@ -329,7 +329,7 @@ export default function UserjotCloneSection() {
 
                     <div>
                       <p className="text-gray-800 text-xs font-semibold mb-1">👤 Kullanıcı Girdisi:</p>
-                      <p className="text-gray-600 text-xs">• Sera büyüklüğü, yapı tipi, enerji</p>
+                      <p className="text-gray-600 text-xs">• Sera büyüklüğ��, yapı tipi, enerji</p>
                     </div>
 
                     <div>
@@ -461,10 +461,10 @@ export default function UserjotCloneSection() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 mobile-section-heading">
               Size Özel Kontrol Paneli
             </h2>
-            <p className="text-xl text-gray-600 max-w-[576px] mx-auto leading-relaxed">
+            <p className="text-xl text-gray-600 max-w-[576px] mx-auto leading-relaxed mobile-section-text">
               Panelinizden tüm raporlarınıza, danışmanlık taleplerinize ve teknik teklif süreçlerinize anlık erişim sağlayın.
               <span className="font-semibold text-gray-900"> Yapay zekâ analizleri, mühendislik değerlendirmeleri ve saha hizmetleri</span>
               artık tek bir merkezden yönetilebilir.
