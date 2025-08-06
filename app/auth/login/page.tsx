@@ -21,9 +21,15 @@ export default function LoginPage() {
     // Check for error parameter in URL
     const urlParams = new URLSearchParams(window.location.search);
     const error = urlParams.get('error');
+    const errorMessage = urlParams.get('message');
 
     if (error === 'auth_code_error') {
-      setMessage('❌ E-posta doğrulama linkinde bir sorun oluştu. Lütfen tekrar giriş yapmayı deneyin.');
+      setMessage(errorMessage ?
+        `❌ E-posta doğrulama hatası: ${errorMessage}` :
+        '❌ E-posta doğrulama linkinde bir sorun oluştu. Lütfen tekrar giriş yapmayı deneyin.'
+      );
+    } else if (error === 'missing_code') {
+      setMessage('❌ Doğrulama kodu eksik. Lütfen e-posta linkini tekrar kullanın.');
     }
   }, []);
 
