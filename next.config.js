@@ -36,9 +36,17 @@ const nextConfig = {
         ignored: ['**/node_modules/**', '**/.git/**']
       };
 
-      // Optimize HMR fetch behavior
+      // Better HMR reliability
       config.output.hotUpdateChunkFilename = 'static/webpack/[id].[fullhash].hot-update.js';
       config.output.hotUpdateMainFilename = 'static/webpack/[fullhash].hot-update.json';
+
+      // Prevent fetch issues in HMR
+      config.resolve.fallback = {
+        ...config.resolve.fallback,
+        fs: false,
+        net: false,
+        tls: false,
+      };
     }
 
     // Important: return the modified config
