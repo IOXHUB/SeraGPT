@@ -79,75 +79,134 @@ export default function UserjotCloneSection() {
           </button>
         </div>
 
-        {/* Mobile Menu */}
+        {/* Modern Mobile Menu */}
         {isMobileMenuOpen && (
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.2 }}
-            className="md:hidden bg-gray-50 border-t border-gray-200"
+            transition={{ duration: 0.3 }}
+            className="md:hidden absolute top-full left-0 right-0 bg-white border-t border-gray-100 shadow-xl z-50"
           >
-            <div className="text-section-container py-4 space-y-4">
-              {/* Center navigation links */}
-              <div className="space-y-3">
-                <a
-                  href="#"
-                  className="block text-gray-700 hover:text-gray-900 font-medium transition-colors py-2"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  Danışmanlık
-                </a>
-                <a
-                  href="#"
-                  className="block text-gray-700 hover:text-gray-900 font-medium transition-colors py-2"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  Anahtar Teslim Proje
-                </a>
-                <a
-                  href="#"
-                  className="block text-gray-700 hover:text-gray-900 font-medium transition-colors py-2"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  Destek
-                </a>
+            <div className="max-w-md mx-auto p-6 space-y-6">
+              {/* Header */}
+              <div className="text-center border-b border-gray-100 pb-4">
+                <h3 className="text-lg font-semibold text-gray-900">Menü</h3>
               </div>
 
-              {/* Divider */}
-              <div className="border-t border-gray-200 my-4"></div>
+              {/* Navigation Grid */}
+              <div className="grid grid-cols-2 gap-4">
+                {/* Services Column */}
+                <div className="space-y-3">
+                  <h4 className="text-sm font-semibold text-gray-500 uppercase tracking-wide">Hizmetler</h4>
+                  <a
+                    href="#"
+                    className="block text-gray-700 hover:text-gray-900 hover:bg-gray-50 py-2 px-3 rounded-lg transition-all"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    <div className="flex items-center space-x-2">
+                      <span className="text-lg">🎯</span>
+                      <span className="text-sm">Danışmanlık</span>
+                    </div>
+                  </a>
+                  <a
+                    href="#"
+                    className="block text-gray-700 hover:text-gray-900 hover:bg-gray-50 py-2 px-3 rounded-lg transition-all"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    <div className="flex items-center space-x-2">
+                      <span className="text-lg">🏗️</span>
+                      <span className="text-sm">Anahtar Teslim Sera</span>
+                    </div>
+                  </a>
+                  <a
+                    href="/dashboard/help"
+                    className="block text-gray-700 hover:text-gray-900 hover:bg-gray-50 py-2 px-3 rounded-lg transition-all"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    <div className="flex items-center space-x-2">
+                      <span className="text-lg">❓</span>
+                      <span className="text-sm">Destek</span>
+                    </div>
+                  </a>
+                </div>
 
-              {/* Right menu actions */}
-              <div className="space-y-3">
+                {/* Resources Column */}
+                <div className="space-y-3">
+                  <h4 className="text-sm font-semibold text-gray-500 uppercase tracking-wide">Kaynaklar</h4>
+                  <a
+                    href="/blog"
+                    className="block text-gray-700 hover:text-gray-900 hover:bg-gray-50 py-2 px-3 rounded-lg transition-all"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    <div className="flex items-center space-x-2">
+                      <span className="text-lg">📖</span>
+                      <span className="text-sm">Blog</span>
+                    </div>
+                  </a>
+                  <a
+                    href="/blog/gizli-maliyetler-sera-yatirimi"
+                    className="block text-gray-700 hover:text-gray-900 hover:bg-gray-50 py-2 px-3 rounded-lg transition-all"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    <div className="flex items-center space-x-2">
+                      <span className="text-lg">💰</span>
+                      <span className="text-sm">Maliyet Rehberi</span>
+                    </div>
+                  </a>
+                  <a
+                    href="/blog/iklim-krizi-tarim"
+                    className="block text-gray-700 hover:text-gray-900 hover:bg-gray-50 py-2 px-3 rounded-lg transition-all"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    <div className="flex items-center space-x-2">
+                      <span className="text-lg">🌡️</span>
+                      <span className="text-sm">İklim Analizi</span>
+                    </div>
+                  </a>
+                </div>
+              </div>
+
+              {/* Panel Access Button */}
+              <div className="border-t border-gray-100 pt-4">
                 {!loading && (
                   <>
                     {user ? (
-                      // For logged in users - show Dashboard
                       <a
                         href="/dashboard"
-                        className="block text-gray-700 hover:text-gray-900 font-medium transition-colors py-2"
+                        className="flex items-center justify-center w-full bg-gradient-to-r from-gray-700 to-gray-800 text-white py-3 px-4 rounded-xl font-medium transition-all hover:from-gray-800 hover:to-gray-900 shadow-lg"
                         onClick={() => setIsMobileMenuOpen(false)}
                       >
-                        Dashboard
+                        <span className="text-lg mr-2">📊</span>
+                        <span>Panelime Git</span>
                       </a>
                     ) : (
-                      // For logged out users - show Login and Sign Up
-                      <>
+                      <div className="space-y-3">
                         <a
                           href="/auth/login"
-                          className="block text-gray-700 hover:text-gray-900 font-medium transition-colors py-2"
+                          className="flex items-center justify-center w-full bg-gradient-to-r from-gray-700 to-gray-800 text-white py-3 px-4 rounded-xl font-medium transition-all hover:from-gray-800 hover:to-gray-900 shadow-lg"
                           onClick={() => setIsMobileMenuOpen(false)}
                         >
-                          Giriş Yap
+                          <span className="text-lg mr-2">🔐</span>
+                          <span>Panele Giriş</span>
                         </a>
-                        <a
-                          href="/auth/login"
-                          className="block bg-black hover:bg-gray-800 text-white px-4 py-2 rounded-lg text-base font-medium transition-colors text-center"
-                          onClick={() => setIsMobileMenuOpen(false)}
-                        >
-                          Ücretsiz Başla
-                        </a>
-                      </>
+                        <div className="flex space-x-2">
+                          <a
+                            href="/auth/login"
+                            className="flex-1 text-center border border-gray-300 text-gray-700 py-2 px-3 rounded-lg text-sm font-medium hover:bg-gray-50 transition-colors"
+                            onClick={() => setIsMobileMenuOpen(false)}
+                          >
+                            Giriş Yap
+                          </a>
+                          <a
+                            href="/auth/login"
+                            className="flex-1 text-center bg-gray-600 text-white py-2 px-3 rounded-lg text-sm font-medium hover:bg-gray-700 transition-colors"
+                            onClick={() => setIsMobileMenuOpen(false)}
+                          >
+                            Kayıt Ol
+                          </a>
+                        </div>
+                      </div>
                     )}
                   </>
                 )}
