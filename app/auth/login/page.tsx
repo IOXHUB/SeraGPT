@@ -78,15 +78,11 @@ export default function AuthPage() {
         console.log('Login successful');
         setMessage('✅ Giriş başarılı, yönlendiriliyorsunuz...');
 
-        // Force a hard redirect using window.location to ensure it works
+        // Use the same approach as the working simple login
         setTimeout(() => {
-          console.log('Redirecting to dashboard...');
-          if (typeof window !== 'undefined') {
-            window.location.href = '/dashboard';
-          } else {
-            router.push('/dashboard');
-          }
-        }, 800);
+          console.log('HARD REDIRECT TO DASHBOARD');
+          window.location.replace('/dashboard');
+        }, 1000);
       }
     } catch (error) {
       setMessage('❌ Giriş yapılamadı. Lütfen tekrar deneyin.');
