@@ -121,17 +121,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
             <div className="flex items-center space-x-3">
               <div className="w-10 h-10 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center">
                 <span className="text-white font-semibold text-lg">
-                  {user?.email?.charAt(0).toUpperCase() ||
-                   (() => {
-                     const backupUser = localStorage.getItem('seragpt_user');
-                     if (backupUser) {
-                       try {
-                         const parsed = JSON.parse(backupUser);
-                         return parsed.email?.charAt(0).toUpperCase() || 'K';
-                       } catch (e) {}
-                     }
-                     return 'K';
-                   })()}
+                  {user?.email?.charAt(0).toUpperCase() || 'K'}
                 </span>
               </div>
               <div className="flex-1 min-w-0">
