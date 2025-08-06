@@ -463,7 +463,7 @@ export default function UserjotCloneSection() {
                     <div>
                       <p className="text-gray-800 text-xs font-semibold mb-1">🎯 3 Önemli Fayda:</p>
                       <p className="text-gray-600 text-xs">• Sera yerleşim planı (2D çizim)</p>
-                      <p className="text-gray-600 text-xs">• Elektrik ve sulama hat planı</p>
+                      <p className="text-gray-600 text-xs">�� Elektrik ve sulama hat planı</p>
                       <p className="text-gray-600 text-xs">• Teknik kabin, depo gösterimi</p>
                     </div>
 
@@ -752,7 +752,7 @@ export default function UserjotCloneSection() {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="bg-gray-600 hover:bg-gray-700 text-white px-10 py-4 rounded-xl text-xl font-bold transition-colors shadow-lg hover:shadow-xl mt-12"
+                className="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded-lg text-base font-medium transition-colors shadow-md hover:shadow-lg mt-6"
               >
                 Anahtar Teslim Fiyat Alın
               </motion.button>
