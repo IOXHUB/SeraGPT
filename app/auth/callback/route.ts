@@ -7,7 +7,13 @@ export async function GET(request: NextRequest) {
   const code = searchParams.get('code')
   const next = searchParams.get('next') ?? '/dashboard'
 
-  console.log('Auth callback received:', { code: !!code, origin, next })
+  console.log('Auth callback received:', {
+    code: !!code,
+    origin,
+    next,
+    fullUrl: request.url,
+    searchParams: Object.fromEntries(searchParams.entries())
+  })
 
   if (code) {
     const cookieStore = cookies()
@@ -21,9 +27,9 @@ export async function GET(request: NextRequest) {
           },
           setAll(cookiesToSet) {
             try {
-              cookiesToSet.forEach(({ name, value, options }) =>
+              cookiesToSet.forEach(({ name, value, options }) => {
                 cookieStore.set(name, value, options)
-              )
+              })
             } catch (error) {
               console.error('Cookie setting error:', error)
             }
@@ -34,15 +40,28 @@ export async function GET(request: NextRequest) {
 
     try {
       const { data, error } = await supabase.auth.exchangeCodeForSession(code)
-      console.log('Code exchange result:', { success: !error, error: error?.message, user: !!data?.user })
+      console.log('Code exchange result:', {
+        success: !error,
+        error: error?.message,
+        user: !!data?.user,
+        session: !!data?.session
+      })
 
-      if (!error && data?.user) {
+      if (!error && data?.session) {
         console.log('Auth successful, redirecting to:', next)
-        const response = NextResponse.redirect(`${origin}${next}`)
+        // Create response with proper redirect
+        const redirectUrl = `${origin}${next}`
+        console.log('Redirecting to:', redirectUrl)
+        const response = NextResponse.redirect(redirectUrl)
+
+        // Ensure cookies are properly set for the redirect
+        const allCookies = cookieStore.getAll()
+        console.log('Current cookies:', allCookies.length)
+
         return response
       } else {
         console.error('Auth code exchange failed:', error?.message)
-        return NextResponse.redirect(`${origin}/auth/login?error=auth_code_error&message=${encodeURIComponent(error?.message || 'Unknown error')}`)
+        return NextResponse.redirect(`${origin}/auth/login?error=auth_code_error&message=${encodeURIComponent(error?.message || 'Code exchange failed')}`)
       }
     } catch (exchangeError) {
       console.error('Auth exchange exception:', exchangeError)
@@ -50,7 +69,6 @@ export async function GET(request: NextRequest) {
     }
   }
 
-  console.log('No auth code provided')
-  // return the user to login if no code
+  console.log('No auth code provided, redirecting to login')
   return NextResponse.redirect(`${origin}/auth/login?error=missing_code`)
 }
