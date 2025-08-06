@@ -24,6 +24,29 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
     }
   }, [user, loading, router]);
 
+  // Show loading screen while checking authentication
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
+          <p className="mt-4 text-gray-600">Yükleniyor...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Show message if no user found (before redirect)
+  if (!user) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-center">
+          <p className="text-gray-600">Giriş kontrol ediliyor...</p>
+        </div>
+      </div>
+    );
+  }
+
   const handleSignOut = async () => {
     try {
       await signOut();
