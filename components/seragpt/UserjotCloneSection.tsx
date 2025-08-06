@@ -727,13 +727,7 @@ export default function UserjotCloneSection() {
       {/* FAQ Section */}
       <div className="bg-white py-20 text-gray-600">
         <div className="text-section-container">
-          <div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
+          <div className="text-center mb-16">
             <h2 className="text-xl font-bold text-gray-900 mb-4">
               Sıkça Sorulan Sorular (SSS)
             </h2>
