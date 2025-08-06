@@ -292,6 +292,12 @@ export default function DestekPage() {
 
       {/* Footer */}
       <Footer />
+
+      {/* Support Ticket Modal */}
+      <SupportTicketModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+      />
     </div>
   );
 }
