@@ -17,7 +17,14 @@ export function useAuth() {
     const getUser = async () => {
       try {
         // Only attempt to get user if there's a session
-        const { data: { session } } = await supabase.auth.getSession();
+        const { data: { session }, error } = await supabase.auth.getSession();
+        console.log('useAuth session check:', {
+          hasSession: !!session,
+          hasUser: !!session?.user,
+          error: error?.message,
+          userEmail: session?.user?.email
+        });
+
         if (session?.user) {
           setUser(session.user);
         } else {
@@ -35,6 +42,12 @@ export function useAuth() {
     getUser();
 
     const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+      console.log('Auth state change:', {
+        event,
+        hasSession: !!session,
+        hasUser: !!session?.user,
+        userEmail: session?.user?.email
+      });
       setUser(session?.user ?? null);
       setLoading(false);
     });
