@@ -13,24 +13,10 @@ export { default as Card } from './Card';
 
 // Form components
 export { default as Button } from './Button';
-export { default as Input } from './Input';
-export { default as Select } from './Select';
 
 // Typography components
 export { default as Heading } from './Heading';
 export { default as Text } from './Text';
-
-// Navigation components
-export { default as Navigation } from './Navigation';
-export { default as Breadcrumb } from './Breadcrumb';
-
-// Feedback components
-export { default as Alert } from './Alert';
-export { default as Badge } from './Badge';
-
-// Data display components
-export { default as Table } from './Table';
-export { default as List } from './List';
 
 // Types
 export type { ButtonProps } from './Button';
