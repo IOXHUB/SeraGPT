@@ -201,12 +201,7 @@ export default function UserjotCloneSection() {
       {/* Main content - Full viewport hero */}
       <main className="min-h-screen flex items-center justify-center px-4 sm:px-6 -mt-16">
         <div className="text-section-container text-center">
-          <div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="space-y-5"
-          >
+          <div className="space-y-5">
             {/* Small text above headline */}
             <p className="text-gray-500 text-sm font-medium uppercase tracking-wider">
               +20 YIL, +500 PROJE, +110 VERİ SETİ
@@ -511,7 +506,7 @@ export default function UserjotCloneSection() {
                     <div>
                       <p className="text-gray-800 text-xs font-semibold mb-1">🔗 Veri Kaynakları:</p>
                       <p className="text-gray-600 text-xs">• Planner 2D, CAD AI Tools</p>
-                      <p className="text-gray-600 text-xs">• HerbaTools yerleşim kütüphanesi</p>
+                      <p className="text-gray-600 text-xs">• HerbaTools yerleşim k��tüphanesi</p>
                     </div>
 
                     <div>
