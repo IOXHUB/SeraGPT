@@ -6,7 +6,7 @@ import { useAuth } from '../lib/hooks/useAuth';
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const { user, loading } = useAuth();
+  const { user, loading, signOut, isAdmin } = useAuth();
 
   return (
     <header className="w-full bg-gray-50">
