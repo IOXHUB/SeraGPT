@@ -72,11 +72,12 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
     { name: 'Raporlarım', href: '/dashboard/reports', active: false },
   ];
 
-  const bottomMenuItems = [
-    { name: 'Jeton Satın Al', href: '/dashboard/tokens', active: false },
-    { name: 'Danışmanlık', href: '/dashboard/consulting', active: false },
-    { name: 'Ayarlar', href: '/dashboard/settings', active: false },
-    { name: 'Yardım', href: '/dashboard/help', active: false },
+  const secondaryMenuItems = [
+    { name: 'Jeton Satın Al', href: '/dashboard/tokens', active: false, icon: '🪙' },
+    { name: 'Danışmanlık', href: '/danismanlik', active: false, icon: '🎯' },
+    { name: 'Anahtar Teslim Sera', href: '/anahtar-teslim-proje', active: false, icon: '🏗️' },
+    { name: 'Ayarlar', href: '/dashboard/settings', active: false, icon: '⚙️' },
+    { name: 'Yardım', href: '/dashboard/help', active: false, icon: '❓' },
   ];
 
   const adminMenuItems = [
@@ -188,20 +189,42 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
           </div>
 
           {/* Navigation */}
-          <nav className="flex-1 px-6 py-6 space-y-2">
-            {menuItems.map((item) => (
-              <a
-                key={item.name}
-                href={item.href}
-                className={`flex items-center px-4 py-3 rounded-lg text-sm font-medium transition-colors ${
-                  item.active
-                    ? 'bg-gray-600 text-white'
-                    : 'text-gray-700 hover:bg-gray-50 hover:text-gray-900'
-                }`}
-              >
-                <span>{item.name}</span>
-              </a>
-            ))}
+          <nav className="flex-1 px-6 py-6 space-y-6">
+            {/* Primary Menu */}
+            <div className="space-y-2">
+              {menuItems.map((item) => (
+                <a
+                  key={item.name}
+                  href={item.href}
+                  className={`flex items-center px-4 py-3 rounded-lg text-sm font-medium transition-colors ${
+                    item.active
+                      ? 'bg-gray-600 text-white'
+                      : 'text-gray-700 hover:bg-gray-50 hover:text-gray-900'
+                  }`}
+                >
+                  <span>{item.name}</span>
+                </a>
+              ))}
+            </div>
+
+            {/* Secondary Menu */}
+            <div className="border-t border-gray-200 pt-4">
+              <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3 px-4">
+                Hızlı Erişim
+              </p>
+              <div className="space-y-1">
+                {secondaryMenuItems.map((item) => (
+                  <a
+                    key={item.name}
+                    href={item.href}
+                    className="flex items-center px-4 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 hover:text-gray-900 transition-colors"
+                  >
+                    <span className="text-base mr-3">{item.icon}</span>
+                    <span>{item.name}</span>
+                  </a>
+                ))}
+              </div>
+            </div>
           </nav>
 
           {/* Admin Menu (if admin) */}
@@ -225,20 +248,12 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
           )}
 
           {/* Bottom Menu */}
-          <div className="px-6 py-6 border-t border-gray-200 space-y-2">
-            {bottomMenuItems.map((item) => (
-              <a
-                key={item.name}
-                href={item.href}
-                className="flex items-center px-4 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 hover:text-gray-900 transition-colors"
-              >
-                <span>{item.name}</span>
-              </a>
-            ))}
+          <div className="px-6 py-6 border-t border-gray-200">
             <button
               onClick={handleSignOut}
-              className="w-full flex items-center px-4 py-2 rounded-lg text-sm font-medium text-red-600 hover:bg-red-50 transition-colors"
+              className="w-full flex items-center px-4 py-3 rounded-lg text-sm font-medium text-red-600 hover:bg-red-50 transition-colors"
             >
+              <span className="text-base mr-3">🚪</span>
               <span>Çıkış Yap</span>
             </button>
           </div>
