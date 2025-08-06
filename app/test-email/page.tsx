@@ -141,12 +141,32 @@ export default function EmailTestPage() {
             </div>
           )}
 
-          <div className="mt-8 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
-            <h3 className="font-semibold text-yellow-800 mb-2">📋 Debug Info:</h3>
-            <div className="text-sm text-yellow-700 space-y-1">
-              <div>API Key: {process.env.NEXT_PUBLIC_RESEND_API_KEY ? '❌ Public (Dangerous!)' : '✅ Server-side'}</div>
-              <div>Environment: {process.env.NODE_ENV}</div>
-              <div>Domain: {typeof window !== 'undefined' ? window.location.hostname : 'SSR'}</div>
+          <div className="mt-8 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+            <h3 className="font-semibold text-blue-800 mb-2">📊 Email System Status:</h3>
+            <div className="text-sm text-blue-700 space-y-2">
+              <div className="flex justify-between">
+                <span>Resend API:</span>
+                <span className="font-medium text-green-600">✅ Aktif</span>
+              </div>
+              <div className="flex justify-between">
+                <span>Current Domain:</span>
+                <span className="font-medium text-orange-600">🔄 onboarding@resend.dev (geçici)</span>
+              </div>
+              <div className="flex justify-between">
+                <span>Target Domain:</span>
+                <span className="font-medium text-red-600">❌ noreply@seragpt.com (doğrulanmamış)</span>
+              </div>
+              <div className="flex justify-between">
+                <span>Email Templates:</span>
+                <span className="font-medium text-green-600">✅ Hazır</span>
+              </div>
+            </div>
+
+            <div className="mt-4 p-3 bg-white border border-blue-300 rounded">
+              <p className="text-sm text-blue-800 font-medium">🎯 Sonraki Adım:</p>
+              <p className="text-xs text-blue-600 mt-1">
+                seragpt.com domain'ini Resend'de doğrula → DOMAIN_SETUP.md dosyasını oku
+              </p>
             </div>
 
             <div className="flex space-x-2 mt-3">
