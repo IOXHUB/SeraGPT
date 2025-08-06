@@ -13,23 +13,16 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const router = useRouter();
 
-  useEffect(() => {
-    if (!loading && !user) {
-      console.log('DashboardLayout: No user found after loading complete');
-
-      // Check localStorage backup before redirecting
-      const storedUser = localStorage.getItem('seragpt_user');
-      if (storedUser) {
-        console.log('Found user in localStorage, allowing access');
-        return; // Don't redirect if we have localStorage backup
-      }
-
-      setTimeout(() => {
-        console.log('DashboardLayout: No user in any location, redirecting to login');
-        window.location.href = '/auth/login';
-      }, 1000);
-    }
-  }, [user, loading, router]);
+  // AUTHENTICATION DISABLED - Always allow access to dashboard
+  // useEffect(() => {
+  //   if (!loading && !user) {
+  //     console.log('DashboardLayout: No user found after loading complete');
+  //     setTimeout(() => {
+  //       console.log('DashboardLayout: No user in any location, redirecting to login');
+  //       window.location.href = '/auth/login';
+  //     }, 1000);
+  //   }
+  // }, [user, loading, router]);
 
   const handleSignOut = async () => {
     try {
