@@ -57,9 +57,20 @@ export async function POST(request: NextRequest) {
         });
         break;
 
+      case 'test':
+        // Debug test case
+        console.log('🔧 Debug test email requested');
+        return NextResponse.json({
+          success: true,
+          message: 'Debug test completed',
+          apiKey: process.env.RESEND_API_KEY ? 'Present' : 'Missing',
+          environment: process.env.NODE_ENV
+        });
+
       default:
+        console.error('❌ Invalid email type:', type);
         return NextResponse.json(
-          { error: 'Invalid email type' },
+          { error: `Invalid email type: ${type}` },
           { status: 400 }
         );
     }
