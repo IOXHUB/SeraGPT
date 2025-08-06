@@ -78,11 +78,15 @@ export default function AuthPage() {
         console.log('Login successful');
         setMessage('✅ Giriş başarılı, yönlendiriliyorsunuz...');
 
-        // Simple redirect - let the middleware and auth hook handle session validation
+        // Force a hard redirect using window.location to ensure it works
         setTimeout(() => {
           console.log('Redirecting to dashboard...');
-          router.push('/dashboard');
-        }, 1000);
+          if (typeof window !== 'undefined') {
+            window.location.href = '/dashboard';
+          } else {
+            router.push('/dashboard');
+          }
+        }, 800);
       }
     } catch (error) {
       setMessage('❌ Giriş yapılamadı. Lütfen tekrar deneyin.');
