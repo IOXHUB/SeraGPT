@@ -188,7 +188,7 @@ export default function UserjotCloneSection() {
             {/* CTA Button */}
             <div className="mt-5">
               <motion.a
-                href="/dashboard"
+                href="/auth/login"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="bg-gray-600 hover:bg-gray-800 text-white px-8 py-4 rounded-xl text-lg font-semibold transition-colors inline-flex items-center space-x-3"
@@ -293,7 +293,7 @@ export default function UserjotCloneSection() {
 
                     <div>
                       <p className="text-gray-800 text-xs font-semibold mb-1">🔗 Veri Kaynakları:</p>
-                      <p className="text-gray-600 text-xs">• OpenWeather, FAO & T��İK</p>
+                      <p className="text-gray-600 text-xs">• OpenWeather, FAO & TÜİK</p>
                       <p className="text-gray-600 text-xs">• Seraburada / e-Tarım API</p>
                     </div>
 
