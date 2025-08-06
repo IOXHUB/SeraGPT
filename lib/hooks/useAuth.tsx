@@ -49,7 +49,8 @@ export function useAuth() {
   };
 
   const isAdmin = () => {
-    return user?.user_metadata?.role === 'admin' || user?.email === 'admin@seragpt.com';
+    const adminEmails = ['admin@seragpt.com', 'info@isitmax.com'];
+    return user?.user_metadata?.role === 'admin' || adminEmails.includes(user?.email || '');
   };
 
   return { user, loading, signOut, isAdmin, supabase };
