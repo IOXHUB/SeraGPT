@@ -67,7 +67,10 @@ export default function ProductionErrorHandler() {
             url.includes('hot-update') ||
             url.includes('fullstory.com') ||
             url.includes('analytics') ||
-            url.includes('fly.dev/?reload=')) {
+            url.includes('fly.dev') ||
+            url.includes('?reload=') ||
+            url.includes('__nextjs_original-stack-frame') ||
+            url.includes('__webpack_hmr')) {
 
           console.warn('Blocked problematic fetch:', url);
           return Promise.resolve(new Response('{}', {
@@ -77,7 +80,19 @@ export default function ProductionErrorHandler() {
         }
 
         return originalFetch(input, init).catch(error => {
-          console.warn('Fetch failed, returning mock response:', url, error.message);
+          // Don't log every error, just the important ones
+          if (!url.includes('_next') && !url.includes('webpack') && !url.includes('hot-update')) {
+            console.warn('Fetch failed:', url, error.message);
+          }
+
+          // Return appropriate mock response based on request
+          if (url.includes('/api/') || url.includes('.json')) {
+            return new Response('{"success": false, "error": "Network unavailable"}', {
+              status: 503,
+              headers: { 'Content-Type': 'application/json' }
+            });
+          }
+
           return new Response('{}', {
             status: 200,
             headers: { 'Content-Type': 'application/json' }
