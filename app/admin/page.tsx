@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import DashboardLayout from '@/components/dashboard/DashboardLayout';
+import AdminErrorBoundary from '@/components/AdminErrorBoundary';
 
 export default function AdminDashboard() {
   const [timeRange, setTimeRange] = useState('7days');
