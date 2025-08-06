@@ -1,16 +1,21 @@
+import { updateSession } from '@/lib/auth'
 import { NextRequest } from 'next/server'
 
 export async function middleware(request: NextRequest) {
-  // Temporarily disable middleware to debug auth issues
-  // All auth will be handled client-side
-  console.log('Middleware disabled for debugging. Path:', request.nextUrl.pathname);
+  // Simple middleware - only for protected routes
+  if (request.nextUrl.pathname.startsWith('/dashboard') ||
+      request.nextUrl.pathname.startsWith('/admin')) {
+
+    console.log('Middleware checking auth for:', request.nextUrl.pathname);
+    return await updateSession(request)
+  }
+
   return
 }
 
 export const config = {
   matcher: [
-    // Temporarily disable all middleware matching
-    // '/dashboard/:path*',
-    // '/admin/:path*',
+    '/dashboard/:path*',
+    '/admin/:path*',
   ],
 }
