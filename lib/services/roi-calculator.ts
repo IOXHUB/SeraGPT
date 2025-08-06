@@ -21,6 +21,54 @@ export interface ROIInputs {
   projectDuration: number; // years
 }
 
+export interface GreenhouseSpecs {
+  size: number;
+  type: string;
+  location: string;
+  automationLevel: 'basic' | 'intermediate' | 'advanced';
+}
+
+export interface CropSpecs {
+  type: string;
+  yield: number;
+  price: number;
+  seasons: number;
+}
+
+export interface OperationalCosts {
+  monthly: number;
+  heating: number;
+  seeds: number;
+  fertilizer: number;
+  labor: number;
+  utilities: number;
+  annual: number;
+}
+
+export interface ROICalculation {
+  initialInvestment: {
+    construction: number;
+    equipment: number;
+    automation: number;
+    infrastructure: number;
+    permits: number;
+    total: number;
+  };
+  revenue: {
+    grossRevenue: number;
+    netRevenue: number;
+  };
+  operationalCosts: OperationalCosts;
+  analysis: {
+    roi: number;
+    paybackPeriod: number;
+    npv: number;
+    irr: number;
+  };
+  recommendations: any[];
+  risks: any[];
+}
+
 export interface ROIResults {
   roi: number; // percentage
   paybackPeriod: number; // years
@@ -109,7 +157,97 @@ class ROICalculatorService {
     istanbul: { climateFactor: 0.95, energyCost: 1.1, laborCost: 1.15 }
   };
 
-  calculateROI(inputs: ROIInputs): ROIResults {
+  calculateROI(inputs: ROIInputs): ApiResponse<ROICalculation> {
+    try {
+      const calculation = this.performCalculation(inputs);
+      return {
+        success: true,
+        data: calculation
+      };
+    } catch (error) {
+      return {
+        success: false,
+        error: error instanceof Error ? error.message : 'ROI calculation failed'
+      };
+    }
+  }
+
+  private performCalculation(inputs: ROIInputs): ROICalculation {
+    // Calculate detailed ROI analysis
+    const initialInvestment = {
+      construction: inputs.initialInvestment * 0.4,
+      equipment: inputs.initialInvestment * 0.3,
+      automation: inputs.initialInvestment * 0.15,
+      infrastructure: inputs.initialInvestment * 0.1,
+      permits: inputs.initialInvestment * 0.05,
+      total: inputs.initialInvestment
+    };
+
+    const annualRevenue = inputs.expectedYield.annual * inputs.expectedYield.pricePerKg;
+    const annualCosts = inputs.operationalCosts.monthly * 12;
+    const netAnnualRevenue = annualRevenue - annualCosts;
+
+    const roi = ((netAnnualRevenue * inputs.projectDuration - inputs.initialInvestment) / inputs.initialInvestment) * 100;
+    const paybackPeriod = inputs.initialInvestment / netAnnualRevenue;
+
+    // Simplified NPV calculation
+    const discountRate = 0.1; // 10%
+    let npv = -inputs.initialInvestment;
+    for (let year = 1; year <= inputs.projectDuration; year++) {
+      npv += netAnnualRevenue / Math.pow(1 + discountRate, year);
+    }
+
+    // Simplified IRR calculation
+    const irr = ((netAnnualRevenue / inputs.initialInvestment) - 1) * 100;
+
+    return {
+      initialInvestment,
+      revenue: {
+        grossRevenue: annualRevenue,
+        netRevenue: netAnnualRevenue
+      },
+      operationalCosts: {
+        ...inputs.operationalCosts,
+        annual: annualCosts
+      },
+      analysis: {
+        roi: Math.round(roi * 100) / 100,
+        paybackPeriod: Math.round(paybackPeriod * 100) / 100,
+        npv: Math.round(npv),
+        irr: Math.round(irr * 100) / 100
+      },
+      recommendations: [
+        {
+          category: 'Maliyet Optimizasyonu',
+          suggestion: 'Enerji verimliliği için LED aydınlatma kullanın',
+          potentialSaving: 15000,
+          priority: 'high'
+        },
+        {
+          category: 'Verim Artışı',
+          suggestion: 'Hidroponik sisteme geçiş düşünün',
+          potentialSaving: 25000,
+          priority: 'medium'
+        }
+      ],
+      risks: [
+        {
+          factor: 'Pazar Fiyat Dalgalanması',
+          impact: 'high',
+          probability: 0.3,
+          mitigation: 'Sözleşmeli satış anlaşmaları yapın'
+        },
+        {
+          factor: 'İklim Değişikliği',
+          impact: 'medium',
+          probability: 0.2,
+          mitigation: 'Gelişmi�� iklim kontrol sistemleri kurun'
+        }
+      ]
+    };
+  }
+
+  calculateROILegacy(inputs: ROIInputs): ROIResults {
     // Get plant and location data
     const plantInfo = this.plantData[inputs.plantType as keyof typeof this.plantData];
     const locationInfo = this.locationFactors[inputs.location as keyof typeof this.locationFactors];
