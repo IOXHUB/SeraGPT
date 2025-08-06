@@ -151,7 +151,7 @@ export default function DashboardPage() {
 
   return (
     <DashboardLayout>
-      <div className="min-h-screen bg-gray-900 text-gray-300">
+      <div className="min-h-screen bg-white text-gray-600">
         <div className="space-y-8">
           {/* Page Header */}
           <motion.div
