@@ -445,10 +445,37 @@ export default function AuthPage() {
         {/* Debug Info - Remove in production */}
         {process.env.NODE_ENV === 'development' && (
           <div className="mt-8 p-4 bg-gray-100 rounded-lg text-xs">
-            <h3 className="font-semibold mb-2">Debug Info:</h3>
+            <h3 className="font-semibold mb-2">🔧 Debug Info:</h3>
             <p>Environment: {process.env.NODE_ENV}</p>
-            <p>Supabase URL: {process.env.NEXT_PUBLIC_SUPABASE_URL ? 'Set' : 'Missing'}</p>
+            <p>Supabase URL: {process.env.NEXT_PUBLIC_SUPABASE_URL ? '✅ Set' : '❌ Missing'}</p>
+            <p>Supabase Key: {process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ? '✅ Set' : '❌ Missing'}</p>
             <p>Current URL: {typeof window !== 'undefined' ? window.location.href : 'SSR'}</p>
+
+            <div className="mt-3 space-y-2">
+              <a
+                href="/auth/debug-login"
+                className="inline-block bg-purple-600 text-white px-3 py-1 rounded text-xs hover:bg-purple-700"
+              >
+                🔧 Debug Login Page
+              </a>
+              <button
+                onClick={async () => {
+                  try {
+                    setMessage('🔍 Testing connection...');
+                    const response = await fetch('/api/test-supabase');
+                    const data = await response.json();
+                    setMessage(`Connection Test: ${data.success ? '✅ Success' : '❌ Failed'} - Check console for details`);
+                    console.log('Supabase Connection Test:', data);
+                  } catch (err: any) {
+                    setMessage(`❌ Connection Test Failed: ${err.message}`);
+                    console.error('Connection test error:', err);
+                  }
+                }}
+                className="ml-2 bg-green-600 text-white px-3 py-1 rounded text-xs hover:bg-green-700"
+              >
+                🔗 Test Connection
+              </button>
+            </div>
           </div>
         )}
       </motion.div>
