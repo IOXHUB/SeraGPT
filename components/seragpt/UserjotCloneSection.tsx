@@ -141,7 +141,7 @@ export default function UserjotCloneSection() {
                           Giriş Yap
                         </a>
                         <a
-                          href="/dashboard"
+                          href="/dashboard/direct"
                           className="block bg-black hover:bg-gray-800 text-white px-4 py-3 rounded-xl font-medium transition-colors text-center"
                           onClick={() => setIsMobileMenuOpen(false)}
                         >
