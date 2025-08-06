@@ -334,28 +334,40 @@ export default function DashboardPage() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.6 }}
-            className="bg-white rounded-2xl shadow-sm border border-gray-200"
+            className="relative group"
           >
-            <div className="p-6 border-b border-gray-200">
-              <h3 className="text-lg font-semibold text-gray-900">Jeton Yönetimi</h3>
-            </div>
-            <div className="p-6">
-              <div className="grid md:grid-cols-3 gap-6">
-                <div className="text-center">
-                  <h4 className="font-semibold text-gray-900 mb-1">Mevcut Jetonlar</h4>
-                  <p className="text-2xl font-bold text-gray-900 mb-2">{userTokens}</p>
-                  <p className="text-sm text-gray-600">Kullanılabilir jeton</p>
-                </div>
-                <div className="text-center">
-                  <h4 className="font-semibold text-gray-900 mb-1">Ücretsiz Hak</h4>
-                  <p className="text-2xl font-bold text-green-600 mb-2">5</p>
-                  <p className="text-sm text-gray-600">Başlangıç jetonu</p>
-                </div>
-                <div className="text-center">
-                  <h4 className="font-semibold text-gray-900 mb-3">Jeton Satın Al</h4>
-                  <button className="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
-                    Paketleri Gör
-                  </button>
+            <div className="absolute -inset-0.5 bg-gradient-to-r from-amber-400 via-orange-500 to-red-500 rounded-2xl opacity-60 group-hover:opacity-100 transition duration-300"></div>
+            <div className="relative bg-white rounded-2xl border-0">
+              <div className="p-6 border-b border-gray-100">
+                <h3 className="text-lg font-semibold text-gray-900">Jeton Yönetimi</h3>
+              </div>
+              <div className="p-6">
+                <div className="grid md:grid-cols-3 gap-6">
+                  <div className="text-center">
+                    <div className="w-16 h-16 mx-auto mb-3 rounded-2xl bg-gradient-to-br from-blue-50 to-blue-100 flex items-center justify-center">
+                      <span className="text-2xl">🪙</span>
+                    </div>
+                    <h4 className="font-semibold text-gray-900 mb-1">Mevcut Jetonlar</h4>
+                    <p className="text-2xl font-bold text-gray-900 mb-2">{userTokens}</p>
+                    <p className="text-sm text-gray-600">Kullanılabilir jeton</p>
+                  </div>
+                  <div className="text-center">
+                    <div className="w-16 h-16 mx-auto mb-3 rounded-2xl bg-gradient-to-br from-green-50 to-green-100 flex items-center justify-center">
+                      <span className="text-2xl">🎁</span>
+                    </div>
+                    <h4 className="font-semibold text-gray-900 mb-1">Ücretsiz Hak</h4>
+                    <p className="text-2xl font-bold text-green-600 mb-2">5</p>
+                    <p className="text-sm text-gray-600">Başlangıç jetonu</p>
+                  </div>
+                  <div className="text-center">
+                    <div className="w-16 h-16 mx-auto mb-3 rounded-2xl bg-gradient-to-br from-purple-50 to-purple-100 flex items-center justify-center">
+                      <span className="text-2xl">💎</span>
+                    </div>
+                    <h4 className="font-semibold text-gray-900 mb-3">Jeton Satın Al</h4>
+                    <button className="bg-gradient-to-r from-gray-900 to-gray-800 hover:from-gray-800 hover:to-gray-700 text-white px-6 py-3 rounded-xl text-sm font-medium transition-all duration-300 hover:scale-105">
+                      Paketleri Gör
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
