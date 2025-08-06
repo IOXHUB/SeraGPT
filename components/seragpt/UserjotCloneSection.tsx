@@ -86,13 +86,7 @@ export default function UserjotCloneSection() {
 
         {/* Modern Mobile Menu */}
         {isMobileMenuOpen && (
-          <div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.3 }}
-            className="md:hidden absolute top-full left-0 right-0 bg-white border-t border-gray-100 shadow-xl z-50"
-          >
+          <div className="md:hidden absolute top-full left-0 right-0 bg-white border-t border-gray-100 shadow-xl z-50">
             <div className="max-w-md mx-auto p-6 space-y-6">
               {/* Header */}
               <div className="text-center border-b border-gray-100 pb-4">
