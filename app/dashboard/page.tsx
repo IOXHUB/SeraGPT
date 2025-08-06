@@ -160,10 +160,10 @@ export default function DashboardPage() {
             transition={{ duration: 0.6 }}
             className="text-center"
           >
-            <h1 className="text-4xl font-light text-gray-900 mb-4">
+            <h1 className="text-4xl font-extralight text-white mb-4">
               SeraGPT Kontrol Paneli
             </h1>
-            <p className="text-lg font-light text-gray-600 max-w-2xl mx-auto">
+            <p className="text-lg font-light text-gray-400 max-w-2xl mx-auto">
               20 y��llık mühendislik deneyimi ve 110+ veri setiyle desteklenen yapay zeka analizleri ile 
               yatırım kararlarınızı bilimsel verilerle destekleyin.
             </p>
