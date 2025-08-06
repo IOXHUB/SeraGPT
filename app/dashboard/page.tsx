@@ -216,12 +216,14 @@ export default function DashboardPage() {
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className="relative group"
+                  className="relative group h-full"
                 >
-                  <div className="absolute -inset-0.5 bg-gradient-to-r from-cyan-500 via-purple-500 to-pink-500 rounded-2xl blur opacity-20 group-hover:opacity-40 transition duration-300"></div>
-                  <div className="relative bg-white rounded-2xl p-6 border border-gray-200 hover:shadow-xl transition-all duration-300 h-full flex flex-col">
+                  <div className="absolute -inset-0.5 bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 rounded-2xl opacity-70 group-hover:opacity-100 transition duration-300"></div>
+                  <div className="relative bg-white rounded-2xl p-6 border-0 h-full flex flex-col">
                     <div className="text-center mb-4">
-                      <div className="text-3xl mb-3">{tool.icon}</div>
+                      <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center">
+                        <span className="text-2xl">{tool.icon}</span>
+                      </div>
                       <h3 className="text-lg font-bold text-gray-900 mb-2 leading-tight">{tool.title}</h3>
                       <p className="text-gray-600 text-sm">{tool.description}</p>
                     </div>
@@ -229,9 +231,9 @@ export default function DashboardPage() {
                     <div className="mt-auto">
                       <a
                         href={tool.href}
-                        className={`w-full inline-flex items-center justify-center px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-300 ${
+                        className={`w-full inline-flex items-center justify-center px-4 py-3 rounded-xl text-sm font-semibold transition-all duration-300 ${
                           userTokens >= tool.tokensRequired
-                            ? 'bg-gradient-to-r from-gray-600 to-gray-700 hover:from-gray-700 hover:to-gray-800 text-white shadow-lg hover:shadow-xl'
+                            ? 'bg-gradient-to-r from-gray-900 to-gray-800 hover:from-gray-800 hover:to-gray-700 text-white'
                             : 'bg-gray-100 text-gray-400 cursor-not-allowed'
                         }`}
                       >
