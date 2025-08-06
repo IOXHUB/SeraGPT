@@ -78,39 +78,11 @@ export default function AuthPage() {
         console.log('Login successful');
         setMessage('✅ Giriş başarılı, yönlendiriliyorsunuz...');
 
-        // Check if we have a valid session with retries
-        let sessionAttempts = 0;
-        const checkSession = async (): Promise<boolean> => {
-          const { data: { session }, error } = await supabase.auth.getSession();
-          console.log(`Session check attempt ${sessionAttempts + 1}:`, {
-            hasSession: !!session,
-            hasUser: !!session?.user,
-            error: error?.message,
-            userEmail: session?.user?.email
-          });
-
-          sessionAttempts++;
-          if (session?.user) {
-            return true;
-          } else if (sessionAttempts < 3) {
-            // Wait a bit and try again
-            await new Promise(resolve => setTimeout(resolve, 500));
-            return checkSession();
-          }
-          return false;
-        };
-
-        const hasValidSession = await checkSession();
-        if (hasValidSession) {
-          console.log('Session confirmed, redirecting to dashboard');
-          setTimeout(() => {
-            router.push('/dashboard');
-          }, 500);
-        } else {
-          console.error('No valid session after login');
-          setMessage('❌ Oturum oluşturulamadı. Lütfen tekrar deneyin.');
-          setLoading(false);
-        }
+        // Simple redirect - let the middleware and auth hook handle session validation
+        setTimeout(() => {
+          console.log('Redirecting to dashboard...');
+          router.push('/dashboard');
+        }, 1000);
       }
     } catch (error) {
       setMessage('❌ Giriş yapılamadı. Lütfen tekrar deneyin.');
