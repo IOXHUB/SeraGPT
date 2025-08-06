@@ -96,6 +96,8 @@ export default function AuthPage() {
     setLoading(true);
     setMessage('');
 
+    console.log('Starting signup process for:', email);
+
     if (!email || !password || !confirmPassword) {
       setMessage('❌ Tüm alanları doldurunuz');
       setLoading(false);
