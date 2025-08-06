@@ -349,11 +349,8 @@ export default function DashboardPage() {
                     <p className="text-sm font-light text-gray-600">Başlangıç jetonu</p>
                   </div>
                   <div className="text-center">
-                    <div className="w-16 h-16 mx-auto mb-3 rounded-2xl bg-gradient-to-br from-purple-50 to-purple-100 flex items-center justify-center">
-                      <span className="text-2xl">💎</span>
-                    </div>
-                    <h4 className="font-semibold text-gray-900 mb-3">Jeton Satın Al</h4>
-                    <button className="bg-gradient-to-r from-gray-900 to-gray-800 hover:from-gray-800 hover:to-gray-700 text-white px-6 py-3 rounded-xl text-sm font-medium transition-all duration-300 hover:scale-105">
+                    <h4 className="font-normal text-gray-900 mb-3">Jeton Satın Al</h4>
+                    <button className="bg-gradient-to-r from-gray-900 to-gray-800 hover:from-gray-800 hover:to-gray-700 text-white px-6 py-3 rounded-xl text-sm font-normal transition-all duration-300 hover:scale-105">
                       Paketleri Gör
                     </button>
                   </div>
