@@ -295,7 +295,7 @@ export default function UserjotCloneSection() {
                   <div className="space-y-3 mb-4">
                     <div>
                       <p className="text-gray-800 text-xs font-semibold mb-1">🎯 3 Önemli Fayda:</p>
-                      <p className="text-gray-600 text-xs">��� Yatırımın geri dönüş süresi</p>
+                      <p className="text-gray-600 text-xs">• Yatırımın geri dönüş süresi</p>
                       <p className="text-gray-600 text-xs">• Kar marjı ve yıllık getiri tahmini</p>
                       <p className="text-gray-600 text-xs">• İşletme maliyetleri kıyaslaması</p>
                     </div>
@@ -385,7 +385,7 @@ export default function UserjotCloneSection() {
                     <div>
                       <p className="text-gray-800 text-xs font-semibold mb-1">🔗 Veri Kaynakları:</p>
                       <p className="text-gray-600 text-xs">• Internal equipment DB</p>
-                      <p className="text-gray-600 text-xs">• Mühendis doğrulama kütüphanesi</p>
+                      <p className="text-gray-600 text-xs">• Mühendis do��rulama kütüphanesi</p>
                     </div>
 
                     <div>
@@ -660,10 +660,6 @@ export default function UserjotCloneSection() {
 
               {/* Gallery Image 7 */}
               <div
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: 0.6 }}
-                viewport={{ once: true }}
                 className="flex-shrink-0 w-80 h-60 bg-gray-200 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
               >
                 <div className="w-full h-full bg-gradient-to-br from-rose-100 to-pink-100 flex items-center justify-center">
