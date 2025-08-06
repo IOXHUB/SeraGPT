@@ -867,3 +867,112 @@ p {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+/* Modern Layout Utilities */
+.layout-reset {
+  margin: 0;
+  padding: 0;
+  text-align: left;
+}
+
+.content-align {
+  text-align: left;
+  margin-left: 0;
+  padding-left: 0;
+}
+
+.no-indent {
+  text-indent: 0;
+  margin-left: 0;
+  padding-left: 0;
+}
+
+/* Modern spacing system */
+.space-y-modern > * + * {
+  margin-top: 16px;
+}
+
+.space-y-tight > * + * {
+  margin-top: 8px;
+}
+
+.space-y-loose > * + * {
+  margin-top: 24px;
+}
+
+/* Neon accent utilities */
+.neon-purple {
+  color: #8b5cf6;
+  font-weight: 600;
+}
+
+.neon-cyan {
+  color: #06b6d4;
+  font-weight: 600;
+}
+
+.neon-emerald {
+  color: #10b981;
+  font-weight: 600;
+}
+
+.neon-pink {
+  color: #ec4899;
+  font-weight: 600;
+}
+
+/* Modern card design */
+.modern-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  margin-bottom: 16px;
+}
+
+.modern-card h2,
+.modern-card h3 {
+  margin-top: 0;
+}
+
+/* User panel specific styles */
+.user-panel-section {
+  margin-bottom: 32px;
+}
+
+.user-panel-item {
+  display: flex;
+  align-items: flex-start;
+  padding: 12px 0;
+  border-bottom: 1px solid #f3f4f6;
+  text-align: left;
+}
+
+.user-panel-item:last-child {
+  border-bottom: none;
+}
+
+.user-panel-icon {
+  width: 24px;
+  height: 24px;
+  margin-right: 12px;
+  flex-shrink: 0;
+}
+
+.user-panel-content-wrapper {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Focus and attention utilities */
+.focus-text {
+  max-width: 576px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.focus-visual {
+  max-width: 850px;
+  margin: 0 auto;
+}
