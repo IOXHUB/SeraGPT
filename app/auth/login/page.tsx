@@ -51,16 +51,21 @@ export default function LoginPage() {
       });
 
       if (error) {
+        console.error('Login error:', error);
         if (error.message.includes('Invalid login credentials')) {
-          setMessage('E-posta veya şifre hatalı');
+          setMessage('❌ E-posta veya şifre hatalı');
         } else if (error.message.includes('Email not confirmed')) {
-          setMessage('E-posta adresinizi doğrulamanız gerekiyor');
+          setMessage('❌ E-posta adresinizi doğrulamanız gerekiyor. E-postanızı kontrol edin.');
         } else {
-          setMessage(error.message);
+          setMessage(`❌ Giriş hatası: ${error.message}`);
         }
       } else {
+        console.log('Login successful');
         setMessage('✅ Giriş başarılı, yönlendiriliyorsunuz...');
-        router.push('/dashboard');
+        // Add a small delay to allow auth state to update
+        setTimeout(() => {
+          router.push('/dashboard');
+        }, 1000);
       }
     } catch (error) {
       setMessage('Giriş yapılamadı. Lütfen tekrar deneyin.');
