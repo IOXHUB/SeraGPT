@@ -206,7 +206,7 @@ export default function UserjotCloneSection() {
       </main>
 
       {/* AI Chat Section - Single View */}
-      <div className="relative -mt-20 z-10">
+      <div className="relative -mt-32 z-10">
         <div className="max-w-[900px] mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -215,7 +215,7 @@ export default function UserjotCloneSection() {
             viewport={{ once: true }}
             className="relative"
           >
-            <div className="bg-gradient-to-br from-blue-50 to-indigo-100 rounded-2xl p-8 shadow-2xl shadow-blue-500/25 border border-blue-100">
+            <div className="bg-gradient-to-br from-blue-50 to-indigo-100 rounded-2xl p-8 shadow-lg border-2 border-purple-400 shadow-purple-400/20 hover:border-purple-500 hover:shadow-purple-500/30 transition-all duration-300">
               <div className="bg-white rounded-xl shadow-lg overflow-hidden">
                 {/* Placeholder Image for User Panel */}
                 <div className="w-full h-96 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
