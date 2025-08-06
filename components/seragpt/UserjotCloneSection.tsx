@@ -322,7 +322,7 @@ export default function UserjotCloneSection() {
                     </div>
 
                     <div>
-                      <p className="text-gray-800 text-xs font-semibold mb-1">👤 Kullanıcı Girdisi:</p>
+                      <p className="text-gray-800 text-xs font-semibold mb-1">�� Kullanıcı Girdisi:</p>
                       <p className="text-gray-600 text-xs">• Lokasyon, bitki türü, üretim hedefi</p>
                     </div>
 
@@ -423,10 +423,7 @@ export default function UserjotCloneSection() {
 
               {/* Card 4 - Pazar Verisi */}
               <div
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-                viewport={{ once: true }}
+
                 className="flex-shrink-0 w-80 bg-white rounded-2xl p-8 border border-gray-200 relative"
               >
                 <div className="absolute top-6 left-6 text-6xl font-bold text-gray-100">04</div>
@@ -646,10 +643,7 @@ export default function UserjotCloneSection() {
 
               {/* Gallery Image 4 */}
               <div
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-                viewport={{ once: true }}
+
                 className="flex-shrink-0 w-80 h-60 bg-gray-200 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
               >
                 <div className="w-full h-full bg-gradient-to-br from-yellow-100 to-orange-100 flex items-center justify-center">
