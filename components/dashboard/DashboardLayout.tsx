@@ -14,10 +14,13 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
   const router = useRouter();
 
   useEffect(() => {
+    // ONLY redirect if we're absolutely sure there's no user AND loading is done
     if (!loading && !user) {
-      console.log('No user found, redirecting to login');
-      // Use the same approach as working simple login
-      window.location.replace('/auth/login');
+      console.log('DashboardLayout: No user found after loading complete');
+      setTimeout(() => {
+        console.log('DashboardLayout: Redirecting to login');
+        window.location.href = '/auth/login';
+      }, 1000); // Give more time for auth to settle
     }
   }, [user, loading, router]);
 
