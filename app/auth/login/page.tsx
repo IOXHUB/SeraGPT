@@ -109,8 +109,18 @@ export default function AuthPage() {
           window.location.href = '/dashboard';
         }, 1000);
       }
-    } catch (error) {
-      setMessage('❌ Giriş yapılamadı. Lütfen tekrar deneyin.');
+    } catch (error: any) {
+      console.error('Login exception:', error);
+
+      if (error?.message) {
+        if (error.message.includes('Failed to fetch')) {
+          setMessage('❌ Ağ hatası: Sunucuya bağlanılamıyor. İnternet bağlantınızı kontrol edin veya biraz sonra tekrar deneyin.');
+        } else {
+          setMessage(`❌ Giriş hatası: ${error.message}`);
+        }
+      } else {
+        setMessage('❌ Bilinmeyen bir hata oluştu. Lütfen tekrar deneyin.');
+      }
     } finally {
       setLoading(false);
     }
