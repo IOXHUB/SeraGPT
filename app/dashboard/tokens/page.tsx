@@ -26,10 +26,10 @@ export default function TokensPage() {
       id: 'medium',
       name: '50 Jeton',
       tokens: 50,
-      price: 2500,
+      price: 2250,
       originalPrice: 2500,
       popular: true,
-      savings: 0
+      savings: 250
     },
     {
       id: 'large',
