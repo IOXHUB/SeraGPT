@@ -1,16 +1,8 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { supabase, isSupabaseConfigured } from '@/lib/supabase';
+import { useState } from 'react';
+import { useAuth } from '@/lib/hooks/useAuth';
 import { useRouter } from 'next/navigation';
-
-interface User {
-  email?: string;
-  user_metadata?: {
-    full_name?: string;
-    role?: string;
-  };
-}
 
 interface DashboardLayoutProps {
   children: React.ReactNode;
