@@ -133,7 +133,7 @@ export default function Header() {
                     // For logged in users - show Dashboard and optional Admin
                     <>
                       <a
-                        href="/dashboard"
+                        href="/dashboard/direct"
                         className="block text-gray-700 hover:text-gray-900 font-medium transition-colors py-2"
                         onClick={() => setIsMobileMenuOpen(false)}
                       >
