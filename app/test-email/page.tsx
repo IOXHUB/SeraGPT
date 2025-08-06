@@ -101,13 +101,37 @@ export default function EmailTestPage() {
           )}
 
           <div className="mt-8 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
-            <h3 className="font-semibold text-yellow-800 mb-2">📋 Test Checklist:</h3>
-            <ul className="text-sm text-yellow-700 space-y-1">
-              <li>✅ Resend API key eklendi</li>
-              <li>🔄 Domain doğrulaması (seragpt.com DNS kayıtları)</li>
-              <li>📧 Email template'leri hazır</li>
-              <li>🎨 SeraGPT branding'i eklendi</li>
-            </ul>
+            <h3 className="font-semibold text-yellow-800 mb-2">📋 Debug Info:</h3>
+            <div className="text-sm text-yellow-700 space-y-1">
+              <div>API Key: {process.env.NEXT_PUBLIC_RESEND_API_KEY ? '❌ Public (Dangerous!)' : '✅ Server-side'}</div>
+              <div>Environment: {process.env.NODE_ENV}</div>
+              <div>Domain: {typeof window !== 'undefined' ? window.location.hostname : 'SSR'}</div>
+            </div>
+
+            <button
+              onClick={async () => {
+                try {
+                  const response = await fetch('/api/send-email', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                      type: 'test',
+                      to: 'debug@test.com',
+                      name: 'Debug Test'
+                    })
+                  });
+                  const data = await response.json();
+                  console.log('Debug test response:', data);
+                  setMessage(`Debug Response: ${JSON.stringify(data)}`);
+                } catch (error) {
+                  console.error('Debug test error:', error);
+                  setMessage(`Debug Error: ${error}`);
+                }
+              }}
+              className="mt-3 bg-yellow-600 text-white px-4 py-2 rounded text-sm hover:bg-yellow-700"
+            >
+              🔧 Debug API Test
+            </button>
           </div>
 
           <div className="mt-6 text-center">
