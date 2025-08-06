@@ -8,7 +8,7 @@ export default function Footer() {
             <h3 className="text-lg font-semibold mb-6 text-gray-900">Menü</h3>
             <ul className="space-y-3">
               <li>
-                <a href="/dashboard/help" className="text-gray-600 hover:text-gray-900 transition-colors">
+                <a href="/destek" className="text-gray-600 hover:text-gray-900 transition-colors">
                   Destek
                 </a>
               </li>
