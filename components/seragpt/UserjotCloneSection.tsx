@@ -105,77 +105,48 @@ export default function UserjotCloneSection() {
                 <h3 className="text-lg font-semibold text-gray-900">Menü</h3>
               </div>
 
-              {/* Navigation Grid */}
-              <div className="grid grid-cols-2 gap-4">
-                {/* Services Column */}
-                <div className="space-y-3">
-                  <h4 className="text-sm font-semibold text-gray-500 uppercase tracking-wide">Hizmetler</h4>
-                  <a
-                    href="#"
-                    className="block text-gray-700 hover:text-gray-900 hover:bg-gray-50 py-2 px-3 rounded-lg transition-all"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    <div className="flex items-center space-x-2">
-                      <span className="text-lg">🎯</span>
-                      <span className="text-sm">Danışmanlık</span>
-                    </div>
-                  </a>
-                  <a
-                    href="#"
-                    className="block text-gray-700 hover:text-gray-900 hover:bg-gray-50 py-2 px-3 rounded-lg transition-all"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    <div className="flex items-center space-x-2">
-                      <span className="text-lg">🏗️</span>
-                      <span className="text-sm">Anahtar Teslim Sera</span>
-                    </div>
-                  </a>
-                  <a
-                    href="/dashboard/help"
-                    className="block text-gray-700 hover:text-gray-900 hover:bg-gray-50 py-2 px-3 rounded-lg transition-all"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    <div className="flex items-center space-x-2">
-                      <span className="text-lg">❓</span>
-                      <span className="text-sm">Destek</span>
-                    </div>
-                  </a>
-                </div>
-
-                {/* Resources Column */}
-                <div className="space-y-3">
-                  <h4 className="text-sm font-semibold text-gray-500 uppercase tracking-wide">Kaynaklar</h4>
-                  <a
-                    href="/blog"
-                    className="block text-gray-700 hover:text-gray-900 hover:bg-gray-50 py-2 px-3 rounded-lg transition-all"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    <div className="flex items-center space-x-2">
-                      <span className="text-lg">📖</span>
-                      <span className="text-sm">Blog</span>
-                    </div>
-                  </a>
-                  <a
-                    href="/blog/gizli-maliyetler-sera-yatirimi"
-                    className="block text-gray-700 hover:text-gray-900 hover:bg-gray-50 py-2 px-3 rounded-lg transition-all"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    <div className="flex items-center space-x-2">
-                      <span className="text-lg">💰</span>
-                      <span className="text-sm">Maliyet Rehberi</span>
-                    </div>
-                  </a>
-                  <a
-                    href="/blog/iklim-krizi-tarim"
-                    className="block text-gray-700 hover:text-gray-900 hover:bg-gray-50 py-2 px-3 rounded-lg transition-all"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    <div className="flex items-center space-x-2">
-                      <span className="text-lg">🌡️</span>
-                      <span className="text-sm">İklim Analizi</span>
-                    </div>
-                  </a>
-                </div>
+              {/* Navigation Links */}
+              <div className="space-y-3">
+                <a
+                  href="/dashboard/help"
+                  className="block text-gray-700 hover:text-gray-900 hover:bg-gray-50 py-3 px-4 rounded-lg transition-all"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  <div className="flex items-center space-x-3">
+                    <span className="text-lg">❓</span>
+                    <span className="text-base font-medium">Destek</span>
+                  </div>
+                </a>
+                <a
+                  href="#"
+                  className="block text-gray-700 hover:text-gray-900 hover:bg-gray-50 py-3 px-4 rounded-lg transition-all"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  <div className="flex items-center space-x-3">
+                    <span className="text-lg">🎯</span>
+                    <span className="text-base font-medium">Danışmanlık</span>
+                  </div>
+                </a>
+                <a
+                  href="#"
+                  className="block text-gray-700 hover:text-gray-900 hover:bg-gray-50 py-3 px-4 rounded-lg transition-all"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  <div className="flex items-center space-x-3">
+                    <span className="text-lg">🏗️</span>
+                    <span className="text-base font-medium">Anahtar Teslim Sera</span>
+                  </div>
+                </a>
+                <a
+                  href="/blog"
+                  className="block text-gray-700 hover:text-gray-900 hover:bg-gray-50 py-3 px-4 rounded-lg transition-all"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  <div className="flex items-center space-x-3">
+                    <span className="text-lg">📖</span>
+                    <span className="text-base font-medium">Blog</span>
+                  </div>
+                </a>
               </div>
 
               {/* Panel Access Button */}
