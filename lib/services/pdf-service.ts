@@ -1,6 +1,6 @@
 import { ApiResponse } from '../api-config';
 import { ROICalculation } from './roi-calculator';
-import { ClimateAnalysis } from './weather-service';
+import { ClimateAnalysisResults as ClimateAnalysis } from './weather-service';
 import { MarketAnalysis } from './market-service';
 
 export interface ReportData {
@@ -214,7 +214,7 @@ Rapor SeraGPT tarafından oluşturulmuştur.
 - **Risk Seviyesi:** ${climateData.riskScore < 30 ? 'Düşük' : climateData.riskScore < 60 ? 'Orta' : 'Yüksek'}
 
 ### Mevsimsel Uygunluk
-${climateData.seasons.map(season => `
+${climateData.seasons.map((season: any) => `
 **${this.getSeasonName(season.season)}**
 - Uygunluk: ${season.suitability}/100
 - Fırsatlar: ${season.opportunities.join(', ')}
@@ -222,10 +222,10 @@ ${climateData.seasons.map(season => `
 `).join('')}
 
 ### Öneriler
-${climateData.recommendations.map(rec => `- ${rec}`).join('\n')}
+${climateData.recommendations.map((rec: any) => `- ${rec}`).join('\n')}
 
 ### Aylık İklim Verileri
-${climateData.monthlyData.map(month => `
+${climateData.monthlyData.map((month: any) => `
 **${this.getMonthName(month.month)}**
 - Ortalama Sıcaklık: ${month.avgTemp.toFixed(1)}°C
 - Min/Max: ${month.minTemp.toFixed(1)}°C / ${month.maxTemp.toFixed(1)}°C
