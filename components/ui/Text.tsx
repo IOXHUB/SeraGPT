@@ -50,19 +50,20 @@ const textVariants = cva(
 export interface TextProps
   extends Omit<React.HTMLAttributes<HTMLElement>, 'color'>,
     VariantProps<typeof textVariants> {
-  as?: keyof JSX.IntrinsicElements;
+  as?: 'p' | 'span' | 'div' | 'small' | 'strong' | 'em';
 }
 
 const Text = React.forwardRef<HTMLElement, TextProps>(
   ({ className = '', variant, color, weight, align, as: Comp = 'p', children, ...props }, ref) => {
+    const Component = Comp as React.ElementType;
     return (
-      <Comp
+      <Component
         ref={ref}
         className={`${textVariants({ variant, color, weight, align })} ${className}`}
         {...props}
       >
         {children}
-      </Comp>
+      </Component>
     );
   }
 );
