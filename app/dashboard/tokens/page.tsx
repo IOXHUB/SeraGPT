@@ -56,12 +56,12 @@ export default function TokensPage() {
 
   return (
     <DashboardLayout>
-      <div className="min-h-screen bg-white">
-        <div className="max-w-4xl mx-auto p-6 space-y-8">
+      <div className="min-h-screen bg-white user-panel-container">
+        <div className="user-panel-content space-y-modern">
           
           {/* Header */}
           <div className="text-center">
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">��� Jeton Yükle</h1>
+            <h1 className="text-3xl font-bold text-gray-900 mb-2">🪙 Jeton Yükle</h1>
             <p className="text-gray-600">Her rapor 1 jeton kullanır. AI sohbet sınırsızdır.</p>
           </div>
 
