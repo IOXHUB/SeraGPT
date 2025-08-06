@@ -15,7 +15,7 @@ export default function DashboardPage() {
       id: 'roi-simulation',
       title: 'Yatırım Geri Dönüş (ROI) Simülasyonu',
       description: 'Yatırımın geri dönüş süresi ve kar marjı analizi',
-      icon: '🧮',
+      icon: '����',
       tokensRequired: 1,
       status: 'available',
       benefits: [
@@ -218,14 +218,11 @@ export default function DashboardPage() {
                   transition={{ duration: 0.6, delay: index * 0.1 }}
                   className="relative group h-full"
                 >
-                  <div className="absolute -inset-0.5 bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 rounded-2xl opacity-70 group-hover:opacity-100 transition duration-300"></div>
+                  <div className="absolute -inset-px bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 rounded-2xl opacity-25"></div>
                   <div className="relative bg-white rounded-2xl p-6 border-0 h-full flex flex-col">
                     <div className="text-center mb-4">
-                      <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center">
-                        <span className="text-2xl">{tool.icon}</span>
-                      </div>
-                      <h3 className="text-lg font-bold text-gray-900 mb-2 leading-tight">{tool.title}</h3>
-                      <p className="text-gray-600 text-sm">{tool.description}</p>
+                      <h3 className="text-lg font-normal text-gray-900 mb-3 leading-tight">{tool.title}</h3>
+                      <p className="font-light text-gray-600 text-sm">{tool.description}</p>
                     </div>
 
                     <div className="mt-auto">
