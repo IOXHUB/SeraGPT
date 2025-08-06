@@ -667,3 +667,11 @@ p {
     color: white !important;
   }
 }
+
+/* Enhanced Turkish text rendering */
+.turkish-text {
+  font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
