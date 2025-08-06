@@ -140,7 +140,7 @@ export default function TokensPage() {
 
                   {/* Per Token Price */}
                   <div className="text-sm text-gray-500 mb-6">
-                    ₺{Math.round(pkg.price / pkg.tokens)} / jeton
+                    ���{Math.round(pkg.price / pkg.tokens)} / jeton
                   </div>
 
                   {/* Buy Button */}
@@ -169,7 +169,7 @@ export default function TokensPage() {
 
           {/* Payment Info */}
           <div className="modern-card user-panel-section">
-            <h2 className="neon-cyan">��� Ödeme Bilgileri</h2>
+            <h2 className="neon-cyan">💳 Ödeme Bilgileri</h2>
             <div className="space-y-3 text-sm text-gray-600">
               <div className="flex items-center">
                 <span className="text-green-500 mr-2">✓</span>
@@ -191,8 +191,8 @@ export default function TokensPage() {
           </div>
 
           {/* Usage Info */}
-          <div className="bg-white border-2 border-gray-200 rounded-2xl p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">📊 Jeton Kullanımı</h3>
+          <div className="modern-card user-panel-section">
+            <h2 className="neon-emerald">📊 Jeton Kullanımı</h2>
             
             <div className="grid grid-cols-2 md:grid-cols-5 gap-4 text-center">
               <div>
