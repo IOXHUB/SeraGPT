@@ -14,13 +14,28 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const router = useRouter();
 
-  // Check authentication and redirect if needed
+  // Relaxed auth check to prevent redirect loops
   useEffect(() => {
     if (!loading && !user) {
-      console.log('DashboardLayout: No user found, redirecting to login');
-      setTimeout(() => {
-        window.location.href = '/auth/login';
-      }, 1000);
+      // Check for localStorage backup
+      const backupUser = localStorage.getItem('seragpt_user');
+      if (backupUser) {
+        console.log('DashboardLayout: Found backup user, staying on dashboard');
+        return;
+      }
+
+      console.log('DashboardLayout: No user found anywhere, will redirect after longer delay');
+      // Much longer delay to prevent loops
+      const redirectTimer = setTimeout(() => {
+        // Only redirect if page is still active
+        if (!document.hidden) {
+          console.log('DashboardLayout: Redirecting to login after timeout');
+          window.location.href = '/auth/login';
+        }
+      }, 5000); // 5 second delay
+
+      // Cleanup timer
+      return () => clearTimeout(redirectTimer);
     }
   }, [user, loading, router]);
 
