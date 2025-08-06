@@ -1,15 +1,18 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { supabase, isSupabaseConfigured } from '@/lib/supabase';
+import { supabase } from '@/lib/supabase';
 import { useRouter } from 'next/navigation';
+import { motion, AnimatePresence } from 'framer-motion';
 
 // Force dynamic rendering
 export const dynamic = 'force-dynamic';
 
-export default function LoginPage() {
+export default function AuthPage() {
+  const [isLogin, setIsLogin] = useState(true);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
   const [mounted, setMounted] = useState(false);
@@ -17,15 +20,15 @@ export default function LoginPage() {
 
   useEffect(() => {
     setMounted(true);
-
+    
     // Check for error parameter in URL
     const urlParams = new URLSearchParams(window.location.search);
     const error = urlParams.get('error');
     const errorMessage = urlParams.get('message');
-
+    
     if (error === 'auth_code_error') {
-      setMessage(errorMessage ?
-        `❌ E-posta doğrulama hatası: ${errorMessage}` :
+      setMessage(errorMessage ? 
+        `❌ E-posta doğrulama hatası: ${errorMessage}` : 
         '❌ E-posta doğrulama linkinde bir sorun oluştu. Lütfen tekrar giriş yapmayı deneyin.'
       );
     } else if (error === 'missing_code') {
@@ -33,13 +36,25 @@ export default function LoginPage() {
     }
   }, []);
 
+  const resetForm = () => {
+    setEmail('');
+    setPassword('');
+    setConfirmPassword('');
+    setMessage('');
+  };
+
+  const switchMode = (loginMode: boolean) => {
+    setIsLogin(loginMode);
+    resetForm();
+  };
+
   const handleSignIn = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     setMessage('');
 
     if (!email || !password) {
-      setMessage('E-posta ve şifre gereklidir');
+      setMessage('❌ E-posta ve şifre gereklidir');
       setLoading(false);
       return;
     }
@@ -62,13 +77,12 @@ export default function LoginPage() {
       } else {
         console.log('Login successful');
         setMessage('✅ Giriş başarılı, yönlendiriliyorsunuz...');
-        // Add a small delay to allow auth state to update
         setTimeout(() => {
           router.push('/dashboard');
         }, 1000);
       }
     } catch (error) {
-      setMessage('Giriş yapılamadı. Lütfen tekrar deneyin.');
+      setMessage('❌ Giriş yapılamadı. Lütfen tekrar deneyin.');
     } finally {
       setLoading(false);
     }
@@ -79,14 +93,20 @@ export default function LoginPage() {
     setLoading(true);
     setMessage('');
 
-    if (!email || !password) {
-      setMessage('E-posta ve şifre gereklidir');
+    if (!email || !password || !confirmPassword) {
+      setMessage('❌ Tüm alanları doldurunuz');
+      setLoading(false);
+      return;
+    }
+
+    if (password !== confirmPassword) {
+      setMessage('❌ Şifreler eşleşmiyor');
       setLoading(false);
       return;
     }
 
     if (password.length < 6) {
-      setMessage('Şifre en az 6 karakter olmalıdır');
+      setMessage('❌ Şifre en az 6 karakter olmalıdır');
       setLoading(false);
       return;
     }
@@ -94,7 +114,7 @@ export default function LoginPage() {
     try {
       const redirectUrl = `${typeof window !== 'undefined' ? window.location.origin : ''}/auth/callback`;
       console.log('Sign up with redirect URL:', redirectUrl);
-
+      
       const { data, error } = await supabase.auth.signUp({
         email,
         password,
@@ -106,25 +126,29 @@ export default function LoginPage() {
       console.log('Signup result:', { data, error });
 
       if (error) {
-        setMessage(error.message);
+        if (error.message.includes('User already registered')) {
+          setMessage('❌ Bu e-posta adresi zaten kayıtlı. Giriş yapmayı deneyin.');
+        } else {
+          setMessage(`❌ Kayıt hatası: ${error.message}`);
+        }
       } else {
-        setMessage('✅ E-posta adresinizi kontrol edin ve doğrulama linkine tıklayın.');
+        setMessage('✅ Kayıt başarılı! E-posta adresinizi kontrol edin ve doğrulama linkine tıklayın.');
+        resetForm();
       }
     } catch (error) {
-      setMessage('Kayıt oluşturulamadı. Lütfen tekrar deneyin.');
+      setMessage('❌ Kayıt oluşturulamadı. Lütfen tekrar deneyin.');
     } finally {
       setLoading(false);
     }
   };
 
-
   // Prevent hydration mismatch
   if (!mounted) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center py-12 px-4">
         <div className="animate-pulse">
           <div className="h-12 w-48 bg-gray-200 rounded mx-auto mb-6"></div>
-          <div className="space-y-4 w-80">
+          <div className="space-y-4 w-96">
             <div className="h-4 bg-gray-200 rounded"></div>
             <div className="h-10 bg-gray-200 rounded"></div>
             <div className="h-10 bg-gray-200 rounded"></div>
@@ -136,29 +160,76 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8" suppressHydrationWarning>
-      <div className="max-w-md w-full space-y-8">
-        <div>
-          <div className="mx-auto h-12 w-auto">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="max-w-md w-full"
+      >
+        {/* Logo and Header */}
+        <div className="text-center mb-8">
+          <motion.div 
+            initial={{ scale: 0.9 }}
+            animate={{ scale: 1 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="mx-auto h-16 w-auto mb-6"
+          >
             <img 
               src="https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2F96da5382e9584c3fb2d32eca60944359?format=webp&width=800" 
               alt="SeraGPT Logo" 
-              className="h-12 w-auto mx-auto"
+              className="h-16 w-auto mx-auto"
             />
-          </div>
-          <h2 className="mt-6 text-center text-3xl font-bold text-gray-900">
-            SeraGPT'ye Giriş Yapın
+          </motion.div>
+          
+          <h2 className="text-3xl font-bold text-gray-900 mb-2">
+            {isLogin ? 'Hoş Geldiniz' : 'Hesap Oluşturun'}
           </h2>
-          <p className="mt-2 text-center text-sm text-gray-600">
-            Sera yatırım analizlerinize erişin
+          <p className="text-gray-600">
+            {isLogin 
+              ? 'SeraGPT hesabınıza giriş yapın' 
+              : 'SeraGPT ile tarımsal analizlerinize başlayın'
+            }
           </p>
         </div>
 
-        <form className="mt-8 space-y-6" suppressHydrationWarning>
-          <div className="space-y-4">
+        {/* Tab Navigation */}
+        <div className="flex mb-6 bg-gray-100 rounded-xl p-1">
+          <button
+            onClick={() => switchMode(true)}
+            className={`flex-1 py-3 px-4 rounded-lg font-medium transition-all duration-200 ${
+              isLogin 
+                ? 'bg-white text-gray-900 shadow-sm' 
+                : 'text-gray-600 hover:text-gray-900'
+            }`}
+          >
+            Giriş Yap
+          </button>
+          <button
+            onClick={() => switchMode(false)}
+            className={`flex-1 py-3 px-4 rounded-lg font-medium transition-all duration-200 ${
+              !isLogin 
+                ? 'bg-white text-gray-900 shadow-sm' 
+                : 'text-gray-600 hover:text-gray-900'
+            }`}
+          >
+            Kayıt Ol
+          </button>
+        </div>
+
+        {/* Auth Form */}
+        <motion.div
+          key={isLogin ? 'login' : 'signup'}
+          initial={{ opacity: 0, x: isLogin ? -20 : 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.3 }}
+          className="bg-white rounded-2xl shadow-xl p-8"
+        >
+          <form onSubmit={isLogin ? handleSignIn : handleSignUp} className="space-y-6">
+            {/* Email Field */}
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-                E-posta
+              <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                E-posta Adresi
               </label>
               <input
                 id="email"
@@ -168,67 +239,130 @@ export default function LoginPage() {
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="mt-1 appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-green-500 focus:border-green-500 focus:z-10 sm:text-sm"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
                 placeholder="ornek@email.com"
-                suppressHydrationWarning
               />
             </div>
             
+            {/* Password Field */}
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">
                 Şifre
               </label>
               <input
                 id="password"
                 name="password"
                 type="password"
-                autoComplete="current-password"
+                autoComplete={isLogin ? "current-password" : "new-password"}
                 required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="mt-1 appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-green-500 focus:border-green-500 focus:z-10 sm:text-sm"
-                placeholder="Şifreniz"
-                suppressHydrationWarning
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
+                placeholder={isLogin ? "Şifreniz" : "En az 6 karakter"}
               />
             </div>
-          </div>
 
-          {message && (
-            <div className={`text-sm text-center ${message.includes('kontrol') ? 'text-green-600' : 'text-red-600'}`}>
-              {message}
-            </div>
-          )}
+            {/* Confirm Password Field (Only for Signup) */}
+            <AnimatePresence>
+              {!isLogin && (
+                <motion.div
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: 'auto' }}
+                  exit={{ opacity: 0, height: 0 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700 mb-2">
+                    Şifre Tekrarı
+                  </label>
+                  <input
+                    id="confirmPassword"
+                    name="confirmPassword"
+                    type="password"
+                    autoComplete="new-password"
+                    required={!isLogin}
+                    value={confirmPassword}
+                    onChange={(e) => setConfirmPassword(e.target.value)}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
+                    placeholder="Şifrenizi tekrar girin"
+                  />
+                </motion.div>
+              )}
+            </AnimatePresence>
 
-          <div className="space-y-3">
+            {/* Error/Success Message */}
+            <AnimatePresence>
+              {message && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  className={`p-4 rounded-lg text-sm text-center ${
+                    message.includes('✅') 
+                      ? 'bg-green-50 text-green-800 border border-green-200' 
+                      : 'bg-red-50 text-red-800 border border-red-200'
+                  }`}
+                >
+                  {message}
+                </motion.div>
+              )}
+            </AnimatePresence>
+
+            {/* Submit Button */}
             <button
               type="submit"
-              onClick={handleSignIn}
               disabled={loading}
-              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
             >
-              {loading ? 'Giriş yapılıyor...' : 'Giriş Yap'}
+              {loading ? (
+                <div className="flex items-center">
+                  <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
+                  {isLogin ? 'Giriş yapılıyor...' : 'Kayıt oluşturuluyor...'}
+                </div>
+              ) : (
+                isLogin ? 'Giriş Yap' : 'Hesap Oluştur'
+              )}
             </button>
-            
-            <button
-              type="button"
-              onClick={handleSignUp}
-              disabled={loading}
-              className="group relative w-full flex justify-center py-2 px-4 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              {loading ? 'Kayıt olunuyor...' : 'Yeni Hesap Oluştur'}
-            </button>
+          </form>
+
+          {/* Additional Info */}
+          <div className="mt-6 text-center">
+            {isLogin ? (
+              <p className="text-sm text-gray-600">
+                Henüz hesabınız yok mu?{' '}
+                <button
+                  onClick={() => switchMode(false)}
+                  className="font-medium text-blue-600 hover:text-blue-500 transition-colors"
+                >
+                  Ücretsiz kayıt olun
+                </button>
+              </p>
+            ) : (
+              <p className="text-sm text-gray-600">
+                Zaten hesabınız var mı?{' '}
+                <button
+                  onClick={() => switchMode(true)}
+                  className="font-medium text-blue-600 hover:text-blue-500 transition-colors"
+                >
+                  Giriş yapın
+                </button>
+              </p>
+            )}
           </div>
-        </form>
+        </motion.div>
 
-
-        <div className="text-center">
-          <p className="text-sm text-gray-600">
-            <a href="/" className="font-medium text-green-600 hover:text-green-500">
-              ← Ana sayfaya dön
-            </a>
-          </p>
+        {/* Back to Homepage */}
+        <div className="text-center mt-6">
+          <a
+            href="/"
+            className="text-sm text-gray-500 hover:text-gray-700 transition-colors flex items-center justify-center"
+          >
+            <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+            </svg>
+            Ana sayfaya dön
+          </a>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 }
