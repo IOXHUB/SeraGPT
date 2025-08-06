@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import DashboardLayout from '@/components/dashboard/DashboardLayout';
-import { roiCalculator, GreenhouseSpecs, CropSpecs, OperationalCosts, ROICalculation } from '@/lib/services/roi-calculator';
+import { roiCalculator, ROIInputs, ROICalculation } from '@/lib/services/roi-calculator';
 import { pdfService } from '@/lib/services/pdf-service';
 
 export default function ROIAnalysisPage() {
@@ -12,48 +12,26 @@ export default function ROIAnalysisPage() {
   const [results, setResults] = useState<ROICalculation | null>(null);
   const [error, setError] = useState<string>('');
 
-  // Greenhouse specifications
-  const [greenhouseSpecs, setGreenhouseSpecs] = useState<GreenhouseSpecs>({
-    length: 30,
-    width: 20,
-    height: 4,
-    frameType: 'galvanized',
-    coveringType: 'polycarbonate',
-    foundationType: 'concrete',
-    heatingSystem: 'electric',
-    coolingSystem: 'fan',
-    irrigationSystem: 'drip',
-    automationLevel: 'basic',
-    location: {
-      lat: 36.8969,
-      lon: 30.7133,
-      city: 'Antalya',
-      region: 'Akdeniz'
-    }
-  });
-
-  // Crop specifications
-  const [cropSpecs, setCropSpecs] = useState<CropSpecs>({
-    type: 'domates',
-    variety: 'Sera domatesi',
-    plantingDensity: 4,
-    cyclesPerYear: 2,
-    expectedYieldPerM2: 25,
-    expectedPrice: 15,
-    seedCost: 2,
-    fertilizerCost: 5
-  });
-
-  // Operational costs
-  const [operationalCosts, setOperationalCosts] = useState<OperationalCosts>({
-    electricity: 1500,
-    water: 300,
-    fertilizer: 800,
-    pesticide: 200,
-    labor: 2500,
-    maintenance: 400,
-    insurance: 3000,
-    taxes: 1500
+  // ROI Analysis inputs
+  const [roiInputs, setRoiInputs] = useState<ROIInputs>({
+    location: 'Antalya',
+    greenhouseSize: 600, // m²
+    plantType: 'domates',
+    initialInvestment: 500000, // TL
+    operationalCosts: {
+      monthly: 8000,
+      heating: 2000,
+      seeds: 800,
+      fertilizer: 1200,
+      labor: 3000,
+      utilities: 1000
+    },
+    expectedYield: {
+      annual: 15000, // kg
+      pricePerKg: 15, // TL
+      seasons: 2
+    },
+    projectDuration: 5 // years
   });
 
   const handleCalculateROI = async () => {
@@ -61,11 +39,7 @@ export default function ROIAnalysisPage() {
     setError('');
 
     try {
-      const response = await roiCalculator.calculateROI(
-        greenhouseSpecs,
-        cropSpecs,
-        operationalCosts
-      );
+      const response = await roiCalculator.calculateROI(roiInputs);
 
       if (response.success && response.data) {
         setResults(response.data);
@@ -489,7 +463,7 @@ export default function ROIAnalysisPage() {
           <div className="bg-white rounded-lg border border-gray-200 p-6">
             <h3 className="text-lg font-semibold text-gray-900 mb-4">Öneriler</h3>
             <div className="space-y-3">
-              {results.recommendations.map((rec, index) => (
+              {results.recommendations.map((rec: any, index: number) => (
                 <div key={index} className="flex items-start space-x-3">
                   <div className={`w-2 h-2 rounded-full mt-2 ${
                     rec.priority === 'high' ? 'bg-red-500' : 
