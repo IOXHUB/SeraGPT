@@ -59,7 +59,7 @@ export default function ClimateAnalysisPage() {
         return {
           ...prev,
           [parent]: {
-            ...prev[parent as keyof ClimateAnalysisInputs],
+            ...(prev[parent as keyof ClimateAnalysisInputs] as any),
             [child]: value
           }
         };
