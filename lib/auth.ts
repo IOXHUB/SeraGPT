@@ -94,15 +94,20 @@ export async function updateSession(request: NextRequest) {
 
     // If no user and trying to access protected route, redirect to login
     if (!user && (request.nextUrl.pathname.startsWith('/dashboard') || request.nextUrl.pathname.startsWith('/admin'))) {
-      console.log('Redirecting unauthenticated user to login')
-      return NextResponse.redirect(new URL('/auth/login', request.url))
+      console.log('Redirecting unauthenticated user to login from:', request.nextUrl.pathname)
+
+      // Avoid redirect loops by checking if already on login page
+      if (request.nextUrl.pathname !== '/auth/login') {
+        return NextResponse.redirect(new URL('/auth/login', request.url))
+      }
     }
 
     return response
   } catch (error) {
     console.error('Middleware auth error:', error)
-    // On auth error, redirect to login for protected routes
-    if (request.nextUrl.pathname.startsWith('/dashboard') || request.nextUrl.pathname.startsWith('/admin')) {
+    // On auth error, redirect to login for protected routes (but avoid loops)
+    if ((request.nextUrl.pathname.startsWith('/dashboard') || request.nextUrl.pathname.startsWith('/admin')) &&
+        request.nextUrl.pathname !== '/auth/login') {
       return NextResponse.redirect(new URL('/auth/login', request.url))
     }
     return response
