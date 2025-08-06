@@ -39,19 +39,20 @@ const sectionVariants = cva(
 export interface SectionProps
   extends React.HTMLAttributes<HTMLElement>,
     VariantProps<typeof sectionVariants> {
-  as?: keyof JSX.IntrinsicElements;
+  as?: 'section' | 'div' | 'main' | 'article' | 'aside';
 }
 
 const Section = React.forwardRef<HTMLElement, SectionProps>(
   ({ className = '', spacing, background, padding, as: Comp = 'section', children, ...props }, ref) => {
+    const Component = Comp as React.ElementType;
     return (
-      <Comp
+      <Component
         ref={ref}
         className={`${sectionVariants({ spacing, background, padding })} ${className}`}
         {...props}
       >
         {children}
-      </Comp>
+      </Component>
     );
   }
 );
