@@ -210,28 +210,35 @@ Rapor SeraGPT tarafından oluşturulmuştur.
 ## İklim Analizi Özeti
 
 ### Risk Değerlendirmesi
-- **Genel Risk Skoru:** ${climateData.riskScore}/100
-- **Risk Seviyesi:** ${climateData.riskScore < 30 ? 'Düşük' : climateData.riskScore < 60 ? 'Orta' : 'Yüksek'}
+- **Uygunluk Skoru:** ${climateData.suitabilityScore}/100
+- **Risk Seviyesi:** ${climateData.suitabilityScore > 70 ? 'Düşük' : climateData.suitabilityScore > 40 ? 'Orta' : 'Yüksek'}
 
-### Mevsimsel Uygunluk
-${climateData.seasons.map((season: any) => `
-**${this.getSeasonName(season.season)}**
+### Risk Faktörleri
+- **Don Riski:** ${this.translateLevel(climateData.riskFactors.frost)}
+- **Sıcaklık Riski:** ${this.translateLevel(climateData.riskFactors.heatWave)}
+- **Rüzgar Riski:** ${this.translateLevel(climateData.riskFactors.wind)}
+- **Nem Riski:** ${this.translateLevel(climateData.riskFactors.humidity)}
+
+### Optimal Sezonlar
+${climateData.optimalSeasons.map((season: any) => `
+**${season.season}**
+- Aylar: ${season.months}
 - Uygunluk: ${season.suitability}/100
-- Fırsatlar: ${season.opportunities.join(', ')}
-- Zorluklar: ${season.challenges.join(', ')}
+- Sıcaklık: ${season.temperature}°C
+- Nem: %${season.humidity}
 `).join('')}
 
 ### Öneriler
 ${climateData.recommendations.map((rec: any) => `- ${rec}`).join('\n')}
 
-### Aylık İklim Verileri
-${climateData.monthlyData.map((month: any) => `
-**${this.getMonthName(month.month)}**
-- Ortalama Sıcaklık: ${month.avgTemp.toFixed(1)}°C
-- Min/Max: ${month.minTemp.toFixed(1)}°C / ${month.maxTemp.toFixed(1)}°C
-- Yağış: ${month.precipitation.toFixed(1)}mm
-- Nem: %${month.humidity.toFixed(1)}
-`).join('')}
+### İklim Verileri
+**Genel İklim Özellikleri:**
+- Ortalama Sıcaklık: ${climateData.climateData.avgTemperature.toFixed(1)}°C
+- Maksimum Sıcaklık: ${climateData.climateData.maxTemperature.toFixed(1)}°C
+- Minimum Sıcaklık: ${climateData.climateData.minTemperature.toFixed(1)}°C
+- Ortalama Nem: %${climateData.climateData.avgHumidity.toFixed(1)}
+- Yıllık Yağış: ${climateData.climateData.annualRainfall.toFixed(1)}mm
+- Ortalama Rüzgar Hızı: ${climateData.climateData.avgWindSpeed.toFixed(1)} m/s
 
 ---
 Rapor SeraGPT tarafından oluşturulmuştur.
