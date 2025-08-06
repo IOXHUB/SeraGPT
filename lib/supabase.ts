@@ -22,6 +22,24 @@ export const supabase = createClient(url, key, {
     // Ensure proper storage and session detection
     storage: typeof window !== 'undefined' ? window.localStorage : undefined,
     storageKey: 'supabase.auth.token'
+  },
+  global: {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  },
+  // Add fetch configuration for better error handling
+  fetch: (url, options = {}) => {
+    return fetch(url, {
+      ...options,
+      headers: {
+        ...options.headers,
+        'Content-Type': 'application/json',
+      },
+    }).catch((error) => {
+      console.error('Supabase fetch error:', error);
+      throw new Error(`Network error: ${error.message}`);
+    });
   }
 })
 
