@@ -25,6 +25,12 @@ export async function GET(request: NextRequest) {
     return NextResponse.redirect(`${origin}/auth/login?error=oauth_error&message=${encodeURIComponent(errorDescription || error)}`)
   }
 
+  // Handle missing code
+  if (!code) {
+    console.log('No auth code provided, redirecting to login')
+    return NextResponse.redirect(`${origin}/auth/login?error=missing_code&message=${encodeURIComponent('No authentication code provided')}`)
+  }
+
   if (code) {
     const cookieStore = cookies()
     const supabase = createServerClient(
