@@ -1,6 +1,7 @@
 import { Metadata } from 'next'
 import './globals.css'
 import Script from 'next/script'
+import AnalyticsWrapper from '@/components/AnalyticsWrapper'
 
 export const metadata: Metadata = {
   title: 'SeraGPT',
