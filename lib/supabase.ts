@@ -17,8 +17,8 @@ export const supabase = createClient(url, key, {
     autoRefreshToken: typeof window !== 'undefined',
     persistSession: typeof window !== 'undefined',
     detectSessionInUrl: typeof window !== 'undefined',
-    // Prevent anonymous auth attempts
-    flowType: 'pkce'
+    // Use implicit flow instead of PKCE for client-side
+    flowType: 'implicit'
   }
 })
 
