@@ -55,7 +55,7 @@ export default function UserjotCloneSection() {
                     <a href="/auth/login" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
                       Giriş Yap
                     </a>
-                    <a href="/auth/login" className="bg-gray-600 text-white px-6 py-2 rounded-xl font-semibold hover:bg-gray-800 transition-colors">
+                    <a href="/auth/login" className="bg-gray-600 text-white px-4 py-2 rounded-lg text-base font-medium hover:bg-gray-800 transition-colors">
                       Ücretsiz Başla
                     </a>
                   </>
@@ -142,7 +142,7 @@ export default function UserjotCloneSection() {
                         </a>
                         <a
                           href="/auth/login"
-                          className="block bg-black hover:bg-gray-800 text-white px-4 py-3 rounded-xl font-medium transition-colors text-center"
+                          className="block bg-black hover:bg-gray-800 text-white px-4 py-2 rounded-lg text-base font-medium transition-colors text-center"
                           onClick={() => setIsMobileMenuOpen(false)}
                         >
                           Ücretsiz Başla
@@ -191,7 +191,7 @@ export default function UserjotCloneSection() {
                 href="/auth/login"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="bg-gray-600 hover:bg-gray-800 text-white px-8 py-4 rounded-xl text-lg font-semibold transition-colors inline-flex items-center space-x-3"
+                className="bg-gray-600 hover:bg-gray-800 text-white px-4 py-2 rounded-lg text-base font-medium transition-colors inline-flex items-center space-x-2"
               >
                 <span className="text-center">Şimdi Oluştur – İlk 5 Rapor Ücretsiz</span>
               </motion.a>
