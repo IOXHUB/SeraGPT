@@ -5,6 +5,9 @@ import { useAuth } from '@/lib/hooks/useAuth';
 import { useRouter } from 'next/navigation';
 import type { User } from '@supabase/supabase-js';
 
+// Force dynamic rendering
+export const dynamic = 'force-dynamic';
+
 export default function AdminAuthPage() {
   const { user, loading, isAdmin, supabase } = useAuth();
   const [users, setUsers] = useState<User[]>([]);
