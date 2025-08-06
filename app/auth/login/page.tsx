@@ -78,11 +78,26 @@ export default function AuthPage() {
         console.log('Login successful');
         setMessage('✅ Giriş başarılı, yönlendiriliyorsunuz...');
 
-        // Use the same approach as the working simple login
-        setTimeout(() => {
-          console.log('HARD REDIRECT TO DASHBOARD');
-          window.location.replace('/dashboard');
-        }, 1000);
+        // Wait for session to be properly set, then redirect
+        let attempts = 0;
+        const checkAndRedirect = async () => {
+          const { data: { session } } = await supabase.auth.getSession();
+          attempts++;
+
+          console.log(`Session check attempt ${attempts}:`, !!session?.user);
+
+          if (session?.user) {
+            console.log('Session confirmed, redirecting to dashboard');
+            window.location.replace('/dashboard');
+          } else if (attempts < 5) {
+            setTimeout(checkAndRedirect, 500);
+          } else {
+            console.log('Max attempts reached, forcing redirect anyway');
+            window.location.replace('/dashboard');
+          }
+        };
+
+        setTimeout(checkAndRedirect, 500);
       }
     } catch (error) {
       setMessage('❌ Giriş yapılamadı. Lütfen tekrar deneyin.');
@@ -153,7 +168,7 @@ export default function AuthPage() {
         resetForm();
       } else if (data?.user && data?.session) {
         // User created and automatically signed in
-        setMessage('✅ Kayıt başarılı! Yönlendiriliyorsunuz...');
+        setMessage('✅ Kay��t başarılı! Yönlendiriliyorsunuz...');
         setTimeout(() => {
           console.log('SIGNUP SUCCESS - HARD REDIRECT TO DASHBOARD');
           window.location.replace('/dashboard');
