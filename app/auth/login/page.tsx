@@ -132,12 +132,31 @@ export default function AuthPage() {
       console.log('Signup result:', { data, error });
 
       if (error) {
-        if (error.message.includes('User already registered')) {
+        console.error('Signup error details:', error);
+        if (error.message.includes('User already registered') ||
+            error.message.includes('already registered') ||
+            error.message.includes('already been registered') ||
+            error.message.includes('email address is already registered')) {
           setMessage('❌ Bu e-posta adresi zaten kayıtlı. Giriş yapmayı deneyin.');
+        } else if (error.message.includes('email')) {
+          setMessage('❌ E-posta adresi geçersiz. Lütfen geçerli bir e-posta adresi girin.');
+        } else if (error.message.includes('password')) {
+          setMessage('❌ Şifre geçersiz. Lütfen daha güçlü bir şifre deneyin.');
         } else {
           setMessage(`❌ Kayıt hatası: ${error.message}`);
         }
+      } else if (data?.user && !data?.session) {
+        // User created but needs email confirmation
+        setMessage('✅ Kayıt başarılı! E-posta adresinizi kontrol edin ve doğrulama linkine tıklayın.');
+        resetForm();
+      } else if (data?.user && data?.session) {
+        // User created and automatically signed in
+        setMessage('✅ Kayıt başarılı! Yönlendiriliyorsunuz...');
+        setTimeout(() => {
+          router.push('/dashboard');
+        }, 1000);
       } else {
+        // Unknown state - show generic success message
         setMessage('✅ Kayıt başarılı! E-posta adresinizi kontrol edin ve doğrulama linkine tıklayın.');
         resetForm();
       }
