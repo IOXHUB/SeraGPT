@@ -204,15 +204,17 @@ export default function DestekPage() {
                 </div>
               ))}
               <div className="mt-8 pt-6 border-t border-gray-200">
-                <h4 className="font-semibold text-gray-900 mb-3">İpuçları & Püf Noktaları</h4>
-                <div className="space-y-1">
-                  <a href="#" className="block text-sm text-gray-600 hover:text-gray-900 py-1">
-                    En İyi Uygulamalar
-                  </a>
-                  <a href="#" className="block text-sm text-gray-600 hover:text-gray-900 py-1">
-                    Kaynaklar
-                  </a>
-                </div>
+                <motion.button
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 px-4 rounded-lg font-medium transition-colors flex items-center justify-center space-x-2"
+                >
+                  <span className="text-lg">🎫</span>
+                  <span>Destek Kaydı Aç</span>
+                </motion.button>
+                <p className="text-xs text-gray-500 text-center mt-2">
+                  Özel sorununuz için destek talebi oluşturun
+                </p>
               </div>
             </div>
           </div>
