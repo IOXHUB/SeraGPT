@@ -201,10 +201,10 @@ export default function DashboardPage() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="text-center mb-8"
             >
-              <h2 className="text-3xl font-extralight text-white mb-4">
+              <h2 className="text-3xl font-light text-gray-900 mb-4">
                 Kullanıma Hazır Analizler
               </h2>
-              <p className="font-light text-gray-400">
+              <p className="font-light text-gray-600">
                 Her analiz için 1 jeton harcanır. İlk 5 analiziniz ücretsizdir.
               </p>
             </motion.div>
