@@ -42,7 +42,7 @@ export interface HeadingProps
 
 const Heading = React.forwardRef<HTMLHeadingElement, HeadingProps>(
   ({ className = '', level, color, align, as, children, ...props }, ref) => {
-    const Component = as || (`h${level}` as keyof JSX.IntrinsicElements);
+    const Component = (as || `h${level}`) as React.ElementType;
 
     return (
       <Component
