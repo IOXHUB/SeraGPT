@@ -368,7 +368,7 @@ export default function DashboardPage() {
               </div>
             </div>
             <div className="space-y-3">
-              {isAdmin() ? [
+              {(isAdmin() ? [
                 { label: 'Aktif Kullanıcılar', value: 420, color: 'bg-blue-500' },
                 { label: 'Yeni Kullanıcılar', value: 380, color: 'bg-green-500' },
                 { label: 'Premium Kullanıcılar', value: 234, color: 'bg-yellow-500' },
@@ -378,7 +378,7 @@ export default function DashboardPage() {
                 { label: 'İklim Analizi', value: 1, color: 'bg-green-500' },
                 { label: 'Pazar Analizi', value: 1, color: 'bg-yellow-500' },
                 { label: 'Teknik Plan', value: 0, color: 'bg-red-500' },
-              ].map((item, index) => (
+              ]).map((item, index) => (
                 <div key={index} className="flex items-center justify-between">
                   <div className="flex items-center">
                     <div className={`w-3 h-3 ${item.color} rounded-full mr-2`}></div>
