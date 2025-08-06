@@ -145,12 +145,15 @@ export default function AuthPage() {
     try {
       const redirectUrl = `${typeof window !== 'undefined' ? window.location.origin : ''}/auth/callback`;
       console.log('Sign up with redirect URL:', redirectUrl);
-      
+
       const { data, error } = await supabase.auth.signUp({
         email,
         password,
         options: {
           emailRedirectTo: redirectUrl,
+          data: {
+            full_name: email.split('@')[0] // Use part of email as default name
+          }
         },
       });
 
