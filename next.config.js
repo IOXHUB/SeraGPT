@@ -51,38 +51,17 @@ const nextConfig = {
 
     // Production optimizations
     if (!dev) {
-      // Disable HMR completely in production
+      // Simple production optimizations
       config.optimization = {
         ...config.optimization,
         moduleIds: 'deterministic',
-        chunkIds: 'deterministic',
-        // Disable any HMR in production
-        hotUpdateChunkFilename: false,
-        hotUpdateMainFilename: false
+        chunkIds: 'deterministic'
       };
 
       // Remove any HMR plugins in production
       config.plugins = config.plugins.filter(plugin =>
         !plugin.constructor.name.includes('HotModuleReplacementPlugin')
       );
-
-      // Ensure no HMR runtime in production
-      if (config.entry && !isServer) {
-        const originalEntry = config.entry;
-        config.entry = async () => {
-          const entries = await originalEntry();
-          // Remove HMR entries from production build
-          Object.keys(entries).forEach(key => {
-            if (Array.isArray(entries[key])) {
-              entries[key] = entries[key].filter(entry =>
-                !entry.includes('webpack-hot-middleware') &&
-                !entry.includes('hot-update')
-              );
-            }
-          });
-          return entries;
-        };
-      }
     }
 
     // Better error handling for all environments
