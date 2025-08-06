@@ -411,11 +411,14 @@ export default function AuthPage() {
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -10 }}
-                  className={`p-4 rounded-lg text-sm text-center ${
-                    message.includes('✅') 
-                      ? 'bg-green-50 text-green-800 border border-green-200' 
-                      : 'bg-red-50 text-red-800 border border-red-200'
+                  className={`p-6 rounded-lg text-sm text-center font-medium ${
+                    message.includes('✅')
+                      ? 'bg-green-50 text-green-800 border-2 border-green-300 shadow-md'
+                      : message.includes('📝') || message.includes('⚡') || message.includes('📧')
+                      ? 'bg-blue-50 text-blue-800 border-2 border-blue-300 shadow-md'
+                      : 'bg-red-50 text-red-800 border-2 border-red-300 shadow-md'
                   }`}
+                  style={{ whiteSpace: 'pre-line' }}
                 >
                   {message}
                 </motion.div>
@@ -434,7 +437,7 @@ export default function AuthPage() {
                   {isLogin ? 'Giriş yapılıyor...' : 'Kayıt oluşturuluyor...'}
                 </div>
               ) : (
-                isLogin ? 'Giriş Yap' : 'Hesap Oluştur'
+                isLogin ? 'Giri�� Yap' : 'Hesap Oluştur'
               )}
             </button>
           </form>
