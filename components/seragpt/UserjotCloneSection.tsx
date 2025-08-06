@@ -242,7 +242,7 @@ export default function UserjotCloneSection() {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="bg-gray-600 hover:bg-gray-800 text-white px-10 py-4 rounded-xl text-xl font-bold transition-colors shadow-lg hover:shadow-xl"
+              className="bg-gray-600 hover:bg-gray-800 text-white px-4 py-2 rounded-lg text-base font-medium transition-colors shadow-md hover:shadow-lg"
             >
               Kullanıcı Paneline Giriş Yapın
             </motion.button>
@@ -562,7 +562,7 @@ export default function UserjotCloneSection() {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="bg-gray-600 hover:bg-gray-800 text-white px-10 py-4 rounded-xl text-xl font-bold transition-colors shadow-lg hover:shadow-xl"
+              className="bg-gray-600 hover:bg-gray-800 text-white px-4 py-2 rounded-lg text-base font-medium transition-colors shadow-md hover:shadow-lg"
             >
               AI Asistanınızı Test Edin
             </motion.button>
