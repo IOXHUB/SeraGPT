@@ -18,7 +18,10 @@ export const supabase = createClient(url, key, {
     persistSession: typeof window !== 'undefined',
     detectSessionInUrl: typeof window !== 'undefined',
     // Use PKCE flow for better security with proper callback
-    flowType: 'pkce'
+    flowType: 'pkce',
+    // Ensure proper storage and session detection
+    storage: typeof window !== 'undefined' ? window.localStorage : undefined,
+    storageKey: 'supabase.auth.token'
   }
 })
 
