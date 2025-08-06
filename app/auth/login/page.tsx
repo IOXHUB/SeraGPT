@@ -29,7 +29,7 @@ export default function LoginPage() {
         '❌ E-posta doğrulama linkinde bir sorun oluştu. Lütfen tekrar giriş yapmayı deneyin.'
       );
     } else if (error === 'missing_code') {
-      setMessage('❌ Doğrulama kodu eksik. Lütfen e-posta linkini tekrar kullanın.');
+      setMessage('��� Doğrulama kodu eksik. Lütfen e-posta linkini tekrar kullanın.');
     }
   }, []);
 
@@ -92,11 +92,14 @@ export default function LoginPage() {
     }
 
     try {
+      const redirectUrl = `${typeof window !== 'undefined' ? window.location.origin : ''}/auth/callback`;
+      console.log('Sign up with redirect URL:', redirectUrl);
+
       const { error } = await supabase.auth.signUp({
         email,
         password,
         options: {
-          emailRedirectTo: `${typeof window !== 'undefined' ? window.location.origin : ''}/auth/callback`,
+          emailRedirectTo: redirectUrl,
         },
       });
 
