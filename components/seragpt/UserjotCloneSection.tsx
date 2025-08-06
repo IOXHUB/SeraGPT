@@ -69,7 +69,7 @@ export default function UserjotCloneSection() {
             className="md:hidden relative p-2 rounded-lg bg-gray-100 hover:bg-gray-200 transition-colors"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
-            <motion.div
+            <div
               animate={isMobileMenuOpen ? "open" : "closed"}
               variants={{
                 closed: { rotate: 0 },
@@ -86,13 +86,13 @@ export default function UserjotCloneSection() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
                 </svg>
               )}
-            </motion.div>
+            </div>
           </button>
         </div>
 
         {/* Modern Mobile Menu */}
         {isMobileMenuOpen && (
-          <motion.div
+          <div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
@@ -194,14 +194,14 @@ export default function UserjotCloneSection() {
                 )}
               </div>
             </div>
-          </motion.div>
+          </div>
         )}
       </header>
 
       {/* Main content - Full viewport hero */}
       <main className="min-h-screen flex items-center justify-center px-4 sm:px-6 -mt-16">
         <div className="text-section-container text-center">
-          <motion.div
+          <div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -242,14 +242,14 @@ export default function UserjotCloneSection() {
             <p className="text-gray-500 text-sm pb-10">
               Doğru yatırım, doğru analizle başlar.
             </p>
-          </motion.div>
+          </div>
         </div>
       </main>
 
       {/* AI Chat Section - Single View */}
       <div className="relative -mt-40 z-10">
         <div className="max-w-[900px] mx-auto px-6">
-          <motion.div
+          <div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.2 }}
@@ -270,10 +270,10 @@ export default function UserjotCloneSection() {
                 </div>
               </div>
             </div>
-          </motion.div>
+          </div>
 
           {/* CTA Button */}
-          <motion.div
+          <div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
@@ -290,14 +290,14 @@ export default function UserjotCloneSection() {
             <p className="text-gray-500 text-sm mt-4">
               Tüm sera projelerinizi tek platformdan yönetin
             </p>
-          </motion.div>
+          </div>
         </div>
       </div>
 
       {/* How It Works Section - Horizontal Scrolling */}
       <div className="py-20 bg-gray-50 text-gray-600">
         <div className="page-section-container">
-          <motion.div
+          <div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -307,13 +307,13 @@ export default function UserjotCloneSection() {
             <h2 className="text-xl font-bold text-gray-900 mb-6">
               Panelde Sizi Bekleyen Analiz Türleri ve Özellikleri
             </h2>
-          </motion.div>
+          </div>
 
           {/* Horizontal Scrolling Cards */}
           <div className="relative">
             <div className="flex overflow-x-auto scrollbar-hide space-x-6 pb-6">
               {/* Card 1 - ROI Simülasyonu */}
-              <motion.div
+              <div
                 initial={{ opacity: 0, x: 30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6 }}
@@ -354,10 +354,10 @@ export default function UserjotCloneSection() {
                     <button className="mt-2 text-blue-600 text-xs font-medium hover:underline">[PDF'yi Örnekle Gör]</button>
                   </div>
                 </div>
-              </motion.div>
+              </div>
 
               {/* Card 2 - İklim Analizi */}
-              <motion.div
+              <div
                 initial={{ opacity: 0, x: 30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6, delay: 0.1 }}
@@ -398,10 +398,10 @@ export default function UserjotCloneSection() {
                     <button className="mt-2 text-blue-600 text-xs font-medium hover:underline">[İklim Skorunu Gör]</button>
                   </div>
                 </div>
-              </motion.div>
+              </div>
 
               {/* Card 3 - Ekipman Listesi */}
-              <motion.div
+              <div
                 initial={{ opacity: 0, x: 30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
@@ -442,10 +442,10 @@ export default function UserjotCloneSection() {
                     <button className="mt-2 text-blue-600 text-xs font-medium hover:underline">[Ekipman Listesine Bak]</button>
                   </div>
                 </div>
-              </motion.div>
+              </div>
 
               {/* Card 4 - Pazar Verisi */}
-              <motion.div
+              <div
                 initial={{ opacity: 0, x: 30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6, delay: 0.3 }}
@@ -486,10 +486,10 @@ export default function UserjotCloneSection() {
                     <button className="mt-2 text-blue-600 text-xs font-medium hover:underline">[Verileri Göster]</button>
                   </div>
                 </div>
-              </motion.div>
+              </div>
 
               {/* Card 5 - Teknik Plan */}
-              <motion.div
+              <div
                 initial={{ opacity: 0, x: 30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6, delay: 0.4 }}
@@ -530,7 +530,7 @@ export default function UserjotCloneSection() {
                     <button className="mt-2 text-blue-600 text-xs font-medium hover:underline">[Planı Önizle]</button>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             </div>
 
             {/* Navigation Arrows */}
@@ -553,7 +553,7 @@ export default function UserjotCloneSection() {
       {/* AI Chat Section */}
       <div className="py-20 text-gray-600">
         <div className="text-section-container">
-          <motion.div
+          <div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -566,10 +566,10 @@ export default function UserjotCloneSection() {
             <p className="text-sm text-gray-600 text-section-container leading-relaxed">
               Proje çıktılarınız üzerine sohbet edebileceğiniz, derinlemesine araştırma yapabileceğiniz özel asistanınız panelinizde sizi bekliyor, üstelik tamamen ücretsiz
             </p>
-          </motion.div>
+          </div>
 
           {/* AI Chat Flow */}
-          <motion.div
+          <div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.2 }}
@@ -590,10 +590,10 @@ export default function UserjotCloneSection() {
                 </div>
               </div>
             </div>
-          </motion.div>
+          </div>
 
           {/* CTA Button */}
-          <motion.div
+          <div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
@@ -610,14 +610,14 @@ export default function UserjotCloneSection() {
             <p className="text-gray-500 text-sm mt-4">
               Adil Kullanım Kotası İle Birlikte Ücretsizdir
             </p>
-          </motion.div>
+          </div>
         </div>
       </div>
 
       {/* Visual Gallery Section */}
       <div className="py-20 bg-gray-50 text-gray-600">
         <div className="page-section-container bg-gray-50">
-          <motion.div
+          <div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -633,13 +633,13 @@ export default function UserjotCloneSection() {
             <p className="text-sm text-gray-900 max-w-[576px] mx-auto leading-relaxed">
               Çözüm ortaklarımız ile hayata geçirilen sera projelerimiz
             </p>
-          </motion.div>
+          </div>
 
           {/* Horizontal Scrolling Gallery */}
           <div className="relative mb-12 visual-section-container">
             <div className="flex overflow-x-auto scrollbar-hide gap-6 pb-6">
               {/* Gallery Image 1 */}
-              <motion.div
+              <div
                 initial={{ opacity: 0, x: 30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6 }}
@@ -652,10 +652,10 @@ export default function UserjotCloneSection() {
                     <p className="text-gray-500 text-sm">Antalya, 5.000 m²</p>
                   </div>
                 </div>
-              </motion.div>
+              </div>
 
               {/* Gallery Image 2 */}
-              <motion.div
+              <div
                 initial={{ opacity: 0, x: 30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6, delay: 0.1 }}
@@ -668,10 +668,10 @@ export default function UserjotCloneSection() {
                     <p className="text-gray-500 text-sm">Mersin, 3.200 m²</p>
                   </div>
                 </div>
-              </motion.div>
+              </div>
 
               {/* Gallery Image 3 */}
-              <motion.div
+              <div
                 initial={{ opacity: 0, x: 30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
@@ -684,10 +684,10 @@ export default function UserjotCloneSection() {
                     <p className="text-gray-500 text-sm">İzmir, 2.800 m²</p>
                   </div>
                 </div>
-              </motion.div>
+              </div>
 
               {/* Gallery Image 4 */}
-              <motion.div
+              <div
                 initial={{ opacity: 0, x: 30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6, delay: 0.3 }}
@@ -700,10 +700,10 @@ export default function UserjotCloneSection() {
                     <p className="text-gray-500 text-sm">Bursa, 4.500 m²</p>
                   </div>
                 </div>
-              </motion.div>
+              </div>
 
               {/* Gallery Image 5 */}
-              <motion.div
+              <div
                 initial={{ opacity: 0, x: 30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6, delay: 0.4 }}
@@ -717,10 +717,10 @@ export default function UserjotCloneSection() {
                     <p className="text-gray-500 text-sm">Konya, 6.000 m²</p>
                   </div>
                 </div>
-              </motion.div>
+              </div>
 
               {/* Gallery Image 6 */}
-              <motion.div
+              <div
                 initial={{ opacity: 0, x: 30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6, delay: 0.5 }}
@@ -734,10 +734,10 @@ export default function UserjotCloneSection() {
                     <p className="text-gray-500 text-sm">Muğla, 2.100 m²</p>
                   </div>
                 </div>
-              </motion.div>
+              </div>
 
               {/* Gallery Image 7 */}
-              <motion.div
+              <div
                 initial={{ opacity: 0, x: 30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6, delay: 0.6 }}
@@ -751,10 +751,10 @@ export default function UserjotCloneSection() {
                     <p className="text-gray-500 text-sm">Isparta, 1.800 m²</p>
                   </div>
                 </div>
-              </motion.div>
+              </div>
 
               {/* Gallery Image 8 */}
-              <motion.div
+              <div
                 initial={{ opacity: 0, x: 30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6, delay: 0.7 }}
@@ -768,7 +768,7 @@ export default function UserjotCloneSection() {
                     <p className="text-gray-500 text-sm">Çanakkale, 3.700 m²</p>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             </div>
 
             {/* Scroll indicators */}
@@ -782,7 +782,7 @@ export default function UserjotCloneSection() {
           </div>
 
           {/* CTA Button */}
-          <motion.div
+          <div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
@@ -808,7 +808,7 @@ export default function UserjotCloneSection() {
             <p className="text-gray-500 text-sm mt-4">
               Uzman ekibimiz size özel teklifini hazırlayacak
             </p>
-          </motion.div>
+          </div>
         </div>
       </div>
 
@@ -816,7 +816,7 @@ export default function UserjotCloneSection() {
       <BlogCardsSection />
 
       {/* FAQ Section */}
-      <motion.div
+      <div
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
@@ -824,7 +824,7 @@ export default function UserjotCloneSection() {
         className="bg-white py-20 text-gray-600"
       >
         <div className="text-section-container">
-          <motion.div
+          <div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
@@ -834,7 +834,7 @@ export default function UserjotCloneSection() {
             <h2 className="text-xl font-bold text-gray-900 mb-4">
               Sıkça Sorulan Sorular (SSS)
             </h2>
-          </motion.div>
+          </div>
 
           <div className="space-y-2">
             {[
@@ -859,7 +859,7 @@ export default function UserjotCloneSection() {
                 answer: "İlk 5 rapor ücretsizdir. Sonrasında, kredi kartı veya havale/EFT ile jeton (token) satın alabilirsiniz. Ödeme altyapısı %100 güvenlidir."
               }
             ].map((faq, index) => (
-              <motion.div
+              <div
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -888,7 +888,7 @@ export default function UserjotCloneSection() {
                   </div>
                 </button>
                 {openFAQ === index && (
-                  <motion.div
+                  <div
                     initial={{ opacity: 0, height: 0 }}
                     animate={{ opacity: 1, height: 'auto' }}
                     exit={{ opacity: 0, height: 0 }}
@@ -896,14 +896,14 @@ export default function UserjotCloneSection() {
                     className="px-6 pb-6 text-sm md:text-base text-gray-600 leading-relaxed"
                   >
                     {faq.answer}
-                  </motion.div>
+                  </div>
                 )}
-              </motion.div>
+              </div>
             ))}
           </div>
 
           {/* Support Link */}
-          <motion.div
+          <div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
@@ -922,9 +922,9 @@ export default function UserjotCloneSection() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
             </a>
-          </motion.div>
+          </div>
         </div>
-      </motion.div>
+      </div>
 
       {/* Footer */}
       <Footer />
