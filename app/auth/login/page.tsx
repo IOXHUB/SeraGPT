@@ -70,6 +70,10 @@ export default function AuthPage() {
       console.log('Supabase URL:', process.env.NEXT_PUBLIC_SUPABASE_URL);
       console.log('Has Key:', !!process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY);
 
+      console.log('Attempting login with:', { email, passwordLength: password.length });
+      console.log('Using Supabase URL:', process.env.NEXT_PUBLIC_SUPABASE_URL);
+      console.log('Using API key prefix:', process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY?.substring(0, 20) + '...');
+
       const { data, error } = await supabase.auth.signInWithPassword({
         email,
         password,
@@ -79,11 +83,18 @@ export default function AuthPage() {
         hasData: !!data,
         hasUser: !!data?.user,
         hasSession: !!data?.session,
-        error: error?.message
+        error: error?.message,
+        errorName: error?.name,
+        errorStatus: error?.status
       });
 
       if (error) {
-        console.error('Login error:', error);
+        console.error('Login error details:', {
+          message: error.message,
+          name: error.name,
+          status: error.status,
+          details: error
+        });
 
         // Handle network errors specifically
         if (error.message.includes('Failed to fetch') || error.message.includes('Network error')) {
