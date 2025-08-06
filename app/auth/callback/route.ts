@@ -1,4 +1,3 @@
-import { createClient } from '@/lib/auth'
 import { NextRequest, NextResponse } from 'next/server'
 
 export async function GET(request: NextRequest) {
@@ -7,13 +6,14 @@ export async function GET(request: NextRequest) {
   const next = searchParams.get('next') ?? '/dashboard'
 
   if (code) {
-    const supabase = createClient()
-    const { error } = await supabase.auth.exchangeCodeForSession(code)
-    if (!error) {
+    try {
+      // For now, just redirect to dashboard since we're using demo auth
       return NextResponse.redirect(`${origin}${next}`)
+    } catch (error) {
+      console.error('Auth callback error:', error)
     }
   }
 
-  // return the user to an error page with instructions
-  return NextResponse.redirect(`${origin}/auth/auth-code-error`)
+  // return the user to login page
+  return NextResponse.redirect(`${origin}/auth/login`)
 }
