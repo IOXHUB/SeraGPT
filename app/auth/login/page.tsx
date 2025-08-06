@@ -520,8 +520,14 @@ export default function AuthPage() {
 
             <div className="mt-3 space-y-2">
               <a
+                href="/auth/debug-supabase"
+                className="inline-block bg-red-600 text-white px-3 py-1 rounded text-xs hover:bg-red-700"
+              >
+                🚨 Supabase Debug
+              </a>
+              <a
                 href="/auth/debug-login"
-                className="inline-block bg-purple-600 text-white px-3 py-1 rounded text-xs hover:bg-purple-700"
+                className="ml-2 inline-block bg-purple-600 text-white px-3 py-1 rounded text-xs hover:bg-purple-700"
               >
                 🔧 Debug Login Page
               </a>
