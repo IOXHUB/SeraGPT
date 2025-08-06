@@ -32,7 +32,7 @@ export default function AdminAuthPage() {
       if (error) {
         setMessage(`Kullanıcılar yüklenemedi: ${error.message}`);
       } else {
-        setUsers(data.users);
+        setUsers(data.users as User[]);
       }
     } catch (error) {
       setMessage('Kullanıcılar yüklenirken hata oluştu');
