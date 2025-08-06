@@ -285,29 +285,34 @@ export default function DashboardPage() {
             </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 mb-8">
-              {analysisTools.map((tool) => (
-                <div key={tool.id} className="bg-white p-6 rounded-xl border border-gray-200 hover:shadow-lg transition-shadow">
-                  <div className="text-center">
-                    <div className="text-3xl mb-3">{tool.icon}</div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">{tool.title}</h3>
-                    <p className="text-gray-600 text-sm mb-4">{tool.description}</p>
-                    <a
-                      href={tool.href}
-                      className={`w-full inline-flex items-center justify-center px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-                        userTokens >= tool.tokensRequired
-                          ? 'bg-gray-900 hover:bg-gray-800 text-white'
-                          : 'bg-gray-100 text-gray-400 cursor-not-allowed'
-                      }`}
-                    >
-                      {userTokens >= tool.tokensRequired ? (
-                        <>
-                          <span className="mr-2">🪙</span>
-                          Analizi Başlat
-                        </>
-                      ) : (
-                        'Yetersiz Jeton'
-                      )}
-                    </a>
+              {analysisTools.map((tool, index) => (
+                <div key={tool.id} className="relative group">
+                  <div className="absolute -inset-0.5 bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 rounded-xl opacity-40 group-hover:opacity-70 transition duration-300"></div>
+                  <div className="relative bg-white p-6 rounded-xl border-0 h-full flex flex-col">
+                    <div className="text-center flex-1">
+                      <div className="text-3xl mb-3">{tool.icon}</div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">{tool.title}</h3>
+                      <p className="text-gray-600 text-sm mb-4">{tool.description}</p>
+                    </div>
+                    <div className="mt-auto">
+                      <a
+                        href={tool.href}
+                        className={`w-full inline-flex items-center justify-center px-4 py-3 rounded-lg text-sm font-medium transition-all duration-300 ${
+                          userTokens >= tool.tokensRequired
+                            ? 'bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white shadow-md hover:shadow-lg hover:scale-105'
+                            : 'bg-gray-100 text-gray-400 cursor-not-allowed'
+                        }`}
+                      >
+                        {userTokens >= tool.tokensRequired ? (
+                          <>
+                            <span className="mr-2">🪙</span>
+                            Analizi Başlat
+                          </>
+                        ) : (
+                          'Yetersiz Jeton'
+                        )}
+                      </a>
+                    </div>
                   </div>
                 </div>
               ))}
