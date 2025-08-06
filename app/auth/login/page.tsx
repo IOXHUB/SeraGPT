@@ -60,17 +60,35 @@ export default function AuthPage() {
     }
 
     try {
+      // Test Supabase connection first
+      console.log('Testing Supabase connection...');
+      console.log('Supabase URL:', process.env.NEXT_PUBLIC_SUPABASE_URL);
+      console.log('Has Key:', !!process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY);
+
       const { data, error } = await supabase.auth.signInWithPassword({
         email,
         password,
       });
 
+      console.log('Login response:', {
+        hasData: !!data,
+        hasUser: !!data?.user,
+        hasSession: !!data?.session,
+        error: error?.message
+      });
+
       if (error) {
         console.error('Login error:', error);
-        if (error.message.includes('Invalid login credentials')) {
+
+        // Handle network errors specifically
+        if (error.message.includes('Failed to fetch') || error.message.includes('Network error')) {
+          setMessage('❌ Bağlantı hatası: Sunucuya erişilemiyor. İnternet bağlantınızı kontrol edin.');
+        } else if (error.message.includes('Invalid login credentials')) {
           setMessage('❌ E-posta veya şifre hatalı');
         } else if (error.message.includes('Email not confirmed')) {
           setMessage('❌ E-posta adresinizi doğrulamanız gerekiyor. E-postanızı kontrol edin.');
+        } else if (error.message.includes('AuthRetryableFetchError')) {
+          setMessage('❌ Kimlik doğrulama sunucusuna erişilemiyor. Lütfen daha sonra tekrar deneyin.');
         } else {
           setMessage(`❌ Giriş hatası: ${error.message}`);
         }
