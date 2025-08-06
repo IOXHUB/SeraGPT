@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
+import Footer from '../../components/Footer';
 
 export default function DestekPage() {
   const [activeSection, setActiveSection] = useState('quick-start');
