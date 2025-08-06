@@ -36,10 +36,31 @@ export class EmailService {
   }
 
   private async sendEmail(data: EmailData): Promise<boolean> {
+    console.log('🔧 Email Debug - Starting send process');
+    console.log('API Key exists:', !!this.apiKey);
+    console.log('API Key preview:', this.apiKey ? this.apiKey.substring(0, 10) + '...' : 'MISSING');
+    console.log('From address:', this.from);
+    console.log('To address:', data.to);
+    console.log('Subject:', data.subject);
+
     if (!this.apiKey) {
-      console.warn('Resend API key not configured, skipping email');
+      console.error('❌ Resend API key not configured');
       return false;
     }
+
+    const payload = {
+      from: data.from || this.from,
+      to: [data.to],
+      subject: data.subject,
+      html: data.html,
+    };
+
+    console.log('📤 Sending email payload:', {
+      from: payload.from,
+      to: payload.to,
+      subject: payload.subject,
+      htmlLength: payload.html.length
+    });
 
     try {
       const response = await fetch('https://api.resend.com/emails', {
@@ -48,25 +69,27 @@ export class EmailService {
           'Authorization': `Bearer ${this.apiKey}`,
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          from: data.from || this.from,
-          to: [data.to],
-          subject: data.subject,
-          html: data.html,
-        }),
+        body: JSON.stringify(payload),
       });
 
+      console.log('📨 Resend API response status:', response.status);
+      console.log('📨 Resend API response headers:', Object.fromEntries(response.headers.entries()));
+
       if (!response.ok) {
-        const error = await response.text();
-        console.error('Email send failed:', error);
+        const errorText = await response.text();
+        console.error('❌ Email send failed:', {
+          status: response.status,
+          statusText: response.statusText,
+          error: errorText
+        });
         return false;
       }
 
       const result = await response.json();
-      console.log('Email sent successfully:', result.id);
+      console.log('✅ Email sent successfully:', result);
       return true;
     } catch (error) {
-      console.error('Email service error:', error);
+      console.error('💥 Email service exception:', error);
       return false;
     }
   }
