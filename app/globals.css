@@ -578,7 +578,7 @@ p, .text-content {
   }
 }
 
-/* Custom container styles as per design specifications */
+/* Modern User Panel Layout Specifications */
 .navbar-footer-container {
   max-width: 1200px;
   margin: 0 auto;
@@ -588,28 +588,59 @@ p, .text-content {
   align-items: center;
 }
 
+/* Text content areas - narrow for focus */
 .text-section-container {
   max-width: 576px;
   margin: 0 auto;
   padding: 0 24px;
+  text-align: left;
 }
 
+/* Main body content area */
 .body-section-container {
-  max-width: 896px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 0 24px;
 }
 
+/* Visual content areas - wider for modern look */
 .visual-section-container {
-  max-width: 896px;
+  max-width: 850px;
   margin: 0 auto;
   padding: 0 24px;
 }
 
+/* Full page width container */
 .page-section-container {
   max-width: 1700px;
   margin: 0 auto;
   padding: 0 24px;
+}
+
+/* User Panel specific containers */
+.user-panel-container {
+  max-width: 1700px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.user-panel-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.user-panel-text {
+  max-width: 576px;
+  margin: 0 auto;
+  text-align: left;
+  padding: 0;
+}
+
+.user-panel-visual {
+  max-width: 850px;
+  margin: 0 auto;
+  padding: 0;
 }
 
 .hero-section-container {
