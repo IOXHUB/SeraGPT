@@ -155,11 +155,8 @@ export default function AuthPage() {
         // User created and automatically signed in
         setMessage('✅ Kayıt başarılı! Yönlendiriliyorsunuz...');
         setTimeout(() => {
-          if (typeof window !== 'undefined') {
-            window.location.href = '/dashboard';
-          } else {
-            router.push('/dashboard');
-          }
+          console.log('SIGNUP SUCCESS - HARD REDIRECT TO DASHBOARD');
+          window.location.replace('/dashboard');
         }, 1000);
       } else {
         // Unknown state - show generic success message
