@@ -284,6 +284,149 @@ export class EmailService {
       html,
     });
   }
+
+  async sendSupportTicket(data: SupportTicketEmailData): Promise<boolean> {
+    const priorityColors = {
+      low: '#10b981',
+      medium: '#f59e0b',
+      high: '#ef4444',
+      urgent: '#dc2626'
+    };
+
+    const categoryLabels = {
+      technical: 'Teknik Destek',
+      billing: 'Faturalandırma',
+      general: 'Genel Sorular',
+      bug: 'Hata Raporu'
+    };
+
+    const html = `
+      <!DOCTYPE html>
+      <html>
+        <head>
+          <meta charset="utf-8">
+          <style>
+            body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #333; }
+            .container { max-width: 700px; margin: 0 auto; padding: 20px; }
+            .header { text-align: center; margin-bottom: 30px; border-bottom: 2px solid #e5e7eb; padding-bottom: 20px; }
+            .priority { padding: 4px 12px; border-radius: 20px; color: white; font-size: 12px; font-weight: bold; }
+            .ticket-info { background: #f3f4f6; padding: 20px; border-radius: 8px; margin: 20px 0; }
+            .customer-message { background: #fff; padding: 20px; border-left: 4px solid #3b82f6; margin: 20px 0; }
+            .footer { text-align: center; margin-top: 30px; color: #666; font-size: 14px; }
+          </style>
+        </head>
+        <body>
+          <div class="container">
+            <div class="header">
+              <h1>🎫 Yeni Destek Talebi</h1>
+              <p>SeraGPT Destek Sistemi</p>
+            </div>
+
+            <div class="ticket-info">
+              <h2>Talep Bilgileri</h2>
+              <p><strong>Talep ID:</strong> ${data.ticketId}</p>
+              <p><strong>Müşteri:</strong> ${data.customerName}</p>
+              <p><strong>E-posta:</strong> ${data.customerEmail}</p>
+              <p><strong>Konu:</strong> ${data.subject}</p>
+              <p><strong>Kategori:</strong> ${categoryLabels[data.category]}</p>
+              <p><strong>Öncelik:</strong> <span class="priority" style="background-color: ${priorityColors[data.priority]}">${data.priority.toUpperCase()}</span></p>
+              <p><strong>Tarih:</strong> ${new Date().toLocaleString('tr-TR')}</p>
+            </div>
+
+            <div class="customer-message">
+              <h3>Müşteri Mesajı:</h3>
+              <p style="white-space: pre-wrap;">${data.message}</p>
+            </div>
+
+            <div class="footer">
+              <p>Bu destek talebi SeraGPT sisteminden otomatik olarak oluşturulmuştur.</p>
+            </div>
+          </div>
+        </body>
+      </html>
+    `;
+
+    return this.sendEmail({
+      to: 'info@isitmax.com', // Admin email
+      subject: `[${data.priority.toUpperCase()}] Destek Talebi: ${data.subject} (#${data.ticketId})`,
+      html,
+    });
+  }
+
+  async sendSupportConfirmation(data: SupportConfirmationEmailData): Promise<boolean> {
+    const html = `
+      <!DOCTYPE html>
+      <html>
+        <head>
+          <meta charset="utf-8">
+          <style>
+            body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #333; }
+            .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+            .header { text-align: center; margin-bottom: 30px; }
+            .logo { width: 120px; height: auto; }
+            .content { background: #f0f9ff; padding: 30px; border-radius: 8px; border: 1px solid #0ea5e9; }
+            .ticket-box { background: #fff; padding: 20px; border-radius: 8px; text-align: center; margin: 20px 0; border: 2px dashed #0ea5e9; }
+            .footer { text-align: center; margin-top: 30px; color: #666; font-size: 14px; }
+            .timeline { margin: 20px 0; }
+            .timeline-item { padding: 10px 0; border-left: 3px solid #0ea5e9; padding-left: 15px; }
+          </style>
+        </head>
+        <body>
+          <div class="container">
+            <div class="header">
+              <img src="https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2F96da5382e9584c3fb2d32eca60944359?format=webp&width=800" alt="SeraGPT" class="logo">
+            </div>
+
+            <div class="content">
+              <h2>✅ Destek Talebiniz Alındı</h2>
+              <p>Merhaba ${data.name},</p>
+              <p>SeraGPT destek talebiniz başarıyla oluşturuldu. En kısa sürede size geri dönüş yapacağız.</p>
+
+              <div class="ticket-box">
+                <h3>🎫 Talep Numaranız</h3>
+                <p style="font-size: 18px; font-weight: bold; color: #0ea5e9; margin: 0;">${data.ticketId}</p>
+                <p style="font-size: 14px; color: #666;">Bu numarayı kaydetmeyi unutmayın</p>
+              </div>
+
+              <p><strong>Konu:</strong> ${data.subject}</p>
+              <p><strong>Oluşturma Tarihi:</strong> ${new Date().toLocaleString('tr-TR')}</p>
+
+              <div class="timeline">
+                <h3>📋 Süreç Aşamaları</h3>
+                <div class="timeline-item">
+                  <strong>1. Talep Alındı</strong> ✅<br>
+                  <small>Talebiniz sistemimize kaydedildi</small>
+                </div>
+                <div class="timeline-item">
+                  <strong>2. İnceleme</strong> ⏳<br>
+                  <small>Uzman ekibimiz talebinizi inceliyor</small>
+                </div>
+                <div class="timeline-item">
+                  <strong>3. Yanıt</strong> ⏳<br>
+                  <small>Size e-posta ile yanıt vereceğiz</small>
+                </div>
+              </div>
+
+              <p><strong>Yanıt Süresi:</strong> 24 saat içinde (iş günleri)</p>
+              <p><strong>Çalışma Saatleri:</strong> Hafta içi 09:00-18:00</p>
+            </div>
+
+            <div class="footer">
+              <p>Bu e-posta ${data.to} adresine gönderildi.<br>
+              SeraGPT © 2025 - Tarımsal AI Çözümleri</p>
+              <p>Destek: info@isitmax.com</p>
+            </div>
+          </div>
+        </body>
+      </html>
+    `;
+
+    return this.sendEmail({
+      to: data.to,
+      subject: `🎫 Destek Talebiniz Alındı - ${data.ticketId}`,
+      html,
+    });
+  }
 }
 
 // Singleton instance
