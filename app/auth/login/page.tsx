@@ -183,33 +183,6 @@ export default function LoginPage() {
           </div>
         </form>
 
-        {/* Demo Login Section */}
-        <div className="border-t border-gray-200 pt-6">
-          <div className="text-center mb-4">
-            <p className="text-sm font-medium text-gray-700">Demo Giriş (Geliştirme)</p>
-            <p className="text-xs text-gray-500">Şifresiz hızlı giriş</p>
-          </div>
-
-          <div className="space-y-2">
-            <button
-              type="button"
-              onClick={() => handleDemoLogin('demo')}
-              disabled={loading}
-              className="group relative w-full flex justify-center py-2 px-4 border border-blue-300 text-sm font-medium rounded-md text-blue-700 bg-blue-50 hover:bg-blue-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              👤 Demo Kullanıcı Girişi
-            </button>
-
-            <button
-              type="button"
-              onClick={() => handleDemoLogin('admin')}
-              disabled={loading}
-              className="group relative w-full flex justify-center py-2 px-4 border border-purple-300 text-sm font-medium rounded-md text-purple-700 bg-purple-50 hover:bg-purple-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              👑 Admin Girişi
-            </button>
-          </div>
-        </div>
 
         <div className="text-center">
           <p className="text-sm text-gray-600">
