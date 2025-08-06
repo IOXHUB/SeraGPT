@@ -152,14 +152,37 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
               <div className="flex-1 min-w-0">
                 <p className="text-sm font-medium text-gray-900 truncate">
                   {user?.user_metadata?.full_name ||
-                   (user?.email ? user.email.split('@')[0].charAt(0).toUpperCase() + user.email.split('@')[0].slice(1) : 'Kullanıcı')}
+                   (user?.email ? user.email.split('@')[0].charAt(0).toUpperCase() + user.email.split('@')[0].slice(1) : null) ||
+                   (() => {
+                     const backupUser = localStorage.getItem('seragpt_user');
+                     if (backupUser) {
+                       try {
+                         const parsed = JSON.parse(backupUser);
+                         const email = parsed.email || '';
+                         return email.split('@')[0]?.charAt(0).toUpperCase() + email.split('@')[0]?.slice(1) || 'Kullanıcı';
+                       } catch (e) {}
+                     }
+                     return 'Kullanıcı';
+                   })()}
                   {isAdmin() && (
                     <span className="ml-2 px-2 py-0.5 text-xs rounded-full bg-purple-100 text-purple-700">
                       Admin
                     </span>
                   )}
                 </p>
-                <p className="text-xs text-gray-500 truncate">{user?.email || 'user@seragpt.com'}</p>
+                <p className="text-xs text-gray-500 truncate">
+                  {user?.email ||
+                   (() => {
+                     const backupUser = localStorage.getItem('seragpt_user');
+                     if (backupUser) {
+                       try {
+                         const parsed = JSON.parse(backupUser);
+                         return parsed.email || 'user@seragpt.com';
+                       } catch (e) {}
+                     }
+                     return 'user@seragpt.com';
+                   })()}
+                </p>
               </div>
             </div>
           </div>
