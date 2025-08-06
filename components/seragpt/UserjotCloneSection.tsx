@@ -14,7 +14,7 @@ export default function UserjotCloneSection() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header - Full width with 960px content container */}
-      <header className="w-full bg-gray-50">
+      <header className="w-full bg-gray-50 relative">
         <div className="navbar-footer-container">
           {/* Logo - clickable to homepage */}
           <div className="flex items-center space-x-3">
