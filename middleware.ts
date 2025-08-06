@@ -5,6 +5,8 @@ export async function middleware(request: NextRequest) {
   // Only run auth middleware on protected routes
   if (request.nextUrl.pathname.startsWith('/dashboard') ||
       request.nextUrl.pathname.startsWith('/admin')) {
+
+    console.log('Middleware checking auth for:', request.nextUrl.pathname);
     return await updateSession(request)
   }
 
