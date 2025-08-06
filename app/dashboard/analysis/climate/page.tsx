@@ -6,6 +6,9 @@ import DashboardLayout from '@/components/dashboard/DashboardLayout';
 import { weatherService, ClimateAnalysis, WeatherData } from '@/lib/services/weather-service';
 import { pdfService } from '@/lib/services/pdf-service';
 
+// Force dynamic rendering
+export const dynamic = 'force-dynamic';
+
 export default function ClimateAnalysisPage() {
   const [location, setLocation] = useState({
     city: 'Antalya',
