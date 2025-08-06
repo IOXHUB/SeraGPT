@@ -339,12 +339,9 @@ export default function DashboardPage() {
               <div className="p-6">
                 <div className="grid md:grid-cols-3 gap-6">
                   <div className="text-center">
-                    <div className="w-16 h-16 mx-auto mb-3 rounded-2xl bg-gradient-to-br from-blue-50 to-blue-100 flex items-center justify-center">
-                      <span className="text-2xl">🪙</span>
-                    </div>
-                    <h4 className="font-semibold text-gray-900 mb-1">Mevcut Jetonlar</h4>
-                    <p className="text-2xl font-bold text-gray-900 mb-2">{userTokens}</p>
-                    <p className="text-sm text-gray-600">Kullanılabilir jeton</p>
+                    <h4 className="font-normal text-gray-900 mb-1">Mevcut Jetonlar</h4>
+                    <p className="text-2xl font-light text-gray-900 mb-2">{userTokens}</p>
+                    <p className="text-sm font-light text-gray-600">Kullanılabilir jeton</p>
                   </div>
                   <div className="text-center">
                     <div className="w-16 h-16 mx-auto mb-3 rounded-2xl bg-gradient-to-br from-green-50 to-green-100 flex items-center justify-center">
