@@ -210,22 +210,23 @@ export default function DashboardPage() {
 
   return (
     <DashboardLayout>
-      <div className="flex-1 bg-gray-50 p-6">
-        {/* Header */}
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">
-            {isAdmin() ? 'Admin Dashboard' : 'SeraGPT Dashboard'}
-          </h1>
-          <p className="text-gray-600">
-            {isAdmin() 
-              ? 'Sistem yönetimi ve kullanıcı analitiği' 
-              : '20 yıllık mühendislik deneyimi ile desteklenen yapay zeka analizleri'
-            }
-          </p>
-        </div>
+      <div className="flex-1 bg-white user-panel-container">
+        <div className="user-panel-content space-y-modern">
+          {/* Header */}
+          <div className="focus-text user-panel-section">
+            <h1 className="neon-purple">
+              {isAdmin() ? 'Admin Dashboard' : 'SeraGPT Dashboard'}
+            </h1>
+            <p className="user-panel-text">
+              {isAdmin()
+                ? 'Sistem yönetimi ve kullanıcı analitiği'
+                : '20 yıllık mühendislik deneyimi ile desteklenen yapay zeka analizleri'
+              }
+            </p>
+          </div>
 
-        {/* Stats Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+          {/* Stats Cards */}
+          <div className="focus-visual grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {statsConfig.map((stat, index) => (
             <div key={stat.name} className={`p-6 rounded-xl border ${getColorClasses(stat.color)}`}>
               <div className="flex items-center justify-between">
@@ -272,17 +273,17 @@ export default function DashboardPage() {
           ))}
         </div>
 
-        {/* User Analysis Tools Section */}
-        {!isAdmin() && (
-          <div className="mb-8">
-            <div className="text-center mb-6">
-              <h2 className="text-2xl font-bold text-gray-900 mb-2">
-                Kullanıma Hazır Analizler
-              </h2>
-              <p className="text-gray-600">
-                Her analiz için 1 jeton harcanır. İlk 5 analiziniz ücretsizdir.
-              </p>
-            </div>
+          {/* User Analysis Tools Section */}
+          {!isAdmin() && (
+            <div className="user-panel-section">
+              <div className="focus-text">
+                <h2 className="neon-cyan">
+                  Kullanıma Hazır Analizler
+                </h2>
+                <p className="user-panel-text">
+                  Her analiz için 1 jeton harcanır. İlk 5 analiziniz ücretsizdir.
+                </p>
+              </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 mb-8">
               {analysisTools.map((tool, index) => (
@@ -487,6 +488,7 @@ export default function DashboardPage() {
             </div>
           </div>
         )}
+        </div>
       </div>
     </DashboardLayout>
   );
