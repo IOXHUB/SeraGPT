@@ -141,7 +141,7 @@ export default function UserjotCloneSection() {
                           Giriş Yap
                         </a>
                         <a
-                          href="/dashboard"
+                          href="/auth/login"
                           className="block bg-black hover:bg-gray-800 text-white px-4 py-3 rounded-xl font-medium transition-colors text-center"
                           onClick={() => setIsMobileMenuOpen(false)}
                         >
@@ -293,7 +293,7 @@ export default function UserjotCloneSection() {
 
                     <div>
                       <p className="text-gray-800 text-xs font-semibold mb-1">🔗 Veri Kaynakları:</p>
-                      <p className="text-gray-600 text-xs">• OpenWeather, FAO & TÜİK</p>
+                      <p className="text-gray-600 text-xs">• OpenWeather, FAO & T��İK</p>
                       <p className="text-gray-600 text-xs">• Seraburada / e-Tarım API</p>
                     </div>
 
