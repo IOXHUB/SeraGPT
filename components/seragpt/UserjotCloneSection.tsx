@@ -124,7 +124,7 @@ export default function UserjotCloneSection() {
                     {user ? (
                       // For logged in users - show Dashboard
                       <a
-                        href="/dashboard"
+                        href="/dashboard/direct"
                         className="block text-gray-700 hover:text-gray-900 font-medium transition-colors py-2"
                         onClick={() => setIsMobileMenuOpen(false)}
                       >
