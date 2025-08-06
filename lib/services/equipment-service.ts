@@ -280,7 +280,7 @@ class EquipmentService {
 
   private selectEquipmentForCategory(category: string, inputs: EquipmentInputs): EquipmentItem[] {
     const items: EquipmentItem[] = [];
-    const categoryEquipment = this.equipmentDatabase[category] || [];
+    const categoryEquipment = this.equipmentDatabase[category as keyof typeof this.equipmentDatabase] || [];
 
     for (const equipment of categoryEquipment) {
       const isRecommended = this.shouldRecommendEquipment(equipment, inputs);
@@ -316,7 +316,7 @@ class EquipmentService {
   }
 
   private getEquipmentPriority(category: string, equipment: any, inputs: EquipmentInputs): 'essential' | 'recommended' | 'optional' {
-    const priorities = {
+    const priorities: Record<string, 'essential' | 'recommended' | 'optional'> = {
       structure: 'essential' as const,
       climate: inputs.automationLevel === 'manual' ? 'recommended' as const : 'essential' as const,
       irrigation: 'essential' as const,
@@ -341,7 +341,7 @@ class EquipmentService {
     baseCost *= budgetMultipliers[inputs.budgetRange];
 
     // Apply location multiplier (shipping costs)
-    const locationMultipliers = {
+    const locationMultipliers: Record<string, number> = {
       antalya: 1.0,
       mersin: 1.1,
       izmir: 1.15,
@@ -394,7 +394,7 @@ class EquipmentService {
     }
 
     // Plant-specific advice
-    const plantAdvice = {
+    const plantAdvice: Record<string, string> = {
       tomato: 'Domates üretimi için yüksek nem kontrollü sistemler tercih edin.',
       cucumber: 'Salatalık için sıcaklık stabilitesi çok önemlidir.',
       pepper: 'Biber üretiminde iyi havalandırma sistemi gereklidir.',
@@ -421,7 +421,7 @@ class EquipmentService {
     }
 
     // Location advice
-    const locationAdvice = {
+    const locationAdvice: Record<string, string> = {
       antalya: 'Antalya ikliminde yaz aylarında ekstra soğutma sistemi gerekebilir.',
       istanbul: 'İstanbul ikliminde nem kontrolü ve ısıtma sistemi önemlidir.',
       izmir: 'İzmir için rüzgar dayanıklı konstrüksiyon tercih edin.'
