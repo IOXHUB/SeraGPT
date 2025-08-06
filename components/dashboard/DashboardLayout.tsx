@@ -109,19 +109,19 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
             <div className="flex items-center space-x-3">
               <div className="w-10 h-10 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center">
                 <span className="text-white font-semibold text-lg">
-                  {user?.email?.charAt(0).toUpperCase()}
+                  {user?.email?.charAt(0).toUpperCase() || 'D'}
                 </span>
               </div>
               <div className="flex-1 min-w-0">
                 <p className="text-sm font-medium text-gray-900 truncate">
-                  {user?.user_metadata?.full_name || 'Kullanıcı'}
+                  {user?.user_metadata?.full_name || user?.email || 'Demo Kullanıcı'}
                   {isAdmin() && (
                     <span className="ml-2 px-2 py-0.5 text-xs rounded-full bg-purple-100 text-purple-700">
                       Admin
                     </span>
                   )}
                 </p>
-                <p className="text-xs text-gray-500 truncate">{user?.email}</p>
+                <p className="text-xs text-gray-500 truncate">{user?.email || 'demo@seragpt.com'}</p>
               </div>
             </div>
           </div>
