@@ -277,10 +277,10 @@ export default function DashboardPage() {
                           }`}
                         >
                           <div>
-                            <h4 className={`font-medium mb-2 ${action.primary ? 'text-white' : 'text-gray-900'}`}>
+                            <h4 className={`font-normal mb-2 ${action.primary ? 'text-white' : 'text-gray-900'}`}>
                               {action.name}
                             </h4>
-                            <p className={`text-sm ${action.primary ? 'text-gray-200' : 'text-gray-600'}`}>
+                            <p className={`text-sm font-light ${action.primary ? 'text-gray-200' : 'text-gray-600'}`}>
                               {action.description}
                             </p>
                           </div>
