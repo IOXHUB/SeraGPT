@@ -6,6 +6,7 @@ import { createBrowserClient } from '@supabase/ssr';
 export default function TestSuccessPage() {
   const [user, setUser] = useState<any>(null);
   const [loading, setLoading] = useState(true);
+  const [attempts, setAttempts] = useState(0);
 
   const supabase = createBrowserClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
