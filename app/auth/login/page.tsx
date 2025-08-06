@@ -372,6 +372,16 @@ export default function AuthPage() {
             Ana sayfaya dön
           </a>
         </div>
+
+        {/* Debug Info - Remove in production */}
+        {process.env.NODE_ENV === 'development' && (
+          <div className="mt-8 p-4 bg-gray-100 rounded-lg text-xs">
+            <h3 className="font-semibold mb-2">Debug Info:</h3>
+            <p>Environment: {process.env.NODE_ENV}</p>
+            <p>Supabase URL: {process.env.NEXT_PUBLIC_SUPABASE_URL ? 'Set' : 'Missing'}</p>
+            <p>Current URL: {typeof window !== 'undefined' ? window.location.href : 'SSR'}</p>
+          </div>
+        )}
       </motion.div>
     </div>
   );
