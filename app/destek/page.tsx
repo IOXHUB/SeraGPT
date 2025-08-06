@@ -18,29 +18,6 @@ export default function DestekPage() {
         { id: 'pdf-reports', title: 'PDF Raporları', href: '#pdf-reports' },
         { id: 'troubleshooting', title: 'Sorun Giderme', href: '#troubleshooting' }
       ]
-    },
-    {
-      title: 'Danışmanlık',
-      id: 'danismanlik',
-      icon: '🎯',
-      items: [
-        { id: 'consultation-types', title: 'Danışmanlık Türleri', href: '#consultation-types' },
-        { id: 'expert-matching', title: 'Uzman Eşleştirme', href: '#expert-matching' },
-        { id: 'session-booking', title: 'Seans Rezervasyonu', href: '#session-booking' },
-        { id: 'pricing-plans', title: 'Fiyatlandırma', href: '#pricing-plans' }
-      ]
-    },
-    {
-      title: 'Anahtar Teslim Sera',
-      id: 'anahtar-teslim',
-      icon: '🏗️',
-      items: [
-        { id: 'project-planning', title: 'Proje Planlama', href: '#project-planning' },
-        { id: 'site-assessment', title: 'Saha Değerlendirmesi', href: '#site-assessment' },
-        { id: 'equipment-selection', title: 'Ekipman Seçimi', href: '#equipment-selection' },
-        { id: 'installation', title: 'Kurulum Süreci', href: '#installation' },
-        { id: 'maintenance', title: 'Bakım ve Destek', href: '#maintenance' }
-      ]
     }
   ];
 
