@@ -190,6 +190,19 @@ export default function AuthPage() {
       } else if (data?.user && data?.session) {
         // User created and automatically signed in
         setMessage('✅ Hesabınız oluşturuldu! Dashboard\'a yönlendiriliyorsunuz...');
+
+        // Send welcome email
+        fetch('/api/send-email', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            type: 'welcome',
+            to: data.user.email,
+            name: data.user.user_metadata?.full_name || data.user.email?.split('@')[0] || 'Kullanıcı',
+            url: `${window.location.origin}/dashboard`
+          })
+        }).catch(error => console.warn('Welcome email failed:', error));
+
         // Store user info in localStorage for bulletproof auth
         localStorage.setItem('seragpt_user', JSON.stringify({
           id: data.user.id,
