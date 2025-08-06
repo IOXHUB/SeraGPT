@@ -228,10 +228,10 @@ export default function DashboardPage() {
                     <div className="mt-auto">
                       <a
                         href={tool.href}
-                        className={`w-full inline-flex items-center justify-center px-4 py-3 rounded-xl text-sm font-light transition-all duration-500 ${
+                        className={`w-full inline-flex items-center justify-center px-4 py-3 rounded-lg text-sm font-normal transition-all duration-300 ${
                           userTokens >= tool.tokensRequired
-                            ? 'bg-gradient-to-r from-cyan-500/20 to-blue-500/20 border border-cyan-500/50 text-cyan-300 hover:bg-gradient-to-r hover:from-cyan-500/30 hover:to-blue-500/30 hover:border-cyan-400 hover:text-cyan-200 hover:shadow-lg hover:shadow-cyan-500/25'
-                            : 'bg-gray-800/30 border border-gray-700/50 text-gray-600 cursor-not-allowed'
+                            ? 'bg-gray-900 hover:bg-gray-800 text-white'
+                            : 'bg-gray-100 text-gray-400 cursor-not-allowed'
                         }`}
                       >
                         {userTokens >= tool.tokensRequired ? (
