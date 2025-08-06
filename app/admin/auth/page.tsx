@@ -3,14 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useAuth } from '@/lib/hooks/useAuth';
 import { useRouter } from 'next/navigation';
-
-interface UserData {
-  id: string;
-  email: string | undefined;
-  created_at: string;
-  email_confirmed_at: string | null;
-  user_metadata: any;
-}
+import type { User } from '@supabase/supabase-js';
 
 export default function AdminAuthPage() {
   const { user, loading, isAdmin, supabase } = useAuth();
