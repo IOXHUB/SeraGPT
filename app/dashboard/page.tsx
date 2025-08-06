@@ -179,11 +179,11 @@ export default function DashboardPage() {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 className="relative group"
               >
-                <div className="absolute -inset-0.5 bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 rounded-2xl opacity-50 blur-sm"></div>
-                <div className="relative bg-gray-800/50 backdrop-blur-xl rounded-2xl p-6 border border-gray-700/50">
+                <div className="absolute -inset-px bg-gradient-to-r from-blue-400 to-cyan-400 rounded-xl opacity-40"></div>
+                <div className="relative bg-white rounded-xl p-6 border-0">
                   <div>
-                    <p className="text-sm font-light text-gray-400 mb-1">{stat.name}</p>
-                    <p className="text-2xl font-light text-white mb-2">{stat.value}</p>
+                    <p className="text-sm font-light text-gray-600 mb-1">{stat.name}</p>
+                    <p className="text-2xl font-light text-gray-900 mb-2">{stat.value}</p>
                     <p className="text-sm font-light text-gray-500">
                       {stat.change}
                     </p>
