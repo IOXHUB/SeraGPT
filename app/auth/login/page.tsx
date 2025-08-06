@@ -27,9 +27,14 @@ export default function AuthPage() {
     const errorMessage = urlParams.get('message');
     
     if (error === 'auth_code_error') {
-      setMessage(errorMessage ? 
-        `❌ E-posta doğrulama hatası: ${errorMessage}` : 
+      setMessage(errorMessage ?
+        `❌ E-posta doğrulama hatası: ${errorMessage}` :
         '❌ E-posta doğrulama linkinde bir sorun oluştu. Lütfen tekrar giriş yapmayı deneyin.'
+      );
+    } else if (error === 'pkce_error') {
+      setMessage(errorMessage ?
+        `❌ ${errorMessage}` :
+        '❌ E-posta doğrulama süresi dolmuş. Lütfen tekrar kayıt olmayı deneyin.'
       );
     } else if (error === 'missing_code') {
       setMessage('❌ Doğrulama kodu eksik. Lütfen e-posta linkini tekrar kullanın.');
