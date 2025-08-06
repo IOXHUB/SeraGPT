@@ -300,10 +300,7 @@ export default function UserjotCloneSection() {
             <div className="flex overflow-x-auto scrollbar-hide space-x-6 pb-6">
               {/* Card 1 - ROI Simülasyonu */}
               <div
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6 }}
-                viewport={{ once: true }}
+
                 className="flex-shrink-0 w-80 bg-white rounded-2xl p-8 border border-gray-200 relative"
               >
                 <div className="absolute top-6 left-6 text-6xl font-bold text-gray-100">01</div>
@@ -488,7 +485,7 @@ export default function UserjotCloneSection() {
 
                   <div className="space-y-3 mb-4">
                     <div>
-                      <p className="text-gray-800 text-xs font-semibold mb-1">�� 3 Önemli Fayda:</p>
+                      <p className="text-gray-800 text-xs font-semibold mb-1">🎯 3 Önemli Fayda:</p>
                       <p className="text-gray-600 text-xs">• Sera yerleşim planı (2D çizim)</p>
                       <p className="text-gray-600 text-xs">• Elektrik ve sulama hat planı</p>
                       <p className="text-gray-600 text-xs">• Teknik kabin, depo gösterimi</p>
@@ -513,7 +510,7 @@ export default function UserjotCloneSection() {
 
                   <div className="mt-4 p-3 bg-gray-50 rounded-lg">
                     <p className="text-gray-700 text-sm font-medium">"2D/3D Yerleşim Planı Hazır!"</p>
-                    <button className="mt-2 text-blue-600 text-xs font-medium hover:underline">[Planı Önizle]</button>
+                    <button className="mt-2 text-blue-600 text-xs font-medium hover:underline">[Plan�� Önizle]</button>
                   </div>
                 </div>
               </div>
@@ -616,10 +613,7 @@ export default function UserjotCloneSection() {
             <div className="flex overflow-x-auto scrollbar-hide gap-6 pb-6">
               {/* Gallery Image 1 */}
               <div
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6 }}
-                viewport={{ once: true }}
+
                 className="flex-shrink-0 w-80 h-60 bg-gray-200 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
               >
                 <div className="w-full h-full bg-gradient-to-br from-green-100 to-blue-100 flex items-center justify-center">
