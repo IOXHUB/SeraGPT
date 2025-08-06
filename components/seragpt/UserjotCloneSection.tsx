@@ -108,7 +108,7 @@ export default function UserjotCloneSection() {
               {/* Navigation Links */}
               <div className="space-y-3">
                 <a
-                  href="#"
+                  href="/destek"
                   className="block text-gray-700 hover:text-gray-900 hover:bg-gray-50 py-3 px-4 rounded-lg transition-all"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
