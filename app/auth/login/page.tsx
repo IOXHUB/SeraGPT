@@ -96,8 +96,11 @@ export default function AuthPage() {
           details: error
         });
 
-        // Handle network errors specifically
-        if (error.message.includes('Failed to fetch') || error.message.includes('Network error')) {
+        // Handle specific auth errors
+        if (error.name === 'AuthInvalidTokenResponseError' || error.message.includes('Auth session or user missing')) {
+          setMessage('❌ Kimlik doğrulama sistemi hatası. Lütfen admin ile iletişime geçin.');
+          console.error('🚨 CRITICAL: Supabase auth configuration issue detected');
+        } else if (error.message.includes('Failed to fetch') || error.message.includes('Network error')) {
           setMessage('❌ Bağlantı hatası: Sunucuya erişilemiyor. İnternet bağlantınızı kontrol edin.');
         } else if (error.message.includes('Invalid login credentials')) {
           setMessage('❌ E-posta veya şifre hatalı');
@@ -106,7 +109,7 @@ export default function AuthPage() {
         } else if (error.message.includes('AuthRetryableFetchError')) {
           setMessage('❌ Kimlik doğrulama sunucusuna erişilemiyor. Lütfen daha sonra tekrar deneyin.');
         } else {
-          setMessage(`❌ Giriş hatası: ${error.message}`);
+          setMessage(`❌ Giriş hatası: ${error.message} (${error.name || 'Unknown'})`);
         }
       } else if (data?.user) {
         console.log('=== LOGIN SUCCESSFUL ===');
@@ -130,7 +133,7 @@ export default function AuthPage() {
 
       if (error?.message) {
         if (error.message.includes('Failed to fetch')) {
-          setMessage('❌ Ağ hatası: Sunucuya bağlanılamıyor. İnternet bağlantınızı kontrol edin veya biraz sonra tekrar deneyin.');
+          setMessage('�� Ağ hatası: Sunucuya bağlanılamıyor. İnternet bağlantınızı kontrol edin veya biraz sonra tekrar deneyin.');
         } else {
           setMessage(`❌ Giriş hatası: ${error.message}`);
         }
