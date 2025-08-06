@@ -24,13 +24,13 @@ export default function Header() {
 
         {/* Center navigation - 3 links */}
         <nav className="hidden md:flex items-center space-x-8">
-          <a href="#" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
+          <a href="/danismanlik" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
             Danışmanlık
           </a>
-          <a href="#" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
+          <a href="/anahtar-teslim-proje" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
             Anahtar Teslim Proje
           </a>
-          <a href="/dashboard/help" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
+          <a href="/destek" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
             Destek
           </a>
         </nav>
@@ -100,21 +100,21 @@ export default function Header() {
             {/* Center navigation links */}
             <div className="space-y-3">
               <a
-                href="#"
+                href="/danismanlik"
                 className="block text-gray-700 hover:text-gray-900 font-medium transition-colors py-2"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Danışmanlık
               </a>
               <a
-                href="#"
+                href="/anahtar-teslim-proje"
                 className="block text-gray-700 hover:text-gray-900 font-medium transition-colors py-2"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Anahtar Teslim Proje
               </a>
               <a
-                href="/dashboard/help"
+                href="/destek"
                 className="block text-gray-700 hover:text-gray-900 font-medium transition-colors py-2"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
