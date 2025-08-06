@@ -134,7 +134,7 @@ export default function TokensPage() {
                   {/* Savings */}
                   {pkg.savings && (
                     <div className="mb-4 text-sm text-green-600 font-medium">
-                      💰 ���{pkg.savings.toLocaleString()} tasarruf
+                      💰 ₺{pkg.savings.toLocaleString()} tasarruf
                     </div>
                   )}
 
@@ -168,8 +168,8 @@ export default function TokensPage() {
           </div>
 
           {/* Payment Info */}
-          <div className="bg-gray-50 rounded-2xl p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">💳 Ödeme Bilgileri</h3>
+          <div className="modern-card user-panel-section">
+            <h2 className="neon-cyan">��� Ödeme Bilgileri</h2>
             <div className="space-y-3 text-sm text-gray-600">
               <div className="flex items-center">
                 <span className="text-green-500 mr-2">✓</span>
