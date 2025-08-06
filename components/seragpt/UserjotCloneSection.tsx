@@ -55,7 +55,7 @@ export default function UserjotCloneSection() {
                     <a href="/auth/login" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
                       Giriş Yap
                     </a>
-                    <a href="/dashboard/direct" className="bg-gray-600 text-white px-6 py-2 rounded-xl font-semibold hover:bg-gray-800 transition-colors">
+                    <a href="/dashboard/public" className="bg-gray-600 text-white px-6 py-2 rounded-xl font-semibold hover:bg-gray-800 transition-colors">
                       Ücretsiz Başla
                     </a>
                   </>
@@ -298,7 +298,7 @@ export default function UserjotCloneSection() {
                     </div>
 
                     <div>
-                      <p className="text-gray-800 text-xs font-semibold mb-1">�� Kullanıcı Girdisi:</p>
+                      <p className="text-gray-800 text-xs font-semibold mb-1">👤 Kullanıcı Girdisi:</p>
                       <p className="text-gray-600 text-xs">• Lokasyon, bitki türü, üretim hedefi</p>
                     </div>
 
@@ -815,7 +815,7 @@ export default function UserjotCloneSection() {
               },
               {
                 question: "Ödeme nasıl yapılıyor?",
-                answer: "İlk 5 rapor ücretsizdir. Sonrasında, kredi kartı veya havale/EFT ile jeton (token) sat��n alabilirsiniz. Ödeme altyapısı %100 güvenlidir."
+                answer: "İlk 5 rapor ücretsizdir. Sonrasında, kredi kartı veya havale/EFT ile jeton (token) satın alabilirsiniz. Ödeme altyapısı %100 güvenlidir."
               }
             ].map((faq, index) => (
               <motion.div
