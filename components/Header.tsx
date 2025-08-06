@@ -169,7 +169,7 @@ export default function Header() {
                         Giriş Yap
                       </a>
                       <a
-                        href="/dashboard/direct"
+                        href="/auth/login"
                         className="block bg-gray-600 hover:bg-gray-800 text-white px-4 py-3 rounded-xl font-medium transition-colors text-center"
                         onClick={() => setIsMobileMenuOpen(false)}
                       >
