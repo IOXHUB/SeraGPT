@@ -76,25 +76,34 @@ export default function DirectDashboardPage() {
 
   if (!user) {
     return (
-      <div className="min-h-screen bg-yellow-50 flex items-center justify-center">
-        <div className="max-w-md w-full bg-white rounded-lg shadow-md p-8 text-center">
-          <h1 className="text-2xl font-bold text-yellow-600 mb-4">⚠️ Kullanıcı Bulunamadı</h1>
-          <p className="text-gray-700 mb-6">
-            Giriş yapmış görünmüyorsunuz. Login sayfasına yönlendiriliyorsunuz...
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-4">
+        <div className="max-w-md w-full bg-white rounded-2xl shadow-xl p-6 text-center">
+          <div className="text-6xl mb-4">🔐</div>
+          <h1 className="text-2xl font-bold text-gray-900 mb-4">Giriş Gerekli</h1>
+          <p className="text-gray-600 mb-6">
+            Dashboard'a erişmek için önce giriş yapmanız gerekiyor.
           </p>
+
           <div className="space-y-3">
             <button
               onClick={() => window.location.href = '/auth/login'}
-              className="w-full bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700"
+              className="w-full bg-blue-600 text-white py-3 px-6 rounded-lg hover:bg-blue-700 font-medium transition-colors"
             >
-              Login Sayfasına Git
+              📧 Normal Giriş
             </button>
+
             <button
               onClick={() => window.location.href = '/auth/bulletproof-login'}
-              className="w-full bg-green-600 text-white py-2 px-4 rounded hover:bg-green-700"
+              className="w-full bg-green-600 text-white py-3 px-6 rounded-lg hover:bg-green-700 font-medium transition-colors"
             >
-              Bulletproof Login'e Git
+              🛡️ Bulletproof Giriş
             </button>
+
+            <div className="mt-4 p-3 bg-gray-50 rounded-lg">
+              <p className="text-xs text-gray-600">
+                💡 <strong>İpucu:</strong> Eğer az önce giriş yaptıysanız "Bulletproof Giriş" butonunu deneyin.
+              </p>
+            </div>
           </div>
         </div>
       </div>
