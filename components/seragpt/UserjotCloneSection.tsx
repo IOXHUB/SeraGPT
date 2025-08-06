@@ -55,7 +55,7 @@ export default function UserjotCloneSection() {
                     <a href="/auth/login" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
                       Giriş Yap
                     </a>
-                    <a href="/dashboard" className="bg-gray-600 text-white px-6 py-2 rounded-xl font-semibold hover:bg-gray-800 transition-colors">
+                    <a href="/auth/login" className="bg-gray-600 text-white px-6 py-2 rounded-xl font-semibold hover:bg-gray-800 transition-colors">
                       Ücretsiz Başla
                     </a>
                   </>
@@ -419,7 +419,7 @@ export default function UserjotCloneSection() {
                     <div>
                       <p className="text-gray-800 text-xs font-semibold mb-1">🎯 3 Önemli Fayda:</p>
                       <p className="text-gray-600 text-xs">• Bitki türüne göre pazar fiyat analizi</p>
-                      <p className="text-gray-600 text-xs">• Bölgeye göre verim ortalamaları</p>
+                      <p className="text-gray-600 text-xs">��� Bölgeye göre verim ortalamaları</p>
                       <p className="text-gray-600 text-xs">• Hasat-zamanlama optimizasyonu</p>
                     </div>
 
