@@ -28,11 +28,13 @@ export default function AdminAuthPage() {
 
   const fetchUsers = async () => {
     try {
-      const { data, error } = await supabase.auth.admin.listUsers();
-      if (error) {
-        setMessage(`Kullanıcılar yüklenemedi: ${error.message}`);
-      } else {
-        setUsers(data.users as User[]);
+      // Note: Supabase admin functions require service role key
+      // For client-side admin panels, you would typically create API routes
+      setMessage('⚠️ Admin kullanıcı listesi için API endpoint\'i gerekli. Şu an sadece mevcut kullanıcı bilgileri gösteriliyor.');
+
+      // Show current user as an example
+      if (user) {
+        setUsers([user]);
       }
     } catch (error) {
       setMessage('Kullanıcılar yüklenirken hata oluştu');
