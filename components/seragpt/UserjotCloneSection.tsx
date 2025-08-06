@@ -35,7 +35,7 @@ export default function UserjotCloneSection() {
             <a href="#" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
               Anahtar Teslim Proje
             </a>
-            <a href="#" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
+            <a href="/destek" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
               Destek
             </a>
           </nav>
