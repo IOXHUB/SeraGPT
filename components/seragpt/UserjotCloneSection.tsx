@@ -70,13 +70,7 @@ export default function UserjotCloneSection() {
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
             <div
-              animate={isMobileMenuOpen ? "open" : "closed"}
-              variants={{
-                closed: { rotate: 0 },
-                open: { rotate: 180 }
-              }}
-              transition={{ duration: 0.3 }}
-            >
+              >
               {isMobileMenuOpen ? (
                 <svg className="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -469,7 +463,7 @@ export default function UserjotCloneSection() {
               >
                 <div className="absolute top-6 left-6 text-6xl font-bold text-gray-100">05</div>
                 <div className="mt-16">
-                  <h3 className="text-xl font-bold text-gray-900 mb-4">Yerleşim ve Teknik Plan Görselle��tirmesi</h3>
+                  <h3 className="text-xl font-bold text-gray-900 mb-4">Yerleşim ve Teknik Plan Görselleştirmesi</h3>
 
                   <div className="space-y-3 mb-4">
                     <div>
