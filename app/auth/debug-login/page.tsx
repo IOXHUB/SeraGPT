@@ -39,8 +39,8 @@ export default function DebugLoginPage() {
           keyPreview: supabaseKey ? supabaseKey.substring(0, 20) + '...' : 'MISSING'
         },
         client: {
-          supabaseUrl: supabase.supabaseUrl,
-          supabaseKey: supabase.supabaseKey.substring(0, 20) + '...'
+          supabaseUrl: process.env.NEXT_PUBLIC_SUPABASE_URL,
+          supabaseKey: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY?.substring(0, 20) + '...'
         }
       });
       
