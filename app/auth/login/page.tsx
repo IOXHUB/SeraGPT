@@ -185,11 +185,11 @@ export default function AuthPage() {
         }
       } else if (data?.user && !data?.session) {
         // User created but needs email confirmation
-        setMessage('✅ Kayıt başarılı! E-posta adresinizi kontrol edin ve doğrulama linkine tıklayın.');
+        setMessage('✅ Kayıt başarılı! Lütfen e-posta adresinizi kontrol edin ve doğrulama linkine tıklayın. E-posta doğrulaması sonrasında giriş yapabilirsiniz.');
         resetForm();
       } else if (data?.user && data?.session) {
         // User created and automatically signed in
-        setMessage('✅ Kayıt başarılı! Yönlendiriliyorsunuz...');
+        setMessage('✅ Hesabınız oluşturuldu! Dashboard\'a yönlendiriliyorsunuz...');
         // Store user info in localStorage for bulletproof auth
         localStorage.setItem('seragpt_user', JSON.stringify({
           id: data.user.id,
@@ -200,13 +200,13 @@ export default function AuthPage() {
         setTimeout(() => {
           console.log('SIGNUP SUCCESS - REDIRECTING TO DASHBOARD');
           window.location.href = '/dashboard';
-        }, 1000);
+        }, 1500);
       } else if (data && !data.user && !error) {
         // Supabase sometimes returns empty data for existing users without error
         setMessage('❌ Bu e-posta adresi zaten kayıtlı olabilir. Giriş yapmayı deneyin.');
       } else {
         // Always show some feedback
-        setMessage('✅ İşlem tamamlandı. E-posta adresinizi kontrol edin.');
+        setMessage('✅ Kayıt isteğiniz gönderildi. E-posta adresinizi kontrol edin ve doğrulama linkine tıklayın.');
         resetForm();
       }
     } catch (error: any) {
