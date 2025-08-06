@@ -129,7 +129,7 @@ export default function AuthPage() {
   const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    setMessage('');
+    setMessage('📝 Hesap oluşturuluyor...');
 
     console.log('Starting signup process for:', email);
 
