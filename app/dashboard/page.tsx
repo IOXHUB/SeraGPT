@@ -125,7 +125,7 @@ export default function DashboardPage() {
   const quickActions = [
     {
       name: 'Ücretsiz Jeton Al',
-      description: 'İlk 5 analiz ücretsiz, hemen ba��layın',
+      description: 'İlk 5 analiz ücretsiz, hemen başlayın',
       href: '/dashboard/analysis/roi',
       primary: true
     },
@@ -331,10 +331,10 @@ export default function DashboardPage() {
             transition={{ duration: 0.6, delay: 0.6 }}
             className="relative group"
           >
-            <div className="absolute -inset-0.5 bg-gradient-to-r from-amber-400 via-orange-500 to-red-500 rounded-2xl opacity-60 group-hover:opacity-100 transition duration-300"></div>
+            <div className="absolute -inset-px bg-gradient-to-r from-amber-400 via-orange-500 to-red-500 rounded-2xl opacity-25"></div>
             <div className="relative bg-white rounded-2xl border-0">
               <div className="p-6 border-b border-gray-100">
-                <h3 className="text-lg font-semibold text-gray-900">Jeton Yönetimi</h3>
+                <h3 className="text-lg font-normal text-gray-900">Jeton Yönetimi</h3>
               </div>
               <div className="p-6">
                 <div className="grid md:grid-cols-3 gap-6">
