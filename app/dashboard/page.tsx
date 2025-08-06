@@ -309,10 +309,10 @@ export default function DashboardPage() {
                     <div className="space-y-4">
                       {recentActivity.map((activity, index) => (
                         <div key={index} className="flex items-start space-x-4">
-                          <div className="w-3 h-3 rounded-full bg-gradient-to-br from-cyan-400 to-blue-500 mt-2 shadow-lg shadow-cyan-500/50"></div>
+                          <div className="w-3 h-3 rounded-full bg-blue-500 mt-2"></div>
                         <div className="flex-1 min-w-0">
-                          <p className="text-sm font-light text-white">{activity.title}</p>
-                          <p className="text-xs font-light text-gray-400">{activity.description}</p>
+                          <p className="text-sm font-normal text-gray-900">{activity.title}</p>
+                          <p className="text-xs font-light text-gray-600">{activity.description}</p>
                           <p className="text-xs font-light text-gray-500 mt-1">{activity.time}</p>
                           </div>
                         </div>
