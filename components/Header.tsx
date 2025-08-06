@@ -40,10 +40,23 @@ export default function Header() {
           {!loading && (
             <>
               {user ? (
-                // For logged in users - show Dashboard
-                <a href="/dashboard" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
-                  Dashboard
-                </a>
+                // For logged in users - show Dashboard and optional Admin
+                <div className="flex items-center space-x-4">
+                  <a href="/dashboard" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
+                    Dashboard
+                  </a>
+                  {isAdmin() && (
+                    <a href="/admin/auth" className="text-purple-700 hover:text-purple-900 font-medium transition-colors">
+                      👑 Admin
+                    </a>
+                  )}
+                  <button
+                    onClick={signOut}
+                    className="text-gray-700 hover:text-gray-900 font-medium transition-colors"
+                  >
+                    Çıkış
+                  </button>
+                </div>
               ) : (
                 // For logged out users - show Login or Sign Up CTA
                 <>
