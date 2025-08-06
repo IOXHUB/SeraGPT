@@ -237,8 +237,10 @@ export default function AuthPage() {
         setMessage('❌ Bu e-posta adresi zaten kayıtlı olabilir. Giriş yapmayı deneyin.');
       } else {
         // Always show some feedback
-        setMessage('✅ Kayıt isteğiniz gönderildi. E-posta adresinizi kontrol edin ve doğrulama linkine tıklayın.');
-        resetForm();
+        setMessage('✅ KAYIT TALEBİNİZ ALINDI! 📨\n\nE-posta adresinizi kontrol edin ve doğrulama linkine tıklayın.');
+        setTimeout(() => {
+          resetForm();
+        }, 4000);
       }
     } catch (error: any) {
       console.error('Signup exception:', error);
@@ -248,7 +250,10 @@ export default function AuthPage() {
         setMessage('❌ Kayıt oluşturulamadı. Lütfen tekrar deneyin.');
       }
     } finally {
-      setLoading(false);
+      // Keep loading for a bit longer so user sees the final message
+      setTimeout(() => {
+        setLoading(false);
+      }, 1500);
     }
   };
 
