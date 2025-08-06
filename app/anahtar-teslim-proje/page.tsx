@@ -4,210 +4,246 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 
 export default function AnahtarTeslimProjePage() {
-  const [activeSection, setActiveSection] = useState('project-planning');
+  const [activeSection, setActiveSection] = useState('turnkey-service');
 
   const sidebarSections = [
     {
-      title: 'Proje Planlama',
-      id: 'planning',
-      icon: '📋',
-      items: [
-        { id: 'project-planning', title: 'Proje Planlama Süreci', href: '#project-planning' },
-        { id: 'feasibility-study', title: 'Fizibilite Çalışması', href: '#feasibility-study' },
-        { id: 'design-phase', title: 'Tasarım Aşaması', href: '#design-phase' },
-        { id: 'timeline-planning', title: 'Zaman Planlaması', href: '#timeline-planning' },
-        { id: 'permit-licensing', title: 'İzin ve Ruhsatlar', href: '#permit-licensing' }
-      ]
-    },
-    {
-      title: 'Saha Değerlendirmesi',
-      id: 'site-assessment',
-      icon: '🔍',
-      items: [
-        { id: 'site-survey', title: 'Saha Araştırması', href: '#site-survey' },
-        { id: 'soil-analysis', title: 'Toprak Analizi', href: '#soil-analysis' },
-        { id: 'climate-assessment', title: 'İklim Değerlendirmesi', href: '#climate-assessment' },
-        { id: 'infrastructure-check', title: 'Altyapı Kontrolü', href: '#infrastructure-check' },
-        { id: 'environmental-impact', title: 'Çevresel Etki', href: '#environmental-impact' }
-      ]
-    },
-    {
-      title: 'Kurulum & Bakım',
-      id: 'installation',
+      title: 'Anahtar Teslim Hizmeti',
+      id: 'turnkey',
       icon: '🏗️',
       items: [
-        { id: 'equipment-selection', title: 'Ekipman Seçimi', href: '#equipment-selection' },
-        { id: 'installation-process', title: 'Kurulum Süreci', href: '#installation-process' },
-        { id: 'testing-commissioning', title: 'Test ve Devreye Alma', href: '#testing-commissioning' },
-        { id: 'training-support', title: 'Eğitim ve Destek', href: '#training-support' },
-        { id: 'maintenance-service', title: 'Bakım Hizmetleri', href: '#maintenance-service' }
+        { id: 'turnkey-service', title: 'Anahtar Teslim Sera Hizmeti', href: '#turnkey-service' },
+        { id: 'discovery', title: 'Keşif', href: '#discovery' },
+        { id: 'project-design', title: 'Projelendirme', href: '#project-design' },
+        { id: 'proposal', title: 'Tekliflendirme', href: '#proposal' },
+        { id: 'installation', title: 'Kurulum', href: '#installation' },
+        { id: 'training-commissioning', title: 'Eğitim & Devreye Alma', href: '#training-commissioning' }
+      ]
+    },
+    {
+      title: 'Hizmet Bileşenleri',
+      id: 'service-components',
+      icon: '🛠️',
+      items: [
+        { id: 'service-overview', title: 'Hizmet Bileşenleri', href: '#service-overview' },
+        { id: 'construction', title: 'Sera Konstrüksiyonu', href: '#construction' },
+        { id: 'automation', title: 'Otomasyon Sistemi', href: '#automation' },
+        { id: 'heating-systems', title: 'ISITMAX Isıtma Sistemleri', href: '#heating-systems' },
+        { id: 'irrigation', title: 'Sulama Sistemleri', href: '#irrigation' }
+      ]
+    },
+    {
+      title: 'Partnerler & Hedef Kitle',
+      id: 'partners',
+      icon: '🤝',
+      items: [
+        { id: 'business-partners', title: 'İş Ortaklarımız', href: '#business-partners' },
+        { id: 'target-audience', title: 'Hedef Kitle', href: '#target-audience' },
+        { id: 'government-subsidies', title: 'Devlet Teşvikleri', href: '#government-subsidies' },
+        { id: 'corporate-clients', title: 'Kurumsal Müşteriler', href: '#corporate-clients' }
       ]
     }
   ];
 
   const contentData = {
-    'project-planning': {
-      title: 'Anahtar Teslim Proje Planlama',
+    'turnkey-service': {
+      title: 'Anahtar Teslim Sera Hizmeti',
       subtitle: 'Help Center / Anahtar Teslim Proje',
-      description: 'Sera projenizi baştan sona profesyonel ekibimizle planlayın ve hayata geçirin. 20+ yıl deneyimimizle projelerinizi güvenle teslim ediyoruz.',
+      description: 'Kullanıcının yatırım fikrini baştan sona anahtar teslim şekilde uygulamak. Demonte veya sabit sera konstrüksiyonundan otomasyon sistemine, ısıtmadan sulamaya kadar tüm bileşenleri ile eksiksiz hizmet.',
       steps: [
         {
-          title: '1. Proje Başlangıcı',
+          title: '1. Keşif',
           items: [
-            'İhtiyaç analizi ve fizibilite çalışması',
-            'Saha incelemesi ve uygunluk değerlendirmesi',
-            'Ön tasarım ve kavramsal çözümler',
-            'Maliyet tahmini ve zaman planlaması'
+            'Lokasyon verileri alınır',
+            'Saha ziyaretleri yapılır',
+            'Toprak ve iklim analizi',
+            'Çevresel faktörlerin değerlendirilmesi'
           ]
         },
         {
-          title: '2. Detay Tasarım',
+          title: '2. Projelendirme',
           items: [
-            'Yapısal mühendislik hesapları',
-            'Mekanik ve elektrik sistem tasarımı',
-            '3D modelleme ve görselleştirme',
-            'Teknik doküman hazırlama'
+            'İklim verilerine göre sera modeli tasarlanır',
+            'Zemin koşulları değerlendirilir',
+            'Ürün hedefi belirlenir',
+            'Yatırım bütçesine uygun çözümler geliştirilir'
           ]
         },
         {
-          title: '3. Uygulama',
+          title: '3. Tekliflendirme',
           items: [
-            'İnşaat ve montaj yönetimi',
-            'Kalite kontrol ve test süreçleri',
-            'Devreye alma ve kullanıcı eğitimi',
-            'Teslim sonrası destek ve garanti'
+            'Detaylı malzeme listesi hazırlanır',
+            'Kurulum süreci planlanır',
+            'Teslim süresi belirlenir',
+            'Şeffaf fiyat detayları sunulur'
+          ]
+        },
+        {
+          title: '4. Kurulum',
+          items: [
+            'Isıtma sistemleri kurulur',
+            'Otomasyon altyapısı tamamlanır',
+            'Sulama sistemleri monte edilir',
+            'Diğer altyapılar entegre edilir'
+          ]
+        },
+        {
+          title: '5. Eğitim & Devreye Alma',
+          items: [
+            'Personel eğitimi verilir',
+            'İlk ürün aşamasında destek sağlanır',
+            'Sistem optimizasyonu yapılır',
+            'Garanti ve bakım programı başlatılır'
           ]
         }
       ]
     },
-    'feasibility-study': {
-      title: 'Fizibilite Çalışması',
+    'discovery': {
+      title: 'Keşif Süreci',
       subtitle: 'Help Center / Anahtar Teslim Proje',
-      description: 'Kapsamlı fizibilite çalışması ile projenizin teknik ve ekonomik uygunluğunu değerlendiriyoruz.',
+      description: 'Projenin başarısı için kritik olan keşif aşamasında, saha koşulları detaylı şekilde incelenir ve en uygun çözümler için temel veriler toplanır.',
       steps: [
         {
-          title: 'Teknik Fizibilite',
+          title: 'Saha İncelemesi',
           items: [
-            'Saha koşulları ve uygunluk analizi',
-            'İklim verileri ve çevresel faktörler',
-            'Altyapı gereksinimleri değerlendirmesi',
-            'Teknoloji seçimi ve sistem tasarımı'
+            'Lokasyon koordinatları ve erişim yolları',
+            'Mevcut altyapı durumu (elektrik, su, doğalgaz)',
+            'Topografik özellikler ve eğim analizi',
+            'Çevredeki yapılar ve gölgeleme faktörleri'
           ]
         },
         {
-          title: 'Ekonomik Fizibilite',
+          title: 'Veri Toplama',
           items: [
-            'Yatırım maliyeti hesaplaması',
-            'İşletme giderleri projeksiyonu',
-            'Gelir tahminleri ve pazar analizi',
-            'ROI hesaplama ve geri ödeme süresi'
+            'İklim verileri ve meteorolojik ölçümler',
+            'Toprak analizi ve drenaj durumu',
+            'Su kaynakları ve kalitesi',
+            'Yasal izinler ve zoning durumu'
           ]
         }
       ]
     },
-    'site-survey': {
-      title: 'Saha Araştırması',
+    'service-overview': {
+      title: 'Hizmet Bileşenleri',
       subtitle: 'Help Center / Anahtar Teslim Proje',
-      description: 'Detaylı saha araştırması ile projenizin başarısını garanti altına alıyoruz. Uzman ekibimiz her detayı inceleyerek en uygun çözümleri sunar.',
+      description: 'Anahtar teslim sera projelerimizde sunduğumuz kapsamlı hizmet bileşenleri ile tam entegre çözümler sağlıyoruz.',
       steps: [
         {
-          title: 'Jeoteknik İnceleme',
+          title: 'Yapısal Sistemler',
           items: [
-            'Zemin etüdü ve taşıma kapasitesi analizi',
-            'Drenaj sistemi değerlendirmesi',
-            'Eğim ve topografya analizi',
-            'Su tablası seviyesi ölçümü'
+            'Demonte veya sabit sera konstrüksiyonu',
+            'Galvanizli çelik çerçeve sistemleri',
+            'Polikarbon veya cam örtü malzemeleri',
+            'Havalandırma ve çatı sistemleri'
           ]
         },
         {
-          title: 'Çevresel Faktörler',
+          title: 'Teknolojik Sistemler',
           items: [
-            'Rüzgar yönü ve hızı ölçümleri',
-            'Güneş ışığı ve gölgeleme analizi',
-            'Çevredeki yapıların etkisi',
-            'Erişim yolları ve lojistik planlama'
+            'Otomasyon sistemi (ısı, sulama, nem, ışık kontrol)',
+            'ISITMAX ısıtma sistemleri',
+            'Sulama sistemleri (damla, sisleme, sprey)',
+            'Bitki türüne özel yerleşim ve üretim tasarımı'
+          ]
+        },
+        {
+          title: 'Destek Hizmetleri',
+          items: [
+            'Kurulum sonrası teknik destek',
+            'Garanti ve bakım hizmetleri',
+            'Personel eğitimi programları',
+            'Sistem optimizasyonu danışmanlığı'
           ]
         }
       ]
     },
-    'equipment-selection': {
-      title: 'Ekipman Seçimi',
+    'business-partners': {
+      title: 'İş Ortaklarımız',
       subtitle: 'Help Center / Anahtar Teslim Proje',
-      description: 'Projeniz için en uygun ekipmanları seçerek maksimum verimlilik ve uzun ömür garanti ediyoruz.',
+      description: 'Anahtar teslim projelerimizde güvenilir ve deneyimli iş ortaklarımızla birlikte çalışarak en kaliteli çözümleri sunuyoruz.',
       steps: [
         {
-          title: 'Yapısal Ekipmanlar',
+          title: 'Ana Çözüm Ortakları',
           items: [
-            'Sera çerçeve sistemi seçimi (Çelik/Alüminyum)',
-            'Örtü malzemesi belirleme (Cam/Polikarbon)',
-            'Havalandırma sistemi planlaması',
-            'Gölgeleme ve enerji perdeleri'
+            'Eminel Tarım - Anahtar teslim projelerde ana çözüm ortağı',
+            'ISITMAX - Sera ısıtma sistemleri uzmanı',
+            'IOX Modular Systems - Modüler sera teknolojileri',
+            'Sertifikalı montaj ve kurulum ekipleri'
           ]
         },
         {
-          title: 'Teknik Sistemler',
+          title: 'Teknoloji Ortakları',
           items: [
-            'İklim kontrol ve otomasyon sistemleri',
-            'Sulama ve gübreleme ekipmanları',
-            'Isıtma ve soğutma sistemleri',
-            'Elektrik ve aydınlatma altyapısı'
+            'Otomasyon sistemleri tedarikçileri',
+            'İklim kontrol teknolojileri sağlayıcıları',
+            'Sulama ekipmanları üreticileri',
+            'Sera örtü malzemeleri tedarikçileri'
           ]
         }
       ]
     },
-    'installation-process': {
-      title: 'Kurulum Süreci',
+    'target-audience': {
+      title: 'Hedef Kitle',
       subtitle: 'Help Center / Anahtar Teslim Proje',
-      description: 'Deneyimli montaj ekibimizle projelerinizi zamanında ve kaliteli şekilde teslim ediyoruz.',
+      description: 'Anahtar teslim sera hizmetimiz, farklı ölçeklerde ve amaçlarda sera yatırımı planlayan geniş bir kitleye hitap etmektedir.',
       steps: [
         {
-          title: 'Kurulum Aşamaları',
+          title: 'Devlet Destekli Projeler',
           items: [
-            'Saha hazırlığı ve temel işleri',
-            'Çelik konstrüksiyon montajı',
-            'Örtü malzemesi ve yalıtım işleri',
-            'Mekanik ve elektrik sistem kurulumu'
+            'Devlet teşvikli sera yatırımcıları',
+            'TKDK destekli tarım projeleri',
+            'Kalkınma ajansı hibelerinden yararlananlar',
+            'Tarım ve Orman Bakanlığı projelerı'
           ]
         },
         {
-          title: 'Kalite Kontrol',
+          title: 'Kurumsal Müşteriler',
           items: [
-            'Her aşamada kalite kontrol testleri',
-            'Sistem entegrasyon ve ayarları',
-            'Performans testleri ve kalibrasyonlar',
-            'Son kontroller ve teslim hazırlığı'
+            'Kurumsal gıda ve ürün tedarik zinciri firmaları',
+            'Büyük ölçekli perakende zincirleri',
+            'Kooperatifler ve tarım birlikleri',
+            'Yurt dışına üretim planlayan profesyonel üreticiler'
+          ]
+        },
+        {
+          title: 'Özel Sektör',
+          items: [
+            'Tarımsal holding şirketleri',
+            'Yatırım fonları ve sermaye şirketleri',
+            'Aile işletmeleri ve girişimciler',
+            'İhracat odaklı üretici kooperatifleri'
           ]
         }
       ]
     },
-    'maintenance-service': {
-      title: 'Bakım Hizmetleri',
+    'heating-systems': {
+      title: 'ISITMAX Isıtma Sistemleri',
       subtitle: 'Help Center / Anahtar Teslim Proje',
-      description: 'Teslim sonrası kapsamlı bakım ve destek hizmetleri ile yatırımınızı koruyoruz.',
+      description: 'İş ortağımız ISITMAX ile sera projelerinizde enerji verimliliği yüksek, çevre dostu ısıtma çözümleri sunuyoruz.',
       steps: [
         {
-          title: 'Periyodik Bakım',
+          title: 'Sistem Özellikleri',
           items: [
-            'Mevsimsel sistem kontrolleri',
-            'Ekipman kalibrasyonu ve ayarları',
-            'Önleyici bakım programları',
-            'Yedek parça ve malzeme desteği'
+            'Yüksek enerji verimliliği',
+            'Çevre dostu teknolojiler',
+            'Otomatik kontrol sistemleri',
+            'Düşük işletme maliyetleri'
           ]
         },
         {
-          title: 'Teknik Destek',
+          title: 'Kurulum ve Destek',
           items: [
-            '7/24 uzaktan izleme hizmeti',
-            'Arıza durumunda hızlı müdahale',
-            'Sistem optimizasyonu danışmanlığı',
-            'Modernizasyon ve yükseltme hizmetleri'
+            'Profesyonel montaj hizmeti',
+            'Sistem optimizasyonu',
+            'Periyodik bakım programları',
+            '7/24 teknik destek'
           ]
         }
       ]
     }
   };
 
-  const currentContent = contentData[activeSection as keyof typeof contentData] || contentData['project-planning'];
+  const currentContent = contentData[activeSection as keyof typeof contentData] || contentData['turnkey-service'];
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -260,7 +296,7 @@ export default function AnahtarTeslimProjePage() {
                         onClick={() => setActiveSection(item.id)}
                         className={`block w-full text-left px-3 py-2 text-sm rounded-lg transition-all duration-200 ${
                           activeSection === item.id
-                            ? 'bg-gray-100 text-gray-900 font-medium'
+                            ? 'bg-green-100 text-green-900 font-medium'
                             : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
                         }`}
                       >
@@ -271,15 +307,12 @@ export default function AnahtarTeslimProjePage() {
                 </div>
               ))}
               <div className="mt-8 pt-6 border-t border-gray-200">
-                <h4 className="font-semibold text-gray-900 mb-3">İpuçları & Püf Noktaları</h4>
-                <div className="space-y-1">
-                  <a href="#" className="block text-sm text-gray-600 hover:text-gray-900 py-1">
-                    En İyi Uygulamalar
-                  </a>
-                  <a href="#" className="block text-sm text-gray-600 hover:text-gray-900 py-1">
-                    Kaynaklar
-                  </a>
-                </div>
+                <button 
+                  className="w-full bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg font-medium transition-colors"
+                  onClick={() => window.location.href = '/destek'}
+                >
+                  Proje Teklifi Al
+                </button>
               </div>
             </div>
           </div>
@@ -336,10 +369,10 @@ export default function AnahtarTeslimProjePage() {
                 <h3 className="font-semibold text-gray-900 mb-4">Sonraki Adımlar</h3>
                 <div className="space-y-2">
                   <p className="text-gray-700">
-                    • Ücretsiz fizibilite çalışması için başvuru yapın
+                    • Ücretsiz saha değerlendirmesi için başvuru yapın
                   </p>
                   <p className="text-gray-700">
-                    • Saha ziyareti randevusu alın
+                    • Keşif ve ön fizibilite raporu alın
                   </p>
                   <p className="text-gray-700">
                     • Anahtar teslim proje teklifinizi inceleyin
