@@ -449,10 +449,6 @@ export default function UserjotCloneSection() {
 
               {/* Card 5 - Teknik Plan */}
               <div
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: 0.4 }}
-                viewport={{ once: true }}
                 className="flex-shrink-0 w-80 bg-white rounded-2xl p-8 border border-gray-200 relative"
               >
                 <div className="absolute top-6 left-6 text-6xl font-bold text-gray-100">05</div>
