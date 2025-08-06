@@ -136,7 +136,7 @@ export default function DashboardPage() {
       primary: false
     },
     {
-      name: 'Örnek Rapor Görünt��le',
+      name: 'Örnek Rapor Görüntüle',
       description: 'Hangi raporları alabileceğinizi görün',
       href: '/dashboard/examples',
       primary: false
@@ -270,17 +270,17 @@ export default function DashboardPage() {
                         <a
                           key={index}
                           href={action.href}
-                          className={`block p-4 rounded-xl transition-all duration-500 ${
+                          className={`block p-4 rounded-lg transition-all duration-300 ${
                             action.primary
-                              ? 'bg-gradient-to-r from-cyan-500/20 to-blue-500/20 border border-cyan-500/50 hover:bg-gradient-to-r hover:from-cyan-500/30 hover:to-blue-500/30 hover:border-cyan-400 hover:shadow-lg hover:shadow-cyan-500/25'
-                              : 'bg-gray-800/20 border border-gray-700/30 hover:bg-gray-800/30 hover:border-gray-600/50'
+                              ? 'bg-gray-900 hover:bg-gray-800 text-white'
+                              : 'bg-gray-50 hover:bg-gray-100 text-gray-900'
                           }`}
                         >
                           <div>
-                            <h4 className={`font-light mb-2 ${action.primary ? 'text-cyan-300' : 'text-gray-300'}`}>
+                            <h4 className={`font-normal mb-2 ${action.primary ? 'text-white' : 'text-gray-900'}`}>
                               {action.name}
                             </h4>
-                            <p className={`text-sm font-light ${action.primary ? 'text-cyan-400' : 'text-gray-500'}`}>
+                            <p className={`text-sm font-light ${action.primary ? 'text-gray-200' : 'text-gray-600'}`}>
                               {action.description}
                             </p>
                           </div>
