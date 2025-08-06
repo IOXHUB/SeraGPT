@@ -37,26 +37,49 @@ export default function RootLayout({
                   (args[0].includes('Extra attributes from the server') ||
                    args[0].includes('__gchrome_uniqueid') ||
                    args[0].includes('Hydration') ||
-                   args[0].includes('Failed to fetch'))
+                   args[0].includes('Failed to fetch') ||
+                   args[0].includes('fullstory') ||
+                   args[0].includes('analytics'))
                 ) {
                   return;
                 }
                 originalError.apply(console, args);
               };
 
-              // Handle HMR fetch errors gracefully
+              // Handle HMR and analytics fetch errors gracefully
               if (typeof window !== 'undefined' && window.fetch) {
                 const originalFetch = window.fetch;
                 window.fetch = function(...args) {
+                  const url = typeof args[0] === 'string' ? args[0] : args[0]?.url || '';
+
                   return originalFetch.apply(this, args).catch(error => {
-                    if (error.message.includes('HMR') || error.message.includes('webpack')) {
-                      console.warn('HMR fetch failed, ignoring:', error.message);
+                    if (error.message.includes('HMR') ||
+                        error.message.includes('webpack') ||
+                        url.includes('fullstory') ||
+                        url.includes('analytics') ||
+                        url.includes('hot-update')) {
+                      console.warn('Development fetch failed, ignoring:', error.message);
                       return Promise.resolve(new Response('{}', {status: 200}));
                     }
                     throw error;
                   });
                 };
               }
+
+              // Suppress unhandled promise rejections in development
+              window.addEventListener('unhandledrejection', function(event) {
+                if (event.reason && typeof event.reason === 'object') {
+                  const message = event.reason.message || '';
+                  if (message.includes('HMR') ||
+                      message.includes('webpack') ||
+                      message.includes('fullstory') ||
+                      message.includes('analytics') ||
+                      message.includes('Failed to fetch')) {
+                    console.warn('Suppressed dev rejection:', message);
+                    event.preventDefault();
+                  }
+                }
+              });
             `}
           </Script>
         )}
