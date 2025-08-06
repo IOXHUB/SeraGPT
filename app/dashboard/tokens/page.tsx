@@ -12,7 +12,7 @@ export default function TokensPage() {
     freeTokens: 5
   });
 
-  // Jeton paketleri
+  // Jeton paketleri (Her jeton 50TL hesabıyla)
   const tokenPackages = [
     {
       id: 'small',
@@ -27,9 +27,9 @@ export default function TokensPage() {
       name: '50 Jeton',
       tokens: 50,
       price: 2500,
-      originalPrice: 3500,
+      originalPrice: 2500,
       popular: true,
-      savings: 1000
+      savings: 0
     },
     {
       id: 'large',
