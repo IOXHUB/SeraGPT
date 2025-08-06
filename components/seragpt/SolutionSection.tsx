@@ -140,7 +140,7 @@ export default function SolutionSection() {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="bg-white text-green-600 px-8 py-4 rounded-lg text-lg font-semibold shadow-lg hover:shadow-xl transition-shadow"
+              className="bg-white text-green-600 px-4 py-2 rounded-lg text-base font-medium shadow-md hover:shadow-lg transition-shadow"
             >
               Ücretsiz Analiz Başlat
             </motion.button>

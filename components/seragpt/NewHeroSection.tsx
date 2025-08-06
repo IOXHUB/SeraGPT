@@ -39,7 +39,7 @@ export default function NewHeroSection() {
   return (
     <section className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white">
       {/* Header */}
-      <header className="flex justify-between items-center p-6 max-w-7xl mx-auto">
+      <header className="flex justify-between items-center p-6 page-section-container">
         <div className="flex items-center space-x-3">
           <div className="w-10 h-10 bg-green-500 rounded-lg flex items-center justify-center">
             <span className="text-xl font-bold text-gray-900">S</span>
@@ -59,7 +59,7 @@ export default function NewHeroSection() {
         </button>
       </header>
 
-      <div className="max-w-7xl mx-auto px-6 py-12">
+      <div className="page-section-container py-12">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Content */}
           <motion.div
@@ -89,14 +89,14 @@ export default function NewHeroSection() {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="bg-green-500 hover:bg-green-600 text-gray-900 px-8 py-4 rounded-lg text-lg font-semibold transition-colors"
+                className="bg-green-500 hover:bg-green-600 text-gray-900 px-4 py-2 rounded-lg text-base font-medium transition-colors"
               >
                 Ücretsiz Başla
               </motion.button>
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="border border-gray-600 hover:border-green-400 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-colors"
+                className="border border-gray-600 hover:border-green-400 text-white px-4 py-2 rounded-lg text-base font-medium transition-colors"
               >
                 Demo İzle
               </motion.button>

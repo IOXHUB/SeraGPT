@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import DashboardLayout from '@/components/dashboard/DashboardLayout';
+import AdminErrorBoundary from '@/components/AdminErrorBoundary';
 
 const analyticsData = {
   overview: {
@@ -36,9 +37,10 @@ export default function AdminAnalyticsPage() {
   const [timeRange, setTimeRange] = useState('7d');
 
   return (
-    <DashboardLayout>
+    <AdminErrorBoundary>
+      <DashboardLayout>
       <div className="min-h-screen bg-gray-50 text-gray-600">
-        <div className="max-w-7xl mx-auto space-y-8">
+        <div className="page-section-container space-y-8">
           {/* Page Header */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -294,6 +296,7 @@ export default function AdminAnalyticsPage() {
           </motion.div>
         </div>
       </div>
-    </DashboardLayout>
+      </DashboardLayout>
+    </AdminErrorBoundary>
   );
 }

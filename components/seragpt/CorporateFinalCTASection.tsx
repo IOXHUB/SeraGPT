@@ -33,7 +33,7 @@ export default function CorporateFinalCTASection() {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="bg-white text-blue-600 px-10 py-5 rounded-xl text-xl font-bold shadow-2xl hover:shadow-3xl transition-all flex items-center space-x-3"
+              className="bg-white text-blue-600 px-4 py-2 rounded-lg text-base font-medium shadow-md hover:shadow-lg transition-all flex items-center space-x-2"
             >
               <span className="text-2xl">🚀</span>
               <span>Ücretsiz Enterprise Demo</span>
@@ -42,7 +42,7 @@ export default function CorporateFinalCTASection() {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="border-2 border-white text-white hover:bg-white hover:text-blue-600 px-10 py-5 rounded-xl text-xl font-bold transition-all flex items-center space-x-3"
+              className="border-2 border-white text-white hover:bg-white hover:text-blue-600 px-4 py-2 rounded-lg text-base font-medium transition-all flex items-center space-x-2"
             >
               <span className="text-2xl">📋</span>
               <span>Fiyat Teklifi Al</span>

@@ -4,15 +4,17 @@ import { motion } from 'framer-motion';
 import { useState } from 'react';
 import BlogCardsSection from './BlogCardsSection';
 import Footer from '../Footer';
+import { useAuth } from '../../lib/hooks/useAuth';
 
 export default function UserjotCloneSection() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [openFAQ, setOpenFAQ] = useState<number | null>(0); // First FAQ open by default
+  const [openFAQ, setOpenFAQ] = useState<number | null>(null); // No FAQ open by default
+  const { user, loading } = useAuth();
 
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header - Full width with 960px content container */}
-      <header className="w-full bg-gray-50">
+      <header className="w-full bg-gray-50 relative">
         <div className="navbar-footer-container">
           {/* Logo - clickable to homepage */}
           <div className="flex items-center space-x-3">
@@ -27,111 +29,169 @@ export default function UserjotCloneSection() {
 
           {/* Center navigation - 3 links */}
           <nav className="hidden md:flex items-center space-x-8">
-            <a href="#" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
-              Nasıl Çalışır
-            </a>
-            <a href="#" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
+            <a href="/danismanlik" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
               Danışmanlık
             </a>
-            <a href="#" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
-              Anahtar Teslim
+            <a href="/anahtar-teslim-proje" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
+              Anahtar Teslim Proje
+            </a>
+            <a href="/destek" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
+              Destek
             </a>
           </nav>
 
           {/* Right menu - conditional based on user state */}
           <div className="hidden md:flex items-center space-x-4">
-            {/* For logged in users */}
-            <a href="/dashboard" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
-              Dashboard
-            </a>
-
-            {/* For logged out users */}
-            <a href="/auth/login" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
-              Giriş Yap
-            </a>
-
-            {/* For first time visitors */}
-            <a href="/dashboard" className="text-gray-600 hover:text-gray-900 px-4 py-2 rounded-lg font-medium transition-colors">
-              Ücretsiz Başla
-            </a>
+            {!loading && (
+              <>
+                {user ? (
+                  // For logged in users - show Dashboard
+                  <a href="/dashboard" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
+                    Dashboard
+                  </a>
+                ) : (
+                  // For logged out users - show Login or Sign Up CTA
+                  <>
+                    <a href="/auth/login" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
+                      Giriş Yap
+                    </a>
+                    <a href="/auth/login" className="bg-gray-600 text-white px-4 py-2 rounded-lg text-base font-medium hover:bg-gray-800 transition-colors">
+                      Ücretsiz Başla
+                    </a>
+                  </>
+                )}
+              </>
+            )}
           </div>
 
-          {/* Mobile menu button - hamburger icon */}
+          {/* Modern mobile menu button */}
           <button
-            className="md:hidden p-2"
+            className="md:hidden relative p-2 rounded-lg bg-gray-100 hover:bg-gray-200 transition-colors"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
-            <svg className="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <motion.div
+              animate={isMobileMenuOpen ? "open" : "closed"}
+              variants={{
+                closed: { rotate: 0 },
+                open: { rotate: 180 }
+              }}
+              transition={{ duration: 0.3 }}
+            >
               {isMobileMenuOpen ? (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                <svg className="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
               ) : (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                <svg className="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
               )}
-            </svg>
+            </motion.div>
           </button>
         </div>
 
-        {/* Mobile Menu */}
+        {/* Modern Mobile Menu */}
         {isMobileMenuOpen && (
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.2 }}
-            className="md:hidden bg-gray-50 border-t border-gray-200"
+            transition={{ duration: 0.3 }}
+            className="md:hidden absolute top-full left-0 right-0 bg-white border-t border-gray-100 shadow-xl z-50"
           >
-            <div className="text-section-container py-4 space-y-4">
-              {/* Center navigation links */}
+            <div className="max-w-md mx-auto p-6 space-y-6">
+              {/* Header */}
+              <div className="text-center border-b border-gray-100 pb-4">
+                <h3 className="text-lg font-semibold text-gray-900">Menü</h3>
+              </div>
+
+              {/* Navigation Links */}
               <div className="space-y-3">
                 <a
-                  href="#"
-                  className="block text-gray-700 hover:text-gray-900 font-medium transition-colors py-2"
+                  href="/destek"
+                  className="block text-gray-700 hover:text-gray-900 hover:bg-gray-50 py-3 px-4 rounded-lg transition-all"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
-                  Nasıl Çalışır
+                  <div className="flex items-center space-x-3">
+                    <span className="text-lg">❓</span>
+                    <span className="text-base font-medium">Destek</span>
+                  </div>
                 </a>
                 <a
-                  href="#"
-                  className="block text-gray-700 hover:text-gray-900 font-medium transition-colors py-2"
+                  href="/danismanlik"
+                  className="block text-gray-700 hover:text-gray-900 hover:bg-gray-50 py-3 px-4 rounded-lg transition-all"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
-                  Dan��şmanlık
+                  <div className="flex items-center space-x-3">
+                    <span className="text-lg">🎯</span>
+                    <span className="text-base font-medium">Danışmanlık</span>
+                  </div>
                 </a>
                 <a
-                  href="#"
-                  className="block text-gray-700 hover:text-gray-900 font-medium transition-colors py-2"
+                  href="/anahtar-teslim-proje"
+                  className="block text-gray-700 hover:text-gray-900 hover:bg-gray-50 py-3 px-4 rounded-lg transition-all"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
-                  Anahtar Teslim
+                  <div className="flex items-center space-x-3">
+                    <span className="text-lg">🏗️</span>
+                    <span className="text-base font-medium">Anahtar Teslim Sera</span>
+                  </div>
+                </a>
+                <a
+                  href="/blog"
+                  className="block text-gray-700 hover:text-gray-900 hover:bg-gray-50 py-3 px-4 rounded-lg transition-all"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  <div className="flex items-center space-x-3">
+                    <span className="text-lg">📖</span>
+                    <span className="text-base font-medium">Blog</span>
+                  </div>
                 </a>
               </div>
 
-              {/* Divider */}
-              <div className="border-t border-gray-200 my-4"></div>
-
-              {/* Right menu actions */}
-              <div className="space-y-3">
-                <a
-                  href="/dashboard"
-                  className="block text-gray-700 hover:text-gray-900 font-medium transition-colors py-2"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  Dashboard
-                </a>
-                <a
-                  href="/auth/login"
-                  className="block text-gray-700 hover:text-gray-900 font-medium transition-colors py-2"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  Giriş Yap
-                </a>
-                <a
-                  href="/dashboard"
-                  className="block bg-green-600 hover:bg-green-700 text-white px-4 py-3 rounded-lg font-medium transition-colors text-center"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  Ücretsiz Başla
-                </a>
+              {/* Panel Access Button */}
+              <div className="border-t border-gray-100 pt-4">
+                {!loading && (
+                  <>
+                    {user ? (
+                      <a
+                        href="/dashboard"
+                        className="flex items-center justify-center w-full bg-gradient-to-r from-gray-700 to-gray-800 text-white py-3 px-4 rounded-xl font-medium transition-all hover:from-gray-800 hover:to-gray-900 shadow-lg"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                      >
+                        <span className="text-lg mr-2">📊</span>
+                        <span>Panelime Git</span>
+                      </a>
+                    ) : (
+                      <div className="space-y-3">
+                        <a
+                          href="/auth/login"
+                          className="flex items-center justify-center w-full bg-gradient-to-r from-gray-700 to-gray-800 text-white py-3 px-4 rounded-xl font-medium transition-all hover:from-gray-800 hover:to-gray-900 shadow-lg"
+                          onClick={() => setIsMobileMenuOpen(false)}
+                        >
+                          <span className="text-lg mr-2">🔐</span>
+                          <span>Panele Giriş</span>
+                        </a>
+                        <div className="flex space-x-2">
+                          <a
+                            href="/auth/login"
+                            className="flex-1 text-center border border-gray-300 text-gray-700 py-2 px-3 rounded-lg text-sm font-medium hover:bg-gray-50 transition-colors"
+                            onClick={() => setIsMobileMenuOpen(false)}
+                          >
+                            Giriş Yap
+                          </a>
+                          <a
+                            href="/auth/login"
+                            className="flex-1 text-center bg-gray-600 text-white py-2 px-3 rounded-lg text-sm font-medium hover:bg-gray-700 transition-colors"
+                            onClick={() => setIsMobileMenuOpen(false)}
+                          >
+                            Kayıt Ol
+                          </a>
+                        </div>
+                      </div>
+                    )}
+                  </>
+                )}
               </div>
             </div>
           </motion.div>
@@ -139,13 +199,13 @@ export default function UserjotCloneSection() {
       </header>
 
       {/* Main content - Full viewport hero */}
-      <main className="min-h-screen flex items-center justify-center px-4 sm:px-6">
-        <div className="max-w-[700px] mx-auto text-center">
+      <main className="min-h-screen flex items-center justify-center px-4 sm:px-6 -mt-16">
+        <div className="text-section-container text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="space-y-8"
+            className="space-y-5"
           >
             {/* Small text above headline */}
             <p className="text-gray-500 text-sm font-medium uppercase tracking-wider">
@@ -153,13 +213,13 @@ export default function UserjotCloneSection() {
             </p>
 
             {/* Main headline */}
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 leading-relaxed space-y-2">
-              <div className="text-gray-600 text-[40px] sm:text-[48px] md:text-[56px]">🚀 60 Saniyede</div>
-              <div className="text-gray-600 text-[40px] sm:text-[48px] md:text-[56px]">Sera Yatırım Raporun Hazır!</div>
+            <h1 className="text-4xl font-bold text-gray-900 leading-tight space-y-2">
+              <div className="text-gray-600">🚀 60 Saniyede</div>
+              <div className="text-gray-600">Sera Yatırım Raporun Hazır!</div>
             </h1>
 
             {/* Description paragraph */}
-            <p className="text-[18px] sm:text-[20px] text-gray-600 leading-relaxed px-4 mt-8">
+            <p className="text-sm text-gray-600 leading-relaxed px-4 mt-5">
               SeraGPT; 20 yılı aşkın mühendislik deneyimi, 500'den fazla
               tamamlanmış proje ve 110'dan fazla gerçek zamanlı veri
               setiyle, tarımsal yatırım kararlarınızı saniyeler içinde
@@ -167,28 +227,76 @@ export default function UserjotCloneSection() {
             </p>
 
             {/* CTA Button */}
-            <div className="mt-10">
+            <div className="mt-5">
               <motion.a
-                href="https://17ddca60910e4daea7522c0f6038c4a4-dd51946acbf540e29f8c9d1d0.fly.dev/dashboard"
+                href="/auth/login"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="bg-black hover:bg-gray-800 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-colors inline-flex items-center space-x-3"
+                className="bg-gray-600 hover:bg-gray-800 text-white px-4 py-2 rounded-lg text-base font-medium transition-colors inline-flex items-center space-x-2"
               >
                 <span className="text-center">Şimdi Oluştur – İlk 5 Rapor Ücretsiz</span>
               </motion.a>
             </div>
 
             {/* Small text under button */}
-            <p className="text-gray-500 text-sm mt-6">
+            <p className="text-gray-500 text-sm pb-10">
               Doğru yatırım, doğru analizle başlar.
             </p>
           </motion.div>
         </div>
       </main>
 
+      {/* AI Chat Section - Single View */}
+      <div className="relative -mt-40 z-10">
+        <div className="max-w-[900px] mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="relative"
+          >
+            <div className="rounded-2xl p-8 shadow-lg shadow-purple-400/20 hover:shadow-purple-500/30 transition-all duration-300 bg-center bg-cover bg-no-repeat border-4 border-purple-400">
+              <div className="bg-white rounded-xl shadow-lg overflow-hidden">
+                {/* Dashboard Image */}
+                <div
+                  className="w-full h-96 bg-center bg-cover bg-no-repeat flex items-center justify-center"
+                  style={{
+                    backgroundImage: "url(https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2F1cd1d24d2413420fa7c24610e14c9006)"
+                  }}
+                >
+                  <div className="text-center">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* CTA Button */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            viewport={{ once: true }}
+            className="text-center mt-12"
+          >
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="bg-gray-600 hover:bg-gray-800 text-white px-4 py-2 rounded-lg text-base font-medium transition-colors shadow-md hover:shadow-lg"
+            >
+              Kullanıcı Paneline Giriş Yapın
+            </motion.button>
+            <p className="text-gray-500 text-sm mt-4">
+              Tüm sera projelerinizi tek platformdan yönetin
+            </p>
+          </motion.div>
+        </div>
+      </div>
+
       {/* How It Works Section - Horizontal Scrolling */}
       <div className="py-20 bg-gray-50 text-gray-600">
-        <div className="max-w-6xl mx-auto px-6">
+        <div className="page-section-container">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -196,18 +304,9 @@ export default function UserjotCloneSection() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <p className="text-gray-500 text-sm font-medium uppercase tracking-wider mb-4">
-              HER ANALİZ İÇİN DETAYLı ÇÖZÜM
-            </p>
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              5 Adımda Sera Yatırım<br />
-              Analizi Tamamla
+            <h2 className="text-xl font-bold text-gray-900 mb-6">
+              Panelde Sizi Bekleyen Analiz Türleri ve Özellikleri
             </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
-              20 yıllık mühendislik deneyimi ve 110+ veri setiyle<br />
-              desteklenen <strong>yapay zeka analizleri</strong> ile yatırım kararlarınızı<br />
-              <strong>bilimsel verilerle destekleyin</strong>.
-            </p>
           </motion.div>
 
           {/* Horizontal Scrolling Cards */}
@@ -223,7 +322,7 @@ export default function UserjotCloneSection() {
               >
                 <div className="absolute top-6 left-6 text-6xl font-bold text-gray-100">01</div>
                 <div className="mt-16">
-                  <h3 className="text-xl font-bold text-gray-900 mb-4">Yatırım Geri Dönüş (ROI) Simülasyonu</h3>
+                  <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-4">Yatırım Geri Dönüş (ROI) Simülasyonu</h3>
 
                   <div className="space-y-3 mb-4">
                     <div>
@@ -235,7 +334,7 @@ export default function UserjotCloneSection() {
 
                     <div>
                       <p className="text-gray-800 text-xs font-semibold mb-1">🔗 Veri Kaynakları:</p>
-                      <p className="text-gray-600 text-xs">• OpenWeather, FAO & TUİK</p>
+                      <p className="text-gray-600 text-xs">• OpenWeather, FAO & TÜİK</p>
                       <p className="text-gray-600 text-xs">• Seraburada / e-Tarım API</p>
                     </div>
 
@@ -315,7 +414,7 @@ export default function UserjotCloneSection() {
 
                   <div className="space-y-3 mb-4">
                     <div>
-                      <p className="text-gray-800 text-xs font-semibold mb-1">�� 3 Önemli Fayda:</p>
+                      <p className="text-gray-800 text-xs font-semibold mb-1">🏗️ 3 Önemli Fayda:</p>
                       <p className="text-gray-600 text-xs">• Bölgeye uygun yapı ve iklimlendirme</p>
                       <p className="text-gray-600 text-xs">• Anahtar teslim modüler öneriler</p>
                       <p className="text-gray-600 text-xs">• Genişletilebilirlik alternatifleri</p>
@@ -405,12 +504,12 @@ export default function UserjotCloneSection() {
                     <div>
                       <p className="text-gray-800 text-xs font-semibold mb-1">🎯 3 Önemli Fayda:</p>
                       <p className="text-gray-600 text-xs">• Sera yerleşim planı (2D çizim)</p>
-                      <p className="text-gray-600 text-xs">• Elektrik ve sulama hat plan��</p>
+                      <p className="text-gray-600 text-xs">• Elektrik ve sulama hat planı</p>
                       <p className="text-gray-600 text-xs">• Teknik kabin, depo gösterimi</p>
                     </div>
 
                     <div>
-                      <p className="text-gray-800 text-xs font-semibold mb-1">��� Veri Kaynakları:</p>
+                      <p className="text-gray-800 text-xs font-semibold mb-1">🔗 Veri Kaynakları:</p>
                       <p className="text-gray-600 text-xs">• Planner 2D, CAD AI Tools</p>
                       <p className="text-gray-600 text-xs">• HerbaTools yerleşim kütüphanesi</p>
                     </div>
@@ -451,7 +550,7 @@ export default function UserjotCloneSection() {
         </div>
       </div>
 
-      {/* Roadmap Section */}
+      {/* AI Chat Section */}
       <div className="py-20 text-gray-600">
         <div className="text-section-container">
           <motion.div
@@ -461,138 +560,32 @@ export default function UserjotCloneSection() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              Size Özel Kontrol Paneli
+            <h2 className="text-xl font-bold text-gray-900 mb-6">
+              Tarımsal Zeka Panelinizde Sizi Bekliyor!
             </h2>
-            <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-              Panelinizden tüm raporlarınıza, danışmanlık taleplerinize ve teknik teklif süreçlerinize anlık erişim sağlayın.
-              <span className="font-semibold text-gray-900"> Yapay zekâ analizleri, mühendislik değerlendirmeleri ve saha hizmetleri</span>
-              artık tek bir merkezden yönetilebilir.
+            <p className="text-sm text-gray-600 text-section-container leading-relaxed">
+              Proje çıktılarınız üzerine sohbet edebileceğiniz, derinlemesine araştırma yapabileceğiniz özel asistanınız panelinizde sizi bekliyor, üstelik tamamen ücretsiz
             </p>
           </motion.div>
 
-          {/* Roadmap Mockup */}
+          {/* AI Chat Flow */}
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.2 }}
             viewport={{ once: true }}
-            className="relative"
+            className="relative max-w-[900px] mx-auto"
           >
-            <div className="bg-gray-100 rounded-2xl p-8 shadow-2xl">
-              <div className="bg-white rounded-xl shadow-lg overflow-hidden">
-                {/* Header */}
-                <div className="bg-white border-b border-gray-200 px-6 py-4">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center space-x-4">
-                      <div className="flex items-center space-x-3">
-                        <div className="w-8 h-8 bg-black rounded-lg flex items-center justify-center">
-                          <span className="text-white text-sm font-bold">S</span>
-                        </div>
-                        <span className="text-lg font-semibold text-gray-900">SeraGPT</span>
-                      </div>
-
-                      <nav className="flex space-x-6">
-                        <a href="#" className="text-gray-500 hover:text-gray-700 font-medium">Geri Bildirim</a>
-                        <a href="#" className="text-gray-900 font-medium border-b-2 border-gray-900 pb-1">Geliştirme Planı</a>
-                        <a href="#" className="text-gray-500 hover:text-gray-700 font-medium">Güncellemeler</a>
-                      </nav>
+            <div className="bg-gradient-to-br from-blue-50 to-indigo-100 rounded-2xl p-8 shadow-2xl shadow-blue-500/25 border border-blue-100">
+              <div className="bg-gray-50 rounded-xl p-6 space-y-6">
+                {/* Placeholder Image for AI Assistant */}
+                <div className="w-full h-96 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center rounded-lg">
+                  <div className="text-center">
+                    <div className="w-16 h-16 bg-gray-300 rounded-lg mx-auto mb-4 flex items-center justify-center">
+                      <span className="text-2xl">📊</span>
                     </div>
-
-                    <div className="flex items-center space-x-3">
-                      <div className="w-8 h-8 bg-gray-800 rounded-full"></div>
-                      <div className="w-8 h-8 bg-gray-600 rounded-full"></div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Content */}
-                <div className="p-6">
-                  <div className="flex items-center justify-between mb-6">
-                    <h1 className="text-2xl font-bold text-gray-900">��rün Geliştirme Planı</h1>
-                    <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                    </svg>
-                  </div>
-
-                  <div className="space-y-6">
-                    {/* Feature 1 */}
-                    <div className="border border-gray-200 rounded-lg p-4">
-                      <div className="flex items-start justify-between">
-                        <div className="flex-1">
-                          <div className="flex items-center space-x-3 mb-2">
-                            <h3 className="text-lg font-semibold text-gray-900">Mobil uygulama sık sık çöküyor.</h3>
-                            <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                            </svg>
-                          </div>
-                          <p className="text-gray-600 text-sm mb-3">
-                            Android uygulaması sera fotoğrafları yüklenmeye çalışıldığında çöküyor.
-                            Bu ASAP düzeltilmesi gerekiyor.
-                          </p>
-                          <div className="flex items-center space-x-2">
-                            <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-purple-100 text-purple-800">
-                              • Devam Ediyor
-                            </span>
-                          </div>
-                        </div>
-
-                        <div className="ml-4 text-right">
-                          <div className="text-sm text-gray-500 mb-1">Bir şey eksik mi?</div>
-                          <button className="bg-black text-white px-4 py-2 rounded text-sm font-medium">
-                            Gönderi Oluştur
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Feature 2 */}
-                    <div className="border border-gray-200 rounded-lg p-4">
-                      <div className="flex items-start justify-between">
-                        <div className="flex-1">
-                          <h3 className="text-lg font-semibold text-gray-900 mb-2">Google Calendar ile entegrasyon.</h3>
-                          <p className="text-gray-600 text-sm mb-3">
-                            Sera bakım zamanlaması için Google Calendar ile senkronizasyon olsa harika olur.
-                          </p>
-                          <div className="flex items-center space-x-2">
-                            <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
-                              • Planlandı
-                            </span>
-                          </div>
-                        </div>
-
-                        <div className="ml-4 text-right">
-                          <div className="text-sm text-gray-500 mb-2">Uygulama sorunu çözülemiyor,</div>
-                          <div className="text-sm text-gray-500 mb-2">geçerli şifreler tanınmıyor.</div>
-                          <div className="flex items-center space-x-2 text-sm text-gray-600">
-                            <div className="w-6 h-6 bg-gray-300 rounded-full"></div>
-                            <div>
-                              <div className="font-medium">Şeyran Taslın</div>
-                              <div className="text-xs text-gray-500">3 gün önce</div>
-                            </div>
-                          </div>
-                          <div className="mt-2">
-                            <button className="text-sm text-blue-600 hover:text-blue-700">
-                              Tüm Güncellemeler
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Feature 3 */}
-                    <div className="border border-gray-200 rounded-lg p-4">
-                      <h3 className="text-lg font-semibold text-gray-900 mb-2">'Tümünü okundu işaretle' butonu ekle.</h3>
-                      <p className="text-gray-600 text-sm">
-                        Bildirimler bölümüne toplu işaretleme özelliği.
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Footer */}
-                  <div className="mt-8 pt-6 border-t border-gray-200 text-center">
-                    <p className="text-xs text-gray-500">SeraGPT tarafından desteklenmektedir</p>
+                    <h3 className="text-lg font-semibold text-gray-700 mb-2">AI Asistan</h3>
+                    <p className="text-sm text-gray-500">SeraGPT AI Sohbet Arayüzü Önizlemesi</p>
                   </div>
                 </div>
               </div>
@@ -610,12 +603,12 @@ export default function UserjotCloneSection() {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="bg-gray-600 hover:bg-gray-700 text-white px-10 py-4 rounded-xl text-xl font-bold transition-colors shadow-lg hover:shadow-xl"
+              className="bg-gray-600 hover:bg-gray-800 text-white px-4 py-2 rounded-lg text-base font-medium transition-colors shadow-md hover:shadow-lg"
             >
-              Kullanıcı Paneline Giriş Yapın
+              AI Asistanınızı Test Edin
             </motion.button>
             <p className="text-gray-500 text-sm mt-4">
-              Tüm sera projelerinizi tek platformdan yönetin
+              Adil Kullanım Kotası İle Birlikte Ücretsizdir
             </p>
           </motion.div>
         </div>
@@ -623,7 +616,7 @@ export default function UserjotCloneSection() {
 
       {/* Visual Gallery Section */}
       <div className="py-20 bg-gray-50 text-gray-600">
-        <div className="max-w-[1200px] mx-auto px-6 bg-gray-50">
+        <div className="page-section-container bg-gray-50">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -631,23 +624,19 @@ export default function UserjotCloneSection() {
             viewport={{ once: true }}
             className="text-center mb-16 flex flex-col"
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 flex flex-col max-w-[700px] mx-auto">
-              <span className="mx-auto">
-                <p>Projeler</p>
+            <h2 className="text-xl font-bold text-gray-900 mb-6 flex flex-col max-w-[576px] mx-auto">
+              <span className="mx-auto text-3xl">
+                Yatırımcılarımızın Tercih Ettiği Sera Çözümleri
               </span>
               <br />
             </h2>
-            <p className="text-xl text-gray-600 max-w-[700px] mx-auto leading-relaxed">
-              <span>
-                Hermisan & ISITMAX iş birliğiyle tamamlanan sera projelerinden seçilmiş görüntüler.
-              </span>
-              <span className="font-semibold text-gray-900">500+ başarılı proje</span>
-              <span> deneyimimizden örnekler.</span>
+            <p className="text-sm text-gray-900 max-w-[576px] mx-auto leading-relaxed">
+              Çözüm ortaklarımız ile hayata geçirilen sera projelerimiz
             </p>
           </motion.div>
 
           {/* Horizontal Scrolling Gallery */}
-          <div className="relative mb-12">
+          <div className="relative mb-12 visual-section-container">
             <div className="flex overflow-x-auto scrollbar-hide gap-6 pb-6">
               {/* Gallery Image 1 */}
               <motion.div
@@ -708,7 +697,7 @@ export default function UserjotCloneSection() {
                 <div className="w-full h-full bg-gradient-to-br from-yellow-100 to-orange-100 flex items-center justify-center">
                   <div className="text-center">
                     <p className="text-gray-700 font-medium">Fide Üretim Tesisi</p>
-                    <p className="text-gray-500 text-sm">Bursa, 4.500 m��</p>
+                    <p className="text-gray-500 text-sm">Bursa, 4.500 m²</p>
                   </div>
                 </div>
               </motion.div>
@@ -723,7 +712,7 @@ export default function UserjotCloneSection() {
               >
                 <div className="w-full h-full bg-gradient-to-br from-blue-100 to-indigo-100 flex items-center justify-center">
                   <div className="text-center">
-                    <div className="text-4xl mb-3">❄️</div>
+                    <div className="text-4xl mb-3">🌡️</div>
                     <p className="text-gray-700 font-medium">İklim Kontrollü Sera</p>
                     <p className="text-gray-500 text-sm">Konya, 6.000 m²</p>
                   </div>
@@ -800,20 +789,20 @@ export default function UserjotCloneSection() {
             viewport={{ once: true }}
             className="text-center"
           >
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pb-11">
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="bg-gray-600 hover:bg-gray-700 text-white px-10 py-4 rounded-xl text-xl font-bold transition-colors shadow-lg hover:shadow-xl"
+                className="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded-lg text-base font-medium transition-colors shadow-md hover:shadow-lg mt-6"
               >
-                <p>Anahtar Teslim Fiyat Alın</p>
+                Anahtar Teslim Fiyat Alın
               </motion.button>
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="bg-gray-600 hover:bg-gray-700 text-white px-10 py-4 rounded-xl text-xl font-bold transition-colors shadow-lg hover:shadow-xl"
+                className="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded-lg text-base font-medium transition-colors shadow-md hover:shadow-lg mt-6"
               >
-                <p>Kurumsal Danışmanlık Hizmeti</p>
+                Kurumsal Danışmanlık Hizmeti
               </motion.button>
             </div>
             <p className="text-gray-500 text-sm mt-4">
@@ -834,7 +823,7 @@ export default function UserjotCloneSection() {
         viewport={{ once: true }}
         className="bg-white py-20 text-gray-600"
       >
-        <div className="max-w-3xl mx-auto px-6">
+        <div className="text-section-container">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -842,7 +831,7 @@ export default function UserjotCloneSection() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+            <h2 className="text-xl font-bold text-gray-900 mb-4">
               Sıkça Sorulan Sorular (SSS)
             </h2>
           </motion.div>
@@ -850,7 +839,6 @@ export default function UserjotCloneSection() {
           <div className="space-y-2">
             {[
               {
-
                 question: "Raporlar ne kadar doğru?",
                 answer: "SeraGPT, gerçek zamanlı iklim, tarım ve ticaret verilerini kullanır. Raporlar, uzman mühendislerin geliştirdiği algoritmalarla analiz edilir ve %90 üzeri doğruluk oranı sunar."
               },
@@ -859,70 +847,16 @@ export default function UserjotCloneSection() {
                 answer: "Evet. Raporlar TKDK, IPARD ve Ziraat Bankası destek başvurularında ön fizibilite dosyası olarak kullanılabilir. Talep halinde ek mühendis onayı alınabilir."
               },
               {
-
                 question: "Mühendis desteği sunuyor musunuz?",
-                answer: "Evet. Profesyonel kullanıcılar için mühendis danışmanlık hizmeti sağlıyoruz. Size en yakın uzmanla eşleştirilerek birebir destek sunulur.",
-
+                answer: "Evet. Profesyonel kullanıcılar için mühendis danışmanlık hizmeti sağlıyoruz. Size en yakın uzmanla eşleştirilerek birebir destek sunulur."
               },
               {
                 question: "Bilgilerim güvende mi?",
-                answer: "Kesinlikle. Tüm bilgileriniz Supabase veritabanında şifreli olarak saklanır. Raporlar yalnızca size özeldir, üçüncü taraflarla paylaşılmaz.",
-
+                answer: "Kesinlikle. Tüm bilgileriniz Supabase veritabanında şifreli olarak saklanır. Raporlar yalnızca size özeldir, üçüncü taraflarla paylaşılmaz."
               },
               {
                 question: "Ödeme nasıl yapılıyor?",
-                answer: "İlk 5 rapor ücretsizdir. Sonrasında, kredi kartı veya havale/EFT ile jeton (token) satın alabilirsiniz. Ödeme altyapıs�� %100 güvenlidir.",
-
-              },
-              {
-
-                question: "Jetonlar (Token) nasıl çalışır?",
-                answer: "Her analiz bir jeton harcar. 5 ücretsiz jeton ile başlayabilir, daha fazlasını paket olarak satın alabilirsiniz. Jetonlar süresiz geçerlidir.",
-
-              },
-              {
-                question: "Jetonların zaman aşımı var mı?",
-                answer: "Hayır. Satın aldığınız jetonlar hesabınızda süresiz olarak kalır. Dilediğiniz zaman kullanabilirsiniz.",
-
-              },
-              {
-                question: "Sadece yeni yatırımcılar mı kullanabilir?",
-                answer: "Hay��r. Mevcut serası olan kullanıcılar, genişletme planlayan çiftçiler, mühendisler ve yatırımcılar da SeraGPT'den faydalanabilir.",
-
-              },
-              {
-
-                question: "Anahtar teslim sera kurulumu sağlıyor musunuz?",
-                answer: "Evet. IOX partnerleri aracılığ��yla, analiz raporuna dayalı olarak anahtar teslim sera projeleri teklif edebiliyoruz. Talep formunu doldurmanız yeterlidir.",
-
-              },
-              {
-                question: "Fatura ve iade koşulları nedir?",
-                answer: "Satın alınan jetonlar dijital hizmet kapsamına girer. Kullanılmamış jetonlar için 14 gün içinde iade mümkündür. Fatura otomatik olarak e-posta ile iletilir.",
-
-              },
-              {
-
-                question: "Danışmanlık almak için ne yapmalıyım?",
-                answer: "Destek bölümünden danışman talebinde bulunabilirsiniz. Alanında uzman bir mühendis sizinle iletişime geçerek detaylı bilgi verecektir.",
-
-              },
-              {
-
-                question: "Raporları kimler kullanabilir?",
-                answer: "Ziraat mühendisleri, yatırımcılar, mühendislik firmaları, devlet başvurusu yapan üreticiler, proje yöneticileri ve akademisyenler raporları kullanabilir.",
-
-              },
-              {
-                question: "Destek kaydı nasıl açılır?",
-                answer: "Profil sayfanızdaki 'Destek Talebi' bölümünden form doldurarak teknik, veri veya danışmanlık desteği alabilirsiniz.",
-
-              },
-              {
-
-                question: "İtiraz ve düzeltme süreci nasıl işler?",
-                answer: "Rapor içeriğiyle ilgili bir hata olduğunu düş��nüyorsanız, destek kaydı oluşturabilirsiniz. Mühendis ekibimiz gerekli incelemeyi yaparak düzeltme sağlar.",
-
+                answer: "İlk 5 rapor ücretsizdir. Sonrasında, kredi kartı veya havale/EFT ile jeton (token) satın alabilirsiniz. Ödeme altyapısı %100 güvenlidir."
               }
             ].map((faq, index) => (
               <motion.div
@@ -938,7 +872,7 @@ export default function UserjotCloneSection() {
                   onClick={() => setOpenFAQ(openFAQ === index ? null : index)}
                 >
                   <div className="flex items-center justify-between">
-                    <h3 className="text-lg font-medium text-gray-900 group-hover:text-gray-700 pr-4">
+                    <h3 className="text-base md:text-lg font-medium text-gray-900 group-hover:text-gray-700 pr-4">
                       {faq.question}
                     </h3>
                     <svg
@@ -959,7 +893,7 @@ export default function UserjotCloneSection() {
                     animate={{ opacity: 1, height: 'auto' }}
                     exit={{ opacity: 0, height: 0 }}
                     transition={{ duration: 0.3 }}
-                    className="px-6 pb-6 text-gray-600 leading-relaxed"
+                    className="px-6 pb-6 text-sm md:text-base text-gray-600 leading-relaxed"
                   >
                     {faq.answer}
                   </motion.div>
@@ -967,6 +901,28 @@ export default function UserjotCloneSection() {
               </motion.div>
             ))}
           </div>
+
+          {/* Support Link */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            viewport={{ once: true }}
+            className="text-center mt-12"
+          >
+            <p className="text-gray-600 mb-4">
+              Sorunuza cevap bulamadınız mı?
+            </p>
+            <a
+              href="/destek"
+              className="inline-flex items-center space-x-2 bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded-lg text-base font-medium transition-colors"
+            >
+              <span>Destek Sayfamıza Gidin</span>
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </a>
+          </motion.div>
         </div>
       </motion.div>
 

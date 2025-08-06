@@ -8,9 +8,13 @@ export const runtime = 'nodejs'
 export function createClient() {
   const cookieStore = cookies()
 
+  // Use fallback values during build time
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://placeholder.supabase.co'
+  const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'placeholder-anon-key'
+
   return createServerClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    url,
+    key,
     {
       cookies: {
         get(name: string) {
@@ -28,9 +32,13 @@ export async function updateSession(request: NextRequest) {
     },
   })
 
+  // Use fallback values during build time
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://placeholder.supabase.co'
+  const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'placeholder-anon-key'
+
   const supabase = createServerClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    url,
+    key,
     {
       cookies: {
         get(name: string) {
@@ -74,7 +82,32 @@ export async function updateSession(request: NextRequest) {
     }
   )
 
-  await supabase.auth.getUser()
+  try {
+    const { data: { user }, error } = await supabase.auth.getUser()
 
-  return response
+    console.log('Middleware auth check:', {
+      path: request.nextUrl.pathname,
+      hasUser: !!user,
+      userEmail: user?.email,
+      error: error?.message
+    })
+
+    // Only redirect on very specific protected paths, and be less aggressive
+    const protectedPaths = ['/dashboard', '/admin'];
+    const isProtectedPath = protectedPaths.some(path => request.nextUrl.pathname === path);
+
+    if (!user && isProtectedPath) {
+      console.log('Redirecting unauthenticated user to login from:', request.nextUrl.pathname)
+      return NextResponse.redirect(new URL('/auth/login', request.url))
+    }
+
+    return response
+  } catch (error) {
+    console.error('Middleware auth error:', error)
+    // Be very conservative with error redirects
+    if (request.nextUrl.pathname === '/dashboard' || request.nextUrl.pathname === '/admin') {
+      return NextResponse.redirect(new URL('/auth/login', request.url))
+    }
+    return response
+  }
 }

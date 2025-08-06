@@ -1,65 +1,44 @@
 import { API_CONFIG, ApiResponse } from '../api-config';
 
+export interface EquipmentInputs {
+  greenhouseSize: number;
+  location: string;
+  plantType: string;
+  budgetRange: 'low' | 'medium' | 'high';
+  automationLevel: 'manual' | 'basic' | 'advanced' | 'full';
+  energySource: 'electric' | 'gas' | 'solar' | 'hybrid';
+  specialRequirements?: string[];
+}
+
 export interface EquipmentItem {
-  id: string;
-  name: string;
-  category: 'structure' | 'climate' | 'irrigation' | 'automation' | 'energy' | 'monitoring';
-  type: string;
-  brand: string;
-  model: string;
-  price: number; // TL
-  currency: 'TL' | 'USD' | 'EUR';
-  specifications: {
-    capacity?: string;
-    powerConsumption?: string;
-    dimensions?: string;
-    weight?: string;
-    efficiency?: string;
-    warranty?: string;
-    certification?: string[];
-  };
-  suitability: {
-    greenhouseSize: 'small' | 'medium' | 'large' | 'any';
-    climateZone: string[];
-    cropTypes: string[];
-    budgetRange: 'budget' | 'mid-range' | 'premium';
-  };
-  features: string[];
-  pros: string[];
-  cons: string[];
-  installationComplexity: 'easy' | 'medium' | 'complex';
-  maintenanceLevel: 'low' | 'medium' | 'high';
-  energyRating: 'A+' | 'A' | 'B' | 'C' | 'D';
-  supplierInfo: {
-    name: string;
-    location: string;
-    contact: string;
-    deliveryTime: string;
-  };
-}
-
-export interface EquipmentRecommendation {
-  category: string;
-  priority: 'essential' | 'recommended' | 'optional';
-  items: EquipmentItem[];
-  totalCost: number;
-  reasoning: string;
-  alternatives: string[];
-}
-
-export interface EquipmentPackage {
-  id: string;
   name: string;
   description: string;
-  categories: EquipmentRecommendation[];
+  brand: string;
+  model: string;
+  estimatedCost: number;
+  priority: 'essential' | 'recommended' | 'optional';
+  specifications?: string;
+  features: string[];
+  supplier: string;
+  deliveryTime: string;
+}
+
+export interface EquipmentCategory {
+  name: string;
+  items: EquipmentItem[];
   totalCost: number;
-  savings: number;
-  suitableFor: {
-    greenhouseSize: string;
-    cropType: string;
-    budget: string;
+  description: string;
+}
+
+export interface EquipmentRecommendations {
+  categories: EquipmentCategory[];
+  costSummary: {
+    minimum: number;
+    recommended: number;
+    premium: number;
   };
-  timeline: {
+  engineerRecommendations: string[];
+  projectTimeline: {
     planning: string;
     procurement: string;
     installation: string;
@@ -68,220 +47,160 @@ export interface EquipmentPackage {
 }
 
 class EquipmentService {
-  private readonly equipmentDatabase: EquipmentItem[] = [
-    // Structure Equipment
-    {
-      id: 'struct_001',
-      name: 'Galvanizli Çelik İskelet Sistemi',
-      category: 'structure',
-      type: 'frame',
-      brand: 'SeraMax',
-      model: 'SM-2024',
-      price: 180,
-      currency: 'TL',
-      specifications: {
-        dimensions: '6m genişlik destekli',
-        weight: '25 kg/m²',
-        warranty: '15 yıl',
-        certification: ['TSE', 'CE']
-      },
-      suitability: {
-        greenhouseSize: 'any',
-        climateZone: ['Akdeniz', 'Ege', 'Marmara'],
-        cropTypes: ['domates', 'salatalik', 'biber'],
-        budgetRange: 'mid-range'
-      },
-      features: ['Korozyona dayanıklı', 'Kolay montaj', 'Modüler tasarım'],
-      pros: ['Uzun ömürlü', 'Bakım gerektirmez', 'Güçlü yapı'],
-      cons: ['Orta seviye maliyet', 'Ağır'],
-      installationComplexity: 'medium',
-      maintenanceLevel: 'low',
-      energyRating: 'A',
-      supplierInfo: {
-        name: 'SeraMax Türkiye',
-        location: 'Antalya',
-        contact: '0242 XXX XX XX',
+  private readonly equipmentDatabase = {
+    structure: [
+      {
+        name: 'Galvanizli Çelik İskelet Sistemi',
+        description: 'Korozyona dayanıklı, uzun ömürlü sera iskelet sistemi',
+        brand: 'SeraMax',
+        model: 'SM-2024',
+        baseCostPerM2: 180,
+        features: ['15 yıl garanti', 'TSE sertifikası', 'Kolay montaj'],
+        supplier: 'SeraMax Türkiye - Antalya',
         deliveryTime: '2-3 hafta'
+      },
+      {
+        name: 'Alüminyum İskelet Sistemi',
+        description: 'Hafif ve dayanıklı alüminyum konstrüksiyon',
+        brand: 'AluminumPro',
+        model: 'AP-Light',
+        baseCostPerM2: 220,
+        features: ['Pas yapmaz', 'Hafif', '20 yıl garanti'],
+        supplier: 'AluminumPro - İstanbul',
+        deliveryTime: '3-4 hafta'
       }
-    },
-    {
-      id: 'climate_001',
-      name: 'Akıllı İklim Kontrol Sistemi',
-      category: 'climate',
-      type: 'climate_control',
-      brand: 'ClimatePro',
-      model: 'CP-Smart-2024',
-      price: 15000,
-      currency: 'TL',
-      specifications: {
-        capacity: '1000 m² sera',
-        powerConsumption: '2.5 kW',
-        warranty: '3 yıl',
-        certification: ['CE', 'IP65']
-      },
-      suitability: {
-        greenhouseSize: 'medium',
-        climateZone: ['tüm bölgeler'],
-        cropTypes: ['tüm ürünler'],
-        budgetRange: 'premium'
-      },
-      features: ['Otomatik sıcaklık kontrolü', 'Nem kontrolü', 'Mobil uygulama'],
-      pros: ['Tam otomatik', 'Enerji tasarrufu', 'Uzaktan kontrol'],
-      cons: ['Yüksek maliyet', 'Karmaşık kurulum'],
-      installationComplexity: 'complex',
-      maintenanceLevel: 'medium',
-      energyRating: 'A+',
-      supplierInfo: {
-        name: 'ClimatePro Türkiye',
-        location: 'İstanbul',
-        contact: '0212 XXX XX XX',
+    ],
+    climate: [
+      {
+        name: 'Akıllı İklim Kontrol Sistemi',
+        description: 'Otomatik sıcaklık, nem ve havalandırma kontrolü',
+        brand: 'ClimatePro',
+        model: 'CP-Smart-2024',
+        baseCostPerM2: 25,
+        features: ['Mobil uygulama', 'Otomatik ayar', 'Enerji tasarrufu'],
+        supplier: 'ClimatePro Türkiye - İstanbul',
         deliveryTime: '4-6 hafta'
-      }
-    },
-    {
-      id: 'irrigation_001',
-      name: 'Damla Sulama Sistemi',
-      category: 'irrigation',
-      type: 'drip_irrigation',
-      brand: 'AquaTech',
-      model: 'AT-Drip-Pro',
-      price: 45,
-      currency: 'TL',
-      specifications: {
-        capacity: 'M² başına',
-        powerConsumption: '0.5 kW pompa',
-        warranty: '2 yıl',
-        efficiency: '%95 su verimliliği'
       },
-      suitability: {
-        greenhouseSize: 'any',
-        climateZone: ['tüm bölgeler'],
-        cropTypes: ['domates', 'salatalik', 'biber', 'patlican'],
-        budgetRange: 'budget'
-      },
-      features: ['Su tasarrufu', 'Gübreleme entegrasyonu', 'Otomatik timer'],
-      pros: ['Düşük maliyet', 'Kolay kurulum', 'Su tasarrufu'],
-      cons: ['Manuel ayar gerekir', 'Düzenli temizlik'],
-      installationComplexity: 'easy',
-      maintenanceLevel: 'medium',
-      energyRating: 'A',
-      supplierInfo: {
-        name: 'AquaTech Sulama',
-        location: 'Mersin',
-        contact: '0324 XXX XX XX',
+      {
+        name: 'Temel Havalandırma Sistemi',
+        description: 'Manuel kontrollü temel havalandırma sistemi',
+        brand: 'VentilMax',
+        model: 'VM-Basic',
+        baseCostPerM2: 8,
+        features: ['Basit kontrol', 'Dayanıklı', 'Ekonomik'],
+        supplier: 'VentilMax - Mersin',
         deliveryTime: '1-2 hafta'
       }
-    },
-    {
-      id: 'energy_001',
-      name: 'Güneş Paneli Sistemi',
-      category: 'energy',
-      type: 'solar_panel',
-      brand: 'SolarMax',
-      model: 'SM-400W',
-      price: 2500,
-      currency: 'TL',
-      specifications: {
-        capacity: '400W panel',
-        efficiency: '%22 verimlilik',
-        warranty: '25 yıl',
-        certification: ['TÜV', 'CE']
+    ],
+    irrigation: [
+      {
+        name: 'Damla Sulama Sistemi',
+        description: 'Yüksek verimli damla sulama sistemi',
+        brand: 'AquaTech',
+        model: 'AT-Drip-Pro',
+        baseCostPerM2: 45,
+        features: ['%95 su verimliliği', 'Gübreleme entegrasyonu', 'Otomatik timer'],
+        supplier: 'AquaTech Sulama - Mersin',
+        deliveryTime: '1-2 hafta'
       },
-      suitability: {
-        greenhouseSize: 'any',
-        climateZone: ['Akdeniz', 'Ege', 'İç Anadolu'],
-        cropTypes: ['tüm ürünler'],
-        budgetRange: 'premium'
-      },
-      features: ['Temiz enerji', 'Uzun ömür', 'Düşük bakım'],
-      pros: ['Enerji tasarrufu', 'Çevre dostu', 'Devlet teşviki'],
-      cons: ['Yüksek başlangıç maliyeti', 'Hava şartlarına bağımlı'],
-      installationComplexity: 'complex',
-      maintenanceLevel: 'low',
-      energyRating: 'A+',
-      supplierInfo: {
-        name: 'SolarMax Enerji',
-        location: 'Ankara',
-        contact: '0312 XXX XX XX',
-        deliveryTime: '6-8 hafta'
+      {
+        name: 'Yağmurlama Sistemi',
+        description: 'Geleneksel yağmurlama sulama sistemi',
+        brand: 'SprayMax',
+        model: 'SM-Classic',
+        baseCostPerM2: 30,
+        features: ['Geniş alan kapsamı', 'Basit kontrol', 'Düşük maliyet'],
+        supplier: 'SprayMax - Adana',
+        deliveryTime: '1 hafta'
       }
-    },
-    {
-      id: 'monitoring_001',
-      name: 'IoT Sensör Paketi',
-      category: 'monitoring',
-      type: 'sensors',
-      brand: 'SmartFarm',
-      model: 'SF-IoT-2024',
-      price: 3500,
-      currency: 'TL',
-      specifications: {
-        capacity: '1000 m² sera',
-        powerConsumption: '0.1 kW',
-        warranty: '2 yıl',
-        certification: ['CE', 'WiFi']
+    ],
+    heating: [
+      {
+        name: 'Güneş Paneli Sistemi',
+        description: 'Temiz enerji üreten güneş paneli sistemi',
+        brand: 'SolarMax',
+        model: 'SM-400W',
+        baseCostPerM2: 15,
+        features: ['25 yıl garanti', '%22 verimlilik', 'Devlet teşviki'],
+        supplier: 'SolarMax Enerji - Ankara',
+        deliveryTime: '6-8 hafta'
       },
-      suitability: {
-        greenhouseSize: 'medium',
-        climateZone: ['tüm bölgeler'],
-        cropTypes: ['tüm ürünler'],
-        budgetRange: 'mid-range'
-      },
-      features: ['Sıcaklık sensörü', 'Nem sensörü', 'Toprak sensörü', 'Mobil app'],
-      pros: ['Gerçek zamanlı veri', 'Otomatik uyarılar', 'Trend analizi'],
-      cons: ['İnternet bağımlılığı', 'Teknik bilgi gerekir'],
-      installationComplexity: 'medium',
-      maintenanceLevel: 'low',
-      energyRating: 'A+',
-      supplierInfo: {
-        name: 'SmartFarm Tech',
-        location: 'İzmir',
-        contact: '0232 XXX XX XX',
+      {
+        name: 'Doğalgaz Isıtma Sistemi',
+        description: 'Verimli doğalgaz yakıtlı ısıtma sistemi',
+        brand: 'HeatPro',
+        model: 'HP-Gas-2024',
+        baseCostPerM2: 35,
+        features: ['Yüksek verim', 'Otomatik kontrol', 'Güvenli'],
+        supplier: 'HeatPro - Bursa',
         deliveryTime: '2-3 hafta'
       }
-    }
-  ];
-
-  async getEquipmentRecommendations(
-    greenhouseSpecs: {
-      area: number;
-      type: string;
-      location: string;
-      budget: number;
-      cropType: string;
-      automationLevel: 'basic' | 'intermediate' | 'advanced';
-    }
-  ): Promise<ApiResponse<EquipmentRecommendation[]>> {
-    try {
-      const recommendations: EquipmentRecommendation[] = [];
-      
-      // Categorize recommendations
-      const categories = ['structure', 'climate', 'irrigation', 'energy', 'monitoring', 'automation'];
-      
-      for (const category of categories) {
-        const categoryItems = this.equipmentDatabase.filter(item => 
-          item.category === category &&
-          this.isEquipmentSuitable(item, greenhouseSpecs)
-        );
-
-        if (categoryItems.length > 0) {
-          const priority = this.getCategoryPriority(category, greenhouseSpecs.automationLevel);
-          const bestItems = this.selectBestItems(categoryItems, greenhouseSpecs.budget);
-          
-          recommendations.push({
-            category: this.getCategoryName(category),
-            priority,
-            items: bestItems,
-            totalCost: bestItems.reduce((sum, item) => sum + item.price, 0),
-            reasoning: this.getReasoningForCategory(category, greenhouseSpecs),
-            alternatives: this.getAlternatives(category)
-          });
-        }
+    ],
+    monitoring: [
+      {
+        name: 'IoT Sensör Paketi',
+        description: 'Akıllı sera izleme sensör sistemi',
+        brand: 'SmartFarm',
+        model: 'SF-IoT-2024',
+        baseCostPerM2: 8,
+        features: ['Gerçek zamanlı veri', 'Mobil app', 'Otomatik uyarılar'],
+        supplier: 'SmartFarm Tech - İzmir',
+        deliveryTime: '2-3 hafta'
+      },
+      {
+        name: 'Temel Termometre Sistemi',
+        description: 'Basit sıcaklık ve nem ölçüm sistemi',
+        brand: 'ThermoBasic',
+        model: 'TB-Simple',
+        baseCostPerM2: 2,
+        features: ['Dijital ekran', 'Min/Max kayıt', 'Ekonomik'],
+        supplier: 'ThermoBasic - Ankara',
+        deliveryTime: '1 hafta'
       }
+    ],
+    automation: [
+      {
+        name: 'Tam Otomasyon Sistemi',
+        description: 'Yapay zeka destekli tam otomasyon sistemi',
+        brand: 'AutoMax',
+        model: 'AM-AI-2024',
+        baseCostPerM2: 50,
+        features: ['AI kontrolü', 'Uzaktan yönetim', 'Verim optimizasyonu'],
+        supplier: 'AutoMax Systems - İstanbul',
+        deliveryTime: '8-10 hafta'
+      },
+      {
+        name: 'Temel Otomasyon',
+        description: 'Basit timer tabanlı otomasyon sistemi',
+        brand: 'SimpleAuto',
+        model: 'SA-Timer',
+        baseCostPerM2: 12,
+        features: ['Timer kontrol', 'Basit programlama', 'Güvenilir'],
+        supplier: 'SimpleAuto - Antalya',
+        deliveryTime: '2 hafta'
+      }
+    ]
+  };
 
-      // Sort by priority
-      const priorityOrder = { essential: 0, recommended: 1, optional: 2 };
-      recommendations.sort((a, b) => priorityOrder[a.priority] - priorityOrder[b.priority]);
+  async generateRecommendations(inputs: EquipmentInputs): Promise<ApiResponse<EquipmentRecommendations>> {
+    try {
+      await new Promise(resolve => setTimeout(resolve, 2000)); // Simulate API call
+
+      const categories = this.buildRecommendations(inputs);
+      const costSummary = this.calculateCostSummary(categories);
+      const engineerRecommendations = this.generateEngineerAdvice(inputs);
+
+      const recommendations: EquipmentRecommendations = {
+        categories,
+        costSummary,
+        engineerRecommendations,
+        projectTimeline: {
+          planning: '2-3 hafta',
+          procurement: '4-8 hafta',
+          installation: '3-5 hafta',
+          commissioning: '1-2 hafta'
+        }
+      };
 
       return {
         success: true,
@@ -290,209 +209,234 @@ class EquipmentService {
     } catch (error) {
       return {
         success: false,
-        error: error instanceof Error ? error.message : 'Equipment recommendation failed'
+        error: error instanceof Error ? error.message : 'Equipment analysis failed'
       };
     }
   }
 
-  async getEquipmentPackages(
-    greenhouseSpecs: {
-      area: number;
-      type: string;
-      budget: number;
-      cropType: string;
-    }
-  ): Promise<ApiResponse<EquipmentPackage[]>> {
-    try {
-      const packages: EquipmentPackage[] = [
-        {
-          id: 'basic_package',
-          name: 'Temel Sera Paketi',
-          description: 'Başlangıç seviyesi sera kurulumu için gerekli temel ekipmanlar',
-          categories: await this.getBasicPackageItems(greenhouseSpecs),
-          totalCost: 0, // Will be calculated
-          savings: 15,
-          suitableFor: {
-            greenhouseSize: 'küçük-orta',
-            cropType: 'genel',
-            budget: 'ekonomik'
-          },
-          timeline: {
-            planning: '1 hafta',
-            procurement: '2-3 hafta',
-            installation: '1-2 hafta',
-            commissioning: '3-5 gün'
-          }
-        },
-        {
-          id: 'professional_package',
-          name: 'Profesyonel Sera Paketi',
-          description: 'Ticari sera işletmesi için optimize edilmiş ekipman seti',
-          categories: await this.getProfessionalPackageItems(greenhouseSpecs),
-          totalCost: 0,
-          savings: 20,
-          suitableFor: {
-            greenhouseSize: 'orta-büyük',
-            cropType: 'ticari',
-            budget: 'orta seviye'
-          },
-          timeline: {
-            planning: '2 hafta',
-            procurement: '4-6 hafta',
-            installation: '2-3 hafta',
-            commissioning: '1 hafta'
-          }
-        },
-        {
-          id: 'premium_package',
-          name: 'Premium Akıllı Sera Paketi',
-          description: 'Tam otomatik, IoT entegreli, premium sera sistemi',
-          categories: await this.getPremiumPackageItems(greenhouseSpecs),
-          totalCost: 0,
-          savings: 25,
-          suitableFor: {
-            greenhouseSize: 'büyük',
-            cropType: 'yüksek değerli',
-            budget: 'premium'
-          },
-          timeline: {
-            planning: '3 hafta',
-            procurement: '6-8 hafta',
-            installation: '3-4 hafta',
-            commissioning: '2 hafta'
-          }
-        }
-      ];
+  private buildRecommendations(inputs: EquipmentInputs): EquipmentCategory[] {
+    const categories: EquipmentCategory[] = [];
 
-      // Calculate total costs
-      packages.forEach(pkg => {
-        pkg.totalCost = pkg.categories.reduce((sum, cat) => 
-          sum + cat.items.reduce((catSum, item) => catSum + item.price, 0), 0
-        );
+    // Structure Category
+    const structureItems = this.selectEquipmentForCategory('structure', inputs);
+    categories.push({
+      name: 'Yapı ve İskelet Sistemi',
+      description: 'Sera iskelet ve konstrüksiyon elemanları',
+      items: structureItems,
+      totalCost: structureItems.reduce((sum, item) => sum + item.estimatedCost, 0)
+    });
+
+    // Climate Control Category
+    const climateItems = this.selectEquipmentForCategory('climate', inputs);
+    categories.push({
+      name: 'İklim Kontrol Sistemi',
+      description: 'Sıcaklık, nem ve havalandırma kontrolü',
+      items: climateItems,
+      totalCost: climateItems.reduce((sum, item) => sum + item.estimatedCost, 0)
+    });
+
+    // Irrigation Category
+    const irrigationItems = this.selectEquipmentForCategory('irrigation', inputs);
+    categories.push({
+      name: 'Sulama Sistemi',
+      description: 'Su dağıtım ve sulama ekipmanları',
+      items: irrigationItems,
+      totalCost: irrigationItems.reduce((sum, item) => sum + item.estimatedCost, 0)
+    });
+
+    // Heating/Energy Category
+    const heatingItems = this.selectEquipmentForCategory('heating', inputs);
+    categories.push({
+      name: 'Enerji ve Isıtma Sistemi',
+      description: 'Enerji üretimi ve ısıtma ekipmanları',
+      items: heatingItems,
+      totalCost: heatingItems.reduce((sum, item) => sum + item.estimatedCost, 0)
+    });
+
+    // Monitoring Category (if automation level requires it)
+    if (inputs.automationLevel !== 'manual') {
+      const monitoringItems = this.selectEquipmentForCategory('monitoring', inputs);
+      categories.push({
+        name: 'İzleme ve Kontrol Sistemi',
+        description: 'Sensörler ve izleme ekipmanları',
+        items: monitoringItems,
+        totalCost: monitoringItems.reduce((sum, item) => sum + item.estimatedCost, 0)
       });
-
-      return {
-        success: true,
-        data: packages
-      };
-    } catch (error) {
-      return {
-        success: false,
-        error: error instanceof Error ? error.message : 'Package generation failed'
-      };
-    }
-  }
-
-  private isEquipmentSuitable(item: EquipmentItem, specs: any): boolean {
-    // Check greenhouse size compatibility
-    if (item.suitability.greenhouseSize !== 'any') {
-      const sizeCategory = specs.area < 200 ? 'small' : specs.area < 1000 ? 'medium' : 'large';
-      if (item.suitability.greenhouseSize !== sizeCategory) return false;
     }
 
-    // Check crop type compatibility
-    if (!item.suitability.cropTypes.includes(specs.cropType) && 
-        !item.suitability.cropTypes.includes('tüm ürünler')) {
-      return false;
+    // Automation Category (if advanced automation requested)
+    if (inputs.automationLevel === 'advanced' || inputs.automationLevel === 'full') {
+      const automationItems = this.selectEquipmentForCategory('automation', inputs);
+      categories.push({
+        name: 'Otomasyon Sistemi',
+        description: 'Otomatik kontrol ve yönetim sistemi',
+        items: automationItems,
+        totalCost: automationItems.reduce((sum, item) => sum + item.estimatedCost, 0)
+      });
     }
 
-    // Check budget compatibility
-    const budgetCategory = specs.budget < 100000 ? 'budget' : specs.budget < 300000 ? 'mid-range' : 'premium';
-    const itemBudgetOrder = { budget: 1, 'mid-range': 2, premium: 3 };
-    const specsBudgetOrder = { budget: 1, 'mid-range': 2, premium: 3 };
-    
-    return itemBudgetOrder[item.suitability.budgetRange] <= specsBudgetOrder[budgetCategory];
+    return categories;
   }
 
-  private getCategoryPriority(category: string, automationLevel: string): 'essential' | 'recommended' | 'optional' {
-    const priorities: Record<string, Record<string, 'essential' | 'recommended' | 'optional'>> = {
-      structure: { basic: 'essential', intermediate: 'essential', advanced: 'essential' },
-      irrigation: { basic: 'essential', intermediate: 'essential', advanced: 'essential' },
-      climate: { basic: 'recommended', intermediate: 'essential', advanced: 'essential' },
-      energy: { basic: 'optional', intermediate: 'recommended', advanced: 'recommended' },
-      monitoring: { basic: 'optional', intermediate: 'recommended', advanced: 'essential' },
-      automation: { basic: 'optional', intermediate: 'optional', advanced: 'essential' }
-    };
+  private selectEquipmentForCategory(category: string, inputs: EquipmentInputs): EquipmentItem[] {
+    const items: EquipmentItem[] = [];
+    const categoryEquipment = this.equipmentDatabase[category as keyof typeof this.equipmentDatabase] || [];
 
-    return priorities[category]?.[automationLevel] || 'optional';
-  }
+    for (const equipment of categoryEquipment) {
+      const isRecommended = this.shouldRecommendEquipment(equipment, inputs);
+      
+      if (isRecommended) {
+        const priority = this.getEquipmentPriority(category, equipment, inputs);
+        const cost = this.calculateEquipmentCost(equipment, inputs);
 
-  private selectBestItems(items: EquipmentItem[], budget: number): EquipmentItem[] {
-    // Sort by value for money (features/price ratio)
-    return items
-      .sort((a, b) => {
-        const aValue = (a.features.length + a.pros.length) / a.price;
-        const bValue = (b.features.length + b.pros.length) / b.price;
-        return bValue - aValue;
-      })
-      .slice(0, 3); // Top 3 recommendations
-  }
+        items.push({
+          name: equipment.name,
+          description: equipment.description,
+          brand: equipment.brand,
+          model: equipment.model,
+          estimatedCost: cost,
+          priority,
+          specifications: this.getSpecifications(equipment, inputs),
+          features: equipment.features,
+          supplier: equipment.supplier,
+          deliveryTime: equipment.deliveryTime
+        });
+      }
+    }
 
-  private getCategoryName(category: string): string {
-    const names: Record<string, string> = {
-      structure: 'Yapı Sistemi',
-      climate: 'İklim Kontrolü',
-      irrigation: 'Sulama Sistemi',
-      energy: 'Enerji Sistemi',
-      monitoring: 'İzleme Sistemi',
-      automation: 'Otomasyon Sistemi'
-    };
-    return names[category] || category;
-  }
-
-  private getReasoningForCategory(category: string, specs: any): string {
-    const reasoning: Record<string, string> = {
-      structure: `${specs.area} m² sera alanınız için dayanıklı ve ekonomik iskelet sistemi gereklidir`,
-      climate: `${specs.location} iklim koşullarında optimal büyüme için iklim kontrolü önemlidir`,
-      irrigation: `${specs.cropType} üretimi için verimli sulama sistemi gereklidir`,
-      energy: 'Enerji maliyetlerini düşürmek ve sürdürülebilirlik için önerilir',
-      monitoring: 'Verim optimizasyonu ve sorun tespiti için önemlidir',
-      automation: 'İşçilik maliyetlerini düşürmek ve verimlilik artırmak için gereklidir'
-    };
-    return reasoning[category] || '';
-  }
-
-  private getAlternatives(category: string): string[] {
-    const alternatives: Record<string, string[]> = {
-      structure: ['Alüminyum iskelet', 'Ahşap konstrüksiyon', 'Hibrit sistemler'],
-      climate: ['Doğal havalandırma', 'Pasif iklim kontrolü', 'Hibrit sistemler'],
-      irrigation: ['Yağmurlama sistemi', 'Manuel sulama', 'Hidroponik sistem'],
-      energy: ['Şebeke elektriği', 'Jeneratör sistemi', 'Hibrit enerji'],
-      monitoring: ['Manuel takip', 'Basit termometreler', 'Kısmi otomasyon'],
-      automation: ['Manuel işletim', 'Yarı otomatik', 'Kademeli otomasyon']
-    };
-    return alternatives[category] || [];
-  }
-
-  private async getBasicPackageItems(specs: any): Promise<EquipmentRecommendation[]> {
-    const response = await this.getEquipmentRecommendations({
-      ...specs,
-      automationLevel: 'basic'
+    return items.sort((a, b) => {
+      const priorityOrder = { essential: 0, recommended: 1, optional: 2 };
+      return priorityOrder[a.priority] - priorityOrder[b.priority];
     });
-    
-    return response.success ? response.data?.filter(cat => 
-      cat.priority === 'essential'
-    ) || [] : [];
   }
 
-  private async getProfessionalPackageItems(specs: any): Promise<EquipmentRecommendation[]> {
-    const response = await this.getEquipmentRecommendations({
-      ...specs,
-      automationLevel: 'intermediate'
-    });
-    
-    return response.success ? response.data?.filter(cat => 
-      ['essential', 'recommended'].includes(cat.priority)
-    ) || [] : [];
+  private shouldRecommendEquipment(equipment: any, inputs: EquipmentInputs): boolean {
+    // All equipment is compatible for this demo
+    return true;
   }
 
-  private async getPremiumPackageItems(specs: any): Promise<EquipmentRecommendation[]> {
-    const response = await this.getEquipmentRecommendations({
-      ...specs,
-      automationLevel: 'advanced'
-    });
-    
-    return response.success ? response.data || [] : [];
+  private getEquipmentPriority(category: string, equipment: any, inputs: EquipmentInputs): 'essential' | 'recommended' | 'optional' {
+    const priorities: Record<string, 'essential' | 'recommended' | 'optional'> = {
+      structure: 'essential' as const,
+      climate: inputs.automationLevel === 'manual' ? 'recommended' as const : 'essential' as const,
+      irrigation: 'essential' as const,
+      heating: 'recommended' as const,
+      monitoring: inputs.automationLevel === 'manual' ? 'optional' as const : 'recommended' as const,
+      automation: inputs.automationLevel === 'full' ? 'essential' as const : 'optional' as const
+    };
+
+    return priorities[category] || 'optional';
+  }
+
+  private calculateEquipmentCost(equipment: any, inputs: EquipmentInputs): number {
+    let baseCost = equipment.baseCostPerM2 * inputs.greenhouseSize;
+
+    // Apply budget range multiplier
+    const budgetMultipliers = {
+      low: 0.8,
+      medium: 1.0,
+      high: 1.3
+    };
+
+    baseCost *= budgetMultipliers[inputs.budgetRange];
+
+    // Apply location multiplier (shipping costs)
+    const locationMultipliers: Record<string, number> = {
+      antalya: 1.0,
+      mersin: 1.1,
+      izmir: 1.15,
+      adana: 1.1,
+      mugla: 1.2,
+      istanbul: 1.25
+    };
+
+    baseCost *= locationMultipliers[inputs.location] || 1.1;
+
+    return Math.round(baseCost);
+  }
+
+  private getSpecifications(equipment: any, inputs: EquipmentInputs): string {
+    return `${inputs.greenhouseSize} m² sera için optimize edilmiş`;
+  }
+
+  private calculateCostSummary(categories: EquipmentCategory[]) {
+    const essentialCost = categories.reduce((sum, cat) => 
+      sum + cat.items
+        .filter(item => item.priority === 'essential')
+        .reduce((itemSum, item) => itemSum + item.estimatedCost, 0)
+    , 0);
+
+    const recommendedCost = categories.reduce((sum, cat) => 
+      sum + cat.items
+        .filter(item => ['essential', 'recommended'].includes(item.priority))
+        .reduce((itemSum, item) => itemSum + item.estimatedCost, 0)
+    , 0);
+
+    const premiumCost = categories.reduce((sum, cat) => 
+      sum + cat.items.reduce((itemSum, item) => itemSum + item.estimatedCost, 0)
+    , 0);
+
+    return {
+      minimum: essentialCost,
+      recommended: recommendedCost,
+      premium: premiumCost
+    };
+  }
+
+  private generateEngineerAdvice(inputs: EquipmentInputs): string[] {
+    const advice: string[] = [];
+
+    // Size-based advice
+    if (inputs.greenhouseSize < 500) {
+      advice.push('Küçük sera alanınız için modüler ekipmanları tercih edin, gelecekte genişletme olanağı sağlar.');
+    } else if (inputs.greenhouseSize > 2000) {
+      advice.push('Büyük sera alanınız için merkezi kontrol sistemi kurulumu zorunludur.');
+    }
+
+    // Plant-specific advice
+    const plantAdvice: Record<string, string> = {
+      tomato: 'Domates üretimi için yüksek nem kontrollü sistemler tercih edin.',
+      cucumber: 'Salatalık için sıcaklık stabilitesi çok önemlidir.',
+      pepper: 'Biber üretiminde iyi havalandırma sistemi gereklidir.',
+      strawberry: 'Çilek için soğutma sistemi ve hassas nem kontrolü gerekir.'
+    };
+
+    if (plantAdvice[inputs.plantType]) {
+      advice.push(plantAdvice[inputs.plantType]);
+    }
+
+    // Automation advice
+    if (inputs.automationLevel === 'full') {
+      advice.push('Tam otomasyon sistemi kuruyorsanız, yedek sensör takımı bulundurun.');
+    }
+
+    // Energy advice
+    if (inputs.energySource === 'solar') {
+      advice.push('Güneş enerjisi sistemi için enerji depolama çözümü eklemeyi düşünün.');
+    }
+
+    // Budget advice
+    if (inputs.budgetRange === 'low') {
+      advice.push('Düşük bütçe için önce temel sistemleri kurun, kademeli olarak geliştirin.');
+    }
+
+    // Location advice
+    const locationAdvice: Record<string, string> = {
+      antalya: 'Antalya ikliminde yaz aylarında ekstra soğutma sistemi gerekebilir.',
+      istanbul: 'İstanbul ikliminde nem kontrolü ve ısıtma sistemi önemlidir.',
+      izmir: 'İzmir için rüzgar dayanıklı konstrüksiyon tercih edin.'
+    };
+
+    if (locationAdvice[inputs.location]) {
+      advice.push(locationAdvice[inputs.location]);
+    }
+
+    // General advice
+    advice.push('Kurulum öncesi zemin analizi yaptırın ve drenaj sistemi planlayın.');
+    advice.push('Elektrik alt yapısını ekipman ihtiyaçlarına göre boyutlandırın.');
+    advice.push('Bakım planlaması için yerel servis ağı olan markaları tercih edin.');
+
+    return advice.slice(0, 6); // Return max 6 recommendations
   }
 }
 

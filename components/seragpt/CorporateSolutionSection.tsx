@@ -44,7 +44,7 @@ export default function CorporateSolutionSection() {
 
   return (
     <section className="py-20 bg-slate-50">
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="page-section-container">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -62,7 +62,7 @@ export default function CorporateSolutionSection() {
             Kurumsal Analiz Platformu
           </h2>
           
-          <p className="text-xl text-slate-600 max-w-4xl mx-auto leading-relaxed">
+          <p className="text-xl text-slate-600 text-section-container leading-relaxed">
             Kurumsal müşterilerimiz için özel geliştirilmiş, <span className="text-blue-700 font-semibold">enterprise-grade</span> sera yatırım analiz çözümü. 
             Tüm iş süreçlerinizi dijitalleştirin ve veri odaklı kararlar alın.
           </p>
@@ -157,14 +157,14 @@ export default function CorporateSolutionSection() {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="bg-white text-blue-600 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-blue-50 transition-colors"
+              className="bg-white text-blue-600 px-4 py-2 rounded-lg text-base font-medium hover:bg-blue-50 transition-colors"
             >
               Enterprise Demo
             </motion.button>
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="border-2 border-white text-white hover:bg-white hover:text-blue-600 px-8 py-4 rounded-lg text-lg font-semibold transition-colors"
+              className="border-2 border-white text-white hover:bg-white hover:text-blue-600 px-4 py-2 rounded-lg text-base font-medium transition-colors"
             >
               Fiyat Teklifi Al
             </motion.button>

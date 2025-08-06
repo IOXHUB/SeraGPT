@@ -1,9 +1,11 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { useEffect, useState } from 'react';
 import SEOHead from '@/components/SEOHead';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 import { SEOService } from '@/lib/seo';
+import { useState, useEffect } from 'react';
 
 // Force dynamic rendering for blog pages
 export const dynamic = 'force-dynamic';
@@ -12,353 +14,211 @@ export default function BlogPage() {
   const [seoConfig, setSeoConfig] = useState(SEOService.generateBlogPageSEO());
 
   useEffect(() => {
-    // Update SEO config if needed
     setSeoConfig(SEOService.generateBlogPageSEO());
   }, []);
+
   const featuredPost = {
     id: 1,
-    title: "Sera Yatırımları: 2025'te 500₺/m² Plan Değer mi? (Yeni Trend Analizi)",
-    excerpt: "Sera maliyetleri analizi: 300₺ vs 500₺/m² planları. Yeni trend limitleri ne anlama geliyor ve sera yatırımcıları neden endişeli.",
-    image: "https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2F3beecd14d0864cae823f643eeacb9705?format=webp&width=800",
-    date: "29 Aralık 2025",
-    category: "Yatırım",
-    readTime: "8 dk okuma"
+    slug: "sera-teknolojilerinde-2025-yenilikleri",
+    title: "Sera Teknolojilerinde 2025 Yenilikleri",
+    excerpt: "Modern sera teknolojileri ile tarımsal verimliliği artırmanın yolları. İklim kontrolü, otomasyon sistemleri ve sürdürülebilir tarım uygulamalarında son gelişmeler.",
+    image: "https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2F382157220f6b4482a9c765091441c587",
+    date: "15 Ocak 2025",
+    category: "Tarım Teknolojisi"
   };
 
   const categories = [
-    { name: "Sera Yönetimi", color: "bg-blue-100", count: 12 },
-    { name: "Yatırım Analizi", color: "bg-purple-100", count: 8 },
-    { name: "Teknoloji", color: "bg-yellow-100", count: 15 }
+    { name: "Veriye Dayalı Tarım", color: "bg-blue-100", textColor: "text-blue-900", slug: "veriye-dayali-tarim" },
+    { name: "Gizli Maliyetler", color: "bg-red-100", textColor: "text-red-900", slug: "gizli-maliyetler" },
+    { name: "Akıllı Sera Modelleri", color: "bg-purple-100", textColor: "text-purple-900", slug: "akilli-sera-modelleri" },
+    { name: "Tarımsal Zeka", color: "bg-yellow-100", textColor: "text-yellow-900", slug: "tarimsal-zeka" },
+    { name: "ROI & Maliyet İçerikleri", color: "bg-green-100", textColor: "text-green-900", slug: "roi-maliyet" },
+    { name: "İklim Krizi ve Tarım", color: "bg-orange-100", textColor: "text-orange-900", slug: "iklim-krizi-tarim" },
+    { name: "Ticari Ürün Rehberi", color: "bg-teal-100", textColor: "text-teal-900", slug: "ticari-urun-rehberi" },
+    { name: "Tarımda Kadın Eli", color: "bg-pink-100", textColor: "text-pink-900", slug: "tarimda-kadin-eli" },
+    { name: "Sera Mimarlığı & Tasarım", color: "bg-indigo-100", textColor: "text-indigo-900", slug: "sera-mimarligi-tasarim" }
   ];
 
   const latestPosts = [
     {
       id: 2,
-      title: "UAT (Kullanıcı Kabul Testi) için Komple Rehber - Sera Projelerinde 2025",
-      excerpt: "Sera projelerinde kullanıcı kabul testlerinin önemi ve uygulama rehberi...",
-      image: "/api/placeholder/300/200",
-      date: "29 Aralık 2025",
-      category: "Teknoloji",
-      readTime: "6 dk okuma"
+      slug: "gizli-maliyetler-sera-yatirimi",
+      title: "Gizli Maliyetler: Sera Yatırımında Dikkat Edilmesi Gerekenler",
+      excerpt: "Sera kurulumunda öngörülmeyen masraflar ve bunlardan nasıl kaçınılır?",
+      image: "https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2Fa9783275f0b14277aa1513bc9ca47a7b",
+      date: "12 Ocak 2025"
     },
     {
       id: 3,
-      title: "2025'te En İyi 8 Sera Monitoring Alternatifi",
-      excerpt: "FarmScope'un 250₺/aylık fiyatı cazip, alternatifler nasıl karşılaştırılır...",
-      image: "/api/placeholder/300/200",
-      date: "28 Aralık 2025", 
-      category: "Yatırım",
-      readTime: "10 dk okuma"
+      slug: "roi-maliyet-analizi",
+      title: "ROI & Maliyet Analizi: Sera Yatırımının Geri Dönüşü",
+      excerpt: "Sera yatırımının karlılık analizi ve geri dönüş süresi hesaplamaları.",
+      image: "https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2Fd1956ad26a134fa1b292da0acfb10217",
+      date: "10 Ocak 2025"
     },
     {
       id: 4,
-      title: "2025'te En İyi 6 Sera Otomasyonu Alternatifi",
-      excerpt: "Sera otomasyonu ücretleri 650₺/aylık başlıyor, hangi alternatifleri değerlendirmeli...",
-      image: "/api/placeholder/300/200",
-      date: "28 Aralık 2025",
-      category: "Teknoloji", 
-      readTime: "7 dk okuma"
+      slug: "iklim-krizi-tarim",
+      title: "İklim Krizi ve Tarım: Sürdürülebilir Çözümler",
+      excerpt: "İklim değişikliğinin tarıma etkileri ve sera teknolojileri ile alınacak önlemler.",
+      image: "https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2F10278e2b44aa42168429a20e4e5a9fb8",
+      date: "8 Ocak 2025"
+    },
+    {
+      id: 5,
+      slug: "ticari-urun-rehberi",
+      title: "Ticari Ürün Rehberi: Hangi Sebze En Karlı?",
+      excerpt: "Sera üretiminde en karlı sebze türleri ve pazar analizi.",
+      image: "https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2F4abcdd109aff4ed9bb3759b448e84aef",
+      date: "5 Ocak 2025"
+    },
+    {
+      id: 6,
+      slug: "tarimda-kadin-eli",
+      title: "Tarımda Kadın Eli: Teknoloji ve Fırsat Eşitliği",
+      excerpt: "Tarım sektöründe kadın girişimciler ve teknolojinin rolü.",
+      image: "https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2F405802b9b3874e1ea1f0d929fac155b6",
+      date: "3 Ocak 2025"
+    },
+    {
+      id: 7,
+      slug: "sera-mimarligi-tasarim",
+      title: "Sera Mimarlığı & Tasarım: Verimlilik Odaklı Yaklaşım",
+      excerpt: "Modern sera tasarımında dikkat edilmesi gereken kriterler ve mimari detaylar.",
+      image: "https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2Fc9cd6cb37b81445aabef80d84b74e313",
+      date: "1 Ocak 2025"
     }
   ];
 
   return (
     <>
       <SEOHead config={seoConfig} />
-      <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <header className="w-full">
-        <div className="flex justify-between items-center p-6 max-w-[960px] mx-auto">
-        <img
-          src="https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2F96da5382e9584c3fb2d32eca60944359?format=webp&width=800"
-          alt="SeraGPT Logo"
-          className="h-8 w-auto"
-        />
+      <div className="min-h-screen bg-white">
+        {/* Header */}
+        <Header />
 
-        <nav className="hidden md:flex items-center space-x-8">
-          <a href="#" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
-            Fiyatlar
-          </a>
-          <a href="#" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
-            Yard��m
-          </a>
-          <a href="#" className="text-gray-900 font-medium border-b-2 border-gray-900 pb-1">
-            Blog
-          </a>
-          <a href="#" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
-            Güncellemeler
-          </a>
-          <a href="/auth/login" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
-            Giriş Yap
-          </a>
-        </nav>
+        {/* Main Content */}
+        <main className="max-w-6xl mx-auto px-6 py-12">
+          {/* Header Section */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="mb-12 flex flex-col"
+          >
+            <h1 className="text-4xl font-semibold text-gray-900 mb-12 self-center">
+              BLOG
+            </h1>
+          </motion.div>
 
-        <button className="md:hidden">
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-          </svg>
-        </button>
-        </div>
-      </header>
-
-      {/* Main Content */}
-      <main className="max-w-[960px] mx-auto px-6 py-16">
-        {/* Header Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="mb-16"
-        >
-          <p className="text-gray-500 text-sm font-medium uppercase tracking-wider mb-4">
-            Ürün ve Süreç
-          </p>
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            Sera yönetimi, yatırım analizi ve teknoloji üzerine düşünceler.
-          </h1>
-        </motion.div>
-
-        {/* Featured Post */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="mb-20"
-        >
-          <div className="grid md:grid-cols-2 gap-8 items-center">
-            <div className="relative overflow-hidden rounded-2xl">
-              <img
-                src={featuredPost.image}
-                alt={featuredPost.title}
-                className="w-full h-64 md:h-80 object-cover"
-              />
-            </div>
-            <div className="space-y-4">
-              <div className="flex items-center space-x-4 text-sm text-gray-500">
-                <span>{featuredPost.date}</span>
-                <span>{featuredPost.category}</span>
-                <span>{featuredPost.readTime}</span>
-              </div>
-              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 leading-tight">
-                {featuredPost.title}
-              </h2>
-              <p className="text-gray-600 leading-relaxed">
-                {featuredPost.excerpt}
-              </p>
-              <button className="text-black font-medium hover:underline inline-flex items-center space-x-2">
-                <span>Makaleyi oku</span>
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </button>
-            </div>
-          </div>
-        </motion.div>
-
-        {/* Categories */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="mb-16"
-        >
-          <h2 className="text-lg font-semibold text-gray-900 uppercase tracking-wider mb-8">
-            Kategoriler
-          </h2>
-          <div className="grid md:grid-cols-3 gap-6">
-            {categories.map((category, index) => (
-              <motion.div
-                key={category.name}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.1 * index }}
-                className={`${category.color} rounded-2xl p-8 hover:shadow-lg transition-shadow cursor-pointer group`}
-              >
-                <h3 className="text-xl font-semibold text-gray-900 mb-2 group-hover:text-gray-700 transition-colors">
-                  {category.name}
-                </h3>
-                <p className="text-gray-600 text-sm">
-                  {category.count} makale
-                </p>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
-
-        {/* Latest Posts */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.6 }}
-        >
-          <h2 className="text-lg font-semibold text-gray-900 uppercase tracking-wider mb-8">
-            Son Yazılar
-          </h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            {latestPosts.map((post, index) => (
-              <motion.article
-                key={post.id}
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.1 * index }}
-                className="group cursor-pointer"
-              >
-                <div className="relative overflow-hidden rounded-xl mb-4">
-                  <div className="w-full h-48 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
-                    <div className="text-6xl">📊</div>
-                  </div>
+          {/* Featured Post */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="mb-16"
+          >
+            <a href={`/blog/${featuredPost.slug}`} className="flex gap-8 items-start group">
+              <div className="w-80 flex-shrink-0">
+                <div className="relative overflow-hidden rounded-lg">
+                  <img
+                    src={featuredPost.image}
+                    alt={featuredPost.title}
+                    className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
                 </div>
-                <div className="space-y-3">
-                  <div className="flex items-center space-x-4 text-xs text-gray-500">
-                    <span>{post.date}</span>
-                    <span>{post.category}</span>
-                  </div>
-                  <h3 className="text-lg font-semibold text-gray-900 group-hover:text-gray-700 transition-colors leading-tight">
-                    {post.title}
-                  </h3>
-                  <p className="text-gray-600 text-sm leading-relaxed">
-                    {post.excerpt}
-                  </p>
-                  <div className="flex items-center justify-between">
-                    <span className="text-xs text-gray-500">{post.readTime}</span>
-                    <button className="text-black text-sm font-medium hover:underline">
-                      Oku →
-                    </button>
-                  </div>
+              </div>
+              <div className="flex-1 space-y-4">
+                <div className="flex items-center space-x-4 text-sm text-gray-500">
+                  <span>{featuredPost.date}</span>
+                  <span>{featuredPost.category}</span>
                 </div>
-              </motion.article>
-            ))}
-          </div>
-        </motion.div>
-
-        {/* Load More */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.8 }}
-          className="text-center mt-16"
-        >
-          <button className="bg-gray-900 hover:bg-gray-800 text-white px-8 py-3 rounded-lg font-medium transition-colors">
-            Daha Fazla Makale Yükle
-          </button>
-        </motion.div>
-      </main>
-
-      {/* Footer */}
-      <footer className="bg-gray-50 py-16">
-        <div className="max-w-[960px] mx-auto px-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
-            {/* Product Column */}
-            <div>
-              <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wider mb-4">
-                Ürün
-              </h3>
-              <div className="space-y-3">
-                <a href="#" className="block text-sm text-gray-600 hover:text-gray-900 transition-colors">
-                  Başlayın
-                </a>
-                <a href="#" className="block text-sm text-gray-600 hover:text-gray-900 transition-colors">
-                  Fiyatlandırma
-                </a>
-                <a href="#" className="block text-sm text-gray-600 hover:text-gray-900 transition-colors">
-                  Sera Analizi
-                </a>
-                <a href="#" className="block text-sm text-gray-600 hover:text-gray-900 transition-colors">
-                  Güncellemeler
-                </a>
-                <a href="#" className="block text-sm text-gray-600 hover:text-gray-900 transition-colors">
-                  Yol Haritası
-                </a>
-                <a href="#" className="block text-sm text-gray-600 hover:text-gray-900 transition-colors">
-                  Kullanım Senaryoları
-                </a>
-                <a href="#" className="block text-sm text-gray-600 hover:text-gray-900 transition-colors">
-                  Araçlar
-                </a>
-              </div>
-            </div>
-
-            {/* Support Column */}
-            <div>
-              <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wider mb-4">
-                Destek
-              </h3>
-              <div className="space-y-3">
-                <a href="#" className="block text-sm text-gray-600 hover:text-gray-900 transition-colors">
-                  İletişim
-                </a>
-                <a href="#" className="block text-sm text-gray-600 hover:text-gray-900 transition-colors">
-                  Dokümantasyon
-                </a>
-                <a href="/blog" className="block text-sm text-gray-600 hover:text-gray-900 transition-colors">
-                  Blog
-                </a>
-                <a href="#" className="block text-sm text-gray-600 hover:text-gray-900 transition-colors">
-                  Durum
-                </a>
-                <a href="#" className="block text-sm text-gray-600 hover:text-gray-900 transition-colors">
-                  Başarı Hikayeleri
-                </a>
-                <a href="#" className="block text-sm text-gray-600 hover:text-gray-900 transition-colors">
-                  Tanımlar
-                </a>
-              </div>
-            </div>
-
-            {/* Legal Column */}
-            <div>
-              <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wider mb-4">
-                Yasal
-              </h3>
-              <div className="space-y-3">
-                <a href="/privacy" className="block text-sm text-gray-600 hover:text-gray-900 transition-colors">
-                  Gizlilik
-                </a>
-                <a href="/terms" className="block text-sm text-gray-600 hover:text-gray-900 transition-colors">
-                  Koşullar
-                </a>
-              </div>
-            </div>
-
-            {/* Resources Column */}
-            <div>
-              <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wider mb-4">
-                Kaynaklar
-              </h3>
-              <div className="space-y-3">
-                <a href="#" className="block text-sm text-gray-600 hover:text-gray-900 transition-colors">
-                  AgroConsult Alternatifi
-                </a>
-                <a href="#" className="block text-sm text-gray-600 hover:text-gray-900 transition-colors">
-                  FarmScope Alternatifi
-                </a>
-                <a href="#" className="block text-sm text-gray-600 hover:text-gray-900 transition-colors">
-                  SeraVision Alternatifi
-                </a>
-                <a href="#" className="block text-sm text-gray-600 hover:text-gray-900 transition-colors">
-                  Karşılaştır
-                </a>
-              </div>
-            </div>
-          </div>
-
-          {/* Bottom Footer */}
-          <div className="pt-8">
-            <div className="flex flex-col md:flex-row justify-between items-center">
-              <img
-                src="https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2F96da5382e9584c3fb2d32eca60944359?format=webp&width=800"
-                alt="SeraGPT Logo"
-                className="h-8 w-auto mb-4 md:mb-0"
-              />
-
-              <div className="text-center md:text-right">
-                <p className="text-sm text-gray-500">
-                  © 2025 SeraGPT. Tüm hakları saklıdır.
+                <h2 className="text-2xl font-semibold text-gray-900 leading-tight group-hover:text-gray-700 transition-colors">
+                  {featuredPost.title}
+                </h2>
+                <p className="text-gray-600 leading-relaxed">
+                  {featuredPost.excerpt}
                 </p>
               </div>
+            </a>
+          </motion.div>
+
+          {/* Categories */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="mb-16"
+          >
+            <h2 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-6">
+              KATEGORİLER
+            </h2>
+            <div className="relative">
+              <div className="flex overflow-x-auto scrollbar-hide space-x-4 pb-6">
+                {categories.map((category, index) => (
+                  <motion.a
+                    key={category.name}
+                    href={`/blog/category/${category.slug}`}
+                    initial={{ opacity: 0, x: 30 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.6, delay: 0.1 * index }}
+                    className={`${category.color} rounded-lg p-4 hover:shadow-lg transition-shadow cursor-pointer block group flex-shrink-0 min-w-max`}
+                  >
+                    <h3 className={`text-sm font-semibold ${category.textColor} group-hover:opacity-80 transition-opacity whitespace-nowrap`}>
+                      {category.name}
+                    </h3>
+                  </motion.a>
+                ))}
+              </div>
             </div>
-          </div>
-        </div>
-      </footer>
+          </motion.div>
+
+          {/* Latest Posts */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.6 }}
+          >
+            <h2 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-6">
+              SON YAZILAR
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {latestPosts.map((post, index) => (
+                <motion.article
+                  key={post.id}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.1 * index }}
+                  className="group cursor-pointer"
+                >
+                  <a href={`/blog/${post.slug}`} className="block">
+                    <div className="relative overflow-hidden rounded-lg mb-4">
+                      <img
+                        src={post.image}
+                        alt={post.title}
+                        className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                      />
+                    </div>
+                    <div className="space-y-3">
+                      <div className="text-sm text-gray-500">
+                        {post.date}
+                      </div>
+                      <h3 className="text-lg font-semibold text-gray-900 group-hover:text-gray-700 transition-colors leading-tight">
+                        {post.title}
+                      </h3>
+                      <p className="text-gray-600 text-sm leading-relaxed">
+                        {post.excerpt}
+                      </p>
+                    </div>
+                  </a>
+                </motion.article>
+              ))}
+            </div>
+          </motion.div>
+        </main>
+
+        {/* Footer */}
+        <Footer />
       </div>
     </>
   );

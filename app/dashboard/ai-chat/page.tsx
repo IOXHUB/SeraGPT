@@ -5,6 +5,9 @@ import { motion } from 'framer-motion';
 import DashboardLayout from '@/components/dashboard/DashboardLayout';
 import { aiService, ChatMessage, ChatSession, AIAnalysisInsight } from '@/lib/services/ai-service';
 
+// Force dynamic rendering
+export const dynamic = 'force-dynamic';
+
 export default function AIChatPage() {
   const [chatSession, setChatSession] = useState<ChatSession | null>(null);
   const [inputValue, setInputValue] = useState('');
@@ -20,7 +23,7 @@ export default function AIChatPage() {
     // Add welcome message
     const welcomeMessage = aiService.createMessage(
       'assistant',
-      'Merhaba! Ben SeraGPT AI asistanınızım. Yaptığınız sera analizleri hakkında sorularınızı yanıtlayabilirim. Size nasıl yardımcı olabilirim?'
+      'Merhaba! Ben SeraGPT AI asistanınızım. Yaptığınız sera analizleri hakkında soruların��zı yanıtlayabilirim. Size nasıl yardımcı olabilirim?'
     );
     
     const sessionWithWelcome = aiService.addMessageToSession(session, welcomeMessage);

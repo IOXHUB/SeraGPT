@@ -32,7 +32,7 @@ export default function NewFinalCTASection() {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="bg-green-500 hover:bg-green-600 text-gray-900 px-10 py-5 rounded-xl text-xl font-bold shadow-2xl transition-all flex items-center space-x-3"
+              className="bg-green-500 hover:bg-green-600 text-gray-900 px-4 py-2 rounded-lg text-base font-medium shadow-md transition-all flex items-center space-x-2"
             >
               <span className="text-2xl">🚀</span>
               <span>Hemen Başla</span>
@@ -41,7 +41,7 @@ export default function NewFinalCTASection() {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="border border-gray-600 hover:border-yellow-400 text-white hover:text-yellow-400 px-10 py-5 rounded-xl text-xl font-bold transition-all flex items-center space-x-3"
+              className="border border-gray-600 hover:border-yellow-400 text-white hover:text-yellow-400 px-4 py-2 rounded-lg text-base font-medium transition-all flex items-center space-x-2"
             >
               <span className="text-2xl">📄</span>
               <span>Demo Raporu İndir</span>

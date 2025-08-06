@@ -36,7 +36,7 @@ export default function FloatingCTA() {
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               onClick={() => setShowModal(true)}
-              className="bg-gradient-to-r from-green-500 to-blue-600 text-white px-6 py-4 rounded-full shadow-2xl flex items-center space-x-3 font-bold text-lg"
+              className="bg-gradient-to-r from-green-500 to-blue-600 text-white px-4 py-2 rounded-full shadow-lg flex items-center space-x-2 font-medium text-base"
             >
               <span className="text-2xl">🚀</span>
               <span className="hidden sm:block">Ücretsiz Analiz Al</span>

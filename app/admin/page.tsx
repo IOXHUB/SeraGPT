@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import DashboardLayout from '@/components/dashboard/DashboardLayout';
+import AdminErrorBoundary from '@/components/AdminErrorBoundary';
 
 export default function AdminDashboard() {
   const [timeRange, setTimeRange] = useState('7days');
@@ -44,7 +45,8 @@ export default function AdminDashboard() {
   ];
 
   return (
-    <DashboardLayout>
+    <AdminErrorBoundary>
+      <DashboardLayout>
       <div className="min-h-screen bg-gray-50 text-gray-600">
         <div className="space-y-8">
           {/* Page Header */}
@@ -316,6 +318,7 @@ export default function AdminDashboard() {
           </motion.div>
         </div>
       </div>
-    </DashboardLayout>
+      </DashboardLayout>
+    </AdminErrorBoundary>
   );
 }
