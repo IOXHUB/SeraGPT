@@ -89,14 +89,14 @@ export default function NewHeroSection() {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="bg-green-500 hover:bg-green-600 text-gray-900 px-8 py-4 rounded-lg text-lg font-semibold transition-colors"
+                className="bg-green-500 hover:bg-green-600 text-gray-900 px-4 py-2 rounded-lg text-base font-medium transition-colors"
               >
                 Ücretsiz Başla
               </motion.button>
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="border border-gray-600 hover:border-green-400 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-colors"
+                className="border border-gray-600 hover:border-green-400 text-white px-4 py-2 rounded-lg text-base font-medium transition-colors"
               >
                 Demo İzle
               </motion.button>
