@@ -60,9 +60,9 @@ export default function TokensPage() {
         <div className="user-panel-content space-y-modern">
           
           {/* Header */}
-          <div className="text-center">
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">🪙 Jeton Yükle</h1>
-            <p className="text-gray-600">Her rapor 1 jeton kullanır. AI sohbet sınırsızdır.</p>
+          <div className="focus-text">
+            <h1 className="user-panel-heading neon-purple">🪙 Jeton Yükle</h1>
+            <p className="user-panel-text">Her rapor 1 jeton kullanır. AI sohbet sınırsızdır.</p>
           </div>
 
           {/* Current Balance - Neon Border Card */}
@@ -134,7 +134,7 @@ export default function TokensPage() {
                   {/* Savings */}
                   {pkg.savings && (
                     <div className="mb-4 text-sm text-green-600 font-medium">
-                      💰 ₺{pkg.savings.toLocaleString()} tasarruf
+                      💰 ���{pkg.savings.toLocaleString()} tasarruf
                     </div>
                   )}
 
