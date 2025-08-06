@@ -14,21 +14,13 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const router = useRouter();
 
-  // TEMPORARILY RELAXED AUTH - Prevent redirect loops
-  // Only redirect if explicitly no auth and it's been a while
+  // Check authentication and redirect if needed
   useEffect(() => {
     if (!loading && !user) {
-      // Check localStorage for backup auth
-      const backupUser = localStorage.getItem('seragpt_user');
-      if (!backupUser) {
-        console.log('DashboardLayout: No user found anywhere, will redirect after delay');
-        // Much longer delay to prevent loops
-        setTimeout(() => {
-          if (!document.hidden) { // Only redirect if tab is active
-            window.location.href = '/auth/login';
-          }
-        }, 3000);
-      }
+      console.log('DashboardLayout: No user found, redirecting to login');
+      setTimeout(() => {
+        window.location.href = '/auth/login';
+      }, 1000);
     }
   }, [user, loading, router]);
 
