@@ -29,10 +29,10 @@ export default function UserjotCloneSection() {
 
           {/* Center navigation - 3 links */}
           <nav className="hidden md:flex items-center space-x-8">
-            <a href="#" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
-              Dan��şmanlık
+            <a href="/danismanlik" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
+              Danışmanlık
             </a>
-            <a href="#" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
+            <a href="/anahtar-teslim-proje" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
               Anahtar Teslim Proje
             </a>
             <a href="/destek" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
@@ -118,7 +118,7 @@ export default function UserjotCloneSection() {
                   </div>
                 </a>
                 <a
-                  href="#"
+                  href="/danismanlik"
                   className="block text-gray-700 hover:text-gray-900 hover:bg-gray-50 py-3 px-4 rounded-lg transition-all"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
@@ -128,7 +128,7 @@ export default function UserjotCloneSection() {
                   </div>
                 </a>
                 <a
-                  href="#"
+                  href="/anahtar-teslim-proje"
                   className="block text-gray-700 hover:text-gray-900 hover:bg-gray-50 py-3 px-4 rounded-lg transition-all"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
@@ -305,7 +305,7 @@ export default function UserjotCloneSection() {
             className="text-center mb-16"
           >
             <h2 className="text-xl font-bold text-gray-900 mb-6">
-              Panelde Sizi Bekleyen Analiz Türleri ve ��zellikleri
+              Panelde Sizi Bekleyen Analiz Türleri ve Özellikleri
             </h2>
           </motion.div>
 
@@ -460,7 +460,7 @@ export default function UserjotCloneSection() {
                     <div>
                       <p className="text-gray-800 text-xs font-semibold mb-1">🎯 3 Önemli Fayda:</p>
                       <p className="text-gray-600 text-xs">• Bitki türüne göre pazar fiyat analizi</p>
-                      <p className="text-gray-600 text-xs">��� Bölgeye göre verim ortalamaları</p>
+                      <p className="text-gray-600 text-xs">• Bölgeye göre verim ortalamaları</p>
                       <p className="text-gray-600 text-xs">• Hasat-zamanlama optimizasyonu</p>
                     </div>
 
@@ -471,7 +471,7 @@ export default function UserjotCloneSection() {
                     </div>
 
                     <div>
-                      <p className="text-gray-800 text-xs font-semibold mb-1">👤 Kullan��cı Girdisi:</p>
+                      <p className="text-gray-800 text-xs font-semibold mb-1">👤 Kullanıcı Girdisi:</p>
                       <p className="text-gray-600 text-xs">• Bitki türü, sezon, pazarlama hedefi</p>
                     </div>
 
@@ -914,7 +914,7 @@ export default function UserjotCloneSection() {
               Sorunuza cevap bulamadınız mı?
             </p>
             <a
-              href="/dashboard/help"
+              href="/destek"
               className="inline-flex items-center space-x-2 bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded-lg text-base font-medium transition-colors"
             >
               <span>Destek Sayfamıza Gidin</span>
