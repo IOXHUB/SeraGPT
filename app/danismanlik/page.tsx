@@ -4,152 +4,120 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 
 export default function DanismanlikPage() {
-  const [activeSection, setActiveSection] = useState('consultation-types');
+  const [activeSection, setActiveSection] = useState('project-consulting');
 
   const sidebarSections = [
     {
-      title: 'Danışmanlık Türleri',
-      id: 'consultation',
+      title: 'Proje Danışmanlığı',
+      id: 'consulting',
       icon: '🎯',
       items: [
-        { id: 'consultation-types', title: 'Danışmanlık Türleri', href: '#consultation-types' },
-        { id: 'technical-consulting', title: 'Teknik Danışmanlık', href: '#technical-consulting' },
-        { id: 'financial-consulting', title: 'Finansal Danışmanlık', href: '#financial-consulting' },
-        { id: 'operational-consulting', title: 'Operasyonel Danışmanlık', href: '#operational-consulting' },
-        { id: 'market-analysis', title: 'Pazar Analizi', href: '#market-analysis' }
+        { id: 'project-consulting', title: 'Proje Danışmanlığı Hizmeti', href: '#project-consulting' },
+        { id: 'preliminary-meeting', title: 'Ön Görüşme', href: '#preliminary-meeting' },
+        { id: 'data-analysis', title: 'Veri Analizi', href: '#data-analysis' },
+        { id: 'custom-report', title: 'Özel Rapor Hazırlama', href: '#custom-report' },
+        { id: 'qa-support', title: 'Soru-Cevap Desteği', href: '#qa-support' },
+        { id: 'implementation-guidance', title: 'Uygulama Yönlendirmesi', href: '#implementation-guidance' }
       ]
     },
     {
-      title: 'Uzman Eşleştirme',
-      id: 'expert-matching',
-      icon: '👨‍🔬',
+      title: 'Fiyatlandırma',
+      id: 'pricing',
+      icon: '💰',
       items: [
-        { id: 'expert-profiles', title: 'Uzman Profilleri', href: '#expert-profiles' },
-        { id: 'specialization-areas', title: 'Uzmanlık Alanları', href: '#specialization-areas' },
-        { id: 'experience-levels', title: 'Deneyim Seviyeleri', href: '#experience-levels' },
-        { id: 'matching-process', title: 'Eşleştirme Süreci', href: '#matching-process' }
-      ]
-    },
-    {
-      title: 'Rezervasyon & Fiyatlandırma',
-      id: 'booking',
-      icon: '📅',
-      items: [
-        { id: 'session-booking', title: 'Seans Rezervasyonu', href: '#session-booking' },
         { id: 'pricing-plans', title: 'Fiyatlandırma Planları', href: '#pricing-plans' },
-        { id: 'payment-methods', title: 'Ödeme Yöntemleri', href: '#payment-methods' },
-        { id: 'cancellation-policy', title: 'İptal Politikası', href: '#cancellation-policy' },
-        { id: 'package-deals', title: 'Paket Anlaşmalar', href: '#package-deals' }
+        { id: 'starter-consulting', title: 'Starter Danışmanlık', href: '#starter-consulting' },
+        { id: 'project-reporting', title: 'Proje Raporlama Paketi', href: '#project-reporting' },
+        { id: 'corporate-consulting', title: 'Kurumsal Danışmanlık', href: '#corporate-consulting' }
+      ]
+    },
+    {
+      title: 'Hedef Kitle',
+      id: 'target-audience',
+      icon: '👥',
+      items: [
+        { id: 'target-groups', title: 'Hedef Gruplar', href: '#target-groups' },
+        { id: 'investment-advisors', title: 'Yatırımcı Danışmanları', href: '#investment-advisors' },
+        { id: 'corporate-projects', title: 'Kurumsal Projeler', href: '#corporate-projects' },
+        { id: 'engineering-offices', title: 'Mühendislik Ofisleri', href: '#engineering-offices' }
       ]
     }
   ];
 
   const contentData = {
-    'consultation-types': {
-      title: 'Danışmanlık Türleri',
+    'project-consulting': {
+      title: 'Proje Danışmanlığı Hizmeti',
       subtitle: 'Help Center / Danışmanlık',
-      description: 'SeraGPT uzmanları size farklı alanlarda profesyonel danışmanlık hizmeti sunar. 20+ yıl deneyimli mühendislerimizle sera yatırımınızı en verimli şekilde planlayın.',
+      description: 'Kullanıcının AI çıktısından daha fazlasına ihtiyacı varsa, tecrübeli mühendisler tarafından birebir proje danışmanlığı sunulur. 20+ yıl deneyimli uzman ekibimizle sera yatırımınızı en verimli şekilde planlayın.',
       steps: [
         {
-          title: '1. Teknik Danışmanlık',
+          title: '1. Ön Görüşme',
           items: [
-            'Sera tasarımı ve mühendislik çözümleri',
-            'İklim kontrol sistemleri optimizasyonu',
-            'Enerji verimliliği danışmanlığı',
-            'Sulama ve gübreleme sistem tasarımı'
+            'Zoom/telefon ile proje ihtiyacı belirlenir',
+            'Lokasyon değerlendirmesi yapılır',
+            'Hedef ve beklentiler netleştirilir',
+            'Proje kapsamı ve sınırları çizilir'
           ]
         },
         {
-          title: '2. Finansal Danışmanlık',
+          title: '2. Veri Analizi',
           items: [
-            'Yatırım planlaması ve ROI analizi',
-            'Teşvik ve hibe başvuru desteği',
-            'Maliyet optimizasyonu stratejileri',
-            'Finansman kaynakları rehberliği'
+            'Kullanıcının sunduğu veriler manuel olarak değerlendirilir',
+            'İklim verileri detaylı analiz edilir',
+            'Toprak ve saha koşulları incelenir',
+            'Pazar araştırması ve karlılık analizi yapılır'
           ]
         },
         {
-          title: '3. Operasyonel Danışmanlık',
+          title: '3. Özel Rapor',
           items: [
-            'Üretim planlama ve yönetimi',
-            'Pazarlama ve satış stratejileri',
-            'Kalite kontrol ve sertifikasyon',
-            'İş süreçleri optimizasyonu'
+            'Kullanıcıya özel oluşturulmuş PDF raporlar',
+            'Teknik çizimler ve 3D görselleştirmeler',
+            'Alternatif çözüm senaryoları sunumu',
+            'Maliyet analizi ve ROI hesaplamaları'
+          ]
+        },
+        {
+          title: '4. Soru-Cevap Desteği',
+          items: [
+            'Belirli bir süre (7 gün) teknik soru-cevap desteği',
+            'E-posta ve telefon üzerinden danışmanlık',
+            'Rapor detaylarının açıklanması',
+            'İlave sorular için uzman görüşü'
+          ]
+        },
+        {
+          title: '5. Uygulama Yönlendirmesi',
+          items: [
+            'Kurulum sürecinde yönlendirme',
+            'Altyapı hazırlıkları konusunda rehberlik',
+            'Satın alma süreçlerinde destek',
+            'Tedarikçi önerileri ve değerlendirme'
           ]
         }
       ]
     },
-    'technical-consulting': {
-      title: 'Teknik Danışmanlık',
+    'preliminary-meeting': {
+      title: 'Ön Görüşme Süreci',
       subtitle: 'Help Center / Danışmanlık',
-      description: 'Sera mühendisliği alanında uzman ekibimizden teknik danışmanlık alın. Modern teknolojiler ve kanıtlanmış yöntemlerle projelerinizi optimize edin.',
+      description: 'Proje danışmanlığının ilk adımı olan ön görüşmede, uzman mühendislerimiz projenizin ihtiyaçlarını detaylı şekilde analiz eder.',
       steps: [
         {
-          title: 'Sera Tasarımı ve Mühendislik',
+          title: 'Görüşme Hazırlığı',
           items: [
-            'Statik hesaplamalar ve yapısal tasarım',
-            'İklim kontrol sistemleri planlaması',
-            'Havalandırma ve ısıtma optimizasyonu',
-            'Otomasyion sistemleri entegrasyonu'
+            'Ön bilgi formunun doldurulması',
+            'Saha fotoğrafları ve dokümanların hazırlanması',
+            'Bütçe ve zaman planının belirlenmesi',
+            'Hedef ürün ve kapasitesinin netleştirilmesi'
           ]
         },
         {
-          title: 'Sistem Optimizasyonu',
+          title: 'Görüşme İçeriği',
           items: [
-            'Enerji verimliliği analizi',
-            'Sulama sistemleri konfigürasyonu',
-            'CO2 zenginleştirme sistemleri',
-            'Performans izleme ve raporlama'
-          ]
-        }
-      ]
-    },
-    'expert-profiles': {
-      title: 'Uzman Profilleri',
-      subtitle: 'Help Center / Danışmanlık',
-      description: 'SeraGPT uzman kadrosu, farklı disiplinlerden deneyimli profesyonellerden oluşmaktadır. Size en uygun uzmanla eşleştirilmeniz için profilleri inceleyin.',
-      steps: [
-        {
-          title: 'Mühendislik Uzmanları',
-          items: [
-            'Ziraat Mühendisleri (10+ yıl deneyim)',
-            'Makine Mühendisleri (Sera sistemleri)',
-            'Elektrik Mühendisleri (Otomasyon)',
-            'İnşaat Mühendisleri (Yapısal tasarım)'
-          ]
-        },
-        {
-          title: 'İş Geliştirme Uzmanları',
-          items: [
-            'Tarımsal girişim danışmanları',
-            'Finansal planlama uzmanları',
-            'Pazarlama ve satış danışmanları',
-            'Proje yönetimi uzmanları'
-          ]
-        }
-      ]
-    },
-    'session-booking': {
-      title: 'Seans Rezervasyonu',
-      subtitle: 'Help Center / Danışmanlık',
-      description: 'Uzman danışmanlarımızla birebir görüşme rezervasyonu yapın. Online veya yüz yüze görüşme seçenekleri mevcuttur.',
-      steps: [
-        {
-          title: 'Rezervasyon Süreci',
-          items: [
-            'Uzman seçimi ve müsait zaman dilimlerini görüntüleme',
-            'Görüşme türü seçimi (Online/Yüz yüze)',
-            'Randevu onayı ve takvim entegrasyonu',
-            'Ön hazırlık dokümanları gönderimi'
-          ]
-        },
-        {
-          title: 'Görüşme Türleri',
-          items: [
-            '30 dakika hızlı danışmanlık',
-            '60 dakika detaylı analiz',
-            '2 saatlik kapsamlı proje değerlendirmesi',
-            'Saha ziyareti ve yerinde inceleme'
+            'Proje hedeflerinin detaylı analizi',
+            'Saha koşullarının değerlendirilmesi',
+            'Teknik gereksinimlerin belirlenmesi',
+            'İlk önerilerin sunulması'
           ]
         }
       ]
@@ -157,31 +125,84 @@ export default function DanismanlikPage() {
     'pricing-plans': {
       title: 'Fiyatlandırma Planları',
       subtitle: 'Help Center / Danışmanlık',
-      description: 'Danışmanlık hizmetlerimiz için esnek fiyatlandırma seçenekleri sunuyoruz. İhtiyacınıza uygun paketi seçebilirsiniz.',
+      description: 'Proje danışmanlığı hizmetlerimiz için esnek fiyatlandırma seçenekleri sunuyoruz. İhtiyacınıza uygun paketi seçebilirsiniz.',
       steps: [
         {
-          title: 'Temel Danışmanlık Paketleri',
+          title: 'Starter Danışmanlık - 11.950₺',
           items: [
-            'Başlangıç Paketi: 30 dk görüşme - ₺500',
-            'Standart Paket: 60 dk görüşme + rapor - ₺1.000',
-            'Premium Paket: 2 saat + saha ziyareti - ₺2.500',
-            'Kurumsal Paket: Özel fiyatlandırma'
+            'Temel proje değerlendirmesi',
+            '1 saatlik detaylı görüşme',
+            'Basit fizibilite raporu',
+            '3 gün soru-cevap desteği'
           ]
         },
         {
-          title: 'Ek Hizmetler',
+          title: 'Proje Raporlama + Görüşme Paketi - 44.900₺',
           items: [
-            'Detaylı fizibilite raporu hazırlama',
-            'Teknik çizim ve proje dokümanları',
-            'Teşvik başvuru süreç desteği',
-            'Uzun vadeli danışmanlık anlaşmaları'
+            'Kapsamlı proje analizi ve raporlama',
+            'Detaylı teknik çizimler',
+            'Alternatif çözüm senaryoları',
+            '7 gün soru-cevap desteği',
+            'Uygulama sürecinde yönlendirme'
+          ]
+        },
+        {
+          title: 'Kurumsal Proje Danışmanlığı - Teklif Usulü',
+          items: [
+            'Büyük ölçekli projeler için özel fiyatlandırma',
+            'Uzun vadeli danışmanlık anlaşmaları',
+            'Saha ziyaretleri dahil',
+            'Sürekli teknik destek'
+          ]
+        }
+      ]
+    },
+    'target-groups': {
+      title: 'Hedef Kitle',
+      subtitle: 'Help Center / Danışmanlık',
+      description: 'Proje danışmanlığı hizmetimiz, sera yatırımı konusunda profesyonel destek ihtiyacı olan farklı grupları hedeflemektedir.',
+      steps: [
+        {
+          title: 'Yatırımcı Danışmanları',
+          items: [
+            'Sera yatırımı planlayan danışmanlık firmaları',
+            'Portföy yöneticileri',
+            'Yatırım bankalarının tarım departmanları',
+            'Özel sektör yatırım uzmanları'
+          ]
+        },
+        {
+          title: 'Kurumsal Projeler',
+          items: [
+            'Büyük ölçekli gıda üretim şirketleri',
+            'Devlet destekli tarım projeleri',
+            'Uluslararası kalkınma projeleri',
+            'Holding şirketlerinin tarım kolları'
+          ]
+        },
+        {
+          title: 'Ziraat Mühendisliği Ofisleri',
+          items: [
+            'Serbest mühendislik büroları',
+            'Tarımsal proje geliştirme şirketleri',
+            'Teknik danışmanlık firmaları',
+            'Sera teknolojileri uzmanları'
+          ]
+        },
+        {
+          title: 'Girişimciler',
+          items: [
+            'Sera altyapısı kurmak isteyen küçük ölçekli girişimciler',
+            'Orta ölçekli tarım işletmeleri',
+            'Aile işletmeleri',
+            'Yeni nesil çiftçiler'
           ]
         }
       ]
     }
   };
 
-  const currentContent = contentData[activeSection as keyof typeof contentData] || contentData['consultation-types'];
+  const currentContent = contentData[activeSection as keyof typeof contentData] || contentData['project-consulting'];
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -234,7 +255,7 @@ export default function DanismanlikPage() {
                         onClick={() => setActiveSection(item.id)}
                         className={`block w-full text-left px-3 py-2 text-sm rounded-lg transition-all duration-200 ${
                           activeSection === item.id
-                            ? 'bg-gray-100 text-gray-900 font-medium'
+                            ? 'bg-blue-100 text-blue-900 font-medium'
                             : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
                         }`}
                       >
@@ -245,15 +266,12 @@ export default function DanismanlikPage() {
                 </div>
               ))}
               <div className="mt-8 pt-6 border-t border-gray-200">
-                <h4 className="font-semibold text-gray-900 mb-3">İpuçları & Püf Noktaları</h4>
-                <div className="space-y-1">
-                  <a href="#" className="block text-sm text-gray-600 hover:text-gray-900 py-1">
-                    En İyi Uygulamalar
-                  </a>
-                  <a href="#" className="block text-sm text-gray-600 hover:text-gray-900 py-1">
-                    Kaynaklar
-                  </a>
-                </div>
+                <button 
+                  className="w-full bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-colors"
+                  onClick={() => window.location.href = '/destek'}
+                >
+                  Danışmanlık Talep Et
+                </button>
               </div>
             </div>
           </div>
@@ -310,10 +328,10 @@ export default function DanismanlikPage() {
                 <h3 className="font-semibold text-gray-900 mb-4">Sonraki Adımlar</h3>
                 <div className="space-y-2">
                   <p className="text-gray-700">
-                    • Size uygun uzman danışmanla eşleştirme için profil oluşturun
+                    • Size uygun danışmanlık paketini seçin
                   </p>
                   <p className="text-gray-700">
-                    • İlk ücretsiz görüşme için randevu alın
+                    • Ön görüşme için randevu alın
                   </p>
                   <p className="text-gray-700">
                     • Proje detaylarınızı uzmanlarımızla paylaşın
