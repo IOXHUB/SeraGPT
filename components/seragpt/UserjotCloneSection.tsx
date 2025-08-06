@@ -158,7 +158,7 @@ export default function UserjotCloneSection() {
       </header>
 
       {/* Main content - Full viewport hero */}
-      <main className="min-h-screen flex items-center justify-center px-4 sm:px-6 -mt-12">
+      <main className="min-h-screen flex items-center justify-center px-4 sm:px-6 -mt-16">
         <div className="text-section-container text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
