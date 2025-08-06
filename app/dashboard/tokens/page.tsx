@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import DashboardLayout from '@/components/dashboard/DashboardLayout';
+import { Container, Section, Card, Button, Heading, Text } from '@/components/ui';
 
 export default function TokensPage() {
   const [loading, setLoading] = useState(false);
@@ -140,7 +141,7 @@ export default function TokensPage() {
 
                   {/* Per Token Price */}
                   <div className="text-sm text-gray-500 mb-6">
-                    ���{Math.round(pkg.price / pkg.tokens)} / jeton
+                    ₺{Math.round(pkg.price / pkg.tokens)} / jeton
                   </div>
 
                   {/* Buy Button */}
