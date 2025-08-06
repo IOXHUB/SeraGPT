@@ -225,8 +225,6 @@ export default function UserjotCloneSection() {
             <div className="mt-5">
               <a
                 href="/auth/login"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
                 className="bg-gray-600 hover:bg-gray-800 text-white px-4 py-2 rounded-lg text-base font-medium transition-colors inline-flex items-center space-x-2"
               >
                 <span className="text-center">Şimdi Oluştur – İlk 5 Rapor Ücretsiz</span>
@@ -506,7 +504,7 @@ export default function UserjotCloneSection() {
                     <div>
                       <p className="text-gray-800 text-xs font-semibold mb-1">🔗 Veri Kaynakları:</p>
                       <p className="text-gray-600 text-xs">• Planner 2D, CAD AI Tools</p>
-                      <p className="text-gray-600 text-xs">• HerbaTools yerleşim k��tüphanesi</p>
+                      <p className="text-gray-600 text-xs">• HerbaTools yerleşim kütüphanesi</p>
                     </div>
 
                     <div>
