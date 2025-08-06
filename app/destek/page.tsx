@@ -286,6 +286,9 @@ export default function DestekPage() {
           </div>
         </div>
       </div>
+
+      {/* Footer */}
+      <Footer />
     </div>
   );
 }
