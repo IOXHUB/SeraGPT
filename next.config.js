@@ -73,10 +73,12 @@ const nextConfig = {
           const entries = await originalEntry();
           // Remove HMR entries from production build
           Object.keys(entries).forEach(key => {
-            entries[key] = entries[key].filter(entry =>
-              !entry.includes('webpack-hot-middleware') &&
-              !entry.includes('hot-update')
-            );
+            if (Array.isArray(entries[key])) {
+              entries[key] = entries[key].filter(entry =>
+                !entry.includes('webpack-hot-middleware') &&
+                !entry.includes('hot-update')
+              );
+            }
           });
           return entries;
         };
