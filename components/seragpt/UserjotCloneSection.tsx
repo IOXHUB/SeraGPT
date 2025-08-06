@@ -264,10 +264,7 @@ export default function UserjotCloneSection() {
 
           {/* CTA Button */}
           <div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            viewport={{ once: true }}
+
             className="text-center mt-12"
           >
             <button
@@ -562,10 +559,7 @@ export default function UserjotCloneSection() {
 
           {/* CTA Button */}
           <div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            viewport={{ once: true }}
+
             className="text-center mt-12"
           >
             <button
@@ -735,10 +729,7 @@ export default function UserjotCloneSection() {
 
           {/* CTA Button */}
           <div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            viewport={{ once: true }}
+
             className="text-center"
           >
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pb-11">
