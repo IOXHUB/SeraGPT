@@ -7,7 +7,7 @@ import type { User } from '@supabase/supabase-js';
 
 export default function AdminAuthPage() {
   const { user, loading, isAdmin, supabase } = useAuth();
-  const [users, setUsers] = useState<UserData[]>([]);
+  const [users, setUsers] = useState<User[]>([]);
   const [loadingUsers, setLoadingUsers] = useState(true);
   const [message, setMessage] = useState('');
   const router = useRouter();
