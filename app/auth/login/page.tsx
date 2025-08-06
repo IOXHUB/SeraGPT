@@ -200,8 +200,11 @@ export default function AuthPage() {
         }
       } else if (data?.user && !data?.session) {
         // User created but needs email confirmation
-        setMessage('✅ Kayıt başarılı! Lütfen e-posta adresinizi kontrol edin ve doğrulama linkine tıklayın. E-posta doğrulaması sonrasında giriş yapabilirsiniz.');
-        resetForm();
+        setMessage('✅ KAYIT BAŞARILI! 🎉\n\n📧 E-posta adresinize doğrulama linki gönderildi.\n\n👆 Lütfen e-postanızı kontrol edin ve linke tıklayın.\n\n⏰ Link 24 saat geçerlidir.');
+        // Don't reset form immediately - let user see the message
+        setTimeout(() => {
+          resetForm();
+        }, 5000);
       } else if (data?.user && data?.session) {
         // User created and automatically signed in
         setMessage('✅ Hesabınız oluşturuldu! Dashboard\'a yönlendiriliyorsunuz...');
