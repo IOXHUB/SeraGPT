@@ -80,30 +80,6 @@ export default function LoginPage() {
     }
   };
 
-  // Demo login function for development
-  const handleDemoLogin = (userType: 'demo' | 'admin') => {
-    setLoading(true);
-    setMessage('');
-
-    // Create mock user session in localStorage
-    const mockUser = {
-      id: userType === 'admin' ? 'admin-123' : 'demo-456',
-      email: userType === 'admin' ? 'admin@seragpt.com' : 'demo@seragpt.com',
-      user_metadata: {
-        full_name: userType === 'admin' ? 'Admin Kullanıcı' : 'Demo Kullanıcı',
-        role: userType
-      }
-    };
-
-    // Store mock session
-    localStorage.setItem('mockUserSession', JSON.stringify(mockUser));
-
-    setMessage(`${userType === 'admin' ? 'Admin' : 'Demo'} kullanıcı olarak giriş yapıldı`);
-
-    setTimeout(() => {
-      router.push('/dashboard');
-    }, 1000);
-  };
 
   // Prevent hydration mismatch
   if (!mounted) {
