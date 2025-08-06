@@ -153,7 +153,8 @@ export default function AuthPage() {
         if (error.message.includes('User already registered') ||
             error.message.includes('already registered') ||
             error.message.includes('already been registered') ||
-            error.message.includes('email address is already registered')) {
+            error.message.includes('email address is already registered') ||
+            error.message.includes('email rate limit exceeded')) {
           setMessage('❌ Bu e-posta adresi zaten kayıtlı. Giriş yapmayı deneyin.');
         } else if (error.message.includes('email')) {
           setMessage('❌ E-posta adresi geçersiz. Lütfen geçerli bir e-posta adresi girin.');
@@ -168,14 +169,17 @@ export default function AuthPage() {
         resetForm();
       } else if (data?.user && data?.session) {
         // User created and automatically signed in
-        setMessage('✅ Kay��t başarılı! Yönlendiriliyorsunuz...');
+        setMessage('✅ Kayıt başarılı! Yönlendiriliyorsunuz...');
         setTimeout(() => {
           console.log('SIGNUP SUCCESS - HARD REDIRECT TO DASHBOARD');
           window.location.replace('/dashboard');
         }, 1000);
+      } else if (data && !data.user && !error) {
+        // Supabase sometimes returns empty data for existing users without error
+        setMessage('❌ Bu e-posta adresi zaten kayıtlı olabilir. Giriş yapmayı deneyin.');
       } else {
-        // Unknown state - show generic success message
-        setMessage('✅ Kayıt başarılı! E-posta adresinizi kontrol edin ve doğrulama linkine tıklayın.');
+        // Always show some feedback
+        setMessage('✅ İşlem tamamlandı. E-posta adresinizi kontrol edin.');
         resetForm();
       }
     } catch (error: any) {
