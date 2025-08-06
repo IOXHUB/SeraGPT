@@ -210,6 +210,7 @@ export default function AuthPage() {
         setMessage('✅ Hesabınız oluşturuldu! Dashboard\'a yönlendiriliyorsunuz...');
 
         // Send welcome email
+        console.log('🔧 Attempting to send welcome email to:', data.user.email);
         fetch('/api/send-email', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -219,7 +220,14 @@ export default function AuthPage() {
             name: data.user.user_metadata?.full_name || data.user.email?.split('@')[0] || 'Kullanıcı',
             url: `${window.location.origin}/dashboard`
           })
-        }).catch(error => console.warn('Welcome email failed:', error));
+        })
+        .then(response => response.json())
+        .then(result => {
+          console.log('✅ Welcome email response:', result);
+        })
+        .catch(error => {
+          console.warn('❌ Welcome email failed:', error);
+        });
 
         // Store user info in localStorage for bulletproof auth
         localStorage.setItem('seragpt_user', JSON.stringify({
