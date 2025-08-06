@@ -77,9 +77,19 @@ export default function AuthPage() {
       } else {
         console.log('Login successful');
         setMessage('✅ Giriş başarılı, yönlendiriliyorsunuz...');
-        setTimeout(() => {
-          router.push('/dashboard');
-        }, 1000);
+
+        // Check if we have a valid session
+        const { data: { session } } = await supabase.auth.getSession();
+        console.log('Session after login:', !!session);
+
+        if (session) {
+          setTimeout(() => {
+            router.push('/dashboard');
+          }, 1000);
+        } else {
+          setMessage('❌ Oturum oluşturulamadı. Lütfen tekrar deneyin.');
+          setLoading(false);
+        }
       }
     } catch (error) {
       setMessage('❌ Giriş yapılamadı. Lütfen tekrar deneyin.');
