@@ -42,7 +42,7 @@ export default function Header() {
               {user ? (
                 // For logged in users - show Dashboard and optional Admin
                 <div className="flex items-center space-x-4">
-                  <a href="/dashboard" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
+                  <a href="/dashboard/direct" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
                     Dashboard
                   </a>
                   {isAdmin() && (
