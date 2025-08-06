@@ -280,13 +280,13 @@ export default function UserjotCloneSection() {
             viewport={{ once: true }}
             className="text-center mt-12"
           >
-            <motion.button
+            <button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="bg-gray-600 hover:bg-gray-800 text-white px-4 py-2 rounded-lg text-base font-medium transition-colors shadow-md hover:shadow-lg"
             >
               Kullanıcı Paneline Giriş Yapın
-            </motion.button>
+            </button>
             <p className="text-gray-500 text-sm mt-4">
               Tüm sera projelerinizi tek platformdan yönetin
             </p>
@@ -600,13 +600,13 @@ export default function UserjotCloneSection() {
             viewport={{ once: true }}
             className="text-center mt-12"
           >
-            <motion.button
+            <button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="bg-gray-600 hover:bg-gray-800 text-white px-4 py-2 rounded-lg text-base font-medium transition-colors shadow-md hover:shadow-lg"
             >
               AI Asistanınızı Test Edin
-            </motion.button>
+            </button>
             <p className="text-gray-500 text-sm mt-4">
               Adil Kullanım Kotası İle Birlikte Ücretsizdir
             </p>
@@ -790,20 +790,20 @@ export default function UserjotCloneSection() {
             className="text-center"
           >
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pb-11">
-              <motion.button
+              <button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded-lg text-base font-medium transition-colors shadow-md hover:shadow-lg mt-6"
               >
                 Anahtar Teslim Fiyat Alın
-              </motion.button>
-              <motion.button
+              </button>
+              <button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded-lg text-base font-medium transition-colors shadow-md hover:shadow-lg mt-6"
               >
                 Kurumsal Danışmanlık Hizmeti
-              </motion.button>
+              </button>
             </div>
             <p className="text-gray-500 text-sm mt-4">
               Uzman ekibimiz size özel teklifini hazırlayacak
