@@ -339,18 +339,18 @@ export default function DashboardPage() {
               <div className="p-6">
                 <div className="grid md:grid-cols-3 gap-6">
                   <div className="text-center">
-                    <h4 className="font-light text-gray-300 mb-1">Mevcut Jetonlar</h4>
-                    <p className="text-2xl font-extralight text-white mb-2">{userTokens}</p>
-                    <p className="text-sm font-light text-gray-500">Kullanılabilir jeton</p>
+                    <h4 className="font-normal text-gray-900 mb-1">Mevcut Jetonlar</h4>
+                    <p className="text-2xl font-light text-gray-900 mb-2">{userTokens}</p>
+                    <p className="text-sm font-light text-gray-600">Kullanılabilir jeton</p>
                   </div>
                   <div className="text-center">
-                    <h4 className="font-light text-gray-300 mb-1">Ücretsiz Hak</h4>
-                    <p className="text-2xl font-extralight text-emerald-400 mb-2">5</p>
-                    <p className="text-sm font-light text-gray-500">Başlangıç jetonu</p>
+                    <h4 className="font-normal text-gray-900 mb-1">Ücretsiz Hak</h4>
+                    <p className="text-2xl font-light text-green-600 mb-2">5</p>
+                    <p className="text-sm font-light text-gray-600">Başlangıç jetonu</p>
                   </div>
                   <div className="text-center">
-                    <h4 className="font-light text-gray-300 mb-3">Jeton Satın Al</h4>
-                    <button className="bg-gradient-to-r from-amber-500/20 to-orange-500/20 border border-amber-500/50 hover:bg-gradient-to-r hover:from-amber-500/30 hover:to-orange-500/30 hover:border-amber-400 text-amber-300 hover:text-amber-200 px-6 py-3 rounded-xl text-sm font-light transition-all duration-500 hover:shadow-lg hover:shadow-amber-500/25">
+                    <h4 className="font-normal text-gray-900 mb-3">Jeton Satın Al</h4>
+                    <button className="bg-gray-900 hover:bg-gray-800 text-white px-6 py-3 rounded-lg text-sm font-normal transition-all duration-300">
                       Paketleri Gör
                     </button>
                   </div>
