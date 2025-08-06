@@ -243,10 +243,7 @@ export default function UserjotCloneSection() {
       <div className="relative -mt-40 z-10">
         <div className="max-w-[900px] mx-auto px-6">
           <div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.2 }}
-            viewport={{ once: true }}
+
             className="relative"
           >
             <div className="rounded-2xl p-8 shadow-lg shadow-purple-400/20 hover:shadow-purple-500/30 transition-all duration-300 bg-center bg-cover bg-no-repeat border-4 border-purple-400">
@@ -563,10 +560,7 @@ export default function UserjotCloneSection() {
 
           {/* AI Chat Flow */}
           <div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.2 }}
-            viewport={{ once: true }}
+
             className="relative max-w-[900px] mx-auto"
           >
             <div className="bg-gradient-to-br from-blue-50 to-indigo-100 rounded-2xl p-8 shadow-2xl shadow-blue-500/25 border border-blue-100">
