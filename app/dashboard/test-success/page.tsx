@@ -80,7 +80,12 @@ export default function TestSuccessPage() {
   if (loading) {
     return (
       <div className="min-h-screen bg-green-50 flex items-center justify-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-600"></div>
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-600 mx-auto mb-4"></div>
+          <p className="text-gray-700 font-medium">Oturum kontrol ediliyor...</p>
+          <p className="text-sm text-gray-500 mt-2">Deneme: {attempts}/10</p>
+          <p className="text-xs text-gray-400 mt-1">Lütfen bekleyin, bazen biraz zaman alır...</p>
+        </div>
       </div>
     );
   }
