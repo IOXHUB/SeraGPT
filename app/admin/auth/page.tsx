@@ -44,53 +44,15 @@ export default function AdminAuthPage() {
   };
 
   const promoteToAdmin = async (userId: string, email: string | undefined) => {
-    try {
-      const { error } = await supabase.auth.admin.updateUserById(userId, {
-        user_metadata: { role: 'admin' }
-      });
-
-      if (error) {
-        setMessage(`Admin yetkisi verilemedi: ${error.message}`);
-      } else {
-        setMessage(`✅ ${email || 'Kullanıcı'} artık admin kullanıcı`);
-        fetchUsers(); // Refresh the list
-      }
-    } catch (error) {
-      setMessage('Admin yetkisi verilirken hata oluştu');
-    }
+    setMessage('⚠️ Admin yetki işlemleri için API endpoint\'i gerekli. Şu an bu özellik kullanılamıyor.');
   };
 
   const removeAdmin = async (userId: string, email: string | undefined) => {
-    try {
-      const { error } = await supabase.auth.admin.updateUserById(userId, {
-        user_metadata: { role: null }
-      });
-
-      if (error) {
-        setMessage(`Admin yetkisi kaldırılamadı: ${error.message}`);
-      } else {
-        setMessage(`✅ ${email || 'Kullanıcı'} artık normal kullanıcı`);
-        fetchUsers(); // Refresh the list
-      }
-    } catch (error) {
-      setMessage('Admin yetkisi kaldırılırken hata oluştu');
-    }
+    setMessage('⚠️ Admin yetki işlemleri için API endpoint\'i gerekli. Şu an bu özellik kullanılamıyor.');
   };
 
   const deleteUser = async (userId: string, email: string | undefined) => {
-    if (confirm(`${email || 'Bu kullanıcı'}yı silmek istediğinizden emin misiniz?`)) {
-      try {
-        const { error } = await supabase.auth.admin.deleteUser(userId);
-        if (error) {
-          setMessage(`Kullanıcı silinemedi: ${error.message}`);
-        } else {
-          setMessage(`✅ ${email || 'Kullanıcı'} silindi`);
-          fetchUsers(); // Refresh the list
-        }
-      } catch (error) {
-        setMessage('Kullanıcı silinirken hata oluştu');
-      }
-    }
+    setMessage('⚠️ Kullanıcı silme işlemi için API endpoint\'i gerekli. Şu an bu özellik kullanılamıyor.');
   };
 
   if (loading || loadingUsers) {
