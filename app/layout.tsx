@@ -55,9 +55,14 @@ export default function RootLayout({
                   return originalFetch.apply(this, args).catch(error => {
                     if (error.message.includes('HMR') ||
                         error.message.includes('webpack') ||
+                        error.message.includes('hot-update') ||
+                        error.message.includes('Failed to fetch') ||
                         url.includes('fullstory') ||
                         url.includes('analytics') ||
-                        url.includes('hot-update')) {
+                        url.includes('fly.dev') ||
+                        url.includes('?reload=') ||
+                        url.includes('_next/static') ||
+                        url.includes('__nextjs_original-stack-frame')) {
                       console.warn('Development fetch failed, ignoring:', error.message);
                       return Promise.resolve(new Response('{}', {status: 200}));
                     }
