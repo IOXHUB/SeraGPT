@@ -26,7 +26,7 @@ export default function TokensPage() {
       id: 'medium',
       name: '50 Jeton',
       tokens: 50,
-      price: 2250,
+      price: 3500,
       originalPrice: 2500,
       popular: true,
       savings: 250
