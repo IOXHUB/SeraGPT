@@ -835,13 +835,7 @@ export default function UserjotCloneSection() {
                   </div>
                 </button>
                 {openFAQ === index && (
-                  <div
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: 'auto' }}
-                    exit={{ opacity: 0, height: 0 }}
-                    transition={{ duration: 0.3 }}
-                    className="px-6 pb-6 text-sm md:text-base text-gray-600 leading-relaxed"
-                  >
+                  <div className="px-6 pb-6 text-sm md:text-base text-gray-600 leading-relaxed">
                     {faq.answer}
                   </div>
                 )}
