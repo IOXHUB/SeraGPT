@@ -16,12 +16,8 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
   useEffect(() => {
     if (!loading && !user) {
       console.log('No user found, redirecting to login');
-      // Use window.location for immediate redirect
-      if (typeof window !== 'undefined') {
-        window.location.href = '/auth/login';
-      } else {
-        router.push('/auth/login');
-      }
+      // Use the same approach as working simple login
+      window.location.replace('/auth/login');
     }
   }, [user, loading, router]);
 
