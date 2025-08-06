@@ -206,7 +206,7 @@ export default function UserjotCloneSection() {
       </main>
 
       {/* AI Chat Section - Single View */}
-      <div className="relative -mt-32 z-10">
+      <div className="relative -mt-40 z-10">
         <div className="max-w-[900px] mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
