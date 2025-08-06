@@ -45,7 +45,7 @@ export default function AdminAuthPage() {
     }
   };
 
-  const promoteToAdmin = async (userId: string, email: string) => {
+  const promoteToAdmin = async (userId: string, email: string | undefined) => {
     try {
       const { error } = await supabase.auth.admin.updateUserById(userId, {
         user_metadata: { role: 'admin' }
@@ -54,7 +54,7 @@ export default function AdminAuthPage() {
       if (error) {
         setMessage(`Admin yetkisi verilemedi: ${error.message}`);
       } else {
-        setMessage(`✅ ${email} artık admin kullanıcı`);
+        setMessage(`✅ ${email || 'Kullanıcı'} artık admin kullanıcı`);
         fetchUsers(); // Refresh the list
       }
     } catch (error) {
@@ -62,7 +62,7 @@ export default function AdminAuthPage() {
     }
   };
 
-  const removeAdmin = async (userId: string, email: string) => {
+  const removeAdmin = async (userId: string, email: string | undefined) => {
     try {
       const { error } = await supabase.auth.admin.updateUserById(userId, {
         user_metadata: { role: null }
@@ -71,7 +71,7 @@ export default function AdminAuthPage() {
       if (error) {
         setMessage(`Admin yetkisi kaldırılamadı: ${error.message}`);
       } else {
-        setMessage(`✅ ${email} artık normal kullanıcı`);
+        setMessage(`✅ ${email || 'Kullanıcı'} artık normal kullanıcı`);
         fetchUsers(); // Refresh the list
       }
     } catch (error) {
@@ -79,14 +79,14 @@ export default function AdminAuthPage() {
     }
   };
 
-  const deleteUser = async (userId: string, email: string) => {
-    if (confirm(`${email} kullanıcısını silmek istediğinizden emin misiniz?`)) {
+  const deleteUser = async (userId: string, email: string | undefined) => {
+    if (confirm(`${email || 'Bu kullanıcı'}yı silmek istediğinizden emin misiniz?`)) {
       try {
         const { error } = await supabase.auth.admin.deleteUser(userId);
         if (error) {
           setMessage(`Kullanıcı silinemedi: ${error.message}`);
         } else {
-          setMessage(`✅ ${email} kullanıcısı silindi`);
+          setMessage(`✅ ${email || 'Kullanıcı'} silindi`);
           fetchUsers(); // Refresh the list
         }
       } catch (error) {
