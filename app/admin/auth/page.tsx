@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 
 interface UserData {
   id: string;
-  email: string;
+  email: string | undefined;
   created_at: string;
   email_confirmed_at: string | null;
   user_metadata: any;
