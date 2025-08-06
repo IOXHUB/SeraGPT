@@ -75,12 +75,10 @@ export async function GET(request: NextRequest) {
         console.log('Setting', allCookies.length, 'cookies for session')
         allCookies.forEach(cookie => {
           response.cookies.set(cookie.name, cookie.value, {
-            path: cookie.path,
-            domain: cookie.domain,
-            secure: cookie.secure,
-            httpOnly: cookie.httpOnly,
-            sameSite: cookie.sameSite as any,
-            maxAge: cookie.maxAge
+            path: '/',
+            secure: process.env.NODE_ENV === 'production',
+            httpOnly: true,
+            sameSite: 'lax'
           })
         })
 
