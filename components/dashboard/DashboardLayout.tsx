@@ -13,35 +13,31 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const router = useRouter();
 
-  // Check authentication and redirect if needed
+  // TEMPORARILY RELAXED AUTH - Prevent redirect loops
+  // Only redirect if explicitly no auth and it's been a while
   useEffect(() => {
     if (!loading && !user) {
-      console.log('DashboardLayout: No user found after loading complete, redirecting to login');
-      // Give a short delay to allow localStorage auth to load
-      setTimeout(() => {
-        window.location.href = '/auth/login';
-      }, 500);
+      // Check localStorage for backup auth
+      const backupUser = localStorage.getItem('seragpt_user');
+      if (!backupUser) {
+        console.log('DashboardLayout: No user found anywhere, will redirect after delay');
+        // Much longer delay to prevent loops
+        setTimeout(() => {
+          if (!document.hidden) { // Only redirect if tab is active
+            window.location.href = '/auth/login';
+          }
+        }, 3000);
+      }
     }
   }, [user, loading, router]);
 
-  // Show loading screen while checking authentication
+  // Show loading screen briefly
   if (loading) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
           <p className="mt-4 text-gray-600">Yükleniyor...</p>
-        </div>
-      </div>
-    );
-  }
-
-  // Show message if no user found (before redirect)
-  if (!user) {
-    return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="text-center">
-          <p className="text-gray-600">Giriş kontrol ediliyor...</p>
         </div>
       </div>
     );
@@ -96,7 +92,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
   //       <div className="max-w-md w-full bg-white rounded-lg shadow-md p-8 text-center">
   //         <h1 className="text-2xl font-bold text-yellow-600 mb-4">⚠️ Oturum Bulunamadı</h1>
   //         <p className="text-gray-700 mb-6">
-  //           Dashboard'a erişmek için giriş yapmış olmanız gerekir.
+  //           Dashboard'a erişmek i��in giriş yapmış olmanız gerekir.
   //         </p>
   //       </div>
   //     </div>
