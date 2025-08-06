@@ -23,7 +23,7 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <a href="/dashboard" className="text-gray-600 hover:text-gray-900 transition-colors">
+                <a href="/dashboard/direct" className="text-gray-600 hover:text-gray-900 transition-colors">
                   Kullanıcı Paneli
                 </a>
               </li>
