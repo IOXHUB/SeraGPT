@@ -29,18 +29,18 @@ export const supabase = createClient(url, key, {
     },
   },
   // Add fetch configuration for better error handling
-  fetch: (url, options = {}) => {
-    return fetch(url, {
-      ...options,
-      headers: {
-        ...options.headers,
-        'Content-Type': 'application/json',
-      },
-    }).catch((error) => {
-      console.error('Supabase fetch error:', error);
-      throw new Error(`Network error: ${error.message}`);
-    });
-  }
+  // fetch: (url: RequestInfo | URL, options: RequestInit = {}) => {
+  //   return fetch(url, {
+  //     ...options,
+  //     headers: {
+  //       ...options.headers,
+  //       'Content-Type': 'application/json',
+  //     },
+  //   }).catch((error) => {
+  //     console.error('Supabase fetch error:', error);
+  //     throw new Error(`Network error: ${error.message}`);
+  //   });
+  // }
 })
 
 // Helper to check if Supabase is properly configured
