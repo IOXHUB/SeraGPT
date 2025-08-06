@@ -46,7 +46,7 @@ export default function UserjotCloneSection() {
               <>
                 {user ? (
                   // For logged in users - show Dashboard
-                  <a href="/dashboard/direct" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
+                  <a href="/dashboard" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
                     Dashboard
                   </a>
                 ) : (
