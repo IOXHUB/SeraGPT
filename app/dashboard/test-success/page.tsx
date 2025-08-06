@@ -13,12 +13,48 @@ export default function TestSuccessPage() {
   );
 
   useEffect(() => {
+    let attempts = 0;
+    const maxAttempts = 10;
+
     const checkUser = async () => {
-      const { data: { session } } = await supabase.auth.getSession();
-      console.log('Test Success Page - Session:', !!session?.user);
-      setUser(session?.user || null);
-      setLoading(false);
+      attempts++;
+      console.log(`Test Success Page - Session check attempt ${attempts}`);
+
+      try {
+        const { data: { session }, error } = await supabase.auth.getSession();
+        console.log('Session result:', {
+          attempt: attempts,
+          hasSession: !!session,
+          hasUser: !!session?.user,
+          userEmail: session?.user?.email,
+          error: error?.message
+        });
+
+        if (session?.user) {
+          console.log('✅ USER FOUND:', session.user.email);
+          setUser(session.user);
+          setLoading(false);
+          return;
+        }
+
+        // If no user but haven't hit max attempts, try again
+        if (attempts < maxAttempts) {
+          console.log(`No user yet, retrying in 1 second... (${attempts}/${maxAttempts})`);
+          setTimeout(checkUser, 1000);
+        } else {
+          console.log('❌ Max attempts reached, no user found');
+          setLoading(false);
+        }
+      } catch (err) {
+        console.error('Session check error:', err);
+        if (attempts < maxAttempts) {
+          setTimeout(checkUser, 1000);
+        } else {
+          setLoading(false);
+        }
+      }
     };
+
     checkUser();
   }, []);
 
