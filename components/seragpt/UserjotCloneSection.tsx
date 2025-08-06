@@ -30,7 +30,7 @@ export default function UserjotCloneSection() {
           {/* Center navigation - 3 links */}
           <nav className="hidden md:flex items-center space-x-8">
             <a href="#" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
-              Danışmanlık
+              Dan��şmanlık
             </a>
             <a href="#" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
               Anahtar Teslim Proje
@@ -141,7 +141,7 @@ export default function UserjotCloneSection() {
                           Giriş Yap
                         </a>
                         <a
-                          href="/dashboard/direct"
+                          href="/dashboard"
                           className="block bg-black hover:bg-gray-800 text-white px-4 py-3 rounded-xl font-medium transition-colors text-center"
                           onClick={() => setIsMobileMenuOpen(false)}
                         >
