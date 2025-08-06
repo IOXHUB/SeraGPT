@@ -157,6 +157,13 @@ export default function AuthPage() {
     }
 
     try {
+      // Step 1: Creating account
+      setMessage('📝 1/3 - Hesap bilgileri kontrol ediliyor...');
+      await new Promise(resolve => setTimeout(resolve, 1000));
+
+      // Step 2: Registering with Supabase
+      setMessage('⚡ 2/3 - Hesap oluşturuluyor...');
+
       const redirectUrl = `${typeof window !== 'undefined' ? window.location.origin : ''}/auth/callback`;
       console.log('Sign up with redirect URL:', redirectUrl);
 
@@ -172,6 +179,9 @@ export default function AuthPage() {
       });
 
       console.log('Signup result:', { data, error });
+
+      // Step 3: Processing result
+      setMessage('📧 3/3 - E-posta hazırlanıyor...');
 
       if (error) {
         console.error('Signup error details:', error);
