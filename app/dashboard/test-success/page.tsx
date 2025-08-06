@@ -19,6 +19,7 @@ export default function TestSuccessPage() {
 
     const checkUser = async () => {
       attempts++;
+      setAttempts(attempts);
       console.log(`Test Success Page - Session check attempt ${attempts}`);
 
       try {
