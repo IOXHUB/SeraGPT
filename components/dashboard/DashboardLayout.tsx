@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useAuth } from '@/lib/hooks/useAuth';
 import { useRouter } from 'next/navigation';
 
@@ -9,70 +9,22 @@ interface DashboardLayoutProps {
 }
 
 export default function DashboardLayout({ children }: DashboardLayoutProps) {
-  const [user, setUser] = useState<User | null>(null);
-  const [loading, setLoading] = useState(true);
+  const { user, loading, signOut, isAdmin } = useAuth();
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
-    getUser();
-  }, []);
-
-  async function getUser() {
-    // Check for mock session first (for demo)
-    const mockSession = localStorage.getItem('mockUserSession');
-    if (mockSession) {
-      try {
-        const mockUser = JSON.parse(mockSession);
-        setUser(mockUser);
-        setLoading(false);
-        return;
-      } catch (error) {
-        localStorage.removeItem('mockUserSession');
-      }
-    }
-
-    // Check if Supabase is configured
-    if (!isSupabaseConfigured()) {
-      console.warn('Supabase not configured, skipping auth check');
-      setLoading(false);
-      return;
-    }
-
-    try {
-      const { data: { user } } = await supabase.auth.getUser();
-      if (user) {
-        setUser(user);
-      } else {
-        router.push('/auth/login');
-      }
-    } catch (error) {
-      console.error('Error getting user:', error);
+    if (!loading && !user) {
       router.push('/auth/login');
-    } finally {
-      setLoading(false);
     }
-  }
+  }, [user, loading, router]);
 
   const handleSignOut = async () => {
-    // Clear mock session if exists
-    const mockSession = localStorage.getItem('mockUserSession');
-    if (mockSession) {
-      localStorage.removeItem('mockUserSession');
-      router.push('/');
-      return;
-    }
-
-    if (!isSupabaseConfigured()) {
-      router.push('/');
-      return;
-    }
-
     try {
-      await supabase.auth.signOut();
+      await signOut();
+      router.push('/');
     } catch (error) {
       console.error('Error signing out:', error);
-    } finally {
       router.push('/');
     }
   };
@@ -88,8 +40,6 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
     { name: 'Raporlarım', href: '/dashboard/reports', active: false },
   ];
 
-  const isAdmin = user?.user_metadata?.role === 'admin';
-
   const bottomMenuItems = [
     { name: 'Jeton Satın Al', href: '/dashboard/tokens', active: false },
     { name: 'Danışmanlık', href: '/dashboard/consulting', active: false },
@@ -98,7 +48,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
   ];
 
   const adminMenuItems = [
-    { name: 'Admin Panel', href: '/admin', active: false },
+    { name: 'Admin Panel', href: '/admin/auth', active: false },
     { name: 'Kullanıcılar', href: '/admin/users', active: false },
     { name: 'Sistem Ayarları', href: '/admin/settings', active: false },
   ];
@@ -109,6 +59,10 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
         <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-green-500"></div>
       </div>
     );
+  }
+
+  if (!user) {
+    return null; // Will redirect to login
   }
 
   return (
@@ -146,13 +100,9 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
               <div className="flex-1 min-w-0">
                 <p className="text-sm font-medium text-gray-900 truncate">
                   {user?.user_metadata?.full_name || 'Kullanıcı'}
-                  {user?.user_metadata?.role && (
-                    <span className={`ml-2 px-2 py-0.5 text-xs rounded-full ${
-                      user.user_metadata.role === 'admin'
-                        ? 'bg-purple-100 text-purple-700'
-                        : 'bg-blue-100 text-blue-700'
-                    }`}>
-                      {user.user_metadata.role === 'admin' ? 'Admin' : 'Demo'}
+                  {isAdmin() && (
+                    <span className="ml-2 px-2 py-0.5 text-xs rounded-full bg-purple-100 text-purple-700">
+                      Admin
                     </span>
                   )}
                 </p>
@@ -179,7 +129,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
           </nav>
 
           {/* Admin Menu (if admin) */}
-          {isAdmin && (
+          {isAdmin() && (
             <div className="px-6 py-4 border-t border-gray-200">
               <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">
                 Admin İşlemleri
