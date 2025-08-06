@@ -74,7 +74,7 @@ export default function AuthPage() {
         } else {
           setMessage(`❌ Giriş hatası: ${error.message}`);
         }
-      } else {
+      } else if (data?.user) {
         console.log('=== LOGIN SUCCESSFUL ===');
         setMessage('✅ Giriş başarılı, yönlendiriliyorsunuz...');
 
