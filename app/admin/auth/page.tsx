@@ -94,13 +94,16 @@ export default function AdminAuthPage() {
           <div className="px-6 py-4">
             <div className="mb-4">
               <h2 className="text-lg font-medium text-gray-900 mb-2">
-                Kayıtlı Kullanıcılar ({users.length})
+                Admin Panel ({users.length} kullanıcı)
               </h2>
+              <p className="text-sm text-gray-600 mb-3">
+                💡 Tam admin fonksiyonları için API endpoint'leri gerekli
+              </p>
               <button
                 onClick={fetchUsers}
                 className="text-sm bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700"
               >
-                🔄 Yenile
+                🔄 Bilgileri Yenile
               </button>
             </div>
 
