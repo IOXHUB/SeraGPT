@@ -14,13 +14,20 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
   const router = useRouter();
 
   useEffect(() => {
-    // ONLY redirect if we're absolutely sure there's no user AND loading is done
     if (!loading && !user) {
       console.log('DashboardLayout: No user found after loading complete');
+
+      // Check localStorage backup before redirecting
+      const storedUser = localStorage.getItem('seragpt_user');
+      if (storedUser) {
+        console.log('Found user in localStorage, allowing access');
+        return; // Don't redirect if we have localStorage backup
+      }
+
       setTimeout(() => {
-        console.log('DashboardLayout: Redirecting to login');
+        console.log('DashboardLayout: No user in any location, redirecting to login');
         window.location.href = '/auth/login';
-      }, 1000); // Give more time for auth to settle
+      }, 1000);
     }
   }, [user, loading, router]);
 
