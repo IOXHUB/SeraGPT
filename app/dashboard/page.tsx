@@ -125,7 +125,7 @@ export default function DashboardPage() {
   const quickActions = [
     {
       name: 'Ücretsiz Jeton Al',
-      description: 'İlk 5 analiz ücretsiz, hemen başlayın',
+      description: 'İlk 5 analiz ücretsiz, hemen ba��layın',
       href: '/dashboard/analysis/roi',
       primary: true
     },
@@ -309,13 +309,11 @@ export default function DashboardPage() {
                     <div className="space-y-4">
                       {recentActivity.map((activity, index) => (
                         <div key={index} className="flex items-start space-x-4">
-                          <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center mt-1">
-                            <div className="w-2 h-2 rounded-full bg-white"></div>
-                          </div>
-                          <div className="flex-1 min-w-0">
-                            <p className="text-sm font-medium text-gray-900">{activity.title}</p>
-                            <p className="text-xs text-gray-600">{activity.description}</p>
-                            <p className="text-xs text-gray-500 mt-1">{activity.time}</p>
+                          <div className="w-3 h-3 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 mt-2"></div>
+                        <div className="flex-1 min-w-0">
+                          <p className="text-sm font-normal text-gray-900">{activity.title}</p>
+                          <p className="text-xs font-light text-gray-600">{activity.description}</p>
+                          <p className="text-xs font-light text-gray-500 mt-1">{activity.time}</p>
                           </div>
                         </div>
                       ))}
