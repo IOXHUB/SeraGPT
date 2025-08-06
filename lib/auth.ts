@@ -82,7 +82,29 @@ export async function updateSession(request: NextRequest) {
     }
   )
 
-  await supabase.auth.getUser()
+  try {
+    const { data: { user }, error } = await supabase.auth.getUser()
 
-  return response
+    console.log('Middleware auth check:', {
+      path: request.nextUrl.pathname,
+      hasUser: !!user,
+      userEmail: user?.email,
+      error: error?.message
+    })
+
+    // If no user and trying to access protected route, redirect to login
+    if (!user && (request.nextUrl.pathname.startsWith('/dashboard') || request.nextUrl.pathname.startsWith('/admin'))) {
+      console.log('Redirecting unauthenticated user to login')
+      return NextResponse.redirect(new URL('/auth/login', request.url))
+    }
+
+    return response
+  } catch (error) {
+    console.error('Middleware auth error:', error)
+    // On auth error, redirect to login for protected routes
+    if (request.nextUrl.pathname.startsWith('/dashboard') || request.nextUrl.pathname.startsWith('/admin')) {
+      return NextResponse.redirect(new URL('/auth/login', request.url))
+    }
+    return response
+  }
 }
