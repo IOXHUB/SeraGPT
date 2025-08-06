@@ -92,22 +92,20 @@ export async function updateSession(request: NextRequest) {
       error: error?.message
     })
 
-    // If no user and trying to access protected route, redirect to login
-    if (!user && (request.nextUrl.pathname.startsWith('/dashboard') || request.nextUrl.pathname.startsWith('/admin'))) {
-      console.log('Redirecting unauthenticated user to login from:', request.nextUrl.pathname)
+    // Only redirect on very specific protected paths, and be less aggressive
+    const protectedPaths = ['/dashboard', '/admin'];
+    const isProtectedPath = protectedPaths.some(path => request.nextUrl.pathname === path);
 
-      // Avoid redirect loops by checking if already on login page
-      if (request.nextUrl.pathname !== '/auth/login') {
-        return NextResponse.redirect(new URL('/auth/login', request.url))
-      }
+    if (!user && isProtectedPath) {
+      console.log('Redirecting unauthenticated user to login from:', request.nextUrl.pathname)
+      return NextResponse.redirect(new URL('/auth/login', request.url))
     }
 
     return response
   } catch (error) {
     console.error('Middleware auth error:', error)
-    // On auth error, redirect to login for protected routes (but avoid loops)
-    if ((request.nextUrl.pathname.startsWith('/dashboard') || request.nextUrl.pathname.startsWith('/admin')) &&
-        request.nextUrl.pathname !== '/auth/login') {
+    // Be very conservative with error redirects
+    if (request.nextUrl.pathname === '/dashboard' || request.nextUrl.pathname === '/admin') {
       return NextResponse.redirect(new URL('/auth/login', request.url))
     }
     return response
