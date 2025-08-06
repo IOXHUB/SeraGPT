@@ -16,11 +16,17 @@ export function useAuth() {
   useEffect(() => {
     const getUser = async () => {
       try {
-        const { data: { user } } = await supabase.auth.getUser();
-        setUser(user);
+        // Only attempt to get user if there's a session
+        const { data: { session } } = await supabase.auth.getSession();
+        if (session?.user) {
+          setUser(session.user);
+        } else {
+          setUser(null);
+        }
         setLoading(false);
       } catch (error) {
-        console.error('Auth error:', error);
+        // Handle anonymous auth errors gracefully
+        console.warn('Auth session check failed:', error);
         setUser(null);
         setLoading(false);
       }
