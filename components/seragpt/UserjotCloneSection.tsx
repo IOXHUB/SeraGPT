@@ -271,8 +271,7 @@ export default function UserjotCloneSection() {
             className="text-center mt-12"
           >
             <button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+
               className="bg-gray-600 hover:bg-gray-800 text-white px-4 py-2 rounded-lg text-base font-medium transition-colors shadow-md hover:shadow-lg"
             >
               Kullanıcı Paneline Giriş Yapın
@@ -588,8 +587,7 @@ export default function UserjotCloneSection() {
             className="text-center mt-12"
           >
             <button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+
               className="bg-gray-600 hover:bg-gray-800 text-white px-4 py-2 rounded-lg text-base font-medium transition-colors shadow-md hover:shadow-lg"
             >
               AI Asistanınızı Test Edin
@@ -734,7 +732,7 @@ export default function UserjotCloneSection() {
                 <div className="w-full h-full bg-gradient-to-br from-rose-100 to-pink-100 flex items-center justify-center">
                   <div className="text-center">
                     <div className="text-4xl mb-3">🌹</div>
-                    <p className="text-gray-700 font-medium">Çiçek Üretim Serası</p>
+                    <p className="text-gray-700 font-medium">Çiçek Üretim Seras��</p>
                     <p className="text-gray-500 text-sm">Isparta, 1.800 m²</p>
                   </div>
                 </div>
@@ -778,15 +776,13 @@ export default function UserjotCloneSection() {
           >
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pb-11">
               <button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+  
                 className="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded-lg text-base font-medium transition-colors shadow-md hover:shadow-lg mt-6"
               >
                 Anahtar Teslim Fiyat Alın
               </button>
               <button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+  
                 className="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded-lg text-base font-medium transition-colors shadow-md hover:shadow-lg mt-6"
               >
                 Kurumsal Danışmanlık Hizmeti
