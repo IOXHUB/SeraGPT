@@ -55,14 +55,28 @@ export async function GET(request: NextRequest) {
     )
 
     try {
+      console.log('Attempting PKCE code exchange with code:', code.substring(0, 20) + '...')
+
       const { data, error } = await supabase.auth.exchangeCodeForSession(code)
+
       console.log('Code exchange result:', {
         success: !error,
         error: error?.message,
+        errorCode: error?.status,
         user: !!data?.user,
         session: !!data?.session,
         sessionId: data?.session?.access_token?.substring(0, 20) + '...'
       })
+
+      // Special handling for PKCE errors
+      if (error && error.message.includes('code verifier')) {
+        console.error('PKCE verifier error - clearing cookies and redirecting')
+        // Clear any stale auth cookies
+        const response = NextResponse.redirect(`${origin}/auth/login?error=pkce_error&message=${encodeURIComponent('E-posta doğrulama hatası. Lütfen tekrar giriş yapmayı deneyin.')}`)
+        response.cookies.delete('supabase-auth-token')
+        response.cookies.delete('sb-localhost-auth-token')
+        return response
+      }
 
       if (!error && data?.session && data?.user) {
         console.log('Auth successful for user:', data.user.email)
