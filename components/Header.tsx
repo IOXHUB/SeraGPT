@@ -130,14 +130,34 @@ export default function Header() {
               {!loading && (
                 <>
                   {user ? (
-                    // For logged in users - show Dashboard
-                    <a
-                      href="/dashboard"
-                      className="block text-gray-700 hover:text-gray-900 font-medium transition-colors py-2"
-                      onClick={() => setIsMobileMenuOpen(false)}
-                    >
-                      Dashboard
-                    </a>
+                    // For logged in users - show Dashboard and optional Admin
+                    <>
+                      <a
+                        href="/dashboard"
+                        className="block text-gray-700 hover:text-gray-900 font-medium transition-colors py-2"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                      >
+                        Dashboard
+                      </a>
+                      {isAdmin() && (
+                        <a
+                          href="/admin/auth"
+                          className="block text-purple-700 hover:text-purple-900 font-medium transition-colors py-2"
+                          onClick={() => setIsMobileMenuOpen(false)}
+                        >
+                          👑 Admin Panel
+                        </a>
+                      )}
+                      <button
+                        onClick={() => {
+                          signOut();
+                          setIsMobileMenuOpen(false);
+                        }}
+                        className="block w-full text-left text-gray-700 hover:text-gray-900 font-medium transition-colors py-2"
+                      >
+                        Çıkış Yap
+                      </button>
+                    </>
                   ) : (
                     // For logged out users - show Login and Sign Up
                     <>
