@@ -469,7 +469,7 @@ export default function UserjotCloneSection() {
               >
                 <div className="absolute top-6 left-6 text-6xl font-bold text-gray-100">05</div>
                 <div className="mt-16">
-                  <h3 className="text-xl font-bold text-gray-900 mb-4">Yerleşim ve Teknik Plan Görselleştirmesi</h3>
+                  <h3 className="text-xl font-bold text-gray-900 mb-4">Yerleşim ve Teknik Plan Görselle��tirmesi</h3>
 
                   <div className="space-y-3 mb-4">
                     <div>
@@ -836,10 +836,7 @@ export default function UserjotCloneSection() {
 
           {/* Support Link */}
           <div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            viewport={{ once: true }}
+
             className="text-center mt-12"
           >
             <p className="text-gray-600 mb-4">
