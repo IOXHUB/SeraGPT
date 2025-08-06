@@ -2,10 +2,16 @@ import { NextRequest, NextResponse } from 'next/server';
 import { emailService } from '@/lib/services/email-service';
 
 export async function POST(request: NextRequest) {
+  console.log('🔧 Email API - Request received');
+
   try {
-    const { type, to, name, url } = await request.json();
+    const body = await request.json();
+    const { type, to, name, url } = body;
+
+    console.log('📨 Email API request:', { type, to, name, hasUrl: !!url });
 
     if (!type || !to || !name) {
+      console.error('❌ Missing required fields:', { type: !!type, to: !!to, name: !!name });
       return NextResponse.json(
         { error: 'Missing required fields' },
         { status: 400 }
