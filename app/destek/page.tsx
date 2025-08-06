@@ -7,6 +7,7 @@ import SupportTicketModal from '../../components/SupportTicketModal';
 
 export default function DestekPage() {
   const [activeSection, setActiveSection] = useState('quick-start');
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const sidebarSections = [
     {
@@ -273,7 +274,7 @@ export default function DestekPage() {
                 <h3 className="font-semibold text-gray-900 mb-4">Sonraki Adımlar</h3>
                 <div className="space-y-2">
                   <p className="text-gray-700">
-                    �� Hesabınızı özelleştirin ve farklı türde analizler deneyin
+                    • Hesabınızı özelleştirin ve farklı türde analizler deneyin
                   </p>
                   <p className="text-gray-700">
                     • Uzman danışmanlık hizmetlerimizden faydalanın
