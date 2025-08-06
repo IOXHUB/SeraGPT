@@ -123,7 +123,7 @@ export default function UserjotCloneSection() {
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   <div className="flex items-center space-x-3">
-                    <span className="text-lg">🎯</span>
+                    <span className="text-lg">���</span>
                     <span className="text-base font-medium">Danışmanlık</span>
                   </div>
                 </a>
@@ -341,10 +341,7 @@ export default function UserjotCloneSection() {
 
               {/* Card 2 - İklim Analizi */}
               <div
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: 0.1 }}
-                viewport={{ once: true }}
+
                 className="flex-shrink-0 w-80 bg-white rounded-2xl p-8 border border-gray-200 relative"
               >
                 <div className="absolute top-6 left-6 text-6xl font-bold text-gray-100">02</div>
@@ -510,7 +507,7 @@ export default function UserjotCloneSection() {
 
                   <div className="mt-4 p-3 bg-gray-50 rounded-lg">
                     <p className="text-gray-700 text-sm font-medium">"2D/3D Yerleşim Planı Hazır!"</p>
-                    <button className="mt-2 text-blue-600 text-xs font-medium hover:underline">[Plan�� Önizle]</button>
+                    <button className="mt-2 text-blue-600 text-xs font-medium hover:underline">[Planı Önizle]</button>
                   </div>
                 </div>
               </div>
@@ -626,10 +623,7 @@ export default function UserjotCloneSection() {
 
               {/* Gallery Image 2 */}
               <div
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: 0.1 }}
-                viewport={{ once: true }}
+
                 className="flex-shrink-0 w-80 h-60 bg-gray-200 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
               >
                 <div className="w-full h-full bg-gradient-to-br from-orange-100 to-red-100 flex items-center justify-center">
