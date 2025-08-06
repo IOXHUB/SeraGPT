@@ -24,8 +24,8 @@ export default function LoginPage() {
     setLoading(true);
     setMessage('');
 
-    if (!isSupabaseConfigured()) {
-      setMessage('Authentication service not configured');
+    if (!email || !password) {
+      setMessage('E-posta ve şifre gereklidir');
       setLoading(false);
       return;
     }
@@ -37,12 +37,19 @@ export default function LoginPage() {
       });
 
       if (error) {
-        setMessage(error.message);
+        if (error.message.includes('Invalid login credentials')) {
+          setMessage('E-posta veya şifre hatalı');
+        } else if (error.message.includes('Email not confirmed')) {
+          setMessage('E-posta adresinizi doğrulamanız gerekiyor');
+        } else {
+          setMessage(error.message);
+        }
       } else {
+        setMessage('✅ Giriş başarılı, yönlendiriliyorsunuz...');
         router.push('/dashboard');
       }
     } catch (error) {
-      setMessage('Sign in failed. Please try again.');
+      setMessage('Giriş yapılamadı. Lütfen tekrar deneyin.');
     } finally {
       setLoading(false);
     }
