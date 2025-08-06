@@ -13,12 +13,12 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <a href="#" className="text-gray-600 hover:text-gray-900 transition-colors">
+                <a href="/danismanlik" className="text-gray-600 hover:text-gray-900 transition-colors">
                   Danışmanlık
                 </a>
               </li>
               <li>
-                <a href="#" className="text-gray-600 hover:text-gray-900 transition-colors">
+                <a href="/anahtar-teslim-proje" className="text-gray-600 hover:text-gray-900 transition-colors">
                   Anahtar Teslim Sera
                 </a>
               </li>
