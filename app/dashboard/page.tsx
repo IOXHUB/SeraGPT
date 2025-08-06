@@ -300,10 +300,10 @@ export default function DashboardPage() {
                 transition={{ duration: 0.6, delay: 0.5 }}
                 className="relative group"
               >
-                <div className="absolute -inset-0.5 bg-gradient-to-r from-violet-400 via-purple-500 to-indigo-500 rounded-2xl opacity-60 group-hover:opacity-100 transition duration-300"></div>
+                <div className="absolute -inset-px bg-gradient-to-r from-violet-400 via-purple-500 to-indigo-500 rounded-2xl opacity-25"></div>
                 <div className="relative bg-white rounded-2xl border-0">
                   <div className="p-6 border-b border-gray-100">
-                    <h3 className="text-lg font-semibold text-gray-900">Son Aktiviteler</h3>
+                    <h3 className="text-lg font-normal text-gray-900">Son Aktiviteler</h3>
                   </div>
                   <div className="p-6">
                     <div className="space-y-4">
