@@ -32,7 +32,10 @@ export class EmailService {
 
   constructor() {
     this.apiKey = process.env.RESEND_API_KEY || '';
-    this.from = 'SeraGPT <noreply@seragpt.com>';
+    // Use verified Resend domain if seragpt.com not verified yet
+    this.from = process.env.NODE_ENV === 'production'
+      ? 'SeraGPT <noreply@seragpt.com>'
+      : 'SeraGPT <onboarding@resend.dev>'; // Resend's verified domain for testing
   }
 
   private async sendEmail(data: EmailData): Promise<boolean> {
