@@ -68,7 +68,7 @@ export default function EmailTestPage() {
               disabled={loading}
               className="w-full bg-green-600 text-white py-3 px-4 rounded-lg hover:bg-green-700 disabled:opacity-50 transition-colors"
             >
-              🌱 Hoş Geldin Email'i Gönder
+              🌱 Hoş Geldin Email'i Gönder (Resend)
             </button>
 
             <button
@@ -76,7 +76,7 @@ export default function EmailTestPage() {
               disabled={loading}
               className="w-full bg-blue-600 text-white py-3 px-4 rounded-lg hover:bg-blue-700 disabled:opacity-50 transition-colors"
             >
-              ✅ Doğrulama Email'i Gönder
+              ✅ Doğrulama Email'i Gönder (Resend)
             </button>
 
             <button
@@ -84,7 +84,48 @@ export default function EmailTestPage() {
               disabled={loading}
               className="w-full bg-red-600 text-white py-3 px-4 rounded-lg hover:bg-red-700 disabled:opacity-50 transition-colors"
             >
-              🔐 Şifre Sıfırlama Email'i Gönder
+              🔐 Şifre Sıfırlama Email'i Gönder (Resend)
+            </button>
+
+            <button
+              onClick={async () => {
+                if (!email) {
+                  setMessage('❌ E-posta adresi gerekli');
+                  return;
+                }
+                setLoading(true);
+                setMessage('📤 Supabase test email gönderiliyor...');
+
+                try {
+                  // Test Supabase email directly
+                  const { createClient } = await import('@supabase/supabase-js');
+                  const supabase = createClient(
+                    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+                    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+                  );
+
+                  const { error } = await supabase.auth.signInWithOtp({
+                    email: email,
+                    options: {
+                      shouldCreateUser: false
+                    }
+                  });
+
+                  if (error) {
+                    setMessage(`❌ Supabase email hatası: ${error.message}`);
+                  } else {
+                    setMessage('✅ Supabase test email\'i gönderildi! (Magic link)');
+                  }
+                } catch (error) {
+                  setMessage(`❌ Supabase test hatası: ${error}`);
+                } finally {
+                  setLoading(false);
+                }
+              }}
+              disabled={loading}
+              className="w-full bg-purple-600 text-white py-3 px-4 rounded-lg hover:bg-purple-700 disabled:opacity-50 transition-colors"
+            >
+              🔮 Supabase Magic Link Test
             </button>
           </div>
 
