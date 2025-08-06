@@ -260,33 +260,36 @@ export default function DashboardPage() {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.4 }}
-                className="bg-white rounded-2xl shadow-sm border border-gray-200"
+                className="relative group"
               >
-                <div className="p-6 border-b border-gray-200">
-                  <h3 className="text-lg font-semibold text-gray-900">Hızlı İşlemler</h3>
-                </div>
-                <div className="p-6">
-                  <div className="grid md:grid-cols-2 gap-4">
-                    {quickActions.map((action, index) => (
-                      <a
-                        key={index}
-                        href={action.href}
-                        className={`block p-4 rounded-xl transition-colors ${
-                          action.primary
-                            ? 'bg-gray-600 hover:bg-gray-700 text-white'
-                            : 'bg-gray-50 hover:bg-gray-100 text-gray-900'
-                        }`}
-                      >
-                        <div>
-                          <h4 className={`font-medium mb-2 ${action.primary ? 'text-white' : 'text-gray-900'}`}>
-                            {action.name}
-                          </h4>
-                          <p className={`text-sm ${action.primary ? 'text-gray-200' : 'text-gray-600'}`}>
-                            {action.description}
-                          </p>
-                        </div>
-                      </a>
-                    ))}
+                <div className="absolute -inset-0.5 bg-gradient-to-r from-emerald-400 via-teal-500 to-cyan-500 rounded-2xl opacity-60 group-hover:opacity-100 transition duration-300"></div>
+                <div className="relative bg-white rounded-2xl border-0">
+                  <div className="p-6 border-b border-gray-100">
+                    <h3 className="text-lg font-semibold text-gray-900">Hızlı İşlemler</h3>
+                  </div>
+                  <div className="p-6">
+                    <div className="grid md:grid-cols-2 gap-4">
+                      {quickActions.map((action, index) => (
+                        <a
+                          key={index}
+                          href={action.href}
+                          className={`block p-4 rounded-xl transition-all duration-300 ${
+                            action.primary
+                              ? 'bg-gradient-to-r from-gray-900 to-gray-800 hover:from-gray-800 hover:to-gray-700 text-white'
+                              : 'bg-gray-50 hover:bg-gray-100 text-gray-900 hover:scale-105'
+                          }`}
+                        >
+                          <div>
+                            <h4 className={`font-medium mb-2 ${action.primary ? 'text-white' : 'text-gray-900'}`}>
+                              {action.name}
+                            </h4>
+                            <p className={`text-sm ${action.primary ? 'text-gray-200' : 'text-gray-600'}`}>
+                              {action.description}
+                            </p>
+                          </div>
+                        </a>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </motion.div>
@@ -298,23 +301,28 @@ export default function DashboardPage() {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.5 }}
-                className="bg-white rounded-2xl shadow-sm border border-gray-200"
+                className="relative group"
               >
-                <div className="p-6 border-b border-gray-200">
-                  <h3 className="text-lg font-semibold text-gray-900">Son Aktiviteler</h3>
-                </div>
-                <div className="p-6">
-                  <div className="space-y-4">
-                    {recentActivity.map((activity, index) => (
-                      <div key={index} className="flex items-start space-x-4">
-                        <div className={`w-3 h-3 rounded-full mt-2 ${activity.color}`}></div>
-                        <div className="flex-1 min-w-0">
-                          <p className="text-sm font-medium text-gray-900">{activity.title}</p>
-                          <p className="text-xs text-gray-600">{activity.description}</p>
-                          <p className="text-xs text-gray-500 mt-1">{activity.time}</p>
+                <div className="absolute -inset-0.5 bg-gradient-to-r from-violet-400 via-purple-500 to-indigo-500 rounded-2xl opacity-60 group-hover:opacity-100 transition duration-300"></div>
+                <div className="relative bg-white rounded-2xl border-0">
+                  <div className="p-6 border-b border-gray-100">
+                    <h3 className="text-lg font-semibold text-gray-900">Son Aktiviteler</h3>
+                  </div>
+                  <div className="p-6">
+                    <div className="space-y-4">
+                      {recentActivity.map((activity, index) => (
+                        <div key={index} className="flex items-start space-x-4">
+                          <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center mt-1">
+                            <div className="w-2 h-2 rounded-full bg-white"></div>
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <p className="text-sm font-medium text-gray-900">{activity.title}</p>
+                            <p className="text-xs text-gray-600">{activity.description}</p>
+                            <p className="text-xs text-gray-500 mt-1">{activity.time}</p>
+                          </div>
                         </div>
-                      </div>
-                    ))}
+                      ))}
+                    </div>
                   </div>
                 </div>
               </motion.div>
