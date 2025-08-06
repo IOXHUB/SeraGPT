@@ -322,7 +322,7 @@ export default function UserjotCloneSection() {
                     </div>
 
                     <div>
-                      <p className="text-gray-800 text-xs font-semibold mb-1">�� Kullanıcı Girdisi:</p>
+                      <p className="text-gray-800 text-xs font-semibold mb-1">👤 Kullanıcı Girdisi:</p>
                       <p className="text-gray-600 text-xs">• Lokasyon, bitki türü, üretim hedefi</p>
                     </div>
 
@@ -811,10 +811,7 @@ export default function UserjotCloneSection() {
             ].map((faq, index) => (
               <div
                 key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.05 }}
-                viewport={{ once: true }}
+
                 className="bg-gray-50 rounded-xl overflow-hidden"
               >
                 <button
