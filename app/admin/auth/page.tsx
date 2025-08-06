@@ -169,7 +169,7 @@ export default function AdminAuthPage() {
                   {users.map((userData) => (
                     <tr key={userData.id}>
                       <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                        {userData.email}
+                        {userData.email || 'Email not available'}
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                         {new Date(userData.created_at).toLocaleDateString('tr-TR')}
