@@ -53,8 +53,14 @@ export default function LoginPage() {
     setLoading(true);
     setMessage('');
 
-    if (!isSupabaseConfigured()) {
-      setMessage('Authentication service not configured');
+    if (!email || !password) {
+      setMessage('E-posta ve şifre gereklidir');
+      setLoading(false);
+      return;
+    }
+
+    if (password.length < 6) {
+      setMessage('Şifre en az 6 karakter olmalıdır');
       setLoading(false);
       return;
     }
@@ -71,10 +77,10 @@ export default function LoginPage() {
       if (error) {
         setMessage(error.message);
       } else {
-        setMessage('E-posta adresinizi kontrol edin ve doğrulama linkine tıklayın.');
+        setMessage('✅ E-posta adresinizi kontrol edin ve doğrulama linkine tıklayın.');
       }
     } catch (error) {
-      setMessage('Sign up failed. Please try again.');
+      setMessage('Kayıt oluşturulamadı. Lütfen tekrar deneyin.');
     } finally {
       setLoading(false);
     }
