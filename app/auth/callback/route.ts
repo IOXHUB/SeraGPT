@@ -61,28 +61,45 @@ export async function GET(request: NextRequest) {
       if (!error && data?.session && data?.user) {
         console.log('Auth successful for user:', data.user.email)
 
-        // Force a slight delay to ensure session is properly set
-        await new Promise(resolve => setTimeout(resolve, 100))
-
-        // Create response with proper redirect
+        // Return a page with JavaScript redirect instead of server redirect
         const redirectUrl = `${origin}${next}`
-        console.log('Redirecting authenticated user to:', redirectUrl)
+        console.log('Will redirect to:', redirectUrl)
 
-        const response = NextResponse.redirect(redirectUrl)
-
-        // Ensure all session cookies are properly forwarded
-        const allCookies = cookieStore.getAll()
-        console.log('Setting', allCookies.length, 'cookies for session')
-        allCookies.forEach(cookie => {
-          response.cookies.set(cookie.name, cookie.value, {
-            path: '/',
-            secure: process.env.NODE_ENV === 'production',
-            httpOnly: true,
-            sameSite: 'lax'
-          })
+        return new NextResponse(`
+          <!DOCTYPE html>
+          <html>
+          <head>
+            <title>Redirecting...</title>
+            <meta charset="utf-8">
+          </head>
+          <body>
+            <div style="display: flex; align-items: center; justify-content: center; min-height: 100vh; font-family: system-ui;">
+              <div style="text-align: center;">
+                <h2>✅ E-posta doğrulandı!</h2>
+                <p>Dashboard'a yönlendiriliyorsunuz...</p>
+                <div style="margin: 20px 0;">
+                  <div style="border: 4px solid #f3f3f3; border-top: 4px solid #3498db; border-radius: 50%; width: 40px; height: 40px; animation: spin 2s linear infinite; margin: 0 auto;"></div>
+                </div>
+              </div>
+            </div>
+            <style>
+              @keyframes spin {
+                0% { transform: rotate(0deg); }
+                100% { transform: rotate(360deg); }
+              }
+            </style>
+            <script>
+              console.log('Email verification successful, redirecting to dashboard...');
+              setTimeout(function() {
+                window.location.replace('${redirectUrl}');
+              }, 2000);
+            </script>
+          </body>
+          </html>
+        `, {
+          status: 200,
+          headers: { 'Content-Type': 'text/html' }
         })
-
-        return response
       } else {
         console.error('Auth code exchange failed:', {
           error: error?.message,
