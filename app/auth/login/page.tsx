@@ -75,29 +75,14 @@ export default function AuthPage() {
           setMessage(`❌ Giriş hatası: ${error.message}`);
         }
       } else {
-        console.log('Login successful');
+        console.log('=== LOGIN SUCCESSFUL ===');
         setMessage('✅ Giriş başarılı, yönlendiriliyorsunuz...');
 
-        // Wait for session to be properly set, then redirect
-        let attempts = 0;
-        const checkAndRedirect = async () => {
-          const { data: { session } } = await supabase.auth.getSession();
-          attempts++;
-
-          console.log(`Session check attempt ${attempts}:`, !!session?.user);
-
-          if (session?.user) {
-            console.log('Session confirmed, redirecting to dashboard');
-            window.location.replace('/dashboard');
-          } else if (attempts < 5) {
-            setTimeout(checkAndRedirect, 500);
-          } else {
-            console.log('Max attempts reached, forcing redirect anyway');
-            window.location.replace('/dashboard');
-          }
-        };
-
-        setTimeout(checkAndRedirect, 500);
+        // IMMEDIATE REDIRECT - NO MORE DELAYS OR CHECKS
+        console.log('FORCING IMMEDIATE REDIRECT TO DASHBOARD');
+        setTimeout(() => {
+          window.location.href = '/dashboard';
+        }, 500);
       }
     } catch (error) {
       setMessage('❌ Giriş yapılamadı. Lütfen tekrar deneyin.');
