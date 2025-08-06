@@ -47,7 +47,7 @@ export default function AnalyticsWrapper({ children }: { children: React.ReactNo
     const originalFetch = window.fetch;
     window.fetch = function(input, init) {
       try {
-        const url = typeof input === 'string' ? input : input.url;
+        const url = typeof input === 'string' ? input : input instanceof URL ? input.href : (input as Request).url;
         
         // If it's an analytics URL, add timeout and error handling
         if (url.includes('fullstory.com') || 
