@@ -49,11 +49,8 @@ export default function DirectDashboardPage() {
         return;
       }
 
-      console.log('No user found, will redirect to login');
+      console.log('No user found, will show login options');
       setLoading(false);
-      setTimeout(() => {
-        window.location.href = '/auth/login';
-      }, 2000);
     };
 
     checkAuth();
