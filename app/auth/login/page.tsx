@@ -78,11 +78,19 @@ export default function AuthPage() {
         console.log('=== LOGIN SUCCESSFUL ===');
         setMessage('✅ Giriş başarılı, yönlendiriliyorsunuz...');
 
-        // IMMEDIATE REDIRECT TO TEST SUCCESS PAGE
-        console.log('FORCING IMMEDIATE REDIRECT TO TEST SUCCESS PAGE');
-        setTimeout(() => {
+        // Wait a bit for session to be properly set, then redirect
+        setTimeout(async () => {
+          console.log('Checking session before redirect...');
+          const { data: { session } } = await supabase.auth.getSession();
+          console.log('Session before redirect:', {
+            hasSession: !!session,
+            hasUser: !!session?.user,
+            userEmail: session?.user?.email
+          });
+
+          console.log('REDIRECTING TO TEST SUCCESS PAGE');
           window.location.href = '/dashboard/test-success';
-        }, 800);
+        }, 1500); // Increased delay to ensure session is set
       }
     } catch (error) {
       setMessage('❌ Giriş yapılamadı. Lütfen tekrar deneyin.');
@@ -225,7 +233,7 @@ export default function AuthPage() {
           <p className="text-gray-600">
             {isLogin 
               ? 'SeraGPT hesabınıza giriş yapın' 
-              : 'SeraGPT ile tar��msal analizlerinize başlayın'
+              : 'SeraGPT ile tarımsal analizlerinize başlayın'
             }
           </p>
         </div>
