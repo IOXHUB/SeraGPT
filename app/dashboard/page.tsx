@@ -259,10 +259,10 @@ export default function DashboardPage() {
                 transition={{ duration: 0.6, delay: 0.4 }}
                 className="relative group"
               >
-                <div className="absolute -inset-px bg-gradient-to-r from-emerald-400 via-teal-500 to-cyan-500 rounded-2xl opacity-25"></div>
-                <div className="relative bg-white rounded-2xl border-0">
-                  <div className="p-6 border-b border-gray-100">
-                    <h3 className="text-lg font-normal text-gray-900">Hızlı İşlemler</h3>
+                <div className="absolute -inset-0.5 bg-gradient-to-r from-emerald-400 via-teal-500 to-cyan-500 rounded-2xl opacity-50 blur-sm"></div>
+                <div className="relative bg-gray-800/30 backdrop-blur-xl rounded-2xl border border-gray-700/30">
+                  <div className="p-6 border-b border-gray-700/30">
+                    <h3 className="text-lg font-light text-white">Hızlı İşlemler</h3>
                   </div>
                   <div className="p-6">
                     <div className="grid md:grid-cols-2 gap-4">
