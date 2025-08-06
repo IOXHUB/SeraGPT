@@ -37,7 +37,8 @@ export default function AdminAnalyticsPage() {
   const [timeRange, setTimeRange] = useState('7d');
 
   return (
-    <DashboardLayout>
+    <AdminErrorBoundary>
+      <DashboardLayout>
       <div className="min-h-screen bg-gray-50 text-gray-600">
         <div className="page-section-container space-y-8">
           {/* Page Header */}
@@ -295,6 +296,7 @@ export default function AdminAnalyticsPage() {
           </motion.div>
         </div>
       </div>
-    </DashboardLayout>
+      </DashboardLayout>
+    </AdminErrorBoundary>
   );
 }
