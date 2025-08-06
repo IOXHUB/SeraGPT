@@ -27,9 +27,8 @@ export default function TokensPage() {
       name: '50 Jeton',
       tokens: 50,
       price: 3500,
-      originalPrice: 2500,
-      popular: true,
-      savings: 250
+      originalPrice: 3500,
+      popular: true
     },
     {
       id: 'large',
@@ -62,7 +61,7 @@ export default function TokensPage() {
           
           {/* Header */}
           <div className="text-center">
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">🪙 Jeton Yükle</h1>
+            <h1 className="text-3xl font-bold text-gray-900 mb-2">��� Jeton Yükle</h1>
             <p className="text-gray-600">Her rapor 1 jeton kullanır. AI sohbet sınırsızdır.</p>
           </div>
 
