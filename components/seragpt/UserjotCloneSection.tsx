@@ -725,13 +725,7 @@ export default function UserjotCloneSection() {
       <BlogCardsSection />
 
       {/* FAQ Section */}
-      <div
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        viewport={{ once: true }}
-        className="bg-white py-20 text-gray-600"
-      >
+      <div className="bg-white py-20 text-gray-600">
         <div className="text-section-container">
           <div
             initial={{ opacity: 0, y: 20 }}
