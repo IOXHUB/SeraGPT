@@ -160,8 +160,13 @@ export default function AuthPage() {
         setMessage('✅ Kayıt başarılı! E-posta adresinizi kontrol edin ve doğrulama linkine tıklayın.');
         resetForm();
       }
-    } catch (error) {
-      setMessage('❌ Kayıt oluşturulamadı. Lütfen tekrar deneyin.');
+    } catch (error: any) {
+      console.error('Signup exception:', error);
+      if (error?.message) {
+        setMessage(`❌ Kayıt hatası: ${error.message}`);
+      } else {
+        setMessage('❌ Kayıt oluşturulamadı. Lütfen tekrar deneyin.');
+      }
     } finally {
       setLoading(false);
     }
