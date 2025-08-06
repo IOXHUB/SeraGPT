@@ -92,7 +92,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
   //       <div className="max-w-md w-full bg-white rounded-lg shadow-md p-8 text-center">
   //         <h1 className="text-2xl font-bold text-yellow-600 mb-4">⚠️ Oturum Bulunamadı</h1>
   //         <p className="text-gray-700 mb-6">
-  //           Dashboard'a erişmek i��in giriş yapmış olmanız gerekir.
+  //           Dashboard'a erişmek için giriş yapmış olmanız gerekir.
   //         </p>
   //       </div>
   //     </div>
@@ -135,14 +135,35 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
                 <p className="text-sm font-medium text-gray-900 truncate">
                   {user?.user_metadata?.full_name ||
                    (user?.email ? user.email.split('@')[0].charAt(0).toUpperCase() + user.email.split('@')[0].slice(1) : null) ||
-                   'Demo Kullanıcı'}
+                   (() => {
+                     const backupUser = localStorage.getItem('seragpt_user');
+                     if (backupUser) {
+                       try {
+                         const parsed = JSON.parse(backupUser);
+                         return parsed.email?.split('@')[0] || 'Kullanıcı';
+                       } catch (e) {}
+                     }
+                     return 'Kullanıcı';
+                   })()}
                   {isAdmin() && (
                     <span className="ml-2 px-2 py-0.5 text-xs rounded-full bg-purple-100 text-purple-700">
                       Admin
                     </span>
                   )}
                 </p>
-                <p className="text-xs text-gray-500 truncate">{user?.email || 'demo@seragpt.com'}</p>
+                <p className="text-xs text-gray-500 truncate">
+                  {user?.email ||
+                   (() => {
+                     const backupUser = localStorage.getItem('seragpt_user');
+                     if (backupUser) {
+                       try {
+                         const parsed = JSON.parse(backupUser);
+                         return parsed.email || 'kullanici@seragpt.com';
+                       } catch (e) {}
+                     }
+                     return 'kullanici@seragpt.com';
+                   })()}
+                </p>
               </div>
             </div>
           </div>
