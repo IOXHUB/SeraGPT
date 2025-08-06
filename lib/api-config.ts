@@ -6,6 +6,13 @@ export const API_CONFIG = {
     oneCallUrl: 'https://api.openweathermap.org/data/3.0/onecall',
     apiKey: process.env.NEXT_PUBLIC_OPENWEATHER_API_KEY || '',
   },
+
+  // Alias for weather service
+  WEATHER: {
+    baseUrl: 'https://api.openweathermap.org/data/2.5',
+    oneCallUrl: 'https://api.openweathermap.org/data/3.0/onecall',
+    apiKey: process.env.NEXT_PUBLIC_OPENWEATHER_API_KEY || '',
+  },
   
   // Copernicus Climate Data
   COPERNICUS: {
