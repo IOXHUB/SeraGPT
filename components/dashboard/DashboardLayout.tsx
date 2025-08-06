@@ -66,32 +66,19 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
     );
   }
 
-  if (!user) {
-    return (
-      <div className="min-h-screen bg-yellow-50 flex items-center justify-center">
-        <div className="max-w-md w-full bg-white rounded-lg shadow-md p-8 text-center">
-          <h1 className="text-2xl font-bold text-yellow-600 mb-4">⚠️ Oturum Bulunamadı</h1>
-          <p className="text-gray-700 mb-6">
-            Dashboard'a erişmek için giriş yapmış olmanız gerekir.
-          </p>
-          <div className="space-y-3">
-            <button
-              onClick={() => window.location.href = '/auth/login'}
-              className="w-full bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700"
-            >
-              Login Sayfasına Git
-            </button>
-            <button
-              onClick={() => window.location.href = '/dashboard/direct'}
-              className="w-full bg-green-600 text-white py-2 px-4 rounded hover:bg-green-700"
-            >
-              Direct Dashboard'a Git
-            </button>
-          </div>
-        </div>
-      </div>
-    );
-  }
+  // ALWAYS SHOW DASHBOARD - NO USER CHECK
+  // if (!user) {
+  //   return (
+  //     <div className="min-h-screen bg-yellow-50 flex items-center justify-center">
+  //       <div className="max-w-md w-full bg-white rounded-lg shadow-md p-8 text-center">
+  //         <h1 className="text-2xl font-bold text-yellow-600 mb-4">⚠️ Oturum Bulunamadı</h1>
+  //         <p className="text-gray-700 mb-6">
+  //           Dashboard'a erişmek için giriş yapmış olmanız gerekir.
+  //         </p>
+  //       </div>
+  //     </div>
+  //   );
+  // }
 
   return (
     <div className="min-h-screen bg-gray-50 flex">
