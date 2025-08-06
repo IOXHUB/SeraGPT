@@ -177,14 +177,17 @@ export default function DashboardPage() {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="bg-white rounded-2xl p-6 shadow-sm border border-gray-200"
+                className="relative group"
               >
-                <div>
-                  <p className="text-sm text-gray-600 mb-1">{stat.name}</p>
-                  <p className="text-2xl font-bold text-gray-900 mb-2">{stat.value}</p>
-                  <p className="text-sm text-gray-500">
-                    {stat.change}
-                  </p>
+                <div className="absolute -inset-0.5 bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 rounded-2xl opacity-60 group-hover:opacity-100 transition duration-300"></div>
+                <div className="relative bg-white rounded-2xl p-6 border-0">
+                  <div>
+                    <p className="text-sm text-gray-600 mb-1">{stat.name}</p>
+                    <p className="text-2xl font-bold text-gray-900 mb-2">{stat.value}</p>
+                    <p className="text-sm text-gray-500">
+                      {stat.change}
+                    </p>
+                  </div>
                 </div>
               </motion.div>
             ))}
