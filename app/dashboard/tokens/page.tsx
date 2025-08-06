@@ -12,7 +12,7 @@ export default function TokensPage() {
     freeTokens: 5
   });
 
-  // Jeton paketleri (Her jeton 50TL hesabıyla)
+  // Jeton paketleri - Kullanıcı fiyatlandırması
   const tokenPackages = [
     {
       id: 'small',
