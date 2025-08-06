@@ -28,7 +28,7 @@ const nextConfig = {
   
   // Webpack configuration for better builds
   webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
-    // HMR optimization for development
+    // Development-only optimizations
     if (dev && !isServer) {
       config.watchOptions = {
         poll: 1000,
@@ -36,16 +36,9 @@ const nextConfig = {
         ignored: ['**/node_modules/**', '**/.git/**', '**/.next/**']
       };
 
-      // Improved HMR reliability
+      // Improved HMR reliability - DEV ONLY
       config.output.hotUpdateChunkFilename = 'static/webpack/[id].[fullhash].hot-update.js';
       config.output.hotUpdateMainFilename = 'static/webpack/[fullhash].hot-update.json';
-
-      // Better error handling for fetch failures
-      config.optimization = {
-        ...config.optimization,
-        moduleIds: 'deterministic',
-        chunkIds: 'deterministic'
-      };
 
       // Prevent fetch issues in HMR
       config.resolve.fallback = {
@@ -54,14 +47,48 @@ const nextConfig = {
         net: false,
         tls: false,
       };
-
-      // Improve HMR connection reliability
-      config.devServer = {
-        ...config.devServer,
-        hot: true,
-        liveReload: false
-      };
     }
+
+    // Production optimizations
+    if (!dev) {
+      // Disable HMR completely in production
+      config.optimization = {
+        ...config.optimization,
+        moduleIds: 'deterministic',
+        chunkIds: 'deterministic',
+        // Disable any HMR in production
+        hotUpdateChunkFilename: false,
+        hotUpdateMainFilename: false
+      };
+
+      // Remove any HMR plugins in production
+      config.plugins = config.plugins.filter(plugin =>
+        !plugin.constructor.name.includes('HotModuleReplacementPlugin')
+      );
+
+      // Ensure no HMR runtime in production
+      if (config.entry && !isServer) {
+        const originalEntry = config.entry;
+        config.entry = async () => {
+          const entries = await originalEntry();
+          // Remove HMR entries from production build
+          Object.keys(entries).forEach(key => {
+            entries[key] = entries[key].filter(entry =>
+              !entry.includes('webpack-hot-middleware') &&
+              !entry.includes('hot-update')
+            );
+          });
+          return entries;
+        };
+      }
+    }
+
+    // Better error handling for all environments
+    config.optimization = {
+      ...config.optimization,
+      moduleIds: 'deterministic',
+      chunkIds: 'deterministic'
+    };
 
     // Important: return the modified config
     return config;
