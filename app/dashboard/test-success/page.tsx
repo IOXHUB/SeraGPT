@@ -56,6 +56,18 @@ export default function TestSuccessPage() {
     };
 
     checkUser();
+
+    // Also listen for auth state changes
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+      console.log('Auth state change in test success:', { event, hasUser: !!session?.user });
+      if (session?.user) {
+        console.log('✅ User detected via auth state change:', session.user.email);
+        setUser(session.user);
+        setLoading(false);
+      }
+    });
+
+    return () => subscription.unsubscribe();
   }, []);
 
   const handleLogout = async () => {
