@@ -123,7 +123,7 @@ export default function UserjotCloneSection() {
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   <div className="flex items-center space-x-3">
-                    <span className="text-lg">���</span>
+                    <span className="text-lg">🎯</span>
                     <span className="text-base font-medium">Danışmanlık</span>
                   </div>
                 </a>
@@ -382,10 +382,7 @@ export default function UserjotCloneSection() {
 
               {/* Card 3 - Ekipman Listesi */}
               <div
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                viewport={{ once: true }}
+
                 className="flex-shrink-0 w-80 bg-white rounded-2xl p-8 border border-gray-200 relative"
               >
                 <div className="absolute top-6 left-6 text-6xl font-bold text-gray-100">03</div>
@@ -636,10 +633,7 @@ export default function UserjotCloneSection() {
 
               {/* Gallery Image 3 */}
               <div
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                viewport={{ once: true }}
+
                 className="flex-shrink-0 w-80 h-60 bg-gray-200 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
               >
                 <div className="w-full h-full bg-gradient-to-br from-purple-100 to-pink-100 flex items-center justify-center">
