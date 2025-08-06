@@ -162,9 +162,16 @@ export default function AuthPage() {
       } else if (data?.user && data?.session) {
         // User created and automatically signed in
         setMessage('✅ Kayıt başarılı! Yönlendiriliyorsunuz...');
+        // Store user info in localStorage for bulletproof auth
+        localStorage.setItem('seragpt_user', JSON.stringify({
+          id: data.user.id,
+          email: data.user.email,
+          loginTime: new Date().toISOString()
+        }));
+
         setTimeout(() => {
-          console.log('SIGNUP SUCCESS - HARD REDIRECT TO TEST SUCCESS');
-          window.location.href = '/dashboard/test-success';
+          console.log('SIGNUP SUCCESS - REDIRECTING TO DASHBOARD');
+          window.location.href = '/dashboard';
         }, 1000);
       } else if (data && !data.user && !error) {
         // Supabase sometimes returns empty data for existing users without error
