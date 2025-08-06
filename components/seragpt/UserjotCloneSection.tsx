@@ -287,10 +287,7 @@ export default function UserjotCloneSection() {
       <div className="py-20 bg-gray-50 text-gray-600">
         <div className="page-section-container">
           <div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
+
             className="text-center mb-16"
           >
             <h2 className="text-xl font-bold text-gray-900 mb-6">
@@ -491,7 +488,7 @@ export default function UserjotCloneSection() {
 
                   <div className="space-y-3 mb-4">
                     <div>
-                      <p className="text-gray-800 text-xs font-semibold mb-1">🎯 3 Önemli Fayda:</p>
+                      <p className="text-gray-800 text-xs font-semibold mb-1">�� 3 Önemli Fayda:</p>
                       <p className="text-gray-600 text-xs">• Sera yerleşim planı (2D çizim)</p>
                       <p className="text-gray-600 text-xs">• Elektrik ve sulama hat planı</p>
                       <p className="text-gray-600 text-xs">• Teknik kabin, depo gösterimi</p>
@@ -543,10 +540,7 @@ export default function UserjotCloneSection() {
       <div className="py-20 text-gray-600">
         <div className="text-section-container">
           <div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
+
             className="text-center mb-16"
           >
             <h2 className="text-xl font-bold text-gray-900 mb-6">
@@ -603,10 +597,7 @@ export default function UserjotCloneSection() {
       <div className="py-20 bg-gray-50 text-gray-600">
         <div className="page-section-container bg-gray-50">
           <div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
+
             className="text-center mb-16 flex flex-col"
           >
             <h2 className="text-xl font-bold text-gray-900 mb-6 flex flex-col max-w-[576px] mx-auto">
@@ -732,7 +723,7 @@ export default function UserjotCloneSection() {
                 <div className="w-full h-full bg-gradient-to-br from-rose-100 to-pink-100 flex items-center justify-center">
                   <div className="text-center">
                     <div className="text-4xl mb-3">🌹</div>
-                    <p className="text-gray-700 font-medium">Çiçek Üretim Seras��</p>
+                    <p className="text-gray-700 font-medium">Çiçek Üretim Serası</p>
                     <p className="text-gray-500 text-sm">Isparta, 1.800 m²</p>
                   </div>
                 </div>
