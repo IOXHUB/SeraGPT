@@ -215,7 +215,7 @@ export default function UserjotCloneSection() {
             viewport={{ once: true }}
             className="relative"
           >
-            <div className="bg-gradient-to-br from-blue-50 to-indigo-100 rounded-2xl p-8 shadow-lg border-2 border-purple-400 shadow-purple-400/20 hover:border-purple-500 hover:shadow-purple-500/30 transition-all duration-300">
+            <div className="rounded-2xl p-8 shadow-lg shadow-purple-400/20 hover:shadow-purple-500/30 transition-all duration-300 bg-center bg-cover bg-no-repeat border-4 border-purple-400">
               <div className="bg-white rounded-xl shadow-lg overflow-hidden">
                 {/* Placeholder Image for User Panel */}
                 <div className="w-full h-96 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
