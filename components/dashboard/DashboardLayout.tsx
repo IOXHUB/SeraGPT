@@ -114,7 +114,9 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
               </div>
               <div className="flex-1 min-w-0">
                 <p className="text-sm font-medium text-gray-900 truncate">
-                  {user?.user_metadata?.full_name || user?.email || 'Demo Kullanıcı'}
+                  {user?.user_metadata?.full_name ||
+                   (user?.email ? user.email.split('@')[0].charAt(0).toUpperCase() + user.email.split('@')[0].slice(1) : null) ||
+                   'Demo Kullanıcı'}
                   {isAdmin() && (
                     <span className="ml-2 px-2 py-0.5 text-xs rounded-full bg-purple-100 text-purple-700">
                       Admin
