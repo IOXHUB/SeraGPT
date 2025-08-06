@@ -217,14 +217,14 @@ export default function UserjotCloneSection() {
           >
             <div className="rounded-2xl p-8 shadow-lg shadow-purple-400/20 hover:shadow-purple-500/30 transition-all duration-300 bg-center bg-cover bg-no-repeat border-4 border-purple-400">
               <div className="bg-white rounded-xl shadow-lg overflow-hidden">
-                {/* Placeholder Image for User Panel */}
-                <div className="w-full h-96 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
+                {/* Dashboard Image */}
+                <div
+                  className="w-full h-96 bg-center bg-cover bg-no-repeat flex items-center justify-center"
+                  style={{
+                    backgroundImage: "url(https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2F1cd1d24d2413420fa7c24610e14c9006)"
+                  }}
+                >
                   <div className="text-center">
-                    <div className="w-16 h-16 bg-gray-300 rounded-lg mx-auto mb-4 flex items-center justify-center">
-                      <span className="text-2xl">📊</span>
-                    </div>
-                    <h3 className="text-lg font-semibold text-gray-700 mb-2">Kullanıcı Paneli</h3>
-                    <p className="text-sm text-gray-500">Sera Yatırım Analiz Merkezi Önizlemesi</p>
                   </div>
                 </div>
               </div>
@@ -430,7 +430,7 @@ export default function UserjotCloneSection() {
                     </div>
 
                     <div>
-                      <p className="text-gray-800 text-xs font-semibold mb-1">👤 Kullanıcı Girdisi:</p>
+                      <p className="text-gray-800 text-xs font-semibold mb-1">👤 Kullan��cı Girdisi:</p>
                       <p className="text-gray-600 text-xs">• Bitki türü, sezon, pazarlama hedefi</p>
                     </div>
 
