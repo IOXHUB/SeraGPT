@@ -26,6 +26,23 @@ interface PasswordResetEmailData {
   resetUrl: string;
 }
 
+interface SupportTicketEmailData {
+  ticketId: string;
+  customerName: string;
+  customerEmail: string;
+  subject: string;
+  message: string;
+  priority: 'low' | 'medium' | 'high' | 'urgent';
+  category: 'technical' | 'billing' | 'general' | 'bug';
+}
+
+interface SupportConfirmationEmailData {
+  to: string;
+  name: string;
+  ticketId: string;
+  subject: string;
+}
+
 export class EmailService {
   private apiKey: string;
   private from: string;
