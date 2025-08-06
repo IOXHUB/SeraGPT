@@ -429,15 +429,21 @@ export default function AuthPage() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+              className="w-full flex justify-center py-4 px-4 border border-transparent rounded-lg text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-75 disabled:cursor-not-allowed transition-colors"
             >
               {loading ? (
                 <div className="flex items-center">
-                  <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
-                  {isLogin ? 'Giriş yapılıyor...' : 'Kayıt oluşturuluyor...'}
+                  <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-3"></div>
+                  <span>
+                    {isLogin ? 'Giriş yapılıyor...' :
+                     message.includes('1/3') ? 'Bilgiler kontrol ediliyor...' :
+                     message.includes('2/3') ? 'Hesap oluşturuluyor...' :
+                     message.includes('3/3') ? 'E-posta hazırlanıyor...' :
+                     'İşlem devam ediyor...'}
+                  </span>
                 </div>
               ) : (
-                isLogin ? 'Giri�� Yap' : 'Hesap Oluştur'
+                isLogin ? 'Giriş Yap' : 'Hesap Oluştur'
               )}
             </button>
           </form>
