@@ -161,7 +161,7 @@ export default function DashboardPage() {
             className="text-center"
           >
             <h1 className="text-4xl font-bold text-gray-900 mb-4">
-              Sera Yatırım Analiz Merkezi
+              SeraGPT Kontrol Paneli
             </h1>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
               20 y��llık mühendislik deneyimi ve 110+ veri setiyle desteklenen yapay zeka analizleri ile 
@@ -199,73 +199,49 @@ export default function DashboardPage() {
               className="text-center mb-8"
             >
               <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                5 Adımda Sera Yatırım Analizi
+                Kullanıma Hazır Analizler
               </h2>
               <p className="text-gray-600">
                 Her analiz için 1 jeton harcanır. İlk 5 analiziniz ücretsizdir.
               </p>
             </motion.div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
               {analysisTools.map((tool, index) => (
                 <motion.div
                   key={tool.id}
-                  initial={{ opacity: 0, x: 30 }}
-                  animate={{ opacity: 1, x: 0 }}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className="bg-white rounded-2xl p-8 border border-gray-200 hover:shadow-lg transition-shadow relative group"
+                  className="relative group"
                 >
-                  <div className="absolute top-6 right-6 text-4xl font-bold text-gray-100">
-                    {String(index + 1).padStart(2, '0')}
-                  </div>
-                  
-                  <div className="mb-6">
-                    <h3 className="text-xl font-bold text-gray-900 mb-3">{tool.title}</h3>
-                    <p className="text-gray-600 text-sm mb-4">{tool.description}</p>
-                    
-                    <div className="space-y-3 mb-6">
-                      <div>
-                        <p className="text-gray-800 text-xs font-semibold mb-1">🎯 Faydalar:</p>
-                        {tool.benefits.map((benefit, idx) => (
-                          <p key={idx} className="text-gray-600 text-xs">• {benefit}</p>
-                        ))}
-                      </div>
-                      
-                      <div>
-                        <p className="text-gray-800 text-xs font-semibold mb-1">🔗 Veri Kaynakları:</p>
-                        <p className="text-gray-600 text-xs">• {tool.dataSources.join(', ')}</p>
-                      </div>
-                      
-                      <div>
-                        <p className="text-gray-800 text-xs font-semibold mb-1">👤 Gerekli Bilgiler:</p>
-                        <p className="text-gray-600 text-xs">• {tool.userInputs.join(', ')}</p>
-                      </div>
-                      
-                      <div>
-                        <p className="text-gray-800 text-xs font-semibold mb-1">📄 PDF Çıktısı:</p>
-                        <p className="text-gray-600 text-xs">• {tool.pdfOutput}</p>
-                      </div>
+                  <div className="absolute -inset-0.5 bg-gradient-to-r from-cyan-500 via-purple-500 to-pink-500 rounded-2xl blur opacity-20 group-hover:opacity-40 transition duration-300"></div>
+                  <div className="relative bg-white rounded-2xl p-6 border border-gray-200 hover:shadow-xl transition-all duration-300 h-full flex flex-col">
+                    <div className="text-center mb-4">
+                      <div className="text-3xl mb-3">{tool.icon}</div>
+                      <h3 className="text-lg font-bold text-gray-900 mb-2 leading-tight">{tool.title}</h3>
+                      <p className="text-gray-600 text-sm">{tool.description}</p>
                     </div>
-                  </div>
-                  
-                  <div className="mt-auto">
-                    <a
-                      href={tool.href}
-                      className={`w-full inline-flex items-center justify-center px-6 py-3 rounded-xl text-sm font-semibold transition-colors ${
-                        userTokens >= tool.tokensRequired
-                          ? 'bg-gray-600 hover:bg-gray-700 text-white'
-                          : 'bg-gray-100 text-gray-400 cursor-not-allowed'
-                      }`}
-                    >
-                      {userTokens >= tool.tokensRequired ? (
-                        <>
-                          <span className="mr-2">🪙</span>
-                          Analizi Başlat ({tool.tokensRequired} jeton)
-                        </>
-                      ) : (
-                        'Yetersiz jeton'
-                      )}
-                    </a>
+
+                    <div className="mt-auto">
+                      <a
+                        href={tool.href}
+                        className={`w-full inline-flex items-center justify-center px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-300 ${
+                          userTokens >= tool.tokensRequired
+                            ? 'bg-gradient-to-r from-gray-600 to-gray-700 hover:from-gray-700 hover:to-gray-800 text-white shadow-lg hover:shadow-xl'
+                            : 'bg-gray-100 text-gray-400 cursor-not-allowed'
+                        }`}
+                      >
+                        {userTokens >= tool.tokensRequired ? (
+                          <>
+                            <span className="mr-2">🪙</span>
+                            Analizi Başlat
+                          </>
+                        ) : (
+                          'Yetersiz jeton'
+                        )}
+                      </a>
+                    </div>
                   </div>
                 </motion.div>
               ))}
