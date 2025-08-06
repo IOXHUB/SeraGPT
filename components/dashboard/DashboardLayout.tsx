@@ -13,16 +13,16 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const router = useRouter();
 
-  // AUTHENTICATION DISABLED - Always allow access to dashboard
-  // useEffect(() => {
-  //   if (!loading && !user) {
-  //     console.log('DashboardLayout: No user found after loading complete');
-  //     setTimeout(() => {
-  //       console.log('DashboardLayout: No user in any location, redirecting to login');
-  //       window.location.href = '/auth/login';
-  //     }, 1000);
-  //   }
-  // }, [user, loading, router]);
+  // Check authentication and redirect if needed
+  useEffect(() => {
+    if (!loading && !user) {
+      console.log('DashboardLayout: No user found after loading complete, redirecting to login');
+      // Give a short delay to allow localStorage auth to load
+      setTimeout(() => {
+        window.location.href = '/auth/login';
+      }, 500);
+    }
+  }, [user, loading, router]);
 
   const handleSignOut = async () => {
     try {
