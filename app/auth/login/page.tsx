@@ -9,24 +9,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 export const dynamic = 'force-dynamic';
 
 export default function AuthPage() {
-  // Redirect to simplified auth system
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      window.location.href = '/auth/simple';
-    }
-  }, []);
-
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center">
-      <div className="text-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
-        <p className="mt-4 text-gray-600">Basit auth sistemine yönlendiriliyor...</p>
-      </div>
-    </div>
-  );
-}
-
-function AuthPageOriginal() {
   const [isLogin, setIsLogin] = useState(true);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
