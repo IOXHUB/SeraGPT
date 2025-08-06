@@ -78,11 +78,11 @@ export default function AuthPage() {
         console.log('=== LOGIN SUCCESSFUL ===');
         setMessage('✅ Giriş başarılı, yönlendiriliyorsunuz...');
 
-        // IMMEDIATE REDIRECT - NO MORE DELAYS OR CHECKS
-        console.log('FORCING IMMEDIATE REDIRECT TO DASHBOARD');
+        // IMMEDIATE REDIRECT TO TEST SUCCESS PAGE
+        console.log('FORCING IMMEDIATE REDIRECT TO TEST SUCCESS PAGE');
         setTimeout(() => {
-          window.location.href = '/dashboard';
-        }, 500);
+          window.location.href = '/dashboard/test-success';
+        }, 800);
       }
     } catch (error) {
       setMessage('❌ Giriş yapılamadı. Lütfen tekrar deneyin.');
