@@ -15,7 +15,7 @@ export default function DashboardPage() {
       id: 'roi-simulation',
       title: 'Yatırım Geri Dönüş (ROI) Simülasyonu',
       description: 'Yatırımın geri dönüş süresi ve kar marjı analizi',
-      icon: '����',
+      icon: '🧮',
       tokensRequired: 1,
       status: 'available',
       benefits: [
@@ -108,7 +108,7 @@ export default function DashboardPage() {
   const recentActivity = [
     {
       type: 'welcome',
-      title: 'SeraGPT\'ye hoş geldiniz!',
+      title: 'SeraGPT\'ye ho�� geldiniz!',
       description: '5 ücretsiz analiz hakkınız ile başlayabilirsiniz',
       time: 'Şimdi',
       color: 'bg-blue-100 text-blue-600'
@@ -228,7 +228,7 @@ export default function DashboardPage() {
                     <div className="mt-auto">
                       <a
                         href={tool.href}
-                        className={`w-full inline-flex items-center justify-center px-4 py-3 rounded-xl text-sm font-semibold transition-all duration-300 ${
+                        className={`w-full inline-flex items-center justify-center px-4 py-3 rounded-xl text-sm font-normal transition-all duration-300 ${
                           userTokens >= tool.tokensRequired
                             ? 'bg-gradient-to-r from-gray-900 to-gray-800 hover:from-gray-800 hover:to-gray-700 text-white'
                             : 'bg-gray-100 text-gray-400 cursor-not-allowed'
