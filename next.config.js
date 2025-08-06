@@ -33,12 +33,19 @@ const nextConfig = {
       config.watchOptions = {
         poll: 1000,
         aggregateTimeout: 300,
-        ignored: ['**/node_modules/**', '**/.git/**']
+        ignored: ['**/node_modules/**', '**/.git/**', '**/.next/**']
       };
 
-      // Better HMR reliability
+      // Improved HMR reliability
       config.output.hotUpdateChunkFilename = 'static/webpack/[id].[fullhash].hot-update.js';
       config.output.hotUpdateMainFilename = 'static/webpack/[fullhash].hot-update.json';
+
+      // Better error handling for fetch failures
+      config.optimization = {
+        ...config.optimization,
+        moduleIds: 'deterministic',
+        chunkIds: 'deterministic'
+      };
 
       // Prevent fetch issues in HMR
       config.resolve.fallback = {
@@ -46,6 +53,13 @@ const nextConfig = {
         fs: false,
         net: false,
         tls: false,
+      };
+
+      // Improve HMR connection reliability
+      config.devServer = {
+        ...config.devServer,
+        hot: true,
+        liveReload: false
       };
     }
 
