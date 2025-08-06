@@ -156,8 +156,8 @@ export default function AuthPage() {
         // User created and automatically signed in
         setMessage('✅ Kayıt başarılı! Yönlendiriliyorsunuz...');
         setTimeout(() => {
-          console.log('SIGNUP SUCCESS - HARD REDIRECT TO DASHBOARD');
-          window.location.replace('/dashboard');
+          console.log('SIGNUP SUCCESS - HARD REDIRECT TO TEST SUCCESS');
+          window.location.href = '/dashboard/test-success';
         }, 1000);
       } else if (data && !data.user && !error) {
         // Supabase sometimes returns empty data for existing users without error
@@ -225,7 +225,7 @@ export default function AuthPage() {
           <p className="text-gray-600">
             {isLogin 
               ? 'SeraGPT hesabınıza giriş yapın' 
-              : 'SeraGPT ile tarımsal analizlerinize başlayın'
+              : 'SeraGPT ile tar��msal analizlerinize başlayın'
             }
           </p>
         </div>
