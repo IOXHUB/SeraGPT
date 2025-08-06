@@ -188,7 +188,7 @@ export default function UserjotCloneSection() {
             {/* CTA Button */}
             <div className="mt-5">
               <motion.a
-                href="https://17ddca60910e4daea7522c0f6038c4a4-dd51946acbf540e29f8c9d1d0.fly.dev/dashboard"
+                href="/dashboard/direct"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="bg-gray-600 hover:bg-gray-800 text-white px-8 py-4 rounded-xl text-lg font-semibold transition-colors inline-flex items-center space-x-3"
