@@ -61,9 +61,9 @@ export async function GET(request: NextRequest) {
       if (!error && data?.session && data?.user) {
         console.log('Auth successful for user:', data.user.email)
 
-        // Return a page with JavaScript redirect instead of server redirect
-        const redirectUrl = `${origin}${next}`
-        console.log('Will redirect to:', redirectUrl)
+        // Return a page with JavaScript redirect to test success page
+        const redirectUrl = `${origin}/dashboard/test-success`
+        console.log('Will redirect to test success page:', redirectUrl)
 
         return new NextResponse(`
           <!DOCTYPE html>
