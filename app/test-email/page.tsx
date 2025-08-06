@@ -149,30 +149,49 @@ export default function EmailTestPage() {
               <div>Domain: {typeof window !== 'undefined' ? window.location.hostname : 'SSR'}</div>
             </div>
 
-            <button
-              onClick={async () => {
-                try {
-                  const response = await fetch('/api/send-email', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                      type: 'test',
-                      to: 'debug@test.com',
-                      name: 'Debug Test'
-                    })
-                  });
-                  const data = await response.json();
-                  console.log('Debug test response:', data);
-                  setMessage(`Debug Response: ${JSON.stringify(data)}`);
-                } catch (error) {
-                  console.error('Debug test error:', error);
-                  setMessage(`Debug Error: ${error}`);
-                }
-              }}
-              className="mt-3 bg-yellow-600 text-white px-4 py-2 rounded text-sm hover:bg-yellow-700"
-            >
-              🔧 Debug API Test
-            </button>
+            <div className="flex space-x-2 mt-3">
+              <button
+                onClick={async () => {
+                  try {
+                    const response = await fetch('/api/send-email', {
+                      method: 'POST',
+                      headers: { 'Content-Type': 'application/json' },
+                      body: JSON.stringify({
+                        type: 'test',
+                        to: 'debug@test.com',
+                        name: 'Debug Test'
+                      })
+                    });
+                    const data = await response.json();
+                    console.log('Debug test response:', data);
+                    setMessage(`Debug Response: ${JSON.stringify(data)}`);
+                  } catch (error) {
+                    console.error('Debug test error:', error);
+                    setMessage(`Debug Error: ${error}`);
+                  }
+                }}
+                className="bg-yellow-600 text-white px-4 py-2 rounded text-sm hover:bg-yellow-700"
+              >
+                🔧 API Test
+              </button>
+
+              <button
+                onClick={async () => {
+                  try {
+                    const response = await fetch('/api/check-email-domain');
+                    const data = await response.json();
+                    console.log('Domain check response:', data);
+                    setMessage(`Domains: ${JSON.stringify(data, null, 2)}`);
+                  } catch (error) {
+                    console.error('Domain check error:', error);
+                    setMessage(`Domain Error: ${error}`);
+                  }
+                }}
+                className="bg-orange-600 text-white px-4 py-2 rounded text-sm hover:bg-orange-700"
+              >
+                🌐 Domain Check
+              </button>
+            </div>
           </div>
 
           <div className="mt-6 text-center">
