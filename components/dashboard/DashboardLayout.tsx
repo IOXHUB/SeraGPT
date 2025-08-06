@@ -265,6 +265,9 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
         <main className="flex-1 p-6">
           {children}
         </main>
+
+        {/* Debug Component */}
+        <AuthDebugInfo />
       </div>
 
       {/* Mobile Sidebar Overlay */}
