@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { useAuth } from '@/lib/hooks/useAuth';
 import { useRouter } from 'next/navigation';
 import AuthDebugInfo from '@/components/AuthDebugInfo';
+import Footer from '@/components/Footer';
 
 interface DashboardLayoutProps {
   children: React.ReactNode;
