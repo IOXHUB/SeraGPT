@@ -441,10 +441,10 @@ export default function ROIAnalysisPage() {
             transition={{ duration: 0.6 }}
             className="text-center mb-8"
           >
-            <h1 className="text-4xl font-bold text-gray-900 mb-4">
-              💰 ROI Simülasyonu
+            <h1 className="text-4xl font-bold text-gray-900 mb-4 text-center">
+              ROI Simülasyonu
             </h1>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto text-center">
               Sera yatırımınızın geri dönüş süresini ve karlılığını analiz edin
             </p>
           </motion.div>
