@@ -13,9 +13,9 @@ export default function UserjotCloneSection() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Header - Full width with 960px content container */}
-      <header className="w-full bg-gray-50 relative">
-        <div className="navbar-footer-container">
+      {/* Header - Clean layout */}
+      <header className="header">
+        <div className="header-footer-container">
           {/* Logo - clickable to homepage */}
           <div className="flex items-center space-x-3">
             <a href="/" className="flex items-center space-x-3">
@@ -302,7 +302,7 @@ export default function UserjotCloneSection() {
 
                     <div>
                       <p className="text-gray-800 text-xs font-semibold mb-1">🔗 Veri Kaynakları:</p>
-                      <p className="text-gray-600 text-xs">• OpenWeather, FAO & TÜİK</p>
+                      <p className="text-gray-600 text-xs">• OpenWeather, FAO & TÜ��K</p>
                       <p className="text-gray-600 text-xs">• Seraburada / e-Tarım API</p>
                     </div>
 
@@ -464,7 +464,7 @@ export default function UserjotCloneSection() {
                     </div>
 
                     <div>
-                      <p className="text-gray-800 text-xs font-semibold mb-1">🔗 Veri Kaynakları:</p>
+                      <p className="text-gray-800 text-xs font-semibold mb-1">��� Veri Kaynakları:</p>
                       <p className="text-gray-600 text-xs">• Planner 2D, CAD AI Tools</p>
                       <p className="text-gray-600 text-xs">• HerbaTools yerleşim kütüphanesi</p>
                     </div>
