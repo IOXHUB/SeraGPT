@@ -161,7 +161,7 @@ export default function TokensPage() {
                 {/* Savings */}
                 {pkg.savings && (
                   <div style={{ marginBottom: '16px', fontSize: '12px', color: '#10b981', fontWeight: '600', textAlign: 'center' }}>
-                    💰 ₺{pkg.savings.toLocaleString()} tasarruf
+                    �� ₺{pkg.savings.toLocaleString()} tasarruf
                   </div>
                 )}
 
@@ -233,13 +233,13 @@ export default function TokensPage() {
           {/* Payment Info */}
           <div style={{
             background: '#ffffff',
-            borderRadius: '16px',
-            padding: '32px',
+            borderRadius: '12px',
+            padding: '20px',
             border: '2px solid #06b6d4',
-            boxShadow: '0 0 24px rgba(6, 182, 212, 0.1)',
-            marginBottom: '24px'
+            boxShadow: '0 0 16px rgba(6, 182, 212, 0.1)',
+            marginBottom: '20px'
           }}>
-            <h2 style={{ fontSize: '20px', fontWeight: '700', color: '#111827', marginBottom: '24px', fontFamily: 'Inter, sans-serif' }}>
+            <h2 style={{ fontSize: '18px', fontWeight: '700', color: '#111827', marginBottom: '16px', fontFamily: 'Inter, sans-serif', textAlign: 'center' }}>
               💳 Ödeme Bilgileri
             </h2>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
