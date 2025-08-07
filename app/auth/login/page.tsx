@@ -221,7 +221,7 @@ export default function AuthPage() {
         }, 5000);
       } else if (data?.user && data?.session) {
         // User created and automatically signed in
-        setMessage('✅ Hesabınız oluşturuldu! Dashboard\'a yönlendiriliyorsunuz...');
+        setMessage('✅ Hesabınız oluşturuldu! Dashboard\'a y��nlendiriliyorsunuz...');
 
         // Send welcome email
         console.log('🔧 Attempting to send welcome email to:', data.user.email);
@@ -548,6 +548,49 @@ export default function AuthPage() {
               >
                 🔗 Test Connection
               </button>
+            </div>
+
+            <div className="mt-4 p-3 bg-yellow-100 border border-yellow-400 rounded">
+              <h4 className="font-semibold text-yellow-800 text-sm mb-2">🚀 Quick Development Access:</h4>
+              <div className="space-y-2">
+                <button
+                  onClick={() => {
+                    // Create a fake user session for development
+                    localStorage.setItem('seragpt_user', JSON.stringify({
+                      id: 'dev-user-admin',
+                      email: 'admin@seragpt.com',
+                      role: 'admin',
+                      loginTime: new Date().toISOString()
+                    }));
+                    setMessage('✅ Admin access simulated! Redirecting...');
+                    setTimeout(() => {
+                      window.location.href = '/admin';
+                    }, 1000);
+                  }}
+                  className="w-full bg-red-500 text-white px-3 py-2 rounded text-sm hover:bg-red-600 transition-colors"
+                >
+                  🔑 Quick Admin Dashboard Access
+                </button>
+                <button
+                  onClick={() => {
+                    // Create a fake user session for development
+                    localStorage.setItem('seragpt_user', JSON.stringify({
+                      id: 'dev-user-normal',
+                      email: 'user@seragpt.com',
+                      role: 'user',
+                      loginTime: new Date().toISOString()
+                    }));
+                    setMessage('✅ User access simulated! Redirecting...');
+                    setTimeout(() => {
+                      window.location.href = '/dashboard';
+                    }, 1000);
+                  }}
+                  className="w-full bg-blue-500 text-white px-3 py-2 rounded text-sm hover:bg-blue-600 transition-colors"
+                >
+                  👤 Quick User Dashboard Access
+                </button>
+              </div>
+              <p className="text-xs text-yellow-700 mt-2">⚠️ Development only - bypasses authentication</p>
             </div>
           </div>
         )}
