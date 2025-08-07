@@ -381,6 +381,9 @@ export interface AuthState {
 }
 
 export interface AuthContextType extends AuthState {
+  // Authentication state
+  isAuthenticated: boolean;
+
   // Authentication methods
   signIn: (email: string, password: string) => Promise<{ data: any; error: any }>;
   signUp: (email: string, password: string, userData?: CreateUserProfileRequest) => Promise<{ data: any; error: any }>;
