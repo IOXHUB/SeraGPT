@@ -136,11 +136,8 @@ export async function POST(request: NextRequest) {
       email_notifications: true,
       push_notifications: true,
       marketing_emails: false,
-      timezone: 'Europe/Istanbul',
-      date_format: 'DD/MM/YYYY',
-      number_format: 'TR',
-      currency: 'TRY',
-      measurement_units: 'metric'
+      default_currency: 'TRY',
+      default_units: 'metric'
     };
 
     // Update user preferences with defaults
