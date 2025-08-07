@@ -371,7 +371,7 @@ export function useUserProfileValidation(initialProfile: any) {
       company_name: (value: string) => [
         {
           type: 'length' as const,
-          validator: (v) => !v || (v.length >= 2 && v.length <= 200),
+          validator: (v: string) => !v || (v.length >= 2 && v.length <= 200),
           message: 'Şirket adı 2-200 karakter arasında olmalı'
         }
       ]
