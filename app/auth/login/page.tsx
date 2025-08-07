@@ -1,9 +1,10 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { supabase } from '@/lib/supabase';
 import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useAuth } from '@/lib/hooks/useAuth';
+import { authService } from '@/lib/services/auth-service';
 
 // Force dynamic rendering
 export const dynamic = 'force-dynamic';
@@ -13,10 +14,14 @@ export default function AuthPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [fullName, setFullName] = useState('');
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
   const [mounted, setMounted] = useState(false);
+  const [connectionTest, setConnectionTest] = useState({ tested: false, success: false });
+  
   const router = useRouter();
+  const { signIn, signUp, user, loading: authLoading } = useAuth();
 
   useEffect(() => {
     setMounted(true);
@@ -39,12 +44,37 @@ export default function AuthPage() {
     } else if (error === 'missing_code') {
       setMessage('❌ Doğrulama kodu eksik. Lütfen e-posta linkini tekrar kullanın.');
     }
+
+    // Test connection on mount
+    testConnection();
   }, []);
+
+  // Redirect if user is already logged in
+  useEffect(() => {
+    if (user && !authLoading) {
+      console.log('User already logged in, redirecting to dashboard');
+      router.push('/dashboard');
+    }
+  }, [user, authLoading, router]);
+
+  const testConnection = async () => {
+    try {
+      const result = await authService.testAuthConnection();
+      setConnectionTest({ tested: true, success: result.success });
+      if (!result.success) {
+        console.warn('Auth connection test failed:', result.message);
+      }
+    } catch (error) {
+      console.error('Connection test error:', error);
+      setConnectionTest({ tested: true, success: false });
+    }
+  };
 
   const resetForm = () => {
     setEmail('');
     setPassword('');
     setConfirmPassword('');
+    setFullName('');
     setMessage('');
   };
 
@@ -65,80 +95,52 @@ export default function AuthPage() {
     }
 
     try {
-      // Test Supabase connection first
-      console.log('Testing Supabase connection...');
-      console.log('Supabase URL:', process.env.NEXT_PUBLIC_SUPABASE_URL);
-      console.log('Has Key:', !!process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY);
+      console.log('🔑 Attempting login with enhanced auth system...');
+      setMessage('🔍 Giriş bilgileri kontrol ediliyor...');
 
-      console.log('Attempting login with:', { email, passwordLength: password.length });
-      console.log('Using Supabase URL:', process.env.NEXT_PUBLIC_SUPABASE_URL);
-      console.log('Using API key prefix:', process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY?.substring(0, 20) + '...');
+      const result = await signIn(email, password);
 
-      const { data, error } = await supabase.auth.signInWithPassword({
-        email,
-        password,
-      });
+      if (result.error) {
+        console.error('Login error details:', result.error);
 
-      console.log('Login response:', {
-        hasData: !!data,
-        hasUser: !!data?.user,
-        hasSession: !!data?.session,
-        error: error?.message,
-        errorName: error?.name,
-        errorStatus: error?.status
-      });
-
-      if (error) {
-        console.error('Login error details:', {
-          message: error.message,
-          name: error.name,
-          status: error.status,
-          details: error
-        });
-
-        // Handle specific auth errors
-        if (error.name === 'AuthInvalidTokenResponseError' || error.message.includes('Auth session or user missing')) {
+        // Enhanced error handling
+        if (result.error.message.includes('Auth session or user missing')) {
           setMessage('❌ Kimlik doğrulama sistemi hatası. Lütfen admin ile iletişime geçin.');
-          console.error('🚨 CRITICAL: Supabase auth configuration issue detected');
-        } else if (error.message.includes('Failed to fetch') || error.message.includes('Network error')) {
+        } else if (result.error.message.includes('Failed to fetch') || result.error.message.includes('Network error')) {
           setMessage('❌ Bağlantı hatası: Sunucuya erişilemiyor. İnternet bağlantınızı kontrol edin.');
-        } else if (error.message.includes('Invalid login credentials')) {
+        } else if (result.error.message.includes('Invalid login credentials')) {
           setMessage('❌ E-posta veya şifre hatalı');
-        } else if (error.message.includes('Email not confirmed')) {
+        } else if (result.error.message.includes('Email not confirmed')) {
           setMessage('❌ E-posta adresinizi doğrulamanız gerekiyor. E-postanızı kontrol edin.');
-        } else if (error.message.includes('AuthRetryableFetchError')) {
-          setMessage('❌ Kimlik doğrulama sunucusuna erişilemiyor. Lütfen daha sonra tekrar deneyin.');
+        } else if (result.error.message.includes('Too many requests')) {
+          setMessage('❌ Çok fazla deneme yapıldı. Lütfen biraz bekleyip tekrar deneyin.');
         } else {
-          setMessage(`❌ Giriş hatası: ${error.message} (${error.name || 'Unknown'})`);
+          setMessage(`❌ Giriş hatası: ${result.error.message}`);
         }
-      } else if (data?.user) {
-        console.log('=== LOGIN SUCCESSFUL ===');
-        setMessage('✅ Giriş başarılı, yönlendiriliyorsunuz...');
+      } else if (result.data?.user) {
+        console.log('✅ Login successful');
+        setMessage('✅ Giriş başarılı! Dashboard\'a yönlendiriliyorsunuz...');
+        
+        // Store user info for development
+        if (process.env.NODE_ENV === 'development') {
+          localStorage.setItem('seragpt_user', JSON.stringify({
+            id: result.data.user.id,
+            email: result.data.user.email,
+            loginTime: new Date().toISOString()
+          }));
+        }
 
-        // Store user info in localStorage as backup (bulletproof approach)
-        localStorage.setItem('seragpt_user', JSON.stringify({
-          id: data.user.id,
-          email: data.user.email,
-          loginTime: new Date().toISOString()
-        }));
-
-        // Use the bulletproof redirect approach that works
+        // Wait a moment for auth context to update
         setTimeout(() => {
-          console.log('🎯 REDIRECTING TO MAIN DASHBOARD');
-          window.location.href = '/dashboard';
+          router.push('/dashboard');
         }, 1000);
       }
     } catch (error: any) {
       console.error('Login exception:', error);
-
-      if (error?.message) {
-        if (error.message.includes('Failed to fetch')) {
-          setMessage('�� Ağ hatası: Sunucuya bağlanılamıyor. İnternet bağlantınızı kontrol edin veya biraz sonra tekrar deneyin.');
-        } else {
-          setMessage(`❌ Giriş hatası: ${error.message}`);
-        }
+      if (error?.message?.includes('Failed to fetch')) {
+        setMessage('❌ Ağ hatası: Sunucuya bağlanılamıyor. İnternet bağlantınızı kontrol edin.');
       } else {
-        setMessage('❌ Bilinmeyen bir hata oluştu. Lütfen tekrar deneyin.');
+        setMessage(`❌ Giriş hatası: ${error.message || 'Bilinmeyen hata'}`);
       }
     } finally {
       setLoading(false);
@@ -150,9 +152,7 @@ export default function AuthPage() {
     setLoading(true);
     setMessage('📝 Hesap oluşturuluyor...');
 
-    console.log('Starting signup process for:', email);
-
-    if (!email || !password || !confirmPassword) {
+    if (!email || !password || !confirmPassword || !fullName) {
       setMessage('❌ Tüm alanları doldurunuz');
       setLoading(false);
       return;
@@ -171,94 +171,68 @@ export default function AuthPage() {
     }
 
     try {
-      // Step 1: Creating account
-      setMessage('📝 1/3 - Hesap bilgileri kontrol ediliyor...');
+      console.log('📝 Starting enhanced signup process...');
+      
+      setMessage('📝 1/3 - Hesap bilgileri hazırlanıyor...');
       await new Promise(resolve => setTimeout(resolve, 1000));
 
-      // Step 2: Registering with Supabase
       setMessage('⚡ 2/3 - Hesap oluşturuluyor...');
 
       const redirectUrl = `${typeof window !== 'undefined' ? window.location.origin : ''}/auth/callback`;
-      console.log('Sign up with redirect URL:', redirectUrl);
-
-      const { data, error } = await supabase.auth.signUp({
-        email,
-        password,
-        options: {
-          emailRedirectTo: redirectUrl,
-          data: {
-            full_name: email.split('@')[0] // Use part of email as default name
-          }
-        },
+      
+      const result = await signUp(email, password, {
+        full_name: fullName,
+        language: 'tr',
+        currency: 'TRY',
+        experience_level: 'beginner',
+        marketing_consent: false,
+        newsletter_consent: false
       });
 
-      console.log('Signup result:', { data, error });
-
-      // Step 3: Processing result
       setMessage('📧 3/3 - E-posta hazırlanıyor...');
 
-      if (error) {
-        console.error('Signup error details:', error);
-        if (error.message.includes('User already registered') ||
-            error.message.includes('already registered') ||
-            error.message.includes('already been registered') ||
-            error.message.includes('email address is already registered') ||
-            error.message.includes('email rate limit exceeded')) {
+      if (result.error) {
+        console.error('Signup error:', result.error);
+        if (result.error.message.includes('User already registered') ||
+            result.error.message.includes('already registered') ||
+            result.error.message.includes('email address is already registered')) {
           setMessage('❌ Bu e-posta adresi zaten kayıtlı. Giriş yapmayı deneyin.');
-        } else if (error.message.includes('email')) {
-          setMessage('❌ E-posta adresi geçersiz. Lütfen geçerli bir e-posta adresi girin.');
-        } else if (error.message.includes('password')) {
-          setMessage('❌ Şifre geçersiz. Lütfen daha güçlü bir şifre deneyin.');
+        } else if (result.error.message.includes('email rate limit exceeded')) {
+          setMessage('❌ E-posta gönderim limiti aşıldı. Lütfen biraz bekleyin.');
         } else {
-          setMessage(`❌ Kayıt hatası: ${error.message}`);
+          setMessage(`❌ Kayıt hatası: ${result.error.message}`);
         }
-      } else if (data?.user && !data?.session) {
+      } else if (result.data?.user && !result.data?.session) {
         // User created but needs email confirmation
         setMessage('✅ KAYIT BAŞARILI! 🎉\n\n📧 E-posta adresinize doğrulama linki gönderildi.\n\n👆 Lütfen e-postanızı kontrol edin ve linke tıklayın.\n\n⏰ Link 24 saat geçerlidir.');
-        // Don't reset form immediately - let user see the message
+        
+        // Send welcome email
+        try {
+          await fetch('/api/send-email', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              type: 'welcome',
+              to: result.data.user.email,
+              name: fullName,
+              url: `${window.location.origin}/dashboard`
+            })
+          });
+        } catch (emailError) {
+          console.warn('Welcome email failed:', emailError);
+        }
+
         setTimeout(() => {
           resetForm();
         }, 5000);
-      } else if (data?.user && data?.session) {
+      } else if (result.data?.user && result.data?.session) {
         // User created and automatically signed in
-        setMessage('✅ Hesabınız oluşturuldu! Dashboard\'a y��nlendiriliyorsunuz...');
-
-        // Send welcome email
-        console.log('🔧 Attempting to send welcome email to:', data.user.email);
-        fetch('/api/send-email', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            type: 'welcome',
-            to: data.user.email,
-            name: data.user.user_metadata?.full_name || data.user.email?.split('@')[0] || 'Kullanıcı',
-            url: `${window.location.origin}/dashboard`
-          })
-        })
-        .then(response => response.json())
-        .then(result => {
-          console.log('✅ Welcome email response:', result);
-        })
-        .catch(error => {
-          console.warn('❌ Welcome email failed:', error);
-        });
-
-        // Store user info in localStorage for bulletproof auth
-        localStorage.setItem('seragpt_user', JSON.stringify({
-          id: data.user.id,
-          email: data.user.email,
-          loginTime: new Date().toISOString()
-        }));
-
+        setMessage('✅ Hesabınız oluşturuldu! Dashboard\'a yönlendiriliyorsunuz...');
+        
         setTimeout(() => {
-          console.log('SIGNUP SUCCESS - REDIRECTING TO DASHBOARD');
-          window.location.href = '/dashboard';
+          router.push('/dashboard');
         }, 1500);
-      } else if (data && !data.user && !error) {
-        // Supabase sometimes returns empty data for existing users without error
-        setMessage('❌ Bu e-posta adresi zaten kayıtlı olabilir. Giriş yapmayı deneyin.');
       } else {
-        // Always show some feedback
         setMessage('✅ KAYIT TALEBİNİZ ALINDI! 📨\n\nE-posta adresinizi kontrol edin ve doğrulama linkine tıklayın.');
         setTimeout(() => {
           resetForm();
@@ -266,13 +240,8 @@ export default function AuthPage() {
       }
     } catch (error: any) {
       console.error('Signup exception:', error);
-      if (error?.message) {
-        setMessage(`❌ Kayıt hatası: ${error.message}`);
-      } else {
-        setMessage('❌ Kayıt oluşturulamadı. Lütfen tekrar deneyin.');
-      }
+      setMessage(`❌ Kayıt hatası: ${error.message || 'Bilinmeyen hata'}`);
     } finally {
-      // Keep loading for a bit longer so user sees the final message
       setTimeout(() => {
         setLoading(false);
       }, 1500);
@@ -328,6 +297,18 @@ export default function AuthPage() {
               : 'SeraGPT ile tarımsal analizlerinize başlayın'
             }
           </p>
+
+          {/* Connection Status Indicator */}
+          {connectionTest.tested && (
+            <div className={`mt-2 text-sm flex items-center justify-center ${
+              connectionTest.success ? 'text-green-600' : 'text-red-600'
+            }`}>
+              <div className={`w-2 h-2 rounded-full mr-2 ${
+                connectionTest.success ? 'bg-green-600' : 'bg-red-600'
+              }`}></div>
+              {connectionTest.success ? 'Bağlantı Aktif' : 'Bağlantı Sorunu'}
+            </div>
+          )}
         </div>
 
         {/* Tab Navigation */}
@@ -363,6 +344,32 @@ export default function AuthPage() {
           className="bg-white rounded-2xl shadow-xl p-8"
         >
           <form onSubmit={isLogin ? handleSignIn : handleSignUp} className="space-y-6">
+            {/* Full Name Field (Only for Signup) */}
+            <AnimatePresence>
+              {!isLogin && (
+                <motion.div
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: 'auto' }}
+                  exit={{ opacity: 0, height: 0 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <label htmlFor="fullName" className="block text-sm font-medium text-gray-700 mb-2">
+                    Ad Soyad
+                  </label>
+                  <input
+                    id="fullName"
+                    name="fullName"
+                    type="text"
+                    required={!isLogin}
+                    value={fullName}
+                    onChange={(e) => setFullName(e.target.value)}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
+                    placeholder="Adınız ve soyadınız"
+                  />
+                </motion.div>
+              )}
+            </AnimatePresence>
+
             {/* Email Field */}
             <div>
               <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
@@ -436,7 +443,7 @@ export default function AuthPage() {
                   className={`p-6 rounded-lg text-sm text-center font-medium ${
                     message.includes('✅')
                       ? 'bg-green-50 text-green-800 border-2 border-green-300 shadow-md'
-                      : message.includes('📝') || message.includes('⚡') || message.includes('📧')
+                      : message.includes('📝') || message.includes('⚡') || message.includes('📧') || message.includes('🔍')
                       ? 'bg-blue-50 text-blue-800 border-2 border-blue-300 shadow-md'
                       : 'bg-red-50 text-red-800 border-2 border-red-300 shadow-md'
                   }`}
@@ -450,15 +457,15 @@ export default function AuthPage() {
             {/* Submit Button */}
             <button
               type="submit"
-              disabled={loading}
+              disabled={loading || authLoading}
               className="w-full flex justify-center py-4 px-4 border border-transparent rounded-lg text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-75 disabled:cursor-not-allowed transition-colors"
             >
-              {loading ? (
+              {loading || authLoading ? (
                 <div className="flex items-center">
                   <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-3"></div>
                   <span>
                     {isLogin ? 'Giriş yapılıyor...' :
-                     message.includes('1/3') ? 'Bilgiler kontrol ediliyor...' :
+                     message.includes('1/3') ? 'Bilgiler hazırlanıyor...' :
                      message.includes('2/3') ? 'Hesap oluşturuluyor...' :
                      message.includes('3/3') ? 'E-posta hazırlanıyor...' :
                      'İşlem devam ediyor...'}
@@ -509,88 +516,69 @@ export default function AuthPage() {
           </a>
         </div>
 
-        {/* Debug Info - Remove in production */}
+        {/* Development Tools */}
         {process.env.NODE_ENV === 'development' && (
           <div className="mt-8 p-4 bg-gray-100 rounded-lg text-xs">
-            <h3 className="font-semibold mb-2">🔧 Debug Info:</h3>
-            <p>Environment: {process.env.NODE_ENV}</p>
-            <p>Supabase URL: {process.env.NEXT_PUBLIC_SUPABASE_URL ? '✅ Set' : '❌ Missing'}</p>
-            <p>Supabase Key: {process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ? '✅ Set' : '❌ Missing'}</p>
-            <p>Current URL: {typeof window !== 'undefined' ? window.location.href : 'SSR'}</p>
+            <h3 className="font-semibold mb-2">🔧 Development Tools:</h3>
+            <div className="grid grid-cols-2 gap-2 mb-4">
+              <div>
+                <p>Environment: {process.env.NODE_ENV}</p>
+                <p>Supabase: {process.env.NEXT_PUBLIC_SUPABASE_URL ? '✅' : '❌'}</p>
+              </div>
+              <div>
+                <p>Auth Loading: {authLoading ? '⏳' : '✅'}</p>
+                <p>API Status: {connectionTest.success ? '✅' : '❌'}</p>
+              </div>
+            </div>
 
-            <div className="mt-3 space-y-2">
-              <a
-                href="/auth/debug-supabase"
-                className="inline-block bg-red-600 text-white px-3 py-1 rounded text-xs hover:bg-red-700"
-              >
-                🚨 Supabase Debug
-              </a>
-              <a
-                href="/auth/debug-login"
-                className="ml-2 inline-block bg-purple-600 text-white px-3 py-1 rounded text-xs hover:bg-purple-700"
-              >
-                🔧 Debug Login Page
-              </a>
+            <div className="space-y-2">
               <button
                 onClick={async () => {
                   try {
                     setMessage('🔍 Testing connection...');
-                    const response = await fetch('/api/test-supabase');
-                    const data = await response.json();
-                    setMessage(`Connection Test: ${data.success ? '✅ Success' : '❌ Failed'} - Check console for details`);
-                    console.log('Supabase Connection Test:', data);
+                    const result = await authService.testAuthConnection();
+                    setMessage(`Connection Test: ${result.success ? '✅ Success' : '❌ Failed'} - ${result.message}`);
                   } catch (err: any) {
                     setMessage(`❌ Connection Test Failed: ${err.message}`);
-                    console.error('Connection test error:', err);
                   }
                 }}
-                className="ml-2 bg-green-600 text-white px-3 py-1 rounded text-xs hover:bg-green-700"
+                className="w-full bg-blue-600 text-white px-3 py-2 rounded text-sm hover:bg-blue-700"
               >
-                🔗 Test Connection
+                🔗 Test API Connection
               </button>
-            </div>
 
-            <div className="mt-4 p-3 bg-yellow-100 border border-yellow-400 rounded">
-              <h4 className="font-semibold text-yellow-800 text-sm mb-2">🚀 Quick Development Access:</h4>
-              <div className="space-y-2">
+              <div className="grid grid-cols-2 gap-2">
                 <button
                   onClick={() => {
-                    // Create a fake user session for development
                     localStorage.setItem('seragpt_user', JSON.stringify({
                       id: 'dev-user-admin',
                       email: 'admin@seragpt.com',
                       role: 'admin',
                       loginTime: new Date().toISOString()
                     }));
-                    setMessage('✅ Admin access simulated! Redirecting...');
-                    setTimeout(() => {
-                      window.location.href = '/admin';
-                    }, 1000);
+                    setMessage('✅ Admin access! Redirecting...');
+                    setTimeout(() => router.push('/admin'), 1000);
                   }}
-                  className="w-full bg-red-500 text-white px-3 py-2 rounded text-sm hover:bg-red-600 transition-colors"
+                  className="bg-red-600 text-white px-3 py-2 rounded text-sm hover:bg-red-700"
                 >
-                  🔑 Quick Admin Dashboard Access
+                  🔑 Quick Admin
                 </button>
                 <button
                   onClick={() => {
-                    // Create a fake user session for development
                     localStorage.setItem('seragpt_user', JSON.stringify({
                       id: 'dev-user-normal',
                       email: 'user@seragpt.com',
                       role: 'user',
                       loginTime: new Date().toISOString()
                     }));
-                    setMessage('✅ User access simulated! Redirecting...');
-                    setTimeout(() => {
-                      window.location.href = '/dashboard';
-                    }, 1000);
+                    setMessage('✅ User access! Redirecting...');
+                    setTimeout(() => router.push('/dashboard'), 1000);
                   }}
-                  className="w-full bg-blue-500 text-white px-3 py-2 rounded text-sm hover:bg-blue-600 transition-colors"
+                  className="bg-green-600 text-white px-3 py-2 rounded text-sm hover:bg-green-700"
                 >
-                  👤 Quick User Dashboard Access
+                  👤 Quick User
                 </button>
               </div>
-              <p className="text-xs text-yellow-700 mt-2">⚠️ Development only - bypasses authentication</p>
             </div>
           </div>
         )}
