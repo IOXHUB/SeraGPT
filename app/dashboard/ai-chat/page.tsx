@@ -2,126 +2,184 @@
 
 import { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { useAuth } from '@/lib/hooks/useAuth';
 import DashboardLayout from '@/components/dashboard/DashboardLayout';
-import { aiService, ChatMessage, ChatSession, AIAnalysisInsight } from '@/lib/services/ai-service';
 
 // Force dynamic rendering
 export const dynamic = 'force-dynamic';
 
+interface ChatMessage {
+  id: string;
+  role: 'user' | 'assistant';
+  content: string;
+  timestamp: Date;
+  token_cost?: number;
+  session_id?: string;
+}
+
+interface ChatSession {
+  id: string;
+  title: string;
+  messages: ChatMessage[];
+  created_at: Date;
+  updated_at: Date;
+  user_id: string;
+  total_tokens_used: number;
+}
+
+interface AIInsight {
+  type: 'recommendation' | 'warning' | 'opportunity' | 'insight';
+  title: string;
+  description: string;
+  priority: 'high' | 'medium' | 'low';
+  actionable: boolean;
+}
+
 export default function AIChatPage() {
+  const { user, tokens, consumeToken, hasTokens, loading } = useAuth();
+  
   const [chatSession, setChatSession] = useState<ChatSession | null>(null);
   const [inputValue, setInputValue] = useState('');
   const [isTyping, setIsTyping] = useState(false);
-  const [insights, setInsights] = useState<AIAnalysisInsight[]>([]);
+  const [insights, setInsights] = useState<AIInsight[]>([]);
   const [error, setError] = useState<string>('');
-  const [selectedReport, setSelectedReport] = useState<any>(null);
-  const [userReports] = useState([
-    {
-      id: 1,
-      name: 'ROI Analizi - Domates Serası',
-      type: 'roi',
-      date: '2024-01-15',
-      status: 'completed',
-      summary: 'ROI: %18.5, Geri ödeme süresi: 4.2 yıl',
-      details: {
-        roi: 18.5,
-        paybackPeriod: 4.2,
-        npv: 125000,
-        initialInvestment: 850000,
-        annualRevenue: 180000,
-        annualCosts: 65000
-      }
-    },
-    {
-      id: 2,
-      name: 'İklim Analizi - Antalya Bölgesi',
-      type: 'climate',
-      date: '2024-01-14',
-      status: 'completed',
-      summary: 'Risk skoru: 28/100, Uygun mevsimler: İlkbahar, Yaz',
-      details: {
-        riskScore: 28,
-        temperature: { min: 12, max: 35, average: 24 },
-        humidity: { min: 45, max: 85, average: 65 },
-        rainfall: 420,
-        suitableSeasons: ['İlkbahar', 'Yaz']
-      }
-    },
-    {
-      id: 3,
-      name: 'Ekipman Listesi - 1000m² Sera',
-      type: 'equipment',
-      date: '2024-01-13',
-      status: 'completed',
-      summary: 'Toplam 24 ekipman, Maliyet: ₺450.000',
-      details: {
-        totalEquipment: 24,
-        totalCost: 450000,
-        categories: ['Isıtma', 'Havalandırma', 'Sulama', 'Kontrol Sistemleri']
-      }
-    },
-    {
-      id: 4,
-      name: 'Pazar Analizi - Biber Üretimi',
-      type: 'market',
-      date: '2024-01-12',
-      status: 'completed',
-      summary: 'Ortalama fiyat: ₺8.50/kg, Trend: Artış',
-      details: {
-        averagePrice: 8.50,
-        trend: 'increasing',
-        seasonalVariation: 25,
-        marketDemand: 'high'
-      }
-    },
-    {
-      id: 5,
-      name: 'Layout Planı - Hidroponik Sistem',
-      type: 'layout',
-      date: '2024-01-11',
-      status: 'completed',
-      summary: 'Optimum kapasite: 2500 bitki/m²',
-      details: {
-        capacity: 2500,
-        systemType: 'NFT Hidroponik',
-        efficiency: 92,
-        waterUsage: 'Düşük'
-      }
-    }
-  ]);
+  const [tokenWarning, setTokenWarning] = useState<string>('');
+  const [chatHistory, setChatHistory] = useState<ChatSession[]>([]);
+  const [loadingHistory, setLoadingHistory] = useState(true);
+  
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
-  // Initialize chat session
+  // Load chat history and initialize
   useEffect(() => {
-    const session = aiService.createChatSession('user_123', 'SeraGPT AI Sohbet');
-    
-    // Add welcome message
-    const welcomeMessage = aiService.createMessage(
-      'assistant',
-      'Merhaba! Ben SeraGPT AI asistanınızım. Yaptığınız sera analizleri hakkında soruların��zı yanıtlayabilirim. Size nasıl yardımcı olabilirim?'
-    );
-    
-    const sessionWithWelcome = aiService.addMessageToSession(session, welcomeMessage);
-    setChatSession(sessionWithWelcome);
-  }, []);
+    if (user && !loading) {
+      loadChatHistory();
+      initializeNewSession();
+    }
+  }, [user, loading]);
 
-  // Scroll to bottom when messages change
+  // Auto-scroll to bottom
   useEffect(() => {
     scrollToBottom();
   }, [chatSession?.messages]);
+
+  // Check token availability
+  useEffect(() => {
+    if (!hasTokens(1)) {
+      setTokenWarning('AI sohbet için token gereklidir. Token satın alın.');
+    } else {
+      setTokenWarning('');
+    }
+  }, [tokens, hasTokens]);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
 
+  const loadChatHistory = async () => {
+    if (!user) return;
+
+    try {
+      setLoadingHistory(true);
+      
+      const response = await fetch('/api/chat/sessions', {
+        headers: {
+          'Authorization': `Bearer ${await getAuthToken()}`
+        }
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        setChatHistory(data.data || []);
+      } else {
+        console.warn('Failed to load chat history');
+      }
+    } catch (error) {
+      console.error('Error loading chat history:', error);
+    } finally {
+      setLoadingHistory(false);
+    }
+  };
+
+  const getAuthToken = async () => {
+    // Get Supabase session token
+    const { data: { session } } = await (window as any).supabase.auth.getSession();
+    return session?.access_token || '';
+  };
+
+  const initializeNewSession = async () => {
+    if (!user) return;
+
+    try {
+      const response = await fetch('/api/chat/sessions', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${await getAuthToken()}`
+        },
+        body: JSON.stringify({
+          title: 'SeraGPT AI Sohbet',
+          description: 'AI asistan ile sera analizleri hakkında sohbet'
+        })
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        const newSession: ChatSession = {
+          id: data.data.id,
+          title: data.data.title,
+          messages: [],
+          created_at: new Date(data.data.created_at),
+          updated_at: new Date(data.data.updated_at),
+          user_id: user.id,
+          total_tokens_used: 0
+        };
+
+        // Add welcome message
+        const welcomeMessage: ChatMessage = {
+          id: 'welcome',
+          role: 'assistant',
+          content: `Merhaba ${user.email?.split('@')[0] || 'Kullanıcı'}! 🌱\n\nBen SeraGPT AI asistanınızım. Size aşağıdaki konularda yardımcı olabilirim:\n\n🔸 Sera yatırım analizleri\n🔸 İklim ve bölge uygunluğu\n🔸 Ekipman önerileri\n🔸 Pazar analizleri\n🔸 Verimlilik optimizasyonu\n🔸 Maliyet hesaplamaları\n\nSorularınızı sorun, birlikte çözüm bulalım!`,
+          timestamp: new Date(),
+          session_id: newSession.id
+        };
+
+        newSession.messages.push(welcomeMessage);
+        setChatSession(newSession);
+      } else {
+        setError('Chat oturumu başlatılamadı');
+      }
+    } catch (error) {
+      console.error('Error initializing chat session:', error);
+      setError('Chat oturumu başlatılırken hata oluştu');
+    }
+  };
+
   const handleSendMessage = async () => {
-    if (!inputValue.trim() || !chatSession || isTyping) return;
+    if (!inputValue.trim() || !chatSession || isTyping || !user) return;
+    
+    // Check token availability
+    if (!hasTokens(1)) {
+      setError('Bu mesaj için token gereklidir. Lütfen token satın alın.');
+      return;
+    }
 
     setError('');
-    const userMessage = aiService.createMessage('user', inputValue);
+    setTokenWarning('');
     
-    // Add user message to session
-    let updatedSession = aiService.addMessageToSession(chatSession, userMessage);
+    // Create user message
+    const userMessage: ChatMessage = {
+      id: `msg_${Date.now()}_user`,
+      role: 'user',
+      content: inputValue,
+      timestamp: new Date(),
+      session_id: chatSession.id
+    };
+
+    // Add user message immediately
+    const updatedSession = {
+      ...chatSession,
+      messages: [...chatSession.messages, userMessage]
+    };
     setChatSession(updatedSession);
     
     const currentInput = inputValue;
@@ -129,34 +187,69 @@ export default function AIChatPage() {
     setIsTyping(true);
 
     try {
-      // Get context from selected report or all reports
-      const context = {
-        selectedReport: selectedReport,
-        previousAnalyses: selectedReport ? [selectedReport] : userReports
-      };
+      // Send message to API
+      const response = await fetch('/api/chat/messages', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${await getAuthToken()}`
+        },
+        body: JSON.stringify({
+          session_id: chatSession.id,
+          message: currentInput,
+          context: {
+            previous_messages: chatSession.messages.slice(-5), // Last 5 messages for context
+            user_profile: {
+              experience_level: user.user_metadata?.experience_level || 'beginner',
+              specialization: user.user_metadata?.specialization || 'general'
+            }
+          }
+        })
+      });
 
-      // Send message to AI service
-      const response = await aiService.sendMessage(
-        currentInput,
-        chatSession.id,
-        context
-      );
-
-      if (response.success && response.data) {
-        // Add AI response to session
-        const aiMessage = aiService.createMessage('assistant', response.data.response);
-        updatedSession = aiService.addMessageToSession(updatedSession, aiMessage);
-        setChatSession(updatedSession);
+      if (response.ok) {
+        const data = await response.json();
         
-        // Set insights
-        if (response.data.insights) {
-          setInsights(response.data.insights);
+        // Create AI response message
+        const aiMessage: ChatMessage = {
+          id: data.data.id || `msg_${Date.now()}_ai`,
+          role: 'assistant',
+          content: data.data.response || data.data.content || 'Üzgünüm, yanıt oluşturamadım.',
+          timestamp: new Date(data.data.created_at || Date.now()),
+          token_cost: data.data.token_cost || 1,
+          session_id: chatSession.id
+        };
+
+        // Update session with AI response
+        const finalSession = {
+          ...updatedSession,
+          messages: [...updatedSession.messages, aiMessage],
+          total_tokens_used: updatedSession.total_tokens_used + (aiMessage.token_cost || 1)
+        };
+        setChatSession(finalSession);
+
+        // Update insights if provided
+        if (data.data.insights) {
+          setInsights(data.data.insights);
         }
+
+        // Consume token
+        await consumeToken(aiMessage.token_cost || 1, 'chat_message_sent');
+
       } else {
-        setError(response.error || 'AI yanıtı alınamadı');
+        const errorData = await response.json();
+        setError(errorData.error || 'AI yanıtı alınamadı');
+        
+        // Remove user message if API failed
+        setChatSession(chatSession);
       }
-    } catch (err) {
+
+    } catch (error: any) {
+      console.error('Chat error:', error);
       setError('Beklenmeyen bir hata oluştu');
+      
+      // Remove user message if error occurred
+      setChatSession(chatSession);
     } finally {
       setIsTyping(false);
     }
@@ -169,60 +262,44 @@ export default function AIChatPage() {
     }
   };
 
-  const getReportIcon = (type: string) => {
-    switch (type) {
-      case 'roi': return '📈';
-      case 'climate': return '🌤️';
-      case 'equipment': return '🔧';
-      case 'market': return '📊';
-      case 'layout': return '📐';
-      default: return '📄';
+  const loadPreviousSession = async (sessionId: string) => {
+    try {
+      const response = await fetch(`/api/chat/sessions?id=${sessionId}`, {
+        headers: {
+          'Authorization': `Bearer ${await getAuthToken()}`
+        }
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        const session = data.data;
+        
+        setChatSession({
+          id: session.id,
+          title: session.title,
+          messages: session.messages || [],
+          created_at: new Date(session.created_at),
+          updated_at: new Date(session.updated_at),
+          user_id: session.user_id,
+          total_tokens_used: session.total_tokens_used || 0
+        });
+      }
+    } catch (error) {
+      console.error('Error loading session:', error);
+      setError('Sohbet geçmişi yüklenemedi');
     }
   };
 
-  const getQuickQuestionsForReport = (report: any) => {
-    if (!report) return [];
-
-    switch (report.type) {
-      case 'roi':
-        return [
-          `${report.details.roi}% ROI nasıl yorumlanır?`,
-          `${report.details.paybackPeriod} yıl geri ödeme süresi normal mi?`,
-          'ROI\'mı nasıl iyileştirebilirim?',
-          'Bu yatırımın riskleri neler?'
-        ];
-      case 'climate':
-        return [
-          `Risk skoru ${report.details.riskScore} ne anlama geliyor?`,
-          'İklim koşulları sera için uygun mu?',
-          'Hangi mevsimlerde daha iyi verim alabilirim?',
-          'İklim risklerini nasıl azaltabilirim?'
-        ];
-      case 'equipment':
-        return [
-          `₺${report.details.totalCost.toLocaleString()} maliyet uygun mu?`,
-          'Eksik ekipman var mı?',
-          'Maliyeti nasıl optimize edebilirim?',
-          'Alternatif ekipman önerileri var mı?'
-        ];
-      case 'market':
-        return [
-          `₺${report.details.averagePrice}/kg fiyat nasıl?`,
-          'Pazar trendini nasıl değerlendirmeliyim?',
-          'Satış stratejim nasıl olmalı?',
-          'Fiyat dalgalanmalarına karşı ne yapmalıyım?'
-        ];
-      case 'layout':
-        return [
-          `${report.details.capacity} bitki/m² kapasitesi yeterli mi?`,
-          'Layout planımı nasıl optimize edebilirim?',
-          'Su kullanımını daha da azaltabilir miyim?',
-          'Verimlilik oranımı artırabilir miyim?'
-        ];
-      default:
-        return [];
-    }
-  };
+  const getQuickQuestions = () => [
+    "Sera yatırımı için kaç para gerekir?",
+    "Hangi bölgede sera kurmak daha karlı?",
+    "Hidroponik sistem mi toprak sistemi mi daha iyi?",
+    "İklim kontrolü için hangi ekipmanları önerirsiniz?",
+    "ROI hesaplaması nasıl yapılır?",
+    "Pazar fiyatları nasıl takip edilir?",
+    "En verimli sera düzeni nasıl olmalı?",
+    "Sulama sistemi nasıl optimize edilir?"
+  ];
 
   const getInsightIcon = (type: string) => {
     switch (type) {
@@ -243,246 +320,317 @@ export default function AIChatPage() {
     }
   };
 
+  if (loading) {
+    return (
+      <DashboardLayout>
+        <div className="flex items-center justify-center min-h-64">
+          <div className="text-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+            <p className="text-gray-600">AI Chat yükleniyor...</p>
+          </div>
+        </div>
+      </DashboardLayout>
+    );
+  }
+
   if (!chatSession) {
     return (
       <DashboardLayout>
-        <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-          <div className="animate-pulse text-gray-500">AI sohbet başlatılıyor...</div>
+        <div className="flex items-center justify-center min-h-64">
+          <div className="text-center">
+            <div className="animate-pulse text-gray-500 mb-4">AI sohbet başlatılıyor...</div>
+            <button
+              onClick={initializeNewSession}
+              className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+            >
+              Yeniden Dene
+            </button>
+          </div>
         </div>
       </DashboardLayout>
     );
   }
 
   return (
-    <DashboardLayout>
-      <div className="min-h-screen bg-gray-50 text-gray-600">
-        <div className="max-w-4xl mx-auto h-screen flex flex-col">
-          {/* Header */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="flex-shrink-0 p-6 border-b border-gray-200 bg-white"
-          >
+    <DashboardLayout 
+      title="AI Chat" 
+      subtitle="SeraGPT AI asistanınızla sohbet edin"
+      requiresTokens={true}
+    >
+      <div className="h-[calc(100vh-200px)] flex flex-col lg:flex-row bg-white rounded-xl border border-gray-200 shadow-sm">
+        
+        {/* Chat History Sidebar */}
+        <div className="lg:w-64 border-b lg:border-b-0 lg:border-r border-gray-200 p-4">
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="font-semibold text-gray-900">Sohbet Geçmişi</h3>
+            <button
+              onClick={initializeNewSession}
+              className="text-blue-600 hover:text-blue-500 text-sm font-medium"
+              title="Yeni sohbet başlat"
+            >
+              ➕ Yeni
+            </button>
+          </div>
+          
+          {loadingHistory ? (
+            <div className="space-y-2">
+              {[1, 2, 3].map(i => (
+                <div key={i} className="h-16 bg-gray-100 rounded-lg animate-pulse"></div>
+              ))}
+            </div>
+          ) : (
+            <div className="space-y-2 max-h-40 overflow-y-auto">
+              {chatHistory.length > 0 ? (
+                chatHistory.map((session) => (
+                  <button
+                    key={session.id}
+                    onClick={() => loadPreviousSession(session.id)}
+                    className={`w-full text-left p-3 rounded-lg border transition-colors ${
+                      chatSession.id === session.id
+                        ? 'border-blue-500 bg-blue-50'
+                        : 'border-gray-200 hover:border-gray-300 hover:bg-gray-50'
+                    }`}
+                  >
+                    <h4 className="font-medium text-sm text-gray-900 truncate">
+                      {session.title}
+                    </h4>
+                    <p className="text-xs text-gray-500 mt-1">
+                      {new Date(session.updated_at).toLocaleDateString('tr-TR')}
+                    </p>
+                    <p className="text-xs text-gray-400">
+                      {session.total_tokens_used || 0} token kullanıldı
+                    </p>
+                  </button>
+                ))
+              ) : (
+                <p className="text-sm text-gray-500 text-center py-8">
+                  Henüz sohbet geçmişi yok
+                </p>
+              )}
+            </div>
+          )}
+
+          {/* Token Status */}
+          <div className="mt-4 p-3 bg-gray-50 rounded-lg">
+            <div className="flex items-center justify-between mb-2">
+              <span className="text-sm font-medium text-gray-700">Mevcut Token</span>
+              <span className="text-sm font-bold text-blue-600">
+                {tokens?.remaining_tokens || 0}
+              </span>
+            </div>
+            <div className="w-full bg-gray-200 rounded-full h-2">
+              <div 
+                className="bg-blue-600 h-2 rounded-full transition-all duration-300"
+                style={{ 
+                  width: `${Math.max(5, ((tokens?.remaining_tokens || 0) / (tokens?.total_tokens || 1)) * 100)}%` 
+                }}
+              />
+            </div>
+            <p className="text-xs text-gray-500 mt-1">
+              Her mesaj ~1 token harcar
+            </p>
+          </div>
+        </div>
+
+        {/* Main Chat Area */}
+        <div className="flex-1 flex flex-col">
+          
+          {/* Chat Header */}
+          <div className="p-4 border-b border-gray-200 bg-gray-50">
             <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center">
-                <span className="text-white text-lg">🤖</span>
+              <div className="w-8 h-8 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center">
+                <span className="text-white text-sm">🤖</span>
               </div>
               <div>
-                <h1 className="text-xl font-bold text-gray-900">SeraGPT AI Asistan</h1>
-                <p className="text-sm text-gray-600">Sera analizlerinizi yorumluyorum ve öneriler sunuyorum</p>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Chat Messages */}
-          <div className="flex-1 overflow-hidden flex">
-            <div className="flex-1 flex flex-col">
-              <div className="flex-1 overflow-y-auto p-6 space-y-4">
-                {chatSession.messages.map((message, index) => (
-                  <motion.div
-                    key={message.id}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.4, delay: index * 0.1 }}
-                    className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
-                  >
-                    <div className={`max-w-md lg:max-w-lg px-4 py-2 rounded-lg ${
-                      message.role === 'user'
-                        ? 'bg-gray-600 text-white'
-                        : 'bg-white border border-gray-200 text-gray-800'
-                    }`}>
-                      <p className="whitespace-pre-wrap">{message.content}</p>
-                      <p className={`text-xs mt-1 ${
-                        message.role === 'user' ? 'text-gray-300' : 'text-gray-500'
-                      }`}>
-                        {message.timestamp.toLocaleTimeString('tr-TR', { 
-                          hour: '2-digit', 
-                          minute: '2-digit' 
-                        })}
-                      </p>
-                    </div>
-                  </motion.div>
-                ))}
-
-                {isTyping && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="flex justify-start"
-                  >
-                    <div className="bg-white border border-gray-200 rounded-lg px-4 py-2">
-                      <div className="flex space-x-1">
-                        <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
-                        <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
-                        <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
-                      </div>
-                    </div>
-                  </motion.div>
-                )}
-
-                <div ref={messagesEndRef} />
-              </div>
-
-              {/* Report Selector */}
-              {chatSession.messages.length <= 1 && (
-                <div className="px-6 py-4 border-t border-gray-200 bg-gray-50">
-                  <div className="mb-4">
-                    <p className="text-sm font-medium text-gray-700 mb-3">Hangi raporunuz hakkında konuşmak istiyorsunuz?</p>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                      {userReports.filter(r => r.status === 'completed').map((report) => (
-                        <button
-                          key={report.id}
-                          onClick={() => setSelectedReport(report)}
-                          className={`p-3 rounded-lg border-2 transition-all text-left ${
-                            selectedReport?.id === report.id
-                              ? 'border-green-500 bg-green-50'
-                              : 'border-gray-200 bg-white hover:border-gray-300 hover:bg-gray-50'
-                          }`}
-                        >
-                          <div className="flex items-start space-x-3">
-                            <span className="text-2xl">{getReportIcon(report.type)}</span>
-                            <div className="flex-1 min-w-0">
-                              <h3 className="text-sm font-medium text-gray-900 truncate">{report.name}</h3>
-                              <p className="text-xs text-gray-600 mt-1">{report.summary}</p>
-                              <p className="text-xs text-gray-400 mt-1">
-                                {new Date(report.date).toLocaleDateString('tr-TR')}
-                              </p>
-                            </div>
-                            {selectedReport?.id === report.id && (
-                              <span className="text-green-500">✓</span>
-                            )}
-                          </div>
-                        </button>
-                      ))}
-                    </div>
-
-                    {selectedReport && (
-                      <div className="mt-4">
-                        <button
-                          onClick={() => setSelectedReport(null)}
-                          className="text-xs text-gray-500 hover:text-gray-700 mb-2"
-                        >
-                          ← Rapor seçimini temizle
-                        </button>
-                        <p className="text-sm font-medium text-gray-700 mb-2">
-                          "{selectedReport.name}" hakkında örnek sorular:
-                        </p>
-                        <div className="flex flex-wrap gap-2">
-                          {getQuickQuestionsForReport(selectedReport).map((question, index) => (
-                            <button
-                              key={index}
-                              onClick={() => setInputValue(question)}
-                              className="px-3 py-1 text-xs bg-white border border-gray-200 hover:bg-gray-50 text-gray-700 rounded-full transition-colors"
-                            >
-                              {question}
-                            </button>
-                          ))}
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                </div>
-              )}
-
-              {/* Error Message */}
-              {error && (
-                <div className="px-6 py-2">
-                  <div className="bg-red-50 border border-red-200 rounded-lg p-3">
-                    <p className="text-red-600 text-sm">{error}</p>
-                  </div>
-                </div>
-              )}
-
-              {/* Input Area */}
-              <div className="flex-shrink-0 p-6 border-t border-gray-200 bg-white">
-                {selectedReport && (
-                  <div className="mb-3 flex items-center space-x-2 text-sm text-gray-600">
-                    <span className="text-lg">{getReportIcon(selectedReport.type)}</span>
-                    <span>Seçili rapor: <strong>{selectedReport.name}</strong></span>
-                    <button
-                      onClick={() => setSelectedReport(null)}
-                      className="text-gray-400 hover:text-gray-600 ml-2"
-                    >
-                      ✕
-                    </button>
-                  </div>
-                )}
-                <div className="flex space-x-3">
-                  <div className="flex-1">
-                    <textarea
-                      value={inputValue}
-                      onChange={(e) => setInputValue(e.target.value)}
-                      onKeyPress={handleKeyPress}
-                      placeholder={
-                        selectedReport
-                          ? `"${selectedReport.name}" hakkında soru sorun...`
-                          : "Bir rapor seçin veya genel soru sorun..."
-                      }
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-500 focus:border-transparent resize-none"
-                      rows={1}
-                      style={{ minHeight: '40px', maxHeight: '120px' }}
-                    />
-                  </div>
-                  <button
-                    onClick={handleSendMessage}
-                    disabled={!inputValue.trim() || isTyping}
-                    className="flex-shrink-0 bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded-lg font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-                  >
-                    {isTyping ? (
-                      <svg className="w-5 h-5 animate-spin" fill="none" viewBox="0 0 24 24">
-                        <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" className="opacity-25"></circle>
-                        <path fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" className="opacity-75"></path>
-                      </svg>
-                    ) : (
-                      'Gönder'
-                    )}
-                  </button>
-                </div>
+                <h2 className="text-lg font-semibold text-gray-900">SeraGPT AI Asistan</h2>
+                <p className="text-sm text-gray-600">
+                  Sera analizlerinizi yorumluyorum ve öneriler sunuyorum
+                </p>
               </div>
             </div>
 
-            {/* Insights Sidebar */}
-            {insights.length > 0 && (
+            {/* Session Info */}
+            <div className="mt-2 text-xs text-gray-500">
+              Oturum: {chatSession.id.substring(0, 8)}... | 
+              Toplam token: {chatSession.total_tokens_used} | 
+              Mesaj sayısı: {chatSession.messages.length}
+            </div>
+          </div>
+
+          {/* Messages Area */}
+          <div className="flex-1 overflow-y-auto p-4 space-y-4">
+            {chatSession.messages.map((message, index) => (
               <motion.div
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                className="w-80 border-l border-gray-200 bg-white p-6 overflow-y-auto"
+                key={message.id}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: index * 0.1 }}
+                className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
               >
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">AI Önerileri</h3>
-                <div className="space-y-4">
-                  {insights.map((insight, index) => (
-                    <div
-                      key={index}
-                      className={`border rounded-lg p-4 ${getInsightColor(insight.priority)}`}
-                    >
-                      <div className="flex items-start space-x-2">
-                        <span className="text-lg">{getInsightIcon(insight.type)}</span>
-                        <div className="flex-1">
-                          <h4 className="font-medium text-gray-900 mb-1">{insight.title}</h4>
-                          <p className="text-sm text-gray-700 mb-2">{insight.description}</p>
-                          <div className="flex items-center justify-between">
-                            <span className={`text-xs px-2 py-1 rounded-full ${
-                              insight.priority === 'high' ? 'bg-red-100 text-red-700' :
-                              insight.priority === 'medium' ? 'bg-yellow-100 text-yellow-700' :
-                              'bg-green-100 text-green-700'
-                            }`}>
-                              {insight.priority === 'high' ? 'Yüksek' : 
-                               insight.priority === 'medium' ? 'Orta' : 'Düşük'} Öncelik
-                            </span>
-                            {insight.actionable && (
-                              <span className="text-xs text-blue-600">Uygulanabilir</span>
-                            )}
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
+                <div className={`max-w-md lg:max-w-lg px-4 py-3 rounded-lg ${
+                  message.role === 'user'
+                    ? 'bg-blue-600 text-white'
+                    : 'bg-gray-100 border border-gray-200 text-gray-800'
+                }`}>
+                  <p className="whitespace-pre-wrap text-sm">{message.content}</p>
+                  <div className={`flex items-center justify-between mt-2 text-xs ${
+                    message.role === 'user' ? 'text-blue-100' : 'text-gray-500'
+                  }`}>
+                    <span>
+                      {message.timestamp.toLocaleTimeString('tr-TR', { 
+                        hour: '2-digit', 
+                        minute: '2-digit' 
+                      })}
+                    </span>
+                    {message.token_cost && (
+                      <span className="ml-2">🪙 {message.token_cost}</span>
+                    )}
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+
+            {isTyping && (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="flex justify-start"
+              >
+                <div className="bg-gray-100 border border-gray-200 rounded-lg px-4 py-3">
+                  <div className="flex space-x-1">
+                    <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
+                    <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
+                    <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+                  </div>
                 </div>
               </motion.div>
             )}
+
+            <div ref={messagesEndRef} />
+          </div>
+
+          {/* Quick Questions */}
+          {chatSession.messages.length <= 1 && (
+            <div className="p-4 border-t border-gray-200 bg-gray-50">
+              <p className="text-sm font-medium text-gray-700 mb-3">Popüler sorular:</p>
+              <div className="flex flex-wrap gap-2">
+                {getQuickQuestions().slice(0, 4).map((question, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setInputValue(question)}
+                    className="px-3 py-1 text-xs bg-white border border-gray-200 hover:bg-gray-50 text-gray-700 rounded-full transition-colors"
+                  >
+                    {question}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Error/Warning Messages */}
+          {(error || tokenWarning) && (
+            <div className="p-4">
+              {error && (
+                <div className="bg-red-50 border border-red-200 rounded-lg p-3 mb-2">
+                  <p className="text-red-600 text-sm">{error}</p>
+                </div>
+              )}
+              {tokenWarning && (
+                <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3">
+                  <p className="text-yellow-600 text-sm">{tokenWarning}</p>
+                  <a 
+                    href="/dashboard/tokens" 
+                    className="text-yellow-700 hover:text-yellow-600 text-sm font-medium ml-1"
+                  >
+                    Token satın alın →
+                  </a>
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* Input Area */}
+          <div className="p-4 border-t border-gray-200 bg-white">
+            <div className="flex space-x-3">
+              <div className="flex-1">
+                <textarea
+                  value={inputValue}
+                  onChange={(e) => setInputValue(e.target.value)}
+                  onKeyPress={handleKeyPress}
+                  placeholder={
+                    !hasTokens(1) 
+                      ? "Token gerekli - Mesaj göndermek için token satın alın"
+                      : "SeraGPT AI'ya sorunuzu yazın..."
+                  }
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+                  rows={1}
+                  style={{ minHeight: '48px', maxHeight: '120px' }}
+                  disabled={!hasTokens(1)}
+                />
+              </div>
+              <button
+                onClick={handleSendMessage}
+                disabled={!inputValue.trim() || isTyping || !hasTokens(1)}
+                className="flex-shrink-0 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center"
+              >
+                {isTyping ? (
+                  <>
+                    <svg className="w-5 h-5 animate-spin mr-2" fill="none" viewBox="0 0 24 24">
+                      <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" className="opacity-25"></circle>
+                      <path fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" className="opacity-75"></path>
+                    </svg>
+                    Gönderiliyor...
+                  </>
+                ) : (
+                  <>
+                    <span>Gönder</span>
+                    <span className="ml-2 text-xs opacity-75">~1🪙</span>
+                  </>
+                )}
+              </button>
+            </div>
           </div>
         </div>
+
+        {/* AI Insights Sidebar */}
+        {insights.length > 0 && (
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            className="lg:w-80 border-t lg:border-t-0 lg:border-l border-gray-200 p-4 overflow-y-auto"
+          >
+            <h3 className="text-lg font-semibold text-gray-900 mb-4">🔍 AI Önerileri</h3>
+            <div className="space-y-3">
+              {insights.map((insight, index) => (
+                <div
+                  key={index}
+                  className={`border rounded-lg p-3 ${getInsightColor(insight.priority)}`}
+                >
+                  <div className="flex items-start space-x-2">
+                    <span className="text-lg">{getInsightIcon(insight.type)}</span>
+                    <div className="flex-1">
+                      <h4 className="font-medium text-gray-900 text-sm mb-1">{insight.title}</h4>
+                      <p className="text-xs text-gray-700 mb-2">{insight.description}</p>
+                      <div className="flex items-center justify-between">
+                        <span className={`text-xs px-2 py-1 rounded-full ${
+                          insight.priority === 'high' ? 'bg-red-100 text-red-700' :
+                          insight.priority === 'medium' ? 'bg-yellow-100 text-yellow-700' :
+                          'bg-green-100 text-green-700'
+                        }`}>
+                          {insight.priority === 'high' ? 'Yüksek' : 
+                           insight.priority === 'medium' ? 'Orta' : 'Düşük'}
+                        </span>
+                        {insight.actionable && (
+                          <span className="text-xs text-blue-600">✅ Uygulanabilir</span>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        )}
       </div>
     </DashboardLayout>
   );
