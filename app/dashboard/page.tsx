@@ -284,7 +284,7 @@ export default function DashboardPage() {
                   <div className="relative bg-white p-6 rounded-xl border-0 h-full flex flex-col">
                     <div className="text-center flex-1">
                       <div className="text-3xl mb-3">{tool.icon}</div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-2">{tool.title}</h3>
+                      <h3 className="text-lg font-normal text-gray-900 mb-2">{tool.title}</h3>
                       <p className="text-gray-600 text-sm mb-4">{tool.description}</p>
                     </div>
                     <div className="mt-auto">
