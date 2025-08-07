@@ -53,15 +53,15 @@ export default function TokensPage() {
 
   return (
     <DashboardLayout>
-      <div style={{ minHeight: '100vh', background: '#ffffff', padding: '32px' }}>
-        <div style={{ maxWidth: '1200px', margin: '0 auto', display: 'flex', flexDirection: 'column', gap: '32px' }}>
+      <div style={{ minHeight: '100vh', background: '#ffffff', padding: '24px 16px' }}>
+        <div style={{ maxWidth: '1000px', margin: '0 auto', display: 'flex', flexDirection: 'column', gap: '24px' }}>
 
           {/* Header */}
-          <div style={{ textAlign: 'center', marginBottom: '24px' }}>
-            <h1 style={{ fontSize: '32px', fontWeight: '700', color: '#111827', marginBottom: '8px', fontFamily: 'Inter, sans-serif' }}>
+          <div style={{ textAlign: 'center', marginBottom: '16px' }}>
+            <h1 style={{ fontSize: '28px', fontWeight: '700', color: '#111827', marginBottom: '8px', fontFamily: 'Inter, sans-serif' }}>
               Jeton Yükle
             </h1>
-            <p style={{ fontSize: '16px', color: '#6b7280', fontFamily: 'Inter, sans-serif' }}>
+            <p style={{ fontSize: '14px', color: '#6b7280', fontFamily: 'Inter, sans-serif' }}>
               Her rapor 1 jeton kullanır. AI sohbet sınırsızdır.
             </p>
           </div>
@@ -70,26 +70,26 @@ export default function TokensPage() {
           <div style={{
             position: 'relative',
             background: '#ffffff',
-            borderRadius: '16px',
-            padding: '32px',
+            borderRadius: '12px',
+            padding: '24px',
             border: '2px solid #10b981',
-            boxShadow: '0 0 24px rgba(16, 185, 129, 0.15)',
+            boxShadow: '0 0 20px rgba(16, 185, 129, 0.15)',
             textAlign: 'center',
-            marginBottom: '32px'
+            marginBottom: '24px'
           }}>
-            <div style={{ fontSize: '48px', fontWeight: '800', color: '#111827', marginBottom: '8px' }}>
+            <div style={{ fontSize: '36px', fontWeight: '800', color: '#111827', marginBottom: '8px' }}>
               {userTokens.remainingTokens}
             </div>
-            <div style={{ fontSize: '18px', color: '#374151', marginBottom: '8px', fontWeight: '600' }}>
+            <div style={{ fontSize: '16px', color: '#374151', marginBottom: '6px', fontWeight: '600' }}>
               Kalan Jeton
             </div>
-            <div style={{ fontSize: '14px', color: '#6b7280' }}>
+            <div style={{ fontSize: '12px', color: '#6b7280' }}>
               ({userTokens.freeTokens} ücretsiz • {userTokens.usedTokens} kullanılan)
             </div>
           </div>
 
           {/* Token Packages */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '24px', marginBottom: '32px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '16px', marginBottom: '24px' }}>
             {tokenPackages.map((pkg) => (
               <div
                 key={pkg.id}
