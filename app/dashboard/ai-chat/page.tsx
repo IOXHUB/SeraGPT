@@ -14,6 +14,81 @@ export default function AIChatPage() {
   const [isTyping, setIsTyping] = useState(false);
   const [insights, setInsights] = useState<AIAnalysisInsight[]>([]);
   const [error, setError] = useState<string>('');
+  const [selectedReport, setSelectedReport] = useState<any>(null);
+  const [userReports] = useState([
+    {
+      id: 1,
+      name: 'ROI Analizi - Domates Serası',
+      type: 'roi',
+      date: '2024-01-15',
+      status: 'completed',
+      summary: 'ROI: %18.5, Geri ödeme süresi: 4.2 yıl',
+      details: {
+        roi: 18.5,
+        paybackPeriod: 4.2,
+        npv: 125000,
+        initialInvestment: 850000,
+        annualRevenue: 180000,
+        annualCosts: 65000
+      }
+    },
+    {
+      id: 2,
+      name: 'İklim Analizi - Antalya Bölgesi',
+      type: 'climate',
+      date: '2024-01-14',
+      status: 'completed',
+      summary: 'Risk skoru: 28/100, Uygun mevsimler: İlkbahar, Yaz',
+      details: {
+        riskScore: 28,
+        temperature: { min: 12, max: 35, average: 24 },
+        humidity: { min: 45, max: 85, average: 65 },
+        rainfall: 420,
+        suitableSeasons: ['İlkbahar', 'Yaz']
+      }
+    },
+    {
+      id: 3,
+      name: 'Ekipman Listesi - 1000m² Sera',
+      type: 'equipment',
+      date: '2024-01-13',
+      status: 'completed',
+      summary: 'Toplam 24 ekipman, Maliyet: ₺450.000',
+      details: {
+        totalEquipment: 24,
+        totalCost: 450000,
+        categories: ['Isıtma', 'Havalandırma', 'Sulama', 'Kontrol Sistemleri']
+      }
+    },
+    {
+      id: 4,
+      name: 'Pazar Analizi - Biber Üretimi',
+      type: 'market',
+      date: '2024-01-12',
+      status: 'completed',
+      summary: 'Ortalama fiyat: ₺8.50/kg, Trend: Artış',
+      details: {
+        averagePrice: 8.50,
+        trend: 'increasing',
+        seasonalVariation: 25,
+        marketDemand: 'high'
+      }
+    },
+    {
+      id: 5,
+      name: 'Layout Planı - Hidroponik Sistem',
+      type: 'layout',
+      date: '2024-01-11',
+      status: 'completed',
+      summary: 'Optimum kapasite: 2500 bitki/m²',
+      details: {
+        capacity: 2500,
+        systemType: 'NFT Hidroponik',
+        efficiency: 92,
+        waterUsage: 'Düşük'
+      }
+    }
+  ]);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   // Initialize chat session
