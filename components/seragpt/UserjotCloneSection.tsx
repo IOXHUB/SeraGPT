@@ -202,7 +202,7 @@ export default function UserjotCloneSection() {
           {/* Description paragraph */}
           <p className="hero-description">
             SeraGPT; 20 yılı aşkın mühendislik deneyimi, 500'den fazla
-            tamamlanmış proje ve 110'dan fazla ger��ek zamanlı veri
+            tamamlanmış proje ve 110'dan fazla gerçek zamanlı veri
             setiyle, tarımsal yatırım kararlarınızı saniyeler içinde
             analiz eder.
           </p>
@@ -515,10 +515,10 @@ export default function UserjotCloneSection() {
           {/* CTA Button */}
           <div className="text-center mt-12">
             <button className="btn btn-primary mb-4">
-              <p>AI Asistan Özelliği</p>
+              AI Asistan Özelliği
             </button>
             <p className="text-small text-center">
-              <p>Raporlarınız üzerinden asistanınızla sohbet edin. Adil kullanım kotası ile birlikte ücretsizdir. </p>
+              Raporlarınız üzerinden asistanınızla sohbet edin. Adil kullanım kotası ile birlikte ücretsizdir.
             </p>
           </div>
         </div>
