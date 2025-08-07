@@ -72,22 +72,22 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
   };
 
   const menuItems = [
-    { name: 'Dashboard', href: '/dashboard', active: true },
-    { name: 'SeraGPT AI', href: '/dashboard/ai-chat', active: false },
-    { name: 'ROI Simülasyonu', href: '/dashboard/analysis/roi', active: false },
-    { name: 'İklim Analizi', href: '/dashboard/analysis/climate', active: false },
-    { name: 'Ekipman Listesi', href: '/dashboard/analysis/equipment', active: false },
-    { name: 'Pazar Analizi', href: '/dashboard/analysis/market', active: false },
-    { name: 'Teknik Planlar', href: '/dashboard/analysis/layout', active: false },
-    { name: 'Raporlarım', href: '/dashboard/reports', active: false },
+    { name: 'Dashboard', href: '/dashboard', active: pathname === '/dashboard' },
+    { name: 'SeraGPT AI', href: '/dashboard/ai-chat', active: pathname === '/dashboard/ai-chat' },
+    { name: 'ROI Simülasyonu', href: '/dashboard/analysis/roi', active: pathname === '/dashboard/analysis/roi' },
+    { name: 'İklim Analizi', href: '/dashboard/analysis/climate', active: pathname === '/dashboard/analysis/climate' },
+    { name: 'Ekipman Listesi', href: '/dashboard/analysis/equipment', active: pathname === '/dashboard/analysis/equipment' },
+    { name: 'Pazar Analizi', href: '/dashboard/analysis/market', active: pathname === '/dashboard/analysis/market' },
+    { name: 'Teknik Planlar', href: '/dashboard/analysis/layout', active: pathname === '/dashboard/analysis/layout' },
+    { name: 'Raporlarım', href: '/dashboard/reports', active: pathname === '/dashboard/reports' },
   ];
 
   const secondaryMenuItems = [
-    { name: 'Jeton Satın Al', href: '/dashboard/tokens', active: false },
-    { name: 'Danışmanlık', href: '/danismanlik', active: false },
-    { name: 'Anahtar Teslim Sera', href: '/anahtar-teslim-proje', active: false },
-    { name: 'Ayarlar', href: '/dashboard/settings', active: false },
-    { name: 'Yardım', href: '/dashboard/help', active: false },
+    { name: 'Jeton Satın Al', href: '/dashboard/tokens', active: pathname === '/dashboard/tokens' },
+    { name: 'Danışmanlık', href: '/danismanlik', active: pathname === '/danismanlik' },
+    { name: 'Anahtar Teslim Sera', href: '/anahtar-teslim-proje', active: pathname === '/anahtar-teslim-proje' },
+    { name: 'Ayarlar', href: '/dashboard/settings', active: pathname === '/dashboard/settings' },
+    { name: 'Yardım', href: '/dashboard/help', active: pathname === '/dashboard/help' },
   ];
 
   const adminMenuItems = [
