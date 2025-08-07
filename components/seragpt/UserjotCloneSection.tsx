@@ -264,13 +264,12 @@ export default function UserjotCloneSection() {
       {/* How It Works Section */}
       <div className="section" style={{ background: '#f9fafb' }}>
         <div className="body-container">
-          <div
-
-            className="text-center mb-16"
-          >
-            <h2 className="text-xl font-bold text-gray-900 mb-6">
-              Panelde Sizi Bekleyen Analiz Türleri ve Özellikleri
-            </h2>
+          <div className="text-center mb-8">
+            <div className="text-container">
+              <h2 className="heading-2 text-center">
+                Panelde Sizi Bekleyen Analiz Türleri ve Özellikleri
+              </h2>
+            </div>
           </div>
 
           {/* Horizontal Scrolling Cards */}
@@ -546,7 +545,7 @@ export default function UserjotCloneSection() {
               AI Asistanınızı Test Edin
             </button>
             <p className="text-gray-500 text-sm mt-4">
-              Adil Kullanım Kotas�� İle Birlikte Ücretsizdir
+              Adil Kullanım Kotası İle Birlikte Ücretsizdir
             </p>
           </div>
         </div>
