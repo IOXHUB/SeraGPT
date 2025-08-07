@@ -45,12 +45,23 @@ export async function withAuth(
       // Create authenticated request object
       const authReq = req as AuthenticatedRequest;
       
-      // 1. Rate limiting (if specified)
-      if (options.rateLimit) {
-        const rateLimitResponse = await checkRateLimit(authReq, clientIP, options.rateLimit);
-        if (rateLimitResponse) {
-          return rateLimitResponse;
-        }
+      // 1. Advanced rate limiting
+      const rateLimitResult = await checkAdvancedRateLimit(authReq, clientIP, options);
+      if (!rateLimitResult.allowed) {
+        const response = new NextResponse(
+          JSON.stringify({
+            error: 'Too Many Requests',
+            limit: rateLimitResult.limit,
+            remaining: rateLimitResult.remaining,
+            resetTime: new Date(rateLimitResult.resetTime).toISOString()
+          }),
+          {
+            status: 429,
+            headers: { 'Content-Type': 'application/json' }
+          }
+        );
+
+        return addRateLimitHeaders(response, rateLimitResult);
       }
 
       // 2. Extract and validate authentication
