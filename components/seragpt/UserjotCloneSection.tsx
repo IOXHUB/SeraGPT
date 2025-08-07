@@ -490,17 +490,14 @@ export default function UserjotCloneSection() {
         </div>
       </div>
 
-      {/* AI Chat Section */}
-      <div className="py-20 text-gray-600">
-        <div className="text-section-container">
-          <div
-
-            className="text-center mb-16"
-          >
-            <h2 className="text-xl font-bold text-gray-900 mb-6">
-              Tarımsal Zeka Panelinizde Sizi Bekliyor!
+      {/* AI Assistant Section */}
+      <div className="section">
+        <div className="text-container">
+          <div className="text-center mb-16">
+            <h2 className="heading-2 text-center">
+              AI Asistant İle Rapor Analizi
             </h2>
-            <p className="text-sm text-gray-600 text-section-container leading-relaxed">
+            <p className="text-body text-center">
               Proje çıktılarınız üzerine sohbet edebileceğiniz, derinlemesine araştırma yapabileceğiniz özel asistanınız panelinizde sizi bekliyor, üstelik tamamen ücretsiz
             </p>
           </div>
