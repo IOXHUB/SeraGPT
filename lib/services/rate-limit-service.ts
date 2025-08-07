@@ -108,7 +108,6 @@ export class RateLimiter {
   constructor(config: RateLimitConfig) {
     this.config = {
       keyGenerator: (identifier, path) => `${identifier}:${path}`,
-      algorithm: 'fixed-window',
       ...config
     };
     this.storage = new RateLimitStorage();
