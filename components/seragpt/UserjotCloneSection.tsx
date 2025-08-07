@@ -493,14 +493,6 @@ export default function UserjotCloneSection() {
       {/* AI Assistant Section */}
       <div className="section">
         <div className="text-container">
-          <div className="text-center mb-16">
-            <h2 className="heading-2 text-center">
-              AI Asistant İle Rapor Analizi
-            </h2>
-            <p className="text-body text-center">
-              Proje çıktılarınız üzerine sohbet edebileceğiniz, derinlemesine araştırma yapabileceğiniz özel asistanınız panelinizde sizi bekliyor, üstelik tamamen ücretsiz
-            </p>
-          </div>
 
           {/* AI Chat Flow - Same style as User Panel */}
           <div className="visual-container">
@@ -523,10 +515,10 @@ export default function UserjotCloneSection() {
           {/* CTA Button */}
           <div className="text-center mt-12">
             <button className="btn btn-primary mb-4">
-              AI Asistanınızı Test Edin
+              Kullanıcı Paneline Giriş Yapın
             </button>
             <p className="text-small text-center">
-              Adil Kullanım Kotası İle Birlikte Ücretsizdir
+              Tüm sera projelerinizi tek platformdan yönetin
             </p>
           </div>
         </div>
