@@ -521,17 +521,11 @@ export default function UserjotCloneSection() {
           </div>
 
           {/* CTA Button */}
-          <div
-
-            className="text-center mt-12"
-          >
-            <button
-
-              className="bg-gray-600 hover:bg-gray-800 text-white px-4 py-2 rounded-lg text-base font-medium transition-colors shadow-md hover:shadow-lg"
-            >
+          <div className="text-center mt-12">
+            <button className="btn btn-primary mb-4">
               AI Asistanınızı Test Edin
             </button>
-            <p className="text-gray-500 text-sm mt-4">
+            <p className="text-small text-center">
               Adil Kullanım Kotası İle Birlikte Ücretsizdir
             </p>
           </div>
