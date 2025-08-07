@@ -96,11 +96,11 @@ export default function TokensPage() {
                 style={{
                   position: 'relative',
                   background: '#ffffff',
-                  borderRadius: '16px',
-                  padding: '32px',
+                  borderRadius: '12px',
+                  padding: '20px',
                   border: pkg.popular ? '2px solid #8b5cf6' : '2px solid #e5e7eb',
                   boxShadow: pkg.popular
-                    ? '0 0 32px rgba(139, 92, 246, 0.2)'
+                    ? '0 0 24px rgba(139, 92, 246, 0.2)'
                     : '0 4px 6px rgba(0, 0, 0, 0.05)',
                   textAlign: 'center',
                   transition: 'all 0.3s ease',
