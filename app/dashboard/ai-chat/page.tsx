@@ -156,7 +156,7 @@ export default function AIChatPage() {
 
   const handleSendMessage = async () => {
     if (!inputValue.trim() || !chatSession || isTyping || !user) return;
-    
+
     // Check token availability
     if (!hasTokens(1)) {
       setError('Bu mesaj için token gereklidir. Lütfen token satın alın.');
@@ -165,12 +165,12 @@ export default function AIChatPage() {
 
     setError('');
     setTokenWarning('');
-    
+
     // Create user message
     const userMessage: ChatMessage = {
       id: `msg_${Date.now()}_user`,
       role: 'user',
-      content: inputValue,
+      content: inputValue.trim(),
       timestamp: new Date(),
       session_id: chatSession.id
     };
@@ -181,8 +181,8 @@ export default function AIChatPage() {
       messages: [...chatSession.messages, userMessage]
     };
     setChatSession(updatedSession);
-    
-    const currentInput = inputValue;
+
+    const currentInput = inputValue.trim();
     setInputValue('');
     setIsTyping(true);
 
