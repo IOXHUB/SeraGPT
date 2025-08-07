@@ -691,7 +691,7 @@ export default function UserjotCloneSection() {
             </h2>
           </div>
 
-          <div className="space-y-2">
+          <div className="space-y-2" style={{ fontSize: '16px', lineHeight: '24px', backgroundColor: 'rgba(245, 245, 245, 1)' }}>
             {[
               {
                 question: "Raporlar ne kadar doğru?",
