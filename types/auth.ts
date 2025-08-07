@@ -341,10 +341,12 @@ export interface CreateUserProfileRequest {
   currency?: UserProfile['currency'];
   marketing_consent?: boolean;
   newsletter_consent?: boolean;
+  preferences?: Partial<UserPreferences>;
 }
 
 export interface UpdateUserProfileRequest extends Partial<CreateUserProfileRequest> {
   onboarding_completed?: boolean;
+  preferences?: Partial<UserPreferences>;
 }
 
 export interface UpdateUserPreferencesRequest extends Partial<UserPreferences> {
