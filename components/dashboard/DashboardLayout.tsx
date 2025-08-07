@@ -205,17 +205,77 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
             {/* Primary Menu */}
             <div className="space-y-2">
               {menuItems.map((item) => (
-                <a
-                  key={item.name}
-                  href={item.href}
-                  className={`flex items-center px-4 py-3 rounded-lg text-sm font-medium transition-colors ${
-                    item.active
-                      ? 'bg-gray-600 text-white'
-                      : 'text-gray-700 hover:bg-gray-50 hover:text-gray-900'
-                  }`}
-                >
-                  <span>{item.name}</span>
-                </a>
+                <div key={item.name}>
+                  {item.name === 'Raporlarım' ? (
+                    <div className="relative">
+                      <button
+                        onClick={() => setShowReportsDropdown(!showReportsDropdown)}
+                        className={`flex items-center justify-between w-full px-4 py-3 rounded-lg text-sm font-medium transition-colors ${
+                          item.active
+                            ? 'bg-green-600 text-white'
+                            : 'text-gray-700 hover:bg-gray-50 hover:text-gray-900'
+                        }`}
+                      >
+                        <span>{item.name}</span>
+                        <svg
+                          className={`w-4 h-4 transition-transform ${showReportsDropdown ? 'rotate-180' : ''}`}
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                        </svg>
+                      </button>
+
+                      {/* Reports Dropdown */}
+                      {showReportsDropdown && (
+                        <div className="mt-2 ml-4 space-y-1 border-l-2 border-gray-200 pl-4">
+                          <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
+                            Son Raporlarınız
+                          </div>
+                          {userReports.slice(0, 3).map((report) => (
+                            <a
+                              key={report.id}
+                              href={`/dashboard/reports/${report.id}`}
+                              className="block px-3 py-2 rounded-md text-xs text-gray-600 hover:bg-gray-50 hover:text-gray-900 transition-colors"
+                            >
+                              <div className="flex items-center justify-between">
+                                <span className="truncate">{report.name}</span>
+                                <span className={`ml-2 px-2 py-0.5 text-xs rounded-full ${
+                                  report.status === 'completed'
+                                    ? 'bg-green-100 text-green-700'
+                                    : 'bg-yellow-100 text-yellow-700'
+                                }`}>
+                                  {report.status === 'completed' ? '✓' : '○'}
+                                </span>
+                              </div>
+                              <div className="text-xs text-gray-400 mt-1">
+                                {new Date(report.date).toLocaleDateString('tr-TR')}
+                              </div>
+                            </a>
+                          ))}
+                          <a
+                            href="/dashboard/reports"
+                            className="block px-3 py-2 text-xs text-blue-600 hover:text-blue-800 font-medium"
+                          >
+                            Tüm raporları görüntüle →
+                          </a>
+                        </div>
+                      )}
+                    </div>
+                  ) : (
+                    <a
+                      href={item.href}
+                      className={`flex items-center px-4 py-3 rounded-lg text-sm font-medium transition-colors ${
+                        item.active
+                          ? 'bg-green-600 text-white shadow-md'
+                          : 'text-gray-700 hover:bg-gray-50 hover:text-gray-900'
+                      }`}
+                    >
+                      <span>{item.name}</span>
+                    </a>
+                  )}
+                </div>
               ))}
             </div>
 
