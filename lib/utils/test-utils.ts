@@ -92,7 +92,7 @@ export async function testAuthService(): Promise<TestSuite> {
   // Test connection
   tests.push(await testApiEndpoint(
     '/api/auth/test',
-    () => authService.testConnection()
+    () => authService.testAuthConnection()
   ));
 
   // Test authentication status
@@ -107,14 +107,14 @@ export async function testAuthService(): Promise<TestSuite> {
   if (authStatus.isAuthenticated) {
     tests.push(await testApiEndpoint(
       '/api/auth/profile',
-      () => authService.getProfile(),
+      () => authService.getUserProfile(authStatus.user.id),
       ['id', 'email']
     ));
 
     tests.push(await testApiEndpoint(
       '/api/auth/tokens',
-      () => authService.getTokens(),
-      ['available', 'used', 'total']
+      () => authService.getUserTokens(authStatus.user.id),
+      ['total_tokens', 'used_tokens', 'remaining_tokens']
     ));
   }
 
