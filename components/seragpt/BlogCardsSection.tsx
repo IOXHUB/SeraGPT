@@ -1,7 +1,5 @@
 'use client';
 
-import { motion } from 'framer-motion';
-
 export default function BlogCardsSection() {
 
   return (
@@ -42,7 +40,7 @@ export default function BlogCardsSection() {
               {
                 date: "8 Ocak 2025",
                 category: "İklim Kontrolü",
-                title: "Akıllı İklim Kontrol Sistemleri ve Enerji Verimliliği",
+                title: "Akıll�� İklim Kontrol Sistemleri ve Enerji Verimliliği",
                 excerpt: "Otomatik iklim kontrol sistemleri ile %30 enerji tasarrufu."
               },
               {
