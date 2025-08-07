@@ -222,11 +222,8 @@ export async function DELETE(request: NextRequest) {
 
     // Soft delete user profile (mark as deleted)
     const updateData = await authService.updateUserProfile(user.id, {
-      metadata: {
-        is_active: false,
-        deactivated_at: new Date().toISOString(),
-        deactivation_reason: 'User requested account deletion'
-      }
+      deactivated_at: new Date().toISOString(),
+      deactivation_reason: 'User requested account deletion'
     });
 
     if (!updateData) {

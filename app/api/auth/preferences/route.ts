@@ -138,7 +138,6 @@ export async function POST(request: NextRequest) {
     // Reset to default preferences
     const defaultPreferences: UpdateUserPreferencesRequest = {
       theme: 'light',
-      notifications_enabled: true,
       email_notifications: true,
       push_notifications: true,
       marketing_emails: false,
