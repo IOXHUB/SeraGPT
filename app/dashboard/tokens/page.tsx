@@ -17,8 +17,8 @@ export default function TokensPage() {
       id: 'small',
       name: '10 Jeton',
       tokens: 10,
-      price: 500,
-      originalPrice: 500,
+      price: 1000,
+      originalPrice: 1000,
       popular: false
     },
     {
@@ -33,10 +33,10 @@ export default function TokensPage() {
       id: 'large',
       name: '100 Jeton',
       tokens: 100,
-      price: 4900,
-      originalPrice: 5000,
+      price: 5000,
+      originalPrice: 10000,
       popular: false,
-      savings: 100
+      savings: 5000
     }
   ];
 
