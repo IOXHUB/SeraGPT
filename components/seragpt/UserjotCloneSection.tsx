@@ -261,9 +261,9 @@ export default function UserjotCloneSection() {
         </div>
       </div>
 
-      {/* How It Works Section - Horizontal Scrolling */}
-      <div className="py-20 bg-gray-50 text-gray-600">
-        <div className="page-section-container">
+      {/* How It Works Section */}
+      <div className="section" style={{ background: '#f9fafb' }}>
+        <div className="body-container">
           <div
 
             className="text-center mb-16"
@@ -546,7 +546,7 @@ export default function UserjotCloneSection() {
               AI Asistanınızı Test Edin
             </button>
             <p className="text-gray-500 text-sm mt-4">
-              Adil Kullanım Kotası İle Birlikte Ücretsizdir
+              Adil Kullanım Kotas�� İle Birlikte Ücretsizdir
             </p>
           </div>
         </div>
