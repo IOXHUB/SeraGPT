@@ -36,9 +36,10 @@ import type {
   TokenPackage,
   SubscriptionPlan,
   PaymentError,
-  PaymentErrorCode,
-  PAYMENT_ERROR_CODES
+  PaymentErrorCode
 } from '@/types/payment';
+
+import { PAYMENT_ERROR_CODES } from '@/types/payment';
 
 // =====================================================
 // STRIPE CONFIGURATION
