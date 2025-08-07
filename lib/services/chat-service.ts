@@ -969,8 +969,8 @@ export class ChatService {
    */
   private async logAIUsage(usage: {
     user_id: string;
-    session_id?: string;
-    message_id?: string;
+    session_id?: string | null;
+    message_id?: string | null;
     provider: AIProvider;
     model_name: string;
     endpoint: string;
