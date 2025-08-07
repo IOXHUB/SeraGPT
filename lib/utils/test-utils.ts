@@ -93,7 +93,7 @@ export async function testAuthService(): Promise<TestSuite> {
   // Test connection
   tests.push(await testApiEndpoint(
     '/api/auth/test',
-    () => authService.testConnection()
+    () => authService.testAuthConnection()
   ));
 
   // Test authentication status
