@@ -12,7 +12,7 @@ export default function UserjotCloneSection() {
   const { user, loading } = useAuth();
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="page-container">
       {/* Header - Clean layout */}
       <header className="header">
         <div className="header-footer-container">
@@ -745,7 +745,7 @@ export default function UserjotCloneSection() {
                 answer: "Kesinlikle. Tüm bilgileriniz Supabase veritabanında şifreli olarak saklanır. Raporlar yalnızca size özeldir, üçüncü taraflarla paylaşılmaz."
               },
               {
-                question: "Ödeme nasıl yapıl��yor?",
+                question: "Ödeme nasıl yapılıyor?",
                 answer: "İlk 5 rapor ücretsizdir. Sonrasında, kredi kartı veya havale/EFT ile jeton (token) satın alabilirsiniz. Ödeme altyapısı %100 güvenlidir."
               }
             ].map((faq, index) => (
