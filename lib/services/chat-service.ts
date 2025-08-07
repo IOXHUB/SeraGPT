@@ -638,7 +638,7 @@ export class ChatService {
         await this.logAIUsage({
           user_id: session.user_id,
           session_id: sessionId,
-          message_id: aiMessageResponse.data?.id || null,
+          message_id: aiMessageResponse.data?.id,
           provider: aiResponse.provider,
           model_name: session.ai_model,
           endpoint: 'chat/completions',
