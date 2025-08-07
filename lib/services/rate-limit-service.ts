@@ -84,9 +84,10 @@ class RateLimitStorage {
     totalKeys: number;
     memoryUsage: number;
   } {
+    const entries = Array.from(this.storage.entries());
     return {
       totalKeys: this.storage.size,
-      memoryUsage: JSON.stringify([...this.storage.entries()]).length
+      memoryUsage: JSON.stringify(entries).length
     };
   }
 
