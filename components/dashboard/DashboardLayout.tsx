@@ -8,6 +8,9 @@ import Footer from '@/components/Footer';
 
 interface DashboardLayoutProps {
   children: React.ReactNode;
+  title?: string;
+  subtitle?: string;
+  requiresTokens?: boolean;
 }
 
 export default function DashboardLayout({ children }: DashboardLayoutProps) {
