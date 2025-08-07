@@ -72,6 +72,19 @@ export function useAuth() {
   };
 
   const isAdmin = () => {
+    // Check development bypass in localStorage first
+    if (process.env.NODE_ENV === 'development') {
+      const devUser = localStorage.getItem('seragpt_user');
+      if (devUser) {
+        try {
+          const parsedUser = JSON.parse(devUser);
+          if (parsedUser.role === 'admin') {
+            return true;
+          }
+        } catch (e) {}
+      }
+    }
+
     const adminEmails = ['admin@seragpt.com', 'info@isitmax.com'];
     return user?.user_metadata?.role === 'admin' || adminEmails.includes(user?.email || '');
   };
