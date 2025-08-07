@@ -604,15 +604,15 @@ export default function DashboardPage() {
               {currentQuickActions.map((action, index) => (
                 <a
                   key={index}
-                  href={action.disabled ? '#' : action.href}
+                  href={('disabled' in action && action.disabled) ? '#' : action.href}
                   className={`block p-4 rounded-lg transition-all duration-200 ${
-                    action.disabled 
+                    ('disabled' in action && action.disabled)
                       ? 'bg-gray-50 text-gray-400 cursor-not-allowed opacity-60'
                       : action.primary
                         ? 'bg-gray-900 hover:bg-gray-800 text-white transform hover:scale-105'
                         : 'bg-gray-50 hover:bg-gray-100 text-gray-900 hover:shadow-md'
                   }`}
-                  onClick={action.disabled ? (e) => e.preventDefault() : undefined}
+                  onClick={('disabled' in action && action.disabled) ? (e) => e.preventDefault() : undefined}
                 >
                   <div className="flex items-center">
                     <span className="text-2xl mr-3">{action.icon}</span>
