@@ -72,8 +72,8 @@ export function useAuth() {
   };
 
   const isAdmin = () => {
-    // Check development bypass in localStorage first
-    if (process.env.NODE_ENV === 'development') {
+    // Check development bypass in localStorage first (browser only)
+    if (process.env.NODE_ENV === 'development' && typeof window !== 'undefined') {
       const devUser = localStorage.getItem('seragpt_user');
       if (devUser) {
         try {
