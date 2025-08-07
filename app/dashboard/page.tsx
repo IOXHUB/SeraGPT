@@ -106,7 +106,7 @@ export default function DashboardPage() {
   const adminActivity = [
     {
       type: 'user',
-      title: 'Yeni kullanıc�� kaydı',
+      title: 'Yeni kullanıcı kaydı',
       description: 'mehmet@example.com sisteme katıldı',
       time: '5 dk önce',
       color: 'bg-green-100 text-green-600'
@@ -277,7 +277,7 @@ export default function DashboardPage() {
                 </p>
               </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 mb-8">
+            <div className="grid lg:grid-cols-3 gap-6 mb-8">
               {analysisTools.map((tool, index) => (
                 <div key={tool.id} className="relative group">
                   <div className="absolute -inset-0.5 bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 rounded-xl opacity-40 group-hover:opacity-70 transition duration-300"></div>
