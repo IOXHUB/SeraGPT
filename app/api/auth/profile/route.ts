@@ -85,7 +85,7 @@ export const POST = requireAuth(
 
         // Sanitize input data
         const sanitizedData: CreateUserProfileRequest = {
-          full_name: sanitizeInput.general(validatedData.full_name),
+          full_name: validatedData.full_name ? sanitizeInput.general(validatedData.full_name) : undefined,
           phone: validatedData.phone ? sanitizeInput.general(validatedData.phone) : undefined,
           company_name: validatedData.company_name ? sanitizeInput.general(validatedData.company_name) : undefined,
           experience_level: validatedData.experience_level,
