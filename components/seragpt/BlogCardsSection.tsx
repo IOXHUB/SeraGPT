@@ -3,16 +3,13 @@
 export default function BlogCardsSection() {
 
   return (
-    <div className="py-20 bg-white text-gray-600">
-      <div className="max-w-[960px] mx-auto px-6">
-        <div className="text-left mb-12">
-          <div>
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">
-              Sera Teknolojilerinde İnovasyon ve Geleceğin Tarımı
+    <div className="section">
+      <div className="body-container">
+        <div className="text-center mb-12">
+          <div className="text-container">
+            <h2 className="heading-2 text-center">
+              BLOG
             </h2>
-            <p className="text-lg text-gray-600 mb-6">
-              Modern tarım teknolojileri, sürdürülebilir sera çözümleri ve akıllı yatırım stratejileri ile tarımsal dönüşümün merkezindeyiz.
-            </p>
           </div>
         </div>
 
