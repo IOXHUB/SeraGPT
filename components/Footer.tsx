@@ -9,60 +9,28 @@ export default function Footer() {
       {/* 4 Columns - centered container, left-aligned content */}
       <div className="header-footer-container">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mb-12">
-          {/* 1. Ürün */}
+          {/* 1. Menü */}
           <div>
-            <h3 className="text-base font-semibold mb-4 text-gray-900">Ürün</h3>
-            <ul className="space-y-2">
-              <li>
-                <a href="/dashboard" className="text-sm text-gray-600 hover:text-gray-900 transition-colors">
-                  Başlangıç
-                </a>
-              </li>
-              <li>
-                <a href="/dashboard/tokens" className="text-sm text-gray-600 hover:text-gray-900 transition-colors">
-                  Fiyatlandırma
-                </a>
-              </li>
-              <li>
-                <a href="/destek" className="text-sm text-gray-600 hover:text-gray-900 transition-colors">
-                  Geri Bildirim
-                </a>
-              </li>
-              <li>
-                <a href="/blog" className="text-sm text-gray-600 hover:text-gray-900 transition-colors">
-                  Güncellemeler
-                </a>
-              </li>
-              <li>
-                <a href="/blog" className="text-sm text-gray-600 hover:text-gray-900 transition-colors">
-                  Yol Haritası
-                </a>
-              </li>
-              <li>
-                <a href="/dashboard/help" className="text-sm text-gray-600 hover:text-gray-900 transition-colors">
-                  Kullanım Örnekleri
-                </a>
-              </li>
-              <li>
-                <a href="/dashboard/analytics" className="text-sm text-gray-600 hover:text-gray-900 transition-colors">
-                  Araçlar
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          {/* 2. Destek */}
-          <div>
-            <h3 className="text-base font-semibold mb-4 text-gray-900">Destek</h3>
+            <h3 className="text-base font-semibold mb-4 text-gray-900">Menü</h3>
             <ul className="space-y-2">
               <li>
                 <a href="/destek" className="text-sm text-gray-600 hover:text-gray-900 transition-colors">
-                  İletişim
+                  Destek
                 </a>
               </li>
               <li>
-                <a href="/dashboard/help" className="text-sm text-gray-600 hover:text-gray-900 transition-colors">
-                  Dökümanlar
+                <a href="/danismanlik" className="text-sm text-gray-600 hover:text-gray-900 transition-colors">
+                  Danışmanlık
+                </a>
+              </li>
+              <li>
+                <a href="/anahtar-teslim-proje" className="text-sm text-gray-600 hover:text-gray-900 transition-colors">
+                  Anahtar Teslim Sera
+                </a>
+              </li>
+              <li>
+                <a href="/dashboard/direct" className="text-sm text-gray-600 hover:text-gray-900 transition-colors">
+                  Kullanıcı Paneli
                 </a>
               </li>
               <li>
@@ -70,19 +38,46 @@ export default function Footer() {
                   Blog
                 </a>
               </li>
+            </ul>
+          </div>
+
+          {/* 2. Blog */}
+          <div>
+            <h3 className="text-base font-semibold mb-4 text-gray-900">Blog</h3>
+            <ul className="space-y-2">
               <li>
-                <a href="/dashboard/analytics" className="text-sm text-gray-600 hover:text-gray-900 transition-colors">
-                  Durum
+                <a href="/blog/veriye-dayali-tarim" className="text-sm text-gray-600 hover:text-gray-900 transition-colors">
+                  Veriye Dayalı Tarım
                 </a>
               </li>
               <li>
-                <a href="/blog" className="text-sm text-gray-600 hover:text-gray-900 transition-colors">
-                  Hikayeler
+                <a href="/blog/gizli-maliyetler" className="text-sm text-gray-600 hover:text-gray-900 transition-colors">
+                  Gizli Maliyetler
                 </a>
               </li>
               <li>
-                <a href="/dashboard/help" className="text-sm text-gray-600 hover:text-gray-900 transition-colors">
-                  Tanımlar
+                <a href="/blog/akilli-sera-modelleri" className="text-sm text-gray-600 hover:text-gray-900 transition-colors">
+                  Akıllı Sera Modelleri
+                </a>
+              </li>
+              <li>
+                <a href="/blog/tarimsal-zeka" className="text-sm text-gray-600 hover:text-gray-900 transition-colors">
+                  Tarımsal Zeka
+                </a>
+              </li>
+              <li>
+                <a href="/blog/roi-maliyet" className="text-sm text-gray-600 hover:text-gray-900 transition-colors">
+                  ROI & Maliyet İçerikleri
+                </a>
+              </li>
+              <li>
+                <a href="/blog/iklim-krizi-tarim" className="text-sm text-gray-600 hover:text-gray-900 transition-colors">
+                  İklim Krizi ve Tarım
+                </a>
+              </li>
+              <li>
+                <a href="/blog/sera-mimarligi-tasarim" className="text-sm text-gray-600 hover:text-gray-900 transition-colors">
+                  Sera Mimarlığı & Tasarım
                 </a>
               </li>
             </ul>
@@ -94,39 +89,69 @@ export default function Footer() {
             <ul className="space-y-2">
               <li>
                 <a href="/privacy" className="text-sm text-gray-600 hover:text-gray-900 transition-colors">
-                  Gizlilik
+                  Gizlilik Politikası
                 </a>
               </li>
               <li>
                 <a href="/terms" className="text-sm text-gray-600 hover:text-gray-900 transition-colors">
-                  Şartlar
+                  Kullanım Koşulları
+                </a>
+              </li>
+              <li>
+                <a href="#" className="text-sm text-gray-600 hover:text-gray-900 transition-colors">
+                  Veri İşleme Politikası
+                </a>
+              </li>
+              <li>
+                <a href="#" className="text-sm text-gray-600 hover:text-gray-900 transition-colors">
+                  API Kullanım Şartları
+                </a>
+              </li>
+              <li>
+                <a href="#" className="text-sm text-gray-600 hover:text-gray-900 transition-colors">
+                  Çerez Tercihleri
+                </a>
+              </li>
+              <li>
+                <a href="#" className="text-sm text-gray-600 hover:text-gray-900 transition-colors">
+                  IYZICO
                 </a>
               </li>
             </ul>
           </div>
 
-          {/* 4. Kaynaklar */}
+          {/* 4. Çözüm Ortaklarımız */}
           <div>
-            <h3 className="text-base font-semibold mb-4 text-gray-900">Kaynaklar</h3>
+            <h3 className="text-base font-semibold mb-4 text-gray-900">Çözüm Ortaklarımız</h3>
             <ul className="space-y-2">
               <li>
-                <a href="/danismanlik" className="text-sm text-gray-600 hover:text-gray-900 transition-colors">
-                  Sera Alternatifleri
+                <a href="#" className="text-sm text-gray-600 hover:text-gray-900 transition-colors">
+                  ISITMAX
                 </a>
               </li>
               <li>
-                <a href="/anahtar-teslim-proje" className="text-sm text-gray-600 hover:text-gray-900 transition-colors">
-                  Anahtar Teslim Alternatifi
+                <a href="#" className="text-sm text-gray-600 hover:text-gray-900 transition-colors">
+                  SERAPOLI
                 </a>
               </li>
               <li>
-                <a href="/dashboard" className="text-sm text-gray-600 hover:text-gray-900 transition-colors">
-                  Panel Alternatifleri
+                <a href="#" className="text-sm text-gray-600 hover:text-gray-900 transition-colors">
+                  SISELTARIM
                 </a>
               </li>
               <li>
-                <a href="/dashboard/analytics" className="text-sm text-gray-600 hover:text-gray-900 transition-colors">
-                  Karşılaştır
+                <a href="#" className="text-sm text-gray-600 hover:text-gray-900 transition-colors">
+                  IOX
+                </a>
+              </li>
+              <li>
+                <a href="#" className="text-sm text-gray-600 hover:text-gray-900 transition-colors">
+                  KAIZEN
+                </a>
+              </li>
+              <li>
+                <a href="#" className="text-sm text-gray-600 hover:text-gray-900 transition-colors">
+                  DHERMA
                 </a>
               </li>
             </ul>
