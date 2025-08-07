@@ -611,7 +611,7 @@ export class ChatService {
       );
 
       if (!aiResponse.success) {
-        return { data: null, error: aiResponse.error };
+        return { data: null, error: aiResponse.error || 'AI response failed' };
       }
 
       // Create AI message
