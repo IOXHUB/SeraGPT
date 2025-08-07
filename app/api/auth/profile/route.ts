@@ -1,20 +1,26 @@
 // =====================================================
-// AUTH PROFILE API ENDPOINT
+// AUTH PROFILE API ENDPOINT (SECURED)
 // =====================================================
-// Handles user profile operations: get, update, create
+// Handles user profile operations with security middleware
 // Author: SeraGPT Development Team
 // Created: 2024-12-01
+// Updated: 2024-12-02 - Added security middleware
 // =====================================================
 
-import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
-import { cookies } from 'next/headers';
-import { NextRequest, NextResponse } from 'next/server';
 import { authService } from '@/lib/services/auth-service';
-import type { 
-  CreateUserProfileRequest, 
+import {
+  requireAuth,
+  createSuccessResponse,
+  createErrorResponse,
+  withValidation,
+  type AuthenticatedRequest
+} from '@/lib/middleware/auth-middleware';
+import { validateUserProfile } from '@/lib/utils/validation';
+import { sanitizeInput } from '@/lib/utils/security';
+import type {
+  CreateUserProfileRequest,
   UpdateUserProfileRequest,
-  UserProfile,
-  AUTH_ERROR_CODES 
+  UserProfile
 } from '@/types/auth';
 
 // =====================================================
