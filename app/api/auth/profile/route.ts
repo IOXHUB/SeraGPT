@@ -118,11 +118,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Log activity
-    await authService.logUserActivity(user.id, 'profile_updated', {
-      action: 'profile_created',
-      timestamp: new Date().toISOString()
-    });
+    // Profile created successfully
 
     return NextResponse.json({
       success: true,
@@ -175,12 +171,7 @@ export async function PUT(request: NextRequest) {
       );
     }
 
-    // Log activity
-    await authService.logUserActivity(user.id, 'profile_updated', {
-      action: 'profile_updated',
-      updated_fields: Object.keys(body),
-      timestamp: new Date().toISOString()
-    });
+    // Profile updated successfully
 
     return NextResponse.json({
       success: true,
@@ -233,11 +224,7 @@ export async function DELETE(request: NextRequest) {
       );
     }
 
-    // Log activity
-    await authService.logUserActivity(user.id, 'profile_updated', {
-      action: 'profile_deactivated',
-      timestamp: new Date().toISOString()
-    });
+    // Profile deactivated successfully
 
     // Note: We don't actually delete the user from auth.users
     // That should be handled by a separate admin process if needed

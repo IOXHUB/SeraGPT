@@ -90,12 +90,7 @@ export async function PUT(request: NextRequest) {
       );
     }
 
-    // Log activity
-    await authService.logUserActivity(user.id, 'preferences_updated', {
-      action: 'preferences_updated',
-      updated_fields: Object.keys(body),
-      timestamp: new Date().toISOString()
-    });
+    // Preferences updated successfully
 
     return NextResponse.json({
       success: true,
@@ -160,11 +155,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Log activity
-    await authService.logUserActivity(user.id, 'preferences_updated', {
-      action: 'preferences_reset_to_default',
-      timestamp: new Date().toISOString()
-    });
+    // Preferences reset successfully
 
     return NextResponse.json({
       success: true,

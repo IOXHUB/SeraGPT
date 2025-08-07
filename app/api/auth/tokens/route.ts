@@ -203,15 +203,7 @@ export async function PUT(request: NextRequest) {
       );
     }
 
-    // Log activity
-    await authService.logUserActivity(user.id, 'token_purchased', {
-      action: 'tokens_added',
-      amount: amount,
-      purchase_price: purchase_price,
-      reason: reason,
-      is_admin_action: isAdmin,
-      timestamp: new Date().toISOString()
-    });
+    // Tokens added successfully
 
     return NextResponse.json({
       success: true,
