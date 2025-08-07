@@ -614,44 +614,127 @@ export default function AIChatPage() {
 
           {/* Input Area */}
           <div className="p-4 border-t border-gray-200 bg-white">
+            {/* Input hint bar */}
+            <div className="flex items-center justify-between mb-3 text-xs text-gray-500">
+              <div className="flex items-center space-x-3">
+                <span>💡 İpucu: Enter ile gönder, Shift+Enter ile yeni satır</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <span>Mevcut token: {tokens?.remaining_tokens || 0}</span>
+                {!hasTokens(1) && (
+                  <a
+                    href="/dashboard/tokens"
+                    className="text-blue-600 hover:text-blue-500 font-medium"
+                  >
+                    Token Al
+                  </a>
+                )}
+              </div>
+            </div>
+
             <div className="flex space-x-3">
-              <div className="flex-1">
+              <div className="flex-1 relative">
                 <textarea
                   value={inputValue}
-                  onChange={(e) => setInputValue(e.target.value)}
+                  onChange={(e) => {
+                    setInputValue(e.target.value);
+                    // Auto-resize textarea
+                    const textarea = e.target;
+                    textarea.style.height = 'auto';
+                    textarea.style.height = Math.min(textarea.scrollHeight, 120) + 'px';
+                  }}
                   onKeyPress={handleKeyPress}
                   placeholder={
-                    !hasTokens(1) 
+                    !hasTokens(1)
                       ? "Token gerekli - Mesaj göndermek için token satın alın"
-                      : "SeraGPT AI'ya sorunuzu yazın..."
+                      : "SeraGPT AI'ya sera ile ilgili sorunuzu yazın..."
                   }
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+                  className={`w-full px-4 py-3 pr-12 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none transition-all ${
+                    !hasTokens(1)
+                      ? 'border-gray-200 bg-gray-50 text-gray-400 cursor-not-allowed'
+                      : 'border-gray-300 bg-white'
+                  }`}
                   rows={1}
                   style={{ minHeight: '48px', maxHeight: '120px' }}
                   disabled={!hasTokens(1)}
                 />
-              </div>
-              <button
-                onClick={handleSendMessage}
-                disabled={!inputValue.trim() || isTyping || !hasTokens(1)}
-                className="flex-shrink-0 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center"
-              >
-                {isTyping ? (
-                  <>
-                    <svg className="w-5 h-5 animate-spin mr-2" fill="none" viewBox="0 0 24 24">
-                      <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" className="opacity-25"></circle>
-                      <path fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" className="opacity-75"></path>
-                    </svg>
-                    Gönderiliyor...
-                  </>
-                ) : (
-                  <>
-                    <span>Gönder</span>
-                    <span className="ml-2 text-xs opacity-75">~1🪙</span>
-                  </>
+
+                {/* Character counter */}
+                <div className="absolute bottom-2 right-2 text-xs text-gray-400">
+                  {inputValue.length}/500
+                </div>
+
+                {/* Auto-suggestions overlay */}
+                {inputValue.length > 0 && inputValue.length < 10 && (
+                  <div className="absolute -top-8 left-0 right-0 bg-white border border-gray-200 rounded-lg shadow-sm p-2 text-xs text-gray-600">
+                    <div className="flex items-center space-x-1">
+                      <span>💡</span>
+                      <span>Daha detaylı sorular daha iyi yanıtlar almanızı sağlar</span>
+                    </div>
+                  </div>
                 )}
-              </button>
+              </div>
+
+              <div className="flex flex-col space-y-2">
+                <button
+                  onClick={handleSendMessage}
+                  disabled={!inputValue.trim() || isTyping || !hasTokens(1)}
+                  className="flex-shrink-0 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center min-h-[48px] transform hover:scale-105 active:scale-95"
+                >
+                  {isTyping ? (
+                    <>
+                      <svg className="w-5 h-5 animate-spin mr-2" fill="none" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" className="opacity-25"></circle>
+                        <path fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" className="opacity-75"></path>
+                      </svg>
+                      <span className="hidden sm:inline">Gönderiliyor...</span>
+                    </>
+                  ) : (
+                    <>
+                      <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                      </svg>
+                      <span className="hidden sm:inline">Gönder</span>
+                      <span className="ml-2 text-xs opacity-75">~1🪙</span>
+                    </>
+                  )}
+                </button>
+
+                {/* Clear input button */}
+                {inputValue.length > 0 && (
+                  <button
+                    onClick={() => setInputValue('')}
+                    className="flex-shrink-0 bg-gray-200 hover:bg-gray-300 text-gray-600 px-3 py-2 rounded-lg text-sm transition-colors"
+                    title="Temizle"
+                  >
+                    ✕
+                  </button>
+                )}
+              </div>
             </div>
+
+            {/* Smart suggestions based on context */}
+            {chatSession.messages.length > 2 && inputValue.length === 0 && (
+              <div className="mt-3 p-3 bg-blue-50 border border-blue-200 rounded-lg">
+                <p className="text-sm text-blue-700 mb-2">🎯 Devam etmek için:</p>
+                <div className="flex flex-wrap gap-2">
+                  {[
+                    "Bu konuda daha detay verebilir misin?",
+                    "Alternatifleri nelerdir?",
+                    "Maliyetler nasıl hesaplanır?",
+                    "Pratik önerileriniz var mı?"
+                  ].map((suggestion, index) => (
+                    <button
+                      key={index}
+                      onClick={() => setInputValue(suggestion)}
+                      className="px-3 py-1 text-xs bg-white border border-blue-200 hover:bg-blue-50 text-blue-700 rounded-full transition-colors"
+                    >
+                      {suggestion}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         </div>
 
