@@ -13,7 +13,7 @@ interface DashboardLayoutProps {
   requiresTokens?: boolean;
 }
 
-export default function DashboardLayout({ children }: DashboardLayoutProps) {
+export default function DashboardLayout({ children, title, subtitle, requiresTokens }: DashboardLayoutProps) {
   const { user, loading, signOut, isAdmin } = useAuth();
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [showReportsDropdown, setShowReportsDropdown] = useState(false);
