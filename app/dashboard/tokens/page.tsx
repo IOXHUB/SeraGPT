@@ -1,329 +1,494 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useAuth } from '@/lib/hooks/useAuth';
+import { authService } from '@/lib/services/auth-service';
 import DashboardLayout from '@/components/dashboard/DashboardLayout';
+import { UserTokens, UserActivityLog } from '@/types/auth';
+
+export const dynamic = 'force-dynamic';
+
+interface TokenPackage {
+  id: string;
+  name: string;
+  tokens: number;
+  price: number;
+  originalPrice?: number;
+  popular?: boolean;
+  description: string;
+  features: string[];
+}
 
 export default function TokensPage() {
-  const [loading, setLoading] = useState(false);
-  const [selectedPackage, setSelectedPackage] = useState<string | null>(null);
-  const [userTokens, setUserTokens] = useState({
-    remainingTokens: 5,
-    usedTokens: 0,
-    freeTokens: 5
-  });
+  const { user, tokens, refreshTokens, loading } = useAuth();
+  const [tokenHistory, setTokenHistory] = useState<UserActivityLog[]>([]);
+  const [dataLoading, setDataLoading] = useState(true);
+  const [purchaseLoading, setPurchaseLoading] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
-  const tokenPackages = [
+  // Token packages
+  const tokenPackages: TokenPackage[] = [
     {
-      id: 'small',
-      name: '10 Jeton',
+      id: 'starter',
+      name: 'Başlangıç Paketi',
       tokens: 10,
-      price: 1000,
-      originalPrice: 1000,
-      popular: false
+      price: 29.99,
+      description: 'Küçük çiftlikler için ideal',
+      features: [
+        '10 analiz hakkı',
+        'Temel raporlar',
+        'Email desteği',
+        '30 gün geçerlilik'
+      ]
     },
     {
-      id: 'medium',
-      name: '50 Jeton',
+      id: 'professional',
+      name: 'Profesyonel',
+      tokens: 25,
+      price: 69.99,
+      originalPrice: 79.99,
+      popular: true,
+      description: 'Orta ölçekli işletmeler için',
+      features: [
+        '25 analiz hakkı',
+        'Gelişmiş raporlar',
+        'Öncelikli destek',
+        '60 gün geçerlilik',
+        'AI chat desteği'
+      ]
+    },
+    {
+      id: 'enterprise',
+      name: 'Kurumsal',
       tokens: 50,
-      price: 3500,
-      originalPrice: 3500,
-      popular: true
+      price: 129.99,
+      originalPrice: 149.99,
+      description: 'Büyük çiftlikler ve şirketler için',
+      features: [
+        '50 analiz hakkı',
+        'Premium raporlar',
+        '7/24 telefon desteği',
+        '90 gün geçerlilik',
+        'Özel AI eğitimi',
+        'Mühendis danışmanlığı'
+      ]
     },
     {
-      id: 'large',
-      name: '100 Jeton',
+      id: 'unlimited',
+      name: 'Sınırsız',
       tokens: 100,
-      price: 5000,
-      originalPrice: 10000,
-      popular: false,
-      savings: 5000
+      price: 199.99,
+      originalPrice: 249.99,
+      description: 'Sınırsız kullanım isteyenler için',
+      features: [
+        '100 analiz hakkı',
+        'Tüm premium özellikler',
+        'Özel hesap yöneticisi',
+        '1 yıl geçerlilik',
+        'API erişimi',
+        'Özel raporlama'
+      ]
     }
   ];
 
-  const handlePurchase = async (packageId: string) => {
-    setLoading(true);
-    setSelectedPackage(packageId);
+  useEffect(() => {
+    if (user && !loading) {
+      loadTokenData();
+    }
+  }, [user, loading]);
 
-    setTimeout(() => {
-      alert('İyzico ödeme sayfasına yönlendiriliyorsunuz...');
-      setLoading(false);
-      setSelectedPackage(null);
-    }, 1000);
+  const loadTokenData = async () => {
+    if (!user) return;
+
+    try {
+      setDataLoading(true);
+      setError(null);
+
+      // Load token usage history
+      const activity = await authService.getUserActivity(user.id, 50, 'payment');
+      setTokenHistory(activity.filter(a => 
+        a.activity_type === 'token_used' || 
+        a.activity_type === 'token_purchased'
+      ));
+
+    } catch (error: any) {
+      console.error('Failed to load token data:', error);
+      setError('Token verileri yüklenirken hata oluştu');
+    } finally {
+      setDataLoading(false);
+    }
   };
 
+  const handlePurchase = async (packageId: string) => {
+    const selectedPackage = tokenPackages.find(p => p.id === packageId);
+    if (!selectedPackage || !user) return;
+
+    setPurchaseLoading(packageId);
+
+    try {
+      // Simulate purchase process
+      await new Promise(resolve => setTimeout(resolve, 2000));
+
+      // Add tokens to user account
+      const success = await authService.addTokens(
+        user.id, 
+        selectedPackage.tokens, 
+        selectedPackage.price
+      );
+
+      if (success) {
+        // Refresh token data
+        await refreshTokens();
+        await loadTokenData();
+        
+        // Show success message
+        alert(`✅ ${selectedPackage.tokens} token başarıyla hesabınıza eklendi!`);
+        
+        // Log the purchase
+        await authService.logUserActivity(
+          user.id,
+          'token_purchased',
+          'payment',
+          {
+            package_id: packageId,
+            tokens_purchased: selectedPackage.tokens,
+            amount_paid: selectedPackage.price
+          }
+        );
+      } else {
+        throw new Error('Token satın alma işlemi başarısız');
+      }
+
+    } catch (error: any) {
+      console.error('Purchase failed:', error);
+      alert(`❌ Satın alma hatası: ${error.message}`);
+    } finally {
+      setPurchaseLoading(null);
+    }
+  };
+
+  const formatDate = (dateString: string) => {
+    return new Date(dateString).toLocaleDateString('tr-TR', {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit'
+    });
+  };
+
+  const getActivityIcon = (activityType: string) => {
+    switch (activityType) {
+      case 'token_purchased': return '💰';
+      case 'token_used': return '🪙';
+      default: return '📝';
+    }
+  };
+
+  const getActivityDescription = (activity: UserActivityLog) => {
+    if (activity.activity_type === 'token_purchased') {
+      const tokens = activity.details?.tokens_purchased || 'N/A';
+      const amount = activity.details?.amount_paid || 'N/A';
+      return `${tokens} token satın alındı (${amount} TL)`;
+    } else if (activity.activity_type === 'token_used') {
+      const tokens = activity.details?.tokens_consumed || 1;
+      const purpose = activity.details?.purpose || 'Analiz';
+      return `${tokens} token kullanıldı - ${purpose}`;
+    }
+    return 'Token aktivitesi';
+  };
+
+  if (loading || dataLoading) {
+    return (
+      <DashboardLayout>
+        <div className="flex items-center justify-center min-h-64">
+          <div className="text-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+            <p className="text-gray-600">Token bilgileri yükleniyor...</p>
+          </div>
+        </div>
+      </DashboardLayout>
+    );
+  }
+
   return (
-    <DashboardLayout>
-      <div style={{ minHeight: '100vh', background: '#ffffff', padding: '24px 16px' }}>
-        <div style={{ maxWidth: '1000px', margin: '0 auto', display: 'flex', flexDirection: 'column', gap: '24px' }}>
+    <DashboardLayout 
+      title="Token Y��netimi" 
+      subtitle="Analiz token'lerinizi yönetin ve yeni paketler satın alın"
+    >
+      <div className="space-y-8">
 
-          {/* Header */}
-          <div style={{ textAlign: 'center', marginBottom: '16px' }}>
-            <h1 style={{ fontSize: '28px', fontWeight: '700', color: '#111827', marginBottom: '8px', fontFamily: 'Inter, sans-serif' }}>
-              Jeton Yükle
-            </h1>
-            <p style={{ fontSize: '14px', color: '#6b7280', fontFamily: 'Inter, sans-serif' }}>
-              Her rapor 1 jeton kullanır. AI sohbet sınırsızdır.
-            </p>
+        {/* Current Token Status */}
+        <div className="bg-gradient-to-r from-blue-50 to-indigo-100 rounded-xl p-6 border border-blue-200">
+          <div className="flex items-center justify-between">
+            <div>
+              <h2 className="text-xl font-bold text-gray-900 mb-2">💎 Mevcut Token Durumu</h2>
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mt-4">
+                <div className="text-center">
+                  <p className="text-2xl font-bold text-blue-600">{tokens?.remaining_tokens || 0}</p>
+                  <p className="text-sm text-gray-600">Kullanılabilir</p>
+                </div>
+                <div className="text-center">
+                  <p className="text-2xl font-bold text-purple-600">{tokens?.used_tokens || 0}</p>
+                  <p className="text-sm text-gray-600">Kullanılan</p>
+                </div>
+                <div className="text-center">
+                  <p className="text-2xl font-bold text-green-600">{tokens?.total_tokens || 0}</p>
+                  <p className="text-sm text-gray-600">Toplam</p>
+                </div>
+                <div className="text-center">
+                  <p className="text-2xl font-bold text-orange-600">
+                    {tokens?.expiry_date ? 
+                      Math.ceil((new Date(tokens.expiry_date).getTime() - Date.now()) / (1000 * 60 * 60 * 24)) 
+                      : '∞'
+                    }
+                  </p>
+                  <p className="text-sm text-gray-600">Gün kaldı</p>
+                </div>
+              </div>
+            </div>
+            
+            {tokens && tokens.remaining_tokens > 0 && (
+              <div className="text-right">
+                <div className="w-24 h-24 relative">
+                  <svg className="w-24 h-24 transform -rotate-90" viewBox="0 0 100 100">
+                    <circle 
+                      cx="50" 
+                      cy="50" 
+                      r="40" 
+                      fill="transparent" 
+                      stroke="#e5e7eb" 
+                      strokeWidth="8"
+                    />
+                    <circle 
+                      cx="50" 
+                      cy="50" 
+                      r="40" 
+                      fill="transparent" 
+                      stroke="#3b82f6" 
+                      strokeWidth="8"
+                      strokeDasharray={`${(tokens.remaining_tokens / tokens.total_tokens) * 251.2} 251.2`}
+                      strokeDashoffset="0"
+                    />
+                  </svg>
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <span className="text-lg font-bold text-blue-600">
+                      {Math.round((tokens.remaining_tokens / tokens.total_tokens) * 100)}%
+                    </span>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
 
-          {/* Current Balance */}
-          <div style={{
-            position: 'relative',
-            background: '#ffffff',
-            borderRadius: '12px',
-            padding: '24px',
-            border: '2px solid #10b981',
-            boxShadow: '0 0 20px rgba(16, 185, 129, 0.15)',
-            textAlign: 'center',
-            marginBottom: '24px'
-          }}>
-            <div style={{ fontSize: '36px', fontWeight: '800', color: '#111827', marginBottom: '8px' }}>
-              {userTokens.remainingTokens}
+          {tokens && tokens.remaining_tokens <= 5 && (
+            <div className="mt-4 p-4 bg-yellow-100 border border-yellow-300 rounded-lg">
+              <div className="flex items-center">
+                <span className="text-yellow-600 mr-2">⚠️</span>
+                <div>
+                  <h4 className="text-sm font-medium text-yellow-800">Token Uyarısı</h4>
+                  <p className="text-sm text-yellow-700 mt-1">
+                    Token bakiyeniz azalıyor. Analiz yapmaya devam etmek için yeni token satın alın.
+                  </p>
+                </div>
+              </div>
             </div>
-            <div style={{ fontSize: '16px', color: '#374151', marginBottom: '6px', fontWeight: '600' }}>
-              Kalan Jeton
-            </div>
-            <div style={{ fontSize: '12px', color: '#6b7280' }}>
-              ({userTokens.freeTokens} ücretsiz • {userTokens.usedTokens} kullanılan)
-            </div>
-          </div>
+          )}
+        </div>
 
-          {/* Token Packages */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '16px', marginBottom: '24px' }}>
+        {/* Token Packages */}
+        <div>
+          <h2 className="text-2xl font-bold text-gray-900 mb-6">🛒 Token Paketleri</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {tokenPackages.map((pkg) => (
-              <div
-                key={pkg.id}
-                style={{
-                  position: 'relative',
-                  background: '#ffffff',
-                  borderRadius: '12px',
-                  padding: '20px',
-                  border: pkg.popular ? '2px solid #8b5cf6' : '2px solid #e5e7eb',
-                  boxShadow: pkg.popular
-                    ? '0 0 24px rgba(139, 92, 246, 0.2)'
-                    : '0 4px 6px rgba(0, 0, 0, 0.05)',
-                  textAlign: 'center',
-                  transition: 'all 0.3s ease',
-                  cursor: 'pointer'
-                }}
-                onMouseEnter={(e) => {
-                  if (!pkg.popular) {
-                    (e.target as HTMLElement).style.boxShadow = '0 8px 25px rgba(0, 0, 0, 0.1)';
-                    (e.target as HTMLElement).style.transform = 'translateY(-4px)';
-                  }
-                }}
-                onMouseLeave={(e) => {
-                  if (!pkg.popular) {
-                    (e.target as HTMLElement).style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.05)';
-                    (e.target as HTMLElement).style.transform = 'translateY(0)';
-                  }
-                }}
+              <div 
+                key={pkg.id} 
+                className={`relative bg-white rounded-xl border-2 transition-all duration-300 hover:shadow-lg ${
+                  pkg.popular ? 'border-blue-500 ring-2 ring-blue-200' : 'border-gray-200 hover:border-blue-300'
+                }`}
               >
-                {/* Popular Badge */}
                 {pkg.popular && (
-                  <div style={{
-                    position: 'absolute',
-                    top: '-8px',
-                    left: '50%',
-                    transform: 'translateX(-50%)',
-                    background: 'linear-gradient(135deg, #8b5cf6, #ec4899)',
-                    color: 'white',
-                    padding: '4px 12px',
-                    borderRadius: '16px',
-                    fontSize: '10px',
-                    fontWeight: '600',
-                    boxShadow: '0 4px 12px rgba(139, 92, 246, 0.3)'
-                  }}>
-                    ⭐ En Popüler
+                  <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
+                    <span className="bg-blue-500 text-white text-xs px-4 py-1 rounded-full">
+                      En Popüler
+                    </span>
                   </div>
                 )}
 
-                {/* Package Name */}
-                <h3 style={{ fontSize: '18px', fontWeight: '700', color: '#111827', marginBottom: '16px', fontFamily: 'Inter, sans-serif', textAlign: 'center' }}>
-                  {pkg.name}
-                </h3>
-
-                {/* Price */}
-                <div style={{ marginBottom: '16px', textAlign: 'center' }}>
-                  <div style={{ fontSize: '24px', fontWeight: '800', color: '#111827', marginBottom: '4px' }}>
-                    ₺{pkg.price.toLocaleString()}
-                  </div>
-                  {pkg.originalPrice && pkg.originalPrice > pkg.price && (
-                    <div style={{ fontSize: '12px', color: '#9ca3af', textDecoration: 'line-through' }}>
-                      ₺{pkg.originalPrice.toLocaleString()}
+                <div className="p-6">
+                  <h3 className="text-lg font-bold text-gray-900 mb-2">{pkg.name}</h3>
+                  <p className="text-gray-600 text-sm mb-4">{pkg.description}</p>
+                  
+                  <div className="text-center mb-4">
+                    <div className="text-3xl font-bold text-blue-600 mb-1">
+                      {pkg.tokens} Token
                     </div>
-                  )}
-                  <div style={{ fontSize: '12px', color: '#6b7280', marginTop: '4px' }}>
-                    {pkg.tokens} jeton
-                  </div>
-                </div>
-
-                {/* Savings */}
-                {pkg.savings && (
-                  <div style={{ marginBottom: '16px', fontSize: '12px', color: '#10b981', fontWeight: '600', textAlign: 'center' }}>
-                    💰 ₺{pkg.savings.toLocaleString()} tasarruf
-                  </div>
-                )}
-
-                {/* Per Token Price */}
-                <div style={{ fontSize: '12px', color: '#9ca3af', marginBottom: '20px', textAlign: 'center' }}>
-                  ₺{Math.round(pkg.price / pkg.tokens)} / jeton
-                </div>
-
-                {/* Buy Button */}
-                <button
-                  onClick={() => handlePurchase(pkg.id)}
-                  disabled={loading && selectedPackage === pkg.id}
-                  style={{
-                    width: '100%',
-                    padding: '12px 20px',
-                    borderRadius: '8px',
-                    fontSize: '14px',
-                    fontWeight: '600',
-                    border: 'none',
-                    cursor: loading && selectedPackage === pkg.id ? 'not-allowed' : 'pointer',
-                    transition: 'all 0.3s ease',
-                    background: pkg.popular
-                      ? 'linear-gradient(135deg, #8b5cf6, #ec4899)'
-                      : '#111827',
-                    color: 'white',
-                    boxShadow: pkg.popular
-                      ? '0 6px 16px rgba(139, 92, 246, 0.3)'
-                      : '0 4px 12px rgba(0, 0, 0, 0.15)',
-                    opacity: loading && selectedPackage === pkg.id ? 0.5 : 1
-                  }}
-                  onMouseEnter={(e) => {
-                    if (!(loading && selectedPackage === pkg.id)) {
-                      (e.target as HTMLElement).style.transform = 'translateY(-2px)';
-                      (e.target as HTMLElement).style.boxShadow = pkg.popular
-                        ? '0 12px 28px rgba(139, 92, 246, 0.4)'
-                        : '0 8px 20px rgba(0, 0, 0, 0.2)';
-                    }
-                  }}
-                  onMouseLeave={(e) => {
-                    if (!(loading && selectedPackage === pkg.id)) {
-                      (e.target as HTMLElement).style.transform = 'translateY(0)';
-                      (e.target as HTMLElement).style.boxShadow = pkg.popular
-                        ? '0 8px 20px rgba(139, 92, 246, 0.3)'
-                        : '0 4px 12px rgba(0, 0, 0, 0.15)';
-                    }
-                  }}
-                >
-                  {loading && selectedPackage === pkg.id ? (
-                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                      <div style={{
-                        width: '16px',
-                        height: '16px',
-                        border: '2px solid white',
-                        borderTop: '2px solid transparent',
-                        borderRadius: '50%',
-                        marginRight: '8px',
-                        animation: 'spin 1s linear infinite'
-                      }}></div>
-                      İşleniyor...
+                    <div className="flex items-center justify-center space-x-2">
+                      {pkg.originalPrice && (
+                        <span className="text-gray-400 line-through text-sm">
+                          ₺{pkg.originalPrice}
+                        </span>
+                      )}
+                      <span className="text-2xl font-bold text-gray-900">
+                        ₺{pkg.price}
+                      </span>
                     </div>
-                  ) : (
-                    'Satın Al'
-                  )}
-                </button>
+                    <div className="text-sm text-gray-500 mt-1">
+                      {(pkg.price / pkg.tokens).toFixed(2)} ₺/token
+                    </div>
+                  </div>
+
+                  <ul className="space-y-2 mb-6 text-sm">
+                    {pkg.features.map((feature, index) => (
+                      <li key={index} className="flex items-center text-gray-600">
+                        <span className="text-green-500 mr-2">✓</span>
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
+
+                  <button
+                    onClick={() => handlePurchase(pkg.id)}
+                    disabled={purchaseLoading === pkg.id}
+                    className={`w-full py-3 px-4 rounded-lg font-medium transition-all duration-200 ${
+                      pkg.popular
+                        ? 'bg-blue-600 hover:bg-blue-700 text-white'
+                        : 'bg-gray-100 hover:bg-gray-200 text-gray-900'
+                    } disabled:opacity-50 disabled:cursor-not-allowed`}
+                  >
+                    {purchaseLoading === pkg.id ? (
+                      <div className="flex items-center justify-center">
+                        <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-current mr-2"></div>
+                        Satın Alınıyor...
+                      </div>
+                    ) : (
+                      'Satın Al'
+                    )}
+                  </button>
+                </div>
               </div>
             ))}
           </div>
+        </div>
 
-          {/* Payment Info */}
-          <div style={{
-            background: '#ffffff',
-            borderRadius: '12px',
-            padding: '20px',
-            border: '2px solid #06b6d4',
-            boxShadow: '0 0 16px rgba(6, 182, 212, 0.1)',
-            marginBottom: '20px'
-          }}>
-            <h2 style={{ fontSize: '18px', fontWeight: '700', color: '#111827', marginBottom: '16px', fontFamily: 'Inter, sans-serif', textAlign: 'center' }}>
-              💳 Ödeme Bilgileri
-            </h2>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-              {[
-                'Güvenli ödeme - İyzico altyapısı',
-                'Kredi kartı ve banka kartı kabul edilir',
-                'Ödeme onayından sonra jetonlar otomatik yüklenir',
-                'E-posta ile onay bildirimi gönderilir'
-              ].map((text, index) => (
-                <div key={index} style={{ display: 'flex', alignItems: 'center' }}>
-                  <span style={{ color: '#10b981', marginRight: '12px', fontSize: '16px' }}>✓</span>
-                  <span style={{ fontSize: '14px', color: '#374151' }}>{text}</span>
-                </div>
-              ))}
-            </div>
+        {/* Token Usage Statistics */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          
+          {/* Usage History */}
+          <div className="bg-white rounded-xl p-6 border border-gray-200">
+            <h3 className="text-lg font-semibold text-gray-900 mb-4">📊 Kullanım Geçmişi</h3>
+            
+            {tokenHistory.length > 0 ? (
+              <div className="space-y-3 max-h-64 overflow-y-auto">
+                {tokenHistory.slice(0, 10).map((activity, index) => (
+                  <div key={index} className="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg">
+                    <div className="text-2xl">{getActivityIcon(activity.activity_type)}</div>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-sm font-medium text-gray-900">
+                        {getActivityDescription(activity)}
+                      </p>
+                      <p className="text-xs text-gray-500">
+                        {formatDate(activity.created_at)}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div className="text-center py-8 text-gray-500">
+                <div className="text-4xl mb-2">📈</div>
+                <p className="text-sm">Henüz token aktivitesi yok</p>
+                <p className="text-xs mt-1">İlk token satın alımınızı yapın</p>
+              </div>
+            )}
           </div>
 
-          {/* Usage Info */}
-          <div style={{
-            background: '#ffffff',
-            borderRadius: '12px',
-            padding: '20px',
-            border: '2px solid #f59e0b',
-            boxShadow: '0 0 16px rgba(245, 158, 11, 0.1)'
-          }}>
-            <h2 style={{ fontSize: '18px', fontWeight: '700', color: '#111827', marginBottom: '16px', fontFamily: 'Inter, sans-serif', textAlign: 'center' }}>
-              📊 Jeton Kullanımı
-            </h2>
-
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '12px', textAlign: 'center', marginBottom: '16px' }}>
-              {[
-                { icon: '📈', name: 'ROI Analizi' },
-                { icon: '🌤️', name: 'İklim Analizi' },
-                { icon: '📊', name: 'Pazar Analizi' },
-                { icon: '🔧', name: 'Ekipman Listesi' },
-                { icon: '📐', name: 'Layout Planlama' }
-              ].map((item, index) => (
-                <div key={index}>
-                  <div style={{ fontSize: '24px', marginBottom: '6px' }}>{item.icon}</div>
-                  <div style={{ fontSize: '11px', fontWeight: '600', color: '#111827', marginBottom: '2px' }}>{item.name}</div>
-                  <div style={{ fontSize: '10px', color: '#6b7280' }}>1 jeton</div>
-                </div>
-              ))}
-            </div>
-
-            <div style={{
-              padding: '20px',
-              background: 'linear-gradient(135deg, #f0f9ff, #e0f2fe)',
-              borderRadius: '12px',
-              border: '1px solid #38bdf8',
-              display: 'flex',
-              alignItems: 'center'
-            }}>
-              <div style={{ fontSize: '32px', marginRight: '16px' }}>💬</div>
-              <div>
-                <div style={{ fontSize: '16px', fontWeight: '600', color: '#111827', marginBottom: '4px' }}>
-                  AI Sohbet - Sınırsız
-                </div>
-                <div style={{ fontSize: '14px', color: '#6b7280' }}>
-                  Raporlarınız üzerinde sınırsız soru sorabilirsiniz
-                </div>
+          {/* Token Tips */}
+          <div className="bg-white rounded-xl p-6 border border-gray-200">
+            <h3 className="text-lg font-semibold text-gray-900 mb-4">💡 Token İpuçları</h3>
+            
+            <div className="space-y-4">
+              <div className="p-4 bg-blue-50 rounded-lg border border-blue-200">
+                <h4 className="font-medium text-blue-900 mb-2">Token Tasarrufu</h4>
+                <p className="text-sm text-blue-800">
+                  Büyük paketler satın alarak token başına daha az ödeyebilirsiniz. 
+                  Kurumsal paket %35'e varan tasarruf sağlar.
+                </p>
+              </div>
+              
+              <div className="p-4 bg-green-50 rounded-lg border border-green-200">
+                <h4 className="font-medium text-green-900 mb-2">Süre Uyarısı</h4>
+                <p className="text-sm text-green-800">
+                  Token'lerinizin son kullanma tarihi var. Vaktinde kullanmayı unutmayın!
+                </p>
+              </div>
+              
+              <div className="p-4 bg-purple-50 rounded-lg border border-purple-200">
+                <h4 className="font-medium text-purple-900 mb-2">Premium Avantajlar</h4>
+                <p className="text-sm text-purple-800">
+                  Profesyonel ve üzeri paketlerde AI chat desteği ve öncelikli analiz hizmeti.
+                </p>
+              </div>
+              
+              <div className="p-4 bg-orange-50 rounded-lg border border-orange-200">
+                <h4 className="font-medium text-orange-900 mb-2">Toplu Analiz</h4>
+                <p className="text-sm text-orange-800">
+                  Birden fazla analiz yapmayı planlıyorsanız büyük paketler tercih edin.
+                </p>
               </div>
             </div>
           </div>
+        </div>
 
-          {/* Support */}
-          <div style={{ textAlign: 'center', fontSize: '14px', color: '#9ca3af' }}>
-            <p>
-              Sorun yaşıyorsanız{' '}
-              <a href="/destek" style={{ color: '#3b82f6', textDecoration: 'none' }}>
-                destek ekibimizle
+        {/* Help & Support */}
+        <div className="bg-gray-50 rounded-xl p-6 border border-gray-200">
+          <h3 className="text-lg font-semibold text-gray-900 mb-4">❓ Yardım & Destek</h3>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="text-center">
+              <div className="text-3xl mb-2">📞</div>
+              <h4 className="font-medium text-gray-900 mb-1">Telefon Desteği</h4>
+              <p className="text-sm text-gray-600 mb-2">
+                Profesyonel ve üzeri paketlerde mevcut
+              </p>
+              <a 
+                href="tel:+905551234567" 
+                className="text-blue-600 hover:text-blue-500 text-sm font-medium"
+              >
+                +90 555 123 45 67
               </a>
-              {' '}iletişime geçin.
-            </p>
+            </div>
+            
+            <div className="text-center">
+              <div className="text-3xl mb-2">💬</div>
+              <h4 className="font-medium text-gray-900 mb-1">Canlı Destek</h4>
+              <p className="text-sm text-gray-600 mb-2">
+                Anında yardım alın
+              </p>
+              <a 
+                href="/dashboard/help" 
+                className="text-blue-600 hover:text-blue-500 text-sm font-medium"
+              >
+                Canlı Sohbeti Başlat
+              </a>
+            </div>
+            
+            <div className="text-center">
+              <div className="text-3xl mb-2">📧</div>
+              <h4 className="font-medium text-gray-900 mb-1">Email Desteği</h4>
+              <p className="text-sm text-gray-600 mb-2">
+                24 saat içinde yanıt
+              </p>
+              <a 
+                href="mailto:destek@seragpt.com" 
+                className="text-blue-600 hover:text-blue-500 text-sm font-medium"
+              >
+                destek@seragpt.com
+              </a>
+            </div>
           </div>
         </div>
 
-        <style jsx>{`
-          @keyframes spin {
-            to {
-              transform: rotate(360deg);
-            }
-          }
-        `}</style>
       </div>
     </DashboardLayout>
   );
