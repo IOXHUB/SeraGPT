@@ -760,11 +760,8 @@ export default function UserjotCloneSection() {
           </div>
 
           {/* Support Link */}
-          <div
-
-            className="text-center mt-12"
-          >
-            <p className="text-gray-600 mb-4">
+          <div className="text-center mt-12">
+            <p className="text-body text-center mb-4">
               Sorunuza cevap bulamadınız mı?
             </p>
             <a
