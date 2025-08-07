@@ -239,12 +239,12 @@ p, .text-body {
 }
 
 .btn-primary {
-  background: #111827;
+  background: rgba(0, 0, 0, 1);
   color: #ffffff;
 }
 
 .btn-primary:hover {
-  background: #374151;
+  background: rgba(0, 0, 0, 0.8);
 }
 
 .btn-secondary {
