@@ -195,14 +195,14 @@ export default function UserjotCloneSection() {
 
           {/* Main headline with system-ui font */}
           <h1 className="hero-heading">
-            🚀 60 Saniyede<br />
-            Sera Yatırım Raporun Hazır!
+            60 Saniyede<br />
+            <span style={{ color: 'rgba(23, 23, 23, 1)' }}>Sera Yatırım Raporun Hazır!</span>
           </h1>
 
           {/* Description paragraph */}
           <p className="hero-description">
             SeraGPT; 20 yılı aşkın mühendislik deneyimi, 500'den fazla
-            tamamlanmış proje ve 110'dan fazla gerçek zamanlı veri
+            tamamlanmış proje ve 110'dan fazla ger��ek zamanlı veri
             setiyle, tarımsal yatırım kararlarınızı saniyeler içinde
             analiz eder.
           </p>
@@ -515,10 +515,10 @@ export default function UserjotCloneSection() {
           {/* CTA Button */}
           <div className="text-center mt-12">
             <button className="btn btn-primary mb-4">
-              Kullanıcı Paneline Giriş Yapın
+              <p>AI Asistan Özelliği</p>
             </button>
             <p className="text-small text-center">
-              Tüm sera projelerinizi tek platformdan yönetin
+              <p>Raporlarınız üzerinden asistanınızla sohbet edin. Adil kullanım kotası ile birlikte ücretsizdir. </p>
             </p>
           </div>
         </div>
