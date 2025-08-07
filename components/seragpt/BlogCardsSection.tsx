@@ -51,12 +51,8 @@ export default function BlogCardsSection() {
                 excerpt: "Su ve besin tasarrufu sağlayan hidroponik sistemlerin avantajları."
               }
             ].map((post, index) => (
-              <motion.article
+              <article
                 key={index}
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
                 className="flex-shrink-0 w-80 group cursor-pointer"
               >
                 <a href={`/blog/post-${index + 1}`} className="block">
@@ -90,18 +86,12 @@ export default function BlogCardsSection() {
                     </p>
                   </div>
                 </a>
-              </motion.article>
+              </article>
             ))}
           </div>
 
           {/* All Blog Posts Button */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.5 }}
-            viewport={{ once: true }}
-            className="text-center mt-8"
-          >
+          <div className="text-center mt-8">
             <a
               href="/blog"
               className="inline-flex items-center space-x-2 bg-gray-600 hover:bg-gray-700 text-white px-6 py-3 rounded-lg font-medium transition-colors"
@@ -111,7 +101,7 @@ export default function BlogCardsSection() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
             </a>
-          </motion.div>
+          </div>
         </div>
       </div>
     </div>
