@@ -7,11 +7,15 @@ export default function Footer() {
       </div>
       
       {/* 4 Columns - centered container, left-aligned content */}
-      <div className="header-footer-container">
+      <div className="header-footer-container" style={{ 
+        justifyContent: 'center', 
+        lineHeight: '24px', 
+        color: 'rgba(35, 35, 35, 1)' 
+      }}>
         <div className="flex flex-col">
           <div className="flex gap-5 max-md:flex-col max-md:gap-0">
             <div className="flex flex-col line-height-normal w-full ml-0 max-md:w-full max-md:ml-0">
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mb-12">
+              <div className="flex gap-8 justify-center items-start mx-auto mb-12">
                 {/* 1. Menü */}
                 <div>
                   <h3 className="text-base font-semibold mb-4 text-gray-900">Menü</h3>
@@ -163,16 +167,16 @@ export default function Footer() {
             </div>
           </div>
         </div>
+      </div>
 
-        {/* Bottom copyright section - centered */}
-        <div className="text-center pt-8 border-t border-gray-200">
-          <div className="flex items-center justify-center space-x-2">
-            <span className="text-sm text-gray-500">© 2025 SeraGPT. Tüm hakları saklıdır.</span>
-            <div className="text-gray-400">
-              <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/>
-              </svg>
-            </div>
+      {/* Bottom copyright section - centered */}
+      <div className="text-center pt-8 border-t border-gray-200 max-w-1200 mx-auto px-6">
+        <div className="flex items-center justify-center space-x-2">
+          <span className="text-sm text-gray-500">© 2025 SeraGPT. Tüm hakları saklıdır.</span>
+          <div className="text-gray-400">
+            <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/>
+            </svg>
           </div>
         </div>
       </div>
