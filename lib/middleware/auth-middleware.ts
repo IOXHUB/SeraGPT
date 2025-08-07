@@ -245,18 +245,37 @@ async function extractAuth(req: NextRequest): Promise<{
   }
 }
 
-async function checkRateLimit(
-  req: NextRequest, 
-  clientIP: string, 
-  config: { maxRequests: number; windowMs: number }
-): Promise<NextResponse | null> {
-  // Simple in-memory rate limiting
-  // In production, use Redis or database
-  const key = `${clientIP}:${req.nextUrl.pathname}`;
-  
-  // This is a simplified version - the main middleware handles rate limiting
-  // This is just for additional API-specific limits
-  return null;
+async function checkAdvancedRateLimit(
+  req: NextRequest,
+  clientIP: string,
+  options: AuthMiddlewareOptions
+): Promise<RateLimitResult> {
+  const { pathname } = req.nextUrl;
+
+  // Determine which rate limiter to use based on endpoint
+  let limiterName: keyof typeof rateLimiters = 'api';
+
+  if (pathname.startsWith('/api/auth')) {
+    limiterName = 'auth';
+  } else if (pathname.startsWith('/api/chat') || pathname.includes('ai')) {
+    limiterName = 'chat';
+  } else if (pathname.includes('email') || pathname.includes('sms')) {
+    limiterName = 'messaging';
+  } else if (pathname.includes('upload') || pathname.includes('file')) {
+    limiterName = 'upload';
+  } else if (pathname.startsWith('/api/admin')) {
+    limiterName = 'admin';
+  }
+
+  // Use custom rate limit if specified
+  if (options.rateLimit) {
+    const customLimiter = rateLimiters[limiterName];
+    return await customLimiter.check(clientIP, pathname);
+  }
+
+  // Use default rate limiter
+  const limiter = rateLimiters[limiterName];
+  return await limiter.check(clientIP, pathname);
 }
 
 function getClientIP(req: NextRequest): string {
