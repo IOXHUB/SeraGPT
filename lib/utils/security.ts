@@ -195,7 +195,7 @@ export function validateRequest(req: {
   const urlValidation = validateInput(req.url);
   threats.push(...urlValidation.threats);
   if (urlValidation.riskLevel === 'critical') riskLevel = 'critical';
-  else if (urlValidation.riskLevel === 'high' && riskLevel !== 'critical') riskLevel = 'high';
+  else if (urlValidation.riskLevel === 'high' && (riskLevel === 'low' || riskLevel === 'medium')) riskLevel = 'high';
 
   // Validate User Agent
   if (req.userAgent) {
