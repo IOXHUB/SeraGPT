@@ -502,21 +502,18 @@ export default function UserjotCloneSection() {
             </p>
           </div>
 
-          {/* AI Chat Flow */}
-          <div
-
-            className="relative max-w-[900px] mx-auto"
-          >
-            <div className="bg-gradient-to-br from-blue-50 to-indigo-100 rounded-2xl p-8 shadow-2xl shadow-blue-500/25 border border-blue-100">
-              <div className="bg-gray-50 rounded-xl p-6 space-y-6">
-                {/* Placeholder Image for AI Assistant */}
-                <div className="w-full h-96 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center rounded-lg">
+          {/* AI Chat Flow - Same style as User Panel */}
+          <div className="visual-container">
+            <div className="rounded-2xl p-8 shadow-lg shadow-purple-400/20 hover:shadow-purple-500/30 transition-all duration-300 bg-center bg-cover bg-no-repeat border-4 border-purple-400">
+              <div className="bg-white rounded-xl shadow-lg overflow-hidden">
+                {/* Chat Interface Preview - Same image as user panel */}
+                <div
+                  className="w-full h-96 bg-center bg-cover bg-no-repeat flex items-center justify-center"
+                  style={{
+                    backgroundImage: "url(https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2F1cd1d24d2413420fa7c24610e14c9006)"
+                  }}
+                >
                   <div className="text-center">
-                    <div className="w-16 h-16 bg-gray-300 rounded-lg mx-auto mb-4 flex items-center justify-center">
-                      <span className="text-2xl">📊</span>
-                    </div>
-                    <h3 className="text-lg font-semibold text-gray-700 mb-2">AI Asistan</h3>
-                    <p className="text-sm text-gray-500">SeraGPT AI Sohbet Arayüzü Önizlemesi</p>
                   </div>
                 </div>
               </div>
