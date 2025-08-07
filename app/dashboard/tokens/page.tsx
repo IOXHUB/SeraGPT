@@ -123,14 +123,14 @@ export default function TokensPage() {
                 {pkg.popular && (
                   <div style={{
                     position: 'absolute',
-                    top: '-12px',
+                    top: '-8px',
                     left: '50%',
                     transform: 'translateX(-50%)',
                     background: 'linear-gradient(135deg, #8b5cf6, #ec4899)',
                     color: 'white',
-                    padding: '6px 16px',
-                    borderRadius: '20px',
-                    fontSize: '12px',
+                    padding: '4px 12px',
+                    borderRadius: '16px',
+                    fontSize: '10px',
                     fontWeight: '600',
                     boxShadow: '0 4px 12px rgba(139, 92, 246, 0.3)'
                   }}>
@@ -139,34 +139,34 @@ export default function TokensPage() {
                 )}
 
                 {/* Package Name */}
-                <h3 style={{ fontSize: '24px', fontWeight: '700', color: '#111827', marginBottom: '24px', fontFamily: 'Inter, sans-serif' }}>
+                <h3 style={{ fontSize: '18px', fontWeight: '700', color: '#111827', marginBottom: '16px', fontFamily: 'Inter, sans-serif', textAlign: 'center' }}>
                   {pkg.name}
                 </h3>
 
                 {/* Price */}
-                <div style={{ marginBottom: '24px' }}>
-                  <div style={{ fontSize: '36px', fontWeight: '800', color: '#111827', marginBottom: '4px' }}>
+                <div style={{ marginBottom: '16px', textAlign: 'center' }}>
+                  <div style={{ fontSize: '24px', fontWeight: '800', color: '#111827', marginBottom: '4px' }}>
                     ₺{pkg.price.toLocaleString()}
                   </div>
                   {pkg.originalPrice && pkg.originalPrice > pkg.price && (
-                    <div style={{ fontSize: '16px', color: '#9ca3af', textDecoration: 'line-through' }}>
+                    <div style={{ fontSize: '12px', color: '#9ca3af', textDecoration: 'line-through' }}>
                       ₺{pkg.originalPrice.toLocaleString()}
                     </div>
                   )}
-                  <div style={{ fontSize: '16px', color: '#6b7280', marginTop: '8px' }}>
+                  <div style={{ fontSize: '12px', color: '#6b7280', marginTop: '4px' }}>
                     {pkg.tokens} jeton
                   </div>
                 </div>
 
                 {/* Savings */}
                 {pkg.savings && (
-                  <div style={{ marginBottom: '24px', fontSize: '14px', color: '#10b981', fontWeight: '600' }}>
+                  <div style={{ marginBottom: '16px', fontSize: '12px', color: '#10b981', fontWeight: '600', textAlign: 'center' }}>
                     💰 ₺{pkg.savings.toLocaleString()} tasarruf
                   </div>
                 )}
 
                 {/* Per Token Price */}
-                <div style={{ fontSize: '14px', color: '#9ca3af', marginBottom: '32px' }}>
+                <div style={{ fontSize: '12px', color: '#9ca3af', marginBottom: '20px', textAlign: 'center' }}>
                   ₺{Math.round(pkg.price / pkg.tokens)} / jeton
                 </div>
 
