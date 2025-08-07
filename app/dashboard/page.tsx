@@ -462,7 +462,7 @@ export default function DashboardPage() {
                 <p className="text-2xl font-bold text-green-600 mb-2">5</p>
                 <p className="text-sm text-gray-600">Başlangıç jetonu</p>
               </div>
-              <div className="text-center">
+              <div className="text-center" style={{ border: '2px solid #12b981' }}>
                 <h4 className="font-medium text-gray-900 mb-3">Jeton Satın Al</h4>
                 <a
                   href="/dashboard/tokens"
