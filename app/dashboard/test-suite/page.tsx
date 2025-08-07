@@ -92,7 +92,8 @@ export default function TestSuitePage() {
       setTestResults(results);
     } catch (error) {
       console.error('Test execution failed:', error);
-      errorHandler.logError(errorHandler.classifyError(error, { component: 'TestSuite' }));
+      const appError = classifyError(error, { component: 'TestSuite' });
+      errorHandler.logError(appError);
     } finally {
       setIsRunningTests(false);
     }
