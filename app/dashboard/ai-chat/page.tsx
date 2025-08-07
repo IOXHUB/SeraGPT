@@ -169,13 +169,60 @@ export default function AIChatPage() {
     }
   };
 
-  const quickQuestions = [
-    'ROI analizim nasıl yorumlanır?',
-    'İklim verilerim sera için uygun mu?',
-    'Pazar fiyatları hangi yönde?',
-    'Hangi ekipmanları tercih etmeliyim?',
-    'Maliyet optimizasyonu için öneriler?'
-  ];
+  const getReportIcon = (type: string) => {
+    switch (type) {
+      case 'roi': return '📈';
+      case 'climate': return '🌤️';
+      case 'equipment': return '🔧';
+      case 'market': return '📊';
+      case 'layout': return '📐';
+      default: return '📄';
+    }
+  };
+
+  const getQuickQuestionsForReport = (report: any) => {
+    if (!report) return [];
+
+    switch (report.type) {
+      case 'roi':
+        return [
+          `${report.details.roi}% ROI nasıl yorumlanır?`,
+          `${report.details.paybackPeriod} yıl geri ödeme süresi normal mi?`,
+          'ROI\'mı nasıl iyileştirebilirim?',
+          'Bu yatırımın riskleri neler?'
+        ];
+      case 'climate':
+        return [
+          `Risk skoru ${report.details.riskScore} ne anlama geliyor?`,
+          'İklim koşulları sera için uygun mu?',
+          'Hangi mevsimlerde daha iyi verim alabilirim?',
+          'İklim risklerini nasıl azaltabilirim?'
+        ];
+      case 'equipment':
+        return [
+          `₺${report.details.totalCost.toLocaleString()} maliyet uygun mu?`,
+          'Eksik ekipman var mı?',
+          'Maliyeti nasıl optimize edebilirim?',
+          'Alternatif ekipman önerileri var mı?'
+        ];
+      case 'market':
+        return [
+          `₺${report.details.averagePrice}/kg fiyat nasıl?`,
+          'Pazar trendini nasıl değerlendirmeliyim?',
+          'Satış stratejim nasıl olmalı?',
+          'Fiyat dalgalanmalarına karşı ne yapmalıyım?'
+        ];
+      case 'layout':
+        return [
+          `${report.details.capacity} bitki/m² kapasitesi yeterli mi?`,
+          'Layout planımı nasıl optimize edebilirim?',
+          'Su kullanımını daha da azaltabilir miyim?',
+          'Verimlilik oranımı artırabilir miyim?'
+        ];
+      default:
+        return [];
+    }
+  };
 
   const getInsightIcon = (type: string) => {
     switch (type) {
