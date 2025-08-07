@@ -18,7 +18,7 @@ import {
   TestSuite,
   ApiTestResult
 } from '@/lib/utils/test-utils';
-import { errorHandler } from '@/lib/utils/error-handler';
+import { errorHandler, classifyError } from '@/lib/utils/error-handler';
 import { validateUserProfile, validateROIInputs } from '@/lib/utils/validation';
 
 interface TestResults {
