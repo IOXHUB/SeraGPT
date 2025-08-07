@@ -146,7 +146,7 @@ export const PUT = requireAuth(
           sanitizedData.phone = validatedData.phone ? sanitizeInput.general(validatedData.phone) : undefined;
         }
         if (validatedData.company_name !== undefined) {
-          sanitizedData.company_name = validatedData.company_name ? sanitizeInput.general(validatedData.company_name) : null;
+          sanitizedData.company_name = validatedData.company_name ? sanitizeInput.general(validatedData.company_name) : undefined;
         }
         if (validatedData.experience_level !== undefined) {
           sanitizedData.experience_level = validatedData.experience_level;
