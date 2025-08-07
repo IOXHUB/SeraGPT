@@ -388,7 +388,7 @@ export default function DashboardPage() {
           {/* Quick Actions */}
           <div className="lg:col-span-2 bg-white p-6 rounded-xl border border-gray-200">
             <div className="flex items-center justify-between mb-6">
-              <h3 className="text-lg font-semibold text-gray-900">
+              <h3 className="text-lg font-normal text-gray-900">
                 {isAdmin() ? 'Yönetim Araçları' : 'Hızlı İşlemler'}
               </h3>
             </div>
