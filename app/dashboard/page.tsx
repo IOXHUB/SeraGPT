@@ -213,16 +213,8 @@ export default function DashboardPage() {
       <div className="flex-1 bg-white user-panel-container">
         <div className="user-panel-content space-y-modern">
           {/* Header */}
-          <div className="focus-text user-panel-section">
-            <h1 className="neon-purple">
-              {isAdmin() ? 'Admin Dashboard' : 'SeraGPT Dashboard'}
-            </h1>
-            <p className="user-panel-text">
-              {isAdmin()
-                ? 'Sistem yönetimi ve kullanıcı analitiği'
-                : '20 yıllık mühendislik deneyimi ile desteklenen yapay zeka analizleri'
-              }
-            </p>
+          <div className="user-panel-section" style={{ padding: '10px 0 50px', font: '400 36px/44px __Inter_d65c78, sans-serif' }}>
+            <p>Hoşgeldiniz</p>
           </div>
 
           {/* Stats Cards */}
