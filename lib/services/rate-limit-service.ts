@@ -66,8 +66,9 @@ class RateLimitStorage {
   cleanup(): void {
     const now = Date.now();
     let cleaned = 0;
-    
-    for (const [key, record] of this.storage.entries()) {
+
+    const entries = Array.from(this.storage.entries());
+    for (const [key, record] of entries) {
       if (now > record.resetTime + 60000) { // Keep for extra minute
         this.storage.delete(key);
         cleaned++;
