@@ -222,11 +222,8 @@ export default function UserjotCloneSection() {
       {/* User Panel Section - Single View */}
       <div className="section relative z-10">
         <div className="max-w-[900px] mx-auto px-6">
-          <div
-
-            className="relative"
-          >
-            <div className="rounded-2xl p-8 shadow-lg shadow-purple-400/20 hover:shadow-purple-500/30 transition-all duration-300 bg-center bg-cover bg-no-repeat border-4 border-purple-400">
+          <div className="relative">
+            <div className="rounded-2xl p-8 shadow-lg shadow-purple-400/20 hover:shadow-purple-500/30 transition-all duration-300 bg-center bg-cover bg-no-repeat border-4 border-purple-400" style={{ color: '#cdd6fd' }}>
               <div className="bg-white rounded-xl shadow-lg overflow-hidden">
                 {/* Dashboard Image */}
                 <div
@@ -260,7 +257,7 @@ export default function UserjotCloneSection() {
           <div className="text-center mb-8">
             <div className="text-container">
               <h2 className="heading-2 text-center">
-                Panelde Sizi Bekleyen Analiz Türleri ve Özellikleri
+                Panelde Sizi Bekleyen Analiz T��rleri ve Özellikleri
               </h2>
             </div>
           </div>
@@ -533,7 +530,7 @@ export default function UserjotCloneSection() {
                 Referanslar
               </h2>
               <p className="text-body text-center">
-                Çözüm ortaklarımız ile hayata geçirilen sera projelerimiz
+                Ç��züm ortaklarımız ile hayata geçirilen sera projelerimiz
               </p>
             </div>
           </div>
