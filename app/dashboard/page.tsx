@@ -311,8 +311,8 @@ export default function DashboardPage() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6" style={{ margin: '50px 0 32px' }}>
           {/* Bar Chart */}
           <div className="lg:col-span-2 bg-white p-6 rounded-xl border border-gray-200">
-            <div className="flex items-center justify-between mb-6">
-              <h3 className="text-lg font-semibold text-gray-900">
+            <div className="flex items-center justify-between" style={{ marginBottom: '50px' }}>
+              <h3 className="text-lg font-normal text-gray-900">
                 {isAdmin() ? 'Sistem Performansı' : 'Analiz Geçmişi'}
               </h3>
               <div className="flex items-center space-x-4">
