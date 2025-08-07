@@ -91,9 +91,9 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
   ];
 
   const adminMenuItems = [
-    { name: 'Admin Panel', href: '/admin/auth', active: false },
-    { name: 'Kullanıcılar', href: '/admin/users', active: false },
-    { name: 'Sistem Ayarları', href: '/admin/settings', active: false },
+    { name: 'Admin Panel', href: '/admin/auth', active: pathname === '/admin/auth' },
+    { name: 'Kullanıcılar', href: '/admin/users', active: pathname === '/admin/users' },
+    { name: 'Sistem Ayarları', href: '/admin/settings', active: pathname === '/admin/settings' },
   ];
 
   if (loading) {
