@@ -161,7 +161,7 @@ export default function TokensPage() {
                 {/* Savings */}
                 {pkg.savings && (
                   <div style={{ marginBottom: '16px', fontSize: '12px', color: '#10b981', fontWeight: '600', textAlign: 'center' }}>
-                    �� ₺{pkg.savings.toLocaleString()} tasarruf
+                    💰 ₺{pkg.savings.toLocaleString()} tasarruf
                   </div>
                 )}
 
@@ -260,16 +260,16 @@ export default function TokensPage() {
           {/* Usage Info */}
           <div style={{
             background: '#ffffff',
-            borderRadius: '16px',
-            padding: '32px',
+            borderRadius: '12px',
+            padding: '20px',
             border: '2px solid #f59e0b',
-            boxShadow: '0 0 24px rgba(245, 158, 11, 0.1)'
+            boxShadow: '0 0 16px rgba(245, 158, 11, 0.1)'
           }}>
-            <h2 style={{ fontSize: '20px', fontWeight: '700', color: '#111827', marginBottom: '24px', fontFamily: 'Inter, sans-serif' }}>
+            <h2 style={{ fontSize: '18px', fontWeight: '700', color: '#111827', marginBottom: '16px', fontFamily: 'Inter, sans-serif', textAlign: 'center' }}>
               📊 Jeton Kullanımı
             </h2>
 
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(120px, 1fr))', gap: '16px', textAlign: 'center', marginBottom: '24px' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '12px', textAlign: 'center', marginBottom: '16px' }}>
               {[
                 { icon: '📈', name: 'ROI Analizi' },
                 { icon: '🌤️', name: 'İklim Analizi' },
