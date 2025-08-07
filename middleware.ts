@@ -157,7 +157,8 @@ function getClientIP(request: NextRequest): string {
 }
 
 function checkRateLimit(request: NextRequest, clientIP: string): Response | null {
-  const { pathname, method } = request.nextUrl
+  const { pathname } = request.nextUrl
+  const method = request.method
   const now = Date.now()
   const windowMs = SECURITY_CONFIG.rateLimit.windowMs
 
