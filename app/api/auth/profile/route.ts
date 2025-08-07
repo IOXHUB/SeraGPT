@@ -74,65 +74,57 @@ export const GET = requireAuth(async (request: AuthenticatedRequest) => {
 });
 
 // =====================================================
-// POST - Create User Profile
+// POST - Create User Profile (SECURED & VALIDATED)
 // =====================================================
 
-export async function POST(request: NextRequest) {
-  try {
-    const supabase = createServerComponentClient({ cookies });
-    
-    // Verify user authentication
-    const { data: { user }, error: authError } = await supabase.auth.getUser();
-    
-    if (authError || !user) {
-      return NextResponse.json(
-        { error: 'Unauthorized', code: 'UNAUTHORIZED' },
-        { status: 401 }
-      );
+export const POST = requireAuth(
+  withValidation(
+    async (request: AuthenticatedRequest, validatedData: CreateUserProfileRequest) => {
+      try {
+        const user = request.user!;
+
+        // Sanitize input data
+        const sanitizedData: CreateUserProfileRequest = {
+          full_name: sanitizeInput.general(validatedData.full_name),
+          phone: validatedData.phone ? sanitizeInput.phone(validatedData.phone) : undefined,
+          company_name: validatedData.company_name ? sanitizeInput.general(validatedData.company_name) : undefined,
+          experience_level: validatedData.experience_level,
+          location: validatedData.location ? {
+            city: sanitizeInput.general(validatedData.location.city || ''),
+            district: validatedData.location.district ? sanitizeInput.general(validatedData.location.district) : undefined,
+            coordinates: validatedData.location.coordinates
+          } : undefined,
+          preferences: validatedData.preferences
+        };
+
+        // Create user profile
+        const profileData = await authService.createUserProfile(user.id, sanitizedData);
+
+        if (!profileData) {
+          return createErrorResponse('Failed to create profile', 400);
+        }
+
+        return createSuccessResponse(profileData, 201);
+
+      } catch (error) {
+        console.error('Profile POST error:', error);
+        return createErrorResponse(
+          'Failed to create profile',
+          500,
+          { error: error instanceof Error ? error.message : 'Unknown error' }
+        );
+      }
+    },
+    (data: any) => {
+      const validation = validateUserProfile(data);
+      return {
+        isValid: validation.isValid,
+        data: validation.isValid ? data : undefined,
+        errors: validation.errors
+      };
     }
-
-    // Parse request body
-    const body: CreateUserProfileRequest = await request.json();
-
-    // Validate required fields
-    if (!body.full_name) {
-      return NextResponse.json(
-        { error: 'Full name is required', code: 'VALIDATION_ERROR' },
-        { status: 400 }
-      );
-    }
-
-    // Create user profile
-    const profileData = await authService.createUserProfile(user.id, body);
-
-    if (!profileData) {
-      return NextResponse.json(
-        { error: 'Failed to create profile', code: 'PROFILE_CREATE_ERROR' },
-        { status: 400 }
-      );
-    }
-
-    // Profile created successfully
-
-    return NextResponse.json({
-      success: true,
-      data: profileData,
-      message: 'Profile created successfully',
-      timestamp: new Date().toISOString()
-    }, { status: 201 });
-
-  } catch (error) {
-    console.error('Profile POST error:', error);
-    return NextResponse.json(
-      { 
-        error: 'Internal server error', 
-        code: 'INTERNAL_ERROR',
-        details: error instanceof Error ? error.message : 'Unknown error'
-      },
-      { status: 500 }
-    );
-  }
-}
+  )
+);
 
 // =====================================================
 // PUT - Update User Profile
