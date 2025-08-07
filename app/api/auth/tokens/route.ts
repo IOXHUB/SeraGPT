@@ -119,11 +119,11 @@ export async function POST(request: NextRequest) {
     }
 
     // Consume tokens
-    const consumeResponse = await authService.consumeTokens(user.id, amount);
+    const success = await authService.consumeTokens(user.id, amount);
     
-    if (!consumeResponse.success) {
+    if (!success) {
       return NextResponse.json(
-        { error: consumeResponse.error, code: 'TOKEN_CONSUMPTION_ERROR' },
+        { error: 'Failed to consume tokens', code: 'TOKEN_CONSUMPTION_ERROR' },
         { status: 400 }
       );
     }
@@ -132,7 +132,7 @@ export async function POST(request: NextRequest) {
       success: true,
       data: {
         tokens_consumed: amount,
-        remaining_tokens: consumeResponse.remaining_tokens,
+        remaining_tokens: tokensData.total_tokens - amount,
         activity_logged: true
       },
       message: `${amount} tokens consumed successfully`,
