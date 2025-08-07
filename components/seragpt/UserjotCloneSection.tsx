@@ -287,7 +287,7 @@ export default function UserjotCloneSection() {
 
                     <div>
                       <p className="text-gray-800 text-xs font-semibold mb-1">🔗 Veri Kaynakları:</p>
-                      <p className="text-gray-600 text-xs">• OpenWeather, FAO & TÜ��K</p>
+                      <p className="text-gray-600 text-xs">• OpenWeather, FAO & TÜ���K</p>
                       <p className="text-gray-600 text-xs">• Seraburada / e-Tarım API</p>
                     </div>
 
@@ -694,8 +694,8 @@ export default function UserjotCloneSection() {
       <BlogCardsSection />
 
       {/* FAQ Section */}
-      <div className="bg-white py-20 text-gray-600">
-        <div className="text-section-container">
+      <div className="section">
+        <div className="text-container">
           <div className="text-center mb-16">
             <h2 className="text-xl font-bold text-gray-900 mb-4">
               Sıkça Sorulan Sorular (SSS)
