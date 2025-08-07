@@ -136,7 +136,6 @@ export async function POST(request: NextRequest) {
       email_notifications: true,
       push_notifications: true,
       marketing_emails: false,
-      weekly_reports: true,
       timezone: 'Europe/Istanbul',
       date_format: 'DD/MM/YYYY',
       number_format: 'TR',
