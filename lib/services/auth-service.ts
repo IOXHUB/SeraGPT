@@ -792,7 +792,7 @@ class AuthService {
         return { isAuthenticated: false, user: null, profile: null };
       }
 
-      return data || { isAuthenticated: false, user: null, profile: null };
+      return (data as { isAuthenticated: boolean; user: any; profile: any }) || { isAuthenticated: false, user: null, profile: null };
     } catch (error) {
       console.error('Failed to get auth status:', error);
       return { isAuthenticated: false, user: null, profile: null };
@@ -814,7 +814,7 @@ class AuthService {
         return { success: false, message: error.toString() };
       }
 
-      return data || { success: false, message: 'Unknown error' };
+      return (data as { success: boolean; message: string }) || { success: false, message: 'Unknown error' };
     } catch (error: any) {
       return { success: false, message: error.message };
     }
