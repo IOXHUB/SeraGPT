@@ -200,6 +200,7 @@ function checkRateLimit(request: NextRequest, clientIP: string): Response | null
 
 function checkCSRF(request: NextRequest): Response | null {
   const contentType = request.headers.get('content-type') || ''
+  const method = request.method
 
   // Skip CSRF for API routes with proper headers
   if (request.nextUrl.pathname.startsWith('/api/')) {
