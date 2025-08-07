@@ -155,7 +155,7 @@ export function validateInput(input: string): SecurityValidationResult {
   securityPatterns.xssPatterns.forEach(pattern => {
     if (pattern.test(input)) {
       threats.push('XSS attempt detected');
-      if (riskLevel !== 'critical') riskLevel = 'high';
+      if (riskLevel === 'low' || riskLevel === 'medium') riskLevel = 'high';
     }
   });
 
