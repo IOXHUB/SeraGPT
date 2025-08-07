@@ -324,20 +324,63 @@ export default function AIChatPage() {
                 <div ref={messagesEndRef} />
               </div>
 
-              {/* Quick Questions */}
+              {/* Report Selector */}
               {chatSession.messages.length <= 1 && (
-                <div className="px-6 py-4 border-t border-gray-200">
-                  <p className="text-sm font-medium text-gray-700 mb-3">Hızlı sorular:</p>
-                  <div className="flex flex-wrap gap-2">
-                    {quickQuestions.map((question, index) => (
-                      <button
-                        key={index}
-                        onClick={() => setInputValue(question)}
-                        className="px-3 py-1 text-sm bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-full transition-colors"
-                      >
-                        {question}
-                      </button>
-                    ))}
+                <div className="px-6 py-4 border-t border-gray-200 bg-gray-50">
+                  <div className="mb-4">
+                    <p className="text-sm font-medium text-gray-700 mb-3">Hangi raporunuz hakkında konuşmak istiyorsunuz?</p>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                      {userReports.filter(r => r.status === 'completed').map((report) => (
+                        <button
+                          key={report.id}
+                          onClick={() => setSelectedReport(report)}
+                          className={`p-3 rounded-lg border-2 transition-all text-left ${
+                            selectedReport?.id === report.id
+                              ? 'border-green-500 bg-green-50'
+                              : 'border-gray-200 bg-white hover:border-gray-300 hover:bg-gray-50'
+                          }`}
+                        >
+                          <div className="flex items-start space-x-3">
+                            <span className="text-2xl">{getReportIcon(report.type)}</span>
+                            <div className="flex-1 min-w-0">
+                              <h3 className="text-sm font-medium text-gray-900 truncate">{report.name}</h3>
+                              <p className="text-xs text-gray-600 mt-1">{report.summary}</p>
+                              <p className="text-xs text-gray-400 mt-1">
+                                {new Date(report.date).toLocaleDateString('tr-TR')}
+                              </p>
+                            </div>
+                            {selectedReport?.id === report.id && (
+                              <span className="text-green-500">✓</span>
+                            )}
+                          </div>
+                        </button>
+                      ))}
+                    </div>
+
+                    {selectedReport && (
+                      <div className="mt-4">
+                        <button
+                          onClick={() => setSelectedReport(null)}
+                          className="text-xs text-gray-500 hover:text-gray-700 mb-2"
+                        >
+                          ← Rapor seçimini temizle
+                        </button>
+                        <p className="text-sm font-medium text-gray-700 mb-2">
+                          "{selectedReport.name}" hakkında örnek sorular:
+                        </p>
+                        <div className="flex flex-wrap gap-2">
+                          {getQuickQuestionsForReport(selectedReport).map((question, index) => (
+                            <button
+                              key={index}
+                              onClick={() => setInputValue(question)}
+                              className="px-3 py-1 text-xs bg-white border border-gray-200 hover:bg-gray-50 text-gray-700 rounded-full transition-colors"
+                            >
+                              {question}
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+                    )}
                   </div>
                 </div>
               )}
