@@ -16,6 +16,7 @@ import {
   ActivityType,
   AUTH_ERROR_CODES
 } from '@/types/auth';
+import { authService } from '@/lib/services/auth-service';
 
 export function useAuth(): AuthContextType {
   const [user, setUser] = useState<ExtendedUser | null>(null);
@@ -30,52 +31,36 @@ export function useAuth(): AuthContextType {
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
   );
 
-  // Fetch user profile data
+  // Fetch user profile data using API endpoints
   const fetchUserData = useCallback(async (userId: string) => {
     try {
-      // Fetch profile
-      const { data: profileData, error: profileError } = await supabase
-        .from('user_profiles')
-        .select('*')
-        .eq('id', userId)
-        .single();
+      // Use enhanced auth service that includes API integration
+      const [profileData, tokensData, preferencesData] = await Promise.all([
+        authService.getUserProfile(userId),
+        authService.getUserTokens(userId),
+        authService.getUserPreferences(userId)
+      ]);
 
-      if (profileError && profileError.code !== 'PGRST116') {
-        console.warn('Profile fetch error:', profileError);
-      } else {
-        setProfile(profileData);
-      }
-
-      // Fetch tokens
-      const { data: tokensData, error: tokensError } = await supabase
-        .from('user_tokens')
-        .select('*')
-        .eq('user_id', userId)
-        .single();
-
-      if (tokensError && tokensError.code !== 'PGRST116') {
-        console.warn('Tokens fetch error:', tokensError);
-      } else {
-        setTokens(tokensData);
-      }
-
-      // Fetch preferences
-      const { data: preferencesData, error: preferencesError } = await supabase
-        .from('user_preferences')
-        .select('*')
-        .eq('user_id', userId)
-        .single();
-
-      if (preferencesError && preferencesError.code !== 'PGRST116') {
-        console.warn('Preferences fetch error:', preferencesError);
-      } else {
-        setPreferences(preferencesData);
-      }
+      setProfile(profileData);
+      setTokens(tokensData);
+      setPreferences(preferencesData);
 
     } catch (error) {
       console.warn('Error fetching user data:', error);
     }
-  }, [supabase]);
+  }, []);
+
+  // Test authentication status using API
+  const testAuthStatus = useCallback(async () => {
+    try {
+      const result = await authService.getAuthStatus();
+      console.log('Auth status check result:', result);
+      return result;
+    } catch (error) {
+      console.warn('Auth status test failed:', error);
+      return { isAuthenticated: false, user: null, profile: null };
+    }
+  }, []);
 
   useEffect(() => {
     const getUser = async () => {
@@ -103,6 +88,7 @@ export function useAuth(): AuthContextType {
               } as any;
 
               setUser(mockUser);
+              
               // Create mock profile data for development
               const mockProfile: UserProfile = {
                 id: parsedUser.id,
@@ -153,6 +139,16 @@ export function useAuth(): AuthContextType {
           }
         }
 
+        // Test authentication status using API first
+        const authStatus = await testAuthStatus();
+        if (authStatus.isAuthenticated && authStatus.user) {
+          setUser(authStatus.user);
+          setProfile(authStatus.profile);
+          setLoading(false);
+          return;
+        }
+
+        // Fallback to Supabase session check
         const { data: { session }, error } = await supabase.auth.getSession();
         console.log('useAuth session check:', {
           hasSession: !!session,
@@ -211,7 +207,7 @@ export function useAuth(): AuthContextType {
     });
 
     return () => subscription.unsubscribe();
-  }, [supabase.auth, fetchUserData]);
+  }, [supabase.auth, fetchUserData, testAuthStatus]);
 
   // Authentication methods
   const signIn = async (email: string, password: string) => {
@@ -300,7 +296,7 @@ export function useAuth(): AuthContextType {
     }
   };
 
-  // Profile management
+  // Profile management using API endpoints
   const updateProfile = async (updates: UpdateUserProfileRequest) => {
     try {
       if (!user) {
@@ -308,22 +304,19 @@ export function useAuth(): AuthContextType {
       }
 
       setError(null);
-      const { data, error } = await supabase
-        .from('user_profiles')
-        .update({ ...updates, updated_at: new Date().toISOString() })
-        .eq('id', user.id)
-        .select()
-        .single();
+      
+      // Use enhanced auth service
+      const data = await authService.updateUserProfile(user.id, updates);
 
-      if (error) {
+      if (data) {
+        setProfile(data);
+        await logActivity('profile_updated', { fields: Object.keys(updates) });
+        return { data, error: null };
+      } else {
+        const error = { message: 'Failed to update profile' };
         setError(error.message);
         return { data: null, error };
       }
-
-      setProfile(data);
-      await logActivity('profile_updated', { fields: Object.keys(updates) });
-
-      return { data, error: null };
     } catch (error: any) {
       setError(error.message);
       return { data: null, error };
@@ -337,29 +330,26 @@ export function useAuth(): AuthContextType {
       }
 
       setError(null);
-      const { data, error } = await supabase
-        .from('user_preferences')
-        .update({ ...updates, updated_at: new Date().toISOString() })
-        .eq('user_id', user.id)
-        .select()
-        .single();
+      
+      // Use enhanced auth service
+      const data = await authService.updateUserPreferences(user.id, updates);
 
-      if (error) {
+      if (data) {
+        setPreferences(data);
+        await logActivity('preferences_updated', { fields: Object.keys(updates) });
+        return { data, error: null };
+      } else {
+        const error = { message: 'Failed to update preferences' };
         setError(error.message);
         return { data: null, error };
       }
-
-      setPreferences(data);
-      await logActivity('preferences_updated', { fields: Object.keys(updates) });
-
-      return { data, error: null };
     } catch (error: any) {
       setError(error.message);
       return { data: null, error };
     }
   };
 
-  // Token management
+  // Token management using API endpoints
   const consumeToken = async (amount: number = 1, activityType: ActivityType = 'token_used'): Promise<TokenUsageResponse> => {
     try {
       if (!user) {
@@ -372,24 +362,19 @@ export function useAuth(): AuthContextType {
         return { success: true, remaining_tokens: 999 };
       }
 
-      const { data, error } = await supabase.rpc('consume_user_token', {
-        user_uuid: user.id,
-        amount: amount,
-        activity_type_param: activityType
+      // Use enhanced auth service
+      const result = await authService.consumeTokens({
+        user_id: user.id,
+        amount,
+        activity_type: activityType
       });
 
-      if (error) {
-        setError(error.message);
-        return { success: false, remaining_tokens: tokens?.remaining_tokens || 0, error: error.message };
-      }
-
-      if (data) {
+      if (result.success) {
         // Refresh token data
         await refreshTokens();
-        return { success: true, remaining_tokens: tokens?.remaining_tokens || 0 };
-      } else {
-        return { success: false, remaining_tokens: tokens?.remaining_tokens || 0, error: AUTH_ERROR_CODES.INSUFFICIENT_TOKENS };
       }
+
+      return result;
     } catch (error: any) {
       setError(error.message);
       return { success: false, remaining_tokens: 0, error: error.message };
@@ -398,7 +383,8 @@ export function useAuth(): AuthContextType {
 
   const refreshTokens = async () => {
     if (user) {
-      await fetchUserData(user.id);
+      const tokensData = await authService.getUserTokens(user.id);
+      setTokens(tokensData);
     }
   };
 
@@ -450,22 +436,13 @@ export function useAuth(): AuthContextType {
     try {
       if (!user) return;
 
-      const deviceInfo = typeof window !== 'undefined' ? {
-        device_type: /Mobile|Android|iPhone|iPad/.test(navigator.userAgent) ? 'mobile' : 'desktop',
-        os: navigator.platform,
-        browser: navigator.userAgent.split(' ').pop(),
-      } : {};
-
-      await supabase
-        .from('user_activity_log')
-        .insert({
-          user_id: user.id,
-          activity_type: activityType,
-          activity_category: getActivityCategory(activityType),
-          details: details,
-          user_agent: typeof window !== 'undefined' ? navigator.userAgent : undefined,
-          device_info: deviceInfo
-        });
+      // Use enhanced auth service for logging
+      await authService.logUserActivity(
+        user.id,
+        activityType,
+        getActivityCategory(activityType),
+        details
+      );
     } catch (error) {
       console.warn('Failed to log activity:', error);
     }
