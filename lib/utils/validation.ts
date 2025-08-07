@@ -417,11 +417,13 @@ export function createFormValidator<T>(validationConfig: Record<keyof T, (value:
 
     for (const [field, validator] of Object.entries(validationConfig)) {
       const value = formData[field as keyof T];
-      validations.push({
-        field: field as string,
-        value,
-        rules: validator(value)
-      });
+      if (typeof validator === 'function') {
+        validations.push({
+          field: field as string,
+          value,
+          rules: validator(value)
+        });
+      }
     }
 
     return validateForm(validations);
