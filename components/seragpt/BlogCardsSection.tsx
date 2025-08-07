@@ -6,19 +6,14 @@ export default function BlogCardsSection() {
     <div className="py-20 bg-white text-gray-600">
       <div className="max-w-[960px] mx-auto px-6">
         <div className="text-left mb-12">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
+          <div>
             <h2 className="text-2xl font-bold text-gray-900 mb-4">
               Sera Teknolojilerinde İnovasyon ve Geleceğin Tarımı
             </h2>
             <p className="text-lg text-gray-600 mb-6">
               Modern tarım teknolojileri, sürdürülebilir sera çözümleri ve akıllı yatırım stratejileri ile tarımsal dönüşümün merkezindeyiz.
             </p>
-          </motion.div>
+          </div>
         </div>
 
         {/* Horizontal Scrolling Blog Cards */}
@@ -40,7 +35,7 @@ export default function BlogCardsSection() {
               {
                 date: "8 Ocak 2025",
                 category: "İklim Kontrolü",
-                title: "Akıll�� İklim Kontrol Sistemleri ve Enerji Verimliliği",
+                title: "Akıllı İklim Kontrol Sistemleri ve Enerji Verimliliği",
                 excerpt: "Otomatik iklim kontrol sistemleri ile %30 enerji tasarrufu."
               },
               {
