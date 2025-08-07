@@ -49,7 +49,7 @@ export default function Footer() {
                 </div>
 
                 {/* 2. Blog */}
-                <div>
+                <div className="max-md:w-1/2 max-md:mb-6">
                   <h3 className="text-base font-semibold mb-4 text-gray-900">Blog</h3>
                   <ul className="space-y-2">
                     <li>
