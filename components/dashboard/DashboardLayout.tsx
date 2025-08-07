@@ -283,6 +283,9 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
           {children}
         </main>
 
+        {/* Footer */}
+        <Footer />
+
         {/* Debug Component */}
         <AuthDebugInfo />
       </div>
