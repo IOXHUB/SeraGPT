@@ -129,18 +129,10 @@ export default function AIChatPage() {
     setIsTyping(true);
 
     try {
-      // Get context from mock previous analyses
+      // Get context from selected report or all reports
       const context = {
-        previousAnalyses: [
-          {
-            type: 'roi',
-            summary: { roi: 18.5, paybackPeriod: 4.2, npv: 125000 }
-          },
-          {
-            type: 'climate',
-            summary: { riskScore: 28, suitableSeasons: ['spring', 'summer'] }
-          }
-        ]
+        selectedReport: selectedReport,
+        previousAnalyses: selectedReport ? [selectedReport] : userReports
       };
 
       // Send message to AI service
