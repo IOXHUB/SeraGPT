@@ -327,7 +327,8 @@ export default function DashboardPage() {
           description: 'Kullan��cıları görüntüle ve yönet',
           href: '/admin/users',
           primary: true,
-          icon: '👥'
+          icon: '👥',
+          disabled: false
         },
         {
           name: 'Sistem Ayarları',
