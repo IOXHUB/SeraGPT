@@ -207,7 +207,7 @@ export function useValidation<T extends Record<string, any>>(
           ...prev.warnings,
           [fieldName]: fieldResult.warning || ''
         },
-        touchedFields: new Set([...prev.touchedFields, fieldName as string])
+        touchedFields: new Set(Array.from(prev.touchedFields).concat([fieldName as string]))
       }));
     }
   }, [validateOnBlur, validateSingleField, data]);
