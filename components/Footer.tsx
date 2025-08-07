@@ -120,7 +120,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* 4. Çözüm Ortaklarımız */}
+          {/* 4. Ç��züm Ortaklarımız */}
           <div>
             <h3 className="text-base font-semibold mb-4 text-gray-900">Çözüm Ortaklarımız</h3>
             <ul className="space-y-2">
@@ -158,15 +158,15 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Bottom logo and copyright section */}
-        <div className="flex items-center justify-between pt-8 border-t border-gray-200">
-          <div className="flex items-center space-x-2">
+        {/* Bottom copyright section - centered */}
+        <div className="text-center pt-8 border-t border-gray-200">
+          <div className="flex items-center justify-center space-x-2">
             <span className="text-sm text-gray-500">© 2025 SeraGPT. Tüm hakları saklıdır.</span>
-          </div>
-          <div className="text-gray-400">
-            <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/>
-            </svg>
+            <div className="text-gray-400">
+              <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/>
+              </svg>
+            </div>
           </div>
         </div>
       </div>
