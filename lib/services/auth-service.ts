@@ -206,9 +206,9 @@ class AuthService {
       const { error } = await supabase
         .from('user_tokens')
         .update({
-          total_tokens: supabase.raw(`total_tokens + ${amount}`),
-          total_purchased: supabase.raw(`total_purchased + ${amount}`),
-          total_spent: supabase.raw(`total_spent + ${purchasePrice}`),
+          total_tokens: amount,
+          total_purchased: amount,
+          total_spent: purchasePrice,
           last_purchase_date: new Date().toISOString(),
           last_purchase_amount: amount,
           last_purchase_price: purchasePrice,

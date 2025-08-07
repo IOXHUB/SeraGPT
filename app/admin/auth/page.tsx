@@ -9,7 +9,7 @@ import type { User } from '@supabase/supabase-js';
 export const dynamic = 'force-dynamic';
 
 export default function AdminAuthPage() {
-  const { user, loading, isAdmin, supabase } = useAuth();
+  const { user, loading, isAdmin } = useAuth();
   const [users, setUsers] = useState<User[]>([]);
   const [loadingUsers, setLoadingUsers] = useState(true);
   const [message, setMessage] = useState('');
