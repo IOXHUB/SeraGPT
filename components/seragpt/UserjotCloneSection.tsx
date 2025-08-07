@@ -219,8 +219,8 @@ export default function UserjotCloneSection() {
         </div>
       </main>
 
-      {/* AI Chat Section - Single View */}
-      <div className="relative -mt-40 z-10">
+      {/* User Panel Section - Single View */}
+      <div className="section relative z-10">
         <div className="max-w-[900px] mx-auto px-6">
           <div
 
