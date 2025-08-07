@@ -7,6 +7,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@/lib/auth';
 import { securityLogger } from '@/lib/utils/security';
+import { rateLimiters, addRateLimitHeaders, type RateLimitResult } from '@/lib/services/rate-limit-service';
 
 export interface AuthenticatedRequest extends NextRequest {
   user?: {
