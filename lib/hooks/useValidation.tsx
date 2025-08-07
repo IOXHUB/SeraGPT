@@ -368,7 +368,7 @@ export function useUserProfileValidation(initialProfile: any) {
       full_name: validators.name,
       email: validators.email,
       phone: validators.phone,
-      company_name: (value: string) => [
+      company_name: (value: any) => [
         {
           type: 'length' as const,
           validator: (v) => !v || (v.length >= 2 && v.length <= 200),
