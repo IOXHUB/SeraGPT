@@ -91,7 +91,7 @@ export default function Footer() {
                 </div>
 
                 {/* 3. Yasal */}
-                <div>
+                <div className="max-md:w-1/2 max-md:mb-6">
                   <h3 className="text-base font-semibold mb-4 text-gray-900">Yasal</h3>
                   <ul className="space-y-2">
                     <li>
