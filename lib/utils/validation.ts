@@ -417,10 +417,11 @@ export function createFormValidator<T>(validationConfig: Record<keyof T, (value:
 
     for (const [field, validator] of Object.entries(validationConfig)) {
       const value = formData[field as keyof T];
+      const validatorFn = validator as (value: any) => ValidationRule[];
       validations.push({
         field: field as string,
         value,
-        rules: validator(value)
+        rules: validatorFn(value)
       });
     }
 
