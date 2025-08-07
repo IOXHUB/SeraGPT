@@ -1,8 +1,8 @@
 // =====================================================
-// AUTH SERVICE
+// AUTH SERVICE - ENHANCED WITH API INTEGRATION
 // =====================================================
 // Service for handling authentication and user management
-// operations with the database
+// operations using both direct database access and API endpoints
 // =====================================================
 
 import { supabase } from '@/lib/supabase';
@@ -22,12 +22,64 @@ import {
 } from '@/types/auth';
 
 class AuthService {
+  private baseUrl = '/api';
+
   // =====================================================
-  // USER PROFILE OPERATIONS
+  // API HELPER METHODS
+  // =====================================================
+
+  private async apiCall<T>(endpoint: string, options: RequestInit = {}): Promise<{ data: T | null; error: any }> {
+    try {
+      const response = await fetch(`${this.baseUrl}${endpoint}`, {
+        headers: {
+          'Content-Type': 'application/json',
+          ...options.headers
+        },
+        ...options
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        return { data: null, error: result.error || 'API request failed' };
+      }
+
+      return { data: result.data || result, error: null };
+    } catch (error: any) {
+      console.error(`API call failed for ${endpoint}:`, error);
+      return { data: null, error: error.message };
+    }
+  }
+
+  private async getAuthToken(): Promise<string | null> {
+    try {
+      const { data: { session } } = await supabase.auth.getSession();
+      return session?.access_token || null;
+    } catch (error) {
+      console.error('Failed to get auth token:', error);
+      return null;
+    }
+  }
+
+  // =====================================================
+  // USER PROFILE OPERATIONS - API ENHANCED
   // =====================================================
 
   async getUserProfile(userId: string): Promise<UserProfile | null> {
     try {
+      // Try API first
+      const token = await this.getAuthToken();
+      if (token) {
+        const { data, error } = await this.apiCall<UserProfile>('/auth/profile', {
+          headers: { 'Authorization': `Bearer ${token}` }
+        });
+        
+        if (!error && data) {
+          return data;
+        }
+      }
+
+      // Fallback to direct database access
       const { data, error } = await supabase
         .from('user_profiles')
         .select('*')
@@ -48,6 +100,21 @@ class AuthService {
 
   async createUserProfile(userId: string, profileData: CreateUserProfileRequest): Promise<UserProfile | null> {
     try {
+      const token = await this.getAuthToken();
+      if (token) {
+        // Use API endpoint
+        const { data, error } = await this.apiCall<UserProfile>('/auth/profile', {
+          method: 'POST',
+          headers: { 'Authorization': `Bearer ${token}` },
+          body: JSON.stringify(profileData)
+        });
+
+        if (!error && data) {
+          return data;
+        }
+      }
+
+      // Fallback to direct database access
       const { data, error } = await supabase
         .from('user_profiles')
         .insert({
@@ -64,12 +131,6 @@ class AuthService {
         return null;
       }
 
-      // Log profile creation
-      await this.logUserActivity(userId, 'profile_updated', 'profile', {
-        action: 'profile_created',
-        fields: Object.keys(profileData)
-      });
-
       return data;
     } catch (error) {
       console.error('Failed to create user profile:', error);
@@ -79,6 +140,21 @@ class AuthService {
 
   async updateUserProfile(userId: string, updates: UpdateUserProfileRequest): Promise<UserProfile | null> {
     try {
+      const token = await this.getAuthToken();
+      if (token) {
+        // Use API endpoint
+        const { data, error } = await this.apiCall<UserProfile>('/auth/profile', {
+          method: 'PUT',
+          headers: { 'Authorization': `Bearer ${token}` },
+          body: JSON.stringify(updates)
+        });
+
+        if (!error && data) {
+          return data;
+        }
+      }
+
+      // Fallback to direct database access
       const { data, error } = await supabase
         .from('user_profiles')
         .update({
@@ -94,11 +170,6 @@ class AuthService {
         return null;
       }
 
-      // Log profile update
-      await this.logUserActivity(userId, 'profile_updated', 'profile', {
-        fields: Object.keys(updates)
-      });
-
       return data;
     } catch (error) {
       console.error('Failed to update user profile:', error);
@@ -108,25 +179,9 @@ class AuthService {
 
   async completeOnboarding(userId: string): Promise<boolean> {
     try {
-      const { error } = await supabase
-        .from('user_profiles')
-        .update({
-          onboarding_completed: true,
-          profile_completed: true,
-          updated_at: new Date().toISOString()
-        })
-        .eq('id', userId);
-
-      if (error) {
-        console.error('Error completing onboarding:', error);
-        return false;
-      }
-
-      await this.logUserActivity(userId, 'profile_updated', 'profile', {
-        action: 'onboarding_completed'
-      });
-
-      return true;
+      return await this.updateUserProfile(userId, {
+        onboarding_completed: true
+      }) !== null;
     } catch (error) {
       console.error('Failed to complete onboarding:', error);
       return false;
@@ -134,11 +189,24 @@ class AuthService {
   }
 
   // =====================================================
-  // USER TOKEN OPERATIONS
+  // USER TOKEN OPERATIONS - API ENHANCED
   // =====================================================
 
   async getUserTokens(userId: string): Promise<UserTokens | null> {
     try {
+      const token = await this.getAuthToken();
+      if (token) {
+        // Use API endpoint
+        const { data, error } = await this.apiCall<UserTokens>('/auth/tokens', {
+          headers: { 'Authorization': `Bearer ${token}` }
+        });
+
+        if (!error && data) {
+          return data;
+        }
+      }
+
+      // Fallback to direct database access
       const { data, error } = await supabase
         .from('user_tokens')
         .select('*')
@@ -159,7 +227,21 @@ class AuthService {
 
   async consumeTokens(request: TokenUsageRequest): Promise<TokenUsageResponse> {
     try {
-      // Call the database function to consume tokens
+      const token = await this.getAuthToken();
+      if (token) {
+        // Use API endpoint
+        const { data, error } = await this.apiCall<TokenUsageResponse>('/auth/tokens', {
+          method: 'POST',
+          headers: { 'Authorization': `Bearer ${token}` },
+          body: JSON.stringify(request)
+        });
+
+        if (!error && data) {
+          return data;
+        }
+      }
+
+      // Fallback to direct database access
       const { data, error } = await supabase.rpc('consume_user_token', {
         user_uuid: request.user_id,
         amount: request.amount || 1,
@@ -178,7 +260,6 @@ class AuthService {
       }
 
       if (data) {
-        // Get updated token count
         const tokens = await this.getUserTokens(request.user_id);
         return {
           success: true,
@@ -203,6 +284,24 @@ class AuthService {
 
   async addTokens(userId: string, amount: number, purchasePrice: number = 0): Promise<boolean> {
     try {
+      const token = await this.getAuthToken();
+      if (token) {
+        // Use API endpoint
+        const { data, error } = await this.apiCall('/auth/tokens', {
+          method: 'PUT',
+          headers: { 'Authorization': `Bearer ${token}` },
+          body: JSON.stringify({
+            amount,
+            purchasePrice
+          })
+        });
+
+        if (!error) {
+          return true;
+        }
+      }
+
+      // Fallback to direct database access
       const { error } = await supabase
         .from('user_tokens')
         .update({
@@ -221,12 +320,6 @@ class AuthService {
         return false;
       }
 
-      // Log token purchase
-      await this.logUserActivity(userId, 'token_purchased', 'payment', {
-        tokens_added: amount,
-        price_paid: purchasePrice
-      });
-
       return true;
     } catch (error) {
       console.error('Failed to add tokens:', error);
@@ -235,11 +328,24 @@ class AuthService {
   }
 
   // =====================================================
-  // USER PREFERENCES OPERATIONS
+  // USER PREFERENCES OPERATIONS - API ENHANCED
   // =====================================================
 
   async getUserPreferences(userId: string): Promise<UserPreferences | null> {
     try {
+      const token = await this.getAuthToken();
+      if (token) {
+        // Use API endpoint
+        const { data, error } = await this.apiCall<UserPreferences>('/auth/preferences', {
+          headers: { 'Authorization': `Bearer ${token}` }
+        });
+
+        if (!error && data) {
+          return data;
+        }
+      }
+
+      // Fallback to direct database access
       const { data, error } = await supabase
         .from('user_preferences')
         .select('*')
@@ -260,6 +366,21 @@ class AuthService {
 
   async updateUserPreferences(userId: string, updates: UpdateUserPreferencesRequest): Promise<UserPreferences | null> {
     try {
+      const token = await this.getAuthToken();
+      if (token) {
+        // Use API endpoint
+        const { data, error } = await this.apiCall<UserPreferences>('/auth/preferences', {
+          method: 'POST',
+          headers: { 'Authorization': `Bearer ${token}` },
+          body: JSON.stringify(updates)
+        });
+
+        if (!error && data) {
+          return data;
+        }
+      }
+
+      // Fallback to direct database access
       const { data, error } = await supabase
         .from('user_preferences')
         .update({
@@ -275,14 +396,48 @@ class AuthService {
         return null;
       }
 
-      // Log preferences update
-      await this.logUserActivity(userId, 'preferences_updated', 'profile', {
-        fields: Object.keys(updates)
-      });
-
       return data;
     } catch (error) {
       console.error('Failed to update user preferences:', error);
+      return null;
+    }
+  }
+
+  async resetUserPreferences(userId: string): Promise<UserPreferences | null> {
+    try {
+      const token = await this.getAuthToken();
+      if (token) {
+        // Use API endpoint
+        const { data, error } = await this.apiCall<UserPreferences>('/auth/preferences', {
+          method: 'DELETE',
+          headers: { 'Authorization': `Bearer ${token}` }
+        });
+
+        if (!error && data) {
+          return data;
+        }
+      }
+
+      // Fallback: Update with default values
+      const defaultPreferences: UpdateUserPreferencesRequest = {
+        theme: 'light',
+        dashboard_layout: 'default',
+        email_notifications: true,
+        push_notifications: false,
+        sms_notifications: false,
+        analysis_completed: true,
+        price_alerts: false,
+        weather_alerts: true,
+        system_updates: true,
+        marketing_emails: false,
+        default_currency: 'TRY',
+        default_units: 'metric',
+        pdf_template: 'standard'
+      };
+
+      return await this.updateUserPreferences(userId, defaultPreferences);
+    } catch (error) {
+      console.error('Failed to reset user preferences:', error);
       return null;
     }
   }
@@ -472,6 +627,19 @@ class AuthService {
 
   async getAllUsers(limit: number = 100, offset: number = 0): Promise<UserProfile[]> {
     try {
+      const token = await this.getAuthToken();
+      if (token) {
+        // Use API endpoint
+        const { data, error } = await this.apiCall<UserProfile[]>(`/admin/users?limit=${limit}&offset=${offset}`, {
+          headers: { 'Authorization': `Bearer ${token}` }
+        });
+
+        if (!error && data) {
+          return data;
+        }
+      }
+
+      // Fallback to direct database access
       const { data, error } = await supabase
         .from('user_profiles')
         .select('*')
@@ -515,13 +683,6 @@ class AuthService {
         return false;
       }
 
-      // Log subscription change
-      await this.logUserActivity(userId, 'subscription_changed', 'profile', {
-        new_subscription: subscriptionType,
-        start_date: startDate,
-        end_date: endDate
-      });
-
       return true;
     } catch (error) {
       console.error('Failed to update user subscription:', error);
@@ -542,7 +703,7 @@ class AuthService {
       // Get recent activity
       const recentActivity = await this.getUserActivity(userId, 1);
       
-      // Get analysis count (you'll need to implement this based on your analysis tables)
+      // Get analysis count
       const { count: analysisCount } = await supabase
         .from('user_activity_log')
         .select('*', { count: 'exact', head: true })
@@ -608,6 +769,54 @@ class AuthService {
     } catch (error) {
       console.error('Failed to reset monthly token usage:', error);
       return false;
+    }
+  }
+
+  // =====================================================
+  // AUTH STATUS OPERATIONS - NEW API INTEGRATION
+  // =====================================================
+
+  async getAuthStatus(): Promise<{ isAuthenticated: boolean; user: any; profile: any }> {
+    try {
+      const token = await this.getAuthToken();
+      if (!token) {
+        return { isAuthenticated: false, user: null, profile: null };
+      }
+
+      const { data, error } = await this.apiCall('/auth/status', {
+        headers: { 'Authorization': `Bearer ${token}` }
+      });
+
+      if (error) {
+        console.warn('Auth status check failed:', error);
+        return { isAuthenticated: false, user: null, profile: null };
+      }
+
+      return data || { isAuthenticated: false, user: null, profile: null };
+    } catch (error) {
+      console.error('Failed to get auth status:', error);
+      return { isAuthenticated: false, user: null, profile: null };
+    }
+  }
+
+  async testAuthConnection(): Promise<{ success: boolean; message: string }> {
+    try {
+      const token = await this.getAuthToken();
+      if (!token) {
+        return { success: false, message: 'No authentication token available' };
+      }
+
+      const { data, error } = await this.apiCall('/auth/test', {
+        headers: { 'Authorization': `Bearer ${token}` }
+      });
+
+      if (error) {
+        return { success: false, message: error.toString() };
+      }
+
+      return data || { success: false, message: 'Unknown error' };
+    } catch (error: any) {
+      return { success: false, message: error.message };
     }
   }
 }
