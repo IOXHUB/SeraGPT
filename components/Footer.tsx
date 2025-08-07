@@ -15,7 +15,7 @@ export default function Footer() {
         <div className="flex flex-col">
           <div className="flex gap-5 max-md:flex-col max-md:gap-0">
             <div className="flex flex-col line-height-normal w-full ml-0 max-md:w-full max-md:ml-0">
-              <div className="flex gap-8 justify-center items-start mx-auto mb-12">
+              <div className="flex gap-8 justify-center items-start mx-auto mb-12 max-md:flex-wrap max-md:gap-6">
                 {/* 1. Menü */}
                 <div>
                   <h3 className="text-base font-semibold mb-4 text-gray-900">Menü</h3>
