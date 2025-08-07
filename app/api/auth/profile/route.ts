@@ -143,7 +143,7 @@ export const PUT = requireAuth(
           sanitizedData.full_name = sanitizeInput.general(validatedData.full_name);
         }
         if (validatedData.phone !== undefined) {
-          sanitizedData.phone = validatedData.phone ? sanitizeInput.phone(validatedData.phone) : null;
+          sanitizedData.phone = validatedData.phone ? sanitizeInput.general(validatedData.phone) : undefined;
         }
         if (validatedData.company_name !== undefined) {
           sanitizedData.company_name = validatedData.company_name ? sanitizeInput.general(validatedData.company_name) : null;
