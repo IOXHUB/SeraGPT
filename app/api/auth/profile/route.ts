@@ -24,66 +24,54 @@ import type {
 } from '@/types/auth';
 
 // =====================================================
-// GET - Fetch User Profile
+// GET - Fetch User Profile (SECURED)
 // =====================================================
 
-export async function GET(request: NextRequest) {
+export const GET = requireAuth(async (request: AuthenticatedRequest) => {
   try {
-    const supabase = createServerComponentClient({ cookies });
-    
-    // Verify user authentication
-    const { data: { user }, error: authError } = await supabase.auth.getUser();
-    
-    if (authError || !user) {
-      return NextResponse.json(
-        { error: 'Unauthorized', code: 'UNAUTHORIZED' },
-        { status: 401 }
-      );
-    }
+    const user = request.user!;
 
-    // Get user profile
-    const profileData = await authService.getUserProfile(user.id);
+    // Get user profile with error handling
+    const [profileData, tokensData, preferencesData] = await Promise.allSettled([
+      authService.getUserProfile(user.id),
+      authService.getUserTokens(user.id),
+      authService.getUserPreferences(user.id)
+    ]);
 
-    // Get user tokens info
-    const tokensData = await authService.getUserTokens(user.id);
+    // Safely extract results
+    const profile = profileData.status === 'fulfilled' ? profileData.value : null;
+    const tokens = tokensData.status === 'fulfilled' ? tokensData.value : null;
+    const preferences = preferencesData.status === 'fulfilled' ? preferencesData.value : null;
 
-    // Get user preferences
-    const preferencesData = await authService.getUserPreferences(user.id);
-
-    // Combine all user data
+    // Combine all user data with sanitization
     const userData = {
       user: {
         id: user.id,
         email: user.email,
-        email_confirmed_at: user.email_confirmed_at,
-        created_at: user.created_at,
-        updated_at: user.updated_at,
-        user_metadata: user.user_metadata,
-        app_metadata: user.app_metadata
+        email_verified: user.email_verified,
+        role: user.role
       },
-      profile: profileData,
-      tokens: tokensData,
-      preferences: preferencesData
+      profile: profile ? {
+        ...profile,
+        full_name: profile.full_name ? sanitizeInput.general(profile.full_name) : null,
+        phone: profile.phone ? sanitizeInput.general(profile.phone) : null,
+        company_name: profile.company_name ? sanitizeInput.general(profile.company_name) : null
+      } : null,
+      tokens,
+      preferences
     };
 
-    return NextResponse.json({
-      success: true,
-      data: userData,
-      timestamp: new Date().toISOString()
-    });
+    return createSuccessResponse(userData);
 
   } catch (error) {
     console.error('Profile GET error:', error);
-    return NextResponse.json(
-      { 
-        error: 'Internal server error', 
-        code: 'INTERNAL_ERROR',
-        details: error instanceof Error ? error.message : 'Unknown error'
-      },
-      { status: 500 }
+    return createErrorResponse(
+      'Failed to fetch profile data',
+      500,
+      { error: error instanceof Error ? error.message : 'Unknown error' }
     );
   }
-}
+});
 
 // =====================================================
 // POST - Create User Profile
