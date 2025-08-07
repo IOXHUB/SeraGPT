@@ -31,11 +31,11 @@ export async function GET(request: NextRequest) {
     }
 
     // Get user tokens
-    const tokensResponse = await authService.getUserTokens(user.id);
-    
-    if (tokensResponse.error) {
+    const tokensData = await authService.getUserTokens(user.id);
+
+    if (!tokensData) {
       return NextResponse.json(
-        { error: tokensResponse.error, code: 'TOKENS_FETCH_ERROR' },
+        { error: 'Failed to fetch tokens', code: 'TOKENS_FETCH_ERROR' },
         { status: 400 }
       );
     }
@@ -53,7 +53,7 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({
       success: true,
       data: {
-        tokens: tokensResponse.data,
+        tokens: tokensData,
         recent_activities: recentActivities || []
       },
       timestamp: new Date().toISOString()
@@ -103,15 +103,15 @@ export async function POST(request: NextRequest) {
     }
 
     // Check if user has enough tokens
-    const tokensResponse = await authService.getUserTokens(user.id);
-    if (tokensResponse.error || !tokensResponse.data) {
+    const tokensData = await authService.getUserTokens(user.id);
+    if (!tokensData) {
       return NextResponse.json(
         { error: 'Failed to get token balance', code: 'TOKENS_FETCH_ERROR' },
         { status: 400 }
       );
     }
 
-    if (tokensResponse.data.total_tokens < amount) {
+    if (tokensData.total_tokens < amount) {
       return NextResponse.json(
         { error: 'Insufficient tokens', code: 'INSUFFICIENT_TOKENS' },
         { status: 400 }
@@ -119,7 +119,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Consume tokens
-    const consumeResponse = await authService.consumeTokens(user.id, amount, activity_type, details);
+    const consumeResponse = await authService.consumeTokens(user.id, amount);
     
     if (!consumeResponse.success) {
       return NextResponse.json(

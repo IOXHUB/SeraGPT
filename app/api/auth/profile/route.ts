@@ -36,20 +36,13 @@ export async function GET(request: NextRequest) {
     }
 
     // Get user profile
-    const profileResponse = await authService.getUserProfile(user.id);
-    
-    if (profileResponse.error) {
-      return NextResponse.json(
-        { error: profileResponse.error, code: 'PROFILE_FETCH_ERROR' },
-        { status: 400 }
-      );
-    }
+    const profileData = await authService.getUserProfile(user.id);
 
     // Get user tokens info
-    const tokensResponse = await authService.getUserTokens(user.id);
-    
+    const tokensData = await authService.getUserTokens(user.id);
+
     // Get user preferences
-    const preferencesResponse = await authService.getUserPreferences(user.id);
+    const preferencesData = await authService.getUserPreferences(user.id);
 
     // Combine all user data
     const userData = {
@@ -62,9 +55,9 @@ export async function GET(request: NextRequest) {
         user_metadata: user.user_metadata,
         app_metadata: user.app_metadata
       },
-      profile: profileResponse.data,
-      tokens: tokensResponse.data,
-      preferences: preferencesResponse.data
+      profile: profileData,
+      tokens: tokensData,
+      preferences: preferencesData
     };
 
     return NextResponse.json({
@@ -116,11 +109,11 @@ export async function POST(request: NextRequest) {
     }
 
     // Create user profile
-    const profileResponse = await authService.createUserProfile(user.id, body);
-    
-    if (profileResponse.error) {
+    const profileData = await authService.createUserProfile(user.id, body);
+
+    if (!profileData) {
       return NextResponse.json(
-        { error: profileResponse.error, code: 'PROFILE_CREATE_ERROR' },
+        { error: 'Failed to create profile', code: 'PROFILE_CREATE_ERROR' },
         { status: 400 }
       );
     }
@@ -133,7 +126,7 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({
       success: true,
-      data: profileResponse.data,
+      data: profileData,
       message: 'Profile created successfully',
       timestamp: new Date().toISOString()
     }, { status: 201 });
@@ -173,11 +166,11 @@ export async function PUT(request: NextRequest) {
     const body: UpdateUserProfileRequest = await request.json();
 
     // Update user profile
-    const profileResponse = await authService.updateUserProfile(user.id, body);
-    
-    if (profileResponse.error) {
+    const profileData = await authService.updateUserProfile(user.id, body);
+
+    if (!profileData) {
       return NextResponse.json(
-        { error: profileResponse.error, code: 'PROFILE_UPDATE_ERROR' },
+        { error: 'Failed to update profile', code: 'PROFILE_UPDATE_ERROR' },
         { status: 400 }
       );
     }
@@ -191,7 +184,7 @@ export async function PUT(request: NextRequest) {
 
     return NextResponse.json({
       success: true,
-      data: profileResponse.data,
+      data: profileData,
       message: 'Profile updated successfully',
       timestamp: new Date().toISOString()
     });
@@ -228,15 +221,17 @@ export async function DELETE(request: NextRequest) {
     }
 
     // Soft delete user profile (mark as deleted)
-    const updateResponse = await authService.updateUserProfile(user.id, {
-      is_active: false,
-      deactivated_at: new Date().toISOString(),
-      deactivation_reason: 'User requested account deletion'
+    const updateData = await authService.updateUserProfile(user.id, {
+      metadata: {
+        is_active: false,
+        deactivated_at: new Date().toISOString(),
+        deactivation_reason: 'User requested account deletion'
+      }
     });
-    
-    if (updateResponse.error) {
+
+    if (!updateData) {
       return NextResponse.json(
-        { error: updateResponse.error, code: 'PROFILE_DELETE_ERROR' },
+        { error: 'Failed to deactivate profile', code: 'PROFILE_DELETE_ERROR' },
         { status: 400 }
       );
     }

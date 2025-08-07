@@ -45,9 +45,10 @@ import type {
   NotificationType,
   AIProvider,
   AIUsageType,
-  AI_MODEL_COSTS,
   CHAT_ERROR_CODES
 } from '@/types/chat';
+
+import { AI_MODEL_COSTS } from '@/types/chat';
 
 // =====================================================
 // AI PROVIDERS CONFIGURATION
@@ -452,11 +453,17 @@ export class ChatService {
 
       const nextOrder = (lastMessage?.message_order || 0) + 1;
 
+      // Get session to get user_id
+      const sessionResponse = await this.getChatSession(request.session_id);
+      if (!sessionResponse.data) {
+        return { data: null, error: 'Session not found' };
+      }
+
       const { data, error } = await this.supabase
         .from('chat_messages')
         .insert({
           session_id: request.session_id,
-          user_id: request.session_id, // This should be passed from the session
+          user_id: sessionResponse.data.user_id,
           message_order: nextOrder,
           role: request.role,
           content: request.content,
@@ -612,13 +619,13 @@ export class ChatService {
         session_id: sessionId,
         role: 'assistant',
         content: aiResponse.content,
-        ai_model: session.ai_model,
-        prompt_tokens: aiResponse.usage?.prompt_tokens || 0,
-        completion_tokens: aiResponse.usage?.completion_tokens || 0,
-        response_time_ms: aiResponse.response_time_ms || 0,
-        cost_cents: aiResponse.cost_cents || 0,
         metadata: {
           ai_provider: aiResponse.provider,
+          ai_model: session.ai_model,
+          prompt_tokens: aiResponse.usage?.prompt_tokens || 0,
+          completion_tokens: aiResponse.usage?.completion_tokens || 0,
+          response_time_ms: aiResponse.response_time_ms || 0,
+          cost_cents: aiResponse.cost_cents || 0,
           model_config: {
             temperature: session.temperature,
             max_tokens: session.max_tokens
@@ -816,7 +823,8 @@ export class ChatService {
       }
 
       // Get unique categories
-      const categories = [...new Set(data?.map(t => t.category) || [])] as TemplateCategory[];
+      const categorySet = new Set(data?.map(t => t.category) || []);
+      const categories = Array.from(categorySet) as TemplateCategory[];
 
       return {
         data: data || [],
@@ -911,10 +919,11 @@ export class ChatService {
         .select('session_type')
         .eq('user_id', userId);
 
-      const sessionTypeCount = sessionTypes?.reduce((acc, session) => {
-        acc[session.session_type] = (acc[session.session_type] || 0) + 1;
-        return acc;
-      }, {} as Record<ChatSessionType, number>) || {};
+      const sessionTypeCount: Partial<Record<ChatSessionType, number>> = {};
+      sessionTypes?.forEach(session => {
+        const type = session.session_type as ChatSessionType;
+        sessionTypeCount[type] = (sessionTypeCount[type] || 0) + 1;
+      });
 
       return {
         total_sessions: stats.total_sessions || 0,
@@ -925,7 +934,7 @@ export class ChatService {
         average_session_length: stats.average_session_length || 0,
         most_used_model: stats.most_used_model || 'gpt-4',
         last_chat_date: stats.last_chat_date,
-        session_types: sessionTypeCount,
+        session_types: sessionTypeCount as Record<ChatSessionType, number>,
         daily_usage: {} // This would need additional implementation
       };
     } catch (error) {
@@ -937,7 +946,15 @@ export class ChatService {
         active_sessions: 0,
         average_session_length: 0,
         most_used_model: 'gpt-4',
-        session_types: {} as Record<ChatSessionType, number>,
+        session_types: {
+          general: 0,
+          roi_analysis: 0,
+          climate_analysis: 0,
+          equipment_selection: 0,
+          market_analysis: 0,
+          layout_planning: 0,
+          consultation: 0
+        },
         daily_usage: {}
       };
     }

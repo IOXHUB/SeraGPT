@@ -31,18 +31,18 @@ export async function GET(request: NextRequest) {
     }
 
     // Get user preferences
-    const preferencesResponse = await authService.getUserPreferences(user.id);
-    
-    if (preferencesResponse.error) {
+    const preferencesData = await authService.getUserPreferences(user.id);
+
+    if (!preferencesData) {
       return NextResponse.json(
-        { error: preferencesResponse.error, code: 'PREFERENCES_FETCH_ERROR' },
+        { error: 'Failed to fetch preferences', code: 'PREFERENCES_FETCH_ERROR' },
         { status: 400 }
       );
     }
 
     return NextResponse.json({
       success: true,
-      data: preferencesResponse.data,
+      data: preferencesData,
       timestamp: new Date().toISOString()
     });
 
@@ -81,11 +81,11 @@ export async function PUT(request: NextRequest) {
     const body: UpdateUserPreferencesRequest = await request.json();
 
     // Update user preferences
-    const preferencesResponse = await authService.updateUserPreferences(user.id, body);
-    
-    if (preferencesResponse.error) {
+    const preferencesData = await authService.updateUserPreferences(user.id, body);
+
+    if (!preferencesData) {
       return NextResponse.json(
-        { error: preferencesResponse.error, code: 'PREFERENCES_UPDATE_ERROR' },
+        { error: 'Failed to update preferences', code: 'PREFERENCES_UPDATE_ERROR' },
         { status: 400 }
       );
     }
@@ -99,7 +99,7 @@ export async function PUT(request: NextRequest) {
 
     return NextResponse.json({
       success: true,
-      data: preferencesResponse.data,
+      data: preferencesData,
       message: 'Preferences updated successfully',
       timestamp: new Date().toISOString()
     });
@@ -137,7 +137,6 @@ export async function POST(request: NextRequest) {
 
     // Reset to default preferences
     const defaultPreferences: UpdateUserPreferencesRequest = {
-      language: 'tr-TR',
       theme: 'light',
       notifications_enabled: true,
       email_notifications: true,
@@ -153,11 +152,11 @@ export async function POST(request: NextRequest) {
     };
 
     // Update user preferences with defaults
-    const preferencesResponse = await authService.updateUserPreferences(user.id, defaultPreferences);
-    
-    if (preferencesResponse.error) {
+    const preferencesData = await authService.updateUserPreferences(user.id, defaultPreferences);
+
+    if (!preferencesData) {
       return NextResponse.json(
-        { error: preferencesResponse.error, code: 'PREFERENCES_RESET_ERROR' },
+        { error: 'Failed to reset preferences', code: 'PREFERENCES_RESET_ERROR' },
         { status: 400 }
       );
     }
@@ -170,7 +169,7 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({
       success: true,
-      data: preferencesResponse.data,
+      data: preferencesData,
       message: 'Preferences reset to default successfully',
       timestamp: new Date().toISOString()
     });
