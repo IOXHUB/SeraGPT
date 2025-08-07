@@ -39,7 +39,7 @@ export default function CorporateHeroSection() {
     <section className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-slate-100">
       {/* Header */}
       <header className="bg-white/80 backdrop-blur-md border-b border-slate-200/50 sticky top-0 z-40">
-        <div className="max-w-7xl mx-auto px-6 py-4">
+        <div className="page-section-container py-4">
           <div className="flex justify-between items-center">
             <div className="flex items-center space-x-4">
               <div className="w-12 h-12 bg-gradient-to-br from-blue-600 to-blue-700 rounded-xl flex items-center justify-center shadow-lg">
@@ -64,7 +64,7 @@ export default function CorporateHeroSection() {
         </div>
       </header>
 
-      <div className="max-w-7xl mx-auto px-6 py-16">
+      <div className="page-section-container py-16">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Left Content */}
           <motion.div

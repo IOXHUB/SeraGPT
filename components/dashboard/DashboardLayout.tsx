@@ -221,7 +221,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
               onClick={handleSignOut}
               className="w-full flex items-center px-4 py-2 rounded-lg text-sm font-medium text-red-600 hover:bg-red-50 transition-colors"
             >
-              <span>��ıkış Yap</span>
+              <span>Çıkış Yap</span>
             </button>
           </div>
         </div>

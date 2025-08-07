@@ -7,10 +7,18 @@ const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
 const defaultUrl = 'https://placeholder.supabase.co'
 const defaultKey = 'placeholder-anon-key'
 
-export const supabase = createClient(
-  supabaseUrl || defaultUrl,
-  supabaseAnonKey || defaultKey
-)
+// Use fallback values during build or when env vars are missing
+const url = supabaseUrl || defaultUrl
+const key = supabaseAnonKey || defaultKey
+
+export const supabase = createClient(url, key, {
+  auth: {
+    // Disable auto refresh during build/static generation
+    autoRefreshToken: typeof window !== 'undefined',
+    persistSession: typeof window !== 'undefined',
+    detectSessionInUrl: typeof window !== 'undefined'
+  }
+})
 
 // Helper to check if Supabase is properly configured
 export const isSupabaseConfigured = () => {

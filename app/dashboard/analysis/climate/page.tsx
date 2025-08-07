@@ -113,7 +113,7 @@ export default function ClimateAnalysisPage() {
   return (
     <DashboardLayout>
       <div className="min-h-screen bg-gray-50 text-gray-600">
-        <div className="max-w-6xl mx-auto space-y-8">
+        <div className="visual-content-container space-y-8">
           {/* Header */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
