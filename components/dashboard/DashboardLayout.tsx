@@ -73,11 +73,11 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
   ];
 
   const secondaryMenuItems = [
-    { name: 'Jeton Satın Al', href: '/dashboard/tokens', active: false, icon: '🪙' },
-    { name: 'Danışmanlık', href: '/danismanlik', active: false, icon: '🎯' },
-    { name: 'Anahtar Teslim Sera', href: '/anahtar-teslim-proje', active: false, icon: '🏗️' },
-    { name: 'Ayarlar', href: '/dashboard/settings', active: false, icon: '⚙️' },
-    { name: 'Yardım', href: '/dashboard/help', active: false, icon: '❓' },
+    { name: 'Jeton Satın Al', href: '/dashboard/tokens', active: false },
+    { name: 'Danışmanlık', href: '/danismanlik', active: false },
+    { name: 'Anahtar Teslim Sera', href: '/anahtar-teslim-proje', active: false },
+    { name: 'Ayarlar', href: '/dashboard/settings', active: false },
+    { name: 'Yardım', href: '/dashboard/help', active: false },
   ];
 
   const adminMenuItems = [
@@ -116,11 +116,13 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
           {/* Logo */}
           <div className="flex items-center justify-between p-6 border-b border-gray-200">
             <div className="flex items-center space-x-3">
-              <img 
-                src="https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2F96da5382e9584c3fb2d32eca60944359?format=webp&width=800" 
-                alt="SeraGPT Logo" 
-                className="h-8 w-auto"
-              />
+              <a href="/">
+                <img
+                  src="https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2F96da5382e9584c3fb2d32eca60944359?format=webp&width=800"
+                  alt="SeraGPT Logo"
+                  className="h-8 w-auto"
+                />
+              </a>
             </div>
             <button 
               onClick={() => setSidebarOpen(false)}
@@ -217,10 +219,9 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
                   <a
                     key={item.name}
                     href={item.href}
-                    className="flex items-center px-4 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 hover:text-gray-900 transition-colors"
+                    className="block px-4 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 hover:text-gray-900 transition-colors"
                   >
-                    <span className="text-base mr-3">{item.icon}</span>
-                    <span>{item.name}</span>
+                    {item.name}
                   </a>
                 ))}
               </div>
@@ -247,16 +248,12 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
             </div>
           )}
 
-          {/* Bottom Menu */}
-          <div className="px-6 py-6 border-t border-gray-200">
             <button
               onClick={handleSignOut}
-              className="w-full flex items-center px-4 py-3 rounded-lg text-sm font-medium text-red-600 hover:bg-red-50 transition-colors"
+              className="w-full px-4 py-3 rounded-lg text-sm font-medium text-red-600 hover:bg-red-50 transition-colors"
             >
-              <span className="text-base mr-3">🚪</span>
-              <span>Çıkış Yap</span>
+              Çıkış Yap
             </button>
-          </div>
         </div>
       </div>
 
@@ -275,17 +272,13 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
             </button>
             
             <div className="flex items-center space-x-4">
-              <button className="text-gray-500 hover:text-gray-700 p-2 rounded-lg hover:bg-gray-100 transition-colors">
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 17h5l-5 5-5-5h5v-12" />
-                </svg>
-              </button>
+              <button className="text-gray-500 hover:text-gray-700 p-2 rounded-lg hover:bg-gray-100 transition-colors" />
             </div>
           </div>
         </header>
 
         {/* Page Content */}
-        <main className="flex-1 p-6">
+        <main className="flex-1 p-6" style={{ marginTop: '5px' }}>
           {children}
         </main>
 
