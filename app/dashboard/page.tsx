@@ -290,20 +290,14 @@ export default function DashboardPage() {
                     <div className="mt-auto">
                       <a
                         href={tool.href}
-                        className={`w-full inline-flex items-center justify-center px-4 py-3 rounded-lg text-sm font-medium transition-all duration-300 ${
+                        className={`w-full px-4 py-3 rounded-lg text-sm font-medium transition-all duration-300 ${
                           userTokens >= tool.tokensRequired
                             ? 'bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white shadow-md hover:shadow-lg hover:scale-105'
                             : 'bg-gray-100 text-gray-400 cursor-not-allowed'
                         }`}
+                        style={{ marginTop: '10px' }}
                       >
-                        {userTokens >= tool.tokensRequired ? (
-                          <>
-                            <span className="mr-2">🪙</span>
-                            Analizi Başlat
-                          </>
-                        ) : (
-                          'Yetersiz Jeton'
-                        )}
+                        {userTokens >= tool.tokensRequired ? 'Analizi Başlat' : 'Yetersiz Jeton'}
                       </a>
                     </div>
                   </div>
