@@ -1,7 +1,7 @@
 export default function Footer() {
   return (
-    <footer className="bg-gray-50 text-gray-900 py-12 sm:py-16">
-      <div className="page-section-container">
+    <footer className="bg-white text-gray-900 py-12 sm:py-16">
+      <div className="header-footer-container">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
           {/* 1. Menü */}
           <div>
@@ -163,15 +163,15 @@ export default function Footer() {
         </div>
 
         {/* Bottom copyright area */}
-        <div className="border-t border-gray-200 mt-12 pt-8 text-center">
-          <div className="navbar-footer-container flex-col md:flex-row">
-            <div className="flex items-center space-x-3 mb-4 md:mb-0">
+        <div className="border-t border-gray-200 mt-12 pt-8">
+          <div className="text-center">
+            <div className="flex items-center justify-center space-x-3 mb-4">
               <img
                 src="https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2F96da5382e9584c3fb2d32eca60944359?format=webp&width=800"
                 alt="SeraGPT Logo"
                 className="h-6 w-auto"
               />
-              <span className="text-gray-600 text-sm mt-0.5 ml-3">
+              <span className="text-gray-600 text-sm">
                 © 2024 SeraGPT. Tüm hakları saklıdır.
               </span>
             </div>
