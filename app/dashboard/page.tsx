@@ -443,7 +443,7 @@ export default function DashboardPage() {
         {!isAdmin() && (
           <div className="mt-8 bg-white p-6 rounded-xl border border-gray-200">
             <div className="flex items-center justify-between mb-6">
-              <h3 className="text-lg font-semibold text-gray-900">Jeton Yönetimi</h3>
+              <h3 className="text-lg font-normal text-gray-900">Jeton Yönetimi</h3>
               <a 
                 href="/dashboard/tokens" 
                 className="text-sm text-blue-600 hover:text-blue-500"
