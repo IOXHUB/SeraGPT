@@ -618,12 +618,12 @@ export default function DashboardPage() {
                     <span className="text-2xl mr-3">{action.icon}</span>
                     <div className="flex-1">
                       <h4 className={`font-medium mb-1 ${
-                        action.disabled ? 'text-gray-400' : action.primary ? 'text-white' : 'text-gray-900'
+                        ('disabled' in action && action.disabled) ? 'text-gray-400' : action.primary ? 'text-white' : 'text-gray-900'
                       }`}>
                         {action.name}
                       </h4>
                       <p className={`text-sm ${
-                        action.disabled ? 'text-gray-400' : action.primary ? 'text-gray-200' : 'text-gray-600'
+                        ('disabled' in action && action.disabled) ? 'text-gray-400' : action.primary ? 'text-gray-200' : 'text-gray-600'
                       }`}>
                         {action.description}
                       </p>
