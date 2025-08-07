@@ -396,13 +396,29 @@ export default function AIChatPage() {
 
               {/* Input Area */}
               <div className="flex-shrink-0 p-6 border-t border-gray-200 bg-white">
+                {selectedReport && (
+                  <div className="mb-3 flex items-center space-x-2 text-sm text-gray-600">
+                    <span className="text-lg">{getReportIcon(selectedReport.type)}</span>
+                    <span>Seçili rapor: <strong>{selectedReport.name}</strong></span>
+                    <button
+                      onClick={() => setSelectedReport(null)}
+                      className="text-gray-400 hover:text-gray-600 ml-2"
+                    >
+                      ✕
+                    </button>
+                  </div>
+                )}
                 <div className="flex space-x-3">
                   <div className="flex-1">
                     <textarea
                       value={inputValue}
                       onChange={(e) => setInputValue(e.target.value)}
                       onKeyPress={handleKeyPress}
-                      placeholder="Sera analizleriniz hakkında soru sorun..."
+                      placeholder={
+                        selectedReport
+                          ? `"${selectedReport.name}" hakkında soru sorun...`
+                          : "Bir rapor seçin veya genel soru sorun..."
+                      }
                       className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-500 focus:border-transparent resize-none"
                       rows={1}
                       style={{ minHeight: '40px', maxHeight: '120px' }}
