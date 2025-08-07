@@ -472,19 +472,82 @@ export default function AIChatPage() {
                     ? 'bg-blue-600 text-white'
                     : 'bg-gray-100 border border-gray-200 text-gray-800'
                 }`}>
-                  <p className="whitespace-pre-wrap text-sm">{message.content}</p>
-                  <div className={`flex items-center justify-between mt-2 text-xs ${
-                    message.role === 'user' ? 'text-blue-100' : 'text-gray-500'
-                  }`}>
+                  {/* Message avatar for AI */}
+                  {message.role === 'assistant' && (
+                    <div className="flex items-center mb-2">
+                      <div className="w-6 h-6 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center mr-2">
+                        <span className="text-white text-xs">🤖</span>
+                      </div>
+                      <span className="text-xs font-medium text-gray-600">SeraGPT AI</span>
+                    </div>
+                  )}
+
+                  <div className="whitespace-pre-wrap text-sm leading-relaxed">
+                    {/* Enhanced message content with better formatting */}
+                    {message.content.split('\n').map((line, lineIndex) => {
+                      // Handle bullet points
+                      if (line.trim().startsWith('🔸') || line.trim().startsWith('•') || line.trim().startsWith('-')) {
+                        return (
+                          <div key={lineIndex} className="flex items-start mb-1">
+                            <span className="mr-2 mt-0.5">{line.trim().startsWith('🔸') ? '🔸' : '•'}</span>
+                            <span>{line.replace(/^[🔸•-]\s*/, '')}</span>
+                          </div>
+                        );
+                      }
+
+                      // Handle numbered lists
+                      const numberedMatch = line.trim().match(/^\d+\.\s*(.+)$/);
+                      if (numberedMatch) {
+                        return (
+                          <div key={lineIndex} className="flex items-start mb-1">
+                            <span className="mr-2 mt-0.5 font-medium">{line.trim().split(' ')[0]}</span>
+                            <span>{numberedMatch[1]}</span>
+                          </div>
+                        );
+                      }
+
+                      // Handle headers (lines that end with :)
+                      if (line.trim().endsWith(':') && line.trim().length > 3 && line.trim().length < 50) {
+                        return (
+                          <div key={lineIndex} className={`font-semibold mb-2 mt-3 first:mt-0 ${
+                            message.role === 'user' ? 'text-blue-100' : 'text-gray-900'
+                          }`}>
+                            {line.trim()}
+                          </div>
+                        );
+                      }
+
+                      // Regular paragraphs
+                      return line.trim() ? (
+                        <p key={lineIndex} className="mb-2 last:mb-0">{line}</p>
+                      ) : (
+                        <br key={lineIndex} />
+                      );
+                    })}
+                  </div>
+
+                  <div className={`flex items-center justify-between mt-3 pt-2 border-t ${
+                    message.role === 'user'
+                      ? 'border-blue-500 text-blue-100'
+                      : 'border-gray-200 text-gray-500'
+                  } text-xs`}>
                     <span>
-                      {message.timestamp.toLocaleTimeString('tr-TR', { 
-                        hour: '2-digit', 
-                        minute: '2-digit' 
+                      {message.timestamp.toLocaleTimeString('tr-TR', {
+                        hour: '2-digit',
+                        minute: '2-digit'
                       })}
                     </span>
-                    {message.token_cost && (
-                      <span className="ml-2">🪙 {message.token_cost}</span>
-                    )}
+                    <div className="flex items-center space-x-2">
+                      {message.token_cost && (
+                        <span className="flex items-center">
+                          <span className="mr-1">🪙</span>
+                          <span>{message.token_cost}</span>
+                        </span>
+                      )}
+                      {message.role === 'assistant' && (
+                        <span className="text-xs opacity-75">AI Yanıt</span>
+                      )}
+                    </div>
                   </div>
                 </div>
               </motion.div>
