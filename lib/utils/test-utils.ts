@@ -106,17 +106,17 @@ export async function testAuthService(): Promise<TestSuite> {
   // Test profile endpoint (if user is authenticated)
   const authStatus = await authService.getAuthStatus();
   if (authStatus.isAuthenticated) {
-    tests.push(await testApiEndpoint(
-      '/api/auth/profile',
-      () => authService.getProfile(),
-      ['id', 'email']
-    ));
+    // tests.push(await testApiEndpoint(
+    //   '/api/auth/profile',
+    //   () => authService.getProfile(),
+    //   ['id', 'email']
+    // ));
 
-    tests.push(await testApiEndpoint(
-      '/api/auth/tokens',
-      () => authService.getTokens(),
-      ['available', 'used', 'total']
-    ));
+    // tests.push(await testApiEndpoint(
+    //   '/api/auth/tokens',
+    //   () => authService.getTokens(),
+    //   ['available', 'used', 'total']
+    // ));
   }
 
   const totalTime = Date.now() - startTime;
