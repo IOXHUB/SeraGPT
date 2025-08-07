@@ -156,7 +156,7 @@ export const PUT = requireAuth(
             city: validatedData.location.city ? sanitizeInput.general(validatedData.location.city) : undefined,
             district: validatedData.location.district ? sanitizeInput.general(validatedData.location.district) : undefined,
             coordinates: validatedData.location.coordinates
-          } : null;
+          } : undefined;
         }
         if (validatedData.preferences !== undefined) {
           sanitizedData.preferences = validatedData.preferences;
