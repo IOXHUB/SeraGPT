@@ -278,9 +278,9 @@ export default function TokensPage() {
                 { icon: '📐', name: 'Layout Planlama' }
               ].map((item, index) => (
                 <div key={index}>
-                  <div style={{ fontSize: '32px', marginBottom: '8px' }}>{item.icon}</div>
-                  <div style={{ fontSize: '14px', fontWeight: '600', color: '#111827', marginBottom: '4px' }}>{item.name}</div>
-                  <div style={{ fontSize: '12px', color: '#6b7280' }}>1 jeton</div>
+                  <div style={{ fontSize: '24px', marginBottom: '6px' }}>{item.icon}</div>
+                  <div style={{ fontSize: '11px', fontWeight: '600', color: '#111827', marginBottom: '2px' }}>{item.name}</div>
+                  <div style={{ fontSize: '10px', color: '#6b7280' }}>1 jeton</div>
                 </div>
               ))}
             </div>
