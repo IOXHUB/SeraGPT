@@ -186,44 +186,37 @@ export default function UserjotCloneSection() {
         )}
       </header>
 
-      {/* Main content - Full viewport hero */}
-      <main className="min-h-screen flex items-center justify-center px-4 sm:px-6 -mt-16">
-        <div className="text-section-container text-center">
-          <div className="space-y-5">
-            {/* Small text above headline */}
-            <p className="text-gray-500 text-sm font-medium uppercase tracking-wider">
-              +20 YIL, +500 PROJE, +110 VERİ SETİ
-            </p>
+      {/* Main content - Clean hero section */}
+      <main className="hero-section">
+        <div className="hero-content">
+          {/* Small text above headline */}
+          <p className="hero-subtitle">
+            +20 YIL, +500 PROJE, +110 VERİ SETİ
+          </p>
 
-            {/* Main headline */}
-            <h1 className="text-4xl font-bold text-gray-900 leading-tight space-y-2">
-              <div className="text-gray-600">🚀 60 Saniyede</div>
-              <div className="text-gray-600">Sera Yatırım Raporun Hazır!</div>
-            </h1>
+          {/* Main headline with system-ui font */}
+          <h1 className="hero-heading">
+            🚀 60 Saniyede<br />
+            Sera Yatırım Raporun Hazır!
+          </h1>
 
-            {/* Description paragraph */}
-            <p className="text-sm text-gray-600 leading-relaxed px-4 mt-5">
-              SeraGPT; 20 yılı aşkın mühendislik deneyimi, 500'den fazla
-              tamamlanmış proje ve 110'dan fazla gerçek zamanlı veri
-              setiyle, tarımsal yatırım kararlarınızı saniyeler içinde
-              analiz eder.
-            </p>
+          {/* Description paragraph */}
+          <p className="hero-description">
+            SeraGPT; 20 yılı aşkın mühendislik deneyimi, 500'den fazla
+            tamamlanmış proje ve 110'dan fazla gerçek zamanlı veri
+            setiyle, tarımsal yatırım kararlarınızı saniyeler içinde
+            analiz eder.
+          </p>
 
-            {/* CTA Button */}
-            <div className="mt-5">
-              <a
-                href="/auth/login"
-                className="bg-gray-600 hover:bg-gray-800 text-white px-4 py-2 rounded-lg text-base font-medium transition-colors inline-flex items-center space-x-2"
-              >
-                <span className="text-center">Şimdi Oluştur – İlk 5 Rapor Ücretsiz</span>
-              </a>
-            </div>
+          {/* CTA Button */}
+          <a href="/auth/login" className="btn btn-primary mb-4">
+            Şimdi Oluştur – İlk 5 Rapor Ücretsiz
+          </a>
 
-            {/* Small text under button */}
-            <p className="text-gray-500 text-sm pb-10">
-              Doğru yatırım, doğru analizle başlar.
-            </p>
-          </div>
+          {/* Small text under button */}
+          <p className="text-small text-center">
+            Doğru yatırım, doğru analizle başlar.
+          </p>
         </div>
       </main>
 
@@ -752,7 +745,7 @@ export default function UserjotCloneSection() {
                 answer: "Kesinlikle. Tüm bilgileriniz Supabase veritabanında şifreli olarak saklanır. Raporlar yalnızca size özeldir, üçüncü taraflarla paylaşılmaz."
               },
               {
-                question: "Ödeme nasıl yapılıyor?",
+                question: "Ödeme nasıl yapıl��yor?",
                 answer: "İlk 5 rapor ücretsizdir. Sonrasında, kredi kartı veya havale/EFT ile jeton (token) satın alabilirsiniz. Ödeme altyapısı %100 güvenlidir."
               }
             ].map((faq, index) => (
