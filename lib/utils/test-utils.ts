@@ -297,7 +297,7 @@ export async function healthCheck(): Promise<{
   
   try {
     // Test database connection
-    const authTest = await authService.testConnection();
+    const authTest = await authService.testAuthConnection();
     services.database = authTest.success;
 
     // Test API endpoints
