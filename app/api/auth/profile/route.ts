@@ -127,77 +127,80 @@ export const POST = requireAuth(
 );
 
 // =====================================================
-// PUT - Update User Profile
+// PUT - Update User Profile (SECURED & VALIDATED)
 // =====================================================
 
-export async function PUT(request: NextRequest) {
+export const PUT = requireAuth(
+  withValidation(
+    async (request: AuthenticatedRequest, validatedData: UpdateUserProfileRequest) => {
+      try {
+        const user = request.user!;
+
+        // Sanitize input data
+        const sanitizedData: UpdateUserProfileRequest = {};
+
+        if (validatedData.full_name !== undefined) {
+          sanitizedData.full_name = sanitizeInput.general(validatedData.full_name);
+        }
+        if (validatedData.phone !== undefined) {
+          sanitizedData.phone = validatedData.phone ? sanitizeInput.phone(validatedData.phone) : null;
+        }
+        if (validatedData.company_name !== undefined) {
+          sanitizedData.company_name = validatedData.company_name ? sanitizeInput.general(validatedData.company_name) : null;
+        }
+        if (validatedData.experience_level !== undefined) {
+          sanitizedData.experience_level = validatedData.experience_level;
+        }
+        if (validatedData.location !== undefined) {
+          sanitizedData.location = validatedData.location ? {
+            city: validatedData.location.city ? sanitizeInput.general(validatedData.location.city) : undefined,
+            district: validatedData.location.district ? sanitizeInput.general(validatedData.location.district) : undefined,
+            coordinates: validatedData.location.coordinates
+          } : null;
+        }
+        if (validatedData.preferences !== undefined) {
+          sanitizedData.preferences = validatedData.preferences;
+        }
+
+        // Update user profile
+        const profileData = await authService.updateUserProfile(user.id, sanitizedData);
+
+        if (!profileData) {
+          return createErrorResponse('Failed to update profile', 400);
+        }
+
+        return createSuccessResponse(profileData);
+
+      } catch (error) {
+        console.error('Profile PUT error:', error);
+        return createErrorResponse(
+          'Failed to update profile',
+          500,
+          { error: error instanceof Error ? error.message : 'Unknown error' }
+        );
+      }
+    },
+    (data: any) => {
+      // Validate only fields that are being updated
+      const validation = validateUserProfile(data);
+      return {
+        isValid: Object.keys(validation.errors).length === 0,
+        data: validation.isValid ? data : undefined,
+        errors: validation.errors
+      };
+    }
+  )
+);
+
+// =====================================================
+// DELETE - Deactivate User Profile (SECURED)
+// =====================================================
+
+export const DELETE = requireAuth(async (request: AuthenticatedRequest) => {
   try {
-    const supabase = createServerComponentClient({ cookies });
-    
-    // Verify user authentication
-    const { data: { user }, error: authError } = await supabase.auth.getUser();
-    
-    if (authError || !user) {
-      return NextResponse.json(
-        { error: 'Unauthorized', code: 'UNAUTHORIZED' },
-        { status: 401 }
-      );
-    }
+    const user = request.user!;
 
-    // Parse request body
-    const body: UpdateUserProfileRequest = await request.json();
-
-    // Update user profile
-    const profileData = await authService.updateUserProfile(user.id, body);
-
-    if (!profileData) {
-      return NextResponse.json(
-        { error: 'Failed to update profile', code: 'PROFILE_UPDATE_ERROR' },
-        { status: 400 }
-      );
-    }
-
-    // Profile updated successfully
-
-    return NextResponse.json({
-      success: true,
-      data: profileData,
-      message: 'Profile updated successfully',
-      timestamp: new Date().toISOString()
-    });
-
-  } catch (error) {
-    console.error('Profile PUT error:', error);
-    return NextResponse.json(
-      { 
-        error: 'Internal server error', 
-        code: 'INTERNAL_ERROR',
-        details: error instanceof Error ? error.message : 'Unknown error'
-      },
-      { status: 500 }
-    );
-  }
-}
-
-// =====================================================
-// DELETE - Delete User Profile (Soft Delete)
-// =====================================================
-
-export async function DELETE(request: NextRequest) {
-  try {
-    const supabase = createServerComponentClient({ cookies });
-    
-    // Verify user authentication
-    const { data: { user }, error: authError } = await supabase.auth.getUser();
-    
-    if (authError || !user) {
-      return NextResponse.json(
-        { error: 'Unauthorized', code: 'UNAUTHORIZED' },
-        { status: 401 }
-      );
-    }
-
-    // Soft delete user profile (mark as deleted)
+    // Soft delete user profile (mark as deactivated)
     const updateData = await authService.updateUserProfile(user.id, {
       location: {
         city: 'Deactivated',
@@ -206,32 +209,23 @@ export async function DELETE(request: NextRequest) {
     });
 
     if (!updateData) {
-      return NextResponse.json(
-        { error: 'Failed to deactivate profile', code: 'PROFILE_DELETE_ERROR' },
-        { status: 400 }
-      );
+      return createErrorResponse('Failed to deactivate profile', 400);
     }
 
-    // Profile deactivated successfully
+    // Log security event
+    console.log(`User profile deactivated: ${user.id} at ${new Date().toISOString()}`);
 
-    // Note: We don't actually delete the user from auth.users
-    // That should be handled by a separate admin process if needed
-
-    return NextResponse.json({
-      success: true,
+    return createSuccessResponse({
       message: 'Profile deactivated successfully',
-      timestamp: new Date().toISOString()
+      deactivated_at: new Date().toISOString()
     });
 
   } catch (error) {
     console.error('Profile DELETE error:', error);
-    return NextResponse.json(
-      { 
-        error: 'Internal server error', 
-        code: 'INTERNAL_ERROR',
-        details: error instanceof Error ? error.message : 'Unknown error'
-      },
-      { status: 500 }
+    return createErrorResponse(
+      'Failed to deactivate profile',
+      500,
+      { error: error instanceof Error ? error.message : 'Unknown error' }
     );
   }
-}
+});
