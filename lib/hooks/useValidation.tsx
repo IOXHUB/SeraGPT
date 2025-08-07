@@ -148,7 +148,7 @@ export function useValidation<T extends Record<string, any>>(
     // Mark field as touched
     setValidationState(prev => ({
       ...prev,
-      touchedFields: new Set([...prev.touchedFields, fieldName as string])
+      touchedFields: new Set([...Array.from(prev.touchedFields), fieldName as string])
     }));
 
     // Validate if enabled
