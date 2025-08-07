@@ -176,9 +176,9 @@ export default function TokensPage() {
                   disabled={loading && selectedPackage === pkg.id}
                   style={{
                     width: '100%',
-                    padding: '16px 32px',
-                    borderRadius: '12px',
-                    fontSize: '16px',
+                    padding: '12px 20px',
+                    borderRadius: '8px',
+                    fontSize: '14px',
                     fontWeight: '600',
                     border: 'none',
                     cursor: loading && selectedPackage === pkg.id ? 'not-allowed' : 'pointer',
@@ -188,7 +188,7 @@ export default function TokensPage() {
                       : '#111827',
                     color: 'white',
                     boxShadow: pkg.popular
-                      ? '0 8px 20px rgba(139, 92, 246, 0.3)'
+                      ? '0 6px 16px rgba(139, 92, 246, 0.3)'
                       : '0 4px 12px rgba(0, 0, 0, 0.15)',
                     opacity: loading && selectedPackage === pkg.id ? 0.5 : 1
                   }}
