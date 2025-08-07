@@ -36,7 +36,8 @@ interface HealthStatus {
 }
 
 export default function TestSuitePage() {
-  const { user, isAuthenticated } = useAuth();
+  const { user, loading } = useAuth();
+  const isAuthenticated = !!user && !loading;
   const [testResults, setTestResults] = useState<TestResults | null>(null);
   const [healthStatus, setHealthStatus] = useState<HealthStatus | null>(null);
   const [isRunningTests, setIsRunningTests] = useState(false);
