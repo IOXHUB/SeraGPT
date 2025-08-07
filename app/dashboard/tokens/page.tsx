@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react';
 import DashboardLayout from '@/components/dashboard/DashboardLayout';
-import { Container, Section, Card, Button, Heading, Text } from '@/components/ui';
 
 export default function TokensPage() {
   const [loading, setLoading] = useState(false);
@@ -13,7 +12,6 @@ export default function TokensPage() {
     freeTokens: 5
   });
 
-  // Jeton paketleri - Kullanıcı fiyatlandırması
   const tokenPackages = [
     {
       id: 'small',
@@ -45,10 +43,8 @@ export default function TokensPage() {
   const handlePurchase = async (packageId: string) => {
     setLoading(true);
     setSelectedPackage(packageId);
-    
-    // Simulate iyzico redirect
+
     setTimeout(() => {
-      // Bu gerçek uygulamada iyzico ödeme linkine yönlendirecek
       alert('İyzico ödeme sayfasına yönlendiriliyorsunuz...');
       setLoading(false);
       setSelectedPackage(null);
@@ -57,188 +53,277 @@ export default function TokensPage() {
 
   return (
     <DashboardLayout>
-      <div className="min-h-screen bg-white user-panel-container">
-        <div className="user-panel-content space-y-modern">
-          
+      <div style={{ minHeight: '100vh', background: '#ffffff', padding: '32px' }}>
+        <div style={{ maxWidth: '1200px', margin: '0 auto', display: 'flex', flexDirection: 'column', gap: '32px' }}>
+
           {/* Header */}
-          <div className="focus-text">
-            <h1 className="user-panel-heading neon-purple">🪙 Jeton Yükle</h1>
-            <p className="user-panel-text">Her rapor 1 jeton kullanır. AI sohbet sınırsızdır.</p>
+          <div style={{ textAlign: 'center', marginBottom: '24px' }}>
+            <h1 style={{ fontSize: '32px', fontWeight: '700', color: '#111827', marginBottom: '8px', fontFamily: 'Inter, sans-serif' }}>
+              Jeton Yükle
+            </h1>
+            <p style={{ fontSize: '16px', color: '#6b7280', fontFamily: 'Inter, sans-serif' }}>
+              Her rapor 1 jeton kullanır. AI sohbet sınırsızdır.
+            </p>
           </div>
 
-          {/* Current Balance - Neon Border Card */}
-          <div className="relative bg-gray-900 rounded-2xl p-6 text-white">
-            {/* Neon border effect */}
-            <div className="absolute inset-0 bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 rounded-2xl blur opacity-20 -z-10"></div>
-            <div className="absolute inset-0.5 bg-gray-900 rounded-2xl -z-10"></div>
-            
-            <div className="text-center">
-              <div className="text-4xl font-bold mb-2">{userTokens.remainingTokens}</div>
-              <div className="text-gray-300">Kalan Jeton</div>
-              <div className="text-sm text-gray-400 mt-2">
-                ({userTokens.freeTokens} ücretsiz • {userTokens.usedTokens} kullanılan)
-              </div>
+          {/* Current Balance */}
+          <div style={{
+            position: 'relative',
+            background: '#ffffff',
+            borderRadius: '16px',
+            padding: '32px',
+            border: '2px solid #10b981',
+            boxShadow: '0 0 24px rgba(16, 185, 129, 0.15)',
+            textAlign: 'center',
+            marginBottom: '32px'
+          }}>
+            <div style={{ fontSize: '48px', fontWeight: '800', color: '#111827', marginBottom: '8px' }}>
+              {userTokens.remainingTokens}
+            </div>
+            <div style={{ fontSize: '18px', color: '#374151', marginBottom: '8px', fontWeight: '600' }}>
+              Kalan Jeton
+            </div>
+            <div style={{ fontSize: '14px', color: '#6b7280' }}>
+              ({userTokens.freeTokens} ücretsiz • {userTokens.usedTokens} kullanılan)
             </div>
           </div>
-
-          {/* Jeton Yetersizse Uyarı */}
-          {userTokens.remainingTokens === 0 && (
-            <div className="bg-red-50 border-l-4 border-red-400 p-4 rounded-lg">
-              <div className="flex">
-                <div className="text-red-400 text-xl mr-3">⚠️</div>
-                <div>
-                  <h3 className="text-red-800 font-medium">Jetonunuz Kalmadı!</h3>
-                  <p className="text-red-700 text-sm">Yeni rapor oluşturmak için jeton satın almanız gerekiyor.</p>
-                </div>
-              </div>
-            </div>
-          )}
 
           {/* Token Packages */}
-          <div className="grid md:grid-cols-3 gap-6">
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '24px', marginBottom: '32px' }}>
             {tokenPackages.map((pkg) => (
-              <div 
+              <div
                 key={pkg.id}
-                className={`relative bg-white rounded-2xl p-6 border-2 transition-all hover:shadow-lg ${
-                  pkg.popular 
-                    ? 'border-purple-400 shadow-purple-100' 
-                    : 'border-gray-200 hover:border-gray-300'
-                }`}
+                style={{
+                  position: 'relative',
+                  background: '#ffffff',
+                  borderRadius: '16px',
+                  padding: '32px',
+                  border: pkg.popular ? '2px solid #8b5cf6' : '2px solid #e5e7eb',
+                  boxShadow: pkg.popular
+                    ? '0 0 32px rgba(139, 92, 246, 0.2)'
+                    : '0 4px 6px rgba(0, 0, 0, 0.05)',
+                  textAlign: 'center',
+                  transition: 'all 0.3s ease',
+                  cursor: 'pointer'
+                }}
+                onMouseEnter={(e) => {
+                  if (!pkg.popular) {
+                    (e.target as HTMLElement).style.boxShadow = '0 8px 25px rgba(0, 0, 0, 0.1)';
+                    (e.target as HTMLElement).style.transform = 'translateY(-4px)';
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  if (!pkg.popular) {
+                    (e.target as HTMLElement).style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.05)';
+                    (e.target as HTMLElement).style.transform = 'translateY(0)';
+                  }
+                }}
               >
                 {/* Popular Badge */}
                 {pkg.popular && (
-                  <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                    <div className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-3 py-1 rounded-full text-xs font-medium">
-                      ⭐ En Popüler
-                    </div>
+                  <div style={{
+                    position: 'absolute',
+                    top: '-12px',
+                    left: '50%',
+                    transform: 'translateX(-50%)',
+                    background: 'linear-gradient(135deg, #8b5cf6, #ec4899)',
+                    color: 'white',
+                    padding: '6px 16px',
+                    borderRadius: '20px',
+                    fontSize: '12px',
+                    fontWeight: '600',
+                    boxShadow: '0 4px 12px rgba(139, 92, 246, 0.3)'
+                  }}>
+                    ⭐ En Popüler
                   </div>
                 )}
 
-                {/* Neon glow for popular */}
-                {pkg.popular && (
-                  <div className="absolute inset-0 bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400 rounded-2xl blur opacity-10 -z-10"></div>
-                )}
+                {/* Package Name */}
+                <h3 style={{ fontSize: '24px', fontWeight: '700', color: '#111827', marginBottom: '24px', fontFamily: 'Inter, sans-serif' }}>
+                  {pkg.name}
+                </h3>
 
-                <div className="text-center">
-                  {/* Package Name */}
-                  <h3 className="text-xl font-bold text-gray-900 mb-4">{pkg.name}</h3>
-                  
-                  {/* Price */}
-                  <div className="mb-4">
-                    <div className="text-3xl font-bold text-gray-900">₺{pkg.price.toLocaleString()}</div>
-                    {pkg.originalPrice && pkg.originalPrice > pkg.price && (
-                      <div className="text-sm text-gray-500 line-through">₺{pkg.originalPrice.toLocaleString()}</div>
-                    )}
-                    <div className="text-sm text-gray-600 mt-1">{pkg.tokens} jeton</div>
+                {/* Price */}
+                <div style={{ marginBottom: '24px' }}>
+                  <div style={{ fontSize: '36px', fontWeight: '800', color: '#111827', marginBottom: '4px' }}>
+                    ₺{pkg.price.toLocaleString()}
                   </div>
-
-                  {/* Savings */}
-                  {pkg.savings && (
-                    <div className="mb-4 text-sm text-green-600 font-medium">
-                      💰 ₺{pkg.savings.toLocaleString()} tasarruf
+                  {pkg.originalPrice && pkg.originalPrice > pkg.price && (
+                    <div style={{ fontSize: '16px', color: '#9ca3af', textDecoration: 'line-through' }}>
+                      ₺{pkg.originalPrice.toLocaleString()}
                     </div>
                   )}
-
-                  {/* Per Token Price */}
-                  <div className="text-sm text-gray-500 mb-6">
-                    ₺{Math.round(pkg.price / pkg.tokens)} / jeton
+                  <div style={{ fontSize: '16px', color: '#6b7280', marginTop: '8px' }}>
+                    {pkg.tokens} jeton
                   </div>
-
-                  {/* Buy Button */}
-                  <button
-                    onClick={() => handlePurchase(pkg.id)}
-                    disabled={loading && selectedPackage === pkg.id}
-                    className={`w-full py-3 rounded-xl font-medium transition-all ${
-                      pkg.popular
-                        ? 'bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white shadow-lg'
-                        : 'bg-gray-900 hover:bg-gray-800 text-white'
-                    } disabled:opacity-50 disabled:cursor-not-allowed`}
-                  >
-                    {loading && selectedPackage === pkg.id ? (
-                      <div className="flex items-center justify-center">
-                        <div className="animate-spin rounded-full h-4 w-4 border-2 border-white border-t-transparent mr-2"></div>
-                        İşleniyor...
-                      </div>
-                    ) : (
-                      'Satın Al'
-                    )}
-                  </button>
                 </div>
+
+                {/* Savings */}
+                {pkg.savings && (
+                  <div style={{ marginBottom: '24px', fontSize: '14px', color: '#10b981', fontWeight: '600' }}>
+                    💰 ₺{pkg.savings.toLocaleString()} tasarruf
+                  </div>
+                )}
+
+                {/* Per Token Price */}
+                <div style={{ fontSize: '14px', color: '#9ca3af', marginBottom: '32px' }}>
+                  ₺{Math.round(pkg.price / pkg.tokens)} / jeton
+                </div>
+
+                {/* Buy Button */}
+                <button
+                  onClick={() => handlePurchase(pkg.id)}
+                  disabled={loading && selectedPackage === pkg.id}
+                  style={{
+                    width: '100%',
+                    padding: '16px 32px',
+                    borderRadius: '12px',
+                    fontSize: '16px',
+                    fontWeight: '600',
+                    border: 'none',
+                    cursor: loading && selectedPackage === pkg.id ? 'not-allowed' : 'pointer',
+                    transition: 'all 0.3s ease',
+                    background: pkg.popular
+                      ? 'linear-gradient(135deg, #8b5cf6, #ec4899)'
+                      : '#111827',
+                    color: 'white',
+                    boxShadow: pkg.popular
+                      ? '0 8px 20px rgba(139, 92, 246, 0.3)'
+                      : '0 4px 12px rgba(0, 0, 0, 0.15)',
+                    opacity: loading && selectedPackage === pkg.id ? 0.5 : 1
+                  }}
+                  onMouseEnter={(e) => {
+                    if (!(loading && selectedPackage === pkg.id)) {
+                      (e.target as HTMLElement).style.transform = 'translateY(-2px)';
+                      (e.target as HTMLElement).style.boxShadow = pkg.popular
+                        ? '0 12px 28px rgba(139, 92, 246, 0.4)'
+                        : '0 8px 20px rgba(0, 0, 0, 0.2)';
+                    }
+                  }}
+                  onMouseLeave={(e) => {
+                    if (!(loading && selectedPackage === pkg.id)) {
+                      (e.target as HTMLElement).style.transform = 'translateY(0)';
+                      (e.target as HTMLElement).style.boxShadow = pkg.popular
+                        ? '0 8px 20px rgba(139, 92, 246, 0.3)'
+                        : '0 4px 12px rgba(0, 0, 0, 0.15)';
+                    }
+                  }}
+                >
+                  {loading && selectedPackage === pkg.id ? (
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                      <div style={{
+                        width: '16px',
+                        height: '16px',
+                        border: '2px solid white',
+                        borderTop: '2px solid transparent',
+                        borderRadius: '50%',
+                        marginRight: '8px',
+                        animation: 'spin 1s linear infinite'
+                      }}></div>
+                      İşleniyor...
+                    </div>
+                  ) : (
+                    'Satın Al'
+                  )}
+                </button>
               </div>
             ))}
           </div>
 
           {/* Payment Info */}
-          <div className="modern-card user-panel-section">
-            <h2 className="neon-cyan">💳 Ödeme Bilgileri</h2>
-            <div className="space-y-3 text-sm text-gray-600">
-              <div className="flex items-center">
-                <span className="text-green-500 mr-2">✓</span>
-                <span>Güvenli ödeme - İyzico altyapısı</span>
-              </div>
-              <div className="flex items-center">
-                <span className="text-green-500 mr-2">✓</span>
-                <span>Kredi kartı ve banka kartı kabul edilir</span>
-              </div>
-              <div className="flex items-center">
-                <span className="text-green-500 mr-2">✓</span>
-                <span>Ödeme onayından sonra jetonlar otomatik yüklenir</span>
-              </div>
-              <div className="flex items-center">
-                <span className="text-green-500 mr-2">✓</span>
-                <span>E-posta ile onay bildirimi gönderilir</span>
-              </div>
+          <div style={{
+            background: '#ffffff',
+            borderRadius: '16px',
+            padding: '32px',
+            border: '2px solid #06b6d4',
+            boxShadow: '0 0 24px rgba(6, 182, 212, 0.1)',
+            marginBottom: '24px'
+          }}>
+            <h2 style={{ fontSize: '20px', fontWeight: '700', color: '#111827', marginBottom: '24px', fontFamily: 'Inter, sans-serif' }}>
+              💳 Ödeme Bilgileri
+            </h2>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+              {[
+                'Güvenli ödeme - İyzico altyapısı',
+                'Kredi kartı ve banka kartı kabul edilir',
+                'Ödeme onayından sonra jetonlar otomatik yüklenir',
+                'E-posta ile onay bildirimi gönderilir'
+              ].map((text, index) => (
+                <div key={index} style={{ display: 'flex', alignItems: 'center' }}>
+                  <span style={{ color: '#10b981', marginRight: '12px', fontSize: '16px' }}>✓</span>
+                  <span style={{ fontSize: '14px', color: '#374151' }}>{text}</span>
+                </div>
+              ))}
             </div>
           </div>
 
           {/* Usage Info */}
-          <div className="modern-card user-panel-section">
-            <h2 className="neon-emerald">📊 Jeton Kullanımı</h2>
-            
-            <div className="grid grid-cols-2 md:grid-cols-5 gap-4 text-center">
-              <div>
-                <div className="text-2xl mb-2">📈</div>
-                <div className="text-sm font-medium text-gray-900">ROI Analizi</div>
-                <div className="text-xs text-gray-600">1 jeton</div>
-              </div>
-              <div>
-                <div className="text-2xl mb-2">🌤️</div>
-                <div className="text-sm font-medium text-gray-900">İklim Analizi</div>
-                <div className="text-xs text-gray-600">1 jeton</div>
-              </div>
-              <div>
-                <div className="text-2xl mb-2">📊</div>
-                <div className="text-sm font-medium text-gray-900">Pazar Analizi</div>
-                <div className="text-xs text-gray-600">1 jeton</div>
-              </div>
-              <div>
-                <div className="text-2xl mb-2">🔧</div>
-                <div className="text-sm font-medium text-gray-900">Ekipman Listesi</div>
-                <div className="text-xs text-gray-600">1 jeton</div>
-              </div>
-              <div>
-                <div className="text-2xl mb-2">📐</div>
-                <div className="text-sm font-medium text-gray-900">Layout Planlama</div>
-                <div className="text-xs text-gray-600">1 jeton</div>
-              </div>
+          <div style={{
+            background: '#ffffff',
+            borderRadius: '16px',
+            padding: '32px',
+            border: '2px solid #f59e0b',
+            boxShadow: '0 0 24px rgba(245, 158, 11, 0.1)'
+          }}>
+            <h2 style={{ fontSize: '20px', fontWeight: '700', color: '#111827', marginBottom: '24px', fontFamily: 'Inter, sans-serif' }}>
+              📊 Jeton Kullanımı
+            </h2>
+
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(120px, 1fr))', gap: '16px', textAlign: 'center', marginBottom: '24px' }}>
+              {[
+                { icon: '📈', name: 'ROI Analizi' },
+                { icon: '🌤️', name: 'İklim Analizi' },
+                { icon: '📊', name: 'Pazar Analizi' },
+                { icon: '🔧', name: 'Ekipman Listesi' },
+                { icon: '📐', name: 'Layout Planlama' }
+              ].map((item, index) => (
+                <div key={index}>
+                  <div style={{ fontSize: '32px', marginBottom: '8px' }}>{item.icon}</div>
+                  <div style={{ fontSize: '14px', fontWeight: '600', color: '#111827', marginBottom: '4px' }}>{item.name}</div>
+                  <div style={{ fontSize: '12px', color: '#6b7280' }}>1 jeton</div>
+                </div>
+              ))}
             </div>
 
-            <div className="mt-6 p-4 bg-gradient-to-r from-blue-50 to-cyan-50 rounded-xl border border-blue-200">
-              <div className="flex items-center">
-                <div className="text-2xl mr-3">💬</div>
-                <div>
-                  <div className="font-medium text-gray-900">AI Sohbet - Sınırsız</div>
-                  <div className="text-sm text-gray-600">Raporlarınız üzerinde sınırsız soru sorabilirsiniz</div>
+            <div style={{
+              padding: '20px',
+              background: 'linear-gradient(135deg, #f0f9ff, #e0f2fe)',
+              borderRadius: '12px',
+              border: '1px solid #38bdf8',
+              display: 'flex',
+              alignItems: 'center'
+            }}>
+              <div style={{ fontSize: '32px', marginRight: '16px' }}>💬</div>
+              <div>
+                <div style={{ fontSize: '16px', fontWeight: '600', color: '#111827', marginBottom: '4px' }}>
+                  AI Sohbet - Sınırsız
+                </div>
+                <div style={{ fontSize: '14px', color: '#6b7280' }}>
+                  Raporlarınız üzerinde sınırsız soru sorabilirsiniz
                 </div>
               </div>
             </div>
           </div>
 
           {/* Support */}
-          <div className="text-center text-sm text-gray-500">
-            <p>Sorun yaşıyorsanız <a href="/destek" className="text-blue-600 hover:underline">destek ekibimizle</a> iletişime geçin.</p>
+          <div style={{ textAlign: 'center', fontSize: '14px', color: '#9ca3af' }}>
+            <p>
+              Sorun yaşıyorsanız{' '}
+              <a href="/destek" style={{ color: '#3b82f6', textDecoration: 'none' }}>
+                destek ekibimizle
+              </a>
+              {' '}iletişime geçin.
+            </p>
           </div>
         </div>
+
+        <style jsx>{`
+          @keyframes spin {
+            to {
+              transform: rotate(360deg);
+            }
+          }
+        `}</style>
       </div>
     </DashboardLayout>
   );
