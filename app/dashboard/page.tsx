@@ -308,7 +308,7 @@ export default function DashboardPage() {
         )}
 
         {/* Charts Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6" style={{ margin: '50px 0 32px' }}>
           {/* Bar Chart */}
           <div className="lg:col-span-2 bg-white p-6 rounded-xl border border-gray-200">
             <div className="flex items-center justify-between mb-6">
