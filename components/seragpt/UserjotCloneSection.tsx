@@ -683,7 +683,7 @@ export default function UserjotCloneSection() {
                 Kurumsal Danışmanlık Hizmeti
               </button>
             </div>
-            <p className="text-gray-500 text-sm mt-4">
+            <p className="text-small text-center">
               Uzman ekibimiz size özel teklifini hazırlayacak
             </p>
           </div>
