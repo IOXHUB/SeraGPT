@@ -289,7 +289,11 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
                   <a
                     key={item.name}
                     href={item.href}
-                    className="block px-4 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 hover:text-gray-900 transition-colors"
+                    className={`block px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                      item.active
+                        ? 'bg-green-600 text-white shadow-md'
+                        : 'text-gray-700 hover:bg-gray-50 hover:text-gray-900'
+                    }`}
                   >
                     {item.name}
                   </a>
