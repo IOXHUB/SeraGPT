@@ -16,26 +16,28 @@ export function useAuth() {
   useEffect(() => {
     const getUser = async () => {
       try {
-        // Check for development bypass in localStorage first
-        const devUser = localStorage.getItem('seragpt_user');
-        if (devUser && process.env.NODE_ENV === 'development') {
-          try {
-            const parsedUser = JSON.parse(devUser);
-            console.log('🚀 Development bypass user found:', parsedUser);
-            setUser({
-              id: parsedUser.id,
-              email: parsedUser.email,
-              user_metadata: { role: parsedUser.role },
-              created_at: new Date().toISOString(),
-              updated_at: new Date().toISOString(),
-              aud: 'authenticated',
-              app_metadata: {},
-              role: 'authenticated'
-            } as any);
-            setLoading(false);
-            return;
-          } catch (e) {
-            console.warn('Failed to parse dev user from localStorage:', e);
+        // Check for development bypass in localStorage first (browser only)
+        if (typeof window !== 'undefined' && process.env.NODE_ENV === 'development') {
+          const devUser = localStorage.getItem('seragpt_user');
+          if (devUser) {
+            try {
+              const parsedUser = JSON.parse(devUser);
+              console.log('🚀 Development bypass user found:', parsedUser);
+              setUser({
+                id: parsedUser.id,
+                email: parsedUser.email,
+                user_metadata: { role: parsedUser.role },
+                created_at: new Date().toISOString(),
+                updated_at: new Date().toISOString(),
+                aud: 'authenticated',
+                app_metadata: {},
+                role: 'authenticated'
+              } as any);
+              setLoading(false);
+              return;
+            } catch (e) {
+              console.warn('Failed to parse dev user from localStorage:', e);
+            }
           }
         }
 
