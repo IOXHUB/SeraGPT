@@ -10,7 +10,7 @@ import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
 import { cookies } from 'next/headers';
 import { NextRequest, NextResponse } from 'next/server';
 import { authService } from '@/lib/services/auth-service';
-import type { TokenUsageResponse, ActivityType } from '@/types/auth';
+import type { TokenUsageResponse, ActivityType, TokenUsageRequest } from '@/types/auth';
 
 // =====================================================
 // GET - Get User Token Balance and Info
@@ -120,10 +120,11 @@ export async function POST(request: NextRequest) {
 
     // Consume tokens
     const consumeResponse = await authService.consumeTokens({
-      userId: user.id,
+      user_id: user.id,
       amount: amount,
-      activityType: activity_type,
-      details: details
+      activity_type: activity_type,
+      resource_type: 'api_call',
+      resource_id: 'token_consumption'
     });
     
     if (!consumeResponse.success) {
