@@ -13,7 +13,16 @@ interface DashboardLayoutProps {
 export default function DashboardLayout({ children }: DashboardLayoutProps) {
   const { user, loading, signOut, isAdmin } = useAuth();
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [showReportsDropdown, setShowReportsDropdown] = useState(false);
+  const [userReports, setUserReports] = useState([
+    { id: 1, name: 'ROI Analizi - Domates Serası', type: 'roi', date: '2024-01-15', status: 'completed' },
+    { id: 2, name: 'İklim Analizi - Antalya Bölgesi', type: 'climate', date: '2024-01-14', status: 'completed' },
+    { id: 3, name: 'Ekipman Listesi - 1000m² Sera', type: 'equipment', date: '2024-01-13', status: 'completed' },
+    { id: 4, name: 'Pazar Analizi - Biber Üretimi', type: 'market', date: '2024-01-12', status: 'draft' },
+    { id: 5, name: 'Layout Planı - Hidroponik Sistem', type: 'layout', date: '2024-01-11', status: 'completed' }
+  ]);
   const router = useRouter();
+  const pathname = usePathname();
 
   // Relaxed auth check to prevent redirect loops
   useEffect(() => {
