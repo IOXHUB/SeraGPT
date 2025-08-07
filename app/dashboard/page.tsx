@@ -106,7 +106,7 @@ export default function DashboardPage() {
   const adminActivity = [
     {
       type: 'user',
-      title: 'Yeni kullanıcı kaydı',
+      title: 'Yeni kullanıc�� kaydı',
       description: 'mehmet@example.com sisteme katıldı',
       time: '5 dk önce',
       color: 'bg-green-100 text-green-600'
@@ -269,10 +269,10 @@ export default function DashboardPage() {
           {!isAdmin() && (
             <div className="user-panel-section">
               <div className="focus-text">
-                <h2 className="neon-cyan">
+                <h2 style={{ marginTop: '50px', font: '500 36px/43px __Inter_d65c78, sans-serif' }}>
                   Kullanıma Hazır Analizler
                 </h2>
-                <p className="user-panel-text">
+                <p style={{ marginBottom: '50px', font: '400 16px/24px __Inter_d65c78, sans-serif' }}>
                   Her analiz için 1 jeton harcanır. İlk 5 analiziniz ücretsizdir.
                 </p>
               </div>
