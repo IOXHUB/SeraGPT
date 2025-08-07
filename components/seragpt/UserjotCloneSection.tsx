@@ -532,22 +532,18 @@ export default function UserjotCloneSection() {
         </div>
       </div>
 
-      {/* Visual Gallery Section */}
-      <div className="py-20 bg-gray-50 text-gray-600">
-        <div className="page-section-container bg-gray-50">
-          <div
-
-            className="text-center mb-16 flex flex-col"
-          >
-            <h2 className="text-xl font-bold text-gray-900 mb-6 flex flex-col max-w-[576px] mx-auto">
-              <span className="mx-auto text-3xl">
-                Yatırımcılarımızın Tercih Ettiği Sera Çözümleri
-              </span>
-              <br />
-            </h2>
-            <p className="text-sm text-gray-900 max-w-[576px] mx-auto leading-relaxed">
-              Çözüm ortaklarımız ile hayata geçirilen sera projelerimiz
-            </p>
+      {/* References Section */}
+      <div className="section" style={{ background: '#f9fafb' }}>
+        <div className="body-container">
+          <div className="text-center mb-16">
+            <div className="text-container">
+              <h2 className="heading-2 text-center">
+                Referanslar
+              </h2>
+              <p className="text-body text-center">
+                Çözüm ortaklarımız ile hayata geçirilen sera projelerimiz
+              </p>
+            </div>
           </div>
 
           {/* Horizontal Scrolling Gallery */}
