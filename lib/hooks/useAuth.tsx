@@ -432,7 +432,14 @@ export function useAuth(): AuthContextType {
   };
 
   const hasTokens = (amount: number = 1) => {
-    if (process.env.NODE_ENV === 'development') {
+    const isDev = typeof window !== 'undefined' && (
+      process.env.NODE_ENV === 'development' ||
+      window.location.hostname.includes('fly.dev') ||
+      window.location.hostname.includes('builder.my') ||
+      window.location.hostname.includes('localhost')
+    );
+
+    if (isDev) {
       return true; // Unlimited tokens in development
     }
     return (tokens?.remaining_tokens || 0) >= amount;
