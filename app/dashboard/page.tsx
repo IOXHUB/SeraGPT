@@ -332,7 +332,7 @@ export default function DashboardPage() {
             >
               <div className="flex items-center">
                 <div className="w-8 h-8 bg-yellow-50 rounded-lg flex items-center justify-center mr-3">
-                  <span className="text-sm">🪙</span>
+                  <span className="text-sm">🧠</span>
                 </div>
                 <div className="flex-1 min-w-0">
                   <h3 className="text-xs font-semibold text-gray-900 group-hover:text-blue-600">Token Yönetimi</h3>
