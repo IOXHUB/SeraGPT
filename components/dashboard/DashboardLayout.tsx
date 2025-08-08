@@ -282,23 +282,58 @@ export default function DashboardLayout({ children, title, subtitle }: Dashboard
                 </div>
                 <div className="space-y-1 px-2">
                   {items.map((item) => (
-                    <a
-                      key={item.href}
-                      href={item.href}
-                      className={`group flex items-center px-3 py-2.5 text-sm font-medium rounded-lg transition-all ${
-                        isActive(item.href)
-                          ? 'bg-green-50 text-green-700'
-                          : 'text-gray-700 hover:bg-gray-50 hover:text-gray-900'
-                      }`}
-                    >
-                      <span className="text-lg mr-3">{item.icon}</span>
-                      <span className="flex-1">{item.name}</span>
-                      {item.badge && (
-                        <span className="ml-2 px-2 py-1 text-xs bg-green-100 text-green-600 rounded-full">
-                          {item.badge}
-                        </span>
+                    <div key={item.href}>
+                      {/* Main menu item */}
+                      <a
+                        href={item.submenu ? undefined : item.href}
+                        onClick={item.submenu ? (e) => { e.preventDefault(); toggleSubmenu(item.name); } : undefined}
+                        className={`group flex items-center px-3 py-2.5 text-sm font-medium rounded-lg transition-all cursor-pointer ${
+                          isActive(item.href) || (item.submenu && isSubmenuActive(item.submenu))
+                            ? 'bg-green-50 text-green-700'
+                            : 'text-gray-700 hover:bg-gray-50 hover:text-gray-900'
+                        }`}
+                      >
+                        <span className="text-lg mr-3">{item.icon}</span>
+                        <span className="flex-1">{item.name}</span>
+                        <div className="flex items-center space-x-2">
+                          {item.badge && (
+                            <span className="px-2 py-1 text-xs bg-green-100 text-green-600 rounded-full">
+                              {item.badge}
+                            </span>
+                          )}
+                          {item.submenu && (
+                            <svg
+                              className={`w-4 h-4 text-gray-400 transition-transform ${expandedMenus[item.name] ? 'rotate-90' : ''}`}
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                            </svg>
+                          )}
+                        </div>
+                      </a>
+
+                      {/* Mobile Submenu items */}
+                      {item.submenu && expandedMenus[item.name] && (
+                        <div className="ml-8 mt-2 space-y-1">
+                          {item.submenu.map((subItem) => (
+                            <a
+                              key={subItem.href}
+                              href={subItem.href}
+                              className={`group flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-all ${
+                                isActive(subItem.href)
+                                  ? 'bg-green-100 text-green-700'
+                                  : 'text-gray-600 hover:bg-gray-100 hover:text-gray-800'
+                              }`}
+                            >
+                              <span className="text-base mr-3">{subItem.icon}</span>
+                              <span className="flex-1">{subItem.name}</span>
+                            </a>
+                          ))}
+                        </div>
                       )}
-                    </a>
+                    </div>
                   ))}
                 </div>
               </div>
