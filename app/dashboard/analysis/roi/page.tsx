@@ -134,10 +134,7 @@ export default function ROIAnalysisPage() {
     }
   );
 
-  const getAuthToken = async () => {
-    const { data: { session } } = await (window as any).supabase.auth.getSession();
-    return session?.access_token || '';
-  };
+  // Auth token is handled by the cached API service
 
   const handleCalculateROI = async () => {
     if (!user || !hasTokens(2)) { // ROI analysis costs 2 tokens
@@ -389,7 +386,7 @@ export default function ROIAnalysisPage() {
           >
             <option value={3}>3 Yıl (Kısa Vadeli)</option>
             <option value={5}>5 Yıl (Orta Vadeli)</option>
-            <option value={7}>7 Y��l (Uzun Vadeli)</option>
+            <option value={7}>7 Yıl (Uzun Vadeli)</option>
             <option value={10}>10 Yıl (Çok Uzun Vadeli)</option>
           </select>
           <p className="text-xs text-gray-500 mt-1">
@@ -672,7 +669,7 @@ export default function ROIAnalysisPage() {
               </div>
               <div className="text-center">
                 <div className="text-3xl mb-2">🛠️</div>
-                <p className="text-2xl font-bold text-gray-900">���{roiAnalysis.data.initialInvestment.infrastructure.toLocaleString()}</p>
+                <p className="text-2xl font-bold text-gray-900">₺{roiAnalysis.data.initialInvestment.infrastructure.toLocaleString()}</p>
                 <p className="text-sm text-gray-600">Altyapı</p>
                 <p className="text-xs text-blue-600 mt-1">
                   %{((roiAnalysis.data.initialInvestment.infrastructure / roiAnalysis.data.initialInvestment.total) * 100).toFixed(0)}
