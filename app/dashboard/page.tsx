@@ -723,9 +723,10 @@ export default function DashboardPage() {
           </div>
         )}
 
-        {/* Performance Monitoring Widgets */}
-        <CacheStatsWidget className="w-64" />
-        <PerformanceDashboard />
+        {/* Cache Performance Widget */}
+        <div className="fixed bottom-4 right-4 z-50">
+          <CacheStatsWidget className="w-64" />
+        </div>
 
       </div>
     </DashboardLayout>
