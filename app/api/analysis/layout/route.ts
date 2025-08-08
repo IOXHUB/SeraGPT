@@ -378,7 +378,7 @@ function generateLayoutAnalysis(request: LayoutRequest): LayoutResponse['data'] 
       site_utilization_percentage: Math.round(siteUtilization * 100) / 100,
       construction_phases: greenhouse.expansion_phases
     },
-    technical_drawings: generateTechnicalDrawings(site, greenhouse),
+    technical_drawings: generateTechnicalDrawings(site, greenhouse, infrastructure, production),
     structural_design: generateStructuralDesign(greenhouse, site),
     mechanical_systems: generateMechanicalSystems(greenhouse, utilities_requirements),
     space_allocation: generateSpaceAllocation(greenhouse, production, infrastructure),
