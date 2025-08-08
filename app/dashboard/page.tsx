@@ -276,63 +276,86 @@ export default function DashboardPage() {
           </div>
         </div>
 
-        {/* Recent Activity */}
-        <div className="bg-white rounded-lg border border-gray-200">
-          <div className="px-6 py-4 border-b border-gray-200">
-            <h2 className="text-lg font-semibold text-gray-900">Son Aktiviteler</h2>
-            <p className="text-sm text-gray-600 mt-1">Hesabınızdaki son işlemler</p>
-          </div>
-          
-          <div className="divide-y divide-gray-200">
-            {recentActivity.length > 0 ? (
-              recentActivity.map((activity) => (
-                <div key={activity.id} className="px-6 py-4">
-                  <div className="flex items-center justify-between">
-                    <div className="flex-1">
-                      <p className="text-sm font-medium text-gray-900">{activity.description}</p>
-                      <p className="text-xs text-gray-500 mt-1">{formatTime(activity.timestamp)}</p>
-                    </div>
-                    <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium border ${getStatusColor(activity.status)}`}>
-                      {activity.status === 'completed' ? 'Tamamlandı' :
-                       activity.status === 'in_progress' ? 'Devam Ediyor' : 'Başarısız'}
-                    </span>
-                  </div>
-                </div>
-              ))
-            ) : (
-              <div className="px-6 py-8 text-center">
-                <p className="text-gray-500">Henüz aktivite bulunmuyor</p>
-                <p className="text-sm text-gray-400 mt-1">İlk analizinizi yaparak başlayın</p>
-              </div>
-            )}
-          </div>
-        </div>
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+          {/* Recent Activity */}
+          <div className="lg:col-span-2 bg-white rounded-lg border border-gray-200">
+            <div className="px-4 py-3 border-b border-gray-200">
+              <h2 className="text-sm font-semibold text-gray-900">Son Aktiviteler</h2>
+              <p className="text-xs text-gray-600 mt-0.5">Hesabınızdaki son işlemler</p>
+            </div>
 
-        {/* Quick Actions */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <a
-            href="/dashboard/analysis"
-            className="bg-white border border-gray-200 rounded-lg p-6 hover:border-gray-300 transition-colors group"
-          >
-            <h3 className="font-semibold text-gray-900 group-hover:text-blue-600">Tüm Analizler</h3>
-            <p className="text-sm text-gray-600 mt-1">Geçmiş analizlerinizi görüntüleyin</p>
-          </a>
-          
-          <a
-            href="/dashboard/tokens"
-            className="bg-white border border-gray-200 rounded-lg p-6 hover:border-gray-300 transition-colors group"
-          >
-            <h3 className="font-semibold text-gray-900 group-hover:text-blue-600">Token Yönetimi</h3>
-            <p className="text-sm text-gray-600 mt-1">Token bakiyenizi kontrol edin</p>
-          </a>
-          
-          <a
-            href="/dashboard/settings"
-            className="bg-white border border-gray-200 rounded-lg p-6 hover:border-gray-300 transition-colors group"
-          >
-            <h3 className="font-semibold text-gray-900 group-hover:text-blue-600">Hesap Ayarları</h3>
-            <p className="text-sm text-gray-600 mt-1">Profil ve tercihlerinizi düzenleyin</p>
-          </a>
+            <div className="divide-y divide-gray-100">
+              {recentActivity.length > 0 ? (
+                recentActivity.slice(0, 5).map((activity) => (
+                  <div key={activity.id} className="px-4 py-3 hover:bg-gray-50 transition-colors">
+                    <div className="flex items-center justify-between">
+                      <div className="flex-1 min-w-0">
+                        <p className="text-xs font-medium text-gray-900 truncate">{activity.description}</p>
+                        <p className="text-xs text-gray-500 mt-0.5">{formatTime(activity.timestamp)}</p>
+                      </div>
+                      <span className={`ml-3 inline-flex items-center px-2 py-0.5 rounded text-xs font-medium ${getStatusColor(activity.status)}`}>
+                        {activity.status === 'completed' ? '✓' :
+                         activity.status === 'in_progress' ? '⏳' : '✗'}
+                      </span>
+                    </div>
+                  </div>
+                ))
+              ) : (
+                <div className="px-4 py-6 text-center">
+                  <p className="text-xs text-gray-500">Henüz aktivite bulunmuyor</p>
+                  <p className="text-xs text-gray-400 mt-1">İlk analizinizi yaparak başlayın</p>
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* Quick Actions */}
+          <div className="space-y-3">
+            <a
+              href="/dashboard/analysis"
+              className="block bg-white border border-gray-200 rounded-lg p-3 hover:border-gray-300 hover:shadow-sm transition-all group"
+            >
+              <div className="flex items-center">
+                <div className="w-8 h-8 bg-blue-50 rounded-lg flex items-center justify-center mr-3">
+                  <span className="text-sm">📊</span>
+                </div>
+                <div className="flex-1 min-w-0">
+                  <h3 className="text-xs font-semibold text-gray-900 group-hover:text-blue-600">Tüm Analizler</h3>
+                  <p className="text-xs text-gray-600 truncate">Geçmiş analizleriniz</p>
+                </div>
+              </div>
+            </a>
+
+            <a
+              href="/dashboard/tokens"
+              className="block bg-white border border-gray-200 rounded-lg p-3 hover:border-gray-300 hover:shadow-sm transition-all group"
+            >
+              <div className="flex items-center">
+                <div className="w-8 h-8 bg-yellow-50 rounded-lg flex items-center justify-center mr-3">
+                  <span className="text-sm">🪙</span>
+                </div>
+                <div className="flex-1 min-w-0">
+                  <h3 className="text-xs font-semibold text-gray-900 group-hover:text-blue-600">Token Yönetimi</h3>
+                  <p className="text-xs text-gray-600 truncate">Bakiyenizi kontrol edin</p>
+                </div>
+              </div>
+            </a>
+
+            <a
+              href="/dashboard/settings"
+              className="block bg-white border border-gray-200 rounded-lg p-3 hover:border-gray-300 hover:shadow-sm transition-all group"
+            >
+              <div className="flex items-center">
+                <div className="w-8 h-8 bg-gray-50 rounded-lg flex items-center justify-center mr-3">
+                  <span className="text-sm">⚙️</span>
+                </div>
+                <div className="flex-1 min-w-0">
+                  <h3 className="text-xs font-semibold text-gray-900 group-hover:text-blue-600">Hesap Ayarları</h3>
+                  <p className="text-xs text-gray-600 truncate">Profil ve tercihler</p>
+                </div>
+              </div>
+            </a>
+          </div>
         </div>
 
       </div>
