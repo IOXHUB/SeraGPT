@@ -149,7 +149,7 @@ export default function ROIAnalysisPage() {
   };
 
   const handleGeneratePDF = async () => {
-    if (!results || !reportId) return;
+    if (!roiAnalysis.data || !reportId) return;
 
     try {
       const response = await fetch(`/api/analysis/reports?id=${reportId}&format=pdf`, {
