@@ -6,7 +6,6 @@ import { authService } from '@/lib/services/auth-service';
 import DashboardLayout from '@/components/dashboard/DashboardLayout';
 import { DashboardOverviewSkeleton } from '@/components/ui/skeletons/DashboardSkeletons';
 import CacheStatsWidget from '@/components/dashboard/CacheStatsWidget';
-import BundleStatsWidget from '@/components/dashboard/BundleStatsWidget';
 import { UserActivityLog } from '@/types/auth';
 
 // Force dynamic rendering for dashboard pages
@@ -387,7 +386,7 @@ export default function DashboardPage() {
           description: 'Mühendis desteği alın',
           href: '/dashboard/consulting',
           primary: false,
-          icon: '���',
+          icon: '🔧',
           disabled: false
         }
       ];
