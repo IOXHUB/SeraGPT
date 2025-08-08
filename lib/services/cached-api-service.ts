@@ -3,7 +3,7 @@
  * Wraps all API calls with intelligent caching strategies
  */
 
-import { cacheService, CacheKeys, CacheService, CacheTags } from './cache-service';
+import { cacheService, CacheKeys, CacheTags } from './cache-service';
 
 export interface APIResponse<T = any> {
   success: boolean;
