@@ -951,7 +951,17 @@ export default function ROIAnalysisPage() {
           {currentStep === 1 && renderStep1()}
           {currentStep === 2 && renderStep2()}
           {currentStep === 3 && renderStep3()}
-          {currentStep === 4 && renderResults()}
+          {currentStep === 4 && roiAnalysis.loading && (
+            <AnalysisLoading
+              type="roi"
+              progress={Math.min((Date.now() % 120000) / 1200, 100)}
+              className="my-8"
+            />
+          )}
+          {currentStep === 4 && !roiAnalysis.loading && roiAnalysis.data && renderResults()}
+          {currentStep === 4 && !roiAnalysis.loading && !roiAnalysis.data && !roiAnalysis.error && (
+            <ROIAnalysisSkeleton />
+          )}
         </div>
 
         {/* Navigation */}
