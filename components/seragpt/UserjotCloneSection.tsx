@@ -136,50 +136,42 @@ export default function UserjotCloneSection() {
 
               {/* Navigation Links */}
               <div className="space-y-3">
-                <div onClick={() => setIsMobileMenuOpen(false)}>
-                  <Link
-                    href="/destek"
-                    className="block text-gray-700 hover:text-gray-900 hover:bg-gray-50 py-3 px-4 rounded-lg transition-all"
-                  >
-                    <div className="flex items-center space-x-3">
-                      <span className="text-lg">❓</span>
-                      <span className="text-base font-medium">Destek</span>
-                    </div>
-                  </Link>
-                </div>
-                <div onClick={() => setIsMobileMenuOpen(false)}>
-                  <Link
-                    href="/danismanlik"
-                    className="block text-gray-700 hover:text-gray-900 hover:bg-gray-50 py-3 px-4 rounded-lg transition-all"
-                  >
-                    <div className="flex items-center space-x-3">
-                      <span className="text-lg">🎯</span>
-                      <span className="text-base font-medium">Danışmanlık</span>
-                    </div>
-                  </Link>
-                </div>
-                <div onClick={() => setIsMobileMenuOpen(false)}>
-                  <Link
-                    href="/anahtar-teslim-proje"
-                    className="block text-gray-700 hover:text-gray-900 hover:bg-gray-50 py-3 px-4 rounded-lg transition-all"
-                  >
-                    <div className="flex items-center space-x-3">
-                      <span className="text-lg">🏗️</span>
-                      <span className="text-base font-medium">Anahtar Teslim Sera</span>
-                    </div>
-                  </Link>
-                </div>
-                <div onClick={() => setIsMobileMenuOpen(false)}>
-                  <Link
-                    href="/blog"
-                    className="block text-gray-700 hover:text-gray-900 hover:bg-gray-50 py-3 px-4 rounded-lg transition-all"
-                  >
-                    <div className="flex items-center space-x-3">
-                      <span className="text-lg">📖</span>
-                      <span className="text-base font-medium">Blog</span>
-                    </div>
-                  </Link>
-                </div>
+                <button
+                  onClick={() => handleNavigation('/destek')}
+                  className="w-full text-left block text-gray-700 hover:text-gray-900 hover:bg-gray-50 py-3 px-4 rounded-lg transition-all"
+                >
+                  <div className="flex items-center space-x-3">
+                    <span className="text-lg">❓</span>
+                    <span className="text-base font-medium">Destek</span>
+                  </div>
+                </button>
+                <button
+                  onClick={() => handleNavigation('/danismanlik')}
+                  className="w-full text-left block text-gray-700 hover:text-gray-900 hover:bg-gray-50 py-3 px-4 rounded-lg transition-all"
+                >
+                  <div className="flex items-center space-x-3">
+                    <span className="text-lg">🎯</span>
+                    <span className="text-base font-medium">Danışmanlık</span>
+                  </div>
+                </button>
+                <button
+                  onClick={() => handleNavigation('/anahtar-teslim-proje')}
+                  className="w-full text-left block text-gray-700 hover:text-gray-900 hover:bg-gray-50 py-3 px-4 rounded-lg transition-all"
+                >
+                  <div className="flex items-center space-x-3">
+                    <span className="text-lg">🏗️</span>
+                    <span className="text-base font-medium">Anahtar Teslim Sera</span>
+                  </div>
+                </button>
+                <button
+                  onClick={() => handleNavigation('/blog')}
+                  className="w-full text-left block text-gray-700 hover:text-gray-900 hover:bg-gray-50 py-3 px-4 rounded-lg transition-all"
+                >
+                  <div className="flex items-center space-x-3">
+                    <span className="text-lg">📖</span>
+                    <span className="text-base font-medium">Blog</span>
+                  </div>
+                </button>
               </div>
 
               {/* Panel Access Button */}
@@ -246,7 +238,7 @@ export default function UserjotCloneSection() {
           {/* Main headline - Mobile responsive typography */}
           <h1 className="hero-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight">
             <span className="block">60 Saniyede</span>
-            <span className="block" style={{ color: 'rgba(23, 23, 23, 1)' }}>Sera Yatırım Raporun Hazır!</span>
+            <span className="block" style={{ color: 'rgba(23, 23, 23, 1)' }}>Sera Yatır��m Raporun Hazır!</span>
           </h1>
 
           {/* Description paragraph - Mobile responsive */}
