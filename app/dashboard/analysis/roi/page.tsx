@@ -612,7 +612,7 @@ export default function ROIAnalysisPage() {
               <div className="flex items-center justify-between">
                 <div>
                   <h3 className="text-lg font-medium mb-1">Geri Dönüş</h3>
-                  <p className="text-3xl font-bold">{results.analysis.paybackPeriod}</p>
+                  <p className="text-3xl font-bold">{roiAnalysis.data.analysis.paybackPeriod}</p>
                   <p className="text-sm opacity-90 mt-1">Yıl</p>
                 </div>
                 <div className="text-4xl opacity-75">⏱️</div>
@@ -623,7 +623,7 @@ export default function ROIAnalysisPage() {
               <div className="flex items-center justify-between">
                 <div>
                   <h3 className="text-lg font-medium mb-1">NPV</h3>
-                  <p className="text-2xl font-bold">₺{results.analysis.npv.toLocaleString()}</p>
+                  <p className="text-2xl font-bold">₺{roiAnalysis.data.analysis.npv.toLocaleString()}</p>
                   <p className="text-sm opacity-90 mt-1">Net Bugünkü Değer</p>
                 </div>
                 <div className="text-4xl opacity-75">💰</div>
@@ -634,7 +634,7 @@ export default function ROIAnalysisPage() {
               <div className="flex items-center justify-between">
                 <div>
                   <h3 className="text-lg font-medium mb-1">IRR</h3>
-                  <p className="text-3xl font-bold">%{results.analysis.irr}</p>
+                  <p className="text-3xl font-bold">%{roiAnalysis.data.analysis.irr}</p>
                   <p className="text-sm opacity-90 mt-1">İç Verim Oranı</p>
                 </div>
                 <div className="text-4xl opacity-75">🎯</div>
@@ -648,39 +648,39 @@ export default function ROIAnalysisPage() {
             <div className="grid grid-cols-2 md:grid-cols-5 gap-6">
               <div className="text-center">
                 <div className="text-3xl mb-2">🏗️</div>
-                <p className="text-2xl font-bold text-gray-900">₺{results.initialInvestment.construction.toLocaleString()}</p>
+                <p className="text-2xl font-bold text-gray-900">₺{roiAnalysis.data.initialInvestment.construction.toLocaleString()}</p>
                 <p className="text-sm text-gray-600">İnşaat</p>
                 <p className="text-xs text-blue-600 mt-1">
-                  %{((results.initialInvestment.construction / results.initialInvestment.total) * 100).toFixed(0)}
+                  %{((roiAnalysis.data.initialInvestment.construction / roiAnalysis.data.initialInvestment.total) * 100).toFixed(0)}
                 </p>
               </div>
               <div className="text-center">
                 <div className="text-3xl mb-2">🔧</div>
-                <p className="text-2xl font-bold text-gray-900">₺{results.initialInvestment.equipment.toLocaleString()}</p>
+                <p className="text-2xl font-bold text-gray-900">₺{roiAnalysis.data.initialInvestment.equipment.toLocaleString()}</p>
                 <p className="text-sm text-gray-600">Ekipman</p>
                 <p className="text-xs text-blue-600 mt-1">
-                  %{((results.initialInvestment.equipment / results.initialInvestment.total) * 100).toFixed(0)}
+                  %{((roiAnalysis.data.initialInvestment.equipment / roiAnalysis.data.initialInvestment.total) * 100).toFixed(0)}
                 </p>
               </div>
               <div className="text-center">
                 <div className="text-3xl mb-2">🤖</div>
-                <p className="text-2xl font-bold text-gray-900">₺{results.initialInvestment.automation.toLocaleString()}</p>
+                <p className="text-2xl font-bold text-gray-900">₺{roiAnalysis.data.initialInvestment.automation.toLocaleString()}</p>
                 <p className="text-sm text-gray-600">Otomasyon</p>
                 <p className="text-xs text-blue-600 mt-1">
-                  %{((results.initialInvestment.automation / results.initialInvestment.total) * 100).toFixed(0)}
+                  %{((roiAnalysis.data.initialInvestment.automation / roiAnalysis.data.initialInvestment.total) * 100).toFixed(0)}
                 </p>
               </div>
               <div className="text-center">
                 <div className="text-3xl mb-2">🛠️</div>
-                <p className="text-2xl font-bold text-gray-900">₺{results.initialInvestment.infrastructure.toLocaleString()}</p>
+                <p className="text-2xl font-bold text-gray-900">₺{roiAnalysis.data.initialInvestment.infrastructure.toLocaleString()}</p>
                 <p className="text-sm text-gray-600">Altyapı</p>
                 <p className="text-xs text-blue-600 mt-1">
-                  %{((results.initialInvestment.infrastructure / results.initialInvestment.total) * 100).toFixed(0)}
+                  %{((roiAnalysis.data.initialInvestment.infrastructure / roiAnalysis.data.initialInvestment.total) * 100).toFixed(0)}
                 </p>
               </div>
               <div className="text-center border-l border-gray-200 pl-6">
                 <div className="text-3xl mb-2">💎</div>
-                <p className="text-2xl font-bold text-green-600">₺{results.initialInvestment.total.toLocaleString()}</p>
+                <p className="text-2xl font-bold text-green-600">₺{roiAnalysis.data.initialInvestment.total.toLocaleString()}</p>
                 <p className="text-sm text-gray-600">Toplam Yatırım</p>
                 <p className="text-xs text-green-600 mt-1">%100</p>
               </div>
@@ -694,21 +694,21 @@ export default function ROIAnalysisPage() {
               <div className="space-y-4">
                 <div className="flex justify-between items-center">
                   <span className="text-gray-600">Brüt Gelir (Yıllık)</span>
-                  <span className="font-semibold text-green-600">₺{results.revenue.grossRevenue.toLocaleString()}</span>
+                  <span className="font-semibold text-green-600">₺{roiAnalysis.data.revenue.grossRevenue.toLocaleString()}</span>
                 </div>
                 <div className="flex justify-between items-center">
                   <span className="text-gray-600">Net Gelir (Yıllık)</span>
-                  <span className="font-semibold text-green-600">₺{results.revenue.netRevenue.toLocaleString()}</span>
+                  <span className="font-semibold text-green-600">₺{roiAnalysis.data.revenue.netRevenue.toLocaleString()}</span>
                 </div>
                 <div className="flex justify-between items-center">
                   <span className="text-gray-600">Yıllık Kar</span>
-                  <span className="font-semibold text-green-600">₺{results.revenue.annualProfit.toLocaleString()}</span>
+                  <span className="font-semibold text-green-600">₺{roiAnalysis.data.revenue.annualProfit.toLocaleString()}</span>
                 </div>
                 <div className="border-t pt-3">
                   <div className="flex justify-between items-center">
                     <span className="text-gray-900 font-medium">Kar Marjı</span>
                     <span className="font-bold text-blue-600">
-                      %{((results.revenue.annualProfit / results.revenue.grossRevenue) * 100).toFixed(1)}
+                      %{((roiAnalysis.data.revenue.annualProfit / roiAnalysis.data.revenue.grossRevenue) * 100).toFixed(1)}
                     </span>
                   </div>
                 </div>
@@ -720,13 +720,13 @@ export default function ROIAnalysisPage() {
               <div className="space-y-4">
                 <div className="flex justify-between items-center">
                   <span className="text-gray-600">Yıllık İşletme</span>
-                  <span className="font-semibold text-red-600">₺{results.operationalCosts.annual.toLocaleString()}</span>
+                  <span className="font-semibold text-red-600">₺{roiAnalysis.data.operationalCosts.annual.toLocaleString()}</span>
                 </div>
                 <div className="flex justify-between items-center">
                   <span className="text-gray-600">Aylık Ortalama</span>
-                  <span className="font-semibold text-red-600">₺{results.operationalCosts.monthly.toLocaleString()}</span>
+                  <span className="font-semibold text-red-600">₺{roiAnalysis.data.operationalCosts.monthly.toLocaleString()}</span>
                 </div>
-                {Object.entries(results.operationalCosts.breakdown).map(([key, value]) => (
+                {Object.entries(roiAnalysis.data.operationalCosts.breakdown).map(([key, value]) => (
                   <div key={key} className="flex justify-between items-center text-sm">
                     <span className="text-gray-500 capitalize">{key}</span>
                     <span className="text-gray-700">₺{value.toLocaleString()}</span>
@@ -740,7 +740,7 @@ export default function ROIAnalysisPage() {
           <div className="bg-white rounded-xl border border-gray-200 p-6">
             <h3 className="text-lg font-semibold text-gray-900 mb-4">💡 AI Önerileri</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {results.recommendations.map((rec, index) => (
+              {roiAnalysis.data.recommendations.map((rec, index) => (
                 <div key={index} className={`p-4 rounded-lg border-l-4 ${
                   rec.priority === 'high' ? 'border-red-500 bg-red-50' : 
                   rec.priority === 'medium' ? 'border-yellow-500 bg-yellow-50' : 
@@ -774,14 +774,14 @@ export default function ROIAnalysisPage() {
           </div>
 
           {/* Risk Assessment */}
-          {results.riskAssessment && (
+          {roiAnalysis.data.riskAssessment && (
             <div className="bg-white rounded-xl border border-gray-200 p-6">
               <h3 className="text-lg font-semibold text-gray-900 mb-4">⚠️ Risk Değerlendirmesi</h3>
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <div>
                   <h4 className="font-medium text-gray-900 mb-3">Risk Faktörleri</h4>
                   <div className="space-y-2">
-                    {results.riskAssessment.factors.map((factor, index) => (
+                    {roiAnalysis.data.riskAssessment.factors.map((factor, index) => (
                       <div key={index} className="flex items-center space-x-2">
                         <span className="text-red-500">⚠️</span>
                         <span className="text-gray-700 text-sm">{factor}</span>
@@ -792,7 +792,7 @@ export default function ROIAnalysisPage() {
                 <div>
                   <h4 className="font-medium text-gray-900 mb-3">Risk Azaltma Önerileri</h4>
                   <div className="space-y-2">
-                    {results.riskAssessment.mitigation.map((strategy, index) => (
+                    {roiAnalysis.data.riskAssessment.mitigation.map((strategy, index) => (
                       <div key={index} className="flex items-center space-x-2">
                         <span className="text-green-500">✅</span>
                         <span className="text-gray-700 text-sm">{strategy}</span>
@@ -805,12 +805,12 @@ export default function ROIAnalysisPage() {
                 <div className="flex items-center justify-between">
                   <span className="font-medium text-gray-900">Genel Risk Seviyesi</span>
                   <span className={`px-3 py-1 rounded-full text-sm font-medium ${
-                    results.riskAssessment.overallRisk === 'high' ? 'bg-red-100 text-red-700' :
-                    results.riskAssessment.overallRisk === 'medium' ? 'bg-yellow-100 text-yellow-700' :
+                    roiAnalysis.data.riskAssessment.overallRisk === 'high' ? 'bg-red-100 text-red-700' :
+                    roiAnalysis.data.riskAssessment.overallRisk === 'medium' ? 'bg-yellow-100 text-yellow-700' :
                     'bg-green-100 text-green-700'
                   }`}>
-                    {results.riskAssessment.overallRisk === 'high' ? 'Yüksek Risk' :
-                     results.riskAssessment.overallRisk === 'medium' ? 'Orta Risk' :
+                    {roiAnalysis.data.riskAssessment.overallRisk === 'high' ? 'Yüksek Risk' :
+                     roiAnalysis.data.riskAssessment.overallRisk === 'medium' ? 'Orta Risk' :
                      'Düşük Risk'}
                   </span>
                 </div>
