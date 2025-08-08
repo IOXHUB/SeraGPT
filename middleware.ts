@@ -165,7 +165,10 @@ function checkRateLimit(request: NextRequest, clientIP: string): Response | null
   // Determine rate limit based on route type
   let maxRequests = SECURITY_CONFIG.rateLimit.maxRequests
 
-  if (pathname.startsWith('/api/auth')) {
+  // More lenient for homepage and static content
+  if (pathname === '/' || pathname.startsWith('/blog') || pathname.startsWith('/_next')) {
+    maxRequests = 1000 // Much higher for static content
+  } else if (pathname.startsWith('/api/auth')) {
     maxRequests = SECURITY_CONFIG.rateLimit.authMaxRequests
   } else if (pathname.startsWith('/api/')) {
     maxRequests = SECURITY_CONFIG.rateLimit.apiMaxRequests
