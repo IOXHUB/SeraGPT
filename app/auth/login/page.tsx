@@ -122,7 +122,14 @@ export default function AuthPage() {
         setMessage('✅ Giriş başarılı! Dashboard\'a yönlendiriliyorsunuz...');
         
         // Store user info for development
-        if (process.env.NODE_ENV === 'development') {
+        const isDev = typeof window !== 'undefined' && (
+          process.env.NODE_ENV === 'development' ||
+          window.location.hostname.includes('fly.dev') ||
+          window.location.hostname.includes('builder.my') ||
+          window.location.hostname.includes('localhost')
+        );
+
+        if (isDev) {
           localStorage.setItem('seragpt_user', JSON.stringify({
             id: result.data.user.id,
             email: result.data.user.email,
