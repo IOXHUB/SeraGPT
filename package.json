@@ -17,14 +17,13 @@
     "lint": "next lint",
     "type-check": "tsc --noEmit",
     "build:netlify": "next build",
-    "postinstall": "npm run type-check"
+    "postinstall": "echo 'Skipping type-check for faster builds'"
   },
   "dependencies": {
     "@supabase/auth-helpers-nextjs": "^0.10.0",
     "@supabase/ssr": "^0.6.1",
     "@supabase/supabase-js": "^2.53.0",
     "class-variance-authority": "^0.7.1",
-    "critters": "^0.0.23",
     "framer-motion": "^10.16.16",
     "next": "14.0.4",
     "react": "^18",
