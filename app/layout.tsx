@@ -4,6 +4,7 @@ import Script from 'next/script'
 import AnalyticsWrapper from '@/components/AnalyticsWrapper'
 import ProductionErrorHandler from '@/components/ProductionErrorHandler'
 import ImageOptimizationProvider from '@/components/providers/ImageOptimizationProvider'
+import { PerformanceProvider } from '@/components/providers/PerformanceProvider'
 
 export const metadata: Metadata = {
   title: 'SeraGPT',
