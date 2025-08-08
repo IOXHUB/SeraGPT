@@ -422,7 +422,7 @@ function calculateSupportBuildingsArea(infrastructure: any): number {
   return Math.round(area);
 }
 
-function generateTechnicalDrawings(site: any, greenhouse: any) {
+function generateTechnicalDrawings(site: any, greenhouse: any, infrastructure: any, production: any) {
   const analysisId = Date.now();
   
   return {
