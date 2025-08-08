@@ -73,8 +73,8 @@ export async function middleware(request: NextRequest) {
       return new Response('Access Denied', { status: 403 })
     }
 
-    // 2. Check for suspicious patterns in URL and headers (skip for debug routes)
-    if (!pathname.startsWith('/auth/debug') && !pathname.startsWith('/auth/test')) {
+    // 2. Check for suspicious patterns in URL and headers (skip for auth routes)
+    if (!pathname.startsWith('/auth/')) {
       const suspiciousContent = [
         pathname,
         request.nextUrl.search,
