@@ -164,10 +164,10 @@ export default function ROIAnalysisPage() {
         link.click();
         window.URL.revokeObjectURL(url);
       } else {
-        setError('PDF raporu oluşturulamadı');
+        console.error('PDF raporu oluşturulamadı');
       }
     } catch (err) {
-      setError('PDF indirme sırasında hata oluştu');
+      console.error('PDF indirme sırasında hata oluştu:', err);
     }
   };
 
@@ -387,7 +387,7 @@ export default function ROIAnalysisPage() {
             <option value={3}>3 Yıl (Kısa Vadeli)</option>
             <option value={5}>5 Yıl (Orta Vadeli)</option>
             <option value={7}>7 Yıl (Uzun Vadeli)</option>
-            <option value={10}>10 Yıl (��ok Uzun Vadeli)</option>
+            <option value={10}>10 Yıl (Çok Uzun Vadeli)</option>
           </select>
           <p className="text-xs text-gray-500 mt-1">
             ROI hesaplama dönemi
