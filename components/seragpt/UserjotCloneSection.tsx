@@ -57,6 +57,11 @@ export default function UserjotCloneSection() {
     checkAuth();
   }, []);
 
+  // Force client-side navigation
+  const handleLinkClick = (href: string) => {
+    window.location.href = href;
+  };
+
   return (
     <div className="page-container">
       {/* Header - Clean layout */}
@@ -71,15 +76,24 @@ export default function UserjotCloneSection() {
 
           {/* Center navigation - 3 links */}
           <nav className="hidden md:flex items-center space-x-8">
-            <Link href="/danismanlik" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
+            <button 
+              onClick={() => handleLinkClick('/danismanlik')}
+              className="text-gray-700 hover:text-gray-900 font-medium transition-colors cursor-pointer border-none bg-transparent"
+            >
               Danışmanlık
-            </Link>
-            <Link href="/anahtar-teslim-proje" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
+            </button>
+            <button 
+              onClick={() => handleLinkClick('/anahtar-teslim-proje')}
+              className="text-gray-700 hover:text-gray-900 font-medium transition-colors cursor-pointer border-none bg-transparent"
+            >
               Anahtar Teslim Proje
-            </Link>
-            <Link href="/destek" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
+            </button>
+            <button 
+              onClick={() => handleLinkClick('/destek')}
+              className="text-gray-700 hover:text-gray-900 font-medium transition-colors cursor-pointer border-none bg-transparent"
+            >
               Destek
-            </Link>
+            </button>
           </nav>
 
           {/* Right menu - conditional based on user state */}
@@ -88,18 +102,27 @@ export default function UserjotCloneSection() {
               <>
                 {user ? (
                   // For logged in users - show Dashboard
-                  <Link href="/dashboard" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
+                  <button 
+                    onClick={() => handleLinkClick('/dashboard')}
+                    className="text-gray-700 hover:text-gray-900 font-medium transition-colors cursor-pointer border-none bg-transparent"
+                  >
                     Dashboard
-                  </Link>
+                  </button>
                 ) : (
                   // For logged out users - show Login or Sign Up CTA
                   <>
-                    <Link href="/auth/login" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
+                    <button 
+                      onClick={() => handleLinkClick('/auth/login')}
+                      className="text-gray-700 hover:text-gray-900 font-medium transition-colors cursor-pointer border-none bg-transparent"
+                    >
                       Giriş Yap
-                    </Link>
-                    <Link href="/auth/login" className="bg-gray-600 text-white px-4 py-2 rounded-lg text-base font-medium hover:bg-gray-800 transition-colors">
+                    </button>
+                    <button 
+                      onClick={() => handleLinkClick('/auth/login')}
+                      className="bg-gray-600 text-white px-4 py-2 rounded-lg text-base font-medium hover:bg-gray-800 transition-colors cursor-pointer border-none"
+                    >
                       Ücretsiz Başla
-                    </Link>
+                    </button>
                   </>
                 )}
               </>
@@ -242,10 +265,13 @@ export default function UserjotCloneSection() {
           </p>
 
           {/* CTA Button - Mobile optimized */}
-          <Link href="/auth/login" className="btn btn-primary mb-4 w-full sm:w-auto max-w-sm mx-auto block text-center">
+          <button 
+            onClick={() => handleLinkClick('/auth/login')}
+            className="btn btn-primary mb-4 w-full sm:w-auto max-w-sm mx-auto block text-center cursor-pointer border-none"
+          >
             <span className="hidden sm:inline">Şimdi Oluştur – İlk 5 Rapor Ücretsiz</span>
             <span className="sm:hidden">🚀 Ücretsiz Başla</span>
-          </Link>
+          </button>
 
           {/* Small text under button */}
           <p className="text-small text-center text-xs sm:text-sm">
@@ -279,7 +305,10 @@ export default function UserjotCloneSection() {
 
           {/* CTA Button */}
           <div className="text-center mt-12">
-            <button className="btn btn-primary mb-4">
+            <button 
+              onClick={() => handleLinkClick('/auth/login')}
+              className="btn btn-primary mb-4 cursor-pointer border-none"
+            >
               Kullanıcı Paneline Giriş Yapın
             </button>
             <p className="text-small text-center">
@@ -559,15 +588,15 @@ export default function UserjotCloneSection() {
             <p className="text-body text-center mb-4">
               Sorunuza cevap bulamadınız mı?
             </p>
-            <Link
-              href="/destek"
-              className="inline-flex items-center space-x-2 bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded-lg text-base font-medium transition-colors"
+            <button
+              onClick={() => handleLinkClick('/destek')}
+              className="inline-flex items-center space-x-2 bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded-lg text-base font-medium transition-colors cursor-pointer border-none"
             >
               <span>Destek Sayfamıza Gidin</span>
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
-            </Link>
+            </button>
           </div>
         </div>
       </div>
