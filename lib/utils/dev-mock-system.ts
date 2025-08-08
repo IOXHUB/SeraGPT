@@ -289,8 +289,15 @@ export class DevMockSystem {
 }
 
 // Auto-initialize on import
-if (typeof window !== 'undefined' && process.env.NODE_ENV === 'development') {
-  DevMockSystem.init();
+if (typeof window !== 'undefined') {
+  const isDev = process.env.NODE_ENV === 'development' ||
+                window.location.hostname.includes('fly.dev') ||
+                window.location.hostname.includes('builder.my') ||
+                window.location.hostname.includes('localhost');
+
+  if (isDev) {
+    DevMockSystem.init();
+  }
 }
 
 // Dev tools for browser console
@@ -316,5 +323,5 @@ SeraGPTDev.mockUsers           - See all mock users
     }
   };
 
-  console.log('🚀 SeraGPT Development Tools loaded! Type "SeraGPTDev.help()" for commands');
+  console.log('�� SeraGPT Development Tools loaded! Type "SeraGPTDev.help()" for commands');
 }
