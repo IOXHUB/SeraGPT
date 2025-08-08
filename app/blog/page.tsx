@@ -122,15 +122,14 @@ export default function BlogPage() {
             <a href={`/blog/${featuredPost.slug}`} className="flex gap-8 items-start group">
               <div className="w-80 flex-shrink-0">
                 <div className="relative overflow-hidden rounded-lg">
-                  <Image
+                  <OptimizedImage
                     src={featuredPost.image}
                     alt={featuredPost.title}
                     width={640}
                     height={384}
                     className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
                     priority
-                    placeholder="blur"
-                    blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 80vw, 640px"
                   />
                 </div>
               </div>
@@ -199,14 +198,13 @@ export default function BlogPage() {
                 >
                   <a href={`/blog/${post.slug}`} className="block">
                     <div className="relative overflow-hidden rounded-lg mb-4">
-                      <Image
+                      <OptimizedImage
                         src={post.image}
                         alt={post.title}
                         width={400}
                         height={300}
                         className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-                        placeholder="blur"
-                        blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px"
                       />
                     </div>
                     <div className="space-y-3">
