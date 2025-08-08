@@ -106,8 +106,11 @@ export default function TokensPage() {
 
       // Load token usage history
       const activity = await authService.getUserActivity(user.id, 50, 'payment');
-      setTokenHistory(activity.filter(a => 
-        a.activity_type === 'token_used' || 
+
+      // Ensure activity is an array before filtering
+      const activityArray = Array.isArray(activity) ? activity : [];
+      setTokenHistory(activityArray.filter(a =>
+        a.activity_type === 'token_used' ||
         a.activity_type === 'token_purchased'
       ));
 
