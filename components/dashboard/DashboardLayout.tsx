@@ -16,16 +16,34 @@ interface MenuItem {
   icon: string;
   category?: string;
   badge?: string;
+  submenu?: MenuItem[];
+}
+
+interface SubMenuState {
+  [key: string]: boolean;
 }
 
 export default function DashboardLayout({ children, title, subtitle }: DashboardLayoutProps) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  const [expandedMenus, setExpandedMenus] = useState<SubMenuState>({});
+  const [expandedChatHistory, setExpandedChatHistory] = useState(false);
   const pathname = usePathname();
 
   const menuItems: MenuItem[] = [
     { name: 'Dashboard', href: '/dashboard', icon: '📊', category: 'Ana' },
-    { name: 'AI Asistan', href: '/dashboard/ai-chat', icon: '🤖', category: 'Ana', badge: 'AI' },
+    {
+      name: 'AI Asistan',
+      href: '/dashboard/ai-chat',
+      icon: '🤖',
+      category: 'Ana',
+      badge: 'AI',
+      submenu: [
+        { name: 'Raporlarım', href: '/dashboard/ai-chat?tab=reports', icon: '📊', category: 'AI' },
+        { name: 'Öneriler', href: '/dashboard/ai-chat?tab=insights', icon: '💡', category: 'AI' },
+        { name: 'Sohbet Geçmişi', href: '/dashboard/ai-chat?tab=history', icon: '💬', category: 'AI' }
+      ]
+    },
     
     { name: 'ROI Analizi', href: '/dashboard/analysis/roi', icon: '💰', category: 'Analizler' },
     { name: 'İklim Analizi', href: '/dashboard/analysis/climate', icon: '🌡️', category: 'Analizler' },
