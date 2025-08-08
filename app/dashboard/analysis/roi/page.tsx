@@ -549,7 +549,7 @@ export default function ROIAnalysisPage() {
           <div>
             <span className="text-red-800">m² Başına Yıllık:</span>
             <span className="ml-1 font-bold text-red-900">
-              ₺{(calculateTotalAnnualCosts() / roiInputs.greenhouseSize).toLocaleString()}
+              ��{(calculateTotalAnnualCosts() / roiInputs.greenhouseSize).toLocaleString()}
             </span>
           </div>
         </div>
@@ -974,7 +974,7 @@ export default function ROIAnalysisPage() {
                 disabled={roiAnalysis.loading || !hasTokens(2)}
                 className="relative px-8 py-3 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-lg font-medium transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 flex items-center"
               >
-                {loading ? (
+                {roiAnalysis.loading ? (
                   <>
                     <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" fill="none" viewBox="0 0 24 24">
                       <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" className="opacity-25"></circle>
