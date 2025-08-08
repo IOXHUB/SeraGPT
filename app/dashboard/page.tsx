@@ -198,7 +198,7 @@ export default function DashboardPage() {
                 <p className="text-2xl font-bold text-green-600 mt-1">{tokens?.remaining_tokens || 0}</p>
               </div>
               <div className="w-10 h-10 bg-green-50 rounded-lg flex items-center justify-center">
-                <span className="text-lg">⚡</span>
+                <span className="text-lg">🧠</span>
               </div>
             </div>
           </div>
