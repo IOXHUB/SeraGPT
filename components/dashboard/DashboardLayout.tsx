@@ -23,11 +23,19 @@ interface SubMenuState {
   [key: string]: boolean;
 }
 
+interface SubMenuItem {
+  name: string;
+  href: string;
+  icon: string;
+  prompt?: string;
+  submenu?: SubMenuItem[];
+}
+
 export default function DashboardLayout({ children, title, subtitle }: DashboardLayoutProps) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const [expandedMenus, setExpandedMenus] = useState<SubMenuState>({});
-  const [expandedChatHistory, setExpandedChatHistory] = useState(false);
+  const [expandedSubMenus, setExpandedSubMenus] = useState<SubMenuState>({});
   const pathname = usePathname();
 
   const menuItems: MenuItem[] = [
@@ -39,9 +47,45 @@ export default function DashboardLayout({ children, title, subtitle }: Dashboard
       category: 'Ana',
       badge: 'AI',
       submenu: [
-        { name: 'Raporlarım', href: '/dashboard/ai-chat?tab=reports', icon: '📊', category: 'AI' },
-        { name: 'Öneriler', href: '/dashboard/ai-chat?tab=insights', icon: '💡', category: 'AI' },
-        { name: 'Sohbet Geçmişi', href: '/dashboard/ai-chat?tab=history', icon: '💬', category: 'AI' }
+        {
+          name: 'Raporlarım',
+          href: '/dashboard/ai-chat',
+          icon: '📊',
+          category: 'AI',
+          submenu: [
+            { name: 'ROI Analizi Raporum', href: '/dashboard/ai-chat?prompt=roi_report', icon: '💰', prompt: 'Son ROI analiz raporum hakkında detaylı bilgi ver ve iyileştirme önerileri sun.' },
+            { name: 'İklim Analizi Raporum', href: '/dashboard/ai-chat?prompt=climate_report', icon: '🌡️', prompt: 'İklim analiz raporum üzerinden derinlemesine analiz yapalım ve optimizasyon fırsatlarını değerlendirelim.' },
+            { name: 'Ekipman Listesi Raporum', href: '/dashboard/ai-chat?prompt=equipment_report', icon: '⚙️', prompt: 'Ekipman listesi raporum için maliyet optimizasyonu ve alternatif öneriler üzerine konuşalım.' },
+            { name: 'Pazar Analizi Raporum', href: '/dashboard/ai-chat?prompt=market_report', icon: '📈', prompt: 'Pazar analizi raporum temelinde fırsat değerlendirmesi ve strateji önerileri alalım.' },
+            { name: 'Teknik Plan Raporum', href: '/dashboard/ai-chat?prompt=layout_report', icon: '📐', prompt: 'Teknik plan raporum üzerine verimlilik artırma ve düzen optimizasyonu konuşalım.' }
+          ]
+        },
+        {
+          name: 'Öneriler',
+          href: '/dashboard/ai-chat',
+          icon: '💡',
+          category: 'AI',
+          submenu: [
+            { name: 'Maliyet Optimizasyonu', href: '/dashboard/ai-chat?prompt=cost_optimization', icon: '💰', prompt: 'Sera işletmemde maliyet tasarrufu ve optimizasyon konularında önerilerinizi almak istiyorum.' },
+            { name: 'Verimlilik Artırma', href: '/dashboard/ai-chat?prompt=efficiency', icon: '📊', prompt: 'Sera verimliliğimi artırmak için hangi stratejileri uygulayabilirim? Detaylı öneriler istiyorum.' },
+            { name: 'Teknoloji Yenilikleri', href: '/dashboard/ai-chat?prompt=technology', icon: '🚀', prompt: 'Sera teknolojilerindeki son yenilikler ve bunları işletmeme entegre etme yolları nelerdir?' },
+            { name: 'Pazarlama Stratejileri', href: '/dashboard/ai-chat?prompt=marketing', icon: '📢', prompt: 'Sera ürünlerimi pazarlama ve satış kanallarını geliştirme konusunda stratejik öneriler istiyorum.' },
+            { name: 'Sürdürülebilirlik', href: '/dashboard/ai-chat?prompt=sustainability', icon: '🌱', prompt: 'Sera işletmemi daha sürdürülebilir hale getirmek için çevre dostu çözümler önerir misin?' }
+          ]
+        },
+        {
+          name: 'Sohbet Geçmişi',
+          href: '/dashboard/ai-chat',
+          icon: '💬',
+          category: 'AI',
+          submenu: [
+            { name: 'Sera ROI Hesaplaması', href: '/dashboard/ai-chat?session=roi_calc', icon: '💰', prompt: 'Önceki ROI hesaplama sohbetimize devam edelim.' },
+            { name: 'İklim Analizi Sorguları', href: '/dashboard/ai-chat?session=climate_qa', icon: '🌡️', prompt: 'İklim analizi üzerine yaptığımız sohbeti devam ettirelim.' },
+            { name: 'Ekipman Önerileri', href: '/dashboard/ai-chat?session=equipment_rec', icon: '⚙️', prompt: 'Ekipman önerileri konusundaki sohbetimizi sürdürelim.' },
+            { name: 'Pazarlama Stratejileri', href: '/dashboard/ai-chat?session=marketing_strategy', icon: '📢', prompt: 'Pazarlama stratejileri hakkındaki sohbetimize kaldığımız yerden devam edelim.' },
+            { name: 'Maliyet Analizi', href: '/dashboard/ai-chat?session=cost_analysis', icon: '💸', prompt: 'Maliyet analizi tartışmamızı derinleştirmeye devam edelim.' }
+          ]
+        }
       ]
     },
     
