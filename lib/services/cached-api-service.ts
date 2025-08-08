@@ -117,7 +117,7 @@ class CachedAPIService {
         return { success: true, data, cached: false };
       },
       {
-        ttl: options.ttl || CacheService.TTL_PRESETS.CLIMATE_ANALYSIS,
+        ttl: options.ttl || 6 * 60 * 60 * 1000, // 6 hours
         tags: [CacheTags.ANALYSIS, CacheTags.WEATHER],
         staleWhileRevalidate: true,
         ...options
@@ -151,7 +151,7 @@ class CachedAPIService {
         return { success: true, data, cached: false };
       },
       {
-        ttl: options.ttl || CacheService.TTL_PRESETS.EQUIPMENT_ANALYSIS,
+        ttl: options.ttl || 24 * 60 * 60 * 1000, // 24 hours
         tags: [CacheTags.ANALYSIS],
         staleWhileRevalidate: true,
         ...options
@@ -185,7 +185,7 @@ class CachedAPIService {
         return { success: true, data, cached: false };
       },
       {
-        ttl: options.ttl || CacheService.TTL_PRESETS.MARKET_ANALYSIS,
+        ttl: options.ttl || 30 * 60 * 1000, // 30 minutes
         tags: [CacheTags.ANALYSIS, CacheTags.MARKET],
         staleWhileRevalidate: true,
         ...options
@@ -219,7 +219,7 @@ class CachedAPIService {
         return { success: true, data, cached: false };
       },
       {
-        ttl: options.ttl || CacheService.TTL_PRESETS.ANALYSIS,
+        ttl: options.ttl || 60 * 60 * 1000, // 1 hour
         tags: [CacheTags.ANALYSIS],
         staleWhileRevalidate: true,
         ...options
@@ -250,7 +250,7 @@ class CachedAPIService {
         return { success: true, data, cached: false };
       },
       {
-        ttl: options.ttl || CacheService.TTL_PRESETS.USER_PROFILE,
+        ttl: options.ttl || 30 * 60 * 1000, // 30 minutes
         tags: [CacheTags.USER_DATA],
         ...options
       }
@@ -280,7 +280,7 @@ class CachedAPIService {
         return { success: true, data, cached: false };
       },
       {
-        ttl: options.ttl || CacheService.TTL_PRESETS.USER_TOKENS,
+        ttl: options.ttl || 10 * 60 * 1000, // 10 minutes
         tags: [CacheTags.USER_DATA],
         ...options
       }
