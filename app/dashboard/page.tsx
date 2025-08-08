@@ -248,7 +248,7 @@ export default function DashboardPage() {
                         </div>
                         <div className="ml-2 flex-shrink-0">
                           <span className="text-xs bg-gray-100 text-gray-700 px-1.5 py-0.5 rounded">
-                            {tool.tokens}🪙
+                            {tool.tokens}🧠
                           </span>
                         </div>
                       </div>
