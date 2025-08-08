@@ -205,6 +205,7 @@ export default function BlogPage() {
                         width={400}
                         height={300}
                         className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                        preset="thumbnail"
                         sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px"
                       />
                     </div>
