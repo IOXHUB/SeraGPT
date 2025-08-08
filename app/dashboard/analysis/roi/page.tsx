@@ -1,18 +1,12 @@
 'use client';
 
 import { useState } from 'react';
-import nextDynamic from 'next/dynamic';
+import { motion } from 'framer-motion';
 import { useAuth } from '@/lib/hooks/useAuth';
 import { useROIAnalysis } from '@/lib/hooks/useCachedAPI';
 import { ROIAnalysisSkeleton } from '@/components/ui/skeletons/AnalysisSkeletons';
 import { AnalysisLoading } from '@/components/ui/LoadingStates';
 import DashboardLayout from '@/components/dashboard/DashboardLayout';
-
-// Dynamic import for framer-motion to reduce bundle size
-const motion = nextDynamic(() => import('framer-motion').then(mod => ({ default: mod.motion })), {
-  ssr: false,
-  loading: () => <div className="animate-pulse bg-gray-200 h-full w-full rounded" />,
-}) as any;
 
 export const dynamic = 'force-dynamic';
 
