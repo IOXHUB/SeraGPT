@@ -15,6 +15,7 @@ interface OptimizedImageProps {
   sizes?: string;
   fill?: boolean;
   style?: React.CSSProperties;
+  preset?: keyof typeof ImagePresets;
   onLoad?: () => void;
   onError?: () => void;
 }
