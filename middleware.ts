@@ -72,18 +72,20 @@ export async function middleware(request: NextRequest) {
       return new Response('Access Denied', { status: 403 })
     }
 
-    // 2. Check for suspicious patterns in URL and headers
-    const suspiciousContent = [
-      pathname,
-      request.nextUrl.search,
-      request.headers.get('user-agent') || '',
-      request.headers.get('referer') || ''
-    ].join(' ')
+    // 2. Check for suspicious patterns in URL and headers (skip for debug routes)
+    if (!pathname.startsWith('/auth/debug') && !pathname.startsWith('/auth/test')) {
+      const suspiciousContent = [
+        pathname,
+        request.nextUrl.search,
+        request.headers.get('user-agent') || '',
+        request.headers.get('referer') || ''
+      ].join(' ')
 
-    for (const pattern of SECURITY_CONFIG.suspiciousPatterns) {
-      if (pattern.test(suspiciousContent)) {
-        console.log(`🚨 [Security] Suspicious pattern detected: ${pattern} in ${pathname}`)
-        return new Response('Bad Request', { status: 400 })
+      for (const pattern of SECURITY_CONFIG.suspiciousPatterns) {
+        if (pattern.test(suspiciousContent)) {
+          console.log(`🚨 [Security] Suspicious pattern detected: ${pattern} in ${pathname}`)
+          return new Response('Bad Request', { status: 400 })
+        }
       }
     }
 
