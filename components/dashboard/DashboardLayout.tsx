@@ -86,7 +86,7 @@ export default function DashboardLayout({ children, title, subtitle }: Dashboard
       {/* Main content */}
       <div className="lg:ml-64 flex flex-col min-h-screen">
         {/* Header */}
-        <header className="bg-white border-b border-gray-200 px-4 py-3 lg:px-6">
+        <header className="bg-white border-b border-gray-200 px-4 py-2 lg:px-6">
           <div className="flex items-center justify-between">
             <div className="flex items-center">
               <button
@@ -97,29 +97,29 @@ export default function DashboardLayout({ children, title, subtitle }: Dashboard
               </button>
               {title && (
                 <div className="ml-4 lg:ml-0">
-                  <h1 className="text-xl font-semibold text-gray-900">{title}</h1>
+                  <h1 className="text-lg font-semibold text-gray-900">{title}</h1>
                   {subtitle && (
-                    <p className="text-sm text-gray-600">{subtitle}</p>
+                    <p className="text-xs text-gray-600">{subtitle}</p>
                   )}
                 </div>
               )}
             </div>
 
             {/* Header Actions */}
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-3">
               {/* AI Chat Button */}
               <a
                 href="/dashboard/ai-chat"
-                className="flex items-center space-x-2 px-3 py-2 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white rounded-lg font-medium transition-all duration-200 transform hover:scale-105 shadow-sm"
+                className="flex items-center space-x-1 px-2 py-1 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white rounded-md font-medium transition-all duration-200 transform hover:scale-105 shadow-sm"
               >
                 <span className="text-sm">🤖</span>
-                <span className="hidden sm:inline text-sm">AI Asistan</span>
-                <span className="sm:hidden text-sm">AI</span>
+                <span className="hidden sm:inline text-xs">AI Asistan</span>
+                <span className="sm:hidden text-xs">AI</span>
               </a>
 
               {/* User Menu */}
               <div className="flex items-center space-x-2 text-sm text-gray-600">
-                <div className="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center">
+                <div className="w-6 h-6 bg-gray-200 rounded-full flex items-center justify-center">
                   <span className="text-gray-600 text-xs">👤</span>
                 </div>
               </div>
@@ -128,7 +128,7 @@ export default function DashboardLayout({ children, title, subtitle }: Dashboard
         </header>
 
         {/* Page content */}
-        <main className="flex-1 px-4 py-6 lg:px-6">
+        <main className="flex-1 px-4 py-3 lg:px-6">
           {children}
         </main>
       </div>
