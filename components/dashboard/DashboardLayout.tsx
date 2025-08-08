@@ -81,7 +81,7 @@ export default function DashboardLayout({ children, title, subtitle }: Dashboard
       }`}>
         <div className="flex flex-col h-full">
           {/* Logo Header */}
-          <div className={`flex items-center justify-between h-14 px-4 border-b border-gray-200 ${sidebarCollapsed ? 'px-2' : ''}`}>
+          <div className={`flex items-center justify-between h-16 px-4 border-b border-gray-200 ${sidebarCollapsed ? 'px-2' : ''}`}>
             <a href="/dashboard" className="flex items-center space-x-3">
               {sidebarCollapsed ? (
                 <div className="w-8 h-8 bg-gradient-to-br from-green-500 to-green-600 rounded-lg flex items-center justify-center">
