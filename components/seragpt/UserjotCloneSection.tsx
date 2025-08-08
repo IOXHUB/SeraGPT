@@ -429,7 +429,7 @@ export default function UserjotCloneSection() {
                 <div className="mt-12 md:mt-16">
                   <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-4 leading-tight">
                     <span className="block sm:hidden">Pazar & Tarım Verisi</span>
-                    <span className="hidden sm:block">Pazar ve Tar��m Verisi Entegrasyonu</span>
+                    <span className="hidden sm:block">Pazar ve Tarım Verisi Entegrasyonu</span>
                   </h3>
                   <div className="space-y-3 mb-4">
                     <div>
@@ -560,15 +560,15 @@ export default function UserjotCloneSection() {
             <p className="text-body text-center mb-4">
               Sorunuza cevap bulamadınız mı?
             </p>
-            <button
-              onClick={() => handleLinkClick('/destek')}
-              className="inline-flex items-center space-x-2 bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded-lg text-base font-medium transition-colors cursor-pointer border-none"
+            <Link
+              href="/destek"
+              className="inline-flex items-center space-x-2 bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded-lg text-base font-medium transition-colors"
             >
               <span>Destek Sayfamıza Gidin</span>
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
-            </button>
+            </Link>
           </div>
         </div>
       </div>
