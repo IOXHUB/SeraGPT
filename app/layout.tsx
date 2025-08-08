@@ -4,6 +4,7 @@ import Script from 'next/script'
 import AnalyticsWrapper from '@/components/AnalyticsWrapper'
 import ProductionErrorHandler from '@/components/ProductionErrorHandler'
 import ImageOptimizationProvider from '@/components/providers/ImageOptimizationProvider'
+import DevToolsWidget from '@/components/dev/DevToolsWidget'
 
 export const metadata: Metadata = {
   title: 'SeraGPT',
@@ -26,6 +27,7 @@ export default function RootLayout({
       <body suppressHydrationWarning>
         <ProductionErrorHandler />
         {children}
+        <DevToolsWidget />
         {process.env.NODE_ENV === 'development' && (
           <Script id="suppress-hydration-warnings" strategy="beforeInteractive">
             {`
