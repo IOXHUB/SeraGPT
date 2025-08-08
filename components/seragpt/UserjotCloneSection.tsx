@@ -57,10 +57,6 @@ export default function UserjotCloneSection() {
     checkAuth();
   }, []);
 
-  // Force client-side navigation
-  const handleLinkClick = (href: string) => {
-    window.location.href = href;
-  };
 
   return (
     <div className="page-container">
