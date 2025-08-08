@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useAuth } from '@/lib/hooks/useAuth';
+import { useROIAnalysis } from '@/lib/hooks/useCachedAPI';
 import DashboardLayout from '@/components/dashboard/DashboardLayout';
 
 export const dynamic = 'force-dynamic';
