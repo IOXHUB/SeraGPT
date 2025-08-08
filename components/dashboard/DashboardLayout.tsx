@@ -344,7 +344,7 @@ export default function DashboardLayout({ children, title, subtitle, requiresTok
               </p>
               <div className="space-y-2">
                 {adminMenuItems.map((item) => (
-                  <a
+                  <LowPriorityLink
                     key={item.name}
                     href={item.href}
                     className={`flex items-center px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
@@ -354,7 +354,7 @@ export default function DashboardLayout({ children, title, subtitle, requiresTok
                     }`}
                   >
                     <span>{item.name}</span>
-                  </a>
+                  </LowPriorityLink>
                 ))}
               </div>
             </div>
