@@ -7,8 +7,11 @@ export default function DevToolsWidget() {
   const [isOpen, setIsOpen] = useState(false);
   const [currentUser, setCurrentUser] = useState<MockUser | null>(null);
 
-  // Only show in development
-  if (process.env.NODE_ENV !== 'development') {
+  // Force show for development (including fly.dev preview)
+  const isDev = process.env.NODE_ENV === 'development' ||
+                typeof window !== 'undefined' && window.location.hostname.includes('fly.dev');
+
+  if (!isDev) {
     return null;
   }
 
@@ -69,7 +72,7 @@ export default function DevToolsWidget() {
             {currentUser ? (
               <div className="bg-gray-50 rounded-lg p-3">
                 <div className="flex items-center space-x-2 mb-1">
-                  <span className="text-lg">{currentUser.role === 'admin' ? '👑' : currentUser.role === 'premium' ? '⭐' : '👤'}</span>
+                  <span className="text-lg">{currentUser.role === 'admin' ? '👑' : currentUser.role === 'premium' ? '⭐' : '���'}</span>
                   <span className="font-medium text-sm">{currentUser.name}</span>
                 </div>
                 <div className="text-xs text-gray-600">{currentUser.email}</div>
