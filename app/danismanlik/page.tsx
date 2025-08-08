@@ -28,7 +28,7 @@ export default function DanismanlikPage() {
     {
       title: 'Fiyatlandırma',
       id: 'pricing',
-      icon: '��',
+      icon: '💰',
       items: [
         { id: 'pricing-plans', title: 'Fiyatlandırma Planları', href: '#pricing-plans' },
         { id: 'starter-consulting', title: 'Starter Danışmanlık', href: '#starter-consulting' },
@@ -216,27 +216,27 @@ export default function DanismanlikPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center">
-              <a href="/" className="flex items-center">
+              <Link href="/" className="flex items-center">
                 <img
                   src="https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2F96da5382e9584c3fb2d32eca60944359?format=webp&width=800"
                   alt="SeraGPT Logo"
                   className="h-8 w-auto"
                 />
-              </a>
+              </Link>
             </div>
             <nav className="hidden md:flex space-x-8">
-              <a href="/destek" className="text-gray-600 hover:text-gray-900 font-medium">
+              <Link href="/destek" className="text-gray-600 hover:text-gray-900 font-medium">
                 Destek
-              </a>
-              <a href="/danismanlik" className="text-gray-600 hover:text-gray-900 font-medium">
+              </Link>
+              <Link href="/danismanlik" className="text-gray-600 hover:text-gray-900 font-medium">
                 Danışmanlık
-              </a>
-              <a href="/anahtar-teslim-proje" className="text-gray-600 hover:text-gray-900 font-medium">
+              </Link>
+              <Link href="/anahtar-teslim-proje" className="text-gray-600 hover:text-gray-900 font-medium">
                 Anahtar Teslim Sera
-              </a>
-              <a href="/auth/login" className="text-gray-600 hover:text-gray-900 font-medium">
+              </Link>
+              <Link href="/auth/login" className="text-gray-600 hover:text-gray-900 font-medium">
                 Giriş Yap
-              </a>
+              </Link>
             </nav>
 
             {/* Mobile menu button */}
