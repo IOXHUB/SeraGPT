@@ -91,17 +91,17 @@ export default function OptimizedImage({
       )}
       
       <Image
-        src={src}
+        src={optimizedSrc}
         alt={alt}
         width={fill ? undefined : width}
         height={fill ? undefined : height}
         fill={fill}
         className={`transition-opacity duration-300 ${isLoaded ? 'opacity-100' : 'opacity-0'} ${fill ? 'object-cover' : ''}`}
         priority={priority}
-        quality={quality}
+        quality={optimizationOptions.quality || quality}
         sizes={responsiveSizes}
         placeholder="blur"
-        blurDataURL={DEFAULT_BLUR_DATA_URL}
+        blurDataURL={blurDataURL}
         onLoad={handleLoad}
         onError={handleError}
       />
