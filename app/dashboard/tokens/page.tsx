@@ -104,19 +104,58 @@ export default function TokensPage() {
       setDataLoading(true);
       setError(null);
 
-      // Load token usage history
-      const activity = await authService.getUserActivity(user.id, 50, 'payment');
+      // Check if we're in development mode
+      const isDev = typeof window !== 'undefined' && (
+        process.env.NODE_ENV === 'development' ||
+        window.location.hostname.includes('fly.dev') ||
+        window.location.hostname.includes('builder.my') ||
+        window.location.hostname.includes('localhost')
+      );
 
-      // Ensure activity is an array before filtering
-      const activityArray = Array.isArray(activity) ? activity : [];
-      setTokenHistory(activityArray.filter(a =>
-        a.activity_type === 'token_used' ||
-        a.activity_type === 'token_purchased'
-      ));
+      if (isDev) {
+        // Use mock data in development
+        const mockActivity = [
+          {
+            id: '1',
+            activity_type: 'token_used',
+            activity_category: 'payment',
+            details: { tokens_consumed: 1, analysis_type: 'roi' },
+            created_at: new Date(Date.now() - 1000 * 60 * 30).toISOString()
+          },
+          {
+            id: '2',
+            activity_type: 'token_purchased',
+            activity_category: 'payment',
+            details: { tokens_purchased: 50, amount_paid: 25 },
+            created_at: new Date(Date.now() - 1000 * 60 * 60 * 24).toISOString()
+          },
+          {
+            id: '3',
+            activity_type: 'token_used',
+            activity_category: 'payment',
+            details: { tokens_consumed: 2, analysis_type: 'climate' },
+            created_at: new Date(Date.now() - 1000 * 60 * 60 * 2).toISOString()
+          }
+        ];
+        setTokenHistory(mockActivity);
+      } else {
+        // Load token usage history from API
+        const activity = await authService.getUserActivity(user.id, 50, 'payment');
+
+        // Ensure activity is an array before filtering
+        const activityArray = Array.isArray(activity) ? activity : [];
+        setTokenHistory(activityArray.filter(a =>
+          a.activity_type === 'token_used' ||
+          a.activity_type === 'token_purchased'
+        ));
+      }
 
     } catch (error: any) {
       console.error('Failed to load token data:', error);
       setError('Token verileri yüklenirken hata oluştu');
+
+      // Fallback to empty array to prevent crashes
+      setTokenHistory([]);
     } finally {
       setDataLoading(false);
     }
