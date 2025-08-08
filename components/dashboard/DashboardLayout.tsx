@@ -22,6 +22,9 @@ export default function DashboardLayout({ children, title, subtitle }: Dashboard
     { name: 'Raporlar', href: '/dashboard/reports', active: false },
     { name: 'Projeler', href: '/dashboard/projects', active: false },
     { name: 'Token Yönetimi', href: '/dashboard/tokens', active: false },
+    { name: 'Danışmanlık', href: '/danismanlik', active: false },
+    { name: 'Destek', href: '/destek', active: false },
+    { name: 'Anahtar Teslim Sera', href: '/anahtar-teslim-proje', active: false },
     { name: 'Ayarlar', href: '/dashboard/settings', active: false },
     { name: 'Yardım', href: '/dashboard/help', active: false },
   ];
