@@ -68,74 +68,73 @@ export function useAuth(): AuthContextType {
         setLoading(true);
         setError(null);
 
-        // Check for development bypass in localStorage first (browser only)
+        // Use enhanced development mock system (browser only)
         if (typeof window !== 'undefined' && process.env.NODE_ENV === 'development') {
-          const devUser = localStorage.getItem('seragpt_user');
-          if (devUser) {
-            try {
-              const parsedUser = JSON.parse(devUser);
-              console.log('🚀 Development bypass user found:', parsedUser);
+          // Import and initialize development mock system
+          const { DevMockSystem, MOCK_TOKENS } = await import('@/lib/utils/dev-mock-system');
 
-              const mockUser: ExtendedUser = {
-                id: parsedUser.id,
-                email: parsedUser.email,
-                user_metadata: { role: parsedUser.role },
-                created_at: new Date().toISOString(),
-                updated_at: new Date().toISOString(),
-                aud: 'authenticated',
-                app_metadata: {},
-                role: 'authenticated'
-              } as any;
+          const mockUser = DevMockSystem.getCurrentUser();
+          if (mockUser) {
+            console.log('🚀 Development mock user found:', mockUser);
 
-              setUser(mockUser);
-              
-              // Create mock profile data for development
-              const mockProfile: UserProfile = {
-                id: parsedUser.id,
-                full_name: 'Development User',
-                location: {},
-                experience_level: 'intermediate',
-                subscription_type: parsedUser.role === 'admin' ? 'admin' : 'free',
-                language: 'tr',
-                currency: 'TRY',
-                timezone: 'Europe/Istanbul',
-                marketing_consent: false,
-                newsletter_consent: false,
-                profile_completed: true,
-                email_verified: true,
-                phone_verified: false,
-                onboarding_completed: true,
-                login_count: 1,
-                created_at: new Date().toISOString(),
-                updated_at: new Date().toISOString()
-              };
-              setProfile(mockProfile);
+            const extendedUser: ExtendedUser = {
+              id: mockUser.id,
+              email: mockUser.email,
+              user_metadata: { role: mockUser.role, name: mockUser.name },
+              created_at: new Date().toISOString(),
+              updated_at: new Date().toISOString(),
+              aud: 'authenticated',
+              app_metadata: {},
+              role: 'authenticated'
+            } as any;
 
-              // Mock tokens
-              const mockTokens: UserTokens = {
-                id: 'dev-tokens',
-                user_id: parsedUser.id,
-                total_tokens: 100,
-                used_tokens: 10,
-                remaining_tokens: 90,
-                free_tokens_granted: 5,
-                free_tokens_used: 2,
-                total_purchased: 95,
-                total_spent: 0,
-                last_purchase_amount: 0,
-                last_purchase_price: 0,
-                tokens_used_today: 2,
-                tokens_used_this_month: 10,
-                created_at: new Date().toISOString(),
-                updated_at: new Date().toISOString()
-              };
-              setTokens(mockTokens);
+            setUser(extendedUser);
 
-              setLoading(false);
-              return;
-            } catch (e) {
-              console.warn('Failed to parse dev user from localStorage:', e);
-            }
+            // Create comprehensive mock profile data
+            const mockProfile: UserProfile = {
+              id: mockUser.id,
+              full_name: mockUser.name,
+              location: { city: 'İstanbul', country: 'Turkey' },
+              experience_level: mockUser.role === 'admin' ? 'expert' : 'intermediate',
+              subscription_type: mockUser.role === 'admin' ? 'admin' : mockUser.role === 'premium' ? 'premium' : 'free',
+              language: 'tr',
+              currency: 'TRY',
+              timezone: 'Europe/Istanbul',
+              marketing_consent: false,
+              newsletter_consent: true,
+              profile_completed: true,
+              email_verified: true,
+              phone_verified: mockUser.role !== 'user',
+              onboarding_completed: true,
+              login_count: Math.floor(Math.random() * 50) + 1,
+              created_at: new Date(Date.now() - Math.random() * 365 * 24 * 60 * 60 * 1000).toISOString(),
+              updated_at: new Date().toISOString()
+            };
+            setProfile(mockProfile);
+
+            // Use mock tokens from development system
+            const tokenData = MOCK_TOKENS[mockUser.role];
+            const mockTokens: UserTokens = {
+              id: `dev-tokens-${mockUser.id}`,
+              user_id: mockUser.id,
+              total_tokens: tokenData.total,
+              used_tokens: tokenData.used,
+              remaining_tokens: tokenData.remaining,
+              free_tokens_granted: 5,
+              free_tokens_used: tokenData.freeUsed,
+              total_purchased: tokenData.purchased,
+              total_spent: tokenData.purchased * 0.1, // Mock price per token
+              last_purchase_amount: tokenData.purchased > 0 ? Math.floor(tokenData.purchased / 2) : 0,
+              last_purchase_price: tokenData.purchased > 0 ? tokenData.purchased * 0.05 : 0,
+              tokens_used_today: Math.floor(Math.random() * 5),
+              tokens_used_this_month: tokenData.used,
+              created_at: new Date(Date.now() - Math.random() * 30 * 24 * 60 * 60 * 1000).toISOString(),
+              updated_at: new Date().toISOString()
+            };
+            setTokens(mockTokens);
+
+            setLoading(false);
+            return;
           }
         }
 
