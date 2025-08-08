@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
 import BlogCardsSection from './BlogCardsSection';
 import Footer from '../Footer';
 import SeraGPTLogo from '../ui/SeraGPTLogo';
