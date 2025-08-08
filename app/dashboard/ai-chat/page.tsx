@@ -509,8 +509,8 @@ export default function AIChatPage() {
         </div>
 
         {/* Chat History Sidebar */}
-        <div className={`${showSidebar ? 'block' : 'hidden'} lg:block w-64 ${showSidebar ? 'absolute lg:relative inset-0 lg:inset-auto bg-white z-50' : ''} border-r border-gray-200 flex flex-col`}>
-          <div className="flex items-center justify-between mb-4">
+        <div className={`${showSidebar ? 'block' : 'hidden'} lg:block w-64 ${showSidebar ? 'absolute lg:relative inset-0 lg:inset-auto bg-white z-50' : ''} border-r border-gray-200 flex flex-col overflow-hidden`}>
+          <div className="flex items-center justify-between p-3 border-b border-gray-200">
             <h3 className="font-semibold text-gray-900">Sohbet Geçmişi</h3>
             <div className="flex items-center space-x-2">
               <button
@@ -530,72 +530,76 @@ export default function AIChatPage() {
               )}
             </div>
           </div>
-          
-          {loadingHistory ? (
-            <div className="space-y-2">
-              {[1, 2, 3].map(i => (
-                <div key={i} className="h-16 bg-gray-100 rounded-lg animate-pulse"></div>
-              ))}
-            </div>
-          ) : (
-            <div className="space-y-2 max-h-40 overflow-y-auto">
-              {chatHistory.length > 0 ? (
-                chatHistory.map((session) => (
-                  <button
-                    key={session.id}
-                    onClick={() => loadPreviousSession(session.id)}
-                    className={`w-full text-left p-3 rounded-lg border transition-colors ${
-                      chatSession.id === session.id
-                        ? 'border-blue-500 bg-blue-50'
-                        : 'border-gray-200 hover:border-gray-300 hover:bg-gray-50'
-                    }`}
-                  >
-                    <h4 className="font-medium text-sm text-gray-900 truncate">
-                      {session.title}
-                    </h4>
-                    <p className="text-xs text-gray-500 mt-1">
-                      {new Date(session.updated_at).toLocaleDateString('tr-TR')}
-                    </p>
-                    <p className="text-xs text-gray-400">
-                      {session.total_tokens_used || 0} token kullanıldı
-                    </p>
-                  </button>
-                ))
-              ) : (
-                <p className="text-sm text-gray-500 text-center py-8">
-                  Henüz sohbet geçmişi yok
-                </p>
-              )}
-            </div>
-          )}
+
+          <div className="flex-1 p-3 overflow-y-auto">
+            {loadingHistory ? (
+              <div className="space-y-2">
+                {[1, 2, 3].map(i => (
+                  <div key={i} className="h-16 bg-gray-100 rounded-lg animate-pulse"></div>
+                ))}
+              </div>
+            ) : (
+              <div className="space-y-2">
+                {chatHistory.length > 0 ? (
+                  chatHistory.map((session) => (
+                    <button
+                      key={session.id}
+                      onClick={() => loadPreviousSession(session.id)}
+                      className={`w-full text-left p-3 rounded-lg border transition-colors ${
+                        chatSession.id === session.id
+                          ? 'border-blue-500 bg-blue-50'
+                          : 'border-gray-200 hover:border-gray-300 hover:bg-gray-50'
+                      }`}
+                    >
+                      <h4 className="font-medium text-sm text-gray-900 truncate">
+                        {session.title}
+                      </h4>
+                      <p className="text-xs text-gray-500 mt-1">
+                        {new Date(session.updated_at).toLocaleDateString('tr-TR')}
+                      </p>
+                      <p className="text-xs text-gray-400">
+                        {session.total_tokens_used || 0} token kullanıldı
+                      </p>
+                    </button>
+                  ))
+                ) : (
+                  <p className="text-sm text-gray-500 text-center py-8">
+                    Henüz sohbet geçmişi yok
+                  </p>
+                )}
+              </div>
+            )}
+          </div>
 
           {/* Token Status */}
-          <div className="mt-4 p-3 bg-gray-50 rounded-lg">
-            <div className="flex items-center justify-between mb-2">
-              <span className="text-sm font-medium text-gray-700">Mevcut Token</span>
-              <span className="text-sm font-bold text-blue-600">
-                {tokens?.remaining_tokens || 0}
-              </span>
+          <div className="p-3 border-t border-gray-200">
+            <div className="p-3 bg-gray-50 rounded-lg">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-sm font-medium text-gray-700">Mevcut Token</span>
+                <span className="text-sm font-bold text-blue-600">
+                  {tokens?.remaining_tokens || 0}
+                </span>
+              </div>
+              <div className="w-full bg-gray-200 rounded-full h-2">
+                <div
+                  className="bg-blue-600 h-2 rounded-full transition-all duration-300"
+                  style={{
+                    width: `${Math.max(5, ((tokens?.remaining_tokens || 0) / (tokens?.total_tokens || 1)) * 100)}%`
+                  }}
+                />
+              </div>
+              <p className="text-xs text-gray-500 mt-1">
+                Her mesaj ~1 token harcar
+              </p>
             </div>
-            <div className="w-full bg-gray-200 rounded-full h-2">
-              <div 
-                className="bg-blue-600 h-2 rounded-full transition-all duration-300"
-                style={{ 
-                  width: `${Math.max(5, ((tokens?.remaining_tokens || 0) / (tokens?.total_tokens || 1)) * 100)}%` 
-                }}
-              />
-            </div>
-            <p className="text-xs text-gray-500 mt-1">
-              Her mesaj ~1 token harcar
-            </p>
           </div>
         </div>
 
         {/* Main Chat Area */}
-        <div className="flex-1 flex flex-col">
-          
+        <div className="flex-1 flex flex-col min-w-0 lg:mt-0 mt-12">
+
           {/* Chat Header - Desktop Only */}
-          <div className="hidden lg:block p-4 border-b border-gray-200 bg-gray-50">
+          <div className="hidden lg:block p-3 border-b border-gray-200 bg-gray-50">
             <div className="flex items-center space-x-3">
               <div className="w-8 h-8 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center">
                 <span className="text-white text-sm">🤖</span>
