@@ -4,6 +4,7 @@
  */
 
 import { cacheService, CacheKeys, CacheTags } from './cache-service';
+import { performanceMonitor } from './performance-monitor';
 
 export interface APIResponse<T = any> {
   success: boolean;
