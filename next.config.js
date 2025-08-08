@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Image optimization settings
+  // Advanced image optimization settings
   images: {
     remotePatterns: [
       {
@@ -8,17 +8,33 @@ const nextConfig = {
         hostname: 'cdn.builder.io',
         port: '',
         pathname: '/api/v1/image/assets/**',
+      },
+      {
+        protocol: 'https',
+        hostname: '*.builder.io',
+        port: '',
+        pathname: '/**',
       }
     ],
-    formats: ['image/webp', 'image/avif'],
-    quality: 80,
-    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
-    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+    // AVIF first for best compression, fallback to WebP, then JPEG/PNG
+    formats: ['image/avif', 'image/webp'],
+    // Optimized quality settings
+    quality: 85,
+    // Comprehensive device sizes for responsive images
+    deviceSizes: [480, 640, 750, 828, 1080, 1200, 1440, 1920, 2048, 3840],
+    // Additional image sizes for thumbnails and icons
+    imageSizes: [16, 24, 32, 48, 64, 96, 128, 256, 384, 512],
+    // Extended cache TTL for better performance
     minimumCacheTTL: 31536000, // 1 year
+    // Security settings
     dangerouslyAllowSVG: false,
     contentDispositionType: 'attachment',
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
-    unoptimized: false
+    unoptimized: false,
+    // Enable image optimization
+    loader: 'default',
+    // Additional optimization
+    loaderFile: undefined
   },
 
   // No trailing slash for standard deployment
