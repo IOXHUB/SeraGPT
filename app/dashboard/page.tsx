@@ -53,21 +53,73 @@ export default function DashboardPage() {
       setDataLoading(true);
       setError(null);
 
-      // Load user stats and activity in parallel
-      const [stats, activity] = await Promise.all([
-        authService.getUserStats(user.id),
-        authService.getUserActivity(user.id, 10)
-      ]);
+      // Use mock data in development mode
+      if (process.env.NODE_ENV === 'development') {
+        const { DevMockSystem } = await import('@/lib/utils/dev-mock-system');
 
-      setDashboardData({
-        stats,
-        recentActivity: activity,
-        availableAnalyses: tokens?.remaining_tokens || 0
-      });
+        // Generate mock stats
+        const mockStats: UserStats = {
+          totalAnalyses: Math.floor(Math.random() * 15) + 5,
+          tokensUsed: tokens?.used_tokens || 10,
+          activeSession: true,
+          lastActivity: new Date(Date.now() - Math.random() * 24 * 60 * 60 * 1000).toISOString()
+        };
+
+        // Generate mock activity
+        const mockActivity: UserActivityLog[] = Array.from({ length: 8 }, (_, i) => ({
+          id: `activity-${i}`,
+          user_id: user.id,
+          activity_type: ['analysis_created', 'analysis_viewed', 'token_used', 'profile_updated'][Math.floor(Math.random() * 4)] as ActivityType,
+          category: ['analysis', 'auth', 'payment', 'profile'][Math.floor(Math.random() * 4)],
+          details: {
+            analysis_type: ['roi', 'climate', 'equipment', 'market'][Math.floor(Math.random() * 4)],
+            tokens_consumed: Math.floor(Math.random() * 3) + 1
+          },
+          ip_address: '127.0.0.1',
+          user_agent: 'Development Browser',
+          created_at: new Date(Date.now() - Math.random() * 7 * 24 * 60 * 60 * 1000).toISOString()
+        }));
+
+        // Simulate API delay
+        await new Promise(resolve => setTimeout(resolve, 800));
+
+        setDashboardData({
+          stats: mockStats,
+          recentActivity: mockActivity,
+          availableAnalyses: tokens?.remaining_tokens || 0
+        });
+
+        console.log('🚀 Dashboard loaded with mock data');
+
+      } else {
+        // Production: Load real data from API
+        const [stats, activity] = await Promise.all([
+          authService.getUserStats(user.id),
+          authService.getUserActivity(user.id, 10)
+        ]);
+
+        setDashboardData({
+          stats,
+          recentActivity: activity,
+          availableAnalyses: tokens?.remaining_tokens || 0
+        });
+      }
 
     } catch (error: any) {
       console.error('Failed to load dashboard data:', error);
       setError('Dashboard verileri yüklenirken hata oluştu');
+
+      // Fallback to empty state
+      setDashboardData({
+        stats: {
+          totalAnalyses: 0,
+          tokensUsed: 0,
+          activeSession: false,
+          lastActivity: null
+        },
+        recentActivity: [],
+        availableAnalyses: 0
+      });
     } finally {
       setDataLoading(false);
     }
