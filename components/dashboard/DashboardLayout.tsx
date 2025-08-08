@@ -83,6 +83,17 @@ export default function DashboardLayout({ children, title, subtitle }: Dashboard
     return pathname.startsWith(href);
   };
 
+  const toggleSubmenu = (itemName: string) => {
+    setExpandedMenus(prev => ({
+      ...prev,
+      [itemName]: !prev[itemName]
+    }));
+  };
+
+  const isSubmenuActive = (submenu: MenuItem[]) => {
+    return submenu.some(item => isActive(item.href));
+  };
+
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Mobile sidebar backdrop */}
