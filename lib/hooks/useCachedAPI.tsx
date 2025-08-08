@@ -263,8 +263,8 @@ export function useBatchAnalysis(params: {
     setLoading(true);
     setErrors({});
 
-    const promises = [];
-    const analyses = [];
+    const promises: Promise<any>[] = [];
+    const analyses: string[] = [];
 
     if (params.roi) {
       promises.push(roiQuery.execute());
