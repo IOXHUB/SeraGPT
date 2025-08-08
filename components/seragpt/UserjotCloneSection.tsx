@@ -272,12 +272,14 @@ export default function UserjotCloneSection() {
             <div className="md:flex md:overflow-x-auto md:scrollbar-hide md:space-x-6 md:pb-6 space-y-6 md:space-y-0">
               {/* Card 1 - ROI Simülasyonu */}
               <div
-
-                className="flex-shrink-0 w-80 bg-white rounded-2xl p-8 border border-gray-200 relative"
+                className="md:flex-shrink-0 w-full md:w-80 bg-white rounded-2xl p-6 md:p-8 border border-gray-200 relative shadow-sm hover:shadow-md transition-shadow"
               >
-                <div className="absolute top-6 left-6 text-6xl font-bold text-gray-100">01</div>
-                <div className="mt-16">
-                  <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-4">Yatırım Geri Dönüş (ROI) Simülasyonu</h3>
+                <div className="absolute top-4 md:top-6 left-4 md:left-6 text-4xl md:text-6xl font-bold text-gray-100">01</div>
+                <div className="mt-12 md:mt-16">
+                  <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-4 leading-tight">
+                    <span className="block sm:hidden">ROI Simülasyonu</span>
+                    <span className="hidden sm:block">Yatırım Geri Dönüş (ROI) Simülasyonu</span>
+                  </h3>
 
                   <div className="space-y-3 mb-4">
                     <div>
