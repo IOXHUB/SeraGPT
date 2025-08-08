@@ -244,15 +244,6 @@ export default function DashboardLayout({ children, title, subtitle }: Dashboard
 
             {/* Header Actions */}
             <div className="flex items-center space-x-4 flex-shrink-0">
-              {/* Quick AI Chat */}
-              <a
-                href="/dashboard/ai-chat"
-                className="hidden sm:flex items-center space-x-2 px-4 py-2 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white rounded-lg text-sm font-medium transition-all duration-200 shadow-sm"
-              >
-                <span className="text-base">🤖</span>
-                <span>AI Asistan</span>
-              </a>
-
               {/* Mobile AI Chat */}
               <a
                 href="/dashboard/ai-chat"
@@ -261,23 +252,8 @@ export default function DashboardLayout({ children, title, subtitle }: Dashboard
                 <span className="text-base">🤖</span>
               </a>
 
-              {/* Notifications */}
-              <button className="p-2 text-gray-400 hover:text-gray-600 rounded-lg hover:bg-gray-100 relative">
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 17h5l-5 5v-5z" />
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4" />
-                </svg>
-                <span className="absolute top-1 right-1 w-2 h-2 bg-green-500 rounded-full"></span>
-              </button>
-
-              {/* User Profile */}
               <div className="flex items-center space-x-3 ml-2">
-                <div className="w-8 h-8 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center flex-shrink-0">
-                  <span className="text-white text-sm font-medium">V</span>
-                </div>
                 <div className="hidden md:block min-w-0">
-                  <p className="text-sm font-medium text-gray-700 truncate">Volkan Ş.</p>
-                  <p className="text-xs text-gray-500 truncate">Admin</p>
                 </div>
               </div>
             </div>
