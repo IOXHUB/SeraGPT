@@ -140,64 +140,12 @@ export default function ROIAnalysisPage() {
   };
 
   const handleCalculateROI = async () => {
-    if (!user || !hasTokens(1)) {
-      setError('Bu analiz için token gereklidir. Lütfen token satın alın.');
+    if (!user || !hasTokens(2)) { // ROI analysis costs 2 tokens
       return;
     }
 
-    setLoading(true);
-    setError('');
-
-    try {
-      // Send analysis request to API
-      const response = await fetch('/api/analysis/roi', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${await getAuthToken()}`
-        },
-        body: JSON.stringify({
-          type: 'roi_analysis',
-          parameters: {
-            ...roiInputs,
-            user_preferences: {
-              currency: 'TRY',
-              units: 'metric'
-            }
-          },
-          context: {
-            analysis_depth: 'comprehensive',
-            include_recommendations: true,
-            include_risk_assessment: true,
-            include_cash_flow: true
-          }
-        })
-      });
-
-      if (response.ok) {
-        const data = await response.json();
-        
-        if (data.success && data.data) {
-          setResults(data.data.analysis_results);
-          setReportId(data.data.report_id);
-          setCurrentStep(4);
-          
-          // Consume token for analysis
-          await consumeToken(1, 'analysis_created');
-        } else {
-          setError(data.error || 'Analiz hesaplanamadı');
-        }
-      } else {
-        const errorData = await response.json();
-        setError(errorData.error || 'API isteği başarısız');
-      }
-
-    } catch (err: any) {
-      console.error('ROI calculation error:', err);
-      setError('Beklenmeyen bir hata oluştu');
-    } finally {
-      setLoading(false);
-    }
+    // Execute cached API call
+    await roiAnalysis.execute();
   };
 
   const handleGeneratePDF = async () => {
