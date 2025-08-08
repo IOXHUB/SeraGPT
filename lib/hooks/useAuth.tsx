@@ -363,7 +363,14 @@ export function useAuth(): AuthContextType {
       }
 
       // For development, allow unlimited tokens
-      if (process.env.NODE_ENV === 'development') {
+      const isDev = typeof window !== 'undefined' && (
+        process.env.NODE_ENV === 'development' ||
+        window.location.hostname.includes('fly.dev') ||
+        window.location.hostname.includes('builder.my') ||
+        window.location.hostname.includes('localhost')
+      );
+
+      if (isDev) {
         await logActivity(activityType, { tokens_consumed: amount });
         return { success: true, remaining_tokens: 999 };
       }
