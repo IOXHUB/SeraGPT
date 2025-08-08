@@ -560,7 +560,7 @@ export default function UserjotCloneSection() {
             <p className="text-body text-center mb-4">
               Sorunuza cevap bulamadınız mı?
             </p>
-            <a
+            <Link
               href="/destek"
               className="inline-flex items-center space-x-2 bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded-lg text-base font-medium transition-colors"
             >
@@ -568,7 +568,7 @@ export default function UserjotCloneSection() {
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
-            </a>
+            </Link>
           </div>
         </div>
       </div>
