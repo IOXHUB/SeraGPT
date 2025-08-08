@@ -284,7 +284,7 @@ export default function DashboardLayout({ children, title, subtitle }: Dashboard
         </header>
 
         {/* Main Content Area */}
-        <main className="flex-1 p-4 lg:p-6 max-w-full">
+        <main className="flex-1 p-3 lg:p-4 max-w-full overflow-hidden">
           <div className="max-w-none">
             {children}
           </div>
