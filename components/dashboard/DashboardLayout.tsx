@@ -160,7 +160,7 @@ export default function DashboardLayout({ children, title, subtitle }: Dashboard
       }`}>
         <div className="flex flex-col h-full">
           {/* Mobile Header */}
-          <div className="flex items-center justify-between h-14 px-4 border-b border-gray-200">
+          <div className="flex items-center justify-between h-16 px-4 border-b border-gray-200">
             <SeraGPTLogo size="sm" priority />
             <button
               onClick={() => setSidebarOpen(false)}
