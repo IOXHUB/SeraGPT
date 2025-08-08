@@ -231,14 +231,15 @@ export default function DashboardLayout({ children, title, subtitle }: Dashboard
                 </svg>
               </button>
 
-              {title && (
-                <div className="min-w-0">
-                  <h1 className="text-lg font-semibold text-gray-900 truncate leading-tight">{title}</h1>
-                  {subtitle && (
-                    <p className="text-sm text-gray-500 truncate leading-tight -mt-0.5">{subtitle}</p>
-                  )}
+              <div className="min-w-0">
+                <div className="flex items-center space-x-3">
+                  <h1 className="text-lg font-semibold text-gray-900 truncate leading-tight">Volkan Ş.</h1>
+                  <span className="px-2 py-1 text-xs font-medium bg-gradient-to-r from-cyan-400 to-cyan-500 text-white rounded-full shadow-sm">
+                    Premium
+                  </span>
                 </div>
-              )}
+                <p className="text-sm text-gray-500 truncate leading-tight -mt-0.5">Hoş Geldiniz</p>
+              </div>
             </div>
 
             {/* Header Actions */}
