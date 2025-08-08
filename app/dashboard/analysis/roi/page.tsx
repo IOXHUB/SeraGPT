@@ -257,7 +257,7 @@ export default function ROIAnalysisPage() {
             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
           >
             <option value="domates">🍅 Domates</option>
-            <option value="salatalik">��� Salatalık</option>
+            <option value="salatalik">🥒 Salatalık</option>
             <option value="biber">🌶️ Biber</option>
             <option value="patlican">🍆 Patlıcan</option>
             <option value="cilek">🍓 Çilek</option>
@@ -723,7 +723,7 @@ export default function ROIAnalysisPage() {
                   <span className="text-gray-600">Aylık Ortalama</span>
                   <span className="font-semibold text-red-600">₺{roiAnalysis.data.operationalCosts.monthly.toLocaleString()}</span>
                 </div>
-                {Object.entries(roiAnalysis.data.operationalCosts.breakdown).map(([key, value]: [string, number]) => (
+                {Object.entries(roiAnalysis.data.operationalCosts.breakdown).map(([key, value]) => (
                   <div key={key} className="flex justify-between items-center text-sm">
                     <span className="text-gray-500 capitalize">{key}</span>
                     <span className="text-gray-700">₺{value.toLocaleString()}</span>
@@ -760,7 +760,7 @@ export default function ROIAnalysisPage() {
                           rec.priority === 'medium' ? 'bg-yellow-100 text-yellow-700' : 
                           'bg-green-100 text-green-700'
                         }`}>
-                          {rec.priority === 'high' ? 'Yüksek' : rec.priority === 'medium' ? 'Orta' : 'Düşük'} öncelik
+                          {rec.priority === 'high' ? 'Y��ksek' : rec.priority === 'medium' ? 'Orta' : 'Düşük'} öncelik
                         </span>
                       </div>
                     </div>
