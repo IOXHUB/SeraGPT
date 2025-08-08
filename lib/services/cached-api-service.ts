@@ -85,7 +85,7 @@ class CachedAPIService {
         ttl: options.ttl || 2 * 60 * 60 * 1000, // 2 hours
         tags: [CacheTags.ANALYSIS, CacheTags.USER_DATA],
         staleWhileRevalidate: true,
-        maxAge: CacheService.TTL_PRESETS.ANALYSIS, // Serve stale after 1 hour
+        maxAge: 60 * 60 * 1000, // Serve stale after 1 hour
         ...options
       }
     );
