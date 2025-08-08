@@ -148,11 +148,7 @@ export function useValidation<T extends Record<string, any>>(
     // Mark field as touched
     setValidationState(prev => ({
       ...prev,
-<<<<<<< HEAD
-      touchedFields: new Set(Array.from(prev.touchedFields).concat([fieldName as string]))
-=======
       touchedFields: new Set([...Array.from(prev.touchedFields), fieldName as string])
->>>>>>> 415584153a942ce547605818b181d952b42a40f2
     }));
 
     // Validate if enabled
@@ -211,11 +207,7 @@ export function useValidation<T extends Record<string, any>>(
           ...prev.warnings,
           [fieldName]: fieldResult.warning || ''
         },
-<<<<<<< HEAD
-        touchedFields: new Set(Array.from(prev.touchedFields).concat([fieldName as string]))
-=======
         touchedFields: new Set([...Array.from(prev.touchedFields), fieldName as string])
->>>>>>> 415584153a942ce547605818b181d952b42a40f2
       }));
     }
   }, [validateOnBlur, validateSingleField, data]);
@@ -379,11 +371,7 @@ export function useUserProfileValidation(initialProfile: any) {
       company_name: (value: any) => [
         {
           type: 'length' as const,
-<<<<<<< HEAD
-          validator: (v: any) => !v || (v.length >= 2 && v.length <= 200),
-=======
           validator: (v: string) => !v || (v.length >= 2 && v.length <= 200),
->>>>>>> 415584153a942ce547605818b181d952b42a40f2
           message: 'Şirket adı 2-200 karakter arasında olmalı'
         }
       ]
