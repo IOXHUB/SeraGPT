@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 import Footer from '../../components/Footer';
 import ConsultingRequestModal from '../../components/ConsultingRequestModal';
 
@@ -215,27 +216,27 @@ export default function DanismanlikPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center">
-              <a href="/" className="flex items-center">
+              <Link href="/" className="flex items-center">
                 <img
                   src="https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2F96da5382e9584c3fb2d32eca60944359?format=webp&width=800"
                   alt="SeraGPT Logo"
                   className="h-8 w-auto"
                 />
-              </a>
+              </Link>
             </div>
             <nav className="hidden md:flex space-x-8">
-              <a href="/destek" className="text-gray-600 hover:text-gray-900 font-medium">
+              <Link href="/destek" className="text-gray-600 hover:text-gray-900 font-medium">
                 Destek
-              </a>
-              <a href="/danismanlik" className="text-gray-600 hover:text-gray-900 font-medium">
+              </Link>
+              <Link href="/danismanlik" className="text-gray-600 hover:text-gray-900 font-medium">
                 Danışmanlık
-              </a>
-              <a href="/anahtar-teslim-proje" className="text-gray-600 hover:text-gray-900 font-medium">
+              </Link>
+              <Link href="/anahtar-teslim-proje" className="text-gray-600 hover:text-gray-900 font-medium">
                 Anahtar Teslim Sera
-              </a>
-              <a href="/auth/login" className="text-gray-600 hover:text-gray-900 font-medium">
+              </Link>
+              <Link href="/auth/login" className="text-gray-600 hover:text-gray-900 font-medium">
                 Giriş Yap
-              </a>
+              </Link>
             </nav>
 
             {/* Mobile menu button */}
@@ -279,7 +280,7 @@ export default function DanismanlikPage() {
                 <h3 className="text-lg font-semibold text-gray-900">Menü</h3>
               </div>
               <div className="space-y-3">
-                <a
+                <Link
                   href="/destek"
                   className="block text-gray-700 hover:text-gray-900 hover:bg-gray-50 py-3 px-4 rounded-lg transition-all"
                   onClick={() => setIsMobileMenuOpen(false)}
@@ -288,8 +289,8 @@ export default function DanismanlikPage() {
                     <span className="text-lg">❓</span>
                     <span className="text-base font-medium">Destek</span>
                   </div>
-                </a>
-                <a
+                </Link>
+                <Link
                   href="/danismanlik"
                   className="block text-gray-700 hover:text-gray-900 hover:bg-gray-50 py-3 px-4 rounded-lg transition-all"
                   onClick={() => setIsMobileMenuOpen(false)}
@@ -298,8 +299,8 @@ export default function DanismanlikPage() {
                     <span className="text-lg">🎯</span>
                     <span className="text-base font-medium">Danışmanlık</span>
                   </div>
-                </a>
-                <a
+                </Link>
+                <Link
                   href="/anahtar-teslim-proje"
                   className="block text-gray-700 hover:text-gray-900 hover:bg-gray-50 py-3 px-4 rounded-lg transition-all"
                   onClick={() => setIsMobileMenuOpen(false)}
@@ -308,8 +309,8 @@ export default function DanismanlikPage() {
                     <span className="text-lg">🏗️</span>
                     <span className="text-base font-medium">Anahtar Teslim Sera</span>
                   </div>
-                </a>
-                <a
+                </Link>
+                <Link
                   href="/blog"
                   className="block text-gray-700 hover:text-gray-900 hover:bg-gray-50 py-3 px-4 rounded-lg transition-all"
                   onClick={() => setIsMobileMenuOpen(false)}
@@ -318,17 +319,17 @@ export default function DanismanlikPage() {
                     <span className="text-lg">📖</span>
                     <span className="text-base font-medium">Blog</span>
                   </div>
-                </a>
+                </Link>
               </div>
               <div className="border-t border-gray-100 pt-4">
-                <a
+                <Link
                   href="/auth/login"
                   className="flex items-center justify-center w-full bg-gradient-to-r from-gray-700 to-gray-800 text-white py-3 px-4 rounded-xl font-medium transition-all hover:from-gray-800 hover:to-gray-900 shadow-lg"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   <span className="text-lg mr-2">🔐</span>
                   <span>Panele Giriş</span>
-                </a>
+                </Link>
               </div>
             </div>
           </motion.div>

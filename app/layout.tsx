@@ -4,7 +4,11 @@ import Script from 'next/script'
 import AnalyticsWrapper from '@/components/AnalyticsWrapper'
 import ProductionErrorHandler from '@/components/ProductionErrorHandler'
 import ImageOptimizationProvider from '@/components/providers/ImageOptimizationProvider'
+<<<<<<< HEAD
 import DevToolsWidget from '@/components/dev/DevToolsWidget'
+=======
+import DevNavigation from '@/components/DevNavigation'
+>>>>>>> 6c9674f8b6cab435193670a79acb6e32d263b1f9
 
 export const metadata: Metadata = {
   title: 'SeraGPT',
@@ -25,9 +29,16 @@ export default function RootLayout({
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
       </head>
       <body suppressHydrationWarning>
+        <DevNavigation />
         <ProductionErrorHandler />
+<<<<<<< HEAD
         {children}
         <DevToolsWidget />
+=======
+        <div className={process.env.NODE_ENV === 'development' ? 'pt-12' : ''}>
+          {children}
+        </div>
+>>>>>>> 6c9674f8b6cab435193670a79acb6e32d263b1f9
         {process.env.NODE_ENV === 'development' && (
           <Script id="suppress-hydration-warnings" strategy="beforeInteractive">
             {`

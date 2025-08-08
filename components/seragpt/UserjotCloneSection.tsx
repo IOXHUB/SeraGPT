@@ -1,15 +1,23 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import BlogCardsSection from './BlogCardsSection';
 import Footer from '../Footer';
 import SeraGPTLogo from '../ui/SeraGPTLogo';
 
 export default function UserjotCloneSection() {
+  const router = useRouter();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [openFAQ, setOpenFAQ] = useState<number | null>(null);
   const [user, setUser] = useState<any>(null);
   const [loading, setLoading] = useState(true);
+
+  const handleNavigation = (href: string) => {
+    setIsMobileMenuOpen(false);
+    router.push(href);
+  };
 
   // Simple auth check without context
   useEffect(() => {
@@ -49,6 +57,7 @@ export default function UserjotCloneSection() {
     checkAuth();
   }, []);
 
+
   return (
     <div className="page-container">
       {/* Header - Clean layout */}
@@ -56,22 +65,22 @@ export default function UserjotCloneSection() {
         <div className="header-footer-container">
           {/* Logo - clickable to homepage */}
           <div className="flex items-center space-x-3">
-            <a href="/" className="flex items-center space-x-3">
+            <Link href="/" className="flex items-center space-x-3">
               <SeraGPTLogo size="md" priority />
-            </a>
+            </Link>
           </div>
 
           {/* Center navigation - 3 links */}
           <nav className="hidden md:flex items-center space-x-8">
-            <a href="/danismanlik" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
+            <Link href="/danismanlik" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
               Danışmanlık
-            </a>
-            <a href="/anahtar-teslim-proje" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
+            </Link>
+            <Link href="/anahtar-teslim-proje" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
               Anahtar Teslim Proje
-            </a>
-            <a href="/destek" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
+            </Link>
+            <Link href="/destek" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
               Destek
-            </a>
+            </Link>
           </nav>
 
           {/* Right menu - conditional based on user state */}
@@ -80,18 +89,18 @@ export default function UserjotCloneSection() {
               <>
                 {user ? (
                   // For logged in users - show Dashboard
-                  <a href="/dashboard" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
+                  <Link href="/dashboard" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
                     Dashboard
-                  </a>
+                  </Link>
                 ) : (
                   // For logged out users - show Login or Sign Up CTA
                   <>
-                    <a href="/auth/login" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
+                    <Link href="/auth/login" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
                       Giriş Yap
-                    </a>
-                    <a href="/auth/login" className="bg-gray-600 text-white px-4 py-2 rounded-lg text-base font-medium hover:bg-gray-800 transition-colors">
+                    </Link>
+                    <Link href="/auth/login" className="bg-gray-600 text-white px-4 py-2 rounded-lg text-base font-medium hover:bg-gray-800 transition-colors">
                       Ücretsiz Başla
-                    </a>
+                    </Link>
                   </>
                 )}
               </>
@@ -128,46 +137,42 @@ export default function UserjotCloneSection() {
 
               {/* Navigation Links */}
               <div className="space-y-3">
-                <a
-                  href="/destek"
-                  className="block text-gray-700 hover:text-gray-900 hover:bg-gray-50 py-3 px-4 rounded-lg transition-all"
-                  onClick={() => setIsMobileMenuOpen(false)}
+                <button
+                  onClick={() => handleNavigation('/destek')}
+                  className="w-full text-left block text-gray-700 hover:text-gray-900 hover:bg-gray-50 py-3 px-4 rounded-lg transition-all"
                 >
                   <div className="flex items-center space-x-3">
                     <span className="text-lg">❓</span>
                     <span className="text-base font-medium">Destek</span>
                   </div>
-                </a>
-                <a
-                  href="/danismanlik"
-                  className="block text-gray-700 hover:text-gray-900 hover:bg-gray-50 py-3 px-4 rounded-lg transition-all"
-                  onClick={() => setIsMobileMenuOpen(false)}
+                </button>
+                <button
+                  onClick={() => handleNavigation('/danismanlik')}
+                  className="w-full text-left block text-gray-700 hover:text-gray-900 hover:bg-gray-50 py-3 px-4 rounded-lg transition-all"
                 >
                   <div className="flex items-center space-x-3">
                     <span className="text-lg">🎯</span>
                     <span className="text-base font-medium">Danışmanlık</span>
                   </div>
-                </a>
-                <a
-                  href="/anahtar-teslim-proje"
-                  className="block text-gray-700 hover:text-gray-900 hover:bg-gray-50 py-3 px-4 rounded-lg transition-all"
-                  onClick={() => setIsMobileMenuOpen(false)}
+                </button>
+                <button
+                  onClick={() => handleNavigation('/anahtar-teslim-proje')}
+                  className="w-full text-left block text-gray-700 hover:text-gray-900 hover:bg-gray-50 py-3 px-4 rounded-lg transition-all"
                 >
                   <div className="flex items-center space-x-3">
                     <span className="text-lg">🏗️</span>
                     <span className="text-base font-medium">Anahtar Teslim Sera</span>
                   </div>
-                </a>
-                <a
-                  href="/blog"
-                  className="block text-gray-700 hover:text-gray-900 hover:bg-gray-50 py-3 px-4 rounded-lg transition-all"
-                  onClick={() => setIsMobileMenuOpen(false)}
+                </button>
+                <button
+                  onClick={() => handleNavigation('/blog')}
+                  className="w-full text-left block text-gray-700 hover:text-gray-900 hover:bg-gray-50 py-3 px-4 rounded-lg transition-all"
                 >
                   <div className="flex items-center space-x-3">
                     <span className="text-lg">📖</span>
                     <span className="text-base font-medium">Blog</span>
                   </div>
-                </a>
+                </button>
               </div>
 
               {/* Panel Access Button */}
@@ -175,39 +180,35 @@ export default function UserjotCloneSection() {
                 {!loading && (
                   <>
                     {user ? (
-                      <a
-                        href="/dashboard"
+                      <button
+                        onClick={() => handleNavigation('/dashboard')}
                         className="flex items-center justify-center w-full bg-gradient-to-r from-gray-700 to-gray-800 text-white py-3 px-4 rounded-xl font-medium transition-all hover:from-gray-800 hover:to-gray-900 shadow-lg"
-                        onClick={() => setIsMobileMenuOpen(false)}
                       >
                         <span className="text-lg mr-2">📊</span>
                         <span>Panelime Git</span>
-                      </a>
+                      </button>
                     ) : (
                       <div className="space-y-3">
-                        <a
-                          href="/auth/login"
+                        <button
+                          onClick={() => handleNavigation('/auth/login')}
                           className="flex items-center justify-center w-full bg-gradient-to-r from-gray-700 to-gray-800 text-white py-3 px-4 rounded-xl font-medium transition-all hover:from-gray-800 hover:to-gray-900 shadow-lg"
-                          onClick={() => setIsMobileMenuOpen(false)}
                         >
                           <span className="text-lg mr-2">🔐</span>
                           <span>Panele Giriş</span>
-                        </a>
+                        </button>
                         <div className="flex space-x-2">
-                          <a
-                            href="/auth/login"
+                          <button
+                            onClick={() => handleNavigation('/auth/login')}
                             className="flex-1 text-center border border-gray-300 text-gray-700 py-2 px-3 rounded-lg text-sm font-medium hover:bg-gray-50 transition-colors"
-                            onClick={() => setIsMobileMenuOpen(false)}
                           >
                             Giriş Yap
-                          </a>
-                          <a
-                            href="/auth/login"
+                          </button>
+                          <button
+                            onClick={() => handleNavigation('/auth/login')}
                             className="flex-1 text-center bg-gray-600 text-white py-2 px-3 rounded-lg text-sm font-medium hover:bg-gray-700 transition-colors"
-                            onClick={() => setIsMobileMenuOpen(false)}
                           >
                             Kayıt Ol
-                          </a>
+                          </button>
                         </div>
                       </div>
                     )}
@@ -242,10 +243,10 @@ export default function UserjotCloneSection() {
           </p>
 
           {/* CTA Button - Mobile optimized */}
-          <a href="/auth/login" className="btn btn-primary mb-4 w-full sm:w-auto max-w-sm mx-auto block text-center">
+          <Link href="/auth/login" className="btn btn-primary mb-4 w-full sm:w-auto max-w-sm mx-auto block text-center">
             <span className="hidden sm:inline">Şimdi Oluştur – İlk 5 Rapor Ücretsiz</span>
             <span className="sm:hidden">🚀 Ücretsiz Başla</span>
-          </a>
+          </Link>
 
           {/* Small text under button */}
           <p className="text-small text-center text-xs sm:text-sm">
@@ -279,9 +280,9 @@ export default function UserjotCloneSection() {
 
           {/* CTA Button */}
           <div className="text-center mt-12">
-            <button className="btn btn-primary mb-4">
+            <Link href="/auth/login" className="btn btn-primary mb-4">
               Kullanıcı Paneline Giriş Yapın
-            </button>
+            </Link>
             <p className="text-small text-center">
               Tüm sera projelerinizi tek platformdan yönetin
             </p>
@@ -559,7 +560,7 @@ export default function UserjotCloneSection() {
             <p className="text-body text-center mb-4">
               Sorunuza cevap bulamadınız mı?
             </p>
-            <a
+            <Link
               href="/destek"
               className="inline-flex items-center space-x-2 bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded-lg text-base font-medium transition-colors"
             >
@@ -567,7 +568,7 @@ export default function UserjotCloneSection() {
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
-            </a>
+            </Link>
           </div>
         </div>
       </div>
