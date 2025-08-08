@@ -247,12 +247,38 @@ export default function AIChatPage() {
     setIsTyping(true);
 
     try {
+      const authToken = await getAuthToken();
+
+      // If no auth token available, provide mock responses for development
+      if (!authToken || chatSession.id.startsWith('local_')) {
+        setTimeout(() => {
+          const mockResponse = generateMockResponse(currentInput);
+          const aiMessage: ChatMessage = {
+            id: `msg_${Date.now()}_ai`,
+            role: 'assistant',
+            content: mockResponse,
+            timestamp: new Date(),
+            token_cost: 1,
+            session_id: chatSession.id
+          };
+
+          const finalSession = {
+            ...updatedSession,
+            messages: [...updatedSession.messages, aiMessage],
+            total_tokens_used: updatedSession.total_tokens_used + 1
+          };
+          setChatSession(finalSession);
+          setIsTyping(false);
+        }, 1000 + Math.random() * 2000); // Simulate response delay
+        return;
+      }
+
       // Send message to API
       const response = await fetch('/api/chat/messages', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${await getAuthToken()}`
+          'Authorization': `Bearer ${authToken}`
         },
         body: JSON.stringify({
           session_id: chatSession.id,
