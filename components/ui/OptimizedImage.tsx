@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import { useState } from 'react';
+import { ImageOptimizer, ImagePresets } from '@/lib/utils/image-optimizer';
 
 interface OptimizedImageProps {
   src: string;
