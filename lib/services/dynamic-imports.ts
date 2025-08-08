@@ -2,11 +2,13 @@ import dynamic from 'next/dynamic';
 import { ComponentType } from 'react';
 
 // Loading component for dynamic imports
-const LoadingComponent = () => (
-  <div className="flex items-center justify-center p-8">
-    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
-  </div>
-);
+const LoadingComponent = () => {
+  return (
+    <div className="flex items-center justify-center p-8">
+      <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary" />
+    </div>
+  );
+};
 
 // Dynamic imports for analysis pages
 export const DynamicROIAnalysis = dynamic(
@@ -60,15 +62,6 @@ export const DynamicFramerMotion = {
     ssr: false,
   }),
 };
-
-// Dynamic charts (if we add charts later)
-export const DynamicChart = dynamic(
-  () => import('@/components/ui/Chart').catch(() => ({ default: () => <div>Chart not available</div> })),
-  {
-    loading: LoadingComponent,
-    ssr: false,
-  }
-);
 
 // Dynamic admin components
 export const DynamicAdminAnalytics = dynamic(
