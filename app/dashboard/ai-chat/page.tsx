@@ -728,11 +728,11 @@ export default function AIChatPage() {
                 )}
               </div>
 
-              <div className="flex flex-col space-y-2">
+              <div className="flex flex-col space-y-1 md:space-y-2">
                 <button
                   onClick={handleSendMessage}
                   disabled={!inputValue.trim() || isTyping || !hasTokens(1)}
-                  className="flex-shrink-0 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center min-h-[48px] transform hover:scale-105 active:scale-95"
+                  className="flex-shrink-0 bg-blue-600 hover:bg-blue-700 text-white px-3 md:px-6 py-2 md:py-3 rounded-lg font-medium transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center min-h-[44px] md:min-h-[48px] transform hover:scale-105 active:scale-95 text-sm md:text-base"
                 >
                   {isTyping ? (
                     <>
