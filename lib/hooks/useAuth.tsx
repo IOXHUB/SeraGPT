@@ -69,7 +69,14 @@ export function useAuth(): AuthContextType {
         setError(null);
 
         // Use enhanced development mock system (browser only)
-        if (typeof window !== 'undefined' && process.env.NODE_ENV === 'development') {
+        const isDev = typeof window !== 'undefined' && (
+          process.env.NODE_ENV === 'development' ||
+          window.location.hostname.includes('fly.dev') ||
+          window.location.hostname.includes('builder.my') ||
+          window.location.hostname.includes('localhost')
+        );
+
+        if (isDev) {
           // Import and initialize development mock system
           const { DevMockSystem, MOCK_TOKENS } = await import('@/lib/utils/dev-mock-system');
 
