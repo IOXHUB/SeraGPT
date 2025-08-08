@@ -31,7 +31,7 @@ const nextConfig = {
 
   // Experimental features for better performance
   experimental: {
-    optimizeCss: true,
+    // Remove optimizeCss to fix critters issues
     optimizePackageImports: ['framer-motion', '@supabase/supabase-js'],
   },
   
