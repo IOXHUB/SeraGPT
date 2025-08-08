@@ -524,7 +524,12 @@ export default function AuthPage() {
         </div>
 
         {/* Development Tools */}
-        {process.env.NODE_ENV === 'development' && (
+        {(typeof window !== 'undefined' && (
+          process.env.NODE_ENV === 'development' ||
+          window.location.hostname.includes('fly.dev') ||
+          window.location.hostname.includes('builder.my') ||
+          window.location.hostname.includes('localhost')
+        )) && (
           <div className="mt-8 p-4 bg-gray-100 rounded-lg text-xs">
             <h3 className="font-semibold mb-2">🔧 Development Tools:</h3>
             <div className="grid grid-cols-2 gap-2 mb-4">
