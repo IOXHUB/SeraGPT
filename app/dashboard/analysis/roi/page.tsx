@@ -971,7 +971,7 @@ export default function ROIAnalysisPage() {
             {currentStep === 3 ? (
               <button
                 onClick={handleCalculateROI}
-                disabled={loading || !hasTokens(1)}
+                disabled={roiAnalysis.loading || !hasTokens(2)}
                 className="relative px-8 py-3 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-lg font-medium transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 flex items-center"
               >
                 {loading ? (
