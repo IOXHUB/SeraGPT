@@ -383,6 +383,24 @@ export default function AIChatPage() {
     }
   };
 
+  const generateMockResponse = (userInput: string): string => {
+    const input = userInput.toLowerCase();
+
+    if (input.includes('maliyet') || input.includes('para') || input.includes('fiyat')) {
+      return `💰 Sera maliyetleri hakkında:\n\nOrtalama sera kurulum maliyetleri:\n• Küçük sera (100m²): 50.000 - 80.000 TL\n• Orta sera (500m²): 200.000 - 350.000 TL\n• Büyük sera (1000m²): 400.000 - 600.000 TL\n\nBu maliyetler şunları içerir:\n🔸 Sera yapısı ve örtü\n🔸 İklim kontrol sistemleri\n🔸 Sulama sistemi\n🔸 Elektrik altyapısı\n\nDetaylı analiz için ROI hesaplama aracımızı kullanabilirsiniz.`;
+    }
+
+    if (input.includes('roi') || input.includes('geri dönüş')) {
+      return `📊 ROI Hesaplaması:\n\nSera yatırımında ROI faktörleri:\n• İlk yatırım tutarı\n• Yıllık işletme maliyetleri\n• Beklenen verim ve satış fiyatları\n• Pazarlama stratejisi\n\nOrtalama geri dönüş süreleri:\n🔸 Sebze üretimi: 2-3 yıl\n🔸 Meyve üretimi: 3-5 yıl\n🔸 Süs bitkisi: 1-2 yıl\n\nDetaylı ROI analizi için dashboard'daki aracımızı kullanın.`;
+    }
+
+    if (input.includes('bölge') || input.includes('iklim') || input.includes('coğrafya')) {
+      return `🌍 Bölge Seçimi:\n\nİdeal sera bölgeleri:\n• Antalya - Akdeniz iklimi\n• Mersin - Yıl boyu üretim\n• İzmir - Ulaşım avantajı\n• Muğla - Turizm pazarı\n\nBölge seçiminde dikkat edilecekler:\n🔸 İklim koşulları\n🔸 Su kaynakları\n🔸 Ulaşım imkanları\n🔸 İşgücü mevcudiyeti\n🔸 Pazar yakınlığı\n\nİklim analizi aracımızla bölgenizi değerlendirebilirsiniz.`;
+    }
+
+    return `🤖 SeraGPT AI Asistan:\n\nSorunuzu daha detaylı anlayabilmek için yardıma ihtiyacım var. \n\nŞu konularda size daha iyi yardımcı olabilirim:\n🔸 Sera maliyetleri ve ROI hesaplamaları\n🔸 Bölge ve iklim analizi\n🔸 Ekipman seçimi ve önerileri\n🔸 Pazar analizi ve fiyat takibi\n🔸 Teknik planlama ve düzen\n\nLütfen sorunuzu daha spesifik olarak sorar mısınız?`;
+  };
+
   const getQuickQuestions = () => [
     "Sera yatırımı için kaç para gerekir?",
     "Hangi bölgede sera kurmak daha karlı?",
