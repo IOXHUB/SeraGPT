@@ -267,7 +267,7 @@ export default function DashboardLayout({ children, title, subtitle, requiresTok
                             Son Raporlarınız
                           </div>
                           {userReports.slice(0, 3).map((report) => (
-                            <LowPriorityLink
+                            <a
                               key={report.id}
                               href={`/dashboard/reports/${report.id}`}
                               className="block px-3 py-2 rounded-md text-xs text-gray-600 hover:bg-gray-50 hover:text-gray-900 transition-colors"
@@ -285,7 +285,7 @@ export default function DashboardLayout({ children, title, subtitle, requiresTok
                               <div className="text-xs text-gray-400 mt-1">
                                 {new Date(report.date).toLocaleDateString('tr-TR')}
                               </div>
-                            </LowPriorityLink>
+                            </a>
                           ))}
                           <MediumPriorityLink
                             href="/dashboard/reports"
