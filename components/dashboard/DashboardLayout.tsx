@@ -13,11 +13,17 @@ export default function DashboardLayout({ children, title, subtitle }: Dashboard
 
   const menuItems = [
     { name: 'Dashboard', href: '/dashboard', active: false },
+    { name: 'AI Asistan', href: '/dashboard/ai-chat', active: false },
     { name: 'ROI Simülasyonu', href: '/dashboard/analysis/roi', active: false },
     { name: 'İklim Analizi', href: '/dashboard/analysis/climate', active: false },
     { name: 'Ekipman Listesi', href: '/dashboard/analysis/equipment', active: false },
     { name: 'Pazar Analizi', href: '/dashboard/analysis/market', active: false },
     { name: 'Teknik Planlar', href: '/dashboard/analysis/layout', active: false },
+    { name: 'Raporlar', href: '/dashboard/reports', active: false },
+    { name: 'Projeler', href: '/dashboard/projects', active: false },
+    { name: 'Token Yönetimi', href: '/dashboard/tokens', active: false },
+    { name: 'Ayarlar', href: '/dashboard/settings', active: false },
+    { name: 'Yardım', href: '/dashboard/help', active: false },
   ];
 
   return (
