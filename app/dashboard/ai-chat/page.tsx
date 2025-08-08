@@ -362,9 +362,48 @@ export default function AIChatPage() {
       requiresTokens={true}
     >
       <div className="h-[calc(100vh-140px)] md:h-[calc(100vh-200px)] flex flex-col bg-white rounded-xl border border-gray-200 shadow-sm relative">
-        
-        {/* Chat History Sidebar */}
-        <div className="lg:w-64 border-b lg:border-b-0 lg:border-r border-gray-200 p-4">
+
+        {/* Mobile Header with Navigation */}
+        <div className="lg:hidden flex items-center justify-between p-4 border-b border-gray-200 bg-gray-50">
+          <div className="flex items-center space-x-3">
+            <button
+              onClick={() => setShowSidebar(!showSidebar)}
+              className="p-2 bg-white rounded-lg border border-gray-200 hover:bg-gray-50"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            </button>
+            <div className="flex items-center space-x-2">
+              <div className="w-6 h-6 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center">
+                <span className="text-white text-xs">🤖</span>
+              </div>
+              <span className="font-semibold text-gray-900">SeraGPT</span>
+            </div>
+          </div>
+          <div className="flex items-center space-x-2">
+            <div className="flex items-center space-x-1 text-sm text-gray-600">
+              <span className="text-blue-600 font-medium">{tokens?.remaining_tokens || 0}</span>
+              <span>🪙</span>
+            </div>
+            {insights.length > 0 && (
+              <button
+                onClick={() => setShowInsights(!showInsights)}
+                className="p-2 bg-white rounded-lg border border-gray-200 hover:bg-gray-50 relative"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                </svg>
+                <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                  {insights.length}
+                </span>
+              </button>
+            )}
+          </div>
+        </div>
+
+        {/* Chat History Sidebar - Mobile Overlay + Desktop Sidebar */}
+        <div className={`${showSidebar ? 'block' : 'hidden'} lg:block lg:w-64 ${showSidebar ? 'absolute top-0 left-0 right-0 bottom-0 bg-white z-50 lg:relative' : ''} border-b lg:border-b-0 lg:border-r border-gray-200 p-4 overflow-y-auto`}>
           <div className="flex items-center justify-between mb-4">
             <h3 className="font-semibold text-gray-900">Sohbet Geçmişi</h3>
             <button
