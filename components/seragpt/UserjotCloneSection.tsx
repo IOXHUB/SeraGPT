@@ -179,43 +179,35 @@ export default function UserjotCloneSection() {
                 {!loading && (
                   <>
                     {user ? (
-                      <div onClick={() => setIsMobileMenuOpen(false)}>
-                        <Link
-                          href="/dashboard"
-                          className="flex items-center justify-center w-full bg-gradient-to-r from-gray-700 to-gray-800 text-white py-3 px-4 rounded-xl font-medium transition-all hover:from-gray-800 hover:to-gray-900 shadow-lg"
-                        >
-                          <span className="text-lg mr-2">📊</span>
-                          <span>Panelime Git</span>
-                        </Link>
-                      </div>
+                      <button
+                        onClick={() => handleNavigation('/dashboard')}
+                        className="flex items-center justify-center w-full bg-gradient-to-r from-gray-700 to-gray-800 text-white py-3 px-4 rounded-xl font-medium transition-all hover:from-gray-800 hover:to-gray-900 shadow-lg"
+                      >
+                        <span className="text-lg mr-2">📊</span>
+                        <span>Panelime Git</span>
+                      </button>
                     ) : (
                       <div className="space-y-3">
-                        <div onClick={() => setIsMobileMenuOpen(false)}>
-                          <Link
-                            href="/auth/login"
-                            className="flex items-center justify-center w-full bg-gradient-to-r from-gray-700 to-gray-800 text-white py-3 px-4 rounded-xl font-medium transition-all hover:from-gray-800 hover:to-gray-900 shadow-lg"
-                          >
-                            <span className="text-lg mr-2">🔐</span>
-                            <span>Panele Giriş</span>
-                          </Link>
-                        </div>
+                        <button
+                          onClick={() => handleNavigation('/auth/login')}
+                          className="flex items-center justify-center w-full bg-gradient-to-r from-gray-700 to-gray-800 text-white py-3 px-4 rounded-xl font-medium transition-all hover:from-gray-800 hover:to-gray-900 shadow-lg"
+                        >
+                          <span className="text-lg mr-2">🔐</span>
+                          <span>Panele Giriş</span>
+                        </button>
                         <div className="flex space-x-2">
-                          <div onClick={() => setIsMobileMenuOpen(false)} className="flex-1">
-                            <Link
-                              href="/auth/login"
-                              className="block text-center border border-gray-300 text-gray-700 py-2 px-3 rounded-lg text-sm font-medium hover:bg-gray-50 transition-colors"
-                            >
-                              Giriş Yap
-                            </Link>
-                          </div>
-                          <div onClick={() => setIsMobileMenuOpen(false)} className="flex-1">
-                            <Link
-                              href="/auth/login"
-                              className="block text-center bg-gray-600 text-white py-2 px-3 rounded-lg text-sm font-medium hover:bg-gray-700 transition-colors"
-                            >
-                              Kayıt Ol
-                            </Link>
-                          </div>
+                          <button
+                            onClick={() => handleNavigation('/auth/login')}
+                            className="flex-1 text-center border border-gray-300 text-gray-700 py-2 px-3 rounded-lg text-sm font-medium hover:bg-gray-50 transition-colors"
+                          >
+                            Giriş Yap
+                          </button>
+                          <button
+                            onClick={() => handleNavigation('/auth/login')}
+                            className="flex-1 text-center bg-gray-600 text-white py-2 px-3 rounded-lg text-sm font-medium hover:bg-gray-700 transition-colors"
+                          >
+                            Kayıt Ol
+                          </button>
                         </div>
                       </div>
                     )}
@@ -238,7 +230,7 @@ export default function UserjotCloneSection() {
           {/* Main headline - Mobile responsive typography */}
           <h1 className="hero-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight">
             <span className="block">60 Saniyede</span>
-            <span className="block" style={{ color: 'rgba(23, 23, 23, 1)' }}>Sera Yatır��m Raporun Hazır!</span>
+            <span className="block" style={{ color: 'rgba(23, 23, 23, 1)' }}>Sera Yatırım Raporun Hazır!</span>
           </h1>
 
           {/* Description paragraph - Mobile responsive */}
