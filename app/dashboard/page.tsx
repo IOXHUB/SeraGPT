@@ -6,6 +6,7 @@ import { authService } from '@/lib/services/auth-service';
 import DashboardLayout from '@/components/dashboard/DashboardLayout';
 import { DashboardOverviewSkeleton } from '@/components/ui/skeletons/DashboardSkeletons';
 import CacheStatsWidget from '@/components/dashboard/CacheStatsWidget';
+import PerformanceDashboard from '@/components/dashboard/PerformanceDashboard';
 import { UserActivityLog } from '@/types/auth';
 
 // Force dynamic rendering for dashboard pages
@@ -256,7 +257,7 @@ export default function DashboardPage() {
           type: 'welcome',
           title: 'SeraGPT\'ye hoş geldiniz! 🌱',
           description: `${tokens?.remaining_tokens || 0} ücretsiz analiz hakkınız ile başlayabilirsiniz`,
-          time: 'Şimdi',
+          time: '��imdi',
           color: 'bg-blue-100 text-blue-600'
         },
         {
