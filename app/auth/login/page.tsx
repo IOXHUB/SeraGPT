@@ -49,13 +49,46 @@ export default function AuthPage() {
     testConnection();
   }, []);
 
-  // Redirect if user is already logged in
+  // Redirect if user is already logged in (with delay to prevent premature redirects)
   useEffect(() => {
-    if (user && !authLoading) {
-      console.log('User already logged in, redirecting to dashboard');
-      router.push('/dashboard');
+    const isDev = typeof window !== 'undefined' && (
+      process.env.NODE_ENV === 'development' ||
+      window.location.hostname.includes('fly.dev') ||
+      window.location.hostname.includes('builder.my') ||
+      window.location.hostname.includes('localhost')
+    );
+
+    if (user && !authLoading && mounted) {
+      console.log('User already logged in, checking redirect...');
+
+      // In development environment, check for mock user
+      if (isDev) {
+        const mockUser = localStorage.getItem('seragpt_user');
+        if (mockUser) {
+          try {
+            const parsedUser = JSON.parse(mockUser);
+            console.log('Mock user found, redirecting to appropriate dashboard');
+
+            setTimeout(() => {
+              if (parsedUser.role === 'admin') {
+                router.push('/admin');
+              } else {
+                router.push('/dashboard');
+              }
+            }, 1000);
+            return;
+          } catch (e) {
+            console.warn('Failed to parse mock user');
+          }
+        }
+      }
+
+      // Normal redirect for authenticated users
+      setTimeout(() => {
+        router.push('/dashboard');
+      }, 1000);
     }
-  }, [user, authLoading, router]);
+  }, [user, authLoading, router, mounted]);
 
   const testConnection = async () => {
     try {
@@ -538,7 +571,7 @@ export default function AuthPage() {
                 <p>Supabase: {process.env.NEXT_PUBLIC_SUPABASE_URL ? '✅' : '❌'}</p>
               </div>
               <div>
-                <p>Auth Loading: {authLoading ? '⏳' : '✅'}</p>
+                <p>Auth Loading: {authLoading ? '���' : '✅'}</p>
                 <p>API Status: {connectionTest.success ? '✅' : '❌'}</p>
               </div>
             </div>
