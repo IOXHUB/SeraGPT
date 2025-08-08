@@ -82,7 +82,7 @@ class CachedAPIService {
         return { success: true, data, cached: false };
       },
       {
-        ttl: options.ttl || CacheService.TTL_PRESETS.ROI_ANALYSIS,
+        ttl: options.ttl || 2 * 60 * 60 * 1000, // 2 hours
         tags: [CacheTags.ANALYSIS, CacheTags.USER_DATA],
         staleWhileRevalidate: true,
         maxAge: CacheService.TTL_PRESETS.ANALYSIS, // Serve stale after 1 hour
