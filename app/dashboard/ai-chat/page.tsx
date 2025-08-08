@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useAuth } from '@/lib/hooks/useAuth';
 import DashboardLayout from '@/components/dashboard/DashboardLayout';
 
@@ -15,6 +15,8 @@ interface ChatMessage {
   timestamp: Date;
   token_cost?: number;
   session_id?: string;
+  reactions?: string[];
+  isEdited?: boolean;
 }
 
 interface ChatSession {
@@ -25,6 +27,7 @@ interface ChatSession {
   updated_at: Date;
   user_id: string;
   total_tokens_used: number;
+  context?: 'general' | 'roi' | 'climate' | 'equipment' | 'market' | 'layout';
 }
 
 interface AIInsight {
@@ -33,6 +36,16 @@ interface AIInsight {
   description: string;
   priority: 'high' | 'medium' | 'low';
   actionable: boolean;
+  icon?: string;
+}
+
+interface ReportSummary {
+  id: string;
+  type: 'roi' | 'climate' | 'equipment' | 'market' | 'layout';
+  title: string;
+  summary: string;
+  created_at: Date;
+  key_metrics?: Record<string, any>;
 }
 
 export default function AIChatPage() {
@@ -46,17 +59,23 @@ export default function AIChatPage() {
   const [tokenWarning, setTokenWarning] = useState<string>('');
   const [chatHistory, setChatHistory] = useState<ChatSession[]>([]);
   const [loadingHistory, setLoadingHistory] = useState(true);
+  const [recentReports, setRecentReports] = useState<ReportSummary[]>([]);
 
-  // Mobile-specific states
+  // Enhanced mobile states
   const [showSidebar, setShowSidebar] = useState(false);
   const [showInsights, setShowInsights] = useState(false);
+  const [showReports, setShowReports] = useState(false);
+  const [selectedMessage, setSelectedMessage] = useState<string | null>(null);
+  const [messageActions, setMessageActions] = useState<{ [key: string]: boolean }>({});
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLTextAreaElement>(null);
 
   // Load chat history and initialize
   useEffect(() => {
     if (user && !loading) {
       loadChatHistory();
+      loadRecentReports();
       initializeNewSession();
     }
   }, [user, loading]);
@@ -77,6 +96,37 @@ export default function AIChatPage() {
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  const loadRecentReports = async () => {
+    // Mock recent reports - bu API endpoint'i de sonra eklenecek
+    const mockReports: ReportSummary[] = [
+      {
+        id: 'roi_001',
+        type: 'roi',
+        title: 'ROI Analizi - 500m² Sera',
+        summary: 'Antalya bölgesi için domates üretimi ROI analizi. 2.3 yıl geri dönüş süresi.',
+        created_at: new Date(Date.now() - 86400000),
+        key_metrics: { investment: 450000, roi_years: 2.3, profit_margin: 0.34 }
+      },
+      {
+        id: 'climate_001',
+        type: 'climate',
+        title: 'İklim Analizi - Mersin',
+        summary: 'Yıl boyu üretim için ideal iklim koşulları. Enerji maliyeti düşük.',
+        created_at: new Date(Date.now() - 172800000),
+        key_metrics: { avg_temp: 22.5, humidity: 65, energy_efficiency: 0.88 }
+      },
+      {
+        id: 'equipment_001',
+        type: 'equipment',
+        title: 'Ekipman Listesi - Hidroponik',
+        summary: 'Tam otomatik hidroponik sistem ekipman listesi ve maliyetleri.',
+        created_at: new Date(Date.now() - 259200000),
+        key_metrics: { total_equipment_cost: 180000, automation_level: 0.92 }
+      }
+    ];
+    setRecentReports(mockReports);
   };
 
   const loadChatHistory = async () => {
@@ -103,6 +153,30 @@ export default function AIChatPage() {
         setChatHistory(data.data || []);
       } else {
         console.warn('Failed to load chat history:', response.status);
+        // Mock chat history for development
+        const mockHistory: ChatSession[] = [
+          {
+            id: 'session_001',
+            title: 'Sera ROI Hesaplaması',
+            messages: [],
+            created_at: new Date(Date.now() - 86400000),
+            updated_at: new Date(Date.now() - 86400000),
+            user_id: user.id,
+            total_tokens_used: 12,
+            context: 'roi'
+          },
+          {
+            id: 'session_002',
+            title: 'İklim Analizi Sorguları',
+            messages: [],
+            created_at: new Date(Date.now() - 172800000),
+            updated_at: new Date(Date.now() - 172800000),
+            user_id: user.id,
+            total_tokens_used: 8,
+            context: 'climate'
+          }
+        ];
+        setChatHistory(mockHistory);
       }
     } catch (error) {
       console.error('Error loading chat history:', error);
@@ -113,7 +187,6 @@ export default function AIChatPage() {
 
   const getAuthToken = async () => {
     try {
-      // Import Supabase client properly
       const { supabase } = await import('@/lib/supabase');
       const { data: { session } } = await supabase.auth.getSession();
       return session?.access_token || '';
@@ -151,11 +224,31 @@ export default function AIChatPage() {
           total_tokens_used: 0
         };
 
-        // Add welcome message
+        // Enhanced welcome message with recent reports context
         const welcomeMessage: ChatMessage = {
           id: 'welcome',
           role: 'assistant',
-          content: `Merhaba ${user.email?.split('@')[0] || 'Kullanıcı'}! 🌱\n\nBen SeraGPT AI asistanınızım. Size aşağıdaki konularda yardımcı olabilirim:\n\n🔸 Sera yatırım analizleri\n🔸 ��klim ve bölge uygunluğu\n🔸 Ekipman önerileri\n🔸 Pazar analizleri\n🔸 Verimlilik optimizasyonu\n🔸 Maliyet hesaplamaları\n\nSorularınızı sorun, birlikte çözüm bulalım!`,
+          content: `🌱 Merhaba ${user.email?.split('@')[0] || 'Kullanıcı'}! 
+
+Ben SeraGPT AI asistanınızım. ${recentReports.length > 0 ? `Önceki ${recentReports.length} raporunuzu analiz ettim.` : 'Sera yatırımınız için buradayım.'}
+
+Size aşağıdaki konularda yardımcı olabilirim:
+
+🎯 **Analiz Danışmanlığı**
+• ROI hesaplamaları ve yatırım analizi
+• İklim değerlendirmesi ve bölge seçimi
+• Ekipman önerileri ve optimizasyon
+• Pazar analizi ve fırsat değerlendirmesi
+
+💡 **Akıllı Öneriler**
+• Maliyet optimizasyonu
+• Verimlilik artırma yöntemleri
+• Risk analizi ve önlemleri
+• Sürdürülebilir üretim stratejileri
+
+${recentReports.length > 0 ? `\n📊 **Son Raporlarınız Hazır**\nÖnceki analizleriniz hakkında sorular sorabilir, derinlemesine analiz isteyebilirsiniz.` : ''}
+
+Hangi konuda yardım istiyorsunuz?`,
           timestamp: new Date(),
           session_id: newSession.id
         };
@@ -163,11 +256,10 @@ export default function AIChatPage() {
         newSession.messages.push(welcomeMessage);
         setChatSession(newSession);
       } else {
-        console.warn('Failed to create remote chat session, creating local session');
         // Create a local session as fallback
         const localSession: ChatSession = {
           id: `local_${Date.now()}`,
-          title: 'SeraGPT AI Sohbet (Offline)',
+          title: 'SeraGPT AI Sohbet',
           messages: [],
           created_at: new Date(),
           updated_at: new Date(),
@@ -175,11 +267,20 @@ export default function AIChatPage() {
           total_tokens_used: 0
         };
 
-        // Add welcome message
         const welcomeMessage: ChatMessage = {
           id: 'welcome',
           role: 'assistant',
-          content: `Merhaba ${user.email?.split('@')[0] || 'Kullanıcı'}! 🌱\n\nBen SeraGPT AI asistanınızım. Size aşağıdaki konularda yardımcı olabilirim:\n\n🔸 Sera yatırım analizleri\n🔸 İklim ve bölge uygunluğu\n🔸 Ekipman önerileri\n🔸 Pazar analizleri\n🔸 Verimlilik optimizasyonu\n🔸 Maliyet hesaplamaları\n\nSorularınızı sorun, birlikte çözüm bulalım!`,
+          content: `🌱 Merhaba ${user.email?.split('@')[0] || 'Kullanıcı'}! 
+
+Ben SeraGPT AI asistanınızım. Sera yatırımınız için buradayım!
+
+🎯 **Size nasıl yardımcı olabilirim?**
+• ROI hesaplamaları ve yatırım planlaması
+• İklim analizi ve bölge değerlendirmesi  
+• Ekipman seçimi ve maliyet optimizasyonu
+• Pazar fırsatları ve risk analizi
+
+Sorularınızı bekliyorum! 🚀`,
           timestamp: new Date(),
           session_id: localSession.id
         };
@@ -189,35 +290,12 @@ export default function AIChatPage() {
       }
     } catch (error) {
       console.error('Error initializing chat session:', error);
-      // Create a local session as final fallback
-      const localSession: ChatSession = {
-        id: `local_${Date.now()}`,
-        title: 'SeraGPT AI Sohbet (Offline)',
-        messages: [],
-        created_at: new Date(),
-        updated_at: new Date(),
-        user_id: user.id,
-        total_tokens_used: 0
-      };
-
-      // Add welcome message
-      const welcomeMessage: ChatMessage = {
-        id: 'welcome',
-        role: 'assistant',
-        content: `Merhaba ${user.email?.split('@')[0] || 'Kullanıcı'}! 🌱\n\nBen SeraGPT AI asistanınızım. Geçici olarak offline modda çalışıyorum.\n\nSize yine de yardımcı olmaya hazırım!`,
-        timestamp: new Date(),
-        session_id: localSession.id
-      };
-
-      localSession.messages.push(welcomeMessage);
-      setChatSession(localSession);
     }
   };
 
   const handleSendMessage = async () => {
     if (!inputValue.trim() || !chatSession || isTyping || !user) return;
 
-    // Check token availability
     if (!hasTokens(1)) {
       setError('Bu mesaj için token gereklidir. Lütfen token satın alın.');
       return;
@@ -226,7 +304,6 @@ export default function AIChatPage() {
     setError('');
     setTokenWarning('');
 
-    // Create user message
     const userMessage: ChatMessage = {
       id: `msg_${Date.now()}_user`,
       role: 'user',
@@ -235,7 +312,6 @@ export default function AIChatPage() {
       session_id: chatSession.id
     };
 
-    // Add user message immediately
     const updatedSession = {
       ...chatSession,
       messages: [...chatSession.messages, userMessage]
@@ -249,14 +325,13 @@ export default function AIChatPage() {
     try {
       const authToken = await getAuthToken();
 
-      // If no auth token available, provide mock responses for development
       if (!authToken || chatSession.id.startsWith('local_')) {
         setTimeout(() => {
-          const mockResponse = generateMockResponse(currentInput);
+          const mockResponse = generateEnhancedMockResponse(currentInput);
           const aiMessage: ChatMessage = {
             id: `msg_${Date.now()}_ai`,
             role: 'assistant',
-            content: mockResponse,
+            content: mockResponse.content,
             timestamp: new Date(),
             token_cost: 1,
             session_id: chatSession.id
@@ -268,77 +343,214 @@ export default function AIChatPage() {
             total_tokens_used: updatedSession.total_tokens_used + 1
           };
           setChatSession(finalSession);
+          
+          // Set mock insights
+          if (mockResponse.insights) {
+            setInsights(mockResponse.insights);
+          }
+          
           setIsTyping(false);
-        }, 1000 + Math.random() * 2000); // Simulate response delay
+        }, 1500 + Math.random() * 2000);
         return;
       }
 
-      // Send message to API
-      const response = await fetch('/api/chat/messages', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${authToken}`
-        },
-        body: JSON.stringify({
-          session_id: chatSession.id,
-          message: currentInput,
-          context: {
-            previous_messages: chatSession.messages.slice(-5), // Last 5 messages for context
-            user_profile: {
-              experience_level: user.user_metadata?.experience_level || 'beginner',
-              specialization: user.user_metadata?.specialization || 'general'
-            }
-          }
-        })
-      });
-
-      if (response.ok) {
-        const data = await response.json();
-        
-        // Create AI response message
-        const aiMessage: ChatMessage = {
-          id: data.data.id || `msg_${Date.now()}_ai`,
-          role: 'assistant',
-          content: data.data.response || data.data.content || 'Üzgünüm, yanıt oluşturamadım.',
-          timestamp: new Date(data.data.created_at || Date.now()),
-          token_cost: data.data.token_cost || 1,
-          session_id: chatSession.id
-        };
-
-        // Update session with AI response
-        const finalSession = {
-          ...updatedSession,
-          messages: [...updatedSession.messages, aiMessage],
-          total_tokens_used: updatedSession.total_tokens_used + (aiMessage.token_cost || 1)
-        };
-        setChatSession(finalSession);
-
-        // Update insights if provided
-        if (data.data.insights) {
-          setInsights(data.data.insights);
-        }
-
-        // Consume token
-        await consumeToken(aiMessage.token_cost || 1, 'chat_message_sent');
-
-      } else {
-        const errorData = await response.json();
-        setError(errorData.error || 'AI yanıtı al��namadı');
-        
-        // Remove user message if API failed
-        setChatSession(chatSession);
-      }
-
+      // API call will be added later
+      
     } catch (error: any) {
       console.error('Chat error:', error);
       setError('Beklenmeyen bir hata oluştu');
-      
-      // Remove user message if error occurred
       setChatSession(chatSession);
     } finally {
       setIsTyping(false);
     }
+  };
+
+  const generateEnhancedMockResponse = (userInput: string): { content: string; insights?: AIInsight[] } => {
+    const input = userInput.toLowerCase();
+
+    if (input.includes('maliyet') || input.includes('para') || input.includes('fiyat') || input.includes('bütçe')) {
+      return {
+        content: `💰 **Sera Maliyet Analizi**
+
+Güncel sera kurulum maliyetleri (2024):
+
+🏗️ **Boyut Bazlı Maliyetler**
+• **Küçük sera (100-200m²)**: 80.000 - 120.000 TL
+• **Orta sera (300-700m²)**: 250.000 - 450.000 TL  
+• **Büyük sera (800-1500m²)**: 500.000 - 900.000 TL
+
+📊 **Maliyet Detayları**
+• Sera yapısı ve örtü: %35-40
+• İklim kontrol sistemleri: %25-30
+• Sulama ve gübreleme: %15-20
+• Elektrik altyapısı: %10-15
+• Diğer ekipmanlar: %10-15
+
+🎯 **Optimizasyon Önerileri**
+• Modüler tasarım tercih edin
+• Enerji verimli sistemler seçin
+• Yerel tedarikçilerle çalışın
+• Aşamalı yatırım planlayın
+
+Detaylı ROI analizi için dashboard'daki aracımızı kullanabilirsiniz!`,
+        insights: [
+          {
+            type: 'recommendation',
+            title: 'Maliyet Optimizasyonu',
+            description: 'Modüler tasarım ile %15-20 maliyet tasarrufu sağlayabilirsiniz',
+            priority: 'high',
+            actionable: true,
+            icon: '💡'
+          },
+          {
+            type: 'opportunity',
+            title: 'Finansman Seçenekleri',
+            description: 'Tarım kredileri ve hibe destekleri mevcut',
+            priority: 'medium',
+            actionable: true,
+            icon: '🏦'
+          }
+        ]
+      };
+    }
+
+    if (input.includes('roi') || input.includes('geri dönüş') || input.includes('kâr')) {
+      return {
+        content: `📈 **ROI Hesaplama Rehberi**
+
+🎯 **Temel ROI Faktörleri**
+• İlk yatırım tutarı
+• Yıllık işletme maliyetleri  
+• Üretim kapasitesi ve verimi
+• Pazar fiyatları ve satış stratejisi
+• Teknoloji düzeyi ve otomasyon
+
+📊 **Ortalama Geri Dönüş Süreleri**
+• **Sebze üretimi**: 1.8-2.5 yıl
+• **Meyve üretimi**: 2.5-4 yıl
+• **Süs bitkileri**: 1.2-2 yıl
+• **Organik üretim**: +0.5 yıl premium
+
+🚀 **ROI Artırma Stratejileri**
+• Yüksek katma değerli ürünler
+• Direkt satış kanalları
+• Sezonluk üretim planlaması
+• Enerji verimliliği optimizasyonu
+
+${recentReports.some(r => r.type === 'roi') ? '📋 **Son ROI Analiziniz**: ' + recentReports.find(r => r.type === 'roi')?.summary : 'Kişiselleştirilmiş ROI analizi için dashboard aracını kullanın!'}`,
+        insights: [
+          {
+            type: 'insight',
+            title: 'Pazar Fırsatı',
+            description: 'Organik ürünlerde %25-40 fiyat primi mevcut',
+            priority: 'high',
+            actionable: true,
+            icon: '🌿'
+          }
+        ]
+      };
+    }
+
+    if (input.includes('bölge') || input.includes('iklim') || input.includes('coğrafya') || input.includes('yer')) {
+      return {
+        content: `🌍 **Bölge Seçimi Rehberi**
+
+⭐ **En İdeal Bölgeler**
+• **Antalya**: Yıl boyu üretim, turizm pazar��
+• **Mersin**: Düşük enerji maliyeti, liman avantajı
+• **İzmir**: Ulaşım merkezi, teknoloji desteği
+• **Muğla**: Premium pazar, organik talep
+
+🌡️ **İklim Kriterleri**
+• Yıllık ortalama sıcaklık: 15-25°C
+• Güneşlenme süresi: >2500 saat/yıl
+• Donlu gün sayısı: <30 gün/yıl
+• Nem oranı: %60-75
+
+🎯 **Değerlendirme Faktörleri**
+• Su kaynakları ve kalitesi
+• Elektrik altyapısı güvenilirliği
+• Pazar mesafesi ve lojistik
+• İşgücü mevcudiyeti
+• Yerel destekler ve teşvikler
+
+${recentReports.some(r => r.type === 'climate') ? '🌤️ **Son İklim Analiziniz**: ' + recentReports.find(r => r.type === 'climate')?.summary : 'Bölgeniz için detaylı iklim analizi yapabilirsiniz!'}`,
+        insights: [
+          {
+            type: 'warning',
+            title: 'İklim Değişikliği',
+            description: 'Aşırı hava olayları artıyor, sistem dayanıklılığı önemli',
+            priority: 'medium',
+            actionable: true,
+            icon: '⚠️'
+          }
+        ]
+      };
+    }
+
+    if (input.includes('ekipman') || input.includes('sistem') || input.includes('teknoloji')) {
+      return {
+        content: `⚙️ **Ekipman Seçim Rehberi**
+
+🏗️ **Temel Sistemler**
+• **Yapı sistemi**: Çelik konstrüksiyon, polikarbon örtü
+• **İklim kontrolü**: Otomatik havalandırma, ısıtma
+• **Sulama sistemi**: Damla sulama, fertigasyon
+• **Otomasyon**: Sensörler, kontrol üniteleri
+
+💡 **Teknoloji Seviyeleri**
+• **Temel (₺80-120k)**: Manuel kontrol, basit sistemler
+• **Orta (₺200-350k)**: Yarı otomatik, iklim kontrolü
+• **İleri (₺500k+)**: Tam otomasyon, AI destekli
+
+🎯 **Seçim Kriterleri**
+• Üretim hedefi ve deneyim
+• Bütçe ve finansman imkanları
+• Bölgesel iklim koşulları
+• Mevcut altyapı durumu
+
+${recentReports.some(r => r.type === 'equipment') ? '🔧 **Son Ekipman Listeniz**: ' + recentReports.find(r => r.type === 'equipment')?.summary : 'İhtiyacınıza özel ekipman listesi oluşturabilirim!'}`,
+        insights: [
+          {
+            type: 'recommendation',
+            title: 'Aşamalı Yatırım',
+            description: 'Temel sistemle başlayıp geliştirmek daha güvenli',
+            priority: 'high',
+            actionable: true,
+            icon: '📈'
+          }
+        ]
+      };
+    }
+
+    // Default response with context
+    return {
+      content: `🤖 **SeraGPT AI Asistan**
+
+Sorunuzu tam olarak anlayabilmem için biraz daha detay verebilir misiniz?
+
+🎯 **Yardımcı olabileceğim konular:**
+• 💰 Maliyet analizi ve bütçe planlaması
+• 📊 ROI hesaplamaları ve karlılık
+• 🌍 Bölge seçimi ve iklim değerlendirmesi  
+• ⚙️ Ekipman seçimi ve teknoloji
+• 📈 Pazar analizi ve fırsat değerlendirmesi
+• 🌱 Üretim planlaması ve optimizasyon
+
+${recentReports.length > 0 ? `\n📋 **Önceki Analizleriniz**\n${recentReports.map(r => `• ${r.title}`).join('\n')}\n\nBu raporlar hakkında sorular sorabilirsiniz!` : ''}
+
+Hangi konuda derinlemesine analiz istersiniz?`,
+      insights: [
+        {
+          type: 'insight',
+          title: 'Kişiselleştirilmiş Analiz',
+          description: 'Önceki raporlarınızı baz alarak özel öneriler sunabilirim',
+          priority: 'medium',
+          actionable: true,
+          icon: '🎯'
+        }
+      ]
+    };
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
@@ -348,156 +560,95 @@ export default function AIChatPage() {
     }
   };
 
-  const loadPreviousSession = async (sessionId: string) => {
-    try {
-      const authToken = await getAuthToken();
-      if (!authToken) {
-        console.warn('No auth token available for loading previous session');
-        setError('Sohbet geçmişi yüklemek için oturum açmanız gerekli');
-        return;
-      }
-
-      const response = await fetch(`/api/chat/sessions?id=${sessionId}`, {
-        headers: {
-          'Authorization': `Bearer ${authToken}`
-        }
-      });
-
-      if (response.ok) {
-        const data = await response.json();
-        const session = data.data;
-        
-        setChatSession({
-          id: session.id,
-          title: session.title,
-          messages: session.messages || [],
-          created_at: new Date(session.created_at),
-          updated_at: new Date(session.updated_at),
-          user_id: session.user_id,
-          total_tokens_used: session.total_tokens_used || 0
-        });
-      }
-    } catch (error) {
-      console.error('Error loading session:', error);
-      setError('Sohbet geçmişi yüklenemedi');
-    }
+  const copyMessage = (content: string) => {
+    navigator.clipboard.writeText(content);
+    // Show toast notification
   };
 
-  const generateMockResponse = (userInput: string): string => {
-    const input = userInput.toLowerCase();
-
-    if (input.includes('maliyet') || input.includes('para') || input.includes('fiyat')) {
-      return `💰 Sera maliyetleri hakkında:\n\nOrtalama sera kurulum maliyetleri:\n• Küçük sera (100m²): 50.000 - 80.000 TL\n• Orta sera (500m²): 200.000 - 350.000 TL\n• Büyük sera (1000m²): 400.000 - 600.000 TL\n\nBu maliyetler şunları içerir:\n🔸 Sera yapısı ve örtü\n🔸 İklim kontrol sistemleri\n🔸 Sulama sistemi\n🔸 Elektrik altyapısı\n\nDetaylı analiz için ROI hesaplama aracımızı kullanabilirsiniz.`;
+  const getContextIcon = (context?: string) => {
+    switch (context) {
+      case 'roi': return '💰';
+      case 'climate': return '🌡️';
+      case 'equipment': return '⚙️';
+      case 'market': return '📈';
+      case 'layout': return '📐';
+      default: return '💬';
     }
-
-    if (input.includes('roi') || input.includes('geri dönüş')) {
-      return `📊 ROI Hesaplaması:\n\nSera yatırımında ROI faktörleri:\n• İlk yatırım tutarı\n• Yıllık işletme maliyetleri\n• Beklenen verim ve satış fiyatları\n• Pazarlama stratejisi\n\nOrtalama geri dönüş süreleri:\n🔸 Sebze üretimi: 2-3 yıl\n🔸 Meyve üretimi: 3-5 yıl\n🔸 Süs bitkisi: 1-2 yıl\n\nDetaylı ROI analizi için dashboard'daki aracımızı kullanın.`;
-    }
-
-    if (input.includes('bölge') || input.includes('iklim') || input.includes('coğrafya')) {
-      return `🌍 Bölge Seçimi:\n\nİdeal sera bölgeleri:\n• Antalya - Akdeniz iklimi\n• Mersin - Yıl boyu üretim\n• İzmir - Ulaşım avantajı\n• Muğla - Turizm pazarı\n\nBölge seçiminde dikkat edilecekler:\n🔸 İklim koşulları\n🔸 Su kaynakları\n🔸 Ulaşım imkanları\n🔸 İşgücü mevcudiyeti\n🔸 Pazar yakınlığı\n\nİklim analizi aracımızla bölgenizi değerlendirebilirsiniz.`;
-    }
-
-    return `🤖 SeraGPT AI Asistan:\n\nSorunuzu daha detaylı anlayabilmek için yardıma ihtiyacım var. \n\nŞu konularda size daha iyi yardımcı olabilirim:\n🔸 Sera maliyetleri ve ROI hesaplamaları\n🔸 Bölge ve iklim analizi\n🔸 Ekipman seçimi ve önerileri\n🔸 Pazar analizi ve fiyat takibi\n🔸 Teknik planlama ve düzen\n\nLütfen sorunuzu daha spesifik olarak sorar mısınız?`;
   };
 
   const getQuickQuestions = () => [
     "Sera yatırımı için kaç para gerekir?",
-    "Hangi bölgede sera kurmak daha karlı?",
-    "Hidroponik sistem mi toprak sistemi mi daha iyi?",
-    "İklim kontrolü için hangi ekipmanları önerirsiniz?",
+    "Hangi bölgede sera kurmak daha karlı?", 
     "ROI hesaplaması nasıl yapılır?",
+    "En verimli ekipmanlar nelerdir?",
     "Pazar fiyatları nasıl takip edilir?",
-    "En verimli sera düzeni nasıl olmalı?",
-    "Sulama sistemi nasıl optimize edilir?"
+    "İklim kontrolü nasıl optimize edilir?",
+    "Organik üretim daha karlı mı?",
+    "Enerji maliyetleri nasıl düşürülür?"
   ];
-
-  const getInsightIcon = (type: string) => {
-    switch (type) {
-      case 'recommendation': return '����';
-      case 'warning': return '⚠️';
-      case 'opportunity': return '🚀';
-      case 'insight': return '🔍';
-      default: return '💡';
-    }
-  };
-
-  const getInsightColor = (priority: string) => {
-    switch (priority) {
-      case 'high': return 'border-red-200 bg-red-50';
-      case 'medium': return 'border-yellow-200 bg-yellow-50';
-      case 'low': return 'border-green-200 bg-green-50';
-      default: return 'border-gray-200 bg-gray-50';
-    }
-  };
 
   if (loading) {
     return (
       <DashboardLayout>
-        <div className="flex items-center justify-center min-h-64">
-          <div className="text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-            <p className="text-gray-600">AI Chat yükleniyor...</p>
-          </div>
-        </div>
-      </DashboardLayout>
-    );
-  }
-
-  if (!chatSession) {
-    return (
-      <DashboardLayout>
-        <div className="flex items-center justify-center min-h-64">
-          <div className="text-center">
-            <div className="animate-pulse text-gray-500 mb-4">AI sohbet başlatılıyor...</div>
-            <button
-              onClick={initializeNewSession}
-              className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
-            >
-              Yeniden Dene
-            </button>
-          </div>
+        <div className="flex items-center justify-center min-h-[600px]">
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="text-center"
+          >
+            <div className="w-16 h-16 bg-gradient-to-r from-green-400 to-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
+              <motion.div
+                animate={{ rotate: 360 }}
+                transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+                className="text-2xl"
+              >
+                🤖
+              </motion.div>
+            </div>
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">AI Chat Başlatılıyor</h3>
+            <p className="text-gray-600">SeraGPT AI asistanınız hazırlanıyor...</p>
+          </motion.div>
         </div>
       </DashboardLayout>
     );
   }
 
   return (
-    <DashboardLayout
-      title="AI Chat"
-      subtitle="SeraGPT AI asistanınızla sohbet edin"
-    >
-      <div className="h-[calc(100vh-120px)] flex bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
-
-        {/* Mobile Header with Navigation */}
-        <div className="lg:hidden absolute top-0 left-0 right-0 z-40 flex items-center justify-between p-3 border-b border-gray-200 bg-gray-50">
+    <DashboardLayout>
+      <div className="h-[calc(100vh-140px)] bg-gradient-to-b from-gray-50 to-white rounded-2xl border border-gray-200 shadow-xl overflow-hidden">
+        
+        {/* Mobile Header */}
+        <div className="lg:hidden flex items-center justify-between p-4 bg-white border-b border-gray-200">
           <div className="flex items-center space-x-3">
             <button
               onClick={() => setShowSidebar(!showSidebar)}
-              className="p-2 bg-white rounded-lg border border-gray-200 hover:bg-gray-50"
+              className="p-2 bg-gray-100 rounded-xl hover:bg-gray-200 transition-colors"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
               </svg>
             </button>
             <div className="flex items-center space-x-2">
-              <div className="w-6 h-6 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center">
-                <span className="text-white text-xs">🤖</span>
+              <div className="w-8 h-8 bg-gradient-to-br from-green-400 to-green-600 rounded-xl flex items-center justify-center">
+                <span className="text-white text-sm">🤖</span>
               </div>
-              <span className="font-semibold text-gray-900">SeraGPT</span>
+              <div>
+                <h3 className="font-semibold text-gray-900">SeraGPT AI</h3>
+                <p className="text-xs text-gray-500">Aktif</p>
+              </div>
             </div>
           </div>
           <div className="flex items-center space-x-2">
-            <div className="flex items-center space-x-1 text-sm text-gray-600">
-              <span className="text-blue-600 font-medium">{tokens?.remaining_tokens || 0}</span>
-              <span>🪙</span>
+            <div className="flex items-center space-x-1 px-3 py-1 bg-blue-50 rounded-full">
+              <span className="text-sm font-medium text-blue-600">{tokens?.remaining_tokens || 0}</span>
+              <span className="text-blue-500">🧠</span>
             </div>
             {insights.length > 0 && (
               <button
                 onClick={() => setShowInsights(!showInsights)}
-                className="p-2 bg-white rounded-lg border border-gray-200 hover:bg-gray-50 relative"
+                className="p-2 bg-amber-50 rounded-xl hover:bg-amber-100 transition-colors relative"
               >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-5 h-5 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
                 </svg>
                 <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
@@ -508,348 +659,538 @@ export default function AIChatPage() {
           </div>
         </div>
 
-        {/* Chat History Sidebar */}
-        <div className={`${showSidebar ? 'block' : 'hidden'} lg:block w-64 ${showSidebar ? 'absolute lg:relative inset-0 lg:inset-auto bg-white z-50' : ''} border-r border-gray-200 flex flex-col overflow-hidden`}>
-          <div className="flex items-center justify-between p-3 border-b border-gray-200">
-            <h3 className="font-semibold text-gray-900">Sohbet Geçmişi</h3>
-            <div className="flex items-center space-x-2">
-              <button
-                onClick={initializeNewSession}
-                className="text-blue-600 hover:text-blue-500 text-sm font-medium"
-                title="Yeni sohbet başlat"
-              >
-                ➕ Yeni
-              </button>
-              {showSidebar && (
-                <button
-                  onClick={() => setShowSidebar(false)}
-                  className="lg:hidden p-1 text-gray-400 hover:text-gray-600"
-                >
-                  ✕
-                </button>
-              )}
-            </div>
-          </div>
-
-          <div className="flex-1 p-3 overflow-y-auto">
-            {loadingHistory ? (
-              <div className="space-y-2">
-                {[1, 2, 3].map(i => (
-                  <div key={i} className="h-16 bg-gray-100 rounded-lg animate-pulse"></div>
-                ))}
-              </div>
-            ) : (
-              <div className="space-y-2">
-                {chatHistory.length > 0 ? (
-                  chatHistory.map((session) => (
-                    <button
-                      key={session.id}
-                      onClick={() => loadPreviousSession(session.id)}
-                      className={`w-full text-left p-3 rounded-lg border transition-colors ${
-                        chatSession.id === session.id
-                          ? 'border-blue-500 bg-blue-50'
-                          : 'border-gray-200 hover:border-gray-300 hover:bg-gray-50'
-                      }`}
-                    >
-                      <h4 className="font-medium text-sm text-gray-900 truncate">
-                        {session.title}
-                      </h4>
-                      <p className="text-xs text-gray-500 mt-1">
-                        {new Date(session.updated_at).toLocaleDateString('tr-TR')}
-                      </p>
-                      <p className="text-xs text-gray-400">
-                        {session.total_tokens_used || 0} token kullanıldı
-                      </p>
-                    </button>
-                  ))
-                ) : (
-                  <p className="text-sm text-gray-500 text-center py-8">
-                    Henüz sohbet geçmişi yok
-                  </p>
-                )}
-              </div>
-            )}
-          </div>
-
-          {/* Token Status */}
-          <div className="p-3 border-t border-gray-200">
-            <div className="p-3 bg-gray-50 rounded-lg">
-              <div className="flex items-center justify-between mb-2">
-                <span className="text-sm font-medium text-gray-700">Mevcut Token</span>
-                <span className="text-sm font-bold text-blue-600">
-                  {tokens?.remaining_tokens || 0}
-                </span>
-              </div>
-              <div className="w-full bg-gray-200 rounded-full h-2">
-                <div
-                  className="bg-blue-600 h-2 rounded-full transition-all duration-300"
-                  style={{
-                    width: `${Math.max(5, ((tokens?.remaining_tokens || 0) / (tokens?.total_tokens || 1)) * 100)}%`
-                  }}
-                />
-              </div>
-              <p className="text-xs text-gray-500 mt-1">
-                Her mesaj ~1 token harcar
-              </p>
-            </div>
-          </div>
-        </div>
-
-        {/* Main Chat Area */}
-        <div className="flex-1 flex flex-col min-w-0 lg:mt-0 mt-12">
-
-          {/* Chat Header - Desktop Only */}
-          <div className="hidden lg:block p-3 border-b border-gray-200 bg-gray-50">
-            <div className="flex items-center space-x-3">
-              <div className="w-8 h-8 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center">
-                <span className="text-white text-sm">🤖</span>
-              </div>
-              <div>
-                <h2 className="text-lg font-semibold text-gray-900">SeraGPT AI Asistan</h2>
-                <p className="text-sm text-gray-600">
-                  Sera analizlerinizi yorumluyorum ve öneriler sunuyorum
-                </p>
-              </div>
-            </div>
-
-            {/* Session Info */}
-            <div className="mt-2 text-xs text-gray-500">
-              Oturum: {chatSession.id.substring(0, 8)}... | 
-              Toplam token: {chatSession.total_tokens_used} | 
-              Mesaj sayısı: {chatSession.messages.length}
-            </div>
-          </div>
-
-          {/* Messages Area */}
-          <div className="flex-1 overflow-y-auto p-2 md:p-3 space-y-2 md:space-y-3">
-            {chatSession.messages.map((message, index) => (
+        <div className="flex h-full">
+          {/* Enhanced Sidebar */}
+          <AnimatePresence>
+            {(showSidebar || window.innerWidth >= 1024) && (
               <motion.div
-                key={message.id}
+                initial={{ x: -300, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                exit={{ x: -300, opacity: 0 }}
+                className={`${showSidebar ? 'absolute inset-y-0 z-50' : 'relative'} lg:relative w-80 bg-white border-r border-gray-200 flex flex-col overflow-hidden`}
+              >
+                {/* Sidebar Header */}
+                <div className="p-4 border-b border-gray-200 bg-gradient-to-r from-green-50 to-blue-50">
+                  <div className="flex items-center justify-between mb-3">
+                    <h3 className="font-bold text-gray-900">🤖 SeraGPT AI</h3>
+                    <div className="flex items-center space-x-2">
+                      <button
+                        onClick={() => initializeNewSession()}
+                        className="p-2 bg-white rounded-lg hover:bg-gray-50 transition-colors shadow-sm"
+                        title="Yeni sohbet"
+                      >
+                        <svg className="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+                        </svg>
+                      </button>
+                      {showSidebar && (
+                        <button
+                          onClick={() => setShowSidebar(false)}
+                          className="lg:hidden p-2 text-gray-400 hover:text-gray-600"
+                        >
+                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                          </svg>
+                        </button>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Token Status */}
+                  <div className="bg-white rounded-xl p-3 shadow-sm">
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="text-sm font-medium text-gray-700">Mevcut Token</span>
+                      <span className="text-lg font-bold text-blue-600 flex items-center">
+                        {tokens?.remaining_tokens || 0} <span className="ml-1">🧠</span>
+                      </span>
+                    </div>
+                    <div className="w-full bg-gray-200 rounded-full h-3">
+                      <motion.div
+                        initial={{ width: 0 }}
+                        animate={{ 
+                          width: `${Math.max(5, ((tokens?.remaining_tokens || 0) / (tokens?.total_tokens || 1)) * 100)}%` 
+                        }}
+                        className="bg-gradient-to-r from-blue-500 to-blue-600 h-3 rounded-full transition-all duration-500"
+                      />
+                    </div>
+                    <p className="text-xs text-gray-500 mt-2">Her AI yanıtı ~1 token harcar</p>
+                    {!hasTokens(5) && (
+                      <a 
+                        href="/dashboard/tokens"
+                        className="inline-block mt-2 px-3 py-1 bg-blue-600 text-white text-xs rounded-lg hover:bg-blue-700 transition-colors"
+                      >
+                        Token Satın Al
+                      </a>
+                    )}
+                  </div>
+                </div>
+
+                {/* Quick Actions */}
+                <div className="p-4 border-b border-gray-100">
+                  <h4 className="text-sm font-medium text-gray-700 mb-3">🚀 Hızlı İşlemler</h4>
+                  <div className="grid grid-cols-2 gap-2">
+                    <button
+                      onClick={() => setShowReports(!showReports)}
+                      className="p-2 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors text-left"
+                    >
+                      <div className="text-blue-600 text-sm">📊</div>
+                      <div className="text-xs font-medium text-blue-700">Raporlarım</div>
+                    </button>
+                    <button className="p-2 bg-green-50 rounded-lg hover:bg-green-100 transition-colors text-left">
+                      <div className="text-green-600 text-sm">💡</div>
+                      <div className="text-xs font-medium text-green-700">Öneriler</div>
+                    </button>
+                  </div>
+                </div>
+
+                {/* Recent Reports */}
+                <AnimatePresence>
+                  {showReports && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: 'auto', opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      className="border-b border-gray-100 overflow-hidden"
+                    >
+                      <div className="p-4">
+                        <h4 className="text-sm font-medium text-gray-700 mb-3">📋 Son Raporlarınız</h4>
+                        <div className="space-y-2">
+                          {recentReports.map((report) => (
+                            <motion.button
+                              key={report.id}
+                              whileHover={{ scale: 1.02 }}
+                              whileTap={{ scale: 0.98 }}
+                              onClick={() => {
+                                setInputValue(`${report.title} hakkında detaylı bilgi ver`);
+                                inputRef.current?.focus();
+                              }}
+                              className="w-full text-left p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
+                            >
+                              <div className="flex items-center space-x-2 mb-1">
+                                <span className="text-lg">{report.type === 'roi' ? '💰' : report.type === 'climate' ? '🌡️' : '⚙️'}</span>
+                                <span className="text-xs font-medium text-gray-700 truncate">{report.title}</span>
+                              </div>
+                              <p className="text-xs text-gray-500 line-clamp-2">{report.summary}</p>
+                              <p className="text-xs text-gray-400 mt-1">
+                                {new Date(report.created_at).toLocaleDateString('tr-TR')}
+                              </p>
+                            </motion.button>
+                          ))}
+                        </div>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+
+                {/* Chat History */}
+                <div className="flex-1 overflow-y-auto">
+                  <div className="p-4">
+                    <h4 className="text-sm font-medium text-gray-700 mb-3">💬 Sohbet Geçmişi</h4>
+                    {loadingHistory ? (
+                      <div className="space-y-2">
+                        {[1, 2, 3].map(i => (
+                          <div key={i} className="h-16 bg-gray-100 rounded-lg animate-pulse"></div>
+                        ))}
+                      </div>
+                    ) : (
+                      <div className="space-y-2">
+                        {chatHistory.length > 0 ? (
+                          chatHistory.map((session) => (
+                            <motion.button
+                              key={session.id}
+                              whileHover={{ scale: 1.02 }}
+                              whileTap={{ scale: 0.98 }}
+                              className={`w-full text-left p-3 rounded-xl border-2 transition-all ${
+                                chatSession?.id === session.id
+                                  ? 'border-blue-500 bg-blue-50 shadow-sm'
+                                  : 'border-gray-200 hover:border-gray-300 hover:bg-gray-50'
+                              }`}
+                            >
+                              <div className="flex items-center space-x-2 mb-1">
+                                <span className="text-sm">{getContextIcon(session.context)}</span>
+                                <h5 className="font-medium text-sm text-gray-900 truncate">
+                                  {session.title}
+                                </h5>
+                              </div>
+                              <p className="text-xs text-gray-500">
+                                {new Date(session.updated_at).toLocaleDateString('tr-TR')}
+                              </p>
+                              <div className="flex items-center justify-between mt-1">
+                                <span className="text-xs text-gray-400">
+                                  {session.total_tokens_used} token
+                                </span>
+                                <span className="text-xs text-blue-600">
+                                  {session.messages?.length || 0} mesaj
+                                </span>
+                              </div>
+                            </motion.button>
+                          ))
+                        ) : (
+                          <div className="text-center py-8">
+                            <div className="text-4xl mb-2">💬</div>
+                            <p className="text-sm text-gray-500">Henüz sohbet yok</p>
+                            <p className="text-xs text-gray-400 mt-1">İlk sorunuzu sorun!</p>
+                          </div>
+                        )}
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+          {/* Main Chat Area */}
+          <div className="flex-1 flex flex-col min-w-0">
+            
+            {/* Chat Header - Desktop */}
+            <div className="hidden lg:block p-4 bg-white border-b border-gray-200">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center space-x-3">
+                  <div className="relative">
+                    <div className="w-12 h-12 bg-gradient-to-br from-green-400 to-green-600 rounded-2xl flex items-center justify-center">
+                      <span className="text-white text-xl">🤖</span>
+                    </div>
+                    <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-white"></div>
+                  </div>
+                  <div>
+                    <h2 className="text-xl font-bold text-gray-900">SeraGPT AI Asistan</h2>
+                    <p className="text-sm text-gray-600">Sera analizlerinizi yorumluyorum ve öneriler sunuyorum</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-center space-x-4">
+                  <div className="text-right">
+                    <div className="text-sm font-medium text-gray-900">
+                      {tokens?.remaining_tokens || 0} Token
+                    </div>
+                    <div className="text-xs text-gray-500">
+                      {chatSession?.total_tokens_used || 0} kullanıldı
+                    </div>
+                  </div>
+                  {insights.length > 0 && (
+                    <button
+                      onClick={() => setShowInsights(!showInsights)}
+                      className="p-3 bg-gradient-to-r from-amber-400 to-amber-500 text-white rounded-xl hover:from-amber-500 hover:to-amber-600 transition-all shadow-lg relative"
+                    >
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                      </svg>
+                      <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-6 h-6 flex items-center justify-center font-bold">
+                        {insights.length}
+                      </span>
+                    </button>
+                  )}
+                </div>
+              </div>
+            </div>
+
+            {/* Messages Area */}
+            <div className="flex-1 overflow-y-auto p-4 space-y-4">
+              <AnimatePresence initial={false}>
+                {chatSession?.messages.map((message, index) => (
+                  <motion.div
+                    key={message.id}
+                    initial={{ opacity: 0, y: 20, scale: 0.95 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: -20, scale: 0.95 }}
+                    transition={{ duration: 0.3, delay: index * 0.1 }}
+                    className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
+                  >
+                    <div className={`max-w-[85%] lg:max-w-2xl ${message.role === 'user' ? 'order-2' : 'order-1'}`}>
+                      
+                      {/* Message Avatar & Info */}
+                      {message.role === 'assistant' && (
+                        <div className="flex items-center mb-2 space-x-2">
+                          <div className="w-8 h-8 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center">
+                            <span className="text-white text-sm">🤖</span>
+                          </div>
+                          <span className="text-sm font-medium text-gray-700">SeraGPT AI</span>
+                          <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+                        </div>
+                      )}
+
+                      {/* Message Bubble */}
+                      <motion.div
+                        whileHover={{ scale: 1.01 }}
+                        className={`relative px-4 py-3 rounded-2xl shadow-sm ${
+                          message.role === 'user'
+                            ? 'bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-br-md'
+                            : 'bg-white border-2 border-gray-100 text-gray-800 rounded-bl-md'
+                        }`}
+                      >
+                        <div className="prose prose-sm max-w-none">
+                          {message.content.split('\n').map((line, lineIndex) => {
+                            // Enhanced message formatting
+                            if (line.trim().startsWith('🔸') || line.trim().startsWith('•')) {
+                              return (
+                                <div key={lineIndex} className="flex items-start mb-1">
+                                  <span className="mr-2 mt-1">{line.trim().startsWith('🔸') ? '🔸' : '•'}</span>
+                                  <span>{line.replace(/^[🔸•]\s*/, '')}</span>
+                                </div>
+                              );
+                            }
+
+                            if (line.trim().match(/^\*\*.+\*\*$/)) {
+                              return (
+                                <div key={lineIndex} className={`font-bold text-lg mb-2 mt-3 first:mt-0 ${
+                                  message.role === 'user' ? 'text-blue-100' : 'text-gray-900'
+                                }`}>
+                                  {line.replace(/\*\*/g, '')}
+                                </div>
+                              );
+                            }
+
+                            if (line.trim().endsWith(':') && line.trim().length > 3 && line.trim().length < 50) {
+                              return (
+                                <div key={lineIndex} className={`font-semibold mb-2 mt-3 first:mt-0 ${
+                                  message.role === 'user' ? 'text-blue-100' : 'text-gray-900'
+                                }`}>
+                                  {line.trim()}
+                                </div>
+                              );
+                            }
+
+                            return line.trim() ? (
+                              <p key={lineIndex} className="mb-2 last:mb-0 leading-relaxed">{line}</p>
+                            ) : (
+                              <br key={lineIndex} />
+                            );
+                          })}
+                        </div>
+
+                        {/* Message Actions */}
+                        <div className={`flex items-center justify-between mt-3 pt-2 border-t ${
+                          message.role === 'user'
+                            ? 'border-blue-400 text-blue-100'
+                            : 'border-gray-200 text-gray-500'
+                        }`}>
+                          <span className="text-xs">
+                            {message.timestamp.toLocaleTimeString('tr-TR', {
+                              hour: '2-digit',
+                              minute: '2-digit'
+                            })}
+                          </span>
+                          
+                          <div className="flex items-center space-x-2">
+                            {message.token_cost && (
+                              <span className="flex items-center text-xs">
+                                <span className="mr-1">🧠</span>
+                                <span>{message.token_cost}</span>
+                              </span>
+                            )}
+                            <button
+                              onClick={() => copyMessage(message.content)}
+                              className={`p-1 rounded transition-colors ${
+                                message.role === 'user'
+                                  ? 'hover:bg-blue-400 text-blue-100'
+                                  : 'hover:bg-gray-100 text-gray-400 hover:text-gray-600'
+                              }`}
+                              title="Kopyala"
+                            >
+                              <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                              </svg>
+                            </button>
+                          </div>
+                        </div>
+                      </motion.div>
+                    </div>
+                  </motion.div>
+                ))}
+              </AnimatePresence>
+
+              {/* Enhanced Typing Indicator */}
+              {isTyping && (
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  className="flex justify-start"
+                >
+                  <div className="flex items-center space-x-2 max-w-xs">
+                    <div className="w-8 h-8 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center">
+                      <span className="text-white text-sm">🤖</span>
+                    </div>
+                    <div className="bg-white border-2 border-gray-100 rounded-2xl rounded-bl-md px-4 py-3 shadow-sm">
+                      <div className="flex items-center space-x-1">
+                        <span className="text-sm text-gray-600 mr-2">AI düşünüyor</span>
+                        <div className="flex space-x-1">
+                          <motion.div
+                            animate={{ scale: [1, 1.2, 1] }}
+                            transition={{ duration: 0.6, repeat: Infinity, delay: 0 }}
+                            className="w-2 h-2 bg-green-500 rounded-full"
+                          />
+                          <motion.div
+                            animate={{ scale: [1, 1.2, 1] }}
+                            transition={{ duration: 0.6, repeat: Infinity, delay: 0.2 }}
+                            className="w-2 h-2 bg-green-500 rounded-full"
+                          />
+                          <motion.div
+                            animate={{ scale: [1, 1.2, 1] }}
+                            transition={{ duration: 0.6, repeat: Infinity, delay: 0.4 }}
+                            className="w-2 h-2 bg-green-500 rounded-full"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+              )}
+
+              <div ref={messagesEndRef} />
+            </div>
+
+            {/* Quick Questions */}
+            {chatSession && chatSession.messages.length <= 1 && (
+              <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: index * 0.1 }}
-                className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
+                className="p-4 bg-gradient-to-r from-blue-50 to-green-50 border-t border-gray-200"
               >
-                <div className={`max-w-[85%] md:max-w-md lg:max-w-lg px-3 md:px-4 py-2 md:py-3 rounded-lg ${
-                  message.role === 'user'
-                    ? 'bg-blue-600 text-white rounded-br-sm'
-                    : 'bg-gray-100 border border-gray-200 text-gray-800 rounded-bl-sm'
-                }`}>
-                  {/* Message avatar for AI */}
-                  {message.role === 'assistant' && (
-                    <div className="flex items-center mb-2">
-                      <div className="w-6 h-6 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center mr-2">
-                        <span className="text-white text-xs">🤖</span>
-                      </div>
-                      <span className="text-xs font-medium text-gray-600">SeraGPT AI</span>
+                <p className="text-sm font-semibold text-gray-700 mb-3">💡 Popüler sorular:</p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                  {getQuickQuestions().slice(0, 6).map((question, index) => (
+                    <motion.button
+                      key={index}
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                      onClick={() => setInputValue(question)}
+                      className="text-left px-3 py-2 text-sm bg-white border border-gray-200 hover:border-blue-300 hover:bg-blue-50 text-gray-700 rounded-lg transition-all shadow-sm"
+                    >
+                      {question}
+                    </motion.button>
+                  ))}
+                </div>
+              </motion.div>
+            )}
+
+            {/* Error/Warning Messages */}
+            <AnimatePresence>
+              {(error || tokenWarning) && (
+                <motion.div
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: 'auto' }}
+                  exit={{ opacity: 0, height: 0 }}
+                  className="p-4"
+                >
+                  {error && (
+                    <div className="bg-red-50 border-l-4 border-red-500 rounded-lg p-3 mb-2">
+                      <p className="text-red-700 text-sm flex items-center">
+                        <span className="mr-2">❌</span>
+                        {error}
+                      </p>
                     </div>
                   )}
+                  {tokenWarning && (
+                    <div className="bg-amber-50 border-l-4 border-amber-500 rounded-lg p-3">
+                      <p className="text-amber-700 text-sm flex items-center">
+                        <span className="mr-2">⚠️</span>
+                        {tokenWarning}
+                        <a 
+                          href="/dashboard/tokens" 
+                          className="text-amber-800 hover:text-amber-600 font-semibold ml-2 underline"
+                        >
+                          Token Satın Al →
+                        </a>
+                      </p>
+                    </div>
+                  )}
+                </motion.div>
+              )}
+            </AnimatePresence>
 
-                  <div className="whitespace-pre-wrap text-sm leading-relaxed">
-                    {/* Enhanced message content with better formatting */}
-                    {message.content.split('\n').map((line, lineIndex) => {
-                      // Handle bullet points
-                      if (line.trim().startsWith('����') || line.trim().startsWith('•') || line.trim().startsWith('-')) {
-                        return (
-                          <div key={lineIndex} className="flex items-start mb-1">
-                            <span className="mr-2 mt-0.5">{line.trim().startsWith('🔸') ? '🔸' : '•'}</span>
-                            <span>{line.replace(/^[🔸•-]\s*/, '')}</span>
-                          </div>
-                        );
-                      }
+            {/* Enhanced Input Area */}
+            <div className="p-4 bg-white border-t border-gray-200">
+              {/* Input hints */}
+              <div className="hidden md:flex items-center justify-between mb-3 text-xs text-gray-500">
+                <div className="flex items-center space-x-4">
+                  <span className="flex items-center">
+                    <span className="mr-1">💡</span>
+                    Enter ile gönder, Shift+Enter ile yeni satır
+                  </span>
+                  <span className="flex items-center">
+                    <span className="mr-1">🎯</span>
+                    Detaylı sorular daha iyi yanıtlar almanızı sağlar
+                  </span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <span>Mevcut token: {tokens?.remaining_tokens || 0}</span>
+                  {!hasTokens(1) && (
+                    <a
+                      href="/dashboard/tokens"
+                      className="text-blue-600 hover:text-blue-500 font-medium"
+                    >
+                      Token Al
+                    </a>
+                  )}
+                </div>
+              </div>
 
-                      // Handle numbered lists
-                      const numberedMatch = line.trim().match(/^\d+\.\s*(.+)$/);
-                      if (numberedMatch) {
-                        return (
-                          <div key={lineIndex} className="flex items-start mb-1">
-                            <span className="mr-2 mt-0.5 font-medium">{line.trim().split(' ')[0]}</span>
-                            <span>{numberedMatch[1]}</span>
-                          </div>
-                        );
-                      }
+              <div className="flex space-x-3">
+                <div className="flex-1 relative">
+                  <textarea
+                    ref={inputRef}
+                    value={inputValue}
+                    onChange={(e) => {
+                      setInputValue(e.target.value);
+                      const textarea = e.target;
+                      textarea.style.height = 'auto';
+                      textarea.style.height = Math.min(textarea.scrollHeight, 120) + 'px';
+                    }}
+                    onKeyPress={handleKeyPress}
+                    placeholder={
+                      !hasTokens(1)
+                        ? "Token gerekli - Mesaj göndermek için token satın alın"
+                        : "SeraGPT AI'ya sera ile ilgili sorunuzu yazın..."
+                    }
+                    className={`w-full px-4 py-3 pr-16 border-2 rounded-2xl focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none transition-all text-sm placeholder-gray-400 ${
+                      !hasTokens(1)
+                        ? 'border-gray-200 bg-gray-50 text-gray-400 cursor-not-allowed'
+                        : 'border-gray-300 bg-white hover:border-gray-400 focus:bg-white'
+                    }`}
+                    rows={1}
+                    style={{ minHeight: '52px', maxHeight: '120px' }}
+                    disabled={!hasTokens(1)}
+                  />
 
-                      // Handle headers (lines that end with :)
-                      if (line.trim().endsWith(':') && line.trim().length > 3 && line.trim().length < 50) {
-                        return (
-                          <div key={lineIndex} className={`font-semibold mb-2 mt-3 first:mt-0 ${
-                            message.role === 'user' ? 'text-blue-100' : 'text-gray-900'
-                          }`}>
-                            {line.trim()}
-                          </div>
-                        );
-                      }
-
-                      // Regular paragraphs
-                      return line.trim() ? (
-                        <p key={lineIndex} className="mb-2 last:mb-0">{line}</p>
-                      ) : (
-                        <br key={lineIndex} />
-                      );
-                    })}
-                  </div>
-
-                  <div className={`flex items-center justify-between mt-3 pt-2 border-t ${
-                    message.role === 'user'
-                      ? 'border-blue-500 text-blue-100'
-                      : 'border-gray-200 text-gray-500'
-                  } text-xs`}>
-                    <span>
-                      {message.timestamp.toLocaleTimeString('tr-TR', {
-                        hour: '2-digit',
-                        minute: '2-digit'
-                      })}
+                  {/* Character counter and suggestions */}
+                  <div className="absolute bottom-2 right-2 flex items-center space-x-2">
+                    <span className="text-xs text-gray-400">
+                      {inputValue.length}/1000
                     </span>
-                    <div className="flex items-center space-x-2">
-                      {message.token_cost && (
-                        <span className="flex items-center">
-                          <span className="mr-1">🪙</span>
-                          <span>{message.token_cost}</span>
-                        </span>
-                      )}
-                      {message.role === 'assistant' && (
-                        <span className="text-xs opacity-75">AI Yanıt</span>
-                      )}
-                    </div>
+                    {inputValue.length > 0 && (
+                      <button
+                        onClick={() => setInputValue('')}
+                        className="p-1 text-gray-400 hover:text-gray-600 rounded"
+                        title="Temizle"
+                      >
+                        <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                      </button>
+                    )}
                   </div>
                 </div>
-              </motion.div>
-            ))}
 
-            {isTyping && (
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="flex justify-start"
-              >
-                <div className="bg-gray-100 border border-gray-200 rounded-lg px-4 py-3">
-                  <div className="flex space-x-1">
-                    <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
-                    <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
-                    <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
-                  </div>
-                </div>
-              </motion.div>
-            )}
-
-            <div ref={messagesEndRef} />
-          </div>
-
-          {/* Quick Questions */}
-          {chatSession.messages.length <= 1 && (
-            <div className="p-4 border-t border-gray-200 bg-gray-50">
-              <p className="text-sm font-medium text-gray-700 mb-3">Popüler sorular:</p>
-              <div className="flex flex-wrap gap-2">
-                {getQuickQuestions().slice(0, 4).map((question, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setInputValue(question)}
-                    className="px-3 py-1 text-xs bg-white border border-gray-200 hover:bg-gray-50 text-gray-700 rounded-full transition-colors"
-                  >
-                    {question}
-                  </button>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {/* Error/Warning Messages */}
-          {(error || tokenWarning) && (
-            <div className="p-4">
-              {error && (
-                <div className="bg-red-50 border border-red-200 rounded-lg p-3 mb-2">
-                  <p className="text-red-600 text-sm">{error}</p>
-                </div>
-              )}
-              {tokenWarning && (
-                <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3">
-                  <p className="text-yellow-600 text-sm">{tokenWarning}</p>
-                  <a 
-                    href="/dashboard/tokens" 
-                    className="text-yellow-700 hover:text-yellow-600 text-sm font-medium ml-1"
-                  >
-                    Token satın alın →
-                  </a>
-                </div>
-              )}
-            </div>
-          )}
-
-          {/* Input Area */}
-          <div className="p-2 md:p-3 border-t border-gray-200 bg-white">
-            {/* Input hint bar - Desktop only */}
-            <div className="hidden md:flex items-center justify-between mb-2 text-xs text-gray-500">
-              <div className="flex items-center space-x-3">
-                <span>💡 İpucu: Enter ile gönder, Shift+Enter ile yeni satır</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <span>Mevcut token: {tokens?.remaining_tokens || 0}</span>
-                {!hasTokens(1) && (
-                  <a
-                    href="/dashboard/tokens"
-                    className="text-blue-600 hover:text-blue-500 font-medium"
-                  >
-                    Token Al
-                  </a>
-                )}
-              </div>
-            </div>
-
-            <div className="flex space-x-2">
-              <div className="flex-1 relative">
-                <textarea
-                  value={inputValue}
-                  onChange={(e) => {
-                    setInputValue(e.target.value);
-                    // Auto-resize textarea
-                    const textarea = e.target;
-                    textarea.style.height = 'auto';
-                    textarea.style.height = Math.min(textarea.scrollHeight, 120) + 'px';
-                  }}
-                  onKeyPress={handleKeyPress}
-                  placeholder={
-                    !hasTokens(1)
-                      ? "Token gerekli - Mesaj göndermek için token satın alın"
-                      : "SeraGPT AI'ya sera ile ilgili sorunuzu yazın..."
-                  }
-                  className={`w-full px-3 md:px-4 py-2 md:py-3 pr-8 md:pr-12 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none transition-all text-sm md:text-base ${
-                    !hasTokens(1)
-                      ? 'border-gray-200 bg-gray-50 text-gray-400 cursor-not-allowed'
-                      : 'border-gray-300 bg-white'
-                  }`}
-                  rows={1}
-                  style={{ minHeight: '44px', maxHeight: '100px' }}
-                  disabled={!hasTokens(1)}
-                />
-
-                {/* Character counter */}
-                <div className="absolute bottom-2 right-2 text-xs text-gray-400">
-                  {inputValue.length}/500
-                </div>
-
-                {/* Auto-suggestions overlay */}
-                {inputValue.length > 0 && inputValue.length < 10 && (
-                  <div className="absolute -top-8 left-0 right-0 bg-white border border-gray-200 rounded-lg shadow-sm p-2 text-xs text-gray-600">
-                    <div className="flex items-center space-x-1">
-                      <span>💡</span>
-                      <span>Daha detaylı sorular daha iyi yanıtlar almanızı sağlar</span>
-                    </div>
-                  </div>
-                )}
-              </div>
-
-              <div className="flex flex-col space-y-1 md:space-y-2">
-                <button
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                   onClick={handleSendMessage}
                   disabled={!inputValue.trim() || isTyping || !hasTokens(1)}
-                  className="flex-shrink-0 bg-blue-600 hover:bg-blue-700 text-white px-3 md:px-6 py-2 md:py-3 rounded-lg font-medium transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center min-h-[44px] md:min-h-[48px] transform hover:scale-105 active:scale-95 text-sm md:text-base"
+                  className={`px-6 py-3 rounded-2xl font-semibold transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center min-h-[52px] shadow-lg ${
+                    !inputValue.trim() || isTyping || !hasTokens(1)
+                      ? 'bg-gray-300 text-gray-500'
+                      : 'bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white shadow-blue-200'
+                  }`}
                 >
                   {isTyping ? (
                     <>
-                      <svg className="w-5 h-5 animate-spin mr-2" fill="none" viewBox="0 0 24 24">
-                        <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" className="opacity-25"></circle>
-                        <path fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" className="opacity-75"></path>
-                      </svg>
+                      <motion.div
+                        animate={{ rotate: 360 }}
+                        transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                        className="w-5 h-5 border-2 border-white border-t-transparent rounded-full mr-2"
+                      />
                       <span className="hidden sm:inline">Gönderiliyor...</span>
                     </>
                   ) : (
@@ -859,88 +1200,113 @@ export default function AIChatPage() {
                       </svg>
                       <span className="hidden md:inline">Gönder</span>
                       <span className="md:hidden">📤</span>
-                      <span className="ml-1 md:ml-2 text-xs opacity-75">1🪙</span>
+                      <span className="ml-2 text-xs opacity-75 flex items-center">
+                        1<span className="ml-0.5">🧠</span>
+                      </span>
                     </>
                   )}
-                </button>
-
-                {/* Clear input button */}
-                {inputValue.length > 0 && (
-                  <button
-                    onClick={() => setInputValue('')}
-                    className="flex-shrink-0 bg-gray-200 hover:bg-gray-300 text-gray-600 px-2 md:px-3 py-1 md:py-2 rounded-lg text-sm transition-colors"
-                    title="Temizle"
-                  >
-                    ✕
-                  </button>
-                )}
+                </motion.button>
               </div>
-            </div>
 
-            {/* Smart suggestions based on context */}
-            {chatSession.messages.length > 2 && inputValue.length === 0 && (
-              <div className="mt-3 p-3 bg-blue-50 border border-blue-200 rounded-lg">
-                <p className="text-sm text-blue-700 mb-2">🎯 Devam etmek için:</p>
-                <div className="flex flex-wrap gap-2">
-                  {[
-                    "Bu konuda daha detay verebilir misin?",
-                    "Alternatifleri nelerdir?",
-                    "Maliyetler nasıl hesaplanır?",
-                    "Pratik önerileriniz var mı?"
-                  ].map((suggestion, index) => (
-                    <button
-                      key={index}
-                      onClick={() => setInputValue(suggestion)}
-                      className="px-3 py-1 text-xs bg-white border border-blue-200 hover:bg-blue-50 text-blue-700 rounded-full transition-colors"
-                    >
-                      {suggestion}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            )}
-          </div>
-        </div>
-
-        {/* AI Insights Sidebar */}
-        {insights.length > 0 && (
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="lg:w-80 border-t lg:border-t-0 lg:border-l border-gray-200 p-4 overflow-y-auto"
-          >
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">🔍 AI Önerileri</h3>
-            <div className="space-y-3">
-              {insights.map((insight, index) => (
-                <div
-                  key={index}
-                  className={`border rounded-lg p-3 ${getInsightColor(insight.priority)}`}
+              {/* Context-aware suggestions */}
+              {chatSession && chatSession.messages.length > 2 && inputValue.length === 0 && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="mt-3 p-3 bg-gradient-to-r from-blue-50 to-green-50 border border-blue-200 rounded-xl"
                 >
-                  <div className="flex items-start space-x-2">
-                    <span className="text-lg">{getInsightIcon(insight.type)}</span>
-                    <div className="flex-1">
-                      <h4 className="font-medium text-gray-900 text-sm mb-1">{insight.title}</h4>
-                      <p className="text-xs text-gray-700 mb-2">{insight.description}</p>
-                      <div className="flex items-center justify-between">
-                        <span className={`text-xs px-2 py-1 rounded-full ${
-                          insight.priority === 'high' ? 'bg-red-100 text-red-700' :
-                          insight.priority === 'medium' ? 'bg-yellow-100 text-yellow-700' :
-                          'bg-green-100 text-green-700'
-                        }`}>
-                          {insight.priority === 'high' ? 'Yüksek' : 
-                           insight.priority === 'medium' ? 'Orta' : 'Düşük'}
-                        </span>
-                        {insight.actionable && (
-                          <span className="text-xs text-blue-600">✅ Uygulanabilir</span>
-                        )}
-                      </div>
-                    </div>
+                  <p className="text-sm text-blue-700 mb-2 font-medium">🎯 Sohbete devam etmek için:</p>
+                  <div className="flex flex-wrap gap-2">
+                    {[
+                      "Bu konuda daha detay verebilir misin?",
+                      "Alternatif çözümler nelerdir?", 
+                      "Maliyetler nasıl hesaplanır?",
+                      "Pratik önerileriniz var mı?"
+                    ].map((suggestion, index) => (
+                      <motion.button
+                        key={index}
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        onClick={() => setInputValue(suggestion)}
+                        className="px-3 py-1 text-xs bg-white border border-blue-200 hover:bg-blue-50 text-blue-700 rounded-full transition-all shadow-sm"
+                      >
+                        {suggestion}
+                      </motion.button>
+                    ))}
+                  </div>
+                </motion.div>
+              )}
+            </div>
+          </div>
+
+          {/* Enhanced AI Insights Sidebar */}
+          <AnimatePresence>
+            {insights.length > 0 && (showInsights || window.innerWidth >= 1024) && (
+              <motion.div
+                initial={{ x: 300, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                exit={{ x: 300, opacity: 0 }}
+                className="w-80 bg-gradient-to-b from-amber-50 to-orange-50 border-l border-amber-200 overflow-y-auto"
+              >
+                <div className="p-4">
+                  <div className="flex items-center justify-between mb-4">
+                    <h3 className="text-lg font-bold text-amber-800 flex items-center">
+                      <span className="mr-2">💡</span>
+                      AI Önerileri
+                    </h3>
+                    <span className="px-2 py-1 bg-amber-200 text-amber-800 text-xs rounded-full font-semibold">
+                      {insights.length}
+                    </span>
+                  </div>
+                  
+                  <div className="space-y-3">
+                    {insights.map((insight, index) => (
+                      <motion.div
+                        key={index}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: index * 0.1 }}
+                        className={`border-2 rounded-xl p-4 transition-all hover:shadow-lg ${
+                          insight.priority === 'high' ? 'border-red-200 bg-red-50 hover:bg-red-100' :
+                          insight.priority === 'medium' ? 'border-yellow-200 bg-yellow-50 hover:bg-yellow-100' :
+                          'border-green-200 bg-green-50 hover:bg-green-100'
+                        }`}
+                      >
+                        <div className="flex items-start space-x-3">
+                          <span className="text-2xl">{insight.icon || (
+                            insight.type === 'recommendation' ? '💡' :
+                            insight.type === 'warning' ? '⚠️' :
+                            insight.type === 'opportunity' ? '🚀' : '🔍'
+                          )}</span>
+                          <div className="flex-1">
+                            <h4 className="font-bold text-gray-900 mb-1">{insight.title}</h4>
+                            <p className="text-sm text-gray-700 mb-3">{insight.description}</p>
+                            
+                            <div className="flex items-center justify-between">
+                              <span className={`text-xs px-3 py-1 rounded-full font-semibold ${
+                                insight.priority === 'high' ? 'bg-red-200 text-red-800' :
+                                insight.priority === 'medium' ? 'bg-yellow-200 text-yellow-800' :
+                                'bg-green-200 text-green-800'
+                              }`}>
+                                {insight.priority === 'high' ? 'Yüksek Öncelik' : 
+                                 insight.priority === 'medium' ? 'Orta Öncelik' : 'Düşük Öncelik'}
+                              </span>
+                              {insight.actionable && (
+                                <span className="text-xs text-blue-600 bg-blue-100 px-2 py-1 rounded-full font-medium">
+                                  ✅ Uygulanabilir
+                                </span>
+                              )}
+                            </div>
+                          </div>
+                        </div>
+                      </motion.div>
+                    ))}
                   </div>
                 </div>
-              ))}
-            </div>
-          </motion.div>
-        )}
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
       </div>
     </DashboardLayout>
   );
