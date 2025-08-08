@@ -72,24 +72,15 @@ export default function UserjotCloneSection() {
 
           {/* Center navigation - 3 links */}
           <nav className="hidden md:flex items-center space-x-8">
-            <button 
-              onClick={() => handleLinkClick('/danismanlik')}
-              className="text-gray-700 hover:text-gray-900 font-medium transition-colors cursor-pointer border-none bg-transparent"
-            >
+            <Link href="/danismanlik" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
               Danışmanlık
-            </button>
-            <button 
-              onClick={() => handleLinkClick('/anahtar-teslim-proje')}
-              className="text-gray-700 hover:text-gray-900 font-medium transition-colors cursor-pointer border-none bg-transparent"
-            >
+            </Link>
+            <Link href="/anahtar-teslim-proje" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
               Anahtar Teslim Proje
-            </button>
-            <button 
-              onClick={() => handleLinkClick('/destek')}
-              className="text-gray-700 hover:text-gray-900 font-medium transition-colors cursor-pointer border-none bg-transparent"
-            >
+            </Link>
+            <Link href="/destek" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
               Destek
-            </button>
+            </Link>
           </nav>
 
           {/* Right menu - conditional based on user state */}
