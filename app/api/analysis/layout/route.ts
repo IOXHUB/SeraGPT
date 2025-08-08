@@ -113,7 +113,7 @@ interface LayoutResponse {
         cutting_plane: string;
         structural_details: Array<string>;
       }>;
-      3d_visualization: {
+      three_d_visualization: {
         model_url: string;
         rendered_views: Array<{
           view_angle: string;
@@ -501,7 +501,7 @@ function generateTechnicalDrawings(site: any, greenhouse: any) {
         structural_details: ['Gutter details', 'Ventilation systems', 'Internal layout']
       }
     ],
-    3d_visualization: {
+    three_d_visualization: {
       model_url: `/api/3d-models/greenhouse/${analysisId}.obj`,
       rendered_views: [
         {
