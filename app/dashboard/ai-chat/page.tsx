@@ -84,10 +84,17 @@ export default function AIChatPage() {
 
     try {
       setLoadingHistory(true);
-      
+
+      const authToken = await getAuthToken();
+      if (!authToken) {
+        console.warn('No auth token available for chat history');
+        setLoadingHistory(false);
+        return;
+      }
+
       const response = await fetch('/api/chat/sessions', {
         headers: {
-          'Authorization': `Bearer ${await getAuthToken()}`
+          'Authorization': `Bearer ${authToken}`
         }
       });
 
@@ -95,7 +102,7 @@ export default function AIChatPage() {
         const data = await response.json();
         setChatHistory(data.data || []);
       } else {
-        console.warn('Failed to load chat history');
+        console.warn('Failed to load chat history:', response.status);
       }
     } catch (error) {
       console.error('Error loading chat history:', error);
