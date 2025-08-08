@@ -297,7 +297,7 @@ export default function DashboardLayout({ children, title, subtitle, requiresTok
                       )}
                     </div>
                   ) : (
-                    <MediumPriorityLink
+                    <a
                       href={item.href}
                       className={`flex items-center px-3 sm:px-4 py-2 sm:py-3 rounded-lg text-sm sm:text-base font-medium transition-colors ${
                         item.active
@@ -306,7 +306,7 @@ export default function DashboardLayout({ children, title, subtitle, requiresTok
                       }`}
                     >
                       <span>{item.name}</span>
-                    </MediumPriorityLink>
+                    </a>
                   )}
                 </div>
               ))}
