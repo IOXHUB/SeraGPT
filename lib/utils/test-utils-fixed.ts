@@ -133,7 +133,7 @@ export async function testAIService(): Promise<TestSuite> {
   if (authStatus.isAuthenticated) {
     tests.push(await testApiEndpoint(
       '/api/chat/sessions',
-      () => aiService.createChatSession('Test session'),
+      async () => await aiService.createChatSession('Test session'),
       ['id', 'title', 'created_at']
     ));
   }
