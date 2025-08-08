@@ -726,7 +726,7 @@ export default function ROIAnalysisPage() {
                 {Object.entries(roiAnalysis.data.operationalCosts.breakdown).map(([key, value]) => (
                   <div key={key} className="flex justify-between items-center text-sm">
                     <span className="text-gray-500 capitalize">{key}</span>
-                    <span className="text-gray-700">₺{value.toLocaleString()}</span>
+                    <span className="text-gray-700">₺{(value as number).toLocaleString()}</span>
                   </div>
                 ))}
               </div>
