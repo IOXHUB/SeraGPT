@@ -283,10 +283,21 @@ export default function UserjotCloneSection() {
 
                   <div className="space-y-3 mb-4">
                     <div>
-                      <p className="text-gray-800 text-xs font-semibold mb-1">🎯 3 Önemli Fayda:</p>
-                      <p className="text-gray-600 text-xs">• Yatırımın geri dönüş süresi</p>
-                      <p className="text-gray-600 text-xs">• Kar marjı ve yıllık getiri tahmini</p>
-                      <p className="text-gray-600 text-xs">• İşletme maliyetleri kıyaslaması</p>
+                      <p className="text-gray-800 text-xs sm:text-sm font-semibold mb-2">🎯 Temel Faydalar:</p>
+                      <div className="space-y-1">
+                        <p className="text-gray-600 text-xs sm:text-sm flex items-start">
+                          <span className="text-green-500 mr-2">•</span>
+                          <span>Yatırımın geri dönüş süresi</span>
+                        </p>
+                        <p className="text-gray-600 text-xs sm:text-sm flex items-start">
+                          <span className="text-green-500 mr-2">•</span>
+                          <span>Kar marjı ve yıllık getiri tahmini</span>
+                        </p>
+                        <p className="text-gray-600 text-xs sm:text-sm flex items-start">
+                          <span className="text-green-500 mr-2">•</span>
+                          <span>İşletme maliyetleri kıyaslaması</span>
+                        </p>
+                      </div>
                     </div>
 
                     <div>
