@@ -5,6 +5,7 @@ import { useAuth } from '@/lib/hooks/useAuth';
 import { authService } from '@/lib/services/auth-service';
 import DashboardLayout from '@/components/dashboard/DashboardLayout';
 import { DashboardOverviewSkeleton } from '@/components/ui/skeletons/DashboardSkeletons';
+import CacheStatsWidget from '@/components/dashboard/CacheStatsWidget';
 import { UserActivityLog } from '@/types/auth';
 
 // Force dynamic rendering for dashboard pages
@@ -186,7 +187,7 @@ export default function DashboardPage() {
         { 
           name: 'Toplam Analizler', 
           value: dashboardData.stats.totalAnalyses.toString(), 
-          change: dashboardData.stats.totalAnalyses > 0 ? 'Analiz geçmişiniz var' : 'Henüz analiz yapılmadı', 
+          change: dashboardData.stats.totalAnalyses > 0 ? 'Analiz geçmişiniz var' : 'Henüz analiz yap��lmadı', 
           changeType: 'neutral', 
           color: 'blue',
           description: 'Tüm zamanlar'
@@ -226,7 +227,7 @@ export default function DashboardPage() {
           type: 'analysis',
           title: 'ROI analizi tamamlandı',
           description: 'İzmir sera projesi başarıyla işlendi',
-          time: '15 dk önce',
+          time: '15 dk ��nce',
           color: 'bg-blue-100 text-blue-600'
         },
         {
