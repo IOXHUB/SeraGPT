@@ -237,54 +237,46 @@ export default function DashboardLayout({ children, title, subtitle }: Dashboard
                       {item.submenu && !sidebarCollapsed && expandedMenus[item.name] && (
                         <div className="ml-6 mt-1 space-y-1">
                           {item.submenu.map((subItem) => (
-                            <a
-                              key={subItem.href}
-                              href={subItem.href}
-                              className={`group flex items-center px-2 py-2 text-xs font-medium rounded-md transition-all ${
-                                isActive(subItem.href)
-                                  ? 'bg-green-100 text-green-700'
-                                  : 'text-gray-500 hover:bg-gray-100 hover:text-gray-700'
-                              }`}
-                            >
-                              <span className="text-sm mr-2">{subItem.icon}</span>
-                              <span>{subItem.name}</span>
-                              {subItem.name === 'Sohbet Geçmişi' && (
-                                <button
-                                  onClick={(e) => {
-                                    e.preventDefault();
-                                    e.stopPropagation();
-                                    setExpandedChatHistory(!expandedChatHistory);
-                                  }}
-                                  className="ml-auto"
+                            <div key={subItem.name}>
+                              {/* Submenu item header */}
+                              <button
+                                onClick={() => toggleSubSubmenu(subItem.name)}
+                                className={`w-full group flex items-center px-2 py-2 text-xs font-medium rounded-md transition-all ${
+                                  expandedSubMenus[subItem.name]
+                                    ? 'bg-green-100 text-green-700'
+                                    : 'text-gray-500 hover:bg-gray-100 hover:text-gray-700'
+                                }`}
+                              >
+                                <span className="text-sm mr-2">{subItem.icon}</span>
+                                <span className="flex-1 text-left">{subItem.name}</span>
+                                <svg
+                                  className={`w-3 h-3 text-gray-400 transition-transform ${expandedSubMenus[subItem.name] ? 'rotate-90' : ''}`}
+                                  fill="none"
+                                  stroke="currentColor"
+                                  viewBox="0 0 24 24"
                                 >
-                                  <svg
-                                    className={`w-3 h-3 text-gray-400 transition-transform ${expandedChatHistory ? 'rotate-90' : ''}`}
-                                    fill="none"
-                                    stroke="currentColor"
-                                    viewBox="0 0 24 24"
-                                  >
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                                  </svg>
-                                </button>
-                              )}
-                            </a>
-                          ))}
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                </svg>
+                              </button>
 
-                          {/* Chat history sub-items */}
-                          {expandedChatHistory && (
-                            <div className="ml-4 space-y-1">
-                              {['Sera ROI Hesaplaması', 'İklim Analizi Sorguları', 'Ekipman Önerileri'].map((chatTitle, index) => (
-                                <a
-                                  key={index}
-                                  href={`/dashboard/ai-chat?session=${index + 1}`}
-                                  className="flex items-center px-2 py-1.5 text-xs text-gray-400 hover:text-gray-600 hover:bg-gray-50 rounded"
-                                >
-                                  <span className="text-xs mr-2">💬</span>
-                                  <span className="truncate">{chatTitle}</span>
-                                </a>
-                              ))}
+                              {/* Sub-submenu items */}
+                              {subItem.submenu && expandedSubMenus[subItem.name] && (
+                                <div className="ml-4 mt-1 space-y-1">
+                                  {subItem.submenu.map((subSubItem) => (
+                                    <a
+                                      key={subSubItem.name}
+                                      href={subSubItem.href}
+                                      className="flex items-center px-2 py-1.5 text-xs text-gray-400 hover:text-gray-600 hover:bg-gray-50 rounded transition-all"
+                                      title={subSubItem.prompt}
+                                    >
+                                      <span className="text-xs mr-2">{subSubItem.icon}</span>
+                                      <span className="truncate">{subSubItem.name}</span>
+                                    </a>
+                                  ))}
+                                </div>
+                              )}
                             </div>
-                          )}
+                          ))}
                         </div>
                       )}
                     </div>
