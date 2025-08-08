@@ -134,6 +134,13 @@ export default function DashboardLayout({ children, title, subtitle }: Dashboard
     }));
   };
 
+  const toggleSubSubmenu = (itemName: string) => {
+    setExpandedSubMenus(prev => ({
+      ...prev,
+      [itemName]: !prev[itemName]
+    }));
+  };
+
   const isSubmenuActive = (submenu: MenuItem[]) => {
     return submenu.some(item => isActive(item.href));
   };
