@@ -194,7 +194,7 @@ class CacheService {
       deletedCount = 1;
     } else {
       // Tag-based deletion
-      for (const [key, entry] of this.cache.entries()) {
+      for (const [key, entry] of Array.from(this.cache.entries())) {
         if (entry.tags?.includes(keyOrTag)) {
           this.cache.delete(key);
           deletedCount++;
@@ -248,7 +248,7 @@ class CacheService {
     const now = Date.now();
     let cleanedCount = 0;
 
-    for (const [key, entry] of this.cache.entries()) {
+    for (const [key, entry] of Array.from(this.cache.entries())) {
       if (now - entry.timestamp > entry.ttl) {
         this.cache.delete(key);
         cleanedCount++;
@@ -298,7 +298,7 @@ class CacheService {
    */
   private estimateMemoryUsage(): number {
     let totalSize = 0;
-    for (const [key, entry] of this.cache.entries()) {
+    for (const [key, entry] of Array.from(this.cache.entries())) {
       totalSize += key.length * 2; // Approximate string size
       totalSize += JSON.stringify(entry.data).length * 2;
       totalSize += 100; // Overhead for entry metadata
