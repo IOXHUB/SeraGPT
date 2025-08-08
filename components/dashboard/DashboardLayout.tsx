@@ -319,7 +319,7 @@ export default function DashboardLayout({ children, title, subtitle, requiresTok
               </p>
               <div className="space-y-1">
                 {lowPriorityMenuItems.map((item) => (
-                  <LowPriorityLink
+                  <a
                     key={item.name}
                     href={item.href}
                     className={`block px-3 sm:px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
@@ -329,7 +329,7 @@ export default function DashboardLayout({ children, title, subtitle, requiresTok
                     }`}
                   >
                     {item.name}
-                  </LowPriorityLink>
+                  </a>
                 ))}
               </div>
             </div>
