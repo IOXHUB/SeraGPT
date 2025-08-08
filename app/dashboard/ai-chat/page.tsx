@@ -414,7 +414,7 @@ export default function AIChatPage() {
 
   const getInsightIcon = (type: string) => {
     switch (type) {
-      case 'recommendation': return '💡';
+      case 'recommendation': return '����';
       case 'warning': return '⚠️';
       case 'opportunity': return '🚀';
       case 'insight': return '🔍';
@@ -621,7 +621,7 @@ export default function AIChatPage() {
           </div>
 
           {/* Messages Area */}
-          <div className="flex-1 overflow-y-auto p-3 md:p-4 space-y-3 md:space-y-4">
+          <div className="flex-1 overflow-y-auto p-2 md:p-3 space-y-2 md:space-y-3">
             {chatSession.messages.map((message, index) => (
               <motion.div
                 key={message.id}
@@ -776,9 +776,9 @@ export default function AIChatPage() {
           )}
 
           {/* Input Area */}
-          <div className="p-3 md:p-4 border-t border-gray-200 bg-white">
+          <div className="p-2 md:p-3 border-t border-gray-200 bg-white">
             {/* Input hint bar - Desktop only */}
-            <div className="hidden md:flex items-center justify-between mb-3 text-xs text-gray-500">
+            <div className="hidden md:flex items-center justify-between mb-2 text-xs text-gray-500">
               <div className="flex items-center space-x-3">
                 <span>💡 İpucu: Enter ile gönder, Shift+Enter ile yeni satır</span>
               </div>
@@ -795,7 +795,7 @@ export default function AIChatPage() {
               </div>
             </div>
 
-            <div className="flex space-x-3">
+            <div className="flex space-x-2">
               <div className="flex-1 relative">
                 <textarea
                   value={inputValue}
