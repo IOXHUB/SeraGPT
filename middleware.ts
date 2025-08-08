@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { updateSession } from '@/lib/auth'
+import { applyCacheHeaders, addSecurityHeaders, addCompressionHeaders } from '@/lib/middleware/cache-headers'
 
 // =====================================================
 // SECURITY MIDDLEWARE
