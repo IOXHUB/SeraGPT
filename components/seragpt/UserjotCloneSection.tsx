@@ -8,10 +8,16 @@ import Footer from '../Footer';
 import SeraGPTLogo from '../ui/SeraGPTLogo';
 
 export default function UserjotCloneSection() {
+  const router = useRouter();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [openFAQ, setOpenFAQ] = useState<number | null>(null);
   const [user, setUser] = useState<any>(null);
   const [loading, setLoading] = useState(true);
+
+  const handleNavigation = (href: string) => {
+    setIsMobileMenuOpen(false);
+    router.push(href);
+  };
 
   // Simple auth check without context
   useEffect(() => {
