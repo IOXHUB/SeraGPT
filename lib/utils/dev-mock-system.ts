@@ -136,7 +136,17 @@ export class DevMockSystem {
   
   // Initialize mock system
   static init() {
-    if (typeof window === 'undefined' || process.env.NODE_ENV !== 'development') {
+    if (typeof window === 'undefined') {
+      return;
+    }
+
+    // Check if we're in a development-like environment
+    const isDev = process.env.NODE_ENV === 'development' ||
+                  window.location.hostname.includes('fly.dev') ||
+                  window.location.hostname.includes('builder.my') ||
+                  window.location.hostname.includes('localhost');
+
+    if (!isDev) {
       return;
     }
 
