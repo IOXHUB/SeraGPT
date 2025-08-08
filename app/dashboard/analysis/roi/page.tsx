@@ -939,7 +939,7 @@ export default function ROIAnalysisPage() {
         )}
 
         {/* Error Display */}
-        {error && (
+        {roiAnalysis.error && (
           <div className="bg-red-50 border border-red-200 rounded-lg p-4">
             <div className="flex items-center">
               <span className="text-red-600 mr-2">❌</span>
