@@ -89,27 +89,18 @@ export default function UserjotCloneSection() {
               <>
                 {user ? (
                   // For logged in users - show Dashboard
-                  <button 
-                    onClick={() => handleLinkClick('/dashboard')}
-                    className="text-gray-700 hover:text-gray-900 font-medium transition-colors cursor-pointer border-none bg-transparent"
-                  >
+                  <Link href="/dashboard" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
                     Dashboard
-                  </button>
+                  </Link>
                 ) : (
                   // For logged out users - show Login or Sign Up CTA
                   <>
-                    <button 
-                      onClick={() => handleLinkClick('/auth/login')}
-                      className="text-gray-700 hover:text-gray-900 font-medium transition-colors cursor-pointer border-none bg-transparent"
-                    >
+                    <Link href="/auth/login" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
                       Giriş Yap
-                    </button>
-                    <button 
-                      onClick={() => handleLinkClick('/auth/login')}
-                      className="bg-gray-600 text-white px-4 py-2 rounded-lg text-base font-medium hover:bg-gray-800 transition-colors cursor-pointer border-none"
-                    >
+                    </Link>
+                    <Link href="/auth/login" className="bg-gray-600 text-white px-4 py-2 rounded-lg text-base font-medium hover:bg-gray-800 transition-colors">
                       Ücretsiz Başla
-                    </button>
+                    </Link>
                   </>
                 )}
               </>
