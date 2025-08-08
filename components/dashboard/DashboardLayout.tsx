@@ -220,63 +220,63 @@ export default function DashboardLayout({ children, title, subtitle }: Dashboard
       }`}>
         {/* Top Header */}
         <header className="bg-white border-b border-gray-200 sticky top-0 z-30">
-          <div className="flex items-center justify-between h-12 px-3 lg:px-4">
+          <div className="flex items-center justify-between h-16 px-4 lg:px-6">
             <div className="flex items-center min-w-0 flex-1">
               <button
                 onClick={() => setSidebarOpen(true)}
-                className="lg:hidden p-1.5 rounded-md text-gray-400 hover:text-gray-600 mr-2 flex-shrink-0"
+                className="lg:hidden p-2 rounded-md text-gray-400 hover:text-gray-600 mr-3 flex-shrink-0"
               >
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
                 </svg>
               </button>
 
               {title && (
                 <div className="min-w-0">
-                  <h1 className="text-sm font-semibold text-gray-900 truncate">{title}</h1>
+                  <h1 className="text-lg font-semibold text-gray-900 truncate">{title}</h1>
                   {subtitle && (
-                    <p className="text-xs text-gray-500 truncate leading-none">{subtitle}</p>
+                    <p className="text-sm text-gray-500 truncate mt-0.5">{subtitle}</p>
                   )}
                 </div>
               )}
             </div>
 
             {/* Header Actions */}
-            <div className="flex items-center space-x-2 flex-shrink-0">
+            <div className="flex items-center space-x-4 flex-shrink-0">
               {/* Quick AI Chat */}
               <a
                 href="/dashboard/ai-chat"
-                className="hidden sm:flex items-center space-x-1 px-2 py-1 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white rounded text-xs font-medium transition-all duration-200 shadow-sm"
+                className="hidden sm:flex items-center space-x-2 px-4 py-2 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white rounded-lg text-sm font-medium transition-all duration-200 shadow-sm"
               >
-                <span>🤖</span>
-                <span>AI</span>
+                <span className="text-base">🤖</span>
+                <span>AI Asistan</span>
               </a>
 
               {/* Mobile AI Chat */}
               <a
                 href="/dashboard/ai-chat"
-                className="sm:hidden p-1.5 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white rounded transition-all duration-200"
+                className="sm:hidden p-2.5 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white rounded-lg transition-all duration-200"
               >
-                <span className="text-sm">🤖</span>
+                <span className="text-base">🤖</span>
               </a>
 
               {/* Notifications */}
-              <button className="p-1.5 text-gray-400 hover:text-gray-600 rounded hover:bg-gray-100 relative">
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <button className="p-2 text-gray-400 hover:text-gray-600 rounded-lg hover:bg-gray-100 relative">
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 17h5l-5 5v-5z" />
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4" />
                 </svg>
-                <span className="absolute top-0 right-0 w-2 h-2 bg-green-500 rounded-full"></span>
+                <span className="absolute top-1 right-1 w-2 h-2 bg-green-500 rounded-full"></span>
               </button>
 
               {/* User Profile */}
-              <div className="flex items-center space-x-2">
-                <div className="w-6 h-6 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center flex-shrink-0">
-                  <span className="text-white text-xs font-medium">V</span>
+              <div className="flex items-center space-x-3 ml-2">
+                <div className="w-8 h-8 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center flex-shrink-0">
+                  <span className="text-white text-sm font-medium">V</span>
                 </div>
-                <div className="hidden lg:block min-w-0">
-                  <p className="text-xs font-medium text-gray-700 truncate leading-none">Volkan Ş.</p>
-                  <p className="text-xs text-gray-500 truncate leading-none">Admin</p>
+                <div className="hidden md:block min-w-0">
+                  <p className="text-sm font-medium text-gray-700 truncate">Volkan Ş.</p>
+                  <p className="text-xs text-gray-500 truncate">Admin</p>
                 </div>
               </div>
             </div>
