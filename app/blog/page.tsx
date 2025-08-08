@@ -22,7 +22,7 @@ export default function BlogPage() {
     id: 1,
     slug: "sera-teknolojilerinde-2025-yenilikleri",
     title: "Sera Teknolojilerinde 2025 Yenilikleri",
-    excerpt: "Modern sera teknolojileri ile tarımsal verimliliği artırmanın yolları. İklim kontrolü, otomasyon sistemleri ve sürdürülebilir tarım uygulamalarında son gelişmeler.",
+    excerpt: "Modern sera teknolojileri ile tarımsal verimliliği artırmanın yolları. İklim kontrol��, otomasyon sistemleri ve sürdürülebilir tarım uygulamalarında son gelişmeler.",
     image: "https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2F382157220f6b4482a9c765091441c587",
     date: "15 Ocak 2025",
     category: "Tarım Teknolojisi"
@@ -199,10 +199,14 @@ export default function BlogPage() {
                 >
                   <a href={`/blog/${post.slug}`} className="block">
                     <div className="relative overflow-hidden rounded-lg mb-4">
-                      <img
+                      <Image
                         src={post.image}
                         alt={post.title}
+                        width={400}
+                        height={300}
                         className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                        placeholder="blur"
+                        blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
                       />
                     </div>
                     <div className="space-y-3">
