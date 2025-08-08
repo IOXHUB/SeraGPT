@@ -101,11 +101,15 @@ export async function middleware(request: NextRequest) {
     */
     console.log(`🔍 [Debug] Pattern check bypassed for: ${pathname}`)
 
-    // 3. Rate limiting
+    // 3. Rate limiting (DISABLED FOR DEBUGGING)
+    // TODO: Re-enable after debugging
+    /*
     const rateLimitResponse = checkRateLimit(request, clientIP)
     if (rateLimitResponse) {
       return rateLimitResponse
     }
+    */
+    console.log(`🔍 [Debug] Rate limiting bypassed for: ${pathname}`)
 
     // 4. CSRF protection for POST/PUT/DELETE requests (DISABLED FOR DEBUGGING)
     // TODO: Re-enable after debugging
