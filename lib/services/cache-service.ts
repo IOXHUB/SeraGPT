@@ -145,31 +145,118 @@ class CacheService {
   }
 
   /**
-   * Cached API call wrapper
+   * Cached API call wrapper with performance monitoring
    */
   async cachedFetch<T>(
     cacheKey: string,
     fetchFn: () => Promise<T>,
     options: CacheOptions = {}
   ): Promise<T> {
-    // Try cache first
-    const cached = this.get<T>(cacheKey, options);
-    if (cached !== null) {
-      return cached;
-    }
+    const startTime = performance.now();
+    let cached = false;
+    let success = true;
+    let statusCode = 200;
 
-    // Fetch fresh data
     try {
+      // Try cache first
+      const cachedData = this.get<T>(cacheKey, options);
+      if (cachedData !== null) {
+        cached = true;
+        const responseTime = performance.now() - startTime;
+
+        // Track cached API call performance
+        if (typeof window !== 'undefined') {
+          try {
+            const { performanceMonitor } = await import('./performance-monitor');
+            performanceMonitor.trackAPICall(
+              cacheKey,
+              'GET',
+              responseTime,
+              200,
+              true
+            );
+          } catch (error) {
+            // Silent fail if performance monitor is not available
+          }
+        }
+
+        return cachedData;
+      }
+
+      // Fetch fresh data
       const data = await fetchFn();
       this.set(cacheKey, data, options);
+
+      const responseTime = performance.now() - startTime;
+
+      // Track fresh API call performance
+      if (typeof window !== 'undefined') {
+        try {
+          const { performanceMonitor } = await import('./performance-monitor');
+          performanceMonitor.trackAPICall(
+            cacheKey,
+            'POST',
+            responseTime,
+            200,
+            false
+          );
+        } catch (error) {
+          // Silent fail if performance monitor is not available
+        }
+      }
+
       return data;
+
     } catch (error) {
+      success = false;
+      statusCode = 500;
+
       // Return stale data if available on error
       const staleEntry = this.getStale<T>(cacheKey);
       if (staleEntry) {
         console.warn(`Using stale cache data for ${cacheKey} due to fetch error:`, error);
+        cached = true;
+        statusCode = 200;
+        success = true;
+
+        const responseTime = performance.now() - startTime;
+
+        // Track stale data usage
+        if (typeof window !== 'undefined') {
+          try {
+            const { performanceMonitor } = await import('./performance-monitor');
+            performanceMonitor.trackAPICall(
+              cacheKey + '_stale',
+              'GET',
+              responseTime,
+              200,
+              true
+            );
+          } catch (error) {
+            // Silent fail
+          }
+        }
+
         return staleEntry;
       }
+
+      // Track error
+      const responseTime = performance.now() - startTime;
+      if (typeof window !== 'undefined') {
+        try {
+          const { performanceMonitor } = await import('./performance-monitor');
+          performanceMonitor.trackAPICall(
+            cacheKey,
+            'POST',
+            responseTime,
+            statusCode,
+            false
+          );
+        } catch (error) {
+          // Silent fail
+        }
+      }
+
       throw error;
     }
   }
