@@ -361,7 +361,7 @@ export default function AIChatPage() {
       subtitle="SeraGPT AI asistanınızla sohbet edin"
       requiresTokens={true}
     >
-      <div className="h-[calc(100vh-200px)] flex flex-col lg:flex-row bg-white rounded-xl border border-gray-200 shadow-sm">
+      <div className="h-[calc(100vh-140px)] md:h-[calc(100vh-200px)] flex flex-col bg-white rounded-xl border border-gray-200 shadow-sm relative">
         
         {/* Chat History Sidebar */}
         <div className="lg:w-64 border-b lg:border-b-0 lg:border-r border-gray-200 p-4">
