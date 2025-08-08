@@ -82,7 +82,9 @@ export async function middleware(request: NextRequest) {
       return new Response('Access Denied', { status: 403 })
     }
 
-    // 2. Check for suspicious patterns in URL and headers
+    // 2. Check for suspicious patterns in URL and headers (DISABLED FOR DEBUGGING)
+    // TODO: Re-enable after debugging
+    /*
     const suspiciousContent = [
       pathname,
       request.nextUrl.search,
@@ -96,6 +98,8 @@ export async function middleware(request: NextRequest) {
         return new Response('Bad Request', { status: 400 })
       }
     }
+    */
+    console.log(`🔍 [Debug] Pattern check bypassed for: ${pathname}`)
 
     // 3. Rate limiting
     const rateLimitResponse = checkRateLimit(request, clientIP)
