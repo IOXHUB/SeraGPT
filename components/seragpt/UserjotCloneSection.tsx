@@ -280,12 +280,9 @@ export default function UserjotCloneSection() {
 
           {/* CTA Button */}
           <div className="text-center mt-12">
-            <button 
-              onClick={() => handleLinkClick('/auth/login')}
-              className="btn btn-primary mb-4 cursor-pointer border-none"
-            >
+            <Link href="/auth/login" className="btn btn-primary mb-4">
               Kullanıcı Paneline Giriş Yapın
-            </button>
+            </Link>
             <p className="text-small text-center">
               Tüm sera projelerinizi tek platformdan yönetin
             </p>
@@ -432,7 +429,7 @@ export default function UserjotCloneSection() {
                 <div className="mt-12 md:mt-16">
                   <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-4 leading-tight">
                     <span className="block sm:hidden">Pazar & Tarım Verisi</span>
-                    <span className="hidden sm:block">Pazar ve Tarım Verisi Entegrasyonu</span>
+                    <span className="hidden sm:block">Pazar ve Tar��m Verisi Entegrasyonu</span>
                   </h3>
                   <div className="space-y-3 mb-4">
                     <div>
@@ -522,7 +519,7 @@ export default function UserjotCloneSection() {
               },
               {
                 question: "Ödeme nasıl yapılıyor?",
-                answer: "İlk 5 rapor ücretsizdir. Sonrasında, kredi kart�� veya havale/EFT ile jeton (token) satın alabilirsiniz. Ödeme altyapısı %100 güvenlidir."
+                answer: "İlk 5 rapor ücretsizdir. Sonrasında, kredi kartı veya havale/EFT ile jeton (token) satın alabilirsiniz. Ödeme altyapısı %100 güvenlidir."
               }
             ].map((faq, index) => (
               <div
