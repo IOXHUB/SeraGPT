@@ -1,11 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import { motion } from 'framer-motion';
-import { useAuth } from '@/lib/hooks/useAuth';
-import { useROIAnalysis } from '@/lib/hooks/useCachedAPI';
-import { ROIAnalysisSkeleton } from '@/components/ui/skeletons/AnalysisSkeletons';
-import { AnalysisLoading } from '@/components/ui/LoadingStates';
 import DashboardLayout from '@/components/dashboard/DashboardLayout';
 
 export const dynamic = 'force-dynamic';
@@ -337,7 +332,7 @@ export default function ROIAnalysisPage() {
             min="100"
           />
           <p className="text-xs text-gray-500 mt-1">
-            {roiInputs.plantType} için m² başına beklenen verim
+            {roiInputs.plantType} için m�� başına beklenen verim
           </p>
         </div>
 
