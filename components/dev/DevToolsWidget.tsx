@@ -72,7 +72,7 @@ export default function DevToolsWidget() {
             {currentUser ? (
               <div className="bg-gray-50 rounded-lg p-3">
                 <div className="flex items-center space-x-2 mb-1">
-                  <span className="text-lg">{currentUser.role === 'admin' ? '👑' : currentUser.role === 'premium' ? '⭐' : '���'}</span>
+                  <span className="text-lg">{currentUser.role === 'admin' ? '👑' : currentUser.role === 'premium' ? '⭐' : '👤'}</span>
                   <span className="font-medium text-sm">{currentUser.name}</span>
                 </div>
                 <div className="text-xs text-gray-600">{currentUser.email}</div>
@@ -116,13 +116,28 @@ export default function DevToolsWidget() {
 
           {/* Actions */}
           <div className="space-y-2">
+            <div className="grid grid-cols-2 gap-2">
+              <button
+                onClick={() => window.location.href = '/dashboard'}
+                className="bg-green-50 hover:bg-green-100 text-green-700 text-sm py-2 px-3 rounded-lg transition-colors"
+              >
+                👤 Dashboard
+              </button>
+              <button
+                onClick={() => window.location.href = '/admin'}
+                className="bg-purple-50 hover:bg-purple-100 text-purple-700 text-sm py-2 px-3 rounded-lg transition-colors"
+              >
+                👑 Admin
+              </button>
+            </div>
+
             <button
               onClick={handleLogout}
               className="w-full bg-red-50 hover:bg-red-100 text-red-700 text-sm py-2 px-3 rounded-lg transition-colors"
             >
               🚪 Logout
             </button>
-            
+
             <button
               onClick={() => {
                 console.log('Current analyses:', DevMockSystem.getUserAnalyses(currentUser?.id || ''));
