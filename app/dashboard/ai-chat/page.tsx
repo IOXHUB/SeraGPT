@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useAuth } from '@/lib/hooks/useAuth';
 import DashboardLayout from '@/components/dashboard/DashboardLayout';
+import { useSearchParams } from 'next/navigation';
 
 // Force dynamic rendering
 export const dynamic = 'force-dynamic';
@@ -28,7 +29,8 @@ interface ChatSession {
 
 export default function AIChatPage() {
   const { user, loading } = useAuth();
-  
+  const searchParams = useSearchParams();
+
   const [chatSession, setChatSession] = useState<ChatSession | null>(null);
   const [inputValue, setInputValue] = useState('');
   const [isTyping, setIsTyping] = useState(false);
@@ -37,6 +39,10 @@ export default function AIChatPage() {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  // Get prompt from URL parameter
+  const promptParam = searchParams?.get('prompt');
+  const sessionParam = searchParams?.get('session');
 
   // Initialize chat session
   useEffect(() => {
@@ -59,28 +65,94 @@ export default function AIChatPage() {
 
     const newSession: ChatSession = {
       id: `session_${Date.now()}`,
-      title: 'SeraGPT AI Sohbet',
+      title: getSessionTitle(),
       messages: [],
       created_at: new Date(),
       updated_at: new Date(),
       user_id: user.id
     };
 
-    // Clean welcome message
+    // Welcome message based on context
     const welcomeMessage: ChatMessage = {
       id: 'welcome',
       role: 'assistant',
-      content: `Hoşgeldiniz! 👋
-
-İsterseniz önce menüden oluşturduğunuz raporunuzu seçiniz. Üzerine derinlemesine bir sohbet bizi bekliyor.
-
-Size nasıl yardımcı olabilirim?`,
+      content: getWelcomeMessage(),
       timestamp: new Date(),
       session_id: newSession.id
     };
 
     newSession.messages.push(welcomeMessage);
     setChatSession(newSession);
+
+    // Auto-start with custom prompt if provided
+    if (promptParam) {
+      setTimeout(() => {
+        setInputValue(getCustomPrompt(promptParam));
+        // Auto-focus input for immediate editing
+        inputRef.current?.focus();
+      }, 1000);
+    }
+  };
+
+  const getSessionTitle = () => {
+    if (promptParam?.includes('roi')) return 'ROI Analizi Sohbeti';
+    if (promptParam?.includes('climate')) return 'İklim Analizi Sohbeti';
+    if (promptParam?.includes('equipment')) return 'Ekipman Önerileri Sohbeti';
+    if (promptParam?.includes('market')) return 'Pazar Analizi Sohbeti';
+    if (promptParam?.includes('layout')) return 'Teknik Plan Sohbeti';
+    if (promptParam?.includes('cost')) return 'Maliyet Optimizasyonu Sohbeti';
+    if (promptParam?.includes('efficiency')) return 'Verimlilik Sohbeti';
+    if (promptParam?.includes('technology')) return 'Teknoloji Sohbeti';
+    if (promptParam?.includes('marketing')) return 'Pazarlama Sohbeti';
+    if (promptParam?.includes('sustainability')) return 'Sürdürülebilirlik Sohbeti';
+    if (sessionParam) return `Sohbet Devamı #${sessionParam}`;
+    return 'SeraGPT AI Sohbet';
+  };
+
+  const getWelcomeMessage = () => {
+    if (promptParam) {
+      return `Merhaba! 👋
+
+Bu sohbeti ${getSessionTitle().toLowerCase()} için başlattınız. Size özel hazırladığım soruyu aşağıda görebilirsiniz.
+
+İsterseniz bu soruyu düzenleyebilir veya kendi sorunuzu yazabilirsiniz.`;
+    }
+
+    if (sessionParam) {
+      return `Hoşgeldiniz! 👋
+
+Daha önce başlattığınız sohbete devam ediyoruz. Kaldığımız yerden konuşmaya devam edebiliriz.
+
+Bu konuda hangi detayları merak ediyorsunuz?`;
+    }
+
+    return `Hoşgeldiniz! 👋
+
+İsterseniz önce menüden oluşturduğunuz raporunuzu seçiniz. Üzerine derinlemesine bir sohbet bizi bekliyor.
+
+Size nasıl yardımcı olabilirim?`;
+  };
+
+  const getCustomPrompt = (prompt: string) => {
+    const prompts = {
+      'roi_report': 'Son ROI analiz raporum hakkında detaylı bilgi ver ve iyileştirme önerileri sun.',
+      'climate_report': 'İklim analiz raporum üzerinden derinlemesine analiz yapalım ve optimizasyon fırsatlarını değerlendirelim.',
+      'equipment_report': 'Ekipman listesi raporum için maliyet optimizasyonu ve alternatif öneriler üzerine konuşalım.',
+      'market_report': 'Pazar analizi raporum temelinde fırsat değerlendirmesi ve strateji önerileri alalım.',
+      'layout_report': 'Teknik plan raporum üzerine verimlilik artırma ve düzen optimizasyonu konuşalım.',
+      'cost_optimization': 'Sera işletmemde maliyet tasarrufu ve optimizasyon konularında önerilerinizi almak istiyorum.',
+      'efficiency': 'Sera verimliliğimi artırmak için hangi stratejileri uygulayabilirim? Detaylı öneriler istiyorum.',
+      'technology': 'Sera teknolojilerindeki son yenilikler ve bunları işletmeme entegre etme yolları nelerdir?',
+      'marketing': 'Sera ürünlerimi pazarlama ve satış kanallarını geliştirme konusunda stratejik öneriler istiyorum.',
+      'sustainability': 'Sera işletmemi daha sürdürülebilir hale getirmek için çevre dostu çözümler önerir misin?',
+      'roi_calc': 'Önceki ROI hesaplama sohbetimize devam edelim.',
+      'climate_qa': 'İklim analizi üzerine yaptığımız sohbeti devam ettirelim.',
+      'equipment_rec': 'Ekipman önerileri konusundaki sohbetimizi sürdürelim.',
+      'marketing_strategy': 'Pazarlama stratejileri hakkındaki sohbetimize kaldığımız yerden devam edelim.',
+      'cost_analysis': 'Maliyet analizi tartışmamızı derinleştirmeye devam edelim.'
+    };
+
+    return prompts[prompt as keyof typeof prompts] || '';
   };
 
   const handleSendMessage = async () => {
