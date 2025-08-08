@@ -129,46 +129,50 @@ export default function UserjotCloneSection() {
 
               {/* Navigation Links */}
               <div className="space-y-3">
-                <Link
-                  href="/destek"
-                  className="block text-gray-700 hover:text-gray-900 hover:bg-gray-50 py-3 px-4 rounded-lg transition-all"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  <div className="flex items-center space-x-3">
-                    <span className="text-lg">❓</span>
-                    <span className="text-base font-medium">Destek</span>
-                  </div>
-                </Link>
-                <Link
-                  href="/danismanlik"
-                  className="block text-gray-700 hover:text-gray-900 hover:bg-gray-50 py-3 px-4 rounded-lg transition-all"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  <div className="flex items-center space-x-3">
-                    <span className="text-lg">🎯</span>
-                    <span className="text-base font-medium">Danışmanlık</span>
-                  </div>
-                </Link>
-                <Link
-                  href="/anahtar-teslim-proje"
-                  className="block text-gray-700 hover:text-gray-900 hover:bg-gray-50 py-3 px-4 rounded-lg transition-all"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  <div className="flex items-center space-x-3">
-                    <span className="text-lg">🏗️</span>
-                    <span className="text-base font-medium">Anahtar Teslim Sera</span>
-                  </div>
-                </Link>
-                <Link
-                  href="/blog"
-                  className="block text-gray-700 hover:text-gray-900 hover:bg-gray-50 py-3 px-4 rounded-lg transition-all"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  <div className="flex items-center space-x-3">
-                    <span className="text-lg">📖</span>
-                    <span className="text-base font-medium">Blog</span>
-                  </div>
-                </Link>
+                <div onClick={() => setIsMobileMenuOpen(false)}>
+                  <Link
+                    href="/destek"
+                    className="block text-gray-700 hover:text-gray-900 hover:bg-gray-50 py-3 px-4 rounded-lg transition-all"
+                  >
+                    <div className="flex items-center space-x-3">
+                      <span className="text-lg">❓</span>
+                      <span className="text-base font-medium">Destek</span>
+                    </div>
+                  </Link>
+                </div>
+                <div onClick={() => setIsMobileMenuOpen(false)}>
+                  <Link
+                    href="/danismanlik"
+                    className="block text-gray-700 hover:text-gray-900 hover:bg-gray-50 py-3 px-4 rounded-lg transition-all"
+                  >
+                    <div className="flex items-center space-x-3">
+                      <span className="text-lg">🎯</span>
+                      <span className="text-base font-medium">Danışmanlık</span>
+                    </div>
+                  </Link>
+                </div>
+                <div onClick={() => setIsMobileMenuOpen(false)}>
+                  <Link
+                    href="/anahtar-teslim-proje"
+                    className="block text-gray-700 hover:text-gray-900 hover:bg-gray-50 py-3 px-4 rounded-lg transition-all"
+                  >
+                    <div className="flex items-center space-x-3">
+                      <span className="text-lg">🏗️</span>
+                      <span className="text-base font-medium">Anahtar Teslim Sera</span>
+                    </div>
+                  </Link>
+                </div>
+                <div onClick={() => setIsMobileMenuOpen(false)}>
+                  <Link
+                    href="/blog"
+                    className="block text-gray-700 hover:text-gray-900 hover:bg-gray-50 py-3 px-4 rounded-lg transition-all"
+                  >
+                    <div className="flex items-center space-x-3">
+                      <span className="text-lg">📖</span>
+                      <span className="text-base font-medium">Blog</span>
+                    </div>
+                  </Link>
+                </div>
               </div>
 
               {/* Panel Access Button */}
