@@ -58,12 +58,12 @@ export default function DashboardLayout({ children, title, subtitle }: Dashboard
           </div>
 
           {/* Navigation */}
-          <nav className="flex-1 px-4 py-6 space-y-1 overflow-y-auto">
+          <nav className="flex-1 px-4 py-3 space-y-1 overflow-y-auto">
             {menuItems.map((item) => (
               <a
                 key={item.name}
                 href={item.href}
-                className={`flex items-center px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
+                className={`flex items-center px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${
                   item.active
                     ? 'bg-green-600 text-white shadow-md'
                     : 'text-gray-700 hover:bg-gray-50 hover:text-gray-900'
@@ -75,8 +75,8 @@ export default function DashboardLayout({ children, title, subtitle }: Dashboard
           </nav>
 
           {/* Footer */}
-          <div className="p-4 border-t border-gray-200">
-            <button className="w-full px-3 py-2 rounded-lg text-sm font-medium text-red-600 hover:bg-red-50 transition-colors">
+          <div className="p-3 border-t border-gray-200">
+            <button className="w-full px-3 py-1.5 rounded-lg text-sm font-medium text-red-600 hover:bg-red-50 transition-colors">
               Çıkış Yap
             </button>
           </div>
