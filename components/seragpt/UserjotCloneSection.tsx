@@ -129,7 +129,7 @@ export default function UserjotCloneSection() {
 
               {/* Navigation Links */}
               <div className="space-y-3">
-                <a
+                <Link
                   href="/destek"
                   className="block text-gray-700 hover:text-gray-900 hover:bg-gray-50 py-3 px-4 rounded-lg transition-all"
                   onClick={() => setIsMobileMenuOpen(false)}
@@ -138,8 +138,8 @@ export default function UserjotCloneSection() {
                     <span className="text-lg">❓</span>
                     <span className="text-base font-medium">Destek</span>
                   </div>
-                </a>
-                <a
+                </Link>
+                <Link
                   href="/danismanlik"
                   className="block text-gray-700 hover:text-gray-900 hover:bg-gray-50 py-3 px-4 rounded-lg transition-all"
                   onClick={() => setIsMobileMenuOpen(false)}
@@ -148,8 +148,8 @@ export default function UserjotCloneSection() {
                     <span className="text-lg">🎯</span>
                     <span className="text-base font-medium">Danışmanlık</span>
                   </div>
-                </a>
-                <a
+                </Link>
+                <Link
                   href="/anahtar-teslim-proje"
                   className="block text-gray-700 hover:text-gray-900 hover:bg-gray-50 py-3 px-4 rounded-lg transition-all"
                   onClick={() => setIsMobileMenuOpen(false)}
@@ -158,8 +158,8 @@ export default function UserjotCloneSection() {
                     <span className="text-lg">🏗️</span>
                     <span className="text-base font-medium">Anahtar Teslim Sera</span>
                   </div>
-                </a>
-                <a
+                </Link>
+                <Link
                   href="/blog"
                   className="block text-gray-700 hover:text-gray-900 hover:bg-gray-50 py-3 px-4 rounded-lg transition-all"
                   onClick={() => setIsMobileMenuOpen(false)}
@@ -168,7 +168,7 @@ export default function UserjotCloneSection() {
                     <span className="text-lg">📖</span>
                     <span className="text-base font-medium">Blog</span>
                   </div>
-                </a>
+                </Link>
               </div>
 
               {/* Panel Access Button */}
@@ -176,39 +176,39 @@ export default function UserjotCloneSection() {
                 {!loading && (
                   <>
                     {user ? (
-                      <a
+                      <Link
                         href="/dashboard"
                         className="flex items-center justify-center w-full bg-gradient-to-r from-gray-700 to-gray-800 text-white py-3 px-4 rounded-xl font-medium transition-all hover:from-gray-800 hover:to-gray-900 shadow-lg"
                         onClick={() => setIsMobileMenuOpen(false)}
                       >
                         <span className="text-lg mr-2">📊</span>
                         <span>Panelime Git</span>
-                      </a>
+                      </Link>
                     ) : (
                       <div className="space-y-3">
-                        <a
+                        <Link
                           href="/auth/login"
                           className="flex items-center justify-center w-full bg-gradient-to-r from-gray-700 to-gray-800 text-white py-3 px-4 rounded-xl font-medium transition-all hover:from-gray-800 hover:to-gray-900 shadow-lg"
                           onClick={() => setIsMobileMenuOpen(false)}
                         >
                           <span className="text-lg mr-2">🔐</span>
                           <span>Panele Giriş</span>
-                        </a>
+                        </Link>
                         <div className="flex space-x-2">
-                          <a
+                          <Link
                             href="/auth/login"
                             className="flex-1 text-center border border-gray-300 text-gray-700 py-2 px-3 rounded-lg text-sm font-medium hover:bg-gray-50 transition-colors"
                             onClick={() => setIsMobileMenuOpen(false)}
                           >
                             Giriş Yap
-                          </a>
-                          <a
+                          </Link>
+                          <Link
                             href="/auth/login"
                             className="flex-1 text-center bg-gray-600 text-white py-2 px-3 rounded-lg text-sm font-medium hover:bg-gray-700 transition-colors"
                             onClick={() => setIsMobileMenuOpen(false)}
                           >
                             Kayıt Ol
-                          </a>
+                          </Link>
                         </div>
                       </div>
                     )}
