@@ -103,6 +103,37 @@ export default function ROIAnalysisPage() {
     projectDuration: 5
   });
 
+  // Cached API hook for ROI analysis
+  const roiAnalysis = useROIAnalysis(
+    {
+      type: 'roi_analysis',
+      parameters: {
+        ...roiInputs,
+        user_preferences: {
+          currency: 'TRY',
+          units: 'metric'
+        }
+      },
+      context: {
+        analysis_depth: 'comprehensive',
+        include_recommendations: true,
+        include_risk_assessment: true,
+        include_cash_flow: true
+      }
+    },
+    {
+      autoLoad: false,
+      onSuccess: (data) => {
+        consumeToken(2); // ROI analysis costs 2 tokens
+        setReportId(data.data?.report_id || null);
+        setCurrentStep(2);
+      },
+      onError: (error) => {
+        console.error('ROI Analysis failed:', error);
+      }
+    }
+  );
+
   const getAuthToken = async () => {
     const { data: { session } } = await (window as any).supabase.auth.getSession();
     return session?.access_token || '';
@@ -365,7 +396,7 @@ export default function ROIAnalysisPage() {
 
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">
-            Kg Başına Satış Fiyatı (TL) *
+            Kg Baş��na Satış Fiyatı (TL) *
           </label>
           <input
             type="number"
@@ -594,7 +625,7 @@ export default function ROIAnalysisPage() {
           </div>
         </div>
         <p className="text-xs text-purple-700 mt-2">
-          ⚠️ Bu sadece bir ön hesaplama. Detaylı analiz için "ROI Hesapla" butonunu kullan��n.
+          ⚠️ Bu sadece bir ön hesaplama. Detaylı analiz için "ROI Hesapla" butonunu kullanın.
         </p>
       </div>
     </motion.div>
@@ -740,7 +771,7 @@ export default function ROIAnalysisPage() {
               <h3 className="text-lg font-semibold text-gray-900 mb-4">📊 Maliyet Analizi</h3>
               <div className="space-y-4">
                 <div className="flex justify-between items-center">
-                  <span className="text-gray-600">Yıllık ��şletme</span>
+                  <span className="text-gray-600">Yıllık İşletme</span>
                   <span className="font-semibold text-red-600">₺{results.operationalCosts.annual.toLocaleString()}</span>
                 </div>
                 <div className="flex justify-between items-center">
