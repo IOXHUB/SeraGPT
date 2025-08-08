@@ -453,9 +453,30 @@ function generateClimateAnalysisData(climate: any, location: any) {
 
 function generateRiskAssessment(climate: any, crop: any, greenhouse: any, location: any) {
   const risks = {
-    high_risks: [],
-    medium_risks: [],
-    low_risks: []
+    high_risks: [] as Array<{
+      risk_type: string;
+      probability: number;
+      impact_severity: 'low' | 'medium' | 'high' | 'critical';
+      description: string;
+      mitigation_strategies: Array<string>;
+      estimated_cost_impact: number;
+    }>,
+    medium_risks: [] as Array<{
+      risk_type: string;
+      probability: number;
+      impact_severity: 'low' | 'medium' | 'high' | 'critical';
+      description: string;
+      mitigation_strategies: Array<string>;
+      estimated_cost_impact: number;
+    }>,
+    low_risks: [] as Array<{
+      risk_type: string;
+      probability: number;
+      impact_severity: 'low' | 'medium' | 'high' | 'critical';
+      description: string;
+      mitigation_strategies: Array<string>;
+      estimated_cost_impact: number;
+    }>
   };
   
   // Temperature risks
