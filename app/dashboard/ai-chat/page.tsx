@@ -142,7 +142,7 @@ export default function AIChatPage() {
         const welcomeMessage: ChatMessage = {
           id: 'welcome',
           role: 'assistant',
-          content: `Merhaba ${user.email?.split('@')[0] || 'Kullanıcı'}! 🌱\n\nBen SeraGPT AI asistanınızım. Size aşağıdaki konularda yardımcı olabilirim:\n\n🔸 Sera yatırım analizleri\n🔸 İklim ve bölge uygunluğu\n🔸 Ekipman önerileri\n🔸 Pazar analizleri\n🔸 Verimlilik optimizasyonu\n🔸 Maliyet hesaplamaları\n\nSorularınızı sorun, birlikte çözüm bulalım!`,
+          content: `Merhaba ${user.email?.split('@')[0] || 'Kullanıcı'}! 🌱\n\nBen SeraGPT AI asistanınızım. Size aşağıdaki konularda yardımcı olabilirim:\n\n🔸 Sera yatırım analizleri\n🔸 İklim ve bölge uygunluğu\n🔸 Ekipman önerileri\n��� Pazar analizleri\n🔸 Verimlilik optimizasyonu\n🔸 Maliyet hesaplamaları\n\nSorularınızı sorun, birlikte çözüm bulalım!`,
           timestamp: new Date(),
           session_id: newSession.id
         };
@@ -488,8 +488,8 @@ export default function AIChatPage() {
         {/* Main Chat Area */}
         <div className="flex-1 flex flex-col">
           
-          {/* Chat Header */}
-          <div className="p-4 border-b border-gray-200 bg-gray-50">
+          {/* Chat Header - Desktop Only */}
+          <div className="hidden lg:block p-4 border-b border-gray-200 bg-gray-50">
             <div className="flex items-center space-x-3">
               <div className="w-8 h-8 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center">
                 <span className="text-white text-sm">🤖</span>
