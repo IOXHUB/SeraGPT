@@ -64,7 +64,7 @@ export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
   const clientIP = getClientIP(request)
 
-  console.log(`🔒 [Security] ${request.method} ${pathname} from ${clientIP}`)
+  console.log(`���� [Security] ${request.method} ${pathname} from ${clientIP}`)
 
   try {
     // 1. Block malicious IPs
@@ -96,8 +96,8 @@ export async function middleware(request: NextRequest) {
       return rateLimitResponse
     }
 
-    // 4. CSRF protection for POST/PUT/DELETE requests
-    if (['POST', 'PUT', 'DELETE', 'PATCH'].includes(request.method)) {
+    // 4. CSRF protection for POST/PUT/DELETE requests (skip for auth routes)
+    if (['POST', 'PUT', 'DELETE', 'PATCH'].includes(request.method) && !pathname.startsWith('/auth/')) {
       const csrfResponse = checkCSRF(request)
       if (csrfResponse) {
         return csrfResponse
