@@ -46,7 +46,11 @@ export default function AIChatPage() {
   const [tokenWarning, setTokenWarning] = useState<string>('');
   const [chatHistory, setChatHistory] = useState<ChatSession[]>([]);
   const [loadingHistory, setLoadingHistory] = useState(true);
-  
+
+  // Mobile-specific states
+  const [showSidebar, setShowSidebar] = useState(false);
+  const [showInsights, setShowInsights] = useState(false);
+
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   // Load chat history and initialize
