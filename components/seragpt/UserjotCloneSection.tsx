@@ -180,39 +180,43 @@ export default function UserjotCloneSection() {
                 {!loading && (
                   <>
                     {user ? (
-                      <Link
-                        href="/dashboard"
-                        className="flex items-center justify-center w-full bg-gradient-to-r from-gray-700 to-gray-800 text-white py-3 px-4 rounded-xl font-medium transition-all hover:from-gray-800 hover:to-gray-900 shadow-lg"
-                        onClick={() => setIsMobileMenuOpen(false)}
-                      >
-                        <span className="text-lg mr-2">📊</span>
-                        <span>Panelime Git</span>
-                      </Link>
+                      <div onClick={() => setIsMobileMenuOpen(false)}>
+                        <Link
+                          href="/dashboard"
+                          className="flex items-center justify-center w-full bg-gradient-to-r from-gray-700 to-gray-800 text-white py-3 px-4 rounded-xl font-medium transition-all hover:from-gray-800 hover:to-gray-900 shadow-lg"
+                        >
+                          <span className="text-lg mr-2">📊</span>
+                          <span>Panelime Git</span>
+                        </Link>
+                      </div>
                     ) : (
                       <div className="space-y-3">
-                        <Link
-                          href="/auth/login"
-                          className="flex items-center justify-center w-full bg-gradient-to-r from-gray-700 to-gray-800 text-white py-3 px-4 rounded-xl font-medium transition-all hover:from-gray-800 hover:to-gray-900 shadow-lg"
-                          onClick={() => setIsMobileMenuOpen(false)}
-                        >
-                          <span className="text-lg mr-2">🔐</span>
-                          <span>Panele Giriş</span>
-                        </Link>
+                        <div onClick={() => setIsMobileMenuOpen(false)}>
+                          <Link
+                            href="/auth/login"
+                            className="flex items-center justify-center w-full bg-gradient-to-r from-gray-700 to-gray-800 text-white py-3 px-4 rounded-xl font-medium transition-all hover:from-gray-800 hover:to-gray-900 shadow-lg"
+                          >
+                            <span className="text-lg mr-2">🔐</span>
+                            <span>Panele Giriş</span>
+                          </Link>
+                        </div>
                         <div className="flex space-x-2">
-                          <Link
-                            href="/auth/login"
-                            className="flex-1 text-center border border-gray-300 text-gray-700 py-2 px-3 rounded-lg text-sm font-medium hover:bg-gray-50 transition-colors"
-                            onClick={() => setIsMobileMenuOpen(false)}
-                          >
-                            Giriş Yap
-                          </Link>
-                          <Link
-                            href="/auth/login"
-                            className="flex-1 text-center bg-gray-600 text-white py-2 px-3 rounded-lg text-sm font-medium hover:bg-gray-700 transition-colors"
-                            onClick={() => setIsMobileMenuOpen(false)}
-                          >
-                            Kayıt Ol
-                          </Link>
+                          <div onClick={() => setIsMobileMenuOpen(false)} className="flex-1">
+                            <Link
+                              href="/auth/login"
+                              className="block text-center border border-gray-300 text-gray-700 py-2 px-3 rounded-lg text-sm font-medium hover:bg-gray-50 transition-colors"
+                            >
+                              Giriş Yap
+                            </Link>
+                          </div>
+                          <div onClick={() => setIsMobileMenuOpen(false)} className="flex-1">
+                            <Link
+                              href="/auth/login"
+                              className="block text-center bg-gray-600 text-white py-2 px-3 rounded-lg text-sm font-medium hover:bg-gray-700 transition-colors"
+                            >
+                              Kayıt Ol
+                            </Link>
+                          </div>
                         </div>
                       </div>
                     )}
@@ -463,7 +467,7 @@ export default function UserjotCloneSection() {
                       <p className="text-gray-800 text-xs font-semibold mb-1">🎯 3 Önemli Fayda:</p>
                       <p className="text-gray-600 text-xs">• Sera yerleşim planı (2D çizim)</p>
                       <p className="text-gray-600 text-xs">• Elektrik ve sulama hat planı</p>
-                      <p className="text-gray-600 text-xs">• Teknik kabin, depo gösterimi</p>
+                      <p className="text-gray-600 text-xs">�� Teknik kabin, depo gösterimi</p>
                     </div>
                   </div>
                   <div className="mt-4 p-3 bg-gray-50 rounded-lg">
