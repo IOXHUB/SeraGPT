@@ -387,7 +387,7 @@ export default function DashboardPage() {
           description: 'Mühendis desteği alın',
           href: '/dashboard/consulting',
           primary: false,
-          icon: '🔧',
+          icon: '���',
           disabled: false
         }
       ];
@@ -724,9 +724,10 @@ export default function DashboardPage() {
           </div>
         )}
 
-        {/* Cache Performance Widget */}
-        <div className="fixed bottom-4 right-4 z-50">
+        {/* Performance Monitoring Widgets */}
+        <div className="fixed bottom-4 right-4 z-50 space-y-4">
           <CacheStatsWidget className="w-64" />
+          <BundleStatsWidget />
         </div>
 
       </div>
