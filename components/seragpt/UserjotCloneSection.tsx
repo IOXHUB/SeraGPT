@@ -329,8 +329,7 @@ export default function UserjotCloneSection() {
 
               {/* Card 2 - İklim Analizi */}
               <div
-
-                className="flex-shrink-0 w-80 bg-white rounded-2xl p-8 border border-gray-200 relative"
+                className="md:flex-shrink-0 w-full md:w-80 bg-white rounded-2xl p-6 md:p-8 border border-gray-200 relative shadow-sm hover:shadow-md transition-shadow"
               >
                 <div className="absolute top-6 left-6 text-6xl font-bold text-gray-100">02</div>
                 <div className="mt-16">
