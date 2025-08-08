@@ -356,10 +356,9 @@ export default function AIChatPage() {
   }
 
   return (
-    <DashboardLayout 
-      title="AI Chat" 
+    <DashboardLayout
+      title="AI Chat"
       subtitle="SeraGPT AI asistanınızla sohbet edin"
-      requiresTokens={true}
     >
       <div className="h-[calc(100vh-140px)] md:h-[calc(100vh-200px)] flex flex-col bg-white rounded-xl border border-gray-200 shadow-sm relative">
 
