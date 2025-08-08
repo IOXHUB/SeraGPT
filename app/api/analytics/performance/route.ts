@@ -7,6 +7,9 @@ interface PerformanceData {
   api: any[];
   errors: any[];
   journey: any[];
+  receivedAt?: number;
+  userAgent?: string;
+  ip?: string;
 }
 
 // In-memory storage for development (in production, use a database)
