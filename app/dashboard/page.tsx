@@ -257,7 +257,7 @@ export default function DashboardPage() {
           type: 'welcome',
           title: 'SeraGPT\'ye hoş geldiniz! 🌱',
           description: `${tokens?.remaining_tokens || 0} ücretsiz analiz hakkınız ile başlayabilirsiniz`,
-          time: '��imdi',
+          time: 'Şimdi',
           color: 'bg-blue-100 text-blue-600'
         },
         {
@@ -724,10 +724,9 @@ export default function DashboardPage() {
           </div>
         )}
 
-        {/* Cache Performance Widget */}
-        <div className="fixed bottom-4 right-4 z-50">
-          <CacheStatsWidget className="w-64" />
-        </div>
+        {/* Performance Monitoring Widgets */}
+        <CacheStatsWidget className="w-64" />
+        <PerformanceDashboard />
 
       </div>
     </DashboardLayout>
