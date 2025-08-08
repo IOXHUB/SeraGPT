@@ -92,7 +92,7 @@ export class RouteOptimizer {
   /**
    * Preload route on hover (for medium priority routes)
    */
-  setupHoverPreload(linkElement: HTMLAnchorElement): void {
+  setupHoverPreload(linkElement: HTMLAnchorElement): (() => void) | void {
     if (typeof window === 'undefined') return;
 
     const href = linkElement.getAttribute('href');
