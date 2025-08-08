@@ -435,8 +435,8 @@ function generateClimateAnalysisData(climate: any, location: any) {
         rainy_days: Math.floor(Math.random() * 10 + 5)
       })),
       irrigation_supplement_needed: Math.max(0, 800 - climate.precipitation),
-      drainage_requirements: climate.precipitation > 1000 ? 'intensive' : 
-                           climate.precipitation > 600 ? 'enhanced' : 'basic'
+      drainage_requirements: climate.precipitation > 1000 ? 'intensive' as const :
+                           climate.precipitation > 600 ? 'enhanced' as const : 'basic' as const
     },
     sunlight: {
       annual_hours: climate.sunlightHours,
@@ -565,7 +565,7 @@ function generateOptimizationRecommendations(climate: any, crop: any, greenhouse
     recommendations.push({
       category: 'cooling' as const,
       title: 'Evaporative Cooling Sistemi',
-      description: 'Yaz aylarında sera içi sıcaklığını 5-8°C düşürerek optimal iklim koşulları sağlar.',
+      description: 'Yaz aylarında sera içi sıcaklığını 5-8°C düşürerek optimal iklim koşullar�� sağlar.',
       implementation_cost: greenhouse.size * 35,
       annual_savings: greenhouse.size * 12,
       payback_period_months: 36,
@@ -702,7 +702,7 @@ function getClimateChallenge(monthIndex: number, climate: any): string[] {
     5: ['Yüksek sıcaklık', 'Soğutma maliyeti'],
     6: ['Aşırı sıcaklık', 'Su stresi'],
     7: ['Yüksek nem', 'Hastalık riski'],
-    8: ['Sıcaklık düşüşü', 'Nem artışı'],
+    8: ['Sıcaklık düşüş��', 'Nem artışı'],
     9: ['Değişken iklim', 'Hasat zamanlaması'],
     10: ['Soğuma başlangıc��', 'Enerji artışı'],
     11: ['Düşük sıcaklık', 'Kısa gün']
