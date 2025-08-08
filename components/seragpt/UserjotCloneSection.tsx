@@ -226,14 +226,17 @@ export default function UserjotCloneSection() {
           <div className="relative">
             <div className="rounded-2xl p-8 shadow-lg shadow-purple-400/20 hover:shadow-purple-500/30 transition-all duration-300 bg-center bg-cover bg-no-repeat border-4 border-purple-400" style={{ color: '#cdd6fd' }}>
               <div className="bg-white rounded-xl shadow-lg overflow-hidden">
-                {/* Dashboard Image */}
+                {/* Dashboard Image - Mobile Responsive */}
                 <div
-                  className="w-full h-96 bg-center bg-cover bg-no-repeat flex items-center justify-center"
+                  className="w-full h-48 sm:h-64 md:h-80 lg:h-96 bg-center bg-cover bg-no-repeat flex items-center justify-center rounded-t-xl"
                   style={{
                     backgroundImage: "url(https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2F1cd1d24d2413420fa7c24610e14c9006)"
                   }}
                 >
-                  <div className="text-center">
+                  <div className="text-center p-4">
+                    <div className="bg-black bg-opacity-20 rounded-lg p-3 backdrop-blur-sm">
+                      <p className="text-white text-xs sm:text-sm font-medium">📊 Analiz Paneli Önizleme</p>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -700,7 +703,7 @@ export default function UserjotCloneSection() {
               },
               {
                 question: "Devlet teşviklerine uygun mu?",
-                answer: "Evet. Raporlar TKDK, IPARD ve Ziraat Bankası destek başvurularında ön fizibilite dosyası olarak kullanılabilir. Talep halinde ek mühendis onayı alınabilir."
+                answer: "Evet. Raporlar TKDK, IPARD ve Ziraat Bankası destek başvurularında ön fizibilite dosyası olarak kullanılabilir. Talep halinde ek m��hendis onayı alınabilir."
               },
               {
                 question: "Mühendis desteği sunuyor musunuz?",
