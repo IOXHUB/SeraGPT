@@ -168,7 +168,16 @@ export class DevMockSystem {
 
   // Set current mock user
   static setUser(userType: keyof typeof MOCK_USERS) {
-    if (typeof window === 'undefined' || process.env.NODE_ENV !== 'development') {
+    if (typeof window === 'undefined') {
+      return;
+    }
+
+    const isDev = process.env.NODE_ENV === 'development' ||
+                  window.location.hostname.includes('fly.dev') ||
+                  window.location.hostname.includes('builder.my') ||
+                  window.location.hostname.includes('localhost');
+
+    if (!isDev) {
       return;
     }
 
