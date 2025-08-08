@@ -141,30 +141,102 @@ export default function DashboardLayout({ children, title, subtitle }: Dashboard
                 )}
                 <div className="space-y-1 px-2">
                   {items.map((item) => (
-                    <a
-                      key={item.href}
-                      href={item.href}
-                      className={`group flex items-center px-2 py-2 text-xs font-medium rounded-md transition-all ${
-                        isActive(item.href)
-                          ? 'bg-green-50 text-green-700 border-r-2 border-green-500'
-                          : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
-                      }`}
-                      title={sidebarCollapsed ? item.name : undefined}
-                    >
-                      <span className={`text-base ${sidebarCollapsed ? 'mx-auto' : 'mr-3'}`}>
-                        {item.icon}
-                      </span>
-                      {!sidebarCollapsed && (
-                        <>
-                          <span className="flex-1">{item.name}</span>
-                          {item.badge && (
-                            <span className="ml-2 px-1.5 py-0.5 text-xs bg-green-100 text-green-600 rounded-full">
-                              {item.badge}
-                            </span>
+                    <div key={item.href}>
+                      {/* Main menu item */}
+                      <div className="flex items-center">
+                        <a
+                          href={item.submenu ? undefined : item.href}
+                          onClick={item.submenu ? (e) => { e.preventDefault(); toggleSubmenu(item.name); } : undefined}
+                          className={`group flex items-center px-2 py-2 text-xs font-medium rounded-md transition-all flex-1 cursor-pointer ${
+                            isActive(item.href) || (item.submenu && isSubmenuActive(item.submenu))
+                              ? 'bg-green-50 text-green-700 border-r-2 border-green-500'
+                              : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
+                          }`}
+                          title={sidebarCollapsed ? item.name : undefined}
+                        >
+                          <span className={`text-base ${sidebarCollapsed ? 'mx-auto' : 'mr-3'}`}>
+                            {item.icon}
+                          </span>
+                          {!sidebarCollapsed && (
+                            <>
+                              <span className="flex-1">{item.name}</span>
+                              <div className="flex items-center space-x-1">
+                                {item.badge && (
+                                  <span className="px-1.5 py-0.5 text-xs bg-green-100 text-green-600 rounded-full">
+                                    {item.badge}
+                                  </span>
+                                )}
+                                {item.submenu && (
+                                  <svg
+                                    className={`w-3 h-3 text-gray-400 transition-transform ${expandedMenus[item.name] ? 'rotate-90' : ''}`}
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                  >
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                  </svg>
+                                )}
+                              </div>
+                            </>
                           )}
-                        </>
+                        </a>
+                      </div>
+
+                      {/* Submenu items */}
+                      {item.submenu && !sidebarCollapsed && expandedMenus[item.name] && (
+                        <div className="ml-6 mt-1 space-y-1">
+                          {item.submenu.map((subItem) => (
+                            <a
+                              key={subItem.href}
+                              href={subItem.href}
+                              className={`group flex items-center px-2 py-2 text-xs font-medium rounded-md transition-all ${
+                                isActive(subItem.href)
+                                  ? 'bg-green-100 text-green-700'
+                                  : 'text-gray-500 hover:bg-gray-100 hover:text-gray-700'
+                              }`}
+                            >
+                              <span className="text-sm mr-2">{subItem.icon}</span>
+                              <span>{subItem.name}</span>
+                              {subItem.name === 'Sohbet Geçmişi' && (
+                                <button
+                                  onClick={(e) => {
+                                    e.preventDefault();
+                                    e.stopPropagation();
+                                    setExpandedChatHistory(!expandedChatHistory);
+                                  }}
+                                  className="ml-auto"
+                                >
+                                  <svg
+                                    className={`w-3 h-3 text-gray-400 transition-transform ${expandedChatHistory ? 'rotate-90' : ''}`}
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                  >
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                  </svg>
+                                </button>
+                              )}
+                            </a>
+                          ))}
+
+                          {/* Chat history sub-items */}
+                          {expandedChatHistory && (
+                            <div className="ml-4 space-y-1">
+                              {['Sera ROI Hesaplaması', 'İklim Analizi Sorguları', 'Ekipman Önerileri'].map((chatTitle, index) => (
+                                <a
+                                  key={index}
+                                  href={`/dashboard/ai-chat?session=${index + 1}`}
+                                  className="flex items-center px-2 py-1.5 text-xs text-gray-400 hover:text-gray-600 hover:bg-gray-50 rounded"
+                                >
+                                  <span className="text-xs mr-2">💬</span>
+                                  <span className="truncate">{chatTitle}</span>
+                                </a>
+                              ))}
+                            </div>
+                          )}
+                        </div>
                       )}
-                    </a>
+                    </div>
                   ))}
                 </div>
               </div>
