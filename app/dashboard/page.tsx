@@ -723,10 +723,9 @@ export default function DashboardPage() {
           </div>
         )}
 
-        {/* Performance Monitoring Widgets */}
-        <div className="fixed bottom-4 right-4 z-50 space-y-4">
+        {/* Cache Performance Widget */}
+        <div className="fixed bottom-4 right-4 z-50">
           <CacheStatsWidget className="w-64" />
-          <BundleStatsWidget />
         </div>
 
       </div>
