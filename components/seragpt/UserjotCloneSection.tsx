@@ -1,9 +1,9 @@
 'use client';
 
 import { useState } from 'react';
-import Image from 'next/image';
 import BlogCardsSection from './BlogCardsSection';
 import Footer from '../Footer';
+import SeraGPTLogo from '../ui/SeraGPTLogo';
 import { useAuth } from '../../lib/hooks/useAuth';
 
 export default function UserjotCloneSection() {
