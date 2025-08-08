@@ -186,7 +186,7 @@ export default function DashboardPage() {
                 <p className="text-2xl font-bold text-gray-900 mt-1">{stats.tokensUsed}</p>
               </div>
               <div className="w-10 h-10 bg-red-50 rounded-lg flex items-center justify-center">
-                <span className="text-lg">🪙</span>
+                <span className="text-lg">🧠</span>
               </div>
             </div>
           </div>
