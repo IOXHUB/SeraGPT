@@ -52,8 +52,19 @@ export default function AuthPage() {
   // Redirect if user is already logged in
   useEffect(() => {
     if (user && !authLoading) {
-      console.log('User already logged in, redirecting to dashboard');
-      router.push('/dashboard');
+      console.log('User already logged in, checking role for redirect');
+      // Check if user is admin
+      const isUserAdmin = user?.user_metadata?.role === 'admin' ||
+                         user?.email === 'admin@seragpt.com' ||
+                         user?.email === 'info@isitmax.com';
+
+      if (isUserAdmin) {
+        console.log('Admin user detected, redirecting to admin panel');
+        router.push('/admin');
+      } else {
+        console.log('Regular user detected, redirecting to user dashboard');
+        router.push('/dashboard');
+      }
     }
   }, [user, authLoading, router]);
 
