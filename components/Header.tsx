@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { useState } from 'react';
-import Image from 'next/image';
+import SeraGPTLogo from './ui/SeraGPTLogo';
 import { useAuth } from '../lib/hooks/useAuth';
 
 export default function Header() {
