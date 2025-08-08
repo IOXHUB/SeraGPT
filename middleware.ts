@@ -114,9 +114,18 @@ export async function middleware(request: NextRequest) {
       }
     }
 
-    // 7. Add security headers
-    const response = NextResponse.next()
-    addSecurityHeaders(response)
+    // 7. Create response and apply optimizations
+    let response = NextResponse.next()
+
+    // Apply cache headers for performance
+    response = applyCacheHeaders(request, response)
+
+    // Add compression headers
+    const acceptEncoding = request.headers.get('Accept-Encoding')
+    response = addCompressionHeaders(response, acceptEncoding || undefined)
+
+    // Add security headers (using the imported function)
+    response = addSecurityHeaders(response)
 
     const processingTime = Date.now() - startTime
     console.log(`✅ [Security] Request processed in ${processingTime}ms`)
