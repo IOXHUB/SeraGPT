@@ -324,9 +324,16 @@ export default function AIChatPage() {
 
   const loadPreviousSession = async (sessionId: string) => {
     try {
+      const authToken = await getAuthToken();
+      if (!authToken) {
+        console.warn('No auth token available for loading previous session');
+        setError('Sohbet geçmişi yüklemek için oturum açmanız gerekli');
+        return;
+      }
+
       const response = await fetch(`/api/chat/sessions?id=${sessionId}`, {
         headers: {
-          'Authorization': `Bearer ${await getAuthToken()}`
+          'Authorization': `Bearer ${authToken}`
         }
       });
 
