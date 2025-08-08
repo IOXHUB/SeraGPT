@@ -287,7 +287,7 @@ class PerformanceMonitor {
    */
   private updateMetric(key: keyof PerformanceMetrics, value: number): void {
     const latestMetrics = this.getLatestMetrics();
-    latestMetrics[key] = value;
+    (latestMetrics as any)[key] = value;
   }
 
   /**
