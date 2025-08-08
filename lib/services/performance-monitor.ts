@@ -199,8 +199,8 @@ class PerformanceMonitor {
     if (navigation) {
       const metrics = {
         ttfb: navigation.responseStart - navigation.requestStart,
-        pageLoadTime: navigation.loadEventEnd - navigation.navigationStart,
-        domContentLoaded: navigation.domContentLoadedEventEnd - navigation.navigationStart,
+        pageLoadTime: navigation.loadEventEnd - navigation.fetchStart,
+        domContentLoaded: navigation.domContentLoadedEventEnd - navigation.fetchStart,
       };
 
       Object.entries(metrics).forEach(([key, value]) => {
