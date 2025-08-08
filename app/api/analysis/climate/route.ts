@@ -424,7 +424,7 @@ function generateClimateAnalysisData(climate: any, location: any) {
         max_speed: climate.windSpeed + 15 + Math.random() * 10,
         storm_frequency: Math.floor(Math.random() * 3)
       })),
-      structural_stress_risk: climate.windSpeed > 20 ? 'high' : climate.windSpeed > 15 ? 'medium' : 'low'
+      structural_stress_risk: climate.windSpeed > 20 ? 'high' as const : climate.windSpeed > 15 ? 'medium' as const : 'low' as const
     },
     precipitation: {
       annual_total: climate.precipitation,
