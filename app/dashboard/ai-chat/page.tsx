@@ -747,8 +747,9 @@ export default function AIChatPage() {
                       <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
                       </svg>
-                      <span className="hidden sm:inline">Gönder</span>
-                      <span className="ml-2 text-xs opacity-75">~1🪙</span>
+                      <span className="hidden md:inline">Gönder</span>
+                      <span className="md:hidden">📤</span>
+                      <span className="ml-1 md:ml-2 text-xs opacity-75">1🪙</span>
                     </>
                   )}
                 </button>
