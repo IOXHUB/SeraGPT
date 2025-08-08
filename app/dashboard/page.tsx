@@ -163,43 +163,71 @@ export default function DashboardPage() {
       title="Dashboard" 
       subtitle={`Hoş geldiniz${profile?.full_name ? `, ${profile.full_name}` : ''}`}
     >
-      <div className="max-w-7xl mx-auto space-y-8">
-        
+      <div className="space-y-4">
+
         {/* Header Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
-            <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wide">Toplam Analiz</h3>
-            <p className="text-3xl font-bold text-gray-900 mt-2">{stats.totalAnalyses}</p>
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
+          <div className="bg-white rounded-lg border border-gray-200 p-4 hover:shadow-sm transition-shadow">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-xs font-medium text-gray-500 uppercase tracking-wide">Toplam Analiz</p>
+                <p className="text-2xl font-bold text-gray-900 mt-1">{stats.totalAnalyses}</p>
+              </div>
+              <div className="w-10 h-10 bg-blue-50 rounded-lg flex items-center justify-center">
+                <span className="text-lg">📊</span>
+              </div>
+            </div>
           </div>
-          
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
-            <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wide">Kullanılan Token</h3>
-            <p className="text-3xl font-bold text-gray-900 mt-2">{stats.tokensUsed}</p>
+
+          <div className="bg-white rounded-lg border border-gray-200 p-4 hover:shadow-sm transition-shadow">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-xs font-medium text-gray-500 uppercase tracking-wide">Kullanılan Token</p>
+                <p className="text-2xl font-bold text-gray-900 mt-1">{stats.tokensUsed}</p>
+              </div>
+              <div className="w-10 h-10 bg-red-50 rounded-lg flex items-center justify-center">
+                <span className="text-lg">🪙</span>
+              </div>
+            </div>
           </div>
-          
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
-            <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wide">Kalan Token</h3>
-            <p className="text-3xl font-bold text-gray-900 mt-2">{tokens?.remaining_tokens || 0}</p>
+
+          <div className="bg-white rounded-lg border border-gray-200 p-4 hover:shadow-sm transition-shadow">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-xs font-medium text-gray-500 uppercase tracking-wide">Kalan Token</p>
+                <p className="text-2xl font-bold text-green-600 mt-1">{tokens?.remaining_tokens || 0}</p>
+              </div>
+              <div className="w-10 h-10 bg-green-50 rounded-lg flex items-center justify-center">
+                <span className="text-lg">⚡</span>
+              </div>
+            </div>
           </div>
-          
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
-            <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wide">Üyelik Durumu</h3>
-            <p className="text-lg font-semibold text-gray-900 mt-2">
-              {profile?.subscription_type === 'premium' ? 'Premium' : 
-               profile?.subscription_type === 'admin' ? 'Admin' : 'Ücretsiz'}
-            </p>
+
+          <div className="bg-white rounded-lg border border-gray-200 p-4 hover:shadow-sm transition-shadow">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-xs font-medium text-gray-500 uppercase tracking-wide">Üyelik</p>
+                <p className="text-sm font-semibold text-gray-900 mt-1">
+                  {profile?.subscription_type === 'premium' ? '⭐ Premium' :
+                   profile?.subscription_type === 'admin' ? '👑 Admin' : '🆓 Ücretsiz'}
+                </p>
+              </div>
+              <div className="w-10 h-10 bg-purple-50 rounded-lg flex items-center justify-center">
+                <span className="text-lg">👤</span>
+              </div>
+            </div>
           </div>
         </div>
 
         {/* Analysis Tools */}
         <div className="bg-white rounded-lg border border-gray-200">
-          <div className="px-6 py-4 border-b border-gray-200">
-            <h2 className="text-lg font-semibold text-gray-900">Analiz Araçları</h2>
-            <p className="text-sm text-gray-600 mt-1">Tarımsal analizlerinize başlamak için bir araç seçin</p>
+          <div className="px-4 py-3 border-b border-gray-200">
+            <h2 className="text-sm font-semibold text-gray-900">Analiz Araçları</h2>
+            <p className="text-xs text-gray-600 mt-0.5">Tarımsal analizlerinize başlamak için bir araç seçin</p>
           </div>
-          
-          <div className="p-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+          <div className="p-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
               {analysisTools.map((tool, index) => {
                 const hasEnoughTokens = (tokens?.remaining_tokens || 0) >= tool.tokens;
                 
