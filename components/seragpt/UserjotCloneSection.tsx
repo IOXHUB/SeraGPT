@@ -361,8 +361,126 @@ export default function UserjotCloneSection() {
                 </div>
               </div>
 
-              {/* Continue with other cards... */}
-              {/* For brevity, I'll include the rest of the cards but they follow the same pattern */}
+              {/* Card 2 - İklim Analizi */}
+              <div className="md:flex-shrink-0 w-full md:w-80 bg-white rounded-2xl p-6 md:p-8 border border-gray-200 relative shadow-sm hover:shadow-md transition-shadow">
+                <div className="absolute top-4 md:top-6 left-4 md:left-6 text-4xl md:text-6xl font-bold text-gray-100">02</div>
+                <div className="mt-12 md:mt-16">
+                  <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-4 leading-tight">
+                    <span className="block sm:hidden">İklim & Risk Analizi</span>
+                    <span className="hidden sm:block">İklim Uyumu & Risk Analizi</span>
+                  </h3>
+                  <div className="space-y-3 mb-4">
+                    <div>
+                      <p className="text-gray-800 text-xs font-semibold mb-1">🎯 3 Önemli Fayda:</p>
+                      <p className="text-gray-600 text-xs">• Seçilen ürün için uygunluk skoru</p>
+                      <p className="text-gray-600 text-xs">• Don, rüzgar, nem riskleri</p>
+                      <p className="text-gray-600 text-xs">• Geçmiş yıllardaki iklim olayları</p>
+                    </div>
+                    <div>
+                      <p className="text-gray-800 text-xs font-semibold mb-1">🔗 Veri Kaynakları:</p>
+                      <p className="text-gray-600 text-xs">• Open-Meteo, Copernicus Climate</p>
+                      <p className="text-gray-600 text-xs">• ERA5 verileri, MGMT</p>
+                    </div>
+                  </div>
+                  <div className="mt-4 p-3 bg-gray-50 rounded-lg">
+                    <p className="text-gray-700 text-sm font-medium">"İklim bu yatırıma uygun mu?"</p>
+                    <button className="mt-2 text-blue-600 text-xs font-medium hover:underline">[İklim Skorunu Gör]</button>
+                  </div>
+                </div>
+              </div>
+
+              {/* Card 3 - Ekipman Listesi */}
+              <div className="md:flex-shrink-0 w-full md:w-80 bg-white rounded-2xl p-6 md:p-8 border border-gray-200 relative shadow-sm hover:shadow-md transition-shadow">
+                <div className="absolute top-4 md:top-6 left-4 md:left-6 text-4xl md:text-6xl font-bold text-gray-100">03</div>
+                <div className="mt-12 md:mt-16">
+                  <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-4 leading-tight">
+                    <span className="block sm:hidden">Ekipman Listesi</span>
+                    <span className="hidden sm:block">Mühendis Onaylı Ekipman Listesi</span>
+                  </h3>
+                  <div className="space-y-3 mb-4">
+                    <div>
+                      <p className="text-gray-800 text-xs sm:text-sm font-semibold mb-2">🏗️ Temel Faydalar:</p>
+                      <div className="space-y-1">
+                        <p className="text-gray-600 text-xs sm:text-sm flex items-start">
+                          <span className="text-green-500 mr-2">•</span>
+                          <span>Bölgeye uygun yapı ve iklimlendirme</span>
+                        </p>
+                        <p className="text-gray-600 text-xs sm:text-sm flex items-start">
+                          <span className="text-green-500 mr-2">•</span>
+                          <span>Anahtar teslim modüler öneriler</span>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="mt-4 p-3 bg-gradient-to-r from-gray-50 to-blue-50 rounded-lg border border-blue-100">
+                    <p className="text-gray-700 text-sm font-medium mb-2">"Mühendislerin önerdiği en doğru sistem"</p>
+                    <button className="w-full sm:w-auto bg-blue-600 text-white px-4 py-2 rounded-lg text-xs font-medium hover:bg-blue-700 transition-colors">
+                      <span className="sm:hidden">📄 Ekipman PDF</span>
+                      <span className="hidden sm:inline">📄 Ekipman Listesine Bak</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              {/* Card 4 - Pazar Verisi */}
+              <div className="md:flex-shrink-0 w-full md:w-80 bg-white rounded-2xl p-6 md:p-8 border border-gray-200 relative shadow-sm hover:shadow-md transition-shadow">
+                <div className="absolute top-4 md:top-6 left-4 md:left-6 text-4xl md:text-6xl font-bold text-gray-100">04</div>
+                <div className="mt-12 md:mt-16">
+                  <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-4 leading-tight">
+                    <span className="block sm:hidden">Pazar & Tarım Verisi</span>
+                    <span className="hidden sm:block">Pazar ve Tarım Verisi Entegrasyonu</span>
+                  </h3>
+                  <div className="space-y-3 mb-4">
+                    <div>
+                      <p className="text-gray-800 text-xs font-semibold mb-1">🎯 3 Önemli Fayda:</p>
+                      <p className="text-gray-600 text-xs">• Bitki türüne göre pazar fiyat analizi</p>
+                      <p className="text-gray-600 text-xs">• Bölgeye göre verim ortalamaları</p>
+                      <p className="text-gray-600 text-xs">• Hasat-zamanlama optimizasyonu</p>
+                    </div>
+                  </div>
+                  <div className="mt-4 p-3 bg-gray-50 rounded-lg">
+                    <p className="text-gray-700 text-sm font-medium">"Pazarlar ne diyor? Bitkiniz değerli mi?"</p>
+                    <button className="mt-2 text-blue-600 text-xs font-medium hover:underline">[Verileri Göster]</button>
+                  </div>
+                </div>
+              </div>
+
+              {/* Card 5 - Teknik Plan */}
+              <div className="md:flex-shrink-0 w-full md:w-80 bg-white rounded-2xl p-6 md:p-8 border border-gray-200 relative shadow-sm hover:shadow-md transition-shadow">
+                <div className="absolute top-4 md:top-6 left-4 md:left-6 text-4xl md:text-6xl font-bold text-gray-100">05</div>
+                <div className="mt-12 md:mt-16">
+                  <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-4 leading-tight">
+                    <span className="block sm:hidden">Teknik Plan Görselleştirmesi</span>
+                    <span className="hidden sm:block">Yerleşim ve Teknik Plan Görselleştirmesi</span>
+                  </h3>
+                  <div className="space-y-3 mb-4">
+                    <div>
+                      <p className="text-gray-800 text-xs font-semibold mb-1">🎯 3 Önemli Fayda:</p>
+                      <p className="text-gray-600 text-xs">• Sera yerleşim planı (2D çizim)</p>
+                      <p className="text-gray-600 text-xs">• Elektrik ve sulama hat planı</p>
+                      <p className="text-gray-600 text-xs">• Teknik kabin, depo gösterimi</p>
+                    </div>
+                  </div>
+                  <div className="mt-4 p-3 bg-gray-50 rounded-lg">
+                    <p className="text-gray-700 text-sm font-medium">"2D/3D Yerleşim Planı Hazır!"</p>
+                    <button className="mt-2 text-blue-600 text-xs font-medium hover:underline">[Planı Önizle]</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Navigation Arrows */}
+            <div className="flex justify-end mt-6 space-x-2">
+              <button className="w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-50">
+                <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                </svg>
+              </button>
+              <button className="w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-50">
+                <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
             </div>
           </div>
         </div>
