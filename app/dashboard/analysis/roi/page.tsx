@@ -601,7 +601,7 @@ export default function ROIAnalysisPage() {
               <div className="flex items-center justify-between">
                 <div>
                   <h3 className="text-lg font-medium mb-1">ROI</h3>
-                  <p className="text-3xl font-bold">%{results.analysis.roi}</p>
+                  <p className="text-3xl font-bold">%{roiAnalysis.data.analysis.roi}</p>
                   <p className="text-sm opacity-90 mt-1">Yatırım Getirisi</p>
                 </div>
                 <div className="text-4xl opacity-75">📈</div>
