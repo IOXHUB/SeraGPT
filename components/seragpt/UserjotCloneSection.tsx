@@ -19,16 +19,7 @@ export default function UserjotCloneSection() {
           {/* Logo - clickable to homepage */}
           <div className="flex items-center space-x-3">
             <a href="/" className="flex items-center space-x-3">
-              <Image
-                src="https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2F96da5382e9584c3fb2d32eca60944359"
-                alt="SeraGPT Logo"
-                width={120}
-                height={32}
-                className="h-8 w-auto"
-                priority
-                placeholder="blur"
-                blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
-              />
+<SeraGPTLogo size="md" priority />
             </a>
           </div>
 
@@ -498,7 +489,7 @@ export default function UserjotCloneSection() {
                     <div>
                       <p className="text-gray-800 text-xs font-semibold mb-1">��� Veri Kaynakları:</p>
                       <p className="text-gray-600 text-xs">• Planner 2D, CAD AI Tools</p>
-                      <p className="text-gray-600 text-xs">• HerbaTools yerleşim kütüphanesi</p>
+                      <p className="text-gray-600 text-xs">• HerbaTools yerle��im kütüphanesi</p>
                     </div>
 
                     <div>
