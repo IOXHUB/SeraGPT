@@ -163,11 +163,54 @@ export default function AIChatPage() {
         newSession.messages.push(welcomeMessage);
         setChatSession(newSession);
       } else {
-        setError('Chat oturumu başlatılamadı');
+        console.warn('Failed to create remote chat session, creating local session');
+        // Create a local session as fallback
+        const localSession: ChatSession = {
+          id: `local_${Date.now()}`,
+          title: 'SeraGPT AI Sohbet (Offline)',
+          messages: [],
+          created_at: new Date(),
+          updated_at: new Date(),
+          user_id: user.id,
+          total_tokens_used: 0
+        };
+
+        // Add welcome message
+        const welcomeMessage: ChatMessage = {
+          id: 'welcome',
+          role: 'assistant',
+          content: `Merhaba ${user.email?.split('@')[0] || 'Kullanıcı'}! 🌱\n\nBen SeraGPT AI asistanınızım. Size aşağıdaki konularda yardımcı olabilirim:\n\n🔸 Sera yatırım analizleri\n🔸 İklim ve bölge uygunluğu\n🔸 Ekipman önerileri\n🔸 Pazar analizleri\n🔸 Verimlilik optimizasyonu\n🔸 Maliyet hesaplamaları\n\nSorularınızı sorun, birlikte çözüm bulalım!`,
+          timestamp: new Date(),
+          session_id: localSession.id
+        };
+
+        localSession.messages.push(welcomeMessage);
+        setChatSession(localSession);
       }
     } catch (error) {
       console.error('Error initializing chat session:', error);
-      setError('Chat oturumu başlatılırken hata oluştu');
+      // Create a local session as final fallback
+      const localSession: ChatSession = {
+        id: `local_${Date.now()}`,
+        title: 'SeraGPT AI Sohbet (Offline)',
+        messages: [],
+        created_at: new Date(),
+        updated_at: new Date(),
+        user_id: user.id,
+        total_tokens_used: 0
+      };
+
+      // Add welcome message
+      const welcomeMessage: ChatMessage = {
+        id: 'welcome',
+        role: 'assistant',
+        content: `Merhaba ${user.email?.split('@')[0] || 'Kullanıcı'}! 🌱\n\nBen SeraGPT AI asistanınızım. Geçici olarak offline modda çalışıyorum.\n\nSize yine de yardımcı olmaya hazırım!`,
+        timestamp: new Date(),
+        session_id: localSession.id
+      };
+
+      localSession.messages.push(welcomeMessage);
+      setChatSession(localSession);
     }
   };
 
