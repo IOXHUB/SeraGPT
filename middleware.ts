@@ -24,10 +24,11 @@ const SECURITY_CONFIG = {
     // Add known bad IPs here
   ]),
   suspiciousPatterns: [
-    /sql|union|select|insert|delete|drop|exec|script/i,
+    /\b(sql|union|select|insert|delete|drop|exec)\b/i,
     /<script[^>]*>.*?<\/script>/gi,
     /javascript:/gi,
     /on\w+\s*=/gi,
+    /\bscript\b(?=.*[<>])/i,  // Only match "script" with HTML tags
   ]
 }
 
