@@ -213,9 +213,32 @@ export default function DashboardLayout({ children, title, subtitle, requiresTok
 
           {/* Navigation */}
           <nav className="flex-1 px-4 lg:px-6 py-4 lg:py-6 space-y-4 lg:space-y-6 overflow-y-auto">
-            {/* Primary Menu */}
+            {/* High Priority Menu - Preloaded immediately */}
             <div className="space-y-2">
-              {menuItems.map((item) => (
+              <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3 px-3 sm:px-4">
+                Ana Araçlar
+              </div>
+              {highPriorityMenuItems.map((item) => (
+                <HighPriorityLink
+                  key={item.name}
+                  href={item.href}
+                  className={`flex items-center px-3 sm:px-4 py-2 sm:py-3 rounded-lg text-sm sm:text-base font-medium transition-colors ${
+                    item.active
+                      ? 'bg-green-600 text-white shadow-md'
+                      : 'text-gray-700 hover:bg-gray-50 hover:text-gray-900'
+                  }`}
+                >
+                  <span>{item.name}</span>
+                </HighPriorityLink>
+              ))}
+            </div>
+
+            {/* Medium Priority Menu - Preloaded on hover */}
+            <div className="space-y-2 border-t border-gray-200 pt-4">
+              <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3 px-3 sm:px-4">
+                Analizler & Raporlar
+              </div>
+              {mediumPriorityMenuItems.map((item) => (
                 <div key={item.name}>
                   {item.name === 'Raporlarım' ? (
                     <div className="relative">
@@ -245,7 +268,7 @@ export default function DashboardLayout({ children, title, subtitle, requiresTok
                             Son Raporlarınız
                           </div>
                           {userReports.slice(0, 3).map((report) => (
-                            <a
+                            <LowPriorityLink
                               key={report.id}
                               href={`/dashboard/reports/${report.id}`}
                               className="block px-3 py-2 rounded-md text-xs text-gray-600 hover:bg-gray-50 hover:text-gray-900 transition-colors"
@@ -263,19 +286,19 @@ export default function DashboardLayout({ children, title, subtitle, requiresTok
                               <div className="text-xs text-gray-400 mt-1">
                                 {new Date(report.date).toLocaleDateString('tr-TR')}
                               </div>
-                            </a>
+                            </LowPriorityLink>
                           ))}
-                          <a
+                          <MediumPriorityLink
                             href="/dashboard/reports"
                             className="block px-3 py-2 text-xs text-blue-600 hover:text-blue-800 font-medium"
                           >
                             Tüm raporları görüntüle →
-                          </a>
+                          </MediumPriorityLink>
                         </div>
                       )}
                     </div>
                   ) : (
-                    <a
+                    <MediumPriorityLink
                       href={item.href}
                       className={`flex items-center px-3 sm:px-4 py-2 sm:py-3 rounded-lg text-sm sm:text-base font-medium transition-colors ${
                         item.active
@@ -284,20 +307,20 @@ export default function DashboardLayout({ children, title, subtitle, requiresTok
                       }`}
                     >
                       <span>{item.name}</span>
-                    </a>
+                    </MediumPriorityLink>
                   )}
                 </div>
               ))}
             </div>
 
-            {/* Secondary Menu */}
+            {/* Low Priority Menu - Lazy loaded */}
             <div className="border-t border-gray-200 pt-4">
               <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3 px-3 sm:px-4">
-                Hızlı Erişim
+                Diğer Hizmetler
               </p>
               <div className="space-y-1">
-                {secondaryMenuItems.map((item) => (
-                  <a
+                {lowPriorityMenuItems.map((item) => (
+                  <LowPriorityLink
                     key={item.name}
                     href={item.href}
                     className={`block px-3 sm:px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
@@ -307,7 +330,7 @@ export default function DashboardLayout({ children, title, subtitle, requiresTok
                     }`}
                   >
                     {item.name}
-                  </a>
+                  </LowPriorityLink>
                 ))}
               </div>
             </div>
