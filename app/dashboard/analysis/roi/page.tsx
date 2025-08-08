@@ -1,18 +1,18 @@
 'use client';
 
 import { useState } from 'react';
-import dynamic from 'next/dynamic';
+import nextDynamic from 'next/dynamic';
 import { useAuth } from '@/lib/hooks/useAuth';
-
-// Dynamic import for framer-motion to reduce bundle size
-const motion = dynamic(() => import('framer-motion').then(mod => ({ default: mod.motion })), {
-  ssr: false,
-  loading: () => <div className="animate-pulse bg-gray-200 h-full w-full rounded" />,
-}) as any;
 import { useROIAnalysis } from '@/lib/hooks/useCachedAPI';
 import { ROIAnalysisSkeleton } from '@/components/ui/skeletons/AnalysisSkeletons';
 import { AnalysisLoading } from '@/components/ui/LoadingStates';
 import DashboardLayout from '@/components/dashboard/DashboardLayout';
+
+// Dynamic import for framer-motion to reduce bundle size
+const motion = nextDynamic(() => import('framer-motion').then(mod => ({ default: mod.motion })), {
+  ssr: false,
+  loading: () => <div className="animate-pulse bg-gray-200 h-full w-full rounded" />,
+}) as any;
 
 export const dynamic = 'force-dynamic';
 
@@ -668,7 +668,7 @@ export default function ROIAnalysisPage() {
                 </p>
               </div>
               <div className="text-center">
-                <div className="text-3xl mb-2">���</div>
+                <div className="text-3xl mb-2">🤖</div>
                 <p className="text-2xl font-bold text-gray-900">₺{roiAnalysis.data.initialInvestment.automation.toLocaleString()}</p>
                 <p className="text-sm text-gray-600">Otomasyon</p>
                 <p className="text-xs text-blue-600 mt-1">
@@ -729,7 +729,7 @@ export default function ROIAnalysisPage() {
                 </div>
                 <div className="flex justify-between items-center">
                   <span className="text-gray-600">Aylık Ortalama</span>
-                  <span className="font-semibold text-red-600">��{roiAnalysis.data.operationalCosts.monthly.toLocaleString()}</span>
+                  <span className="font-semibold text-red-600">₺{roiAnalysis.data.operationalCosts.monthly.toLocaleString()}</span>
                 </div>
                 {Object.entries(roiAnalysis.data.operationalCosts.breakdown).map(([key, value]) => (
                   <div key={key} className="flex justify-between items-center text-sm">
