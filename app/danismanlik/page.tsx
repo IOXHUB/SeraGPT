@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 import Footer from '../../components/Footer';
 import ConsultingRequestModal from '../../components/ConsultingRequestModal';
 
@@ -27,7 +28,7 @@ export default function DanismanlikPage() {
     {
       title: 'Fiyatlandırma',
       id: 'pricing',
-      icon: '💰',
+      icon: '��',
       items: [
         { id: 'pricing-plans', title: 'Fiyatlandırma Planları', href: '#pricing-plans' },
         { id: 'starter-consulting', title: 'Starter Danışmanlık', href: '#starter-consulting' },
