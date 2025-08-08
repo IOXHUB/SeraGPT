@@ -266,9 +266,10 @@ export default function UserjotCloneSection() {
             </div>
           </div>
 
-          {/* Horizontal Scrolling Cards */}
+          {/* Mobile-Responsive Cards Grid */}
           <div className="relative">
-            <div className="flex overflow-x-auto scrollbar-hide space-x-6 pb-6">
+            {/* Mobile: Vertical stack, Tablet+: Horizontal scroll */}
+            <div className="md:flex md:overflow-x-auto md:scrollbar-hide md:space-x-6 md:pb-6 space-y-6 md:space-y-0">
               {/* Card 1 - ROI Simülasyonu */}
               <div
 
