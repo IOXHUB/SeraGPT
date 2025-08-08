@@ -141,9 +141,20 @@ export default function AuthPage() {
           }));
         }
 
-        // Wait a moment for auth context to update
+        // Wait a moment for auth context to update, then redirect based on role
         setTimeout(() => {
-          router.push('/dashboard');
+          // Check if user is admin
+          const isUserAdmin = result.data.user.user_metadata?.role === 'admin' ||
+                             result.data.user.email === 'admin@seragpt.com' ||
+                             result.data.user.email === 'info@isitmax.com';
+
+          if (isUserAdmin) {
+            console.log('Admin login successful, redirecting to admin panel');
+            router.push('/admin');
+          } else {
+            console.log('User login successful, redirecting to user dashboard');
+            router.push('/dashboard');
+          }
         }, 1000);
       }
     } catch (error: any) {
@@ -479,7 +490,7 @@ export default function AuthPage() {
                      message.includes('1/3') ? 'Bilgiler hazırlanıyor...' :
                      message.includes('2/3') ? 'Hesap oluşturuluyor...' :
                      message.includes('3/3') ? 'E-posta hazırlanıyor...' :
-                     'İşlem devam ediyor...'}
+                     '��şlem devam ediyor...'}
                   </span>
                 </div>
               ) : (
