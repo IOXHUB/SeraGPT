@@ -233,9 +233,9 @@ export default function DashboardLayout({ children, title, subtitle }: Dashboard
 
               {title && (
                 <div className="min-w-0">
-                  <h1 className="text-lg font-semibold text-gray-900 truncate">{title}</h1>
+                  <h1 className="text-lg font-semibold text-gray-900 truncate leading-tight">{title}</h1>
                   {subtitle && (
-                    <p className="text-sm text-gray-500 truncate mt-0.5">{subtitle}</p>
+                    <p className="text-sm text-gray-500 truncate leading-tight -mt-0.5">{subtitle}</p>
                   )}
                 </div>
               )}
