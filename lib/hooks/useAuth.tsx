@@ -404,7 +404,14 @@ export function useAuth(): AuthContextType {
   // Utility methods
   const isAdmin = () => {
     // Check development bypass in localStorage first
-    if (process.env.NODE_ENV === 'development' && typeof window !== 'undefined') {
+    const isDev = typeof window !== 'undefined' && (
+      process.env.NODE_ENV === 'development' ||
+      window.location.hostname.includes('fly.dev') ||
+      window.location.hostname.includes('builder.my') ||
+      window.location.hostname.includes('localhost')
+    );
+
+    if (isDev) {
       const devUser = localStorage.getItem('seragpt_user');
       if (devUser) {
         try {
