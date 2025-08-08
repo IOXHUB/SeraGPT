@@ -317,9 +317,12 @@ export default function UserjotCloneSection() {
                     </div>
                   </div>
 
-                  <div className="mt-4 p-3 bg-gray-50 rounded-lg">
-                    <p className="text-gray-700 text-sm font-medium">"Yatırımınız size ne zaman geri döner?"</p>
-                    <button className="mt-2 text-blue-600 text-xs font-medium hover:underline">[PDF'yi Örnekle Gör]</button>
+                  <div className="mt-4 p-3 bg-gradient-to-r from-gray-50 to-blue-50 rounded-lg border border-blue-100">
+                    <p className="text-gray-700 text-sm font-medium mb-2">"Yatırımınız size ne zaman geri döner?"</p>
+                    <button className="w-full sm:w-auto bg-blue-600 text-white px-4 py-2 rounded-lg text-xs font-medium hover:bg-blue-700 transition-colors">
+                      <span className="sm:hidden">📄 Örnek PDF</span>
+                      <span className="hidden sm:inline">📄 PDF'yi Örnekle Gör</span>
+                    </button>
                   </div>
                 </div>
               </div>
