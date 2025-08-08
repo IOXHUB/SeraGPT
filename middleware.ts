@@ -76,11 +76,15 @@ export async function middleware(request: NextRequest) {
       return response
     }
 
-    // 1. Block malicious IPs
+    // 1. Block malicious IPs (DISABLED FOR DEBUGGING)
+    // TODO: Re-enable after debugging
+    /*
     if (SECURITY_CONFIG.blockedIPs.has(clientIP)) {
       console.log(`🚫 [Security] Blocked IP: ${clientIP}`)
       return new Response('Access Denied', { status: 403 })
     }
+    */
+    console.log(`🔍 [Debug] IP blocking bypassed for: ${clientIP}`)
 
     // 2. Check for suspicious patterns in URL and headers (DISABLED FOR DEBUGGING)
     // TODO: Re-enable after debugging
