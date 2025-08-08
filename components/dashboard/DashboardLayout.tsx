@@ -37,7 +37,9 @@ export default function DashboardLayout({ children, title, subtitle }: Dashboard
         <div className="flex flex-col h-full">
           {/* Logo */}
           <div className="flex items-center justify-between h-16 px-6 border-b border-gray-200">
-            <h1 className="text-xl font-bold text-gray-900">SeraGPT</h1>
+            <a href="/dashboard" className="text-xl font-bold text-gray-900 hover:text-green-600 transition-colors">
+              SeraGPT
+            </a>
             <button
               onClick={() => setSidebarOpen(false)}
               className="lg:hidden p-2 rounded-md text-gray-400 hover:text-gray-500"
