@@ -7,10 +7,6 @@
 
 import { authService } from '@/lib/services/auth-service';
 import { aiService } from '@/lib/services/ai-service';
-<<<<<<< HEAD
-// import { analysisService } from '@/lib/services/analysis-service';
-=======
->>>>>>> 415584153a942ce547605818b181d952b42a40f2
 
 // =====================================================
 // API TESTING UTILITIES
@@ -109,19 +105,6 @@ export async function testAuthService(): Promise<TestSuite> {
   // Test profile endpoint (if user is authenticated)
   const authStatus = await authService.getAuthStatus();
   if (authStatus.isAuthenticated) {
-<<<<<<< HEAD
-    // tests.push(await testApiEndpoint(
-    //   '/api/auth/profile',
-    //   () => authService.getProfile(),
-    //   ['id', 'email']
-    // ));
-
-    // tests.push(await testApiEndpoint(
-    //   '/api/auth/tokens',
-    //   () => authService.getTokens(),
-    //   ['available', 'used', 'total']
-    // ));
-=======
     tests.push(await testApiEndpoint(
       '/api/auth/profile',
       () => authService.getUserProfile(authStatus.user.id),
@@ -131,9 +114,8 @@ export async function testAuthService(): Promise<TestSuite> {
     tests.push(await testApiEndpoint(
       '/api/auth/tokens',
       () => authService.getUserTokens(authStatus.user.id),
-      ['total_tokens', 'used_tokens', 'remaining_tokens']
+      ['remaining_tokens', 'total_tokens']
     ));
->>>>>>> 415584153a942ce547605818b181d952b42a40f2
   }
 
   const totalTime = Date.now() - startTime;
@@ -172,21 +154,12 @@ export async function testAIService(): Promise<TestSuite> {
       ['id', 'title', 'created_at']
     ));
 
-<<<<<<< HEAD
-    // Test getting chat sessions - commented out until method exists
-    // tests.push(await testApiEndpoint(
-    //   '/api/chat/sessions',
-    //   () => aiService.getChatSessions(),
-    //   []
-    // ));
-=======
-    // Test getting chat sessions - simplified test
+    // Test getting chat sessions
     tests.push(await testApiEndpoint(
       '/api/chat/sessions',
-      () => Promise.resolve([]),
+      () => aiService.getUserChatSessions(authStatus.user.id),
       []
     ));
->>>>>>> 415584153a942ce547605818b181d952b42a40f2
   }
 
   const totalTime = Date.now() - startTime;
@@ -215,57 +188,6 @@ export async function testAnalysisService(): Promise<TestSuite> {
     'Analysis Service - Check Availability',
     () => Promise.resolve({ available: true })
   ));
-
-<<<<<<< HEAD
-  // Test ROI calculation (if authenticated) - commented out until service is available
-  // const authStatus = await authService.getAuthStatus();
-  // if (authStatus.isAuthenticated) {
-  //   const testROIData = {
-  //     greenhouseSize: 1000,
-  //     initialInvestment: 500000,
-  //     expectedYield: {
-  //       annual: 50000,
-  //       pricePerKg: 8
-  //     },
-  //     operationalCosts: {
-  //       monthly: 15000
-  //     },
-  //     location: 'İzmir',
-  //     cropType: 'domates'
-  //   };
-
-  //   tests.push(await testApiEndpoint(
-  //     '/api/analysis/roi',
-  //     () => analysisService.calculateROI(testROIData),
-  //     ['roi', 'paybackPeriod', 'profitability']
-  //   ));
-
-  //   // Test getting analysis reports
-  //   tests.push(await testApiEndpoint(
-  //     '/api/analysis/reports',
-  //     () => analysisService.getReports(),
-  //     []
-  //   ));
-  // }
-=======
-  // Test ROI calculation (if authenticated)
-  const authStatus = await authService.getAuthStatus();
-  if (authStatus.isAuthenticated) {
-    // Simplified analysis test
-    tests.push(await testApiEndpoint(
-      '/api/analysis/roi',
-      () => Promise.resolve({ roi: 15.5, paybackPeriod: 3.2, profitability: 'good' }),
-      ['roi', 'paybackPeriod', 'profitability']
-    ));
-
-    // Test getting analysis reports - simplified
-    tests.push(await testApiEndpoint(
-      '/api/analysis/reports',
-      () => Promise.resolve([]),
-      []
-    ));
-  }
->>>>>>> 415584153a942ce547605818b181d952b42a40f2
 
   const totalTime = Date.now() - startTime;
   const passed = tests.filter(t => t.status === 'success').length;
@@ -378,6 +300,51 @@ export async function healthCheck(): Promise<{
 }
 
 // =====================================================
+// PERFORMANCE TESTING
+// =====================================================
+
+export async function performanceTest(
+  testFn: () => Promise<any>,
+  iterations: number = 10
+): Promise<{
+  averageTime: number;
+  minTime: number;
+  maxTime: number;
+  totalTime: number;
+  successRate: number;
+}> {
+  const times: number[] = [];
+  let successes = 0;
+
+  for (let i = 0; i < iterations; i++) {
+    const startTime = Date.now();
+    
+    try {
+      await testFn();
+      const endTime = Date.now();
+      times.push(endTime - startTime);
+      successes++;
+    } catch (error) {
+      times.push(0); // Failed request
+    }
+  }
+
+  const totalTime = times.reduce((sum, time) => sum + time, 0);
+  const averageTime = totalTime / times.length;
+  const minTime = Math.min(...times.filter(t => t > 0));
+  const maxTime = Math.max(...times);
+  const successRate = (successes / iterations) * 100;
+
+  return {
+    averageTime,
+    minTime,
+    maxTime,
+    totalTime,
+    successRate
+  };
+}
+
+// =====================================================
 // MOCK DATA UTILITIES
 // =====================================================
 
@@ -430,51 +397,6 @@ export const mockData = {
     tokens_used: 150
   }
 };
-
-// =====================================================
-// PERFORMANCE TESTING
-// =====================================================
-
-export async function performanceTest(
-  testFn: () => Promise<any>,
-  iterations: number = 10
-): Promise<{
-  averageTime: number;
-  minTime: number;
-  maxTime: number;
-  totalTime: number;
-  successRate: number;
-}> {
-  const times: number[] = [];
-  let successes = 0;
-
-  for (let i = 0; i < iterations; i++) {
-    const startTime = Date.now();
-    
-    try {
-      await testFn();
-      const endTime = Date.now();
-      times.push(endTime - startTime);
-      successes++;
-    } catch (error) {
-      times.push(0); // Failed request
-    }
-  }
-
-  const totalTime = times.reduce((sum, time) => sum + time, 0);
-  const averageTime = totalTime / times.length;
-  const minTime = Math.min(...times.filter(t => t > 0));
-  const maxTime = Math.max(...times);
-  const successRate = (successes / iterations) * 100;
-
-  return {
-    averageTime,
-    minTime,
-    maxTime,
-    totalTime,
-    successRate
-  };
-}
 
 // =====================================================
 // EXPORT ALL
