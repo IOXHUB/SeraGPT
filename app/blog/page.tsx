@@ -1,10 +1,10 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import Image from 'next/image';
 import SEOHead from '@/components/SEOHead';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import OptimizedImage from '@/components/ui/OptimizedImage';
 import { SEOService } from '@/lib/seo';
 import { useState, useEffect } from 'react';
 
@@ -22,7 +22,7 @@ export default function BlogPage() {
     id: 1,
     slug: "sera-teknolojilerinde-2025-yenilikleri",
     title: "Sera Teknolojilerinde 2025 Yenilikleri",
-    excerpt: "Modern sera teknolojileri ile tarımsal verimliliği artırmanın yolları. İklim kontrol��, otomasyon sistemleri ve sürdürülebilir tarım uygulamalarında son gelişmeler.",
+    excerpt: "Modern sera teknolojileri ile tarımsal verimliliği artırmanın yolları. İklim kontrolü, otomasyon sistemleri ve sürdürülebilir tarım uygulamalarında son gelişmeler.",
     image: "https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2F382157220f6b4482a9c765091441c587",
     date: "15 Ocak 2025",
     category: "Tarım Teknolojisi"
