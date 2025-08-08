@@ -252,7 +252,18 @@ export default function AuthPage() {
         setMessage('✅ Hesabınız oluşturuldu! Dashboard\'a yönlendiriliyorsunuz...');
         
         setTimeout(() => {
-          router.push('/dashboard');
+          // Check if user is admin
+          const isUserAdmin = result.data.user.user_metadata?.role === 'admin' ||
+                             result.data.user.email === 'admin@seragpt.com' ||
+                             result.data.user.email === 'info@isitmax.com';
+
+          if (isUserAdmin) {
+            console.log('Admin signup successful, redirecting to admin panel');
+            router.push('/admin');
+          } else {
+            console.log('User signup successful, redirecting to user dashboard');
+            router.push('/dashboard');
+          }
         }, 1500);
       } else {
         setMessage('✅ KAYIT TALEBİNİZ ALINDI! 📨\n\nE-posta adresinizi kontrol edin ve doğrulama linkine tıklayın.');
@@ -490,7 +501,7 @@ export default function AuthPage() {
                      message.includes('1/3') ? 'Bilgiler hazırlanıyor...' :
                      message.includes('2/3') ? 'Hesap oluşturuluyor...' :
                      message.includes('3/3') ? 'E-posta hazırlanıyor...' :
-                     '��şlem devam ediyor...'}
+                     'İşlem devam ediyor...'}
                   </span>
                 </div>
               ) : (
