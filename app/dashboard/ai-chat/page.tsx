@@ -142,7 +142,7 @@ export default function AIChatPage() {
         const welcomeMessage: ChatMessage = {
           id: 'welcome',
           role: 'assistant',
-          content: `Merhaba ${user.email?.split('@')[0] || 'Kullanıcı'}! 🌱\n\nBen SeraGPT AI asistanınızım. Size aşağıdaki konularda yardımcı olabilirim:\n\n🔸 Sera yatırım analizleri\n🔸 İklim ve bölge uygunluğu\n🔸 Ekipman önerileri\n🔸 Pazar analizleri\n🔸 Verimlilik optimizasyonu\n🔸 Maliyet hesaplamaları\n\nSorularınızı sorun, birlikte çözüm bulalım!`,
+          content: `Merhaba ${user.email?.split('@')[0] || 'Kullanıcı'}! 🌱\n\nBen SeraGPT AI asistanınızım. Size aşağıdaki konularda yardımcı olabilirim:\n\n🔸 Sera yatırım analizleri\n🔸 ��klim ve bölge uygunluğu\n🔸 Ekipman önerileri\n🔸 Pazar analizleri\n🔸 Verimlilik optimizasyonu\n🔸 Maliyet hesaplamaları\n\nSorularınızı sorun, birlikte çözüm bulalım!`,
           timestamp: new Date(),
           session_id: newSession.id
         };
@@ -758,7 +758,7 @@ export default function AIChatPage() {
                 {inputValue.length > 0 && (
                   <button
                     onClick={() => setInputValue('')}
-                    className="flex-shrink-0 bg-gray-200 hover:bg-gray-300 text-gray-600 px-3 py-2 rounded-lg text-sm transition-colors"
+                    className="flex-shrink-0 bg-gray-200 hover:bg-gray-300 text-gray-600 px-2 md:px-3 py-1 md:py-2 rounded-lg text-sm transition-colors"
                     title="Temizle"
                   >
                     ✕
