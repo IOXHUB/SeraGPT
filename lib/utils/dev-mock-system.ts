@@ -128,6 +128,16 @@ export const MOCK_TOKENS: Record<string, MockTokens> = {
   }
 };
 
+// Check if we're in a development environment
+function isDevEnvironment(): boolean {
+  if (typeof window === 'undefined') return false;
+  
+  return process.env.NODE_ENV === 'development' || 
+         window.location.hostname.includes('fly.dev') ||
+         window.location.hostname.includes('builder.my') ||
+         window.location.hostname.includes('localhost');
+}
+
 /**
  * Development Mock System Manager
  */
@@ -136,19 +146,11 @@ export class DevMockSystem {
   
   // Initialize mock system
   static init() {
-    if (typeof window === 'undefined') {
+    if (!isDevEnvironment()) {
       return;
     }
 
-    // Check if we're in a development-like environment
-    const isDev = process.env.NODE_ENV === 'development' ||
-                  window.location.hostname.includes('fly.dev') ||
-                  window.location.hostname.includes('builder.my') ||
-                  window.location.hostname.includes('localhost');
-
-    if (!isDev) {
-      return;
-    }
+    console.log('🚀 Initializing DevMockSystem...');
 
     // Check if user is already set in localStorage
     const savedUser = localStorage.getItem('seragpt_user');
@@ -168,16 +170,7 @@ export class DevMockSystem {
 
   // Set current mock user
   static setUser(userType: keyof typeof MOCK_USERS) {
-    if (typeof window === 'undefined') {
-      return;
-    }
-
-    const isDev = process.env.NODE_ENV === 'development' ||
-                  window.location.hostname.includes('fly.dev') ||
-                  window.location.hostname.includes('builder.my') ||
-                  window.location.hostname.includes('localhost');
-
-    if (!isDev) {
+    if (!isDevEnvironment()) {
       return;
     }
 
@@ -193,11 +186,18 @@ export class DevMockSystem {
 
   // Get current user
   static getCurrentUser(): MockUser | null {
+    if (!isDevEnvironment()) {
+      return null;
+    }
     return this.currentUser;
   }
 
   // Get user analyses
   static getUserAnalyses(userId: string): MockAnalysis[] {
+    if (!isDevEnvironment()) {
+      return [];
+    }
+    
     // Return different analyses based on user type
     if (this.currentUser?.role === 'admin') {
       return MOCK_ANALYSES; // Admin sees all
@@ -209,21 +209,15 @@ export class DevMockSystem {
 
   // Get user tokens
   static getUserTokens(userType: string): MockTokens {
+    if (!isDevEnvironment()) {
+      return MOCK_TOKENS.user;
+    }
     return MOCK_TOKENS[userType] || MOCK_TOKENS.user;
   }
 
   // Clear mock user (logout)
   static clearUser() {
-    if (typeof window === 'undefined') {
-      return;
-    }
-
-    const isDev = process.env.NODE_ENV === 'development' ||
-                  window.location.hostname.includes('fly.dev') ||
-                  window.location.hostname.includes('builder.my') ||
-                  window.location.hostname.includes('localhost');
-
-    if (!isDev) {
+    if (!isDevEnvironment()) {
       return;
     }
 
@@ -238,6 +232,9 @@ export class DevMockSystem {
 
   // Get analysis by ID
   static getAnalysis(id: string): MockAnalysis | null {
+    if (!isDevEnvironment()) {
+      return null;
+    }
     return MOCK_ANALYSES.find(analysis => analysis.id === id) || null;
   }
 
@@ -289,19 +286,12 @@ export class DevMockSystem {
 }
 
 // Auto-initialize on import
-if (typeof window !== 'undefined') {
-  const isDev = process.env.NODE_ENV === 'development' ||
-                window.location.hostname.includes('fly.dev') ||
-                window.location.hostname.includes('builder.my') ||
-                window.location.hostname.includes('localhost');
-
-  if (isDev) {
-    DevMockSystem.init();
-  }
+if (typeof window !== 'undefined' && isDevEnvironment()) {
+  DevMockSystem.init();
 }
 
 // Dev tools for browser console
-if (typeof window !== 'undefined' && process.env.NODE_ENV === 'development') {
+if (typeof window !== 'undefined' && isDevEnvironment()) {
   (window as any).SeraGPTDev = {
     setUser: (type: keyof typeof MOCK_USERS) => DevMockSystem.setUser(type),
     clearUser: () => DevMockSystem.clearUser(),
