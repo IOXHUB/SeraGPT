@@ -361,18 +361,45 @@ export default function DashboardLayout({ children, title, subtitle }: Dashboard
                       {item.submenu && expandedMenus[item.name] && (
                         <div className="ml-8 mt-2 space-y-1">
                           {item.submenu.map((subItem) => (
-                            <a
-                              key={subItem.href}
-                              href={subItem.href}
-                              className={`group flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-all ${
-                                isActive(subItem.href)
-                                  ? 'bg-green-100 text-green-700'
-                                  : 'text-gray-600 hover:bg-gray-100 hover:text-gray-800'
-                              }`}
-                            >
-                              <span className="text-base mr-3">{subItem.icon}</span>
-                              <span className="flex-1">{subItem.name}</span>
-                            </a>
+                            <div key={subItem.name}>
+                              {/* Mobile submenu header */}
+                              <button
+                                onClick={() => toggleSubSubmenu(subItem.name)}
+                                className={`w-full group flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-all ${
+                                  expandedSubMenus[subItem.name]
+                                    ? 'bg-green-100 text-green-700'
+                                    : 'text-gray-600 hover:bg-gray-100 hover:text-gray-800'
+                                }`}
+                              >
+                                <span className="text-base mr-3">{subItem.icon}</span>
+                                <span className="flex-1 text-left">{subItem.name}</span>
+                                <svg
+                                  className={`w-4 h-4 text-gray-400 transition-transform ${expandedSubMenus[subItem.name] ? 'rotate-90' : ''}`}
+                                  fill="none"
+                                  stroke="currentColor"
+                                  viewBox="0 0 24 24"
+                                >
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                </svg>
+                              </button>
+
+                              {/* Mobile sub-submenu items */}
+                              {subItem.submenu && expandedSubMenus[subItem.name] && (
+                                <div className="ml-6 mt-1 space-y-1">
+                                  {subItem.submenu.map((subSubItem) => (
+                                    <a
+                                      key={subSubItem.name}
+                                      href={subSubItem.href}
+                                      className="flex items-center px-3 py-2 text-sm text-gray-500 hover:text-gray-700 hover:bg-gray-50 rounded transition-all"
+                                      title={subSubItem.prompt}
+                                    >
+                                      <span className="text-sm mr-2">{subSubItem.icon}</span>
+                                      <span className="truncate">{subSubItem.name}</span>
+                                    </a>
+                                  ))}
+                                </div>
+                              )}
+                            </div>
                           ))}
                         </div>
                       )}
