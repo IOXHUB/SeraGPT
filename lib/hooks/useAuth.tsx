@@ -475,6 +475,7 @@ export function useAuth(): AuthContextType {
     preferences,
     loading,
     error,
+    isAuthenticated: !!user,
 
     // Authentication methods
     signIn,

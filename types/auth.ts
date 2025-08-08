@@ -341,10 +341,12 @@ export interface CreateUserProfileRequest {
   currency?: UserProfile['currency'];
   marketing_consent?: boolean;
   newsletter_consent?: boolean;
+  preferences?: Partial<UserPreferences>;
 }
 
 export interface UpdateUserProfileRequest extends Partial<CreateUserProfileRequest> {
   onboarding_completed?: boolean;
+  preferences?: Partial<UserPreferences>;
 }
 
 export interface UpdateUserPreferencesRequest extends Partial<UserPreferences> {
@@ -379,6 +381,9 @@ export interface AuthState {
 }
 
 export interface AuthContextType extends AuthState {
+  // Authentication state
+  isAuthenticated: boolean;
+
   // Authentication methods
   signIn: (email: string, password: string) => Promise<{ data: any; error: any }>;
   signUp: (email: string, password: string, userData?: CreateUserProfileRequest) => Promise<{ data: any; error: any }>;
