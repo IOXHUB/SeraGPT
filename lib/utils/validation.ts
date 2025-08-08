@@ -28,7 +28,7 @@ export const VALIDATION_RULES = {
   name: {
     minLength: 2,
     maxLength: 100,
-    pattern: /^[a-zA-ZğüşıöçĞÜŞİÖÇ\s]+$/,
+    pattern: /^[a-zA-Zğü��ıöçĞÜŞİÖÇ\s]+$/,
     message: 'Ad sadece harflerden oluşmalı ve 2-100 karakter arası olmalı'
   },
   number: {
@@ -417,7 +417,6 @@ export function createFormValidator<T>(validationConfig: Record<keyof T, (value:
 
     for (const [field, validator] of Object.entries(validationConfig)) {
       const value = formData[field as keyof T];
-<<<<<<< HEAD
       if (typeof validator === 'function') {
         validations.push({
           field: field as string,
@@ -425,14 +424,6 @@ export function createFormValidator<T>(validationConfig: Record<keyof T, (value:
           rules: validator(value)
         });
       }
-=======
-      const validatorFn = validator as (value: any) => ValidationRule[];
-      validations.push({
-        field: field as string,
-        value,
-        rules: validatorFn(value)
-      });
->>>>>>> 415584153a942ce547605818b181d952b42a40f2
     }
 
     return validateForm(validations);
