@@ -6,7 +6,6 @@ import { authService } from '@/lib/services/auth-service';
 import DashboardLayout from '@/components/dashboard/DashboardLayout';
 import { DashboardOverviewSkeleton } from '@/components/ui/skeletons/DashboardSkeletons';
 import CacheStatsWidget from '@/components/dashboard/CacheStatsWidget';
-import PerformanceDashboard from '@/components/dashboard/PerformanceDashboard';
 import { UserActivityLog } from '@/types/auth';
 
 // Force dynamic rendering for dashboard pages
