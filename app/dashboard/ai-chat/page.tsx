@@ -520,10 +520,10 @@ export default function AIChatPage() {
                 transition={{ duration: 0.4, delay: index * 0.1 }}
                 className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
               >
-                <div className={`max-w-md lg:max-w-lg px-4 py-3 rounded-lg ${
+                <div className={`max-w-[85%] md:max-w-md lg:max-w-lg px-3 md:px-4 py-2 md:py-3 rounded-lg ${
                   message.role === 'user'
-                    ? 'bg-blue-600 text-white'
-                    : 'bg-gray-100 border border-gray-200 text-gray-800'
+                    ? 'bg-blue-600 text-white rounded-br-sm'
+                    : 'bg-gray-100 border border-gray-200 text-gray-800 rounded-bl-sm'
                 }`}>
                   {/* Message avatar for AI */}
                   {message.role === 'assistant' && (
