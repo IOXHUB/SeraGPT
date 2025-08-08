@@ -400,7 +400,7 @@ function generateClimateAnalysisData(climate: any, location: any) {
       extreme_events: {
         frost_days_per_year: climate.minTemp < 0 ? Math.floor(Math.random() * 20 + 5) : 0,
         heat_wave_days_per_year: climate.maxTemp > 35 ? Math.floor(Math.random() * 15 + 5) : 0,
-        temperature_fluctuation_risk: climate.maxTemp - climate.minTemp > 35 ? 'high' : 'medium'
+        temperature_fluctuation_risk: climate.maxTemp - climate.minTemp > 35 ? 'high' as const : 'medium' as const
       }
     },
     humidity: {
@@ -704,7 +704,7 @@ function getClimateChallenge(monthIndex: number, climate: any): string[] {
     7: ['Yüksek nem', 'Hastalık riski'],
     8: ['Sıcaklık düşüşü', 'Nem artışı'],
     9: ['Değişken iklim', 'Hasat zamanlaması'],
-    10: ['Soğuma başlangıcı', 'Enerji artışı'],
+    10: ['Soğuma başlangıc��', 'Enerji artışı'],
     11: ['Düşük sıcaklık', 'Kısa gün']
   };
   
