@@ -666,7 +666,7 @@ export default function AIChatPage() {
           )}
 
           {/* Input Area */}
-          <div className="p-4 border-t border-gray-200 bg-white">
+          <div className="p-3 md:p-4 border-t border-gray-200 bg-white">
             {/* Input hint bar */}
             <div className="flex items-center justify-between mb-3 text-xs text-gray-500">
               <div className="flex items-center space-x-3">
