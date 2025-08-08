@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import BlogCardsSection from './BlogCardsSection';
 import Footer from '../Footer';
 import SeraGPTLogo from '../ui/SeraGPTLogo';
@@ -467,7 +468,7 @@ export default function UserjotCloneSection() {
                       <p className="text-gray-800 text-xs font-semibold mb-1">🎯 3 Önemli Fayda:</p>
                       <p className="text-gray-600 text-xs">• Sera yerleşim planı (2D çizim)</p>
                       <p className="text-gray-600 text-xs">• Elektrik ve sulama hat planı</p>
-                      <p className="text-gray-600 text-xs">�� Teknik kabin, depo gösterimi</p>
+                      <p className="text-gray-600 text-xs">• Teknik kabin, depo gösterimi</p>
                     </div>
                   </div>
                   <div className="mt-4 p-3 bg-gray-50 rounded-lg">
