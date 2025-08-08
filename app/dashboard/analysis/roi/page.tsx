@@ -389,7 +389,7 @@ export default function ROIAnalysisPage() {
           >
             <option value={3}>3 Yıl (Kısa Vadeli)</option>
             <option value={5}>5 Yıl (Orta Vadeli)</option>
-            <option value={7}>7 Yıl (Uzun Vadeli)</option>
+            <option value={7}>7 Y��l (Uzun Vadeli)</option>
             <option value={10}>10 Yıl (Çok Uzun Vadeli)</option>
           </select>
           <p className="text-xs text-gray-500 mt-1">
@@ -549,7 +549,7 @@ export default function ROIAnalysisPage() {
           <div>
             <span className="text-red-800">m² Başına Yıllık:</span>
             <span className="ml-1 font-bold text-red-900">
-              ��{(calculateTotalAnnualCosts() / roiInputs.greenhouseSize).toLocaleString()}
+              ₺{(calculateTotalAnnualCosts() / roiInputs.greenhouseSize).toLocaleString()}
             </span>
           </div>
         </div>
@@ -672,7 +672,7 @@ export default function ROIAnalysisPage() {
               </div>
               <div className="text-center">
                 <div className="text-3xl mb-2">🛠️</div>
-                <p className="text-2xl font-bold text-gray-900">₺{roiAnalysis.data.initialInvestment.infrastructure.toLocaleString()}</p>
+                <p className="text-2xl font-bold text-gray-900">���{roiAnalysis.data.initialInvestment.infrastructure.toLocaleString()}</p>
                 <p className="text-sm text-gray-600">Altyapı</p>
                 <p className="text-xs text-blue-600 mt-1">
                   %{((roiAnalysis.data.initialInvestment.infrastructure / roiAnalysis.data.initialInvestment.total) * 100).toFixed(0)}
@@ -830,9 +830,8 @@ export default function ROIAnalysisPage() {
             <button
               onClick={() => {
                 setCurrentStep(1);
-                setResults(null);
                 setReportId(null);
-                setError('');
+                // Hook data will be cleared automatically on re-execute
               }}
               className="bg-gray-100 hover:bg-gray-200 text-gray-700 px-8 py-4 rounded-lg font-medium transition-colors flex items-center justify-center"
             >
