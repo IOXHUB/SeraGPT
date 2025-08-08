@@ -287,12 +287,12 @@ export default function DashboardLayout({ children, title, subtitle, requiresTok
                               </div>
                             </a>
                           ))}
-                          <MediumPriorityLink
+                          <a
                             href="/dashboard/reports"
                             className="block px-3 py-2 text-xs text-blue-600 hover:text-blue-800 font-medium"
                           >
                             Tüm raporları görüntüle →
-                          </MediumPriorityLink>
+                          </a>
                         </div>
                       )}
                     </div>
