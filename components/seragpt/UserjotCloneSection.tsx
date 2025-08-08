@@ -57,22 +57,22 @@ export default function UserjotCloneSection() {
         <div className="header-footer-container">
           {/* Logo - clickable to homepage */}
           <div className="flex items-center space-x-3">
-            <a href="/" className="flex items-center space-x-3">
+            <Link href="/" className="flex items-center space-x-3">
               <SeraGPTLogo size="md" priority />
-            </a>
+            </Link>
           </div>
 
           {/* Center navigation - 3 links */}
           <nav className="hidden md:flex items-center space-x-8">
-            <a href="/danismanlik" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
+            <Link href="/danismanlik" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
               Danışmanlık
-            </a>
-            <a href="/anahtar-teslim-proje" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
+            </Link>
+            <Link href="/anahtar-teslim-proje" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
               Anahtar Teslim Proje
-            </a>
-            <a href="/destek" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
+            </Link>
+            <Link href="/destek" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
               Destek
-            </a>
+            </Link>
           </nav>
 
           {/* Right menu - conditional based on user state */}
@@ -81,18 +81,18 @@ export default function UserjotCloneSection() {
               <>
                 {user ? (
                   // For logged in users - show Dashboard
-                  <a href="/dashboard" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
+                  <Link href="/dashboard" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
                     Dashboard
-                  </a>
+                  </Link>
                 ) : (
                   // For logged out users - show Login or Sign Up CTA
                   <>
-                    <a href="/auth/login" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
+                    <Link href="/auth/login" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
                       Giriş Yap
-                    </a>
-                    <a href="/auth/login" className="bg-gray-600 text-white px-4 py-2 rounded-lg text-base font-medium hover:bg-gray-800 transition-colors">
+                    </Link>
+                    <Link href="/auth/login" className="bg-gray-600 text-white px-4 py-2 rounded-lg text-base font-medium hover:bg-gray-800 transition-colors">
                       Ücretsiz Başla
-                    </a>
+                    </Link>
                   </>
                 )}
               </>
