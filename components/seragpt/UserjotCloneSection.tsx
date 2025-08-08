@@ -185,35 +185,36 @@ export default function UserjotCloneSection() {
         )}
       </header>
 
-      {/* Main content - Clean hero section */}
+      {/* Main content - Mobile-Optimized Hero Section */}
       <main className="hero-section">
-        <div className="hero-content">
-          {/* Small text above headline */}
-          <p className="hero-subtitle">
+        <div className="hero-content px-4 md:px-0">
+          {/* Small text above headline - Mobile responsive */}
+          <p className="hero-subtitle text-xs sm:text-sm">
             +20 YIL, +500 PROJE, +110 VERİ SETİ
           </p>
 
-          {/* Main headline with system-ui font */}
-          <h1 className="hero-heading">
-            60 Saniyede<br />
-            <span style={{ color: 'rgba(23, 23, 23, 1)' }}>Sera Yatırım Raporun Hazır!</span>
+          {/* Main headline - Mobile responsive typography */}
+          <h1 className="hero-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight">
+            <span className="block">60 Saniyede</span>
+            <span className="block" style={{ color: 'rgba(23, 23, 23, 1)' }}>Sera Yatırım Raporun Hazır!</span>
           </h1>
 
-          {/* Description paragraph */}
-          <p className="hero-description">
+          {/* Description paragraph - Mobile responsive */}
+          <p className="hero-description text-sm sm:text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
             SeraGPT; 20 yılı aşkın mühendislik deneyimi, 500'den fazla
             tamamlanmış proje ve 110'dan fazla gerçek zamanlı veri
             setiyle, tarımsal yatırım kararlarınızı saniyeler içinde
             analiz eder.
           </p>
 
-          {/* CTA Button */}
-          <a href="/auth/login" className="btn btn-primary mb-4">
-            Şimdi Oluştur – İlk 5 Rapor Ücretsiz
+          {/* CTA Button - Mobile optimized */}
+          <a href="/auth/login" className="btn btn-primary mb-4 w-full sm:w-auto max-w-sm mx-auto block text-center">
+            <span className="hidden sm:inline">Şimdi Oluştur – İlk 5 Rapor Ücretsiz</span>
+            <span className="sm:hidden">🚀 Ücretsiz Başla</span>
           </a>
 
           {/* Small text under button */}
-          <p className="text-small text-center">
+          <p className="text-small text-center text-xs sm:text-sm">
             Doğru yatırım, doğru analizle başlar.
           </p>
         </div>
