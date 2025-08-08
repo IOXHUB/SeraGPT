@@ -26,11 +26,13 @@ export default function RootLayout({
       </head>
       <body suppressHydrationWarning>
         <ProductionErrorHandler />
-        <ImageOptimizationProvider>
-          <AnalyticsWrapper>
-            {children}
-          </AnalyticsWrapper>
-        </ImageOptimizationProvider>
+        <PerformanceProvider>
+          <ImageOptimizationProvider>
+            <AnalyticsWrapper>
+              {children}
+            </AnalyticsWrapper>
+          </ImageOptimizationProvider>
+        </PerformanceProvider>
         {process.env.NODE_ENV === 'development' && (
           <Script id="suppress-hydration-warnings" strategy="beforeInteractive">
             {`
