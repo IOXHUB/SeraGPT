@@ -105,9 +105,15 @@ export default function AIChatPage() {
   };
 
   const getAuthToken = async () => {
-    // Get Supabase session token
-    const { data: { session } } = await (window as any).supabase.auth.getSession();
-    return session?.access_token || '';
+    try {
+      // Import Supabase client properly
+      const { supabase } = await import('@/lib/supabase');
+      const { data: { session } } = await supabase.auth.getSession();
+      return session?.access_token || '';
+    } catch (error) {
+      console.warn('Failed to get auth token:', error);
+      return '';
+    }
   };
 
   const initializeNewSession = async () => {
