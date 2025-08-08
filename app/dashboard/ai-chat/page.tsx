@@ -242,7 +242,7 @@ export default function AIChatPage() {
 
       } else {
         const errorData = await response.json();
-        setError(errorData.error || 'AI yanıtı alınamadı');
+        setError(errorData.error || 'AI yanıtı al��namadı');
         
         // Remove user message if API failed
         setChatSession(chatSession);
@@ -702,13 +702,13 @@ export default function AIChatPage() {
                       ? "Token gerekli - Mesaj göndermek için token satın alın"
                       : "SeraGPT AI'ya sera ile ilgili sorunuzu yazın..."
                   }
-                  className={`w-full px-4 py-3 pr-12 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none transition-all ${
+                  className={`w-full px-3 md:px-4 py-2 md:py-3 pr-8 md:pr-12 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none transition-all text-sm md:text-base ${
                     !hasTokens(1)
                       ? 'border-gray-200 bg-gray-50 text-gray-400 cursor-not-allowed'
                       : 'border-gray-300 bg-white'
                   }`}
                   rows={1}
-                  style={{ minHeight: '48px', maxHeight: '120px' }}
+                  style={{ minHeight: '44px', maxHeight: '100px' }}
                   disabled={!hasTokens(1)}
                 />
 
