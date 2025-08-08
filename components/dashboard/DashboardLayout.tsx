@@ -75,19 +75,25 @@ export default function DashboardLayout({ children, title, subtitle, requiresTok
     }
   };
 
-  const menuItems = [
+  // High priority menu items (preload immediately)
+  const highPriorityMenuItems = [
     { name: 'Dashboard', href: '/dashboard', active: pathname === '/dashboard' },
-    { name: 'SeraGPT AI', href: '/dashboard/ai-chat', active: pathname === '/dashboard/ai-chat' },
     { name: 'ROI Simülasyonu', href: '/dashboard/analysis/roi', active: pathname === '/dashboard/analysis/roi' },
+    { name: 'SeraGPT AI', href: '/dashboard/ai-chat', active: pathname === '/dashboard/ai-chat' },
+  ];
+
+  // Medium priority menu items (preload on hover)
+  const mediumPriorityMenuItems = [
     { name: 'İklim Analizi', href: '/dashboard/analysis/climate', active: pathname === '/dashboard/analysis/climate' },
     { name: 'Ekipman Listesi', href: '/dashboard/analysis/equipment', active: pathname === '/dashboard/analysis/equipment' },
     { name: 'Pazar Analizi', href: '/dashboard/analysis/market', active: pathname === '/dashboard/analysis/market' },
     { name: 'Teknik Planlar', href: '/dashboard/analysis/layout', active: pathname === '/dashboard/analysis/layout' },
     { name: 'Raporlarım', href: '/dashboard/reports', active: pathname === '/dashboard/reports' },
+    { name: 'Jeton Satın Al', href: '/dashboard/tokens', active: pathname === '/dashboard/tokens' },
   ];
 
-  const secondaryMenuItems = [
-    { name: 'Jeton Satın Al', href: '/dashboard/tokens', active: pathname === '/dashboard/tokens' },
+  // Low priority menu items (lazy load)
+  const lowPriorityMenuItems = [
     { name: 'Danışmanlık', href: '/danismanlik', active: pathname === '/danismanlik' },
     { name: 'Anahtar Teslim Sera', href: '/anahtar-teslim-proje', active: pathname === '/anahtar-teslim-proje' },
     { name: 'Ayarlar', href: '/dashboard/settings', active: pathname === '/dashboard/settings' },
