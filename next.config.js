@@ -70,45 +70,13 @@ const nextConfig = {
       };
     }
 
-    // Production optimizations
+    // Production optimizations - simplified to avoid webpack errors
     if (!dev) {
-      // Advanced production optimizations
+      // Basic production optimizations only
       config.optimization = {
         ...config.optimization,
         moduleIds: 'deterministic',
-        chunkIds: 'deterministic',
-        splitChunks: {
-          chunks: 'all',
-          minSize: 20000,
-          maxSize: 244000,
-          cacheGroups: {
-            vendor: {
-              test: /[\\/]node_modules[\\/]/,
-              name: 'vendors',
-              chunks: 'all',
-              priority: 10,
-            },
-            common: {
-              name: 'common',
-              minChunks: 2,
-              chunks: 'all',
-              priority: 5,
-              reuseExistingChunk: true,
-            },
-            framer: {
-              test: /[\\/]node_modules[\\/]framer-motion[\\/]/,
-              name: 'framer-motion',
-              chunks: 'all',
-              priority: 20,
-            },
-            supabase: {
-              test: /[\\/]node_modules[\\/]@supabase[\\/]/,
-              name: 'supabase',
-              chunks: 'all',
-              priority: 15,
-            },
-          },
-        },
+        chunkIds: 'deterministic'
       };
 
       // Remove any HMR plugins in production
@@ -116,13 +84,6 @@ const nextConfig = {
         !plugin.constructor.name.includes('HotModuleReplacementPlugin')
       );
     }
-
-    // Better error handling for all environments
-    config.optimization = {
-      ...config.optimization,
-      moduleIds: 'deterministic',
-      chunkIds: 'deterministic'
-    };
 
     // Important: return the modified config
     return config;
