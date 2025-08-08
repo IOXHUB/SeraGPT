@@ -257,7 +257,7 @@ export default function ROIAnalysisPage() {
             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
           >
             <option value="domates">🍅 Domates</option>
-            <option value="salatalik">🥒 Salatalık</option>
+            <option value="salatalik">��� Salatalık</option>
             <option value="biber">🌶️ Biber</option>
             <option value="patlican">🍆 Patlıcan</option>
             <option value="cilek">🍓 Çilek</option>
@@ -269,7 +269,7 @@ export default function ROIAnalysisPage() {
 
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">
-            Başlangı�� Yatırımı (TL) *
+            Başlangıç Yatırımı (TL) *
           </label>
           <input
             type="number"
@@ -652,7 +652,7 @@ export default function ROIAnalysisPage() {
                 </p>
               </div>
               <div className="text-center">
-                <div className="text-3xl mb-2">����</div>
+                <div className="text-3xl mb-2">🔧</div>
                 <p className="text-2xl font-bold text-gray-900">₺{roiAnalysis.data.initialInvestment.equipment.toLocaleString()}</p>
                 <p className="text-sm text-gray-600">Ekipman</p>
                 <p className="text-xs text-blue-600 mt-1">
@@ -737,7 +737,7 @@ export default function ROIAnalysisPage() {
           <div className="bg-white rounded-xl border border-gray-200 p-6">
             <h3 className="text-lg font-semibold text-gray-900 mb-4">💡 AI Önerileri</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {roiAnalysis.data.recommendations.map((rec, index) => (
+              {roiAnalysis.data.recommendations.map((rec: any, index: number) => (
                 <div key={index} className={`p-4 rounded-lg border-l-4 ${
                   rec.priority === 'high' ? 'border-red-500 bg-red-50' : 
                   rec.priority === 'medium' ? 'border-yellow-500 bg-yellow-50' : 
@@ -778,7 +778,7 @@ export default function ROIAnalysisPage() {
                 <div>
                   <h4 className="font-medium text-gray-900 mb-3">Risk Faktörleri</h4>
                   <div className="space-y-2">
-                    {roiAnalysis.data.riskAssessment.factors.map((factor, index) => (
+                    {roiAnalysis.data.riskAssessment.factors.map((factor: string, index: number) => (
                       <div key={index} className="flex items-center space-x-2">
                         <span className="text-red-500">⚠️</span>
                         <span className="text-gray-700 text-sm">{factor}</span>
@@ -789,7 +789,7 @@ export default function ROIAnalysisPage() {
                 <div>
                   <h4 className="font-medium text-gray-900 mb-3">Risk Azaltma Önerileri</h4>
                   <div className="space-y-2">
-                    {roiAnalysis.data.riskAssessment.mitigation.map((strategy, index) => (
+                    {roiAnalysis.data.riskAssessment.mitigation.map((strategy: string, index: number) => (
                       <div key={index} className="flex items-center space-x-2">
                         <span className="text-green-500">✅</span>
                         <span className="text-gray-700 text-sm">{strategy}</span>
