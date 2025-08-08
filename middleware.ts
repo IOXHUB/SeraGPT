@@ -64,29 +64,36 @@ export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
   const clientIP = getClientIP(request)
 
-  console.log(`���� [Security] ${request.method} ${pathname} from ${clientIP}`)
+  console.log(`🔒 [Security] ${request.method} ${pathname} from ${clientIP}`)
 
   try {
+    // BYPASS ALL SECURITY FOR AUTH ROUTES
+    if (pathname.startsWith('/auth/')) {
+      console.log(`�� [Security] Bypassing all checks for auth route: ${pathname}`)
+      let response = NextResponse.next()
+      response = addSecurityHeaders(response)
+      console.log(`✅ [Security] Auth route processed in ${Date.now() - startTime}ms`)
+      return response
+    }
+
     // 1. Block malicious IPs
     if (SECURITY_CONFIG.blockedIPs.has(clientIP)) {
       console.log(`🚫 [Security] Blocked IP: ${clientIP}`)
       return new Response('Access Denied', { status: 403 })
     }
 
-    // 2. Check for suspicious patterns in URL and headers (skip for auth routes)
-    if (!pathname.startsWith('/auth/')) {
-      const suspiciousContent = [
-        pathname,
-        request.nextUrl.search,
-        request.headers.get('user-agent') || '',
-        request.headers.get('referer') || ''
-      ].join(' ')
+    // 2. Check for suspicious patterns in URL and headers
+    const suspiciousContent = [
+      pathname,
+      request.nextUrl.search,
+      request.headers.get('user-agent') || '',
+      request.headers.get('referer') || ''
+    ].join(' ')
 
-      for (const pattern of SECURITY_CONFIG.suspiciousPatterns) {
-        if (pattern.test(suspiciousContent)) {
-          console.log(`🚨 [Security] Suspicious pattern detected: ${pattern} in ${pathname}`)
-          return new Response('Bad Request', { status: 400 })
-        }
+    for (const pattern of SECURITY_CONFIG.suspiciousPatterns) {
+      if (pattern.test(suspiciousContent)) {
+        console.log(`🚨 [Security] Suspicious pattern detected: ${pattern} in ${pathname}`)
+        return new Response('Bad Request', { status: 400 })
       }
     }
 
@@ -96,8 +103,8 @@ export async function middleware(request: NextRequest) {
       return rateLimitResponse
     }
 
-    // 4. CSRF protection for POST/PUT/DELETE requests (skip for auth routes)
-    if (['POST', 'PUT', 'DELETE', 'PATCH'].includes(request.method) && !pathname.startsWith('/auth/')) {
+    // 4. CSRF protection for POST/PUT/DELETE requests
+    if (['POST', 'PUT', 'DELETE', 'PATCH'].includes(request.method)) {
       const csrfResponse = checkCSRF(request)
       if (csrfResponse) {
         return csrfResponse
