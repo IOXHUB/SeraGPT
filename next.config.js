@@ -2,21 +2,23 @@
 const nextConfig = {
   // Image optimization settings
   images: {
+    domains: ['cdn.builder.io'],
     remotePatterns: [
       {
         protocol: 'https',
         hostname: 'cdn.builder.io',
         port: '',
         pathname: '/api/v1/image/assets/**',
+      },
+      {
+        protocol: 'https',
+        hostname: '*.builder.io',
       }
     ],
     formats: ['image/avif', 'image/webp'],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
-    minimumCacheTTL: 31536000, // 1 year
-    dangerouslyAllowSVG: false,
-    contentDispositionType: 'attachment',
-    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
+    minimumCacheTTL: 31536000,
     unoptimized: false
   },
 
