@@ -269,7 +269,7 @@ export default function ROIAnalysisPage() {
 
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">
-            Başlangıç Yatırımı (TL) *
+            Başlangı�� Yatırımı (TL) *
           </label>
           <input
             type="number"
@@ -652,7 +652,7 @@ export default function ROIAnalysisPage() {
                 </p>
               </div>
               <div className="text-center">
-                <div className="text-3xl mb-2">🔧</div>
+                <div className="text-3xl mb-2">����</div>
                 <p className="text-2xl font-bold text-gray-900">₺{roiAnalysis.data.initialInvestment.equipment.toLocaleString()}</p>
                 <p className="text-sm text-gray-600">Ekipman</p>
                 <p className="text-xs text-blue-600 mt-1">
@@ -723,7 +723,7 @@ export default function ROIAnalysisPage() {
                   <span className="text-gray-600">Aylık Ortalama</span>
                   <span className="font-semibold text-red-600">₺{roiAnalysis.data.operationalCosts.monthly.toLocaleString()}</span>
                 </div>
-                {Object.entries(roiAnalysis.data.operationalCosts.breakdown).map(([key, value]) => (
+                {Object.entries(roiAnalysis.data.operationalCosts.breakdown).map(([key, value]: [string, number]) => (
                   <div key={key} className="flex justify-between items-center text-sm">
                     <span className="text-gray-500 capitalize">{key}</span>
                     <span className="text-gray-700">₺{value.toLocaleString()}</span>
