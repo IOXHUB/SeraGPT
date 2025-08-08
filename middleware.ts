@@ -270,30 +270,7 @@ async function checkAdminAccess(request: NextRequest): Promise<Response | null> 
   return null
 }
 
-function addSecurityHeaders(response: NextResponse): void {
-  // Security headers
-  response.headers.set('X-Content-Type-Options', 'nosniff')
-  response.headers.set('X-Frame-Options', 'DENY')
-  response.headers.set('X-XSS-Protection', '1; mode=block')
-  response.headers.set('Referrer-Policy', 'strict-origin-when-cross-origin')
-  response.headers.set('Permissions-Policy', 'camera=(), microphone=(), geolocation=()')
-
-  // CSP for enhanced security
-  const csp = [
-    "default-src 'self'",
-    "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://js.stripe.com https://www.googletagmanager.com",
-    "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
-    "font-src 'self' https://fonts.gstatic.com",
-    "img-src 'self' data: https: blob:",
-    "connect-src 'self' https://*.supabase.co https://api.stripe.com https://www.google-analytics.com",
-    "frame-src 'self' https://js.stripe.com",
-    "object-src 'none'",
-    "base-uri 'self'",
-    "form-action 'self'"
-  ].join('; ')
-
-  response.headers.set('Content-Security-Policy', csp)
-}
+// Security headers function moved to cache-headers.ts to avoid duplication
 
 // =====================================================
 // MIDDLEWARE CONFIGURATION
