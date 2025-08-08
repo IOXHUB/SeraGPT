@@ -406,13 +406,23 @@ export default function AIChatPage() {
         <div className={`${showSidebar ? 'block' : 'hidden'} lg:block lg:w-64 ${showSidebar ? 'absolute top-0 left-0 right-0 bottom-0 bg-white z-50 lg:relative' : ''} border-b lg:border-b-0 lg:border-r border-gray-200 p-4 overflow-y-auto`}>
           <div className="flex items-center justify-between mb-4">
             <h3 className="font-semibold text-gray-900">Sohbet Geçmişi</h3>
-            <button
-              onClick={initializeNewSession}
-              className="text-blue-600 hover:text-blue-500 text-sm font-medium"
-              title="Yeni sohbet başlat"
-            >
-              ➕ Yeni
-            </button>
+            <div className="flex items-center space-x-2">
+              <button
+                onClick={initializeNewSession}
+                className="text-blue-600 hover:text-blue-500 text-sm font-medium"
+                title="Yeni sohbet başlat"
+              >
+                ➕ Yeni
+              </button>
+              {showSidebar && (
+                <button
+                  onClick={() => setShowSidebar(false)}
+                  className="lg:hidden p-1 text-gray-400 hover:text-gray-600"
+                >
+                  ✕
+                </button>
+              )}
+            </div>
           </div>
           
           {loadingHistory ? (
