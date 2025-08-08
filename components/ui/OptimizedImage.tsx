@@ -33,6 +33,7 @@ export default function OptimizedImage({
   sizes,
   fill = false,
   style,
+  preset,
   onLoad,
   onError
 }: OptimizedImageProps) {
@@ -49,8 +50,23 @@ export default function OptimizedImage({
     onError?.();
   };
 
+  // Apply preset optimizations if specified
+  const optimizationOptions = preset ? ImagePresets[preset] : { quality, format: 'webp' as const };
+
+  // Optimize the source URL for Builder.io images
+  const optimizedSrc = src.includes('builder.io')
+    ? ImageOptimizer.optimizeBuilderImage(src, {
+        width: fill ? undefined : width,
+        height: fill ? undefined : height,
+        ...optimizationOptions
+      })
+    : src;
+
   // Generate responsive sizes if not provided
-  const responsiveSizes = sizes || `(max-width: 640px) ${Math.min(width, 640)}px, (max-width: 1024px) ${Math.min(width, 800)}px, ${width}px`;
+  const responsiveSizes = sizes || ImageOptimizer.generateSizesAttribute(width);
+
+  // Generate blur data URL
+  const blurDataURL = ImageOptimizer.generateBlurDataURL(src);
 
   if (hasError) {
     return (
