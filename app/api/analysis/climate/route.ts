@@ -413,7 +413,7 @@ function generateClimateAnalysisData(climate: any, location: any) {
         optimal_days: Math.floor(Math.random() * 40 + 50)
       })),
       condensation_risk: climate.avgHumidity > 75 ? 'high' as const : climate.avgHumidity > 65 ? 'medium' as const : 'low' as const,
-      ventilation_requirements: climate.avgHumidity > 75 ? 'intensive' : 'moderate'
+      ventilation_requirements: climate.avgHumidity > 75 ? 'intensive' as const : 'moderate' as const
     },
     wind: {
       average_speed: climate.windSpeed,
