@@ -1,12 +1,102 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { useAuth } from '@/lib/hooks/useAuth';
 import DashboardLayout from '@/components/dashboard/DashboardLayout';
 import AdminErrorBoundary from '@/components/AdminErrorBoundary';
 
 export default function AdminDashboard() {
+  const { user, isAdmin, loading } = useAuth();
   const [timeRange, setTimeRange] = useState('7days');
+  const [adminData, setAdminData] = useState<any>(null);
+  const [dataLoading, setDataLoading] = useState(true);
+
+  useEffect(() => {
+    if (user && !loading) {
+      loadAdminData();
+    }
+  }, [user, loading]);
+
+  const loadAdminData = async () => {
+    if (!isAdmin()) {
+      window.location.href = '/dashboard';
+      return;
+    }
+
+    try {
+      setDataLoading(true);
+
+      // Mock admin data loading
+      await new Promise(resolve => setTimeout(resolve, 1000));
+
+      const mockAdminData = {
+        systemStats: [
+          { name: 'Toplam Kullanıcı', value: Math.floor(Math.random() * 1000) + 500, change: `+${Math.floor(Math.random() * 20) + 5} bu hafta`, changeType: 'positive' },
+          { name: 'Aktif Analizler', value: Math.floor(Math.random() * 100) + 50, change: `+${Math.floor(Math.random() * 30) + 10} bugün`, changeType: 'positive' },
+          { name: 'Jeton Kullanımı', value: Math.floor(Math.random() * 3000) + 1000, change: `+${Math.floor(Math.random() * 200) + 50} bu hafta`, changeType: 'positive' },
+          { name: 'Sistem Durumu', value: '99.9%', change: 'Tüm sistemler aktif', changeType: 'positive' },
+        ],
+        recentUsers: Array.from({ length: 5 }, (_, i) => ({
+          name: ['Mehmet Yılmaz', 'Ayşe Kaya', 'Ali Demir', 'Fatma Şen', 'Mustafa Özkan'][i],
+          email: ['mehmet@example.com', 'ayse@example.com', 'ali@example.com', 'fatma@example.com', 'mustafa@example.com'][i],
+          role: Math.random() > 0.8 ? 'premium' : 'user',
+          joinDate: `${Math.floor(Math.random() * 7) + 1} gün önce`,
+          status: Math.random() > 0.2 ? 'active' : 'pending'
+        })),
+        apiStatus: [
+          { name: 'OpenWeather API', status: 'active', responseTime: `${Math.floor(Math.random() * 200) + 100}ms`, requests: Math.floor(Math.random() * 3000) + 1000 },
+          { name: 'FAO Data API', status: 'active', responseTime: `${Math.floor(Math.random() * 300) + 150}ms`, requests: Math.floor(Math.random() * 2000) + 500 },
+          { name: 'TUİK API', status: Math.random() > 0.8 ? 'warning' : 'active', responseTime: `${Math.floor(Math.random() * 500) + 200}ms`, requests: Math.floor(Math.random() * 1000) + 200 },
+          { name: 'Supabase DB', status: 'active', responseTime: `${Math.floor(Math.random() * 100) + 50}ms`, requests: Math.floor(Math.random() * 8000) + 2000 },
+          { name: 'Vercel Hosting', status: 'active', responseTime: `${Math.floor(Math.random() * 80) + 20}ms`, requests: Math.floor(Math.random() * 15000) + 5000 },
+        ]
+      };
+
+      setAdminData(mockAdminData);
+      console.log('🚀 Admin dashboard loaded with mock data');
+
+    } catch (error) {
+      console.error('Failed to load admin data:', error);
+    } finally {
+      setDataLoading(false);
+    }
+  };
+
+  // Redirect non-admin users
+  if (!loading && user && !isAdmin()) {
+    return (
+      <DashboardLayout title="Erişim Reddedildi" subtitle="Bu sayfaya erişim yetkiniz yok">
+        <div className="bg-red-50 border border-red-200 rounded-lg p-6 text-center">
+          <div className="text-4xl mb-4">🚫</div>
+          <h3 className="text-lg font-medium text-red-800 mb-2">Yetkisiz Erişim</h3>
+          <p className="text-red-600 mb-4">Bu sayfaya erişmek için admin yetkisine sahip olmanız gerekir.</p>
+          <a href="/dashboard" className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg transition-colors">
+            Dashboard'a Dön
+          </a>
+        </div>
+      </DashboardLayout>
+    );
+  }
+
+  if (loading || dataLoading || !adminData) {
+    return (
+      <DashboardLayout title="Admin Panel" subtitle="Sistem yönetimi ve istatistikler">
+        <div className="space-y-6">
+          {[1, 2, 3].map(i => (
+            <div key={i} className="bg-white rounded-lg border p-6 animate-pulse">
+              <div className="h-6 bg-gray-200 rounded w-1/4 mb-4"></div>
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+                {[1, 2, 3, 4].map(j => (
+                  <div key={j} className="h-20 bg-gray-200 rounded"></div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </DashboardLayout>
+    );
+  }
 
   const systemStats = [
     { name: 'Toplam Kullanıcı', value: '1,247', change: '+12 bu hafta', changeType: 'positive' },
