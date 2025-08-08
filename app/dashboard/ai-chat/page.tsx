@@ -467,10 +467,10 @@ export default function AIChatPage() {
       title="AI Chat"
       subtitle="SeraGPT AI asistanınızla sohbet edin"
     >
-      <div className="h-[calc(100vh-140px)] md:h-[calc(100vh-200px)] flex flex-col bg-white rounded-xl border border-gray-200 shadow-sm relative">
+      <div className="h-[calc(100vh-120px)] flex bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
 
         {/* Mobile Header with Navigation */}
-        <div className="lg:hidden flex items-center justify-between p-4 border-b border-gray-200 bg-gray-50">
+        <div className="lg:hidden absolute top-0 left-0 right-0 z-40 flex items-center justify-between p-3 border-b border-gray-200 bg-gray-50">
           <div className="flex items-center space-x-3">
             <button
               onClick={() => setShowSidebar(!showSidebar)}
@@ -508,8 +508,8 @@ export default function AIChatPage() {
           </div>
         </div>
 
-        {/* Chat History Sidebar - Mobile Overlay + Desktop Sidebar */}
-        <div className={`${showSidebar ? 'block' : 'hidden'} lg:block lg:w-64 ${showSidebar ? 'absolute top-0 left-0 right-0 bottom-0 bg-white z-50 lg:relative' : ''} border-b lg:border-b-0 lg:border-r border-gray-200 p-4 overflow-y-auto`}>
+        {/* Chat History Sidebar */}
+        <div className={`${showSidebar ? 'block' : 'hidden'} lg:block w-64 ${showSidebar ? 'absolute lg:relative inset-0 lg:inset-auto bg-white z-50' : ''} border-r border-gray-200 flex flex-col`}>
           <div className="flex items-center justify-between mb-4">
             <h3 className="font-semibold text-gray-900">Sohbet Geçmişi</h3>
             <div className="flex items-center space-x-2">
@@ -645,7 +645,7 @@ export default function AIChatPage() {
                     {/* Enhanced message content with better formatting */}
                     {message.content.split('\n').map((line, lineIndex) => {
                       // Handle bullet points
-                      if (line.trim().startsWith('🔸') || line.trim().startsWith('•') || line.trim().startsWith('-')) {
+                      if (line.trim().startsWith('����') || line.trim().startsWith('•') || line.trim().startsWith('-')) {
                         return (
                           <div key={lineIndex} className="flex items-start mb-1">
                             <span className="mr-2 mt-0.5">{line.trim().startsWith('🔸') ? '🔸' : '•'}</span>
