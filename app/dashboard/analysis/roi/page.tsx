@@ -4,6 +4,8 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useAuth } from '@/lib/hooks/useAuth';
 import { useROIAnalysis } from '@/lib/hooks/useCachedAPI';
+import { ROIAnalysisSkeleton } from '@/components/ui/skeletons/AnalysisSkeletons';
+import { AnalysisLoading } from '@/components/ui/LoadingStates';
 import DashboardLayout from '@/components/dashboard/DashboardLayout';
 
 export const dynamic = 'force-dynamic';
