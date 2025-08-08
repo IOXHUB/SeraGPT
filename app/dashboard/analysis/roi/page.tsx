@@ -77,11 +77,8 @@ interface ROIResults {
 
 export default function ROIAnalysisPage() {
   const { user, consumeToken, hasTokens } = useAuth();
-  
+
   const [currentStep, setCurrentStep] = useState(1);
-  const [loading, setLoading] = useState(false);
-  const [results, setResults] = useState<ROIResults | null>(null);
-  const [error, setError] = useState<string>('');
   const [reportId, setReportId] = useState<string | null>(null);
 
   // ROI Analysis inputs
@@ -597,7 +594,7 @@ export default function ROIAnalysisPage() {
           </div>
         </div>
         <p className="text-xs text-purple-700 mt-2">
-          ⚠️ Bu sadece bir ön hesaplama. Detaylı analiz için "ROI Hesapla" butonunu kullanın.
+          ⚠️ Bu sadece bir ön hesaplama. Detaylı analiz için "ROI Hesapla" butonunu kullan��n.
         </p>
       </div>
     </motion.div>
@@ -743,7 +740,7 @@ export default function ROIAnalysisPage() {
               <h3 className="text-lg font-semibold text-gray-900 mb-4">📊 Maliyet Analizi</h3>
               <div className="space-y-4">
                 <div className="flex justify-between items-center">
-                  <span className="text-gray-600">Yıllık İşletme</span>
+                  <span className="text-gray-600">Yıllık ��şletme</span>
                   <span className="font-semibold text-red-600">₺{results.operationalCosts.annual.toLocaleString()}</span>
                 </div>
                 <div className="flex justify-between items-center">
