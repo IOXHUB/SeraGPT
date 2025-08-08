@@ -151,7 +151,7 @@ export default function ROIAnalysisPage() {
     try {
       const response = await fetch(`/api/analysis/reports?id=${reportId}&format=pdf`, {
         headers: {
-          'Authorization': `Bearer ${await getAuthToken()}`
+          'Content-Type': 'application/json'
         }
       });
 
@@ -387,7 +387,7 @@ export default function ROIAnalysisPage() {
             <option value={3}>3 Yıl (Kısa Vadeli)</option>
             <option value={5}>5 Yıl (Orta Vadeli)</option>
             <option value={7}>7 Yıl (Uzun Vadeli)</option>
-            <option value={10}>10 Yıl (Çok Uzun Vadeli)</option>
+            <option value={10}>10 Yıl (��ok Uzun Vadeli)</option>
           </select>
           <p className="text-xs text-gray-500 mt-1">
             ROI hesaplama dönemi
