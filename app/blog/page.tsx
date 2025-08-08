@@ -129,6 +129,7 @@ export default function BlogPage() {
                     height={384}
                     className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
                     priority
+                    preset="hero"
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 80vw, 640px"
                   />
                 </div>
