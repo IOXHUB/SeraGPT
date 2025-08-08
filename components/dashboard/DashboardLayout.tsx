@@ -35,7 +35,7 @@ export default function DashboardLayout({ children, title, subtitle }: Dashboard
     
     { name: 'Raporlar', href: '/dashboard/reports', icon: '📋', category: 'Yönetim' },
     { name: 'Projeler', href: '/dashboard/projects', icon: '🏗️', category: 'Yönetim' },
-    { name: 'Token Yönetimi', href: '/dashboard/tokens', icon: '🪙', category: 'Yönetim' },
+    { name: 'Token Yönetimi', href: '/dashboard/tokens', icon: '🧠', category: 'Yönetim' },
     
     { name: 'Danışmanlık', href: '/danismanlik', icon: '👨‍💼', category: 'Hizmetler' },
     { name: 'Destek', href: '/destek', icon: '🎧', category: 'Hizmetler' },
