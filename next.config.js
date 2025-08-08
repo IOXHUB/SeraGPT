@@ -29,9 +29,10 @@ const nextConfig = {
   // No trailing slash for standard deployment
   trailingSlash: false,
 
-  // Experimental features
+  // Experimental features for better performance
   experimental: {
-    // Turbopack compatible experimental features only
+    optimizeCss: true,
+    optimizePackageImports: ['framer-motion', '@supabase/supabase-js'],
   },
   
   // Base path if needed (keep empty for root domain)
