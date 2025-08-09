@@ -11,23 +11,12 @@ export default function TestNewPage() {
         <div className="max-w-[1200px] mx-auto px-6">
           <div className="flex items-center justify-between">
             {/* Logo */}
-            <div className="flex items-center space-x-3">
-              <div
-                className="w-12 h-12 rounded-xl flex items-center justify-center overflow-hidden"
-                style={{ backgroundColor: '#baf200' }}
-              >
-                <img
-                  src="https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2F01c1e8a05ef6424b912d584875377957?format=webp&width=800"
-                  alt="SeraGPT Logo"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <h1
-                className="text-2xl font-semibold"
-                style={{ color: '#f6f8f9', fontSize: '24px', fontWeight: '600' }}
-              >
-                SeraGPT
-              </h1>
+            <div className="flex items-center">
+              <img
+                src="https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2F01c1e8a05ef6424b912d584875377957?format=webp&width=800"
+                alt="SeraGPT Logo"
+                className="h-12 w-auto object-contain"
+              />
             </div>
 
             {/* Navigation */}
@@ -264,17 +253,21 @@ export default function TestNewPage() {
               border: '3px solid #baf200'
             }}
           >
-            {/* AI Icon with animated shadow */}
+            {/* Corporate AI Icon with animated shadow */}
             <div className="flex justify-center mb-6">
               <div
-                className="ai-icon-animated w-16 h-16 rounded-2xl flex items-center justify-center overflow-hidden"
-                style={{ backgroundColor: '#baf200' }}
+                className="ai-icon-animated w-16 h-16 rounded-2xl flex items-center justify-center"
+                style={{
+                  backgroundColor: '#1e3237',
+                  background: 'linear-gradient(135deg, #1e3237 0%, #2d4a3a 50%, #146448 100%)'
+                }}
               >
-                <img
-                  src="https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2F7bea4b82baf14e29a0d5bf80ccec9613?format=webp&width=800"
-                  alt="AI Icon"
-                  className="w-full h-full object-cover"
-                />
+                <svg className="w-8 h-8" viewBox="0 0 24 24" fill="none">
+                  <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="#baf200" opacity="0.8"/>
+                  <path d="M2 17L12 22L22 17" stroke="#baf200" strokeWidth="2" fill="none"/>
+                  <path d="M2 12L12 17L22 12" stroke="#baf200" strokeWidth="2" fill="none"/>
+                  <circle cx="12" cy="9" r="2" fill="#1e3237"/>
+                </svg>
               </div>
             </div>
 
@@ -284,11 +277,11 @@ export default function TestNewPage() {
                 className="mb-8 text-center"
                 style={{
                   color: '#1e3237',
-                  fontSize: '30px',
-                  fontWeight: '600'
+                  fontSize: '36px',
+                  fontWeight: '400'
                 }}
               >
-                Sadece Rapor Değil, Aynı Zamanda Akıllı Tavsiyeler de Sunuyoruz
+                AI ASISTAN
               </h2>
 
               <p
@@ -333,19 +326,20 @@ export default function TestNewPage() {
                 <p
                   style={{ color: '#454b4b', fontSize: '14px', fontWeight: '400' }}
                 >
-                  📱 Mobile AI Asistan Özelliği Simülasyonu
+                  Ücretsiz ve adil kullanım kotası ile birlikte sınırsızdır.
                 </p>
               </div>
             </div>
 
             <Link
               href="/chat"
-              className="hero-cta-button inline-block px-8 py-4 rounded-xl font-medium transition-all hover:opacity-90 hover:scale-105 transform"
+              className="inline-block px-8 py-4 rounded-xl font-medium transition-all hover:opacity-90"
               style={{
                 backgroundColor: '#baf200',
                 color: '#1e3237',
                 fontSize: '16px',
-                fontWeight: '400'
+                fontWeight: '600',
+                boxShadow: '0 10px 25px rgba(186, 242, 0, 0.3), 0 0 20px rgba(186, 242, 0, 0.2)'
               }}
             >
               AI Asistanı Test Et
@@ -507,7 +501,7 @@ export default function TestNewPage() {
                   fontWeight: '600' 
                 }}
               >
-                🧠 Destek Sayfasını Ziyaret Et
+                🧠 Destek Sayfas��nı Ziyaret Et
               </Link>
             </div>
           </div>
