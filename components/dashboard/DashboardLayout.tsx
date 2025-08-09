@@ -187,7 +187,7 @@ export default function DashboardLayout({ children, title, subtitle }: Dashboard
               <div key={category} className="mb-4">
                 {!sidebarCollapsed && (
                   <div className="px-4 mb-2">
-                    <h3 className="text-xs font-medium text-gray-500 uppercase tracking-wide">{category}</h3>
+                    <p className="text-xs font-medium text-gray-500 uppercase tracking-wide">{category}</p>
                   </div>
                 )}
                 <div className="space-y-1 px-2">
