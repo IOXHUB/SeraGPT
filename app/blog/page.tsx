@@ -29,15 +29,15 @@ export default function BlogPage() {
   };
 
   const categories = [
-    { name: "Veriye Dayalı Tarım", color: "bg-blue-100", textColor: "text-blue-900", slug: "veriye-dayali-tarim" },
-    { name: "Gizli Maliyetler", color: "bg-red-100", textColor: "text-red-900", slug: "gizli-maliyetler" },
-    { name: "Akıllı Sera Modelleri", color: "bg-purple-100", textColor: "text-purple-900", slug: "akilli-sera-modelleri" },
-    { name: "Tarımsal Zeka", color: "bg-yellow-100", textColor: "text-yellow-900", slug: "tarimsal-zeka" },
-    { name: "ROI & Maliyet İçerikleri", color: "bg-green-100", textColor: "text-green-900", slug: "roi-maliyet" },
-    { name: "İklim Krizi ve Tarım", color: "bg-orange-100", textColor: "text-orange-900", slug: "iklim-krizi-tarim" },
-    { name: "Ticari Ürün Rehberi", color: "bg-teal-100", textColor: "text-teal-900", slug: "ticari-urun-rehberi" },
-    { name: "Tarımda Kadın Eli", color: "bg-pink-100", textColor: "text-pink-900", slug: "tarimda-kadin-eli" },
-    { name: "Sera Mimarlığı & Tasarım", color: "bg-indigo-100", textColor: "text-indigo-900", slug: "sera-mimarligi-tasarim" }
+    { name: "Veriye Dayalı Tarım", color: "bg-[#146448]/10", textColor: "text-[#1e3237]", slug: "veriye-dayali-tarim" },
+    { name: "Gizli Maliyetler", color: "bg-[#baf200]/20", textColor: "text-[#1e3237]", slug: "gizli-maliyetler" },
+    { name: "Akıllı Sera Modelleri", color: "bg-[#f6f8f9]", textColor: "text-[#1e3237]", slug: "akilli-sera-modelleri" },
+    { name: "Tarımsal Zeka", color: "bg-[#baf200]/30", textColor: "text-[#1e3237]", slug: "tarimsal-zeka" },
+    { name: "ROI & Maliyet İçerikleri", color: "bg-[#146448]/15", textColor: "text-[#1e3237]", slug: "roi-maliyet" },
+    { name: "İklim Krizi ve Tarım", color: "bg-[#baf200]/25", textColor: "text-[#1e3237]", slug: "iklim-krizi-tarim" },
+    { name: "Ticari Ürün Rehberi", color: "bg-[#146448]/20", textColor: "text-[#1e3237]", slug: "ticari-urun-rehberi" },
+    { name: "Tarımda Kadın Eli", color: "bg-[#baf200]/15", textColor: "text-[#1e3237]", slug: "tarimda-kadin-eli" },
+    { name: "Sera Mimarlığı & Tasarım", color: "bg-[#146448]/12", textColor: "text-[#1e3237]", slug: "sera-mimarligi-tasarim" }
   ];
 
   const latestPosts = [
