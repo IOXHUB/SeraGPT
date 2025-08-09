@@ -392,7 +392,7 @@ export default function DashboardLayout({ children, title, subtitle }: Dashboard
                                     <a
                                       key={subSubItem.name}
                                       href={subSubItem.href}
-                                      className="flex items-center px-3 py-2 text-sm text-gray-500 hover:text-gray-700 hover:bg-gray-50 rounded transition-all"
+                                      className="flex items-center px-3 py-2 text-sm text-[#1e3237]/50 hover:text-[#146448] hover:bg-[#146448]/5 rounded transition-all"
                                       title={subSubItem.prompt}
                                     >
                                       <span className="text-sm mr-2">{subSubItem.icon}</span>
@@ -413,7 +413,7 @@ export default function DashboardLayout({ children, title, subtitle }: Dashboard
           </nav>
 
           {/* Mobile Footer */}
-          <div className="p-4 border-t border-gray-200">
+          <div className="p-4 border-t border-[#146448]/20">
             <button className="w-full flex items-center px-3 py-2.5 text-sm font-medium text-red-600 hover:bg-red-50 rounded-lg transition-colors">
               <span className="text-lg mr-3">🚪</span>
               <span>Çıkış Yap</span>
