@@ -534,7 +534,7 @@ export default function TestNewPage() {
                   <p style={{ color: '#f6f8f9' }}>Yerinde keşif ve teknik analiz (ISITMAX)</p>
                   <p style={{ color: '#f6f8f9' }}>Statik & yapısal proje çizimleri</p>
                   <p style={{ color: '#f6f8f9' }}>XXXXX menşeli otomasyon, ekipman ve kurulum hizmeti</p>
-                  <p style={{ color: '#f6f8f9' }}>ISITMAX s��pervizörlüğünde şantiye yönetimi</p>
+                  <p style={{ color: '#f6f8f9' }}>ISITMAX süpervizörlüğünde şantiye yönetimi</p>
                   <p style={{ color: '#f6f8f9' }}>Tam kapsamlı fiyat teklifi ve mühendislik dosyası (PDF)</p>
                 </div>
               </div>
@@ -954,12 +954,12 @@ export default function TestNewPage() {
             </h2>
 
             <div className="max-w-[576px] mx-auto mb-12">
-              <p 
-                className="leading-relaxed"
-                style={{ 
-                  color: '#f6f8f9', 
-                  fontSize: '14px', 
-                  fontWeight: '400' 
+              <p
+                className="leading-relaxed text-center"
+                style={{
+                  color: '#f6f8f9',
+                  fontSize: '26px',
+                  fontWeight: '400'
                 }}
               >
                 Sera yatırımınızla ilgili her konuda uzman ekibimiz size destek vermeye hazır.
@@ -1152,7 +1152,7 @@ export default function TestNewPage() {
                         <li>• Sulama ve drenaj hattı planı</li>
                         <li>• Isıtma hattı ve ekipman yerleşimi</li>
                       </ul>
-                      <p>gibi detaylı görseller PDF rapora dahil edilir.</p>
+                      <p>gibi detaylı g��rseller PDF rapora dahil edilir.</p>
                       <p>Bu çizimler hem yatırımcı sunumlarında hem de yüklenici firmalara teklif alırken kullanılabilir.</p>
                     </div>
                   </div>
