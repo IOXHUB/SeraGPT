@@ -149,7 +149,7 @@ export default function TestNewPage() {
         </div>
       </section>
 
-      {/* 2. 🤖 Cevap: SeraGPT ile Tanışın */}
+      {/* 2. �� Cevap: SeraGPT ile Tanışın */}
       <section className="py-16">
         <div className="max-w-[1200px] mx-auto px-6 text-center">
           <div className="max-w-[800px] mx-auto">
@@ -670,7 +670,7 @@ export default function TestNewPage() {
                   fontWeight: '400'
                 }}
               >
-                Fikir aşamasından, projelendirmeye; Kurulum'dan, üretim danışmanlığına profesyonel hizmet
+                Fikir aşamasından projelendirmeye; Kurulum'dan üretim danışmanlığına kadar profesyonel hizmet
               </p>
             </div>
 
@@ -680,7 +680,7 @@ export default function TestNewPage() {
                 <div className="flex space-x-4 pb-4" style={{ width: 'fit-content' }}>
                   <div className="flex-shrink-0 w-[580px] h-[300px] rounded-xl overflow-hidden">
                     <img
-                      src="https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2Fd2a7df13e2bd48f794cea5b31b5b1c8c"
+                      src="https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2F9d3332e2ad3c411884d29aa35f7a626d"
                       alt="Sera Projesi 1"
                       className="w-full h-full object-cover"
                     />
