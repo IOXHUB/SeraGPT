@@ -39,12 +39,12 @@ export default function DashboardLayout({ children, title, subtitle }: Dashboard
   const pathname = usePathname();
 
   const menuItems: MenuItem[] = [
-    { name: 'Dashboard', href: '/dashboard', icon: '📊', category: 'Ana' },
+    { name: 'Anasayfa', href: '/dashboard', icon: '', category: 'Menu' },
     {
       name: 'AI Asistan',
       href: '/dashboard/ai-chat',
-      icon: '🤖',
-      category: 'Ana',
+      icon: '',
+      category: 'Menu',
       badge: 'AI',
       submenu: [
         {
@@ -89,22 +89,22 @@ export default function DashboardLayout({ children, title, subtitle }: Dashboard
       ]
     },
     
-    { name: 'ROI Analizi', href: '/dashboard/analysis/roi', icon: '💰', category: 'Analizler' },
-    { name: 'İklim Analizi', href: '/dashboard/analysis/climate', icon: '🌡️', category: 'Analizler' },
-    { name: 'Ekipman Listesi', href: '/dashboard/analysis/equipment', icon: '⚙️', category: 'Analizler' },
-    { name: 'Pazar Analizi', href: '/dashboard/analysis/market', icon: '📈', category: 'Analizler' },
-    { name: 'Teknik Planlar', href: '/dashboard/analysis/layout', icon: '📐', category: 'Analizler' },
+    { name: 'ROI Analizi', href: '/dashboard/analysis/roi', icon: '', category: 'Analizler' },
+    { name: 'İklim Analizi', href: '/dashboard/analysis/climate', icon: '', category: 'Analizler' },
+    { name: 'Ekipman Listesi', href: '/dashboard/analysis/equipment', icon: '', category: 'Analizler' },
+    { name: 'Pazar Analizi', href: '/dashboard/analysis/market', icon: '', category: 'Analizler' },
+    { name: 'Teknik Planlar', href: '/dashboard/analysis/layout', icon: '', category: 'Analizler' },
     
-    { name: 'Demo Raporlar', href: '/dashboard/demo-reports', icon: '📋', category: 'Yönetim', badge: 'Demo' },
-    { name: 'Projeler', href: '/dashboard/projects', icon: '🏗️', category: 'Yönetim' },
-    { name: 'Token Yönetimi', href: '/dashboard/tokens', icon: '🧠', category: 'Yönetim' },
+    { name: 'Demo Raporlar', href: '/dashboard/demo-reports', icon: '', category: 'Yönetim', badge: 'Demo' },
+    { name: 'Projeler', href: '/dashboard/projects', icon: '', category: 'Yönetim' },
+    { name: 'Token Yönetimi', href: '/dashboard/tokens', icon: '', category: 'Yönetim' },
     
-    { name: 'Danışmanlık', href: '/danismanlik', icon: '👨‍💼', category: 'Hizmetler' },
-    { name: 'Destek', href: '/destek', icon: '🎧', category: 'Hizmetler' },
-    { name: 'Anahtar Teslim', href: '/anahtar-teslim-proje', icon: '🔑', category: 'Hizmetler' },
+    { name: 'Danışmanlık', href: '/danismanlik', icon: '', category: 'Hizmetler' },
+    { name: 'Destek', href: '/destek', icon: '', category: 'Hizmetler' },
+    { name: 'Anahtar Teslim', href: '/anahtar-teslim-proje', icon: '', category: 'Hizmetler' },
     
-    { name: 'Ayarlar', href: '/dashboard/settings', icon: '⚙️', category: 'Hesap' },
-    { name: 'Yardım', href: '/dashboard/help', icon: '❓', category: 'Hesap' },
+    { name: 'Ayarlar', href: '/dashboard/settings', icon: '', category: 'Hesap' },
+    { name: 'Yardım', href: '/dashboard/help', icon: '', category: 'Hesap' },
   ];
 
   // Group menu items by category
