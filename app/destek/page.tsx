@@ -162,16 +162,16 @@ export default function DestekPage() {
               </a>
             </div>
             <nav className="hidden md:flex space-x-8">
-              <a href="/destek" className="text-gray-600 hover:text-[#1e3237] font-medium">
+              <a href="/destek" className="text-[#1e3237]/70 hover:text-[#1e3237] font-medium">
                 Destek
               </a>
-              <a href="/danismanlik" className="text-gray-600 hover:text-[#1e3237] font-medium">
+              <a href="/danismanlik" className="text-[#1e3237]/70 hover:text-[#1e3237] font-medium">
                 Danışmanlık
               </a>
-              <a href="/anahtar-teslim-proje" className="text-gray-600 hover:text-[#1e3237] font-medium">
+              <a href="/anahtar-teslim-proje" className="text-[#1e3237]/70 hover:text-[#1e3237] font-medium">
                 Anahtar Teslim Sera
               </a>
-              <a href="/auth/login" className="text-gray-600 hover:text-[#1e3237] font-medium">
+              <a href="/auth/login" className="text-[#1e3237]/70 hover:text-[#1e3237] font-medium">
                 Giriş Yap
               </a>
             </nav>
@@ -292,7 +292,7 @@ export default function DestekPage() {
                         className={`block w-full text-left px-3 py-2 text-sm rounded-lg transition-all duration-200 ${
                           activeSection === item.id
                             ? 'bg-gray-100 text-[#1e3237] font-medium'
-                            : 'text-gray-600 hover:text-[#1e3237] hover:bg-gray-50'
+                            : 'text-[#1e3237]/70 hover:text-[#1e3237] hover:bg-gray-50'
                         }`}
                       >
                         {item.title}
@@ -332,7 +332,7 @@ export default function DestekPage() {
               </h1>
 
               {/* Description */}
-              <p className="text-lg text-gray-600 mb-8 leading-relaxed">
+              <p className="text-lg text-[#1e3237]/70 mb-8 leading-relaxed">
                 {currentContent.description}
               </p>
 
@@ -353,7 +353,7 @@ export default function DestekPage() {
                       {step.items.map((item, itemIndex) => (
                         <div key={itemIndex} className="flex items-start space-x-3">
                           <div className="flex-shrink-0 w-6 h-6 bg-gray-100 rounded-full flex items-center justify-center mt-0.5">
-                            <span className="text-xs font-medium text-gray-600">
+                            <span className="text-xs font-medium text-[#1e3237]/70">
                               {itemIndex + 1}
                             </span>
                           </div>
