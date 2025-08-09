@@ -544,7 +544,7 @@ Hangi konuda derinlemesine analiz istersiniz?`;
                   ref={fileInputRef}
                   type="file"
                   className="hidden"
-                  accept=".pdf,.doc,.docx,.txt,.png,.jpg,.jpeg"
+                  accept=".pdf,.doc,.docx,.txt,.png,.jpg,.jpeg,.dwg,.xlsx,.xls,.ppt,.pptx,.csv,.zip,.rar"
                   onChange={handleFileSelect}
                 />
                 
