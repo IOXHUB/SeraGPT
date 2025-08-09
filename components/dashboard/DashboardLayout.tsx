@@ -187,7 +187,7 @@ export default function DashboardLayout({ children, title, subtitle }: Dashboard
               <div key={category} className="mb-4">
                 {!sidebarCollapsed && (
                   <div className="px-4 mb-2">
-                    <p className="text-xs font-medium text-gray-500 uppercase tracking-wide">{category}</p>
+                    <p className="text-xs font-medium text-[#1e3237]/60 uppercase tracking-wide">{category}</p>
                   </div>
                 )}
                 <div className="space-y-1 px-2">
@@ -200,8 +200,8 @@ export default function DashboardLayout({ children, title, subtitle }: Dashboard
                           onClick={item.submenu ? (e) => { e.preventDefault(); toggleSubmenu(item.name); } : undefined}
                           className={`group flex items-center px-2 py-2 text-xs font-medium rounded-md transition-all flex-1 cursor-pointer ${
                             isActive(item.href) || (item.submenu && isSubmenuActive(item.submenu))
-                              ? 'bg-green-50 text-green-700 border-r-2 border-green-500'
-                              : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
+                              ? 'bg-[#146448]/10 text-[#146448] border-r-2 border-[#146448]'
+                              : 'text-[#1e3237]/70 hover:bg-[#146448]/5 hover:text-[#146448]'
                           }`}
                           title={sidebarCollapsed ? item.name : undefined}
                         >
