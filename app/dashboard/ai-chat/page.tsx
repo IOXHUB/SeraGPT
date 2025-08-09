@@ -274,7 +274,7 @@ Hangi konuda derinlemesine konuşmak istersiniz?`;
     
     return (
       <DashboardLayout>
-        <div className="h-full bg-gradient-to-br from-orange-400 via-purple-500 to-blue-600 min-h-0">
+        <div className="h-full bg-[#146448] min-h-0">
           <div className="h-full flex flex-col min-h-0">
             {/* Header */}
             <div className="p-4 sm:p-6">
@@ -284,7 +284,7 @@ Hangi konuda derinlemesine konuşmak istersiniz?`;
                   animate={{ opacity: 1, y: 0 }}
                   className="text-center"
                 >
-                  <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-3xl flex items-center justify-center mx-auto mb-4">
+                  <div className="w-16 h-16 bg-[#f6f8f9] rounded-3xl flex items-center justify-center mx-auto mb-4 shadow-lg">
                     <span className="text-2xl">🤖</span>
                   </div>
                   <h1 className="text-2xl font-bold text-white mb-2">
