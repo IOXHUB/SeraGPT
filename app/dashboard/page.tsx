@@ -5,6 +5,7 @@ import { useAuth } from '@/lib/hooks/useAuth';
 import { authService } from '@/lib/services/auth-service';
 import DashboardLayout from '@/components/dashboard/DashboardLayout';
 import { DashboardOverviewSkeleton } from '@/components/ui/skeletons/DashboardSkeletons';
+import Link from 'next/link';
 
 // Force dynamic rendering for dashboard pages
 export const dynamic = 'force-dynamic';
@@ -26,6 +27,7 @@ interface ActivityItem {
 
 export default function DashboardPage() {
   const { user, profile, tokens, isAdmin, loading } = useAuth();
+  const [activeTab, setActiveTab] = useState('overview');
   const [stats, setStats] = useState<UserStats>({
     totalAnalyses: 0,
     tokensUsed: 0,
@@ -105,10 +107,10 @@ export default function DashboardPage() {
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case 'completed': return 'bg-green-50 text-green-700 border-green-200';
-      case 'in_progress': return 'bg-blue-50 text-blue-700 border-blue-200';
-      case 'failed': return 'bg-red-50 text-red-700 border-red-200';
-      default: return 'bg-gray-50 text-gray-700 border-gray-200';
+      case 'completed': return 'bg-green-100 text-green-800';
+      case 'in_progress': return 'bg-yellow-100 text-yellow-800';
+      case 'failed': return 'bg-red-100 text-red-800';
+      default: return 'bg-gray-100 text-gray-800';
     }
   };
 
@@ -159,114 +161,292 @@ export default function DashboardPage() {
   }
 
   return (
-    <DashboardLayout 
-      title="Dashboard" 
-      subtitle={`Hoş geldiniz${profile?.full_name ? `, ${profile.full_name}` : ''}`}
-    >
-      <div className="space-y-4">
+    <div className="min-h-screen" style={{ backgroundColor: '#146448' }}>
+      {/* Header */}
+      <header className="border-b" style={{ backgroundColor: '#146448', borderBottomColor: '#1e3237' }}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-16">
+            {/* Logo */}
+            <div className="flex items-center">
+              <img
+                src="https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2F01c1e8a05ef6424b912d584875377957?format=webp&width=800"
+                alt="SeraGPT Logo"
+                className="h-8 w-auto"
+              />
+            </div>
 
-        {/* Header Stats */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
-          <div className="bg-white rounded-lg border border-gray-200 p-4 hover:shadow-sm transition-shadow">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-xs font-medium text-gray-500 uppercase tracking-wide">Toplam Analiz</p>
-                <p className="text-2xl font-bold text-gray-900 mt-1">{stats.totalAnalyses}</p>
+            {/* Navigation */}
+            <nav className="hidden md:flex space-x-8">
+              <button
+                onClick={() => setActiveTab('overview')}
+                className={`px-3 py-2 text-sm font-medium transition-colors ${
+                  activeTab === 'overview' 
+                    ? 'text-white border-b-2 border-[#baf200]' 
+                    : 'text-white/80 hover:text-white'
+                }`}
+              >
+                Genel Bakış
+              </button>
+              <button
+                onClick={() => setActiveTab('analyses')}
+                className={`px-3 py-2 text-sm font-medium transition-colors ${
+                  activeTab === 'analyses' 
+                    ? 'text-white border-b-2 border-[#baf200]' 
+                    : 'text-white/80 hover:text-white'
+                }`}
+              >
+                Analizler
+              </button>
+              <button
+                onClick={() => setActiveTab('reports')}
+                className={`px-3 py-2 text-sm font-medium transition-colors ${
+                  activeTab === 'reports' 
+                    ? 'text-white border-b-2 border-[#baf200]' 
+                    : 'text-white/80 hover:text-white'
+                }`}
+              >
+                Raporlar
+              </button>
+            </nav>
+
+            {/* User Actions */}
+            <div className="flex items-center space-x-4">
+              <Link 
+                href="/dashboard/analysis/roi"
+                className="px-4 py-2 rounded-lg font-medium transition-all hover:opacity-90"
+                style={{ backgroundColor: '#baf200', color: '#1e3237' }}
+              >
+                Yeni Analiz
+              </Link>
+              <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center">
+                <span className="text-sm font-medium text-white">
+                  {profile?.full_name ? profile.full_name.charAt(0).toUpperCase() : 'U'}
+                </span>
               </div>
-              <div className="w-10 h-10 bg-blue-50 rounded-lg flex items-center justify-center">
-                <span className="text-lg">📊</span>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      {/* Main Content */}
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {/* Welcome Section */}
+        <div className="mb-8">
+          <h1 
+            className="text-3xl font-bold mb-2"
+            style={{ color: '#f6f8f9' }}
+          >
+            Hoş Geldiniz{profile?.full_name ? `, ${profile.full_name}` : ''}
+          </h1>
+          <p 
+            className="text-lg"
+            style={{ color: '#f6f8f9', opacity: 0.8 }}
+          >
+            Sera yatırım analizlerinizi yönetin ve raporlarınızı görüntüleyin
+          </p>
+        </div>
+
+        {/* Stats Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+          <div 
+            className="p-6 rounded-xl shadow-lg"
+            style={{ backgroundColor: '#f6f8f9' }}
+          >
+            <div className="flex items-center">
+              <div 
+                className="w-12 h-12 rounded-lg flex items-center justify-center"
+                style={{ backgroundColor: '#baf200' }}
+              >
+                <span className="text-xl" style={{ color: '#1e3237' }}>📊</span>
+              </div>
+              <div className="ml-4">
+                <p 
+                  className="text-sm font-medium"
+                  style={{ color: '#1e3237', opacity: 0.8 }}
+                >
+                  Toplam Analiz
+                </p>
+                <p 
+                  className="text-2xl font-bold"
+                  style={{ color: '#1e3237' }}
+                >
+                  {stats.totalAnalyses}
+                </p>
               </div>
             </div>
           </div>
 
-          <div className="bg-white rounded-lg border border-gray-200 p-4 hover:shadow-sm transition-shadow">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-xs font-medium text-gray-500 uppercase tracking-wide">Kullanılan Token</p>
-                <p className="text-2xl font-bold text-gray-900 mt-1">{stats.tokensUsed}</p>
+          <div 
+            className="p-6 rounded-xl shadow-lg"
+            style={{ backgroundColor: '#f6f8f9' }}
+          >
+            <div className="flex items-center">
+              <div 
+                className="w-12 h-12 rounded-lg flex items-center justify-center"
+                style={{ backgroundColor: '#baf200' }}
+              >
+                <span className="text-xl" style={{ color: '#1e3237' }}>🧠</span>
               </div>
-              <div className="w-10 h-10 bg-red-50 rounded-lg flex items-center justify-center">
-                <span className="text-lg">🧠</span>
+              <div className="ml-4">
+                <p 
+                  className="text-sm font-medium"
+                  style={{ color: '#1e3237', opacity: 0.8 }}
+                >
+                  Kalan Token
+                </p>
+                <p 
+                  className="text-2xl font-bold"
+                  style={{ color: '#1e3237' }}
+                >
+                  {tokens?.remaining_tokens || 0}
+                </p>
               </div>
             </div>
           </div>
 
-          <div className="bg-white rounded-lg border border-gray-200 p-4 hover:shadow-sm transition-shadow">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-xs font-medium text-gray-500 uppercase tracking-wide">Kalan Token</p>
-                <p className="text-2xl font-bold text-green-600 mt-1">{tokens?.remaining_tokens || 0}</p>
+          <div 
+            className="p-6 rounded-xl shadow-lg"
+            style={{ backgroundColor: '#f6f8f9' }}
+          >
+            <div className="flex items-center">
+              <div 
+                className="w-12 h-12 rounded-lg flex items-center justify-center"
+                style={{ backgroundColor: '#baf200' }}
+              >
+                <span className="text-xl" style={{ color: '#1e3237' }}>👤</span>
               </div>
-              <div className="w-10 h-10 bg-green-50 rounded-lg flex items-center justify-center">
-                <span className="text-lg">🧠</span>
-              </div>
-            </div>
-          </div>
-
-          <div className="bg-white rounded-lg border border-gray-200 p-4 hover:shadow-sm transition-shadow">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-xs font-medium text-gray-500 uppercase tracking-wide">Üyelik</p>
-                <p className="text-sm font-semibold text-gray-900 mt-1">
+              <div className="ml-4">
+                <p 
+                  className="text-sm font-medium"
+                  style={{ color: '#1e3237', opacity: 0.8 }}
+                >
+                  Üyelik
+                </p>
+                <p 
+                  className="text-lg font-bold"
+                  style={{ color: '#1e3237' }}
+                >
                   {profile?.subscription_type === 'premium' ? '⭐ Premium' :
                    profile?.subscription_type === 'admin' ? '👑 Admin' : '🆓 Ücretsiz'}
                 </p>
               </div>
-              <div className="w-10 h-10 bg-purple-50 rounded-lg flex items-center justify-center">
-                <span className="text-lg">👤</span>
+            </div>
+          </div>
+
+          <div 
+            className="p-6 rounded-xl shadow-lg"
+            style={{ backgroundColor: '#f6f8f9' }}
+          >
+            <div className="flex items-center">
+              <div 
+                className="w-12 h-12 rounded-lg flex items-center justify-center"
+                style={{ backgroundColor: '#baf200' }}
+              >
+                <span className="text-xl" style={{ color: '#1e3237' }}>⚡</span>
+              </div>
+              <div className="ml-4">
+                <p 
+                  className="text-sm font-medium"
+                  style={{ color: '#1e3237', opacity: 0.8 }}
+                >
+                  Kullanılan Token
+                </p>
+                <p 
+                  className="text-2xl font-bold"
+                  style={{ color: '#1e3237' }}
+                >
+                  {stats.tokensUsed}
+                </p>
               </div>
             </div>
           </div>
         </div>
 
         {/* Analysis Tools */}
-        <div className="bg-white rounded-lg border border-gray-200">
-          <div className="px-4 py-3 border-b border-gray-200">
-            <h2 className="text-sm font-semibold text-gray-900">Analiz Araçları</h2>
-            <p className="text-xs text-gray-600 mt-0.5">Tarımsal analizlerinize başlamak için bir araç seçin</p>
-          </div>
+        <div className="mb-8">
+          <div 
+            className="p-6 rounded-xl shadow-lg"
+            style={{ backgroundColor: '#f6f8f9' }}
+          >
+            <div className="flex items-center justify-between mb-6">
+              <h2 
+                className="text-xl font-bold"
+                style={{ color: '#1e3237' }}
+              >
+                Analiz Araçları
+              </h2>
+              <p 
+                className="text-sm"
+                style={{ color: '#1e3237', opacity: 0.8 }}
+              >
+                Tarımsal analizlerinize başlamak için bir araç seçin
+              </p>
+            </div>
 
-          <div className="p-4">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
               {analysisTools.map((tool, index) => {
                 const hasEnoughTokens = (tokens?.remaining_tokens || 0) >= tool.tokens;
                 
                 return (
                   <div
                     key={index}
-                    className={`border rounded-lg p-3 transition-all duration-200 hover:shadow-sm ${
+                    className={`p-4 border rounded-lg transition-all duration-200 ${
                       hasEnoughTokens
-                        ? 'border-gray-200 hover:border-blue-300 cursor-pointer'
+                        ? 'border-gray-200 hover:border-[#baf200] cursor-pointer'
                         : 'border-gray-100 bg-gray-50 opacity-60'
                     }`}
+                    style={{ borderColor: hasEnoughTokens ? '#1e3237' : '#e5e7eb', borderOpacity: 0.2 }}
                   >
                     <div className="space-y-3">
                       <div className="flex items-start justify-between">
                         <div className="flex-1">
-                          <h3 className="text-sm font-semibold text-gray-900">{tool.title}</h3>
-                          <p className="text-xs text-gray-600 mt-0.5 line-clamp-2">{tool.description}</p>
+                          <h3 
+                            className="text-sm font-semibold"
+                            style={{ color: '#1e3237' }}
+                          >
+                            {tool.title}
+                          </h3>
+                          <p 
+                            className="text-xs mt-0.5 line-clamp-2"
+                            style={{ color: '#1e3237', opacity: 0.7 }}
+                          >
+                            {tool.description}
+                          </p>
                         </div>
                         <div className="ml-2 flex-shrink-0">
-                          <span className="text-xs bg-gray-100 text-gray-700 px-1.5 py-0.5 rounded">
+                          <span 
+                            className="text-xs px-1.5 py-0.5 rounded"
+                            style={{ 
+                              backgroundColor: '#baf200', 
+                              color: '#1e3237' 
+                            }}
+                          >
                             {tool.tokens}🧠
                           </span>
                         </div>
                       </div>
 
                       <div className="flex items-center justify-between">
-                        <span className="text-xs font-medium text-gray-500 uppercase tracking-wide">
+                        <span 
+                          className="text-xs font-medium uppercase tracking-wide"
+                          style={{ color: '#1e3237', opacity: 0.6 }}
+                        >
                           {tool.category}
                         </span>
-                        <a
+                        <Link
                           href={hasEnoughTokens ? tool.href : '/dashboard/tokens'}
                           className={`px-3 py-1.5 text-xs font-medium rounded-md transition-colors ${
                             hasEnoughTokens
-                              ? 'bg-green-600 text-white hover:bg-green-700'
-                              : 'bg-gray-200 text-gray-500 cursor-not-allowed'
+                              ? 'hover:opacity-90'
+                              : 'cursor-not-allowed opacity-50'
                           }`}
+                          style={{
+                            backgroundColor: hasEnoughTokens ? '#baf200' : '#e5e7eb',
+                            color: hasEnoughTokens ? '#1e3237' : '#6b7280'
+                          }}
                         >
                           {hasEnoughTokens ? 'Başlat' : 'Token Gerekli'}
-                        </a>
+                        </Link>
                       </div>
                     </div>
                   </div>
@@ -276,89 +456,186 @@ export default function DashboardPage() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+        {/* Main Content Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Recent Activity */}
-          <div className="lg:col-span-2 bg-white rounded-lg border border-gray-200">
-            <div className="px-4 py-3 border-b border-gray-200">
-              <h2 className="text-sm font-semibold text-gray-900">Son Aktiviteler</h2>
-              <p className="text-xs text-gray-600 mt-0.5">Hesabınızdaki son işlemler</p>
-            </div>
+          <div className="lg:col-span-2">
+            <div 
+              className="p-6 rounded-xl shadow-lg"
+              style={{ backgroundColor: '#f6f8f9' }}
+            >
+              <div className="flex items-center justify-between mb-6">
+                <h2 
+                  className="text-xl font-bold"
+                  style={{ color: '#1e3237' }}
+                >
+                  Son Aktiviteler
+                </h2>
+                <Link 
+                  href="/dashboard/analysis"
+                  className="text-sm font-medium hover:underline"
+                  style={{ color: '#1e3237' }}
+                >
+                  Tümünü Görüntüle
+                </Link>
+              </div>
 
-            <div className="divide-y divide-gray-100">
-              {recentActivity.length > 0 ? (
-                recentActivity.slice(0, 5).map((activity) => (
-                  <div key={activity.id} className="px-4 py-3 hover:bg-gray-50 transition-colors">
-                    <div className="flex items-center justify-between">
-                      <div className="flex-1 min-w-0">
-                        <p className="text-xs font-medium text-gray-900 truncate">{activity.description}</p>
-                        <p className="text-xs text-gray-500 mt-0.5">{formatTime(activity.timestamp)}</p>
+              <div className="space-y-4">
+                {recentActivity.length > 0 ? (
+                  recentActivity.slice(0, 5).map((activity) => (
+                    <div 
+                      key={activity.id} 
+                      className="flex items-center justify-between p-4 border rounded-lg"
+                      style={{ borderColor: '#1e3237', borderOpacity: 0.1 }}
+                    >
+                      <div>
+                        <h3 
+                          className="font-medium text-sm"
+                          style={{ color: '#1e3237' }}
+                        >
+                          {activity.description}
+                        </h3>
+                        <p 
+                          className="text-xs"
+                          style={{ color: '#1e3237', opacity: 0.6 }}
+                        >
+                          {formatTime(activity.timestamp)}
+                        </p>
                       </div>
-                      <span className={`ml-3 inline-flex items-center px-2 py-0.5 rounded text-xs font-medium ${getStatusColor(activity.status)}`}>
-                        {activity.status === 'completed' ? '✓' :
-                         activity.status === 'in_progress' ? '⏳' : '✗'}
+                      <span className={`text-xs px-2 py-1 rounded-full ${getStatusColor(activity.status)}`}>
+                        {activity.status === 'completed' ? 'Tamamlandı' :
+                         activity.status === 'in_progress' ? 'Devam Ediyor' : 'Başarısız'}
                       </span>
                     </div>
+                  ))
+                ) : (
+                  <div className="text-center py-8">
+                    <p 
+                      className="text-sm"
+                      style={{ color: '#1e3237', opacity: 0.6 }}
+                    >
+                      Henüz aktivite bulunmuyor
+                    </p>
+                    <p 
+                      className="text-xs mt-1"
+                      style={{ color: '#1e3237', opacity: 0.4 }}
+                    >
+                      İlk analizinizi yaparak başlayın
+                    </p>
                   </div>
-                ))
-              ) : (
-                <div className="px-4 py-6 text-center">
-                  <p className="text-xs text-gray-500">Henüz aktivite bulunmuyor</p>
-                  <p className="text-xs text-gray-400 mt-1">İlk analizinizi yaparak başlayın</p>
-                </div>
-              )}
+                )}
+              </div>
             </div>
           </div>
 
           {/* Quick Actions */}
-          <div className="space-y-3">
-            <a
-              href="/dashboard/analysis"
-              className="block bg-white border border-gray-200 rounded-lg p-3 hover:border-gray-300 hover:shadow-sm transition-all group"
+          <div className="space-y-6">
+            {/* AI Assistant */}
+            <div 
+              className="p-6 rounded-xl shadow-lg"
+              style={{ backgroundColor: '#f6f8f9' }}
             >
-              <div className="flex items-center">
-                <div className="w-8 h-8 bg-blue-50 rounded-lg flex items-center justify-center mr-3">
-                  <span className="text-sm">📊</span>
-                </div>
-                <div className="flex-1 min-w-0">
-                  <h3 className="text-xs font-semibold text-gray-900 group-hover:text-blue-600">Tüm Analizler</h3>
-                  <p className="text-xs text-gray-600 truncate">Geçmiş analizleriniz</p>
-                </div>
-              </div>
-            </a>
+              <h3 
+                className="text-lg font-bold mb-4"
+                style={{ color: '#1e3237' }}
+              >
+                AI Asistan
+              </h3>
+              <p 
+                className="text-sm mb-4"
+                style={{ color: '#1e3237', opacity: 0.8 }}
+              >
+                Sorularınızı sorun, öneriler alın
+              </p>
+              <Link 
+                href="/dashboard/ai-chat"
+                className="w-full block text-center px-4 py-2 rounded-lg font-medium transition-all hover:opacity-90"
+                style={{ backgroundColor: '#baf200', color: '#1e3237' }}
+              >
+                AI ile Sohbet Et
+              </Link>
+            </div>
 
-            <a
-              href="/dashboard/tokens"
-              className="block bg-white border border-gray-200 rounded-lg p-3 hover:border-gray-300 hover:shadow-sm transition-all group"
+            {/* Quick Actions */}
+            <div 
+              className="p-6 rounded-xl shadow-lg"
+              style={{ backgroundColor: '#f6f8f9' }}
             >
-              <div className="flex items-center">
-                <div className="w-8 h-8 bg-yellow-50 rounded-lg flex items-center justify-center mr-3">
-                  <span className="text-sm">🧠</span>
-                </div>
-                <div className="flex-1 min-w-0">
-                  <h3 className="text-xs font-semibold text-gray-900 group-hover:text-blue-600">Token Yönetimi</h3>
-                  <p className="text-xs text-gray-600 truncate">Bakiyenizi kontrol edin</p>
-                </div>
+              <h3 
+                className="text-lg font-bold mb-4"
+                style={{ color: '#1e3237' }}
+              >
+                Hızlı İşlemler
+              </h3>
+              <div className="space-y-3">
+                <Link 
+                  href="/dashboard/analysis"
+                  className="w-full block px-4 py-2 text-left rounded-lg transition-colors hover:bg-[#baf200]"
+                  style={{ color: '#1e3237' }}
+                >
+                  Tüm Analizler
+                </Link>
+                <Link 
+                  href="/dashboard/tokens"
+                  className="w-full block px-4 py-2 text-left rounded-lg transition-colors hover:bg-[#baf200]"
+                  style={{ color: '#1e3237' }}
+                >
+                  Token Yönetimi
+                </Link>
+                <Link 
+                  href="/dashboard/settings"
+                  className="w-full block px-4 py-2 text-left rounded-lg transition-colors hover:bg-[#baf200]"
+                  style={{ color: '#1e3237' }}
+                >
+                  Hesap Ayarları
+                </Link>
               </div>
-            </a>
+            </div>
 
-            <a
-              href="/dashboard/settings"
-              className="block bg-white border border-gray-200 rounded-lg p-3 hover:border-gray-300 hover:shadow-sm transition-all group"
+            {/* Support */}
+            <div 
+              className="p-6 rounded-xl shadow-lg"
+              style={{ backgroundColor: '#f6f8f9' }}
             >
-              <div className="flex items-center">
-                <div className="w-8 h-8 bg-gray-50 rounded-lg flex items-center justify-center mr-3">
-                  <span className="text-sm">⚙️</span>
-                </div>
-                <div className="flex-1 min-w-0">
-                  <h3 className="text-xs font-semibold text-gray-900 group-hover:text-blue-600">Hesap Ayarları</h3>
-                  <p className="text-xs text-gray-600 truncate">Profil ve tercihler</p>
-                </div>
+              <h3 
+                className="text-lg font-bold mb-4"
+                style={{ color: '#1e3237' }}
+              >
+                Destek
+              </h3>
+              <p 
+                className="text-sm mb-4"
+                style={{ color: '#1e3237', opacity: 0.8 }}
+              >
+                Yardıma mı ihtiyacınız var?
+              </p>
+              <div className="space-y-2">
+                <Link 
+                  href="/destek"
+                  className="block text-sm hover:underline"
+                  style={{ color: '#1e3237' }}
+                >
+                  Destek Merkezi
+                </Link>
+                <Link 
+                  href="/danismanlik"
+                  className="block text-sm hover:underline"
+                  style={{ color: '#1e3237' }}
+                >
+                  Danışmanlık Talep Et
+                </Link>
+                <Link 
+                  href="/dashboard/help"
+                  className="block text-sm hover:underline"
+                  style={{ color: '#1e3237' }}
+                >
+                  Yardım Merkezi
+                </Link>
               </div>
-            </a>
+            </div>
           </div>
         </div>
-
-      </div>
-    </DashboardLayout>
+      </main>
+    </div>
   );
 }
