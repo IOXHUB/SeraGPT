@@ -320,6 +320,28 @@ Hangi konuda derinlemesine analiz istersiniz?`;
     URL.revokeObjectURL(url);
   };
 
+  const getFileTypeInfo = (filename: string) => {
+    const ext = filename.split('.').pop()?.toLowerCase();
+    const types = {
+      'pdf': 'PDF Belgesi',
+      'doc': 'Word Belgesi',
+      'docx': 'Word Belgesi',
+      'txt': 'Metin Dosyası',
+      'xlsx': 'Excel Tablosu',
+      'xls': 'Excel Tablosu',
+      'csv': 'CSV Dosyası',
+      'dwg': 'AutoCAD Çizimi',
+      'png': 'PNG Resmi',
+      'jpg': 'JPEG Resmi',
+      'jpeg': 'JPEG Resmi',
+      'ppt': 'PowerPoint Sunumu',
+      'pptx': 'PowerPoint Sunumu',
+      'zip': 'ZIP Arşivi',
+      'rar': 'RAR Arşivi'
+    };
+    return types[ext as keyof typeof types] || 'Dosya';
+  };
+
   if (loading) {
     return (
       <DashboardLayout>
