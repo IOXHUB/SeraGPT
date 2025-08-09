@@ -14,7 +14,7 @@ export default function ReportsPage() {
       type: 'roi',
       title: 'ROI Analizi',
       description: 'Sera yatırımı geri dönüş analizi ve finansal projeksiyon',
-      icon: '📊',
+      icon: '',
       color: 'bg-green-50 border-green-200 text-green-800',
       buttonColor: 'bg-green-600 hover:bg-green-700'
     },
@@ -38,7 +38,7 @@ export default function ReportsPage() {
       type: 'market',
       title: 'Pazar Analizi',
       description: 'Ürün fiyat analizi, rekabet durumu ve pazar öngörüleri',
-      icon: '📈',
+      icon: '',
       color: 'bg-orange-50 border-orange-200 text-orange-800',
       buttonColor: 'bg-orange-600 hover:bg-orange-700'
     },
@@ -46,7 +46,7 @@ export default function ReportsPage() {
       type: 'layout',
       title: 'Layout Planlama',
       description: '2D/3D sera tasarımı ve teknik çizimler',
-      icon: '📐',
+      icon: '',
       color: 'bg-indigo-50 border-indigo-200 text-indigo-800',
       buttonColor: 'bg-indigo-600 hover:bg-indigo-700'
     }
@@ -179,7 +179,7 @@ export default function ReportsPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             <div className="text-center">
               <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-3">
-                <span className="text-blue-600 text-xl">📊</span>
+                <span className="text-blue-600 text-xl"></span>
               </div>
               <h3 className="font-medium text-gray-900 mb-2">Detaylı Analizler</h3>
               <p className="text-sm text-gray-600">Kapsamlı veri analizi ve görselleştirme</p>
