@@ -658,7 +658,7 @@ export default function TestNewPage() {
                 fontWeight: '600' 
               }}
             >
-              📚 Sizin İçin Hazırladığ��mız Rehberler
+              Referanslarımız
             </h2>
 
             <div className="max-w-[576px] mx-auto mb-12">
