@@ -216,7 +216,7 @@ ${userInput} konusunda detaylı analiz yapabilirim. Modern sera teknolojileri ve
 
 **Size nasıl yardımcı olabilirim?**
 • Sera yatırım analizi ve ROI hesaplaması
-• İklim koşulları optimizasyonu  
+• İklim koşullar�� optimizasyonu  
 • Ekipman seçimi ve maliyet analizi
 • Pazar fırsatları değerlendirmesi
 • Teknik layout planlaması
@@ -550,7 +550,7 @@ Hangi konuda derinlemesine konuşmak istersiniz?`;
           {/* Selected file indicator */}
           {selectedFile && (
             <div className="mb-4">
-              <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-3">
+              <div className="bg-[#f6f8f9] border border-white/20 rounded-2xl p-3 shadow-lg">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center space-x-2">
                     <span className="text-white text-lg">📎</span>
