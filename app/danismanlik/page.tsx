@@ -225,16 +225,16 @@ export default function DanismanlikPage() {
               </Link>
             </div>
             <nav className="hidden md:flex space-x-8">
-              <Link href="/destek" className="text-gray-600 hover:text-gray-900 font-medium">
+              <Link href="/destek" className="text-gray-600 hover:text-[#1e3237] font-medium">
                 Destek
               </Link>
-              <Link href="/danismanlik" className="text-gray-600 hover:text-gray-900 font-medium">
+              <Link href="/danismanlik" className="text-gray-600 hover:text-[#1e3237] font-medium">
                 Danışmanlık
               </Link>
-              <Link href="/anahtar-teslim-proje" className="text-gray-600 hover:text-gray-900 font-medium">
+              <Link href="/anahtar-teslim-proje" className="text-gray-600 hover:text-[#1e3237] font-medium">
                 Anahtar Teslim Sera
               </Link>
-              <Link href="/auth/login" className="text-gray-600 hover:text-gray-900 font-medium">
+              <Link href="/auth/login" className="text-gray-600 hover:text-[#1e3237] font-medium">
                 Giriş Yap
               </Link>
             </nav>
@@ -277,12 +277,12 @@ export default function DanismanlikPage() {
           >
             <div className="max-w-md mx-auto p-6 space-y-6">
               <div className="text-center border-b border-gray-100 pb-4">
-                <h3 className="text-lg font-semibold text-gray-900">Menü</h3>
+                <h3 className="text-lg font-semibold text-[#1e3237]">Menü</h3>
               </div>
               <div className="space-y-3">
                 <Link
                   href="/destek"
-                  className="block text-gray-700 hover:text-gray-900 hover:bg-gray-50 py-3 px-4 rounded-lg transition-all"
+                  className="block text-gray-700 hover:text-[#1e3237] hover:bg-gray-50 py-3 px-4 rounded-lg transition-all"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   <div className="flex items-center space-x-3">
@@ -292,7 +292,7 @@ export default function DanismanlikPage() {
                 </Link>
                 <Link
                   href="/danismanlik"
-                  className="block text-gray-700 hover:text-gray-900 hover:bg-gray-50 py-3 px-4 rounded-lg transition-all"
+                  className="block text-gray-700 hover:text-[#1e3237] hover:bg-gray-50 py-3 px-4 rounded-lg transition-all"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   <div className="flex items-center space-x-3">
@@ -302,7 +302,7 @@ export default function DanismanlikPage() {
                 </Link>
                 <Link
                   href="/anahtar-teslim-proje"
-                  className="block text-gray-700 hover:text-gray-900 hover:bg-gray-50 py-3 px-4 rounded-lg transition-all"
+                  className="block text-gray-700 hover:text-[#1e3237] hover:bg-gray-50 py-3 px-4 rounded-lg transition-all"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   <div className="flex items-center space-x-3">
@@ -312,7 +312,7 @@ export default function DanismanlikPage() {
                 </Link>
                 <Link
                   href="/blog"
-                  className="block text-gray-700 hover:text-gray-900 hover:bg-gray-50 py-3 px-4 rounded-lg transition-all"
+                  className="block text-gray-700 hover:text-[#1e3237] hover:bg-gray-50 py-3 px-4 rounded-lg transition-all"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   <div className="flex items-center space-x-3">
@@ -345,7 +345,7 @@ export default function DanismanlikPage() {
                 <div key={section.id} className="mb-6">
                   <div className="flex items-center space-x-2 mb-3">
                     <span className="text-lg">{section.icon}</span>
-                    <h3 className="font-semibold text-gray-900">{section.title}</h3>
+                    <h3 className="font-semibold text-[#1e3237]">{section.title}</h3>
                   </div>
                   <div className="space-y-1 ml-6">
                     {section.items.map((item) => (
@@ -355,7 +355,7 @@ export default function DanismanlikPage() {
                         className={`block w-full text-left px-3 py-2 text-sm rounded-lg transition-all duration-200 ${
                           activeSection === item.id
                             ? 'bg-blue-100 text-blue-900 font-medium'
-                            : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+                            : 'text-gray-600 hover:text-[#1e3237] hover:bg-gray-50'
                         }`}
                       >
                         {item.title}
@@ -375,7 +375,7 @@ export default function DanismanlikPage() {
                   <span>Danışmanlık Talep Et</span>
                 </motion.button>
                 <p className="text-xs text-gray-500 text-center mt-2">
-                  Uzman danışmanlar��mızla iletişime geçin
+                  Uzman danışmanlarımızla iletişime geçin
                 </p>
               </div>
             </div>
@@ -390,7 +390,7 @@ export default function DanismanlikPage() {
               </div>
 
               {/* Title */}
-              <h1 className="text-3xl font-bold text-gray-900 mb-6">
+              <h1 className="text-3xl font-bold text-[#1e3237] mb-6">
                 {currentContent.title}
               </h1>
 
@@ -409,7 +409,7 @@ export default function DanismanlikPage() {
                     transition={{ duration: 0.3, delay: index * 0.1 }}
                     className="border-l-4 border-blue-200 pl-6"
                   >
-                    <h2 className="text-xl font-semibold text-gray-900 mb-4">
+                    <h2 className="text-xl font-semibold text-[#1e3237] mb-4">
                       {step.title}
                     </h2>
                     <div className="space-y-2">
@@ -430,7 +430,7 @@ export default function DanismanlikPage() {
 
               {/* Next Steps */}
               <div className="mt-12 p-6 bg-blue-50 rounded-lg">
-                <h3 className="font-semibold text-gray-900 mb-4">Sonraki Adımlar</h3>
+                <h3 className="font-semibold text-[#1e3237] mb-4">Sonraki Adımlar</h3>
                 <div className="space-y-2">
                   <p className="text-gray-700">
                     • Size uygun danışmanlık paketini seçin
