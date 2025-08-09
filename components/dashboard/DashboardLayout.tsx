@@ -146,7 +146,7 @@ export default function DashboardLayout({ children, title, subtitle }: Dashboard
   };
 
   return (
-    <div className="h-screen bg-[#f6f8f9] overflow-hidden">
+    <div className="min-h-screen bg-[#146448]">
       {/* Mobile sidebar backdrop */}
       {sidebarOpen && (
         <div
