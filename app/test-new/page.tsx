@@ -4,8 +4,6 @@ import { useState } from 'react';
 import Link from 'next/link';
 
 export default function TestNewPage() {
-  const [openFAQ, setOpenFAQ] = useState<number | null>(null);
-
   return (
     <div className="min-h-screen" style={{ backgroundColor: '#146448' }}>
       {/* Header */}
@@ -72,19 +70,11 @@ export default function TestNewPage() {
         </div>
       </header>
 
-      {/* Hero Section */}
+      {/* 1. 🎯 Hero Bölüm: En Büyük Soru (Acı Noktası) */}
       <section className="py-20">
         <div className="max-w-[1200px] mx-auto px-6 text-center">
           <div className="max-w-[800px] mx-auto">
-            {/* Small text above headline */}
-            <p 
-              className="mb-6"
-              style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '400' }}
-            >
-              +20 YIL, +500 PROJE, +110 VERİ SETİ
-            </p>
-
-            {/* Main headline */}
+            {/* Main headline - Problem focused */}
             <div className="max-w-[576px] mx-auto mb-8">
               <h1 
                 className="leading-tight"
@@ -94,11 +84,11 @@ export default function TestNewPage() {
                   fontWeight: '600' 
                 }}
               >
-                60 Saniyede Sera Yatırım Raporun Hazır!
+                🚨 Sera Yatırımı Yapmak İstiyorum, Ama Nereden Başlayacağımı Bilmiyorum!
               </h1>
             </div>
 
-            {/* Description paragraph */}
+            {/* Problem description */}
             <div className="max-w-[576px] mx-auto mb-12">
               <p 
                 className="leading-relaxed"
@@ -108,10 +98,7 @@ export default function TestNewPage() {
                   fontWeight: '400' 
                 }}
               >
-                SeraGPT; 20 yılı aşkın mühendislik deneyimi, 500'den fazla
-                tamamlanmış proje ve 110'dan fazla gerçek zamanlı veri
-                setiyle, tarımsal yatırım kararlarınızı saniyeler içinde
-                analiz eder.
+                Onlarca bitki türü, bilinmeyen iklim koşulları, yüksek maliyetler… Bir karar vermeden önce güvenilir bir analiz sunabilecek bir araca ihtiyacınız var, değil mi?
               </p>
             </div>
 
@@ -126,26 +113,12 @@ export default function TestNewPage() {
                 fontWeight: '600' 
               }}
             >
-              Şimdi Oluştur – İlk 5 Rapor Ücretsiz
+              ✅ 60 Saniyede Sera Raporunu Al
             </Link>
 
-            {/* Small text under button */}
-            <p 
-              className="text-center"
-              style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '400' }}
-            >
-              Doğru yatırım, doğru analizle başlar.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* User Panel Section */}
-      <section className="py-16">
-        <div className="max-w-[1200px] mx-auto px-6">
-          <div className="max-w-[800px] mx-auto">
-            <div className="rounded-2xl p-8 shadow-lg" style={{ backgroundColor: '#f6f8f9' }}>
-              <div className="rounded-xl overflow-hidden">
+            {/* Analysis simulation screen */}
+            <div className="max-w-[800px] mx-auto mt-12">
+              <div className="rounded-2xl p-8 shadow-lg" style={{ backgroundColor: '#f6f8f9' }}>
                 <div
                   className="w-full h-80 bg-center bg-cover bg-no-repeat flex items-center justify-center rounded-xl"
                   style={{
@@ -158,255 +131,273 @@ export default function TestNewPage() {
                         className="font-medium"
                         style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '400' }}
                       >
-                        📊 Analiz Paneli Önizleme
+                        📊 Analiz Simülasyon Ekranı
                       </p>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-
-            <div className="text-center mt-12">
-              <Link 
-                href="/auth/login" 
-                className="inline-block px-8 py-4 rounded-xl font-medium transition-all hover:opacity-90 mb-4"
-                style={{ 
-                  backgroundColor: '#baf200', 
-                  color: '#1e3237', 
-                  fontSize: '14px', 
-                  fontWeight: '600' 
-                }}
-              >
-                Kullanıcı Paneline Giriş Yapın
-              </Link>
-              <p 
-                className="text-center"
-                style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '400' }}
-              >
-                Tüm sera projelerinizi tek platformdan yönetin
-              </p>
-            </div>
           </div>
         </div>
       </section>
 
-      {/* Analysis Types Section */}
+      {/* 2. 🤖 Cevap: SeraGPT ile Tanışın */}
       <section className="py-16">
-        <div className="max-w-[1200px] mx-auto px-6">
-          <div className="text-center mb-12">
+        <div className="max-w-[1200px] mx-auto px-6 text-center">
+          <div className="max-w-[800px] mx-auto">
             <h2 
-              className="text-center"
+              className="mb-8"
               style={{ 
                 color: '#f6f8f9', 
                 fontSize: '24px', 
                 fontWeight: '600' 
               }}
             >
-              Panelde Sizi Bekleyen Analiz Türleri ve Özellikleri
+              🌱 Cevap Basit: SeraGPT ile Yatırımınızı Bilgiye Dayalı Planlayın
             </h2>
+
+            <div className="max-w-[576px] mx-auto mb-12">
+              <p 
+                className="leading-relaxed"
+                style={{ 
+                  color: '#f6f8f9', 
+                  fontSize: '14px', 
+                  fontWeight: '400' 
+                }}
+              >
+                Lokasyon, iklim, bitki türü ve yatırım bütçenizi girin. Size özel analizle geri dönüş süresinden kurulum maliyetine kadar tüm detayları öğrenin.
+              </p>
+            </div>
+
+            {/* Features with icons */}
+            <div className="grid md:grid-cols-5 gap-6 mb-12 max-w-[800px] mx-auto">
+              <div className="text-center">
+                <div className="text-4xl mb-3">📊</div>
+                <p style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '400' }}>
+                  ROI Hesaplama
+                </p>
+              </div>
+              <div className="text-center">
+                <div className="text-4xl mb-3">🌡️</div>
+                <p style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '400' }}>
+                  İklim Uygunluğu
+                </p>
+              </div>
+              <div className="text-center">
+                <div className="text-4xl mb-3">⚙️</div>
+                <p style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '400' }}>
+                  Mühendis Onaylı Ekipmanlar
+                </p>
+              </div>
+              <div className="text-center">
+                <div className="text-4xl mb-3">📈</div>
+                <p style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '400' }}>
+                  Pazara Uygunluk
+                </p>
+              </div>
+              <div className="text-center">
+                <div className="text-4xl mb-3">🔢</div>
+                <p style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '400' }}>
+                  110+ Veri Seti
+                </p>
+              </div>
+            </div>
+
+            <Link 
+              href="/auth/login" 
+              className="inline-block px-8 py-4 rounded-xl font-medium transition-all hover:opacity-90"
+              style={{ 
+                backgroundColor: '#baf200', 
+                color: '#1e3237', 
+                fontSize: '14px', 
+                fontWeight: '600' 
+              }}
+            >
+              🎯 İlk Raporu Hemen Al (Ücretsiz)
+            </Link>
           </div>
+        </div>
+      </section>
 
-          {/* Report Cards */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-[800px] mx-auto">
-            {/* Card 1 - ROI Simülasyonu */}
-            <div className="rounded-2xl p-6 shadow-lg" style={{ backgroundColor: '#f6f8f9' }}>
-              <h3 
-                className="mb-4"
-                style={{ 
-                  color: '#1e3237', 
-                  fontSize: '24px', 
-                  fontWeight: '600' 
-                }}
-              >
-                ROI Simülasyonu
-              </h3>
+      {/* 3. 💎 Bizde Bunlar da Var */}
+      <section className="py-16">
+        <div className="max-w-[1200px] mx-auto px-6 text-center">
+          <div className="max-w-[800px] mx-auto">
+            <h2 
+              className="mb-8"
+              style={{ 
+                color: '#f6f8f9', 
+                fontSize: '24px', 
+                fontWeight: '600' 
+              }}
+            >
+              🎛️ Sadece Rapor Değil, Aynı Zamanda Akıllı Tavsiyeler de Sunuyoruz
+            </h2>
+
+            <div className="max-w-[576px] mx-auto mb-12">
               <p 
-                className="mb-6 leading-relaxed"
+                className="leading-relaxed"
                 style={{ 
-                  color: '#1e3237', 
+                  color: '#f6f8f9', 
                   fontSize: '14px', 
                   fontWeight: '400' 
                 }}
               >
-                Yatırımın geri dönüş süresi, kar marjı ve yıllık getiri tahminleri ile kapsamlı finansal analiz.
+                AI Asistanımızla analizlerinizi yorumlayın. İklim verileri, yatırım tipi ve riskleri hakkında öneriler alın.
               </p>
-              <button
-                className="w-full px-4 py-3 rounded-lg font-medium transition-all hover:opacity-90"
-                style={{ 
-                  backgroundColor: '#baf200', 
-                  color: '#1e3237', 
-                  fontSize: '14px', 
-                  fontWeight: '600' 
-                }}
-              >
-                Detayları Gör
-              </button>
             </div>
 
-            {/* Card 2 - İklim Analizi */}
-            <div className="rounded-2xl p-6 shadow-lg" style={{ backgroundColor: '#f6f8f9' }}>
-              <h3 
-                className="mb-4"
-                style={{ 
-                  color: '#1e3237', 
-                  fontSize: '24px', 
-                  fontWeight: '600' 
-                }}
-              >
-                İklim Analizi
-              </h3>
+            <Link 
+              href="/chat" 
+              className="inline-block px-8 py-4 rounded-xl font-medium transition-all hover:opacity-90"
+              style={{ 
+                backgroundColor: '#baf200', 
+                color: '#1e3237', 
+                fontSize: '14px', 
+                fontWeight: '600' 
+              }}
+            >
+              🤖 AI Asistanı Test Et
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* 4. 💥 Peki Ya Buna Ne Dersiniz? */}
+      <section className="py-16">
+        <div className="max-w-[1200px] mx-auto px-6 text-center">
+          <div className="max-w-[800px] mx-auto">
+            <h2 
+              className="mb-8"
+              style={{ 
+                color: '#f6f8f9', 
+                fontSize: '24px', 
+                fontWeight: '600' 
+              }}
+            >
+              🔧 Anahtar Teslim Sera mı Arıyorsunuz?
+            </h2>
+
+            <div className="max-w-[576px] mx-auto mb-12">
               <p 
-                className="mb-6 leading-relaxed"
+                className="leading-relaxed"
                 style={{ 
-                  color: '#1e3237', 
+                  color: '#f6f8f9', 
                   fontSize: '14px', 
                   fontWeight: '400' 
                 }}
               >
-                Bölgesel uygunluk skoru, don ve nem riskleri, geçmiş iklim verileri analizi.
+                Sadece fikir değil, uygulama da bizden. Hazır sera paketlerimizi görün veya tamamen size özel çözümler üretelim.
               </p>
-              <button
-                className="w-full px-4 py-3 rounded-lg font-medium transition-all hover:opacity-90"
-                style={{ 
-                  backgroundColor: '#baf200', 
-                  color: '#1e3237', 
-                  fontSize: '14px', 
-                  fontWeight: '600' 
-                }}
-              >
-                Detayları Gör
-              </button>
             </div>
 
-            {/* Card 3 - Ekipman Listesi */}
-            <div className="rounded-2xl p-6 shadow-lg" style={{ backgroundColor: '#f6f8f9' }}>
-              <h3 
-                className="mb-4"
-                style={{ 
-                  color: '#1e3237', 
-                  fontSize: '24px', 
-                  fontWeight: '600' 
-                }}
-              >
-                Ekipman Listesi
-              </h3>
+            <Link 
+              href="/anahtar-teslim-proje" 
+              className="inline-block px-8 py-4 rounded-xl font-medium transition-all hover:opacity-90"
+              style={{ 
+                backgroundColor: '#baf200', 
+                color: '#1e3237', 
+                fontSize: '14px', 
+                fontWeight: '600' 
+              }}
+            >
+              🏗️ Anahtar Teslim Sera Fiyatlarını Gör
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* 5. 🎁 Sürprizimiz Var */}
+      <section className="py-16">
+        <div className="max-w-[1200px] mx-auto px-6 text-center">
+          <div className="max-w-[800px] mx-auto">
+            <h2 
+              className="mb-8"
+              style={{ 
+                color: '#f6f8f9', 
+                fontSize: '24px', 
+                fontWeight: '600' 
+              }}
+            >
+              📚 Sizin İçin Hazırladığımız Rehberler
+            </h2>
+
+            <div className="max-w-[576px] mx-auto mb-12">
               <p 
-                className="mb-6 leading-relaxed"
+                className="leading-relaxed"
                 style={{ 
-                  color: '#1e3237', 
+                  color: '#f6f8f9', 
                   fontSize: '14px', 
                   fontWeight: '400' 
                 }}
               >
-                Mühendis onaylı ekipman önerileri, bölgeye uygun yapı ve iklimlendirme sistemleri.
+                Sera yatırım süreci hakkında tüm sorularınıza cevap bulabileceğiniz teknik ve stratejik rehberler.
               </p>
-              <button
-                className="w-full px-4 py-3 rounded-lg font-medium transition-all hover:opacity-90"
-                style={{ 
-                  backgroundColor: '#baf200', 
-                  color: '#1e3237', 
-                  fontSize: '14px', 
-                  fontWeight: '600' 
-                }}
-              >
-                Detayları Gör
-              </button>
             </div>
 
-            {/* Card 4 - Pazar Analizi */}
-            <div className="rounded-2xl p-6 shadow-lg" style={{ backgroundColor: '#f6f8f9' }}>
-              <h3 
-                className="mb-4"
-                style={{ 
-                  color: '#1e3237', 
-                  fontSize: '24px', 
-                  fontWeight: '600' 
-                }}
-              >
-                Pazar Analizi
-              </h3>
-              <p 
-                className="mb-6 leading-relaxed"
-                style={{ 
-                  color: '#1e3237', 
-                  fontSize: '14px', 
-                  fontWeight: '400' 
-                }}
-              >
-                Bitki türüne göre fiyat analizi, bölgesel verim ortalamaları ve hasat zamanlaması.
-              </p>
-              <button
-                className="w-full px-4 py-3 rounded-lg font-medium transition-all hover:opacity-90"
-                style={{ 
-                  backgroundColor: '#baf200', 
-                  color: '#1e3237', 
-                  fontSize: '14px', 
-                  fontWeight: '600' 
-                }}
-              >
-                Detayları Gör
-              </button>
+            {/* Blog mockup visual */}
+            <div className="max-w-[600px] mx-auto mb-8">
+              <div className="rounded-2xl p-8 shadow-lg" style={{ backgroundColor: '#f6f8f9' }}>
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="bg-gray-100 h-24 rounded-lg flex items-center justify-center">
+                    <span style={{ color: '#1e3237', fontSize: '14px' }}>📄 PDF Rehber</span>
+                  </div>
+                  <div className="bg-gray-100 h-24 rounded-lg flex items-center justify-center">
+                    <span style={{ color: '#1e3237', fontSize: '14px' }}>📖 Blog Yazıları</span>
+                  </div>
+                </div>
+              </div>
             </div>
 
-            {/* Card 5 - Teknik Plan */}
-            <div className="rounded-2xl p-6 shadow-lg" style={{ backgroundColor: '#f6f8f9' }}>
-              <h3 
-                className="mb-4"
-                style={{ 
-                  color: '#1e3237', 
-                  fontSize: '24px', 
-                  fontWeight: '600' 
-                }}
-              >
-                Teknik Plan
-              </h3>
+            <Link 
+              href="/blog" 
+              className="inline-block px-8 py-4 rounded-xl font-medium transition-all hover:opacity-90"
+              style={{ 
+                backgroundColor: '#baf200', 
+                color: '#1e3237', 
+                fontSize: '14px', 
+                fontWeight: '600' 
+              }}
+            >
+              📖 Rehberleri İncele
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* 6. 💬 Sormak İstedikleriniz Vardır */}
+      <section className="py-16">
+        <div className="max-w-[1200px] mx-auto px-6 text-center">
+          <div className="max-w-[800px] mx-auto">
+            <h2 
+              className="mb-8"
+              style={{ 
+                color: '#f6f8f9', 
+                fontSize: '24px', 
+                fontWeight: '600' 
+              }}
+            >
+              🧑‍💼 Hemen Destek Alın
+            </h2>
+
+            <div className="max-w-[576px] mx-auto mb-12">
               <p 
-                className="mb-6 leading-relaxed"
+                className="leading-relaxed"
                 style={{ 
-                  color: '#1e3237', 
+                  color: '#f6f8f9', 
                   fontSize: '14px', 
                   fontWeight: '400' 
                 }}
               >
-                2D/3D yerleşim planı, elektrik ve sulama hat planları, teknik kabin gösterimi.
+                Sera yatırımınızla ilgili her konuda uzman ekibimiz size destek vermeye hazır.
               </p>
-              <button
-                className="w-full px-4 py-3 rounded-lg font-medium transition-all hover:opacity-90"
-                style={{ 
-                  backgroundColor: '#baf200', 
-                  color: '#1e3237', 
-                  fontSize: '14px', 
-                  fontWeight: '600' 
-                }}
-              >
-                Detayları Gör
-              </button>
             </div>
 
-            {/* Card 6 - Uzman Desteği */}
-            <div className="rounded-2xl p-6 shadow-lg" style={{ backgroundColor: '#f6f8f9' }}>
-              <h3 
-                className="mb-4"
-                style={{ 
-                  color: '#1e3237', 
-                  fontSize: '24px', 
-                  fontWeight: '600' 
-                }}
-              >
-                Uzman Desteği
-              </h3>
-              <p 
-                className="mb-6 leading-relaxed"
-                style={{ 
-                  color: '#1e3237', 
-                  fontSize: '14px', 
-                  fontWeight: '400' 
-                }}
-              >
-                Mühendis danışmanlığı, birebir destek ve profesyonel rehberlik hizmetleri.
-              </p>
-              <button
-                className="w-full px-4 py-3 rounded-lg font-medium transition-all hover:opacity-90"
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link 
+                href="/destek" 
+                className="inline-block px-8 py-4 rounded-xl font-medium transition-all hover:opacity-90"
                 style={{ 
                   backgroundColor: '#baf200', 
                   color: '#1e3237', 
@@ -414,113 +405,77 @@ export default function TestNewPage() {
                   fontWeight: '600' 
                 }}
               >
-                Detayları Gör
-              </button>
+                📞 Bize Ulaşın
+              </Link>
+              <Link 
+                href="/destek" 
+                className="inline-block px-8 py-4 rounded-xl font-medium transition-all hover:opacity-90"
+                style={{ 
+                  backgroundColor: '#baf200', 
+                  color: '#1e3237', 
+                  fontSize: '14px', 
+                  fontWeight: '600' 
+                }}
+              >
+                🧠 Destek Sayfasını Ziyaret Et
+              </Link>
             </div>
           </div>
         </div>
       </section>
 
-      {/* FAQ Section */}
+      {/* 7. 🛠️ Peki Ya Tecrübemiz? */}
       <section className="py-16">
-        <div className="max-w-[1200px] mx-auto px-6">
+        <div className="max-w-[1200px] mx-auto px-6 text-center">
           <div className="max-w-[800px] mx-auto">
-            <div className="text-center mb-12">
-              <h2 
+            <h2 
+              className="mb-8"
+              style={{ 
+                color: '#f6f8f9', 
+                fontSize: '24px', 
+                fontWeight: '600' 
+              }}
+            >
+              🚀 500'ün Üzerinde Sera Projesinin İçindeydik
+            </h2>
+
+            <div className="max-w-[576px] mx-auto mb-12">
+              <p 
+                className="leading-relaxed"
                 style={{ 
                   color: '#f6f8f9', 
-                  fontSize: '24px', 
-                  fontWeight: '600' 
+                  fontSize: '14px', 
+                  fontWeight: '400' 
                 }}
               >
-                Sıkça Sorulan Sorular (SSS)
-              </h2>
-            </div>
-
-            <div className="space-y-4">
-              {[
-                {
-                  question: "Raporlar ne kadar doğru?",
-                  answer: "SeraGPT, gerçek zamanlı iklim, tarım ve ticaret verilerini kullanır. Raporlar, uzman mühendislerin geliştirdiği algoritmalarla analiz edilir ve %90 üzeri doğruluk oranı sunar."
-                },
-                {
-                  question: "Devlet teşviklerine uygun mu?",
-                  answer: "Evet. Raporlar TKDK, IPARD ve Ziraat Bankası destek başvurularında ön fizibilite dosyası olarak kullanılabilir. Talep halinde ek mühendis onayı alınabilir."
-                },
-                {
-                  question: "Mühendis desteği sunuyor musunuz?",
-                  answer: "Evet. Profesyonel kullanıcılar için mühendis danışmanlık hizmeti sağlıyoruz. Size en yakın uzmanla eşleştirilerek birebir destek sunulur."
-                },
-                {
-                  question: "Bilgilerim güvende mi?",
-                  answer: "Kesinlikle. Tüm bilgileriniz Supabase veritabanında şifreli olarak saklanır. Raporlar yalnızca size özeldir, üçüncü taraflarla paylaşılmaz."
-                },
-                {
-                  question: "Ödeme nasıl yapılıyor?",
-                  answer: "İlk 5 rapor ücretsizdir. Sonrasında, kredi kartı veya havale/EFT ile jeton (token) satın alabilirsiniz. Ödeme altyapısı %100 güvenlidir."
-                }
-              ].map((faq, index) => (
-                <div
-                  key={index}
-                  className="rounded-xl overflow-hidden"
-                  style={{ backgroundColor: '#f6f8f9' }}
-                >
-                  <button
-                    className="w-full p-6 text-left hover:opacity-90 transition-opacity"
-                    onClick={() => setOpenFAQ(openFAQ === index ? null : index)}
-                  >
-                    <div className="flex items-center justify-between">
-                      <h3 
-                        className="font-medium pr-4"
-                        style={{ 
-                          color: '#1e3237', 
-                          fontSize: '14px', 
-                          fontWeight: '600' 
-                        }}
-                      >
-                        {faq.question}
-                      </h3>
-                      <svg
-                        className={`w-5 h-5 transition-transform flex-shrink-0 ${
-                          openFAQ === index ? 'rotate-180' : ''
-                        }`}
-                        style={{ color: '#1e3237' }}
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                      </svg>
-                    </div>
-                  </button>
-                  {openFAQ === index && (
-                    <div className="px-6 pb-6">
-                      <p 
-                        className="leading-relaxed"
-                        style={{ 
-                          color: '#1e3237', 
-                          fontSize: '14px', 
-                          fontWeight: '400' 
-                        }}
-                      >
-                        {faq.answer}
-                      </p>
-                    </div>
-                  )}
-                </div>
-              ))}
-            </div>
-
-            <div className="text-center mt-12">
-              <p 
-                className="text-center mb-4"
-                style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '400' }}
-              >
-                Sorunuza cevap bulamadınız mı?
+                20 yılı aşkın süredir 50+ ilde yüzlerce projeye imza attık. Şimdi bu deneyimle size özel danışmanlık veriyoruz.
               </p>
-              <Link
-                href="/destek"
-                className="inline-flex items-center space-x-2 px-6 py-3 rounded-lg font-medium transition-all hover:opacity-90"
+            </div>
+
+            {/* Experience visual */}
+            <div className="max-w-[600px] mx-auto mb-12">
+              <div className="rounded-2xl p-8 shadow-lg" style={{ backgroundColor: '#f6f8f9' }}>
+                <div className="grid grid-cols-3 gap-6 text-center">
+                  <div>
+                    <div className="text-3xl font-bold mb-2" style={{ color: '#1e3237' }}>20+</div>
+                    <p style={{ color: '#1e3237', fontSize: '14px' }}>Yıl Deneyim</p>
+                  </div>
+                  <div>
+                    <div className="text-3xl font-bold mb-2" style={{ color: '#1e3237' }}>500+</div>
+                    <p style={{ color: '#1e3237', fontSize: '14px' }}>Tamamlanan Proje</p>
+                  </div>
+                  <div>
+                    <div className="text-3xl font-bold mb-2" style={{ color: '#1e3237' }}>50+</div>
+                    <p style={{ color: '#1e3237', fontSize: '14px' }}>İl Genelinde</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link 
+                href="/danismanlik" 
+                className="inline-block px-8 py-4 rounded-xl font-medium transition-all hover:opacity-90"
                 style={{ 
                   backgroundColor: '#baf200', 
                   color: '#1e3237', 
@@ -528,10 +483,19 @@ export default function TestNewPage() {
                   fontWeight: '600' 
                 }}
               >
-                <span>Destek Sayfamıza Gidin</span>
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
+                📄 Teklif Alın
+              </Link>
+              <Link 
+                href="/danismanlik" 
+                className="inline-block px-8 py-4 rounded-xl font-medium transition-all hover:opacity-90"
+                style={{ 
+                  backgroundColor: '#baf200', 
+                  color: '#1e3237', 
+                  fontSize: '14px', 
+                  fontWeight: '600' 
+                }}
+              >
+                📝 Danışmanlık Formunu Doldurun
               </Link>
             </div>
           </div>
