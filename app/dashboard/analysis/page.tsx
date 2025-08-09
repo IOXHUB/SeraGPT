@@ -182,10 +182,10 @@ export default function AnalysesListPage() {
 
             <div className="flex space-x-2">
               <a
-                href="/dashboard/reports"
-                className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm transition-colors"
+                href="/dashboard/demo-reports"
+                className="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg text-sm transition-colors"
               >
-                📋 Rapor Örnekleri
+                🎯 Demo Raporlar
               </a>
               <button
                 onClick={loadAnalyses}
