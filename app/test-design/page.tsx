@@ -224,9 +224,9 @@ export default function TestDesignPage() {
 
             {/* Visual Content - 800px max width */}
             <div className="max-w-[800px]">
-              <div 
+              <div
                 className="rounded-2xl p-8 shadow-lg"
-                style={{ backgroundColor: '#f6f8f9' }}
+                style={{ backgroundColor: '#146448' }}
               >
                 <div className="aspect-video rounded-xl overflow-hidden">
                   <img
