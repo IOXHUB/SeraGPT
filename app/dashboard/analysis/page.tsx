@@ -195,7 +195,7 @@ export default function AnalysesListPage() {
               </button>
               <a
                 href="/dashboard/analysis/roi"
-                className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg text-sm transition-colors"
+                className="bg-[#baf200] hover:bg-[#baf200]/90 text-[#1e3237] text-white px-4 py-2 rounded-lg text-sm transition-colors"
               >
                 + Yeni Analiz
               </a>
@@ -210,7 +210,7 @@ export default function AnalysesListPage() {
             <h3 className="text-lg font-medium text-[#1e3237] mb-2">Henüz analiz bulunmuyor</h3>
             <p className="text-[#1e3237]/70 mb-4">İlk analizinizi oluşturmak için aşağıdaki butonları kullanın</p>
             <div className="flex flex-wrap justify-center gap-2">
-              <a href="/dashboard/analysis/roi" className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg text-sm transition-colors">
+              <a href="/dashboard/analysis/roi" className="bg-[#baf200] hover:bg-[#baf200]/90 text-[#1e3237] text-white px-4 py-2 rounded-lg text-sm transition-colors">
                 📊 ROI Analizi
               </a>
               <a href="/dashboard/analysis/climate" className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm transition-colors">
