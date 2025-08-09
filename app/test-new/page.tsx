@@ -251,44 +251,81 @@ export default function TestNewPage() {
       </section>
 
       {/* 3. 💎 Bizde Bunlar da Var */}
-      <section className="py-16">
+      <section className="py-16" style={{ backgroundColor: '#ffffff' }}>
         <div className="max-w-[1200px] mx-auto px-6 text-center">
-          <div className="max-w-[800px] mx-auto">
-            <h2 
-              className="mb-8"
-              style={{ 
-                color: '#f6f8f9', 
-                fontSize: '24px', 
-                fontWeight: '600' 
-              }}
-            >
-              🎛️ Sadece Rapor Değil, Aynı Zamanda Akıllı Tavsiyeler de Sunuyoruz
-            </h2>
+          <div
+            className="max-w-[800px] mx-auto rounded-2xl p-8 shadow-lg"
+            style={{
+              backgroundColor: '#f6f8f9',
+              border: '3px solid #baf200'
+            }}
+          >
+            {/* AI Icon with animated shadow */}
+            <div className="flex justify-center mb-6">
+              <div
+                className="ai-icon-animated w-16 h-16 rounded-full flex items-center justify-center text-3xl"
+                style={{ backgroundColor: '#baf200', color: '#1e3237' }}
+              >
+                🤖
+              </div>
+            </div>
 
+            {/* Title and description with 576px limit */}
             <div className="max-w-[576px] mx-auto mb-12">
-              <p 
-                className="leading-relaxed"
-                style={{ 
-                  color: '#f6f8f9', 
-                  fontSize: '14px', 
-                  fontWeight: '400' 
+              <h2
+                className="mb-8 text-center"
+                style={{
+                  color: '#1e3237',
+                  fontSize: '30px',
+                  fontWeight: '600'
+                }}
+              >
+                Sadece Rapor Değil, Aynı Zamanda Akıllı Tavsiyeler de Sunuyoruz
+              </h2>
+
+              <p
+                className="leading-relaxed text-center"
+                style={{
+                  color: '#454b4b',
+                  fontSize: '16px',
+                  fontWeight: '400'
                 }}
               >
                 AI Asistanımızla analizlerinizi yorumlayın. İklim verileri, yatırım tipi ve riskleri hakkında öneriler alın.
               </p>
             </div>
 
-            <Link 
-              href="/chat" 
-              className="inline-block px-8 py-4 rounded-xl font-medium transition-all hover:opacity-90"
-              style={{ 
-                backgroundColor: '#baf200', 
-                color: '#1e3237', 
-                fontSize: '14px', 
-                fontWeight: '600' 
+            {/* AI Assistant Chat Screen Mock Up - 800px */}
+            <div className="max-w-[800px] mx-auto mb-8">
+              <div className="rounded-2xl p-6 shadow-lg" style={{ backgroundColor: '#ffffff' }}>
+                <div className="aspect-video rounded-xl overflow-hidden" style={{ backgroundColor: '#f8f9fa' }}>
+                  <img
+                    src="https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2F45fa11ef7af4440b88d9283767fb401a?format=webp&width=800"
+                    alt="AI Asistan Sohbet Ekranı"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="mt-4 text-center">
+                  <p
+                    style={{ color: '#454b4b', fontSize: '14px', fontWeight: '400' }}
+                  >
+                    💬 AI Asistan Sohbet Ekranı Önizleme
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <Link
+              href="/chat"
+              className="hero-cta-button inline-block px-8 py-4 rounded-xl font-medium transition-all hover:opacity-90 hover:scale-105 transform"
+              style={{
+                backgroundColor: '#baf200',
+                color: '#1e3237',
+                fontSize: '16px',
+                fontWeight: '400'
               }}
             >
-              🤖 AI Asistanı Test Et
+              AI Asistanı Test Et
             </Link>
           </div>
         </div>
