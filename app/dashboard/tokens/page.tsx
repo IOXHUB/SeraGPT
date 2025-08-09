@@ -459,7 +459,7 @@ export default function TokensPage() {
             {tokenHistory.length > 0 ? (
               <div className="space-y-3 max-h-64 overflow-y-auto">
                 {tokenHistory.slice(0, 10).map((activity, index) => (
-                  <div key={index} className="flex items-center space-x-3 p-3 bg-white/50 rounded-lg">
+                  <div key={index} className="flex items-center space-x-3 p-3 bg-[#f6f8f9] rounded-lg">
                     <div className="text-2xl">{getActivityIcon(activity.activity_type)}</div>
                     <div className="flex-1 min-w-0">
                       <p className="text-sm font-medium text-[#1e3237]">
