@@ -1274,13 +1274,7 @@ export default function TestNewPage() {
                     className="w-full h-full object-cover"
                   />
                 </div>
-                <span 
-                  className="font-semibold"
-                  style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '600' }}
-                >
-                  SeraGPT
-                </span>
-              </div>
+            </div>
               <p 
                 className="leading-relaxed"
                 style={{ 
