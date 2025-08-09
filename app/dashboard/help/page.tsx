@@ -284,7 +284,7 @@ export default function HelpPage() {
                       
                       <button
                         type="submit"
-                        className="bg-gray-600 hover:bg-gray-700 text-white px-6 py-2 rounded-lg font-medium transition-colors"
+                        className="bg-[#baf200] hover:bg-[#baf200]/90 text-[#1e3237] px-6 py-2 rounded-lg font-medium transition-colors"
                       >
                         Mesaj Gönder
                       </button>
