@@ -6,9 +6,8 @@ import Link from 'next/link';
 export default function DevNavigation() {
   const { user, isAdmin, login, logout, switchRole } = useSimpleAuth();
 
-  if (process.env.NODE_ENV !== 'development') {
-    return null;
-  }
+  // Always return null to hide dev navigation
+  return null;
 
   return (
     <div className="fixed top-0 left-0 right-0 bg-yellow-400 text-black p-2 z-50 shadow-lg">
