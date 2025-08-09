@@ -374,24 +374,6 @@ Hangi konuda derinlemesine konuşmak istersiniz?`;
   return (
     <DashboardLayout>
       <div className="h-full bg-gradient-to-br from-orange-400 via-purple-500 to-blue-600 flex flex-col overflow-hidden min-h-0">
-        
-        {/* Mobile Status Bar */}
-        <div className="flex items-center justify-between px-6 py-2 text-white/90 text-sm">
-          <div className="font-medium">10:33</div>
-          <div className="flex items-center space-x-1">
-            <div className="flex space-x-1">
-              <div className="w-1 h-3 bg-white rounded-full"></div>
-              <div className="w-1 h-3 bg-white rounded-full"></div>
-              <div className="w-1 h-3 bg-white/50 rounded-full"></div>
-            </div>
-            <span className="text-xs font-medium">3G</span>
-            <div className="flex items-center ml-2">
-              <div className="w-6 h-3 border border-white rounded-sm">
-                <div className="w-4 h-1.5 bg-white rounded-sm m-0.5"></div>
-              </div>
-            </div>
-          </div>
-        </div>
 
         {/* Header */}
         <div className="flex items-center justify-between px-6 py-4">
