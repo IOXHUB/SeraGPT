@@ -76,7 +76,7 @@ export default function AnahtarTeslimProjePage() {
         {
           title: '3. Tekliflendirme',
           items: [
-            'Detaylı malzeme listesi hazırlanır',
+            'Detayl�� malzeme listesi hazırlanır',
             'Kurulum süreci planlanır',
             'Teslim süresi belirlenir',
             'Şeffaf fiyat detayları sunulur'
@@ -265,16 +265,16 @@ export default function AnahtarTeslimProjePage() {
               </a>
             </div>
             <nav className="hidden md:flex space-x-8">
-              <a href="/destek" className="text-gray-600 hover:text-[#1e3237] font-medium">
+              <a href="/destek" className="text-[#1e3237]/70 hover:text-[#1e3237] font-medium">
                 Destek
               </a>
-              <a href="/danismanlik" className="text-gray-600 hover:text-[#1e3237] font-medium">
+              <a href="/danismanlik" className="text-[#1e3237]/70 hover:text-[#1e3237] font-medium">
                 Danışmanlık
               </a>
-              <a href="/anahtar-teslim-proje" className="text-gray-600 hover:text-[#1e3237] font-medium">
+              <a href="/anahtar-teslim-proje" className="text-[#1e3237]/70 hover:text-[#1e3237] font-medium">
                 Anahtar Teslim Sera
               </a>
-              <a href="/auth/login" className="text-gray-600 hover:text-[#1e3237] font-medium">
+              <a href="/auth/login" className="text-[#1e3237]/70 hover:text-[#1e3237] font-medium">
                 Giriş Yap
               </a>
             </nav>
@@ -395,7 +395,7 @@ export default function AnahtarTeslimProjePage() {
                         className={`block w-full text-left px-3 py-2 text-sm rounded-lg transition-all duration-200 ${
                           activeSection === item.id
                             ? 'bg-green-100 text-green-900 font-medium'
-                            : 'text-gray-600 hover:text-[#1e3237] hover:bg-gray-50'
+                            : 'text-[#1e3237]/70 hover:text-[#1e3237] hover:bg-gray-50'
                         }`}
                       >
                         {item.title}
@@ -435,7 +435,7 @@ export default function AnahtarTeslimProjePage() {
               </h1>
 
               {/* Description */}
-              <p className="text-lg text-gray-600 mb-8 leading-relaxed">
+              <p className="text-lg text-[#1e3237]/70 mb-8 leading-relaxed">
                 {currentContent.description}
               </p>
 
