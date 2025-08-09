@@ -105,7 +105,7 @@ export default function DanismanlikPage() {
     'preliminary-meeting': {
       title: 'Ön Görüşme Süreci',
       subtitle: 'Help Center / Danışmanlık',
-      description: 'Proje danışmanlığının ilk adımı olan ön görüşmede, uzman mühendislerimiz projenizin ihtiyaçlarını detaylı şekilde analiz eder.',
+      description: 'Proje danı��manlığının ilk adımı olan ön görüşmede, uzman mühendislerimiz projenizin ihtiyaçlarını detaylı şekilde analiz eder.',
       steps: [
         {
           title: 'Görüşme Hazırlığı',
@@ -340,7 +340,7 @@ export default function DanismanlikPage() {
         <div className="flex flex-col lg:flex-row gap-8">
           {/* Sidebar */}
           <div className="w-full lg:w-64 flex-shrink-0">
-            <div className="bg-white rounded-lg border border-gray-200 p-4">
+            <div className="bg-white rounded-lg border border-gray-200 p-4 shadow-lg">
               {sidebarSections.map((section) => (
                 <div key={section.id} className="mb-6">
                   <div className="flex items-center space-x-2 mb-3">
