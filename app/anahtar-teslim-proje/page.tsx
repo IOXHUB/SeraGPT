@@ -456,7 +456,7 @@ export default function AnahtarTeslimProjePage() {
                       {step.items.map((item, itemIndex) => (
                         <div key={itemIndex} className="flex items-start space-x-3">
                           <div className="flex-shrink-0 w-6 h-6 bg-[#baf200]/30 rounded-full flex items-center justify-center mt-0.5">
-                            <span className="text-xs font-medium text-green-600">
+                            <span className="text-xs font-medium text-[#146448]">
                               {itemIndex + 1}
                             </span>
                           </div>
