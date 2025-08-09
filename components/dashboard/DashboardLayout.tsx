@@ -289,7 +289,7 @@ export default function DashboardLayout({ children, title, subtitle }: Dashboard
           </nav>
 
           {/* Footer */}
-          <div className={`p-2 border-t border-gray-200 ${sidebarCollapsed ? 'px-2' : 'px-4'}`}>
+          <div className={`p-2 border-t border-[#146448]/20 ${sidebarCollapsed ? 'px-2' : 'px-4'}`}>
             <button className={`w-full flex items-center px-2 py-2 text-xs font-medium text-red-600 hover:bg-red-50 rounded-md transition-colors ${
               sidebarCollapsed ? 'justify-center' : ''
             }`}>
