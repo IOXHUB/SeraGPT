@@ -1,6 +1,7 @@
 'use client';
 
 import { useSimpleAuth } from '@/lib/hooks/useSimpleAuth';
+import DashboardLayout from '@/components/dashboard/DashboardLayout';
 import Link from 'next/link';
 
 export default function SimpleDashboard() {
@@ -8,205 +9,122 @@ export default function SimpleDashboard() {
 
   if (!user) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="text-center">
-          <h1 className="text-2xl font-bold text-gray-900 mb-4">Please Login</h1>
-          <p className="text-gray-600 mb-6">Use the development bar above to login</p>
+      <DashboardLayout title="Giriş Gerekli" subtitle="Lütfen giriş yapın">
+        <div className="text-center py-12">
+          <div className="w-16 h-16 bg-[#146448]/10 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg className="w-8 h-8 text-[#146448]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+            </svg>
+          </div>
+          <h2 className="text-xl font-bold text-[#1e3237] mb-4">Giriş Yapmanız Gerekiyor</h2>
+          <p className="text-[#1e3237]/70 mb-6">SeraGPT dashboard'a erişim için lütfen giriş yapın</p>
           <div className="space-x-4">
             <button 
               onClick={() => window.location.reload()}
-              className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700"
+              className="bg-[#146448] text-white px-6 py-2 rounded-lg hover:bg-[#146448]/90 transition-colors"
             >
-              Refresh Page
+              Sayfayı Yenile
             </button>
+            <Link 
+              href="/auth/login"
+              className="bg-[#baf200] text-[#1e3237] px-6 py-2 rounded-lg hover:bg-[#baf200]/90 transition-colors inline-block"
+            >
+              Giriş Yap
+            </Link>
           </div>
         </div>
-      </div>
+      </DashboardLayout>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="max-w-7xl mx-auto px-4 py-8">
-        
-        {/* Welcome Header */}
-        <div className="bg-white rounded-xl shadow-sm p-6 mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">
-            Hoş Geldiniz, {user.name}! 👋
-          </h1>
-          <p className="text-gray-600 mb-4">
-            {isAdmin 
-              ? 'Admin paneline hoş geldiniz. Sistemi buradan yönetebilirsiniz.'
-              : 'SeraGPT kullanıcı paneline hoş geldiniz. Analizlerinizi buradan yapabilirsiniz.'
-            }
-          </p>
-          <div className="flex items-center space-x-4">
-            <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">
-              📧 {user.email}
-            </span>
-            <span className={`px-3 py-1 rounded-full text-sm ${
-              isAdmin ? 'bg-red-100 text-red-800' : 'bg-green-100 text-green-800'
-            }`}>
-              {isAdmin ? '👑 Admin' : '👤 User'}
-            </span>
-          </div>
-        </div>
-
-        {/* Quick Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-          <div className="bg-white p-6 rounded-xl shadow-sm">
-            <h3 className="text-gray-600 text-sm font-medium">Kullanılabilir Token</h3>
-            <p className="text-3xl font-bold text-green-600 mt-1">5</p>
-            <p className="text-sm text-gray-500 mt-1">Ücretsiz analiz</p>
-          </div>
-          
-          <div className="bg-white p-6 rounded-xl shadow-sm">
-            <h3 className="text-gray-600 text-sm font-medium">Tamamlanan Analiz</h3>
-            <p className="text-3xl font-bold text-blue-600 mt-1">0</p>
-            <p className="text-sm text-gray-500 mt-1">Toplam analiz</p>
-          </div>
-          
-          <div className="bg-white p-6 rounded-xl shadow-sm">
-            <h3 className="text-gray-600 text-sm font-medium">Aktif Projeler</h3>
-            <p className="text-3xl font-bold text-purple-600 mt-1">1</p>
-            <p className="text-sm text-gray-500 mt-1">Sera projesi</p>
-          </div>
-          
-          <div className="bg-white p-6 rounded-xl shadow-sm">
-            <h3 className="text-gray-600 text-sm font-medium">Hesap Durumu</h3>
-            <p className="text-3xl font-bold text-orange-600 mt-1">✅</p>
-            <p className="text-sm text-gray-500 mt-1">Aktif</p>
-          </div>
-        </div>
-
-        {/* Analysis Tools */}
-        {!isAdmin && (
-          <div className="bg-white rounded-xl shadow-sm p-6 mb-8">
-            <h2 className="text-xl font-bold text-gray-900 mb-6">🚀 Analiz Araçları</h2>
-            
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="p-6 border-2 border-gray-200 rounded-xl hover:border-blue-300 hover:shadow-lg transition-all cursor-pointer">
-                <div className="text-center">
-                  <div className="text-4xl mb-4">📊</div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">ROI Simülasyonu</h3>
-                  <p className="text-gray-600 text-sm mb-4">Sera yatırımı geri dönüş analizi</p>
-                  <Link 
-                    href="/dashboard/analysis/roi"
-                    className="block w-full bg-blue-600 hover:bg-blue-700 text-white px-4 py-3 rounded-lg text-sm font-medium transition-colors"
-                  >
-                    Analizi Başlat
-                  </Link>
-                </div>
-              </div>
-
-              <div className="p-6 border-2 border-gray-200 rounded-xl hover:border-blue-300 hover:shadow-lg transition-all cursor-pointer">
-                <div className="text-center">
-                  <div className="text-4xl mb-4">🌡️</div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">İklim Analizi</h3>
-                  <p className="text-gray-600 text-sm mb-4">Bölgesel iklim uygunluk raporu</p>
-                  <Link 
-                    href="/dashboard/analysis/climate"
-                    className="block w-full bg-blue-600 hover:bg-blue-700 text-white px-4 py-3 rounded-lg text-sm font-medium transition-colors"
-                  >
-                    Analizi Başlat
-                  </Link>
-                </div>
-              </div>
-
-              <div className="p-6 border-2 border-gray-200 rounded-xl hover:border-blue-300 hover:shadow-lg transition-all cursor-pointer">
-                <div className="text-center">
-                  <div className="text-4xl mb-4">🔧</div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Ekipman Listesi</h3>
-                  <p className="text-gray-600 text-sm mb-4">Mühendis onaylı ekipman önerileri</p>
-                  <Link 
-                    href="/dashboard/analysis/equipment"
-                    className="block w-full bg-blue-600 hover:bg-blue-700 text-white px-4 py-3 rounded-lg text-sm font-medium transition-colors"
-                  >
-                    Analizi Başlat
-                  </Link>
-                </div>
-              </div>
+    <DashboardLayout 
+      title="Basit Dashboard" 
+      subtitle={`Hoş geldiniz ${user.email}`}
+    >
+      <div className="space-y-6">
+        {/* User Info Card */}
+        <div className="bg-white rounded-xl p-6 shadow-lg border border-[#146448]/10">
+          <h2 className="text-lg font-bold text-[#1e3237] mb-4">Kullanıcı Bilgileri</h2>
+          <div className="space-y-3">
+            <div className="flex justify-between">
+              <span className="text-[#1e3237]/70">Email:</span>
+              <span className="text-[#1e3237]">{user.email}</span>
+            </div>
+            <div className="flex justify-between">
+              <span className="text-[#1e3237]/70">Role:</span>
+              <span className={`px-2 py-1 rounded-full text-xs font-medium ${
+                isAdmin 
+                  ? 'bg-red-100 text-red-800' 
+                  : 'bg-[#146448]/10 text-[#146448]'
+              }`}>
+                {user.role.toUpperCase()}
+              </span>
+            </div>
+            <div className="flex justify-between">
+              <span className="text-[#1e3237]/70">Status:</span>
+              <span className="flex items-center space-x-2">
+                <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                <span className="text-[#1e3237]">Aktif</span>
+              </span>
             </div>
           </div>
-        )}
+        </div>
 
-        {/* Admin Tools */}
+        {/* Quick Links */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {[
+            { title: 'AI Asistan', href: '/dashboard/ai-chat', description: 'Sera danışmanınız' },
+            { title: 'ROI Analizi', href: '/dashboard/analysis/roi', description: 'Yatırım hesaplama' },
+            { title: 'Token Yönetimi', href: '/dashboard/tokens', description: 'Token durumu' },
+            { title: 'Ayarlar', href: '/dashboard/settings', description: 'Hesap ayarları' },
+            { title: 'Yardım', href: '/dashboard/help', description: 'Destek merkezi' },
+            { title: 'Ana Dashboard', href: '/dashboard', description: 'Tam dashboard' }
+          ].map((link, index) => (
+            <Link 
+              key={index}
+              href={link.href}
+              className="bg-white p-6 rounded-xl shadow-lg border border-[#146448]/10 hover:shadow-xl hover:border-[#146448]/20 transition-all duration-200 group"
+            >
+              <h3 className="font-semibold text-[#1e3237] mb-2 group-hover:text-[#146448] transition-colors">
+                {link.title}
+              </h3>
+              <p className="text-sm text-[#1e3237]/70">{link.description}</p>
+              <div className="mt-3 flex items-center text-[#146448] text-sm">
+                <span>Git</span>
+                <svg className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </div>
+            </Link>
+          ))}
+        </div>
+
+        {/* Admin Panel Access */}
         {isAdmin && (
-          <div className="bg-white rounded-xl shadow-sm p-6 mb-8">
-            <h2 className="text-xl font-bold text-gray-900 mb-6">⚙️ Admin Araçları</h2>
-            
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <Link 
-                href="/admin/users"
-                className="p-6 border-2 border-gray-200 rounded-xl hover:border-red-300 hover:shadow-lg transition-all"
-              >
-                <div className="text-center">
-                  <div className="text-4xl mb-4">👥</div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Kullanıcılar</h3>
-                  <p className="text-gray-600 text-sm">Kullanıcı yönetimi</p>
-                </div>
-              </Link>
-
-              <Link 
-                href="/admin/analytics"
-                className="p-6 border-2 border-gray-200 rounded-xl hover:border-red-300 hover:shadow-lg transition-all"
-              >
-                <div className="text-center">
-                  <div className="text-4xl mb-4">📊</div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Analitik</h3>
-                  <p className="text-gray-600 text-sm">Sistem raporları</p>
-                </div>
-              </Link>
-
-              <Link 
-                href="/admin/settings"
-                className="p-6 border-2 border-gray-200 rounded-xl hover:border-red-300 hover:shadow-lg transition-all"
-              >
-                <div className="text-center">
-                  <div className="text-4xl mb-4">⚙️</div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Ayarlar</h3>
-                  <p className="text-gray-600 text-sm">Sistem ayarları</p>
-                </div>
-              </Link>
+          <div className="bg-gradient-to-r from-red-50 to-red-100 border border-red-200 rounded-xl p-6">
+            <div className="flex items-start space-x-4">
+              <div className="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center flex-shrink-0">
+                <svg className="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                </svg>
+              </div>
+              <div className="flex-1">
+                <h3 className="font-semibold text-red-900 mb-2">Admin Erişimi</h3>
+                <p className="text-red-700 text-sm mb-4">
+                  Admin olarak sistemi yönetme yetkiniz bulunmaktadır.
+                </p>
+                <Link 
+                  href="/admin"
+                  className="bg-red-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-red-700 transition-colors inline-block"
+                >
+                  Admin Panel
+                </Link>
+              </div>
             </div>
           </div>
         )}
-
-        {/* Recent Activity */}
-        <div className="bg-white rounded-xl shadow-sm p-6">
-          <h2 className="text-xl font-bold text-gray-900 mb-6">📋 Son Aktiviteler</h2>
-          
-          <div className="space-y-4">
-            <div className="flex items-start space-x-3">
-              <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
-              <div className="flex-1">
-                <p className="text-sm font-medium text-gray-900">Development mode'a giriş yapıldı</p>
-                <p className="text-xs text-gray-600 mt-1">Otomatik development login aktif</p>
-                <p className="text-xs text-gray-500 mt-1">Şimdi</p>
-              </div>
-            </div>
-
-            <div className="flex items-start space-x-3">
-              <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
-              <div className="flex-1">
-                <p className="text-sm font-medium text-gray-900">Sistem bypass aktif</p>
-                <p className="text-xs text-gray-600 mt-1">Auth ve cache sistemleri atlandı</p>
-                <p className="text-xs text-gray-500 mt-1">1 dk önce</p>
-              </div>
-            </div>
-
-            <div className="flex items-start space-x-3">
-              <div className="w-2 h-2 bg-purple-500 rounded-full mt-2 flex-shrink-0"></div>
-              <div className="flex-1">
-                <p className="text-sm font-medium text-gray-900">Development workspace hazır</p>
-                <p className="text-xs text-gray-600 mt-1">Frontend geliştirme için optimize edildi</p>
-                <p className="text-xs text-gray-500 mt-1">2 dk önce</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
       </div>
-    </div>
+    </DashboardLayout>
   );
 }
