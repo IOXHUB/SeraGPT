@@ -272,31 +272,31 @@ export default function TokensPage() {
       <div className="space-y-6">
 
         {/* Current Token Status */}
-        <div className="bg-gradient-to-r from-blue-50 to-indigo-100 rounded-xl p-6 border border-blue-200">
+        <div className="bg-[#f6f8f9] rounded-xl p-6 border border-gray-200 shadow-lg">
           <div className="flex items-center justify-between">
             <div>
-              <h2 className="text-xl font-bold text-gray-900 mb-2">🧠 Mevcut Token Durumu</h2>
+              <h2 className="text-xl font-bold text-[#1e3237] mb-2">🧠 Mevcut Token Durumu</h2>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4">
                 <div className="text-center">
-                  <p className="text-2xl font-bold text-blue-600">{tokens?.remaining_tokens || 0}</p>
-                  <p className="text-sm text-gray-600">Kullanılabilir</p>
+                  <p className="text-2xl font-bold text-[#146448]">{tokens?.remaining_tokens || 0}</p>
+                  <p className="text-sm text-[#1e3237]/70">Kullanılabilir</p>
                 </div>
                 <div className="text-center">
-                  <p className="text-2xl font-bold text-purple-600">{tokens?.used_tokens || 0}</p>
-                  <p className="text-sm text-gray-600">Kullanılan</p>
+                  <p className="text-2xl font-bold text-[#1e3237]">{tokens?.used_tokens || 0}</p>
+                  <p className="text-sm text-[#1e3237]/70">Kullanılan</p>
                 </div>
                 <div className="text-center">
-                  <p className="text-2xl font-bold text-green-600">{tokens?.total_tokens || 0}</p>
-                  <p className="text-sm text-gray-600">Toplam</p>
+                  <p className="text-2xl font-bold text-[#146448]">{tokens?.total_tokens || 0}</p>
+                  <p className="text-sm text-[#1e3237]/70">Toplam</p>
                 </div>
                 <div className="text-center">
-                  <p className="text-2xl font-bold text-orange-600">
+                  <p className="text-2xl font-bold text-[#baf200]">
                     {tokens?.expiry_date ? 
                       Math.ceil((new Date(tokens.expiry_date).getTime() - Date.now()) / (1000 * 60 * 60 * 24)) 
                       : '∞'
                     }
                   </p>
-                  <p className="text-sm text-gray-600">Gün kaldı</p>
+                  <p className="text-sm text-[#1e3237]/70">Gün kaldı</p>
                 </div>
               </div>
             </div>
@@ -318,14 +318,14 @@ export default function TokensPage() {
                       cy="50" 
                       r="40" 
                       fill="transparent" 
-                      stroke="#3b82f6" 
+                      stroke="#146448" 
                       strokeWidth="8"
                       strokeDasharray={`${(tokens.remaining_tokens / tokens.total_tokens) * 251.2} 251.2`}
                       strokeDashoffset="0"
                     />
                   </svg>
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="text-lg font-bold text-blue-600">
+                    <span className="text-lg font-bold text-[#146448]">
                       {Math.round((tokens.remaining_tokens / tokens.total_tokens) * 100)}%
                     </span>
                   </div>
