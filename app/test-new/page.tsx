@@ -996,7 +996,7 @@ export default function TestNewPage() {
                       }
                     }}
                   >
-                    <span style={{ color: '#f6f8f9', fontSize: '16px', fontWeight: '500' }}>
+                    <span style={{ color: '#f6f8f9', fontSize: '16px', fontWeight: '400' }}>
                       1. Raporlarınız hangi veriler ve metotlarla hazırlanıyor?
                     </span>
                     <svg id="arrow-1" className="w-5 h-5 transition-transform" style={{ color: '#baf200' }} fill="currentColor" viewBox="0 0 20 20">
@@ -1004,7 +1004,7 @@ export default function TestNewPage() {
                     </svg>
                   </button>
                   <div id="faq-1" style={{ display: 'none' }} className="px-6 pb-6">
-                    <div className="space-y-3" style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '400' }}>
+                    <div className="space-y-3 text-left" style={{ color: '#f6f8f9', fontSize: '16px', fontWeight: '400' }}>
                       <p>Raporlarımız; bölgenize ait gerçek zamanlı iklim verileri, TÜİK tarım istatistikleri, Copernicus uydu görüntüleri, FAO ve yerel pazar fiyat verileri gibi güvenilir kaynaklar kullanılarak hazırlanır.</p>
                       <p>Enerji ihtiyacı ve iklimlendirme hesaplamalarında ASHRAE tabloları ve mühendislik formülleri uygulanır.</p>
                       <p>Bu sayede sonuçlar yalnızca tahmini değil, sahada uygulanabilir ve yatırım kararına doğrudan temel oluşturacak nitelikte olur.</p>
@@ -1028,7 +1028,7 @@ export default function TestNewPage() {
                       }
                     }}
                   >
-                    <span style={{ color: '#f6f8f9', fontSize: '16px', fontWeight: '500' }}>
+                    <span style={{ color: '#f6f8f9', fontSize: '16px', fontWeight: '400' }}>
                       2. Sera tipini ve ekipman seçimlerini nasıl belirliyorsunuz?
                     </span>
                     <svg id="arrow-2" className="w-5 h-5 transition-transform" style={{ color: '#baf200' }} fill="currentColor" viewBox="0 0 20 20">
@@ -1036,7 +1036,7 @@ export default function TestNewPage() {
                     </svg>
                   </button>
                   <div id="faq-2" style={{ display: 'none' }} className="px-6 pb-6">
-                    <div className="space-y-3" style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '400' }}>
+                    <div className="space-y-3 text-left" style={{ color: '#f6f8f9', fontSize: '16px', fontWeight: '400' }}>
                       <p>Sera tipini ve ekipmanlarını belirlerken şu parametreler analiz edilir:</p>
                       <ul className="space-y-2 ml-4">
                         <li>• Lokasyonun yıllık ortalama ve ekstrem sıcaklık/soğuk değerleri</li>
@@ -1066,7 +1066,7 @@ export default function TestNewPage() {
                       }
                     }}
                   >
-                    <span style={{ color: '#f6f8f9', fontSize: '16px', fontWeight: '500' }}>
+                    <span style={{ color: '#f6f8f9', fontSize: '16px', fontWeight: '400' }}>
                       3. Devlet hibeleri ve teşvikler için uygunluk analizi nasıl yapılıyor?
                     </span>
                     <svg id="arrow-3" className="w-5 h-5 transition-transform" style={{ color: '#baf200' }} fill="currentColor" viewBox="0 0 20 20">
@@ -1074,7 +1074,7 @@ export default function TestNewPage() {
                     </svg>
                   </button>
                   <div id="faq-3" style={{ display: 'none' }} className="px-6 pb-6">
-                    <div className="space-y-3" style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '400' }}>
+                    <div className="space-y-3 text-left" style={{ color: '#f6f8f9', fontSize: '16px', fontWeight: '400' }}>
                       <p>Raporlarımızda TKDK, IPARD ve Ziraat Bankası gibi kurumların kriterleri dikkate alınır.</p>
                       <p>Bölgesel hibe oranları, yatırım bütçesi limitleri ve teknik gereklilikler proje dosyasına eklenir.</p>
                       <p>Eğer yatırımınız uygun bulunursa, hibe başvurusu sırasında gerekli teknik çizim ve fizibilite raporları tarafımızdan hazırlanabilir.</p>
@@ -1098,7 +1098,7 @@ export default function TestNewPage() {
                       }
                     }}
                   >
-                    <span style={{ color: '#f6f8f9', fontSize: '16px', fontWeight: '500' }}>
+                    <span style={{ color: '#f6f8f9', fontSize: '16px', fontWeight: '400' }}>
                       4. Ekipman listesinde yer alan markalar ve modeller nasıl seçiliyor?
                     </span>
                     <svg id="arrow-4" className="w-5 h-5 transition-transform" style={{ color: '#baf200' }} fill="currentColor" viewBox="0 0 20 20">
@@ -1106,7 +1106,7 @@ export default function TestNewPage() {
                     </svg>
                   </button>
                   <div id="faq-4" style={{ display: 'none' }} className="px-6 pb-6">
-                    <div className="space-y-3" style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '400' }}>
+                    <div className="space-y-3 text-left" style={{ color: '#f6f8f9', fontSize: '16px', fontWeight: '400' }}>
                       <p>Ekipman seçiminde aşağıdaki kriterler uygulanır:</p>
                       <ul className="space-y-2 ml-4">
                         <li>• Enerji verimliliği (A++ veya üzeri)</li>
@@ -1135,7 +1135,7 @@ export default function TestNewPage() {
                       }
                     }}
                   >
-                    <span style={{ color: '#f6f8f9', fontSize: '16px', fontWeight: '500' }}>
+                    <span style={{ color: '#f6f8f9', fontSize: '16px', fontWeight: '400' }}>
                       5. Raporlarda görsel ve teknik çizim desteği var mı?
                     </span>
                     <svg id="arrow-5" className="w-5 h-5 transition-transform" style={{ color: '#baf200' }} fill="currentColor" viewBox="0 0 20 20">
@@ -1143,7 +1143,7 @@ export default function TestNewPage() {
                     </svg>
                   </button>
                   <div id="faq-5" style={{ display: 'none' }} className="px-6 pb-6">
-                    <div className="space-y-3" style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '400' }}>
+                    <div className="space-y-3 text-left" style={{ color: '#f6f8f9', fontSize: '16px', fontWeight: '400' }}>
                       <p>Evet. Teknik projelendirme ve anahtar teslim paketlerde:</p>
                       <ul className="space-y-2 ml-4">
                         <li>• 2D yerleşim planı</li>
@@ -1152,7 +1152,7 @@ export default function TestNewPage() {
                         <li>• Sulama ve drenaj hattı planı</li>
                         <li>• Isıtma hattı ve ekipman yerleşimi</li>
                       </ul>
-                      <p>gibi detaylı g��rseller PDF rapora dahil edilir.</p>
+                      <p>gibi detaylı görseller PDF rapora dahil edilir.</p>
                       <p>Bu çizimler hem yatırımcı sunumlarında hem de yüklenici firmalara teklif alırken kullanılabilir.</p>
                     </div>
                   </div>
