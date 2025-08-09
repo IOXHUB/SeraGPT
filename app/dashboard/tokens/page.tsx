@@ -415,8 +415,8 @@ export default function TokensPage() {
 
                   <ul className="space-y-2 mb-6 text-sm">
                     {pkg.features.map((feature, index) => (
-                      <li key={index} className="flex items-start text-gray-600">
-                        <span className="text-green-500 mr-2 mt-0.5">✓</span>
+                      <li key={index} className="flex items-start text-[#1e3237]/70">
+                        <span className="text-[#146448] mr-2 mt-0.5">✓</span>
                         <span>{feature}</span>
                       </li>
                     ))}
