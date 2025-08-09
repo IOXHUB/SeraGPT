@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
+import DashboardLayout from '@/components/dashboard/DashboardLayout';
 
 export default function DemoDashboard() {
   const [activeTab, setActiveTab] = useState('overview');
