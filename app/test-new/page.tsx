@@ -755,7 +755,7 @@ export default function TestNewPage() {
                     <div className="flex items-start space-x-3">
                       <span style={{ color: '#baf200', fontSize: '16px' }}>•</span>
                       <p style={{ color: '#f6f8f9', fontSize: '16px', fontWeight: '400' }}>
-                        Ön Fizibilite + detaylı teknik ��izimler
+                        Ön Fizibilite + detaylı teknik çizimler
                       </p>
                     </div>
                     <div className="flex items-start space-x-3">
@@ -924,7 +924,7 @@ export default function TestNewPage() {
 
             <Link
               href="/anahtar-teslim-proje"
-              className="inline-block px-8 py-4 rounded-xl font-medium transition-all hover:opacity-90"
+              className="inline-block px-8 py-4 rounded-xl font-medium transition-all hover:opacity-90 mx-auto"
               style={{
                 backgroundColor: '#baf200',
                 color: '#1e3237',
@@ -996,7 +996,7 @@ export default function TestNewPage() {
         </div>
       </section>
 
-      {/* 7. ��️ Peki Ya Tecrübemiz? */}
+      {/* 7. 🛠️ Peki Ya Tecrübemiz? */}
       <section className="py-16">
         <div className="max-w-[1200px] mx-auto px-6 text-center">
           <div className="max-w-[800px] mx-auto">
