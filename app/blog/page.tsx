@@ -94,7 +94,7 @@ export default function BlogPage() {
   return (
     <>
       <SEOHead config={seoConfig} />
-      <div className="min-h-screen bg-white">
+      <div className="min-h-screen bg-[#f6f8f9]">
         {/* Header */}
         <Header />
 
@@ -107,7 +107,7 @@ export default function BlogPage() {
             transition={{ duration: 0.6 }}
             className="mb-12 flex flex-col"
           >
-            <h1 className="text-4xl font-semibold text-gray-900 mb-12 self-center">
+            <h1 className="text-4xl font-semibold text-[#1e3237] mb-12 self-center">
               BLOG
             </h1>
           </motion.div>
