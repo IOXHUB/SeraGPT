@@ -313,7 +313,7 @@ export default function TestNewPage() {
                   <p
                     style={{ color: '#454b4b', fontSize: '14px', fontWeight: '400' }}
                   >
-                    💬 AI Asistan Sohbet Ekranı Önizleme
+                    📱 Mobile AI Asistan Özelliği Simülasyonu
                   </p>
                 </div>
               </div>
