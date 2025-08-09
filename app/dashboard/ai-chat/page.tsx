@@ -537,95 +537,146 @@ Hangi konuda derinlemesine analiz istersiniz?`;
           {/* Input Area */}
           <div className="border-t border-gray-100 bg-white p-6">
             <div className="max-w-4xl mx-auto">
-              <div className="flex items-end space-x-4">
-                
-                {/* File Input */}
-                <input
-                  ref={fileInputRef}
-                  type="file"
-                  className="hidden"
-                  accept=".pdf,.doc,.docx,.txt,.png,.jpg,.jpeg,.dwg,.xlsx,.xls,.ppt,.pptx,.csv,.zip,.rar"
-                  onChange={handleFileSelect}
-                />
-                
-                <button
-                  onClick={() => fileInputRef.current?.click()}
-                  className="p-3 bg-gray-50 hover:bg-gray-100 border border-gray-200 rounded-2xl transition-colors text-gray-500 hover:text-gray-700"
-                  title="Dosya ekle"
-                >
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13" />
-                  </svg>
-                </button>
+              {/* ChatGPT Style Input Container */}
+              <div className="relative bg-white border border-gray-200 rounded-3xl shadow-lg hover:shadow-xl transition-all duration-200">
+                <div className="flex items-end p-2">
 
-                {/* Text Input */}
-                <div className="flex-1 relative">
-                  <textarea
-                    ref={inputRef}
-                    value={inputValue}
-                    onChange={(e) => {
-                      setInputValue(e.target.value);
-                      const textarea = e.target;
-                      textarea.style.height = 'auto';
-                      textarea.style.height = Math.min(textarea.scrollHeight, 150) + 'px';
-                    }}
-                    onKeyPress={handleKeyPress}
-                    placeholder="SeraGPT AI'ya mesajınızı yazın..."
-                    className="w-full px-6 py-4 pr-16 border-2 border-gray-200 rounded-3xl focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none transition-all text-base placeholder-gray-400 hover:border-gray-300"
-                    rows={1}
-                    style={{ minHeight: '56px', maxHeight: '150px' }}
-                  />
+                  {/* Left Action Buttons */}
+                  <div className="flex items-center space-x-1 pl-2">
+                    {/* File Input */}
+                    <input
+                      ref={fileInputRef}
+                      type="file"
+                      className="hidden"
+                      accept=".pdf,.doc,.docx,.txt,.png,.jpg,.jpeg,.dwg,.xlsx,.xls,.ppt,.pptx,.csv,.zip,.rar"
+                      onChange={handleFileSelect}
+                    />
 
-                  {/* Selected file indicator */}
-                  {selectedFile && (
-                    <div className="absolute bottom-16 left-4 right-4 bg-blue-50 border border-blue-200 rounded-lg p-2">
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center space-x-2">
-                          <span className="text-blue-600">📎</span>
-                          <span className="text-sm text-blue-700 font-medium">{selectedFile.name}</span>
+                    <button
+                      onClick={() => fileInputRef.current?.click()}
+                      className="p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-xl transition-all"
+                      title="Dosya ekle (PDF, Word, Excel, DWG, Resim...)"
+                    >
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13" />
+                      </svg>
+                    </button>
+
+                    {/* Voice Input */}
+                    <button
+                      className="p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-xl transition-all"
+                      title="Sesli mesaj (Yakında)"
+                    >
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
+                      </svg>
+                    </button>
+
+                    {/* Camera/Image */}
+                    <button
+                      className="p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-xl transition-all"
+                      title="Fotoğraf çek (Yakında)"
+                    >
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
+                      </svg>
+                    </button>
+                  </div>
+
+                  {/* Text Input Area */}
+                  <div className="flex-1 relative mx-2">
+                    <textarea
+                      ref={inputRef}
+                      value={inputValue}
+                      onChange={(e) => {
+                        setInputValue(e.target.value);
+                        const textarea = e.target;
+                        textarea.style.height = 'auto';
+                        textarea.style.height = Math.min(textarea.scrollHeight, 150) + 'px';
+                      }}
+                      onKeyPress={handleKeyPress}
+                      placeholder="SeraGPT AI'ya mesajınızı yazın..."
+                      className="w-full px-4 py-3 bg-transparent border-none outline-none resize-none text-base placeholder-gray-400 leading-relaxed"
+                      rows={1}
+                      style={{ minHeight: '48px', maxHeight: '150px' }}
+                    />
+
+                    {/* Selected file indicator */}
+                    {selectedFile && (
+                      <div className="absolute bottom-full left-0 right-0 mb-2 bg-blue-50 border border-blue-200 rounded-lg p-3">
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center space-x-2">
+                            <span className="text-blue-600 text-lg">📎</span>
+                            <div>
+                              <span className="text-sm text-blue-700 font-medium block">{selectedFile.name}</span>
+                              <span className="text-xs text-blue-500">{getFileTypeInfo(selectedFile.name)}</span>
+                            </div>
+                          </div>
+                          <button
+                            onClick={() => setSelectedFile(null)}
+                            className="text-blue-400 hover:text-blue-600 p-1"
+                          >
+                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                          </button>
                         </div>
-                        <button
-                          onClick={() => setSelectedFile(null)}
-                          className="text-blue-400 hover:text-blue-600"
-                        >
-                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                          </svg>
-                        </button>
                       </div>
-                    </div>
-                  )}
+                    )}
+                  </div>
 
-                  {/* Character counter */}
-                  <div className="absolute bottom-3 right-4 text-xs text-gray-400">
-                    {inputValue.length}/2000
+                  {/* Send Button */}
+                  <div className="pr-2">
+                    <motion.button
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      onClick={handleSendMessage}
+                      disabled={!inputValue.trim() || isTyping}
+                      className={`p-2.5 rounded-xl font-semibold transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed ${
+                        !inputValue.trim() || isTyping
+                          ? 'bg-gray-200 text-gray-400'
+                          : 'bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white shadow-lg hover:shadow-xl'
+                      }`}
+                      title={isTyping ? 'AI yanıtlıyor...' : 'Mesaj gönder'}
+                    >
+                      {isTyping ? (
+                        <motion.div
+                          animate={{ rotate: 360 }}
+                          transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                          className="w-5 h-5 border-2 border-white border-t-transparent rounded-full"
+                        />
+                      ) : (
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                        </svg>
+                      )}
+                    </motion.button>
                   </div>
                 </div>
 
-                {/* Send Button */}
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  onClick={handleSendMessage}
-                  disabled={!inputValue.trim() || isTyping}
-                  className={`p-3 rounded-2xl font-semibold transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed ${
-                    !inputValue.trim() || isTyping
-                      ? 'bg-gray-300 text-gray-500'
-                      : 'bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white shadow-lg shadow-blue-200'
-                  }`}
-                >
-                  {isTyping ? (
-                    <motion.div
-                      animate={{ rotate: 360 }}
-                      transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-                      className="w-5 h-5 border-2 border-white border-t-transparent rounded-full"
-                    />
-                  ) : (
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
-                    </svg>
-                  )}
-                </motion.button>
+                {/* Quick Actions Bar */}
+                <div className="border-t border-gray-100 px-4 py-2">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center space-x-4">
+                      <span className="text-xs text-gray-500">Desteklenen dosyalar:</span>
+                      <div className="flex items-center space-x-2 text-xs text-gray-400">
+                        <span>PDF</span>
+                        <span>•</span>
+                        <span>Word</span>
+                        <span>•</span>
+                        <span>Excel</span>
+                        <span>•</span>
+                        <span>DWG</span>
+                        <span>•</span>
+                        <span>Resim</span>
+                      </div>
+                    </div>
+                    <div className="text-xs text-gray-400">
+                      Enter ile gönder, Shift+Enter ile yeni satır
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
