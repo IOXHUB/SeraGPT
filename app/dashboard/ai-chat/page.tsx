@@ -571,11 +571,11 @@ Hangi konuda derinlemesine konuşmak istersiniz?`;
             </div>
           )}
 
-          <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-full p-3 flex items-center space-x-3">
+          <div className="bg-[#f6f8f9] border border-white/20 rounded-full p-3 flex items-center space-x-3 shadow-lg">
             {/* Plus Button */}
             <button
               onClick={() => fileInputRef.current?.click()}
-              className="p-3 bg-white/20 backdrop-blur-sm rounded-full hover:bg-white/30 transition-colors"
+              className="p-3 bg-[#146448] rounded-full hover:bg-[#146448]/90 transition-colors"
             >
               <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
