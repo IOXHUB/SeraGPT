@@ -67,7 +67,7 @@ export default function DashboardLayout({ children, title, subtitle }: Dashboard
           category: 'AI',
           submenu: [
             { name: 'Maliyet Optimizasyonu', href: '/dashboard/ai-chat?prompt=cost_optimization', icon: '💰', prompt: 'Sera işletmemde maliyet tasarrufu ve optimizasyon konularında önerilerinizi almak istiyorum.' },
-            { name: 'Verimlilik Artırma', href: '/dashboard/ai-chat?prompt=efficiency', icon: '📊', prompt: 'Sera verimlili��imi artırmak için hangi stratejileri uygulayabilirim? Detaylı öneriler istiyorum.' },
+            { name: 'Verimlilik Artırma', href: '/dashboard/ai-chat?prompt=efficiency', icon: '📊', prompt: 'Sera verimliliğimi artırmak için hangi stratejileri uygulayabilirim? Detaylı öneriler istiyorum.' },
             { name: 'Teknoloji Yenilikleri', href: '/dashboard/ai-chat?prompt=technology', icon: '🚀', prompt: 'Sera teknolojilerindeki son yenilikler ve bunları işletmeme entegre etme yolları nelerdir?' },
             { name: 'Pazarlama Stratejileri', href: '/dashboard/ai-chat?prompt=marketing', icon: '📢', prompt: 'Sera ürünlerimi pazarlama ve satış kanallarını geliştirme konusunda stratejik öneriler istiyorum.' },
             { name: 'Sürdürülebilirlik', href: '/dashboard/ai-chat?prompt=sustainability', icon: '🌱', prompt: 'Sera işletmemi daha sürd��rülebilir hale getirmek için çevre dostu çözümler önerir misin?' }
@@ -173,7 +173,7 @@ export default function DashboardLayout({ children, title, subtitle }: Dashboard
             </a>
             <button
               onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
-              className="p-1.5 rounded-md text-gray-400 hover:text-gray-600 hover:bg-gray-100 transition-colors"
+              className="p-1.5 rounded-md text-[#1e3237]/60 hover:text-[#146448] hover:bg-[#146448]/10 transition-colors"
             >
               <svg className={`w-4 h-4 transition-transform ${sidebarCollapsed ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
