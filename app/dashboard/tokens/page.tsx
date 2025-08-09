@@ -407,7 +407,7 @@ export default function TokensPage() {
                       )}
                     </div>
                     {pkg.price > 0 && (
-                      <div className="text-sm text-gray-500 mt-1">
+                      <div className="text-sm text-[#1e3237]/60 mt-1">
                         {(pkg.price / pkg.tokens).toFixed(0)} ₺/token
                       </div>
                     )}
