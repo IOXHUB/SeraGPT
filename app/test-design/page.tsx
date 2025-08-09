@@ -540,55 +540,50 @@ export default function TestDesignPage() {
       <section className="py-16">
         <div className="max-w-[1200px] mx-auto px-4 sm:px-6">
           <div className="text-center">
-            <div 
-              className="inline-block rounded-2xl p-12 shadow-lg max-w-[576px]"
-              style={{ backgroundColor: '#f6f8f9' }}
+            <h2
+              className="leading-tight mb-6"
+              style={{
+                color: '#1e3237',
+                fontSize: '26px',
+                fontWeight: '400'
+              }}
             >
-              <h2 
-                className="leading-tight mb-6"
-                style={{ 
-                  color: '#1e3237', 
-                  fontSize: '36px', 
-                  fontWeight: '600' 
-                }}
-              >
-                Hemen Başlayın
-              </h2>
-              
-              <p 
-                className="leading-relaxed mb-8"
-                style={{ 
-                  color: '#1e3237', 
-                  fontSize: '14px', 
-                  fontWeight: '400' 
-                }}
-              >
-                İlk 5 raporunuz ücretsiz! Sera yatırım kararlarınızı bilim ve deneyim ışığında verin.
-              </p>
+              Hemen Başlayın
+            </h2>
 
-              <Link
-                href="/auth/login"
-                className="inline-block px-8 py-4 rounded-xl font-medium transition-all hover:opacity-90 shadow-lg"
-                style={{ 
-                  backgroundColor: '#baf200', 
-                  color: '#1e3237', 
-                  fontSize: '14px', 
-                  fontWeight: '600' 
-                }}
-              >
-                🚀 Ücretsiz Hesap Oluştur
-              </Link>
-            </div>
+            <p
+              className="leading-relaxed mb-8"
+              style={{
+                color: '#1e3237',
+                fontSize: '14px',
+                fontWeight: '400'
+              }}
+            >
+              İlk 5 raporunuz ücretsiz! Sera yatırım kararlarınızı bilim ve deneyim ışığında verin.
+            </p>
+
+            <Link
+              href="/auth/login"
+              className="inline-block px-8 py-4 rounded-xl font-medium transition-all hover:opacity-90 shadow-lg"
+              style={{
+                backgroundColor: '#baf200',
+                color: '#1e3237',
+                fontSize: '14px',
+                fontWeight: '600'
+              }}
+            >
+              🚀 Ücretsiz Hesap Oluştur
+            </Link>
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="py-12">
+      <footer className="py-12" style={{ backgroundColor: '#146448' }}>
         <div className="max-w-[1200px] mx-auto px-4 sm:px-6">
-          <div 
+          <div
             className="rounded-2xl p-8 shadow-lg"
-            style={{ backgroundColor: '#f6f8f9' }}
+            style={{ backgroundColor: '#146448' }}
           >
             <div className="grid md:grid-cols-4 gap-8">
               
