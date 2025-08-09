@@ -485,7 +485,7 @@ export default function TokensPage() {
 
           {/* Token Tips */}
           <div className="bg-white rounded-xl p-6 border border-[#146448]/10 shadow-lg">
-            <h3 className="text-lg font-semibold text-[#1e3237] mb-4">💡 Token İpuçları</h3>
+            <h3 className="text-lg font-semibold text-[#1e3237] mb-4">Token İpuçları</h3>
             
             <div className="space-y-4">
               <div className="p-4 bg-blue-50 rounded-lg border border-blue-200">
