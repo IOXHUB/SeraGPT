@@ -236,7 +236,7 @@ export default function UserjotCloneSection() {
 
           {/* Description paragraph - Mobile responsive */}
           <p className="hero-description text-sm sm:text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
-            SeraGPT; 20 yılı aşkın mühendislik deneyimi, 500'den fazla
+            SeraGPT; 20 y��lı aşkın mühendislik deneyimi, 500'den fazla
             tamamlanmış proje ve 110'dan fazla gerçek zamanlı veri
             setiyle, tarımsal yatırım kararlarınızı saniyeler içinde
             analiz eder.
@@ -361,7 +361,7 @@ export default function UserjotCloneSection() {
               </div>
 
               {/* Card 2 - İklim Analizi */}
-              <div className="md:flex-shrink-0 w-full md:w-80 bg-white/10 backdrop-blur-sm rounded-2xl p-6 md:p-8 border border-white/20 relative shadow-xl hover:bg-white/20 transition-all">
+              <div className="md:flex-shrink-0 w-full md:w-80 bg-gradient-to-br from-orange-400 via-purple-500 to-blue-600 rounded-2xl p-6 md:p-8 relative shadow-xl hover:shadow-2xl transition-all">
                 <div className="absolute top-4 md:top-6 left-4 md:left-6 text-4xl md:text-6xl font-bold text-white/20">02</div>
                 <div className="mt-12 md:mt-16">
                   <h3 className="text-lg md:text-xl font-bold text-white mb-4 leading-tight">
@@ -517,7 +517,7 @@ export default function UserjotCloneSection() {
               },
               {
                 question: "Ödeme nasıl yapılıyor?",
-                answer: "İlk 5 rapor ücretsizdir. Sonrasında, kredi kartı veya havale/EFT ile jeton (token) satın alabilirsiniz. Ödeme altyapısı %100 g��venlidir."
+                answer: "İlk 5 rapor ücretsizdir. Sonrasında, kredi kartı veya havale/EFT ile jeton (token) satın alabilirsiniz. Ödeme altyapısı %100 güvenlidir."
               }
             ].map((faq, index) => (
               <div
