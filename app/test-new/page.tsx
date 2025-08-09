@@ -755,7 +755,7 @@ export default function TestNewPage() {
                     <div className="flex items-start space-x-3">
                       <span style={{ color: '#baf200', fontSize: '16px' }}>•</span>
                       <p style={{ color: '#f6f8f9', fontSize: '16px', fontWeight: '400' }}>
-                        Ön Fizibilite + detaylı teknik çizimler
+                        Ön Fizibilite + detaylı teknik ��izimler
                       </p>
                     </div>
                     <div className="flex items-start space-x-3">
@@ -837,9 +837,9 @@ export default function TestNewPage() {
       {/* 5. 🎁 Sürprizimiz Var */}
       <section className="py-16">
         <div className="max-w-[1200px] mx-auto px-6 text-center">
-          <div className="max-w-[800px] mx-auto">
+          <div className="max-w-[800px] mx-auto flex flex-col">
             <h2
-              className="mb-8"
+              className="mx-auto mb-8"
               style={{
                 color: '#f6f8f9',
                 fontSize: '36px',
@@ -996,7 +996,7 @@ export default function TestNewPage() {
         </div>
       </section>
 
-      {/* 7. 🛠️ Peki Ya Tecrübemiz? */}
+      {/* 7. ��️ Peki Ya Tecrübemiz? */}
       <section className="py-16">
         <div className="max-w-[1200px] mx-auto px-6 text-center">
           <div className="max-w-[800px] mx-auto">
