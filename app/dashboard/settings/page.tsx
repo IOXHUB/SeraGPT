@@ -216,8 +216,8 @@ export default function SettingsPage() {
         
         {/* Sidebar */}
         <div className="lg:w-64 flex-shrink-0">
-          <div className="bg-white rounded-xl border border-gray-200 p-4">
-            <h3 className="font-semibold text-gray-900 mb-4">Ayar Kategorileri</h3>
+          <div className="bg-[#f6f8f9] rounded-xl border border-gray-200 p-4 shadow-lg">
+            <h3 className="font-semibold text-[#1e3237] mb-4">Ayar Kategorileri</h3>
             <nav className="space-y-2">
               {tabs.map((tab) => (
                 <button
@@ -225,8 +225,8 @@ export default function SettingsPage() {
                   onClick={() => setActiveTab(tab.id)}
                   className={`w-full text-left px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
                     activeTab === tab.id
-                      ? 'bg-blue-50 text-blue-600 border border-blue-200'
-                      : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+                      ? 'bg-[#baf200]/30 text-[#1e3237] border border-[#baf200]'
+                      : 'text-[#1e3237]/70 hover:text-[#1e3237] hover:bg-white'
                   }`}
                 >
                   <span className="mr-2">{tab.icon}</span>
@@ -237,17 +237,17 @@ export default function SettingsPage() {
 
             {/* Profile Completion */}
             <div className="mt-6 p-4 bg-gray-50 rounded-lg">
-              <h4 className="text-sm font-medium text-gray-900 mb-2">Profil Tamamlanma</h4>
+              <h4 className="text-sm font-medium text-[#1e3237] mb-2">Profil Tamamlanma</h4>
               <div className="flex items-center">
                 <div className="flex-1 bg-gray-200 rounded-full h-2">
                   <div 
-                    className="bg-blue-600 h-2 rounded-full transition-all duration-300"
+                    className="bg-[#146448] h-2 rounded-full transition-all duration-300"
                     style={{ width: `${profileCompletion}%` }}
                   />
                 </div>
-                <span className="ml-2 text-sm font-medium text-gray-900">{profileCompletion}%</span>
+                <span className="ml-2 text-sm font-medium text-[#1e3237]">{profileCompletion}%</span>
               </div>
-              <p className="text-xs text-gray-600 mt-1">
+              <p className="text-xs text-[#1e3237]/60 mt-1">
                 Profil tamamlama oranınızı artırarak daha iyi öneriler alın
               </p>
             </div>
@@ -259,8 +259,8 @@ export default function SettingsPage() {
           {/* Message */}
           {message && (
             <div className={`mb-6 p-4 rounded-lg ${
-              message.type === 'success' 
-                ? 'bg-green-50 text-green-800 border border-green-200'
+              message.type === 'success'
+                ? 'bg-[#baf200]/20 text-[#1e3237] border border-[#baf200]'
                 : 'bg-red-50 text-red-800 border border-red-200'
             }`}>
               {message.text}
