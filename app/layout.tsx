@@ -18,17 +18,17 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning className="h-full">
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         <link rel="preconnect" href="https://cdn.builder.io" />
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
       </head>
-      <body suppressHydrationWarning>
+      <body suppressHydrationWarning className="h-full">
         <DevNavigation />
         <ProductionErrorHandler />
-        <div className={process.env.NODE_ENV === 'development' ? 'pt-12' : ''}>
+        <div className={process.env.NODE_ENV === 'development' ? 'pt-12 h-full' : 'h-full'}>
           {children}
         </div>
         <DevToolsWidget />
