@@ -662,15 +662,15 @@ export default function TestNewPage() {
             </h2>
 
             <div className="max-w-[576px] mx-auto mb-12">
-              <p 
-                className="leading-relaxed"
-                style={{ 
-                  color: '#f6f8f9', 
-                  fontSize: '14px', 
-                  fontWeight: '400' 
+              <p
+                className="leading-relaxed text-center"
+                style={{
+                  color: '#f6f8f9',
+                  fontSize: '20px',
+                  fontWeight: '400'
                 }}
               >
-                Sera yatırım süreci hakkında tüm sorularınıza cevap bulabileceğiniz teknik ve stratejik rehberler.
+                Fikir aşamasından, projelendirmeye; Kurulum'dan, üretim danışmanlığına profesyonel hizmet
               </p>
             </div>
 
