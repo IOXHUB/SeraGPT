@@ -137,19 +137,19 @@ export default function HelpPage() {
                   className="space-y-4"
                 >
                   {faqData.map((faq) => (
-                    <div key={faq.id} className="border border-gray-200 rounded-lg">
+                    <div key={faq.id} className="border border-gray-200 rounded-lg bg-white shadow-sm">
                       <button
                         onClick={() => toggleFAQ(faq.id)}
-                        className="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-gray-50 transition-colors"
+                        className="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-[#f6f8f9] transition-colors"
                       >
-                        <span className="font-medium text-gray-900">{faq.question}</span>
+                        <span className="font-medium text-[#1e3237]">{faq.question}</span>
                         <span className={`transform transition-transform ${openFAQ === faq.id ? 'rotate-180' : ''}`}>
                           ▼
                         </span>
                       </button>
                       {openFAQ === faq.id && (
                         <div className="px-6 pb-4 border-t border-gray-200">
-                          <p className="text-gray-600 pt-4">{faq.answer}</p>
+                          <p className="text-[#1e3237]/80 pt-4">{faq.answer}</p>
                         </div>
                       )}
                     </div>
@@ -165,23 +165,23 @@ export default function HelpPage() {
                   transition={{ duration: 0.4 }}
                   className="space-y-6"
                 >
-                  <h2 className="text-xl font-semibold text-gray-900">Adım Adım Kullanım Rehberi</h2>
+                  <h2 className="text-xl font-semibold text-[#1e3237]">Adım Adım Kullanım Rehberi</h2>
                   <div className="space-y-6">
                     {guideSteps.map((guide) => (
                       <div key={guide.step} className="flex items-start space-x-4">
-                        <div className="w-8 h-8 bg-gray-600 text-white rounded-full flex items-center justify-center font-semibold text-sm">
+                        <div className="w-8 h-8 bg-[#146448] text-white rounded-full flex items-center justify-center font-semibold text-sm">
                           {guide.step}
                         </div>
                         <div>
-                          <h3 className="font-semibold text-gray-900 mb-1">{guide.title}</h3>
-                          <p className="text-gray-600">{guide.description}</p>
+                          <h3 className="font-semibold text-[#1e3237] mb-1">{guide.title}</h3>
+                          <p className="text-[#1e3237]/80">{guide.description}</p>
                         </div>
                       </div>
                     ))}
                   </div>
                   
-                  <div className="bg-gray-50 rounded-lg p-6 mt-8">
-                    <h3 className="font-semibold text-gray-900 mb-3">Video Rehberler</h3>
+                  <div className="bg-white rounded-lg p-6 mt-8 shadow-sm">
+                    <h3 className="font-semibold text-[#1e3237] mb-3">Video Rehberler</h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div className="bg-white rounded-lg p-4 border border-gray-200">
                         <h4 className="font-medium text-gray-900 mb-2">ROI Analizi Nasıl Yapılır?</h4>
