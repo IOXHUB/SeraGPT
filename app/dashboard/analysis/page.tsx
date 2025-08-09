@@ -248,24 +248,43 @@ export default function AnalysesListPage() {
                         <>
                           <a
                             href={`/dashboard/reports/${analysis.type}/${analysis.id}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
                             className="text-blue-600 hover:text-blue-800 text-sm font-medium"
                           >
                             Görüntüle
                           </a>
-                          <a
-                            href={`/dashboard/reports/${analysis.type}/${analysis.id}`}
+                          <button
+                            onClick={async () => {
+                              try {
+                                window.open(`/dashboard/reports/${analysis.type}/${analysis.id}`, '_blank');
+                                // Küçük bir gecikme sonrası PDF indirme fonksiyonunu tetikle
+                                setTimeout(() => {
+                                  const event = new CustomEvent('triggerPDFDownload');
+                                  window.dispatchEvent(event);
+                                }, 1000);
+                              } catch (error) {
+                                console.error('PDF indirme hatası:', error);
+                                alert('PDF indirme sırasında bir hata oluştu');
+                              }
+                            }}
                             className="text-green-600 hover:text-green-800 text-sm font-medium"
                           >
                             PDF İndir
-                          </a>
+                          </button>
                         </>
                       )}
                       <button
                         className="text-red-600 hover:text-red-800 text-sm font-medium"
-                        onClick={() => {
+                        onClick={async () => {
                           if (confirm('Bu analizi silmek istediğinizden emin misiniz?')) {
-                            MockAnalysisService.deleteAnalysis(analysis.id);
-                            loadAnalyses();
+                            try {
+                              await MockAnalysisService.deleteAnalysis(analysis.id);
+                              loadAnalyses();
+                            } catch (error) {
+                              console.error('Silme hatası:', error);
+                              alert('Analiz silinirken bir hata oluştu');
+                            }
                           }
                         }}
                       >
