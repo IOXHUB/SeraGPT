@@ -53,11 +53,11 @@ export default function DashboardLayout({ children, title, subtitle }: Dashboard
           icon: '📊',
           category: 'AI',
           submenu: [
-            { name: 'ROI Analizi Raporum', href: '/dashboard/ai-chat?prompt=roi_report', icon: '💰', prompt: 'Son ROI analiz raporum hakkında detaylı bilgi ver ve iyileştirme önerileri sun.' },
-            { name: 'İklim Analizi Raporum', href: '/dashboard/ai-chat?prompt=climate_report', icon: '🌡️', prompt: 'İklim analiz raporum üzerinden derinlemesine analiz yapalım ve optimizasyon fırsatlarını değerlendirelim.' },
-            { name: 'Ekipman Listesi Raporum', href: '/dashboard/ai-chat?prompt=equipment_report', icon: '⚙️', prompt: 'Ekipman listesi raporum için maliyet optimizasyonu ve alternatif öneriler üzerine konuşalım.' },
-            { name: 'Pazar Analizi Raporum', href: '/dashboard/ai-chat?prompt=market_report', icon: '📈', prompt: 'Pazar analizi raporum temelinde fırsat değerlendirmesi ve strateji önerileri alalım.' },
-            { name: 'Teknik Plan Raporum', href: '/dashboard/ai-chat?prompt=layout_report', icon: '📐', prompt: 'Teknik plan raporum üzerine verimlilik artırma ve düzen optimizasyonu konuşalım.' }
+            { name: 'Antalya Domates ROI Analizi', href: '/dashboard/ai-chat?report=demo-roi-001&prompt=roi_report', icon: '💰', prompt: 'Bu ROI analiz raporundaki finansal projeksiyonları nasıl optimize edebilirim?' },
+            { name: 'İzmir İklim Uygunluk Analizi', href: '/dashboard/ai-chat?report=demo-climate-001&prompt=climate_report', icon: '🌡️', prompt: 'İklim raporum temelinde hangi dönemlerde en yüksek verimlilik elde edebilirim?' },
+            { name: 'Hidroponik Sistem Ekipmanları', href: '/dashboard/ai-chat?report=demo-equipment-001&prompt=equipment_report', icon: '⚙️', prompt: 'Ekipman listesindeki maliyetleri nasıl optimize edebilirim?' },
+            { name: 'Salatalık Pazar Analizi', href: '/dashboard/ai-chat?report=demo-market-001&prompt=market_report', icon: '📈', prompt: 'Pazar analizi sonuçlarına göre hangi stratejilerle daha yüksek kar elde edebilirim?' },
+            { name: 'Modern Sera Layout Planı', href: '/dashboard/ai-chat?report=demo-layout-001&prompt=layout_report', icon: '📐', prompt: 'Layout planımda verimlilik nasıl artırılabilir?' }
           ]
         },
         {
