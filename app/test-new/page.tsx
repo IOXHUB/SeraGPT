@@ -650,12 +650,12 @@ export default function TestNewPage() {
       <section className="py-16">
         <div className="max-w-[1200px] mx-auto px-6 text-center">
           <div className="max-w-[800px] mx-auto">
-            <h2 
+            <h2
               className="mb-8"
-              style={{ 
-                color: '#f6f8f9', 
-                fontSize: '24px', 
-                fontWeight: '600' 
+              style={{
+                color: '#f6f8f9',
+                fontSize: '36px',
+                fontWeight: '600'
               }}
             >
               Referanslarımız
