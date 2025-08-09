@@ -216,7 +216,7 @@ ${userInput} konusunda detaylı analiz yapabilirim. Modern sera teknolojileri ve
 
 **Size nasıl yardımcı olabilirim?**
 • Sera yatırım analizi ve ROI hesaplaması
-• İklim koşullar�� optimizasyonu  
+• İklim koşulları optimizasyonu  
 • Ekipman seçimi ve maliyet analizi
 • Pazar fırsatları değerlendirmesi
 • Teknik layout planlaması
@@ -555,7 +555,7 @@ Hangi konuda derinlemesine konuşmak istersiniz?`;
                   <div className="flex items-center space-x-2">
                     <span className="text-white text-lg">📎</span>
                     <div>
-                      <span className="text-sm text-white font-medium block">{selectedFile.name}</span>
+                      <span className="text-sm text-[#1e3237] font-medium block">{selectedFile.name}</span>
                     </div>
                   </div>
                   <button
