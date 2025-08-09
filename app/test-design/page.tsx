@@ -142,12 +142,12 @@ export default function TestDesignPage() {
       <section className="py-16 sm:py-20">
         <div className="max-w-[1200px] mx-auto px-4 sm:px-6">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            
+
             {/* Text Content - 576px max width */}
-            <div className="max-w-[576px]">
-              <div 
+            <div className="max-w-[576px] text-center">
+              <div
                 className="rounded-2xl p-8 shadow-lg"
-                style={{ backgroundColor: '#f6f8f9' }}
+                style={{ backgroundColor: '#146448' }}
               >
                 <h1 
                   className="leading-tight mb-6"
