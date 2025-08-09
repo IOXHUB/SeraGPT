@@ -301,12 +301,12 @@ export default function DashboardLayout({ children, title, subtitle }: Dashboard
       </div>
 
       {/* Mobile Sidebar */}
-      <div className={`fixed inset-y-0 left-0 z-50 w-72 bg-white border-r border-gray-200 transform transition-transform duration-300 ease-in-out lg:hidden ${
+      <div className={`fixed inset-y-0 left-0 z-50 w-72 bg-[#f6f8f9] border-r border-[#146448]/20 shadow-lg transform transition-transform duration-300 ease-in-out lg:hidden ${
         sidebarOpen ? 'translate-x-0' : '-translate-x-full'
       }`}>
         <div className="flex flex-col h-full">
           {/* Mobile Header */}
-          <div className="flex items-center justify-between h-16 px-4 border-b border-gray-200">
+          <div className="flex items-center justify-between h-16 px-4 border-b border-[#146448]/20">
             <SeraGPTLogo size="sm" priority />
             <button
               onClick={() => setSidebarOpen(false)}
