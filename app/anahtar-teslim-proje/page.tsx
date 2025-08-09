@@ -380,7 +380,7 @@ export default function AnahtarTeslimProjePage() {
         <div className="flex flex-col lg:flex-row gap-8">
           {/* Sidebar */}
           <div className="w-full lg:w-64 flex-shrink-0">
-            <div className="bg-white rounded-lg border border-gray-200 p-4">
+            <div className="bg-white rounded-lg border border-gray-200 p-4 shadow-lg">
               {sidebarSections.map((section) => (
                 <div key={section.id} className="mb-6">
                   <div className="flex items-center space-x-2 mb-3">
