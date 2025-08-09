@@ -75,7 +75,7 @@ export default function HelpPage() {
 
   return (
     <DashboardLayout>
-      <div className="min-h-screen bg-gray-50 text-gray-600">
+      <div className="min-h-screen bg-[#f6f8f9] text-[#1e3237]">
         <div className="max-w-4xl mx-auto space-y-8">
           {/* Page Header */}
           <motion.div
@@ -83,8 +83,8 @@ export default function HelpPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <h1 className="text-3xl font-bold text-gray-900">Yardım ve Destek</h1>
-            <p className="text-gray-600 mt-1">SeraGPT kullanımı hakkında rehberler ve sıkça sorulan sorular</p>
+            <h1 className="text-3xl font-bold text-[#1e3237]">Yardım ve Destek</h1>
+            <p className="text-[#1e3237]/70 mt-1">SeraGPT kullanımı hakkında rehberler ve sıkça sorulan sorular</p>
           </motion.div>
 
           {/* Tabs */}
@@ -92,15 +92,15 @@ export default function HelpPage() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="bg-white rounded-2xl shadow-sm border border-gray-200"
+            className="bg-[#f6f8f9] rounded-2xl shadow-lg border border-gray-200"
           >
             <div className="flex border-b border-gray-200">
               <button
                 onClick={() => setActiveTab('faq')}
                 className={`px-6 py-4 text-sm font-medium transition-colors ${
                   activeTab === 'faq'
-                    ? 'text-gray-900 border-b-2 border-gray-600'
-                    : 'text-gray-500 hover:text-gray-700'
+                    ? 'text-[#1e3237] border-b-2 border-[#146448]'
+                    : 'text-[#1e3237]/60 hover:text-[#1e3237]'
                 }`}
               >
                 Sıkça Sorulan Sorular
@@ -109,8 +109,8 @@ export default function HelpPage() {
                 onClick={() => setActiveTab('guide')}
                 className={`px-6 py-4 text-sm font-medium transition-colors ${
                   activeTab === 'guide'
-                    ? 'text-gray-900 border-b-2 border-gray-600'
-                    : 'text-gray-500 hover:text-gray-700'
+                    ? 'text-[#1e3237] border-b-2 border-[#146448]'
+                    : 'text-[#1e3237]/60 hover:text-[#1e3237]'
                 }`}
               >
                 Kullanım Rehberi
@@ -119,8 +119,8 @@ export default function HelpPage() {
                 onClick={() => setActiveTab('contact')}
                 className={`px-6 py-4 text-sm font-medium transition-colors ${
                   activeTab === 'contact'
-                    ? 'text-gray-900 border-b-2 border-gray-600'
-                    : 'text-gray-500 hover:text-gray-700'
+                    ? 'text-[#1e3237] border-b-2 border-[#146448]'
+                    : 'text-[#1e3237]/60 hover:text-[#1e3237]'
                 }`}
               >
                 İletişim
