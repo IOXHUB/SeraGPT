@@ -275,7 +275,7 @@ export default function TokensPage() {
         <div className="bg-white rounded-xl p-6 border border-[#146448]/10 shadow-lg">
           <div className="flex items-center justify-between">
             <div>
-              <h2 className="text-xl font-bold text-[#1e3237] mb-2">🧠 Mevcut Token Durumu</h2>
+              <h2 className="text-xl font-bold text-[#1e3237] mb-2">Mevcut Token Durumu</h2>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4">
                 <div className="text-center">
                   <p className="text-2xl font-bold text-[#146448]">{tokens?.remaining_tokens || 0}</p>
