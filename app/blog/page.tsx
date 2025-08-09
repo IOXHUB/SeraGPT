@@ -142,7 +142,7 @@ export default function BlogPage() {
                 <h2 className="text-2xl font-semibold text-[#1e3237] leading-tight group-hover:text-gray-700 transition-colors">
                   {featuredPost.title}
                 </h2>
-                <p className="text-gray-600 leading-relaxed">
+                <p className="text-[#1e3237]/70 leading-relaxed">
                   {featuredPost.excerpt}
                 </p>
               </div>
@@ -216,7 +216,7 @@ export default function BlogPage() {
                       <h3 className="text-lg font-semibold text-[#1e3237] group-hover:text-gray-700 transition-colors leading-tight">
                         {post.title}
                       </h3>
-                      <p className="text-gray-600 text-sm leading-relaxed">
+                      <p className="text-[#1e3237]/70 text-sm leading-relaxed">
                         {post.excerpt}
                       </p>
                     </div>
