@@ -111,6 +111,27 @@ export default function AIChatPage() {
   };
 
   const getWelcomeMessage = () => {
+    if (reportParam) {
+      const reportTitle = getReportTitle(reportParam);
+      return `🌱 Sera Uzmanınız burada! 👋
+
+**${reportTitle}** raporunuzu detaylı analiz ettim. Bu rapor üzerinden size değerli öneriler ve geliştirme fikirleri sunabilirim.
+
+**Bu raporda gördüklerim:**
+• Kapsamlı veri analizi ve hesaplamalar
+• Önemli fırsat alanları
+• Potansiyel iyileştirme noktaları
+• Risk faktörleri ve çözüm önerileri
+
+**Size nasıl yardımcı olabilirim?**
+• Rapordaki sonuçları detaylandıralım
+• Alternatif stratejiler geliştirelim
+• Maliyet optimizasyonu önerileri sunayım
+• Uygulama adımlarını planlayalım
+
+Hangi konuda derinlemesine konuşmak istersiniz?`;
+    }
+
     if (promptParam) {
       return `Merhaba! 👋
 
@@ -127,11 +148,18 @@ Daha önce başlattığınız sohbete devam ediyoruz. Kaldığımız yerden konu
 Bu konuda hangi detayları merak ediyorsunuz?`;
     }
 
-    return `Hoşgeldiniz! 👋
+    return `🌱 Sera Uzmanınız burada! 👋
 
-İsterseniz önce menüden oluşturduğunuz raporunuzu seçiniz. Üzerine derinlemesine bir sohbet bizi bekliyor.
+20+ yıllık sera deneyimi ve AI teknolojisini birleştirerek size en iyi tavsiyeleri sunuyorum.
 
-Size nasıl yardımcı olabilirim?`;
+**Yardımcı olabileceğim konular:**
+• Raporlarınızı analiz etme ve öneriler sunma
+• Sera yatırım danışmanlığı ve ROI optimizasyonu
+• İklim ve pazar koşulları değerlendirmesi
+• Ekipman seçimi ve teknoloji önerileri
+• Maliyet azaltma ve verimlilik artırma stratejileri
+
+Hangi konuda konuşmak istersiniz?`;
   };
 
   const getCustomPrompt = (prompt: string) => {
