@@ -225,16 +225,16 @@ export default function DanismanlikPage() {
               </Link>
             </div>
             <nav className="hidden md:flex space-x-8">
-              <Link href="/destek" className="text-gray-600 hover:text-[#1e3237] font-medium">
+              <Link href="/destek" className="text-[#1e3237]/70 hover:text-[#1e3237] font-medium">
                 Destek
               </Link>
-              <Link href="/danismanlik" className="text-gray-600 hover:text-[#1e3237] font-medium">
+              <Link href="/danismanlik" className="text-[#1e3237]/70 hover:text-[#1e3237] font-medium">
                 Danışmanlık
               </Link>
-              <Link href="/anahtar-teslim-proje" className="text-gray-600 hover:text-[#1e3237] font-medium">
+              <Link href="/anahtar-teslim-proje" className="text-[#1e3237]/70 hover:text-[#1e3237] font-medium">
                 Anahtar Teslim Sera
               </Link>
-              <Link href="/auth/login" className="text-gray-600 hover:text-[#1e3237] font-medium">
+              <Link href="/auth/login" className="text-[#1e3237]/70 hover:text-[#1e3237] font-medium">
                 Giriş Yap
               </Link>
             </nav>
@@ -355,7 +355,7 @@ export default function DanismanlikPage() {
                         className={`block w-full text-left px-3 py-2 text-sm rounded-lg transition-all duration-200 ${
                           activeSection === item.id
                             ? 'bg-blue-100 text-blue-900 font-medium'
-                            : 'text-gray-600 hover:text-[#1e3237] hover:bg-gray-50'
+                            : 'text-[#1e3237]/70 hover:text-[#1e3237] hover:bg-gray-50'
                         }`}
                       >
                         {item.title}
@@ -395,7 +395,7 @@ export default function DanismanlikPage() {
               </h1>
 
               {/* Description */}
-              <p className="text-lg text-gray-600 mb-8 leading-relaxed">
+              <p className="text-lg text-[#1e3237]/70 mb-8 leading-relaxed">
                 {currentContent.description}
               </p>
 
