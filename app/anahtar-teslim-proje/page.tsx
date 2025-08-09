@@ -447,7 +447,7 @@ export default function AnahtarTeslimProjePage() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.3, delay: index * 0.1 }}
-                    className="border-l-4 border-green-200 pl-6"
+                    className="border-l-4 border-[#146448] pl-6"
                   >
                     <h2 className="text-xl font-semibold text-[#1e3237] mb-4">
                       {step.title}
