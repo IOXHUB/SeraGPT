@@ -76,45 +76,61 @@ export default function TestNewPage() {
           <div className="max-w-[800px] mx-auto">
             {/* Main headline - Problem focused */}
             <div className="max-w-[576px] mx-auto mb-8">
-              <h1 
-                className="leading-tight"
-                style={{ 
-                  color: '#f6f8f9', 
-                  fontSize: '36px', 
-                  fontWeight: '600' 
+              <h1
+                className="leading-tight text-center"
+                style={{
+                  color: '#f6f8f9',
+                  fontSize: '36px',
+                  fontWeight: '600'
                 }}
               >
-                🚨 Sera Yatırımı Yapmak İstiyorum, Ama Nereden Başlayacağımı Bilmiyorum!
+                Sera Yatırımı Yapmak İstiyorum, Ama Nereden Başlayacağımı Bilmiyorum!
               </h1>
             </div>
 
             {/* Problem description */}
             <div className="max-w-[576px] mx-auto mb-12">
-              <p 
-                className="leading-relaxed"
-                style={{ 
-                  color: '#f6f8f9', 
-                  fontSize: '14px', 
-                  fontWeight: '400' 
+              <p
+                className="leading-relaxed text-center"
+                style={{
+                  color: '#f6f8f9',
+                  fontSize: '16px',
+                  fontWeight: '400'
                 }}
               >
                 Onlarca bitki türü, bilinmeyen iklim koşulları, yüksek maliyetler… Bir karar vermeden önce güvenilir bir analiz sunabilecek bir araca ihtiyacınız var, değil mi?
               </p>
             </div>
 
-            {/* CTA Button */}
-            <Link 
-              href="/auth/login" 
-              className="inline-block px-8 py-4 rounded-xl font-medium transition-all hover:opacity-90 mb-6"
-              style={{ 
-                backgroundColor: '#baf200', 
-                color: '#1e3237', 
-                fontSize: '14px', 
-                fontWeight: '600' 
+            {/* CTA Button with animated shadow */}
+            <div className="mb-6">
+              <Link
+                href="/auth/login"
+                className="inline-block px-8 py-4 rounded-xl font-medium transition-all hover:opacity-90 hover:scale-105 transform animate-pulse"
+                style={{
+                  backgroundColor: '#baf200',
+                  color: '#1e3237',
+                  fontSize: '16px',
+                  fontWeight: '600',
+                  boxShadow: '0 10px 25px rgba(186, 242, 0, 0.3), 0 0 20px rgba(186, 242, 0, 0.2)',
+                  animation: 'shadow-pulse 2s ease-in-out infinite alternate'
+                }}
+              >
+                60 Saniyede Sera Raporunu Al
+              </Link>
+            </div>
+
+            {/* Slogan */}
+            <p
+              className="text-center mb-12"
+              style={{
+                color: '#f6f8f9',
+                fontSize: '14px',
+                fontWeight: '400'
               }}
             >
-              ✅ 60 Saniyede Sera Raporunu Al
-            </Link>
+              Doğru yatırım, doğru analizle başlar.
+            </p>
 
             {/* Analysis simulation screen */}
             <div className="max-w-[800px] mx-auto mt-12">
