@@ -93,9 +93,9 @@ export default function TestDesignPage() {
         {isMobileMenuOpen && (
           <div className="md:hidden absolute top-full left-0 right-0 mt-2 px-4 sm:px-6 z-50">
             <div className="max-w-[1200px] mx-auto">
-              <div 
+              <div
                 className="rounded-2xl p-6 shadow-lg"
-                style={{ backgroundColor: '#f6f8f9' }}
+                style={{ backgroundColor: '#146448' }}
               >
                 <div className="space-y-4">
                   <Link 
