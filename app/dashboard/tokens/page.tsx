@@ -353,15 +353,15 @@ export default function TokensPage() {
         <div className="bg-white rounded-lg border border-[#146448]/10 p-4 shadow-lg">
           <div className="flex items-center space-x-4 text-sm">
             <div className="flex items-center space-x-2">
-              <span className="text-lg">🧠</span>
+              <div className="w-2 h-2 bg-[#146448] rounded-full"></div>
               <span className="text-[#1e3237]/70">Her rapor 1 token harcar</span>
             </div>
             <div className="flex items-center space-x-2">
-              <span className="text-lg">🤖</span>
+              <div className="w-2 h-2 bg-[#146448] rounded-full"></div>
               <span className="text-[#1e3237]/70">AI Asistan ücretsiz</span>
             </div>
             <div className="flex items-center space-x-2">
-              <span className="text-lg">📊</span>
+              <div className="w-2 h-2 bg-[#146448] rounded-full"></div>
               <span className="text-[#1e3237]/70">Tüm analizler aynı fiyat</span>
             </div>
           </div>
