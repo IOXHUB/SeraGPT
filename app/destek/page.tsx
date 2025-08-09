@@ -320,7 +320,7 @@ export default function DestekPage() {
 
           {/* Main Content */}
           <div className="flex-1">
-            <div className="bg-white rounded-lg border border-gray-200 p-8">
+            <div className="bg-white rounded-lg border border-gray-200 p-8 shadow-lg">
               {/* Breadcrumb */}
               <div className="text-sm text-gray-500 mb-6">
                 {currentContent.subtitle}
