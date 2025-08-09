@@ -268,7 +268,7 @@ export default function DashboardLayout({ children, title, subtitle }: Dashboard
                                     <a
                                       key={subSubItem.name}
                                       href={subSubItem.href}
-                                      className="flex items-center px-2 py-1.5 text-xs text-gray-400 hover:text-gray-600 hover:bg-gray-50 rounded transition-all"
+                                      className="flex items-center px-2 py-1.5 text-xs text-[#1e3237]/50 hover:text-[#146448] hover:bg-[#146448]/5 rounded transition-all"
                                       title={subSubItem.prompt}
                                     >
                                       <span className="text-xs mr-2">{subSubItem.icon}</span>
