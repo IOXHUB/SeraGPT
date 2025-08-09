@@ -245,13 +245,13 @@ Hangi konuda derinlemesine konuşmak istersiniz?`;
   if (loading) {
     return (
       <DashboardLayout>
-        <div className="flex items-center justify-center h-full bg-gradient-to-br from-orange-400 via-purple-500 to-blue-600">
-          <motion.div 
+        <div className="flex items-center justify-center h-full bg-[#146448]">
+          <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             className="text-center"
           >
-            <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-3xl flex items-center justify-center mx-auto mb-4">
+            <div className="w-16 h-16 bg-[#f6f8f9] rounded-3xl flex items-center justify-center mx-auto mb-4 shadow-lg">
               <motion.div
                 animate={{ rotate: 360 }}
                 transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
