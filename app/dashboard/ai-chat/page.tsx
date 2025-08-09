@@ -162,23 +162,32 @@ Bu konuda hangi detayları merak ediyorsunuz?`;
 Hangi konuda konuşmak istersiniz?`;
   };
 
+  const getReportTitle = (reportId: string) => {
+    const reportTitles = {
+      'demo-roi-001': 'Antalya Domates Serası ROI Analizi',
+      'demo-roi-002': 'Mersin Biber Serası Karlılık Analizi',
+      'demo-climate-001': 'İzmir İklim Uygunluk Analizi',
+      'demo-climate-002': 'Bursa Marul Üretimi İklim Raporu',
+      'demo-equipment-001': 'Hidroponik Sistem Ekipman Listesi',
+      'demo-equipment-002': 'Geleneksel Sera Ekipman Paketi',
+      'demo-market-001': 'Salatalık Pazar Fiyat Analizi',
+      'demo-layout-001': 'Modern Sera Layout Planı'
+    };
+    return reportTitles[reportId as keyof typeof reportTitles] || 'Analiz Raporu';
+  };
+
   const getCustomPrompt = (prompt: string) => {
     const prompts = {
-      'roi_report': 'Son ROI analiz raporum hakkında detaylı bilgi ver ve iyileştirme önerileri sun.',
-      'climate_report': 'İklim analiz raporum üzerinden derinlemesine analiz yapalım ve optimizasyon fırsatlarını değerlendirelim.',
-      'equipment_report': 'Ekipman listesi raporum için maliyet optimizasyonu ve alternatif öneriler üzerine konuşalım.',
-      'market_report': 'Pazar analizi raporum temelinde fırsat değerlendirmesi ve strateji önerileri alalım.',
-      'layout_report': 'Teknik plan raporum üzerine verimlilik artırma ve düzen optimizasyonu konuşalım.',
+      'roi_report': 'Bu ROI analiz raporundaki finansal projeksiyonları nasıl optimize edebilirim? Hangi faktörler geri dönüş süresini kısaltabilir?',
+      'climate_report': 'İklim raporum temelinde hangi dönemlerde en yüksek verimlilik elde edebilirim? Risk faktörlerini nasıl minimize ederim?',
+      'equipment_report': 'Ekipman listesindeki maliyetleri nasıl optimize edebilirim? Hangi ekipmanlar için alternatif çözümler var?',
+      'market_report': 'Pazar analizi sonuçlarına göre hangi stratejilerle daha yüksek kar elde edebilirim? Optimal satış zamanlaması nedir?',
+      'layout_report': 'Layout planımda verimlilik nasıl artırılabilir? Alan kullanımı için hangi iyileştirmeler önerirsiniz?',
       'cost_optimization': 'Sera işletmemde maliyet tasarrufu ve optimizasyon konularında önerilerinizi almak istiyorum.',
       'efficiency': 'Sera verimliliğimi artırmak için hangi stratejileri uygulayabilirim? Detaylı öneriler istiyorum.',
       'technology': 'Sera teknolojilerindeki son yenilikler ve bunları işletmeme entegre etme yolları nelerdir?',
       'marketing': 'Sera ürünlerimi pazarlama ve satış kanallarını geliştirme konusunda stratejik öneriler istiyorum.',
-      'sustainability': 'Sera işletmemi daha sürdürülebilir hale getirmek için çevre dostu çözümler önerir misin?',
-      'roi_calc': 'Önceki ROI hesaplama sohbetimize devam edelim.',
-      'climate_qa': 'İklim analizi üzerine yaptığımız sohbeti devam ettirelim.',
-      'equipment_rec': 'Ekipman önerileri konusundaki sohbetimizi sürdürelim.',
-      'marketing_strategy': 'Pazarlama stratejileri hakkındaki sohbetimize kaldığımız yerden devam edelim.',
-      'cost_analysis': 'Maliyet analizi tartışmamızı derinleştirmeye devam edelim.'
+      'sustainability': 'Sera işletmemi daha sürdürülebilir hale getirmek için çevre dostu çözümler önerir misin?'
     };
 
     return prompts[prompt as keyof typeof prompts] || '';
