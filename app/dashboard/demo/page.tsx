@@ -7,97 +7,67 @@ import DashboardLayout from '@/components/dashboard/DashboardLayout';
 export default function DemoDashboard() {
   const [activeTab, setActiveTab] = useState('overview');
 
-  const menuItems = [
-    { id: 'overview', name: 'Dashboard', icon: '📊' },
-    { id: 'ai', name: 'SeraGPT AI', icon: '🤖' },
-    { id: 'roi', name: 'ROI Simülasyonu', icon: '💰' },
-    { id: 'climate', name: 'İklim Analizi', icon: '🌡️' },
-    { id: 'equipment', name: 'Ekipman Listesi', icon: '🛠️' },
-    { id: 'market', name: 'Pazar Analizi', icon: '📈' },
-    { id: 'reports', name: 'Raporlarım', icon: '📋' },
-  ];
-
   const stats = [
     { name: 'Toplam Analiz', value: '24', change: '+12 bu hafta', changeType: 'positive' },
-    { name: 'Kullanılabilir Jeton', value: '156', change: '+89 bu ay', changeType: 'positive' },
+    { name: 'Kullanılabilir Token', value: '156', change: '+89 bu ay', changeType: 'positive' },
     { name: 'Projeler', value: '8', change: '+3 yeni', changeType: 'positive' },
     { name: 'Başarı Oranı', value: '94%', change: '+2.1%', changeType: 'positive' },
   ];
 
+  const features = [
+    {
+      title: 'AI Asistan',
+      description: 'AI destekli tarım danışmanınız',
+      href: '/dashboard/ai-chat'
+    },
+    {
+      title: 'ROI Analizi',
+      description: 'Yatırım geri dönüş hesaplamaları',
+      href: '/dashboard/analysis/roi'
+    },
+    {
+      title: 'İklim Analizi',
+      description: 'Bölgesel iklim değerlendirmesi',
+      href: '/dashboard/analysis/climate'
+    },
+    {
+      title: 'Ekipman Seçimi',
+      description: 'Optimal ekipman önerileri',
+      href: '/dashboard/analysis/equipment'
+    },
+    {
+      title: 'Pazar Analizi',
+      description: 'Ürün pazarı değerlendirmesi',
+      href: '/dashboard/analysis/market'
+    },
+    {
+      title: 'Teknik Planlar',
+      description: 'Sera yerleşim planlaması',
+      href: '/dashboard/analysis/layout'
+    }
+  ];
+
   return (
-    <div className="min-h-screen bg-gray-50 flex">
-      {/* Sidebar */}
-      <div className="w-64 bg-white shadow-sm">
-        <div className="p-6">
-          <img 
-            src="https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2F96da5382e9584c3fb2d32eca60944359?format=webp&width=800" 
-            alt="SeraGPT" 
-            className="h-8 w-auto"
-          />
-        </div>
-
-        <div className="px-6 py-4">
-          <div className="flex items-center space-x-3">
-            <div className="w-10 h-10 bg-green-600 rounded-full flex items-center justify-center">
-              <span className="text-white font-semibold text-lg">V</span>
-            </div>
-            <div>
-              <p className="text-sm font-medium text-gray-900">Volkan Şimşirkaya</p>
-              <p className="text-xs text-gray-500">info@isitmax.com</p>
-            </div>
-          </div>
-        </div>
-
-        <nav className="px-6 space-y-2">
-          {menuItems.map((item) => (
-            <button
-              key={item.id}
-              onClick={() => setActiveTab(item.id)}
-              className={`w-full flex items-center space-x-3 px-4 py-3 rounded-lg text-sm font-medium transition-colors ${
-                activeTab === item.id
-                  ? 'bg-blue-50 text-blue-700'
-                  : 'text-gray-700 hover:bg-gray-50 hover:text-gray-900'
-              }`}
-            >
-              <span>{item.icon}</span>
-              <span>{item.name}</span>
-            </button>
-          ))}
-        </nav>
-
-        <div className="mt-8 px-6 py-4 border-t border-gray-200">
-          <a
-            href="/admin"
-            className="w-full flex items-center space-x-3 px-4 py-3 rounded-lg text-sm font-medium text-purple-700 hover:bg-purple-50 transition-colors"
-          >
-            <span>👑</span>
-            <span>Admin Panel</span>
-          </a>
-        </div>
-      </div>
-
-      {/* Main Content */}
-      <div className="flex-1 p-8">
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">Dashboard</h1>
-          <p className="text-gray-600">SeraGPT ile tarımsal analizlerinizi yönetin</p>
-        </div>
-
-        {/* Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+    <DashboardLayout 
+      title="Demo Dashboard" 
+      subtitle="SeraGPT ile tarımsal analizlerinizi yönetin"
+    >
+      <div className="space-y-8">
+        {/* Stats Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {stats.map((stat, index) => (
             <motion.div
               key={stat.name}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-white p-6 rounded-lg shadow"
+              className="bg-white p-6 rounded-xl shadow-lg border border-[#146448]/10"
             >
-              <h3 className="text-sm font-medium text-gray-500">{stat.name}</h3>
+              <h3 className="text-sm font-medium text-[#1e3237]/70">{stat.name}</h3>
               <div className="mt-2 flex items-baseline">
-                <p className="text-2xl font-semibold text-gray-900">{stat.value}</p>
+                <p className="text-2xl font-bold text-[#1e3237]">{stat.value}</p>
                 <p className={`ml-2 text-sm ${
-                  stat.changeType === 'positive' ? 'text-green-600' : 'text-red-600'
+                  stat.changeType === 'positive' ? 'text-[#146448]' : 'text-red-600'
                 }`}>
                   {stat.change}
                 </p>
@@ -106,97 +76,100 @@ export default function DemoDashboard() {
           ))}
         </div>
 
-        {/* Content based on active tab */}
-        <div className="bg-white rounded-lg shadow p-6">
-          {activeTab === 'overview' && (
-            <div>
-              <h2 className="text-xl font-semibold mb-4">Hoş Geldiniz!</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div className="p-4 border border-gray-200 rounded-lg">
-                  <h3 className="font-medium text-gray-900 mb-2">🤖 SeraGPT AI</h3>
-                  <p className="text-sm text-gray-600 mb-3">AI destekli tarım danışmanınız</p>
-                  <button className="text-blue-600 hover:text-blue-700 text-sm font-medium">
-                    Başla →
-                  </button>
-                </div>
-                <div className="p-4 border border-gray-200 rounded-lg">
-                  <h3 className="font-medium text-gray-900 mb-2">💰 ROI Analizi</h3>
-                  <p className="text-sm text-gray-600 mb-3">Yatırım geri dönüş hesaplamaları</p>
-                  <button className="text-blue-600 hover:text-blue-700 text-sm font-medium">
-                    Hesapla →
-                  </button>
-                </div>
-                <div className="p-4 border border-gray-200 rounded-lg">
-                  <h3 className="font-medium text-gray-900 mb-2">🌡️ İklim Analizi</h3>
-                  <p className="text-sm text-gray-600 mb-3">Bölgesel iklim verileri</p>
-                  <button className="text-blue-600 hover:text-blue-700 text-sm font-medium">
-                    Analiz Et →
-                  </button>
-                </div>
-              </div>
-            </div>
-          )}
-
-          {activeTab === 'ai' && (
-            <div>
-              <h2 className="text-xl font-semibold mb-4">🤖 SeraGPT AI</h2>
-              <div className="bg-gray-50 rounded-lg p-6">
-                <p className="text-gray-600 mb-4">AI destekli tarım danışmanınızla sohbet edin</p>
-                <div className="bg-white rounded-lg p-4 mb-4">
-                  <p className="text-sm text-gray-500 mb-2">SeraGPT:</p>
-                  <p className="text-gray-700">Merhaba! Size nasıl yardımcı olabilirim? Sera kurulumu, ürün seçimi veya iklim analizi hakkında sorularınızı yanıtlayabilirim.</p>
-                </div>
-                <div className="flex space-x-2">
-                  <input
-                    type="text"
-                    placeholder="Sorunuzu yazın..."
-                    className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  />
-                  <button className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700">
-                    Gönder
-                  </button>
-                </div>
-              </div>
-            </div>
-          )}
-
-          {activeTab !== 'overview' && activeTab !== 'ai' && (
-            <div className="text-center py-12">
-              <h2 className="text-xl font-semibold mb-4">{menuItems.find(item => item.id === activeTab)?.name}</h2>
-              <p className="text-gray-600 mb-6">Bu bölüm yakında kullanıma sunulacak.</p>
-              <button 
-                onClick={() => setActiveTab('overview')}
-                className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700"
+        {/* Quick Actions */}
+        <div>
+          <h2 className="text-xl font-bold text-[#1e3237] mb-6">Hızlı Başlat</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {features.map((feature, index) => (
+              <motion.a
+                key={feature.title}
+                href={feature.href}
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.3, delay: index * 0.1 }}
+                className="bg-white p-6 rounded-xl shadow-lg border border-[#146448]/10 hover:shadow-xl hover:border-[#146448]/20 transition-all duration-200 group"
               >
-                Dashboard'a Dön
-              </button>
-            </div>
-          )}
+                <h3 className="font-semibold text-[#1e3237] mb-2 group-hover:text-[#146448] transition-colors">
+                  {feature.title}
+                </h3>
+                <p className="text-sm text-[#1e3237]/70 mb-4">{feature.description}</p>
+                <div className="flex items-center text-[#146448] text-sm font-medium">
+                  <span>Başla</span>
+                  <svg className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </div>
+              </motion.a>
+            ))}
+          </div>
         </div>
 
-        {/* Quick Access */}
-        <div className="mt-8 p-6 bg-white rounded-lg shadow">
-          <h3 className="text-lg font-semibold mb-4">🚀 Hızlı Erişim</h3>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <a href="/auth/login" className="p-4 text-center border border-gray-200 rounded-lg hover:bg-gray-50">
-              <div className="text-2xl mb-2">🔐</div>
-              <div className="text-sm font-medium">Login Sayfası</div>
-            </a>
-            <a href="/admin" className="p-4 text-center border border-gray-200 rounded-lg hover:bg-gray-50">
-              <div className="text-2xl mb-2">👑</div>
-              <div className="text-sm font-medium">Admin Panel</div>
-            </a>
-            <a href="/dashboard" className="p-4 text-center border border-gray-200 rounded-lg hover:bg-gray-50">
-              <div className="text-2xl mb-2">📊</div>
-              <div className="text-sm font-medium">Ana Dashboard</div>
-            </a>
-            <a href="/auth/debug-supabase" className="p-4 text-center border border-gray-200 rounded-lg hover:bg-gray-50">
-              <div className="text-2xl mb-2">🔧</div>
-              <div className="text-sm font-medium">Debug</div>
-            </a>
+        {/* Recent Activity */}
+        <div>
+          <h2 className="text-xl font-bold text-[#1e3237] mb-6">Son Aktiviteler</h2>
+          <div className="bg-white rounded-xl shadow-lg border border-[#146448]/10 p-6">
+            <div className="space-y-4">
+              {[
+                { action: 'ROI analizi tamamlandı', time: '2 saat önce', status: 'completed' },
+                { action: 'İklim analizi başlatıldı', time: '4 saat önce', status: 'in-progress' },
+                { action: 'Yeni proje oluşturuldu', time: '1 gün önce', status: 'completed' },
+                { action: 'Token paketi satın alındı', time: '2 gün önce', status: 'completed' }
+              ].map((activity, index) => (
+                <div key={index} className="flex items-center justify-between py-3 border-b border-gray-100 last:border-b-0">
+                  <div className="flex items-center space-x-3">
+                    <div className={`w-2 h-2 rounded-full ${
+                      activity.status === 'completed' ? 'bg-[#146448]' : 'bg-[#baf200]'
+                    }`}></div>
+                    <span className="text-[#1e3237]">{activity.action}</span>
+                  </div>
+                  <span className="text-sm text-[#1e3237]/60">{activity.time}</span>
+                </div>
+              ))}
+            </div>
+            
+            <div className="mt-6 pt-4 border-t border-gray-100">
+              <a 
+                href="/dashboard/analytics"
+                className="text-[#146448] text-sm font-medium hover:text-[#146448]/80 transition-colors"
+              >
+                Tüm aktiviteleri görüntüle →
+              </a>
+            </div>
+          </div>
+        </div>
+
+        {/* Help Section */}
+        <div className="bg-gradient-to-r from-[#146448]/5 to-[#baf200]/5 rounded-xl p-6 border border-[#146448]/10">
+          <div className="flex items-start space-x-4">
+            <div className="w-12 h-12 bg-[#146448]/10 rounded-full flex items-center justify-center flex-shrink-0">
+              <svg className="w-6 h-6 text-[#146448]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <div className="flex-1">
+              <h3 className="font-semibold text-[#1e3237] mb-2">Yardıma mı ihtiyacınız var?</h3>
+              <p className="text-[#1e3237]/70 text-sm mb-4">
+                SeraGPT kullanımı hakkında sorularınız varsa veya teknik destek almak istiyorsanız, 
+                yardım merkezimizi ziyaret edebilir veya doğrudan bizimle iletişime geçebilirsiniz.
+              </p>
+              <div className="flex space-x-3">
+                <a 
+                  href="/dashboard/help"
+                  className="bg-[#146448] text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-[#146448]/90 transition-colors"
+                >
+                  Yardım Merkezi
+                </a>
+                <a 
+                  href="/destek"
+                  className="bg-[#baf200] text-[#1e3237] px-4 py-2 rounded-lg text-sm font-medium hover:bg-[#baf200]/90 transition-colors"
+                >
+                  İletişim
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </DashboardLayout>
   );
 }
