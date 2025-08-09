@@ -13,7 +13,7 @@ export default function DanismanlikPage() {
 
   const sidebarSections = [
     {
-      title: 'Proje Danışmanl��ğı',
+      title: 'Proje Danışmanlığı',
       id: 'consulting',
       icon: '🎯',
       items: [
@@ -429,7 +429,7 @@ export default function DanismanlikPage() {
               </div>
 
               {/* Next Steps */}
-              <div className="mt-12 p-6 bg-blue-50 rounded-lg">
+              <div className="mt-12 p-6 bg-[#146448]/10 rounded-lg">
                 <h3 className="font-semibold text-[#1e3237] mb-4">Sonraki Adımlar</h3>
                 <div className="space-y-2">
                   <p className="text-gray-700">
