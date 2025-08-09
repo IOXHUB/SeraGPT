@@ -435,7 +435,7 @@ Hangi konuda derinlemesine konuşmak istersiniz?`;
                               if (line.trim().match(/^\*\*.+\*\*$/)) {
                                 return (
                                   <div key={lineIndex} className={`font-bold text-base mb-3 mt-4 first:mt-0 ${
-                                    message.role === 'user' ? 'text-white' : 'text-gray-900'
+                                    message.role === 'user' ? 'text-[#1e3237]' : 'text-[#1e3237]'
                                   }`}>
                                     {line.replace(/\*\*/g, '')}
                                   </div>
