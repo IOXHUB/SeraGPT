@@ -515,7 +515,7 @@ export default function TokensPage() {
               </div>
               
               <div className="p-4 bg-orange-50 rounded-lg border border-orange-200">
-                <h4 className="font-medium text-orange-900 mb-2">⏰ Süre Uyarısı</h4>
+                <h4 className="font-medium text-orange-900 mb-2">Süre Uyarısı</h4>
                 <p className="text-sm text-orange-800">
                   Token'lerinizin son kullanma tarihi var. Vaktinde kullanmayı unutmayın!
                 </p>
