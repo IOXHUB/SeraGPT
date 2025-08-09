@@ -646,6 +646,194 @@ export default function TestNewPage() {
         </div>
       </section>
 
+      {/* 4.5. 📋 Proje Danışmanlık Hizmetimiz */}
+      <section className="py-20">
+        <div className="max-w-[1200px] mx-auto px-6 text-center">
+          <div className="max-w-[800px] mx-auto">
+            {/* Main title */}
+            <div className="max-w-[576px] mx-auto mb-16">
+              <h2
+                className="leading-tight text-center mb-12"
+                style={{
+                  color: '#f6f8f9',
+                  fontSize: '36px',
+                  fontWeight: '600'
+                }}
+              >
+                Proje Danışmanlık Hizmetimiz
+              </h2>
+            </div>
+
+            {/* Consultation Packages */}
+            <div className="grid lg:grid-cols-2 gap-12 mb-16 max-w-[1000px] mx-auto">
+              {/* Package 1: Ön Fizibilite */}
+              <div className="text-left">
+                <div
+                  className="bg-white/5 rounded-xl p-8 border-2"
+                  style={{ borderColor: '#baf200' }}
+                >
+                  <h3
+                    className="mb-6 text-center"
+                    style={{
+                      color: '#baf200',
+                      fontSize: '24px',
+                      fontWeight: '600'
+                    }}
+                  >
+                    1. Ön Fizibilite Paketi
+                  </h3>
+
+                  <div className="space-y-4 mb-8">
+                    <div className="flex items-start space-x-3">
+                      <span style={{ color: '#baf200', fontSize: '16px' }}>•</span>
+                      <p style={{ color: '#f6f8f9', fontSize: '16px', fontWeight: '400' }}>
+                        Lokasyon, iklim ve ürün analizi
+                      </p>
+                    </div>
+                    <div className="flex items-start space-x-3">
+                      <span style={{ color: '#baf200', fontSize: '16px' }}>•</span>
+                      <p style={{ color: '#f6f8f9', fontSize: '16px', fontWeight: '400' }}>
+                        Tahmini yatırım maliyeti
+                      </p>
+                    </div>
+                    <div className="flex items-start space-x-3">
+                      <span style={{ color: '#baf200', fontSize: '16px' }}>•</span>
+                      <p style={{ color: '#f6f8f9', fontSize: '16px', fontWeight: '400' }}>
+                        Beklenen ROI (yatırım geri dönüş süresi)
+                      </p>
+                    </div>
+                    <div className="flex items-start space-x-3">
+                      <span style={{ color: '#baf200', fontSize: '16px' }}>•</span>
+                      <p style={{ color: '#f6f8f9', fontSize: '16px', fontWeight: '400' }}>
+                        Uygun sera tipleri önerisi
+                      </p>
+                    </div>
+                    <div className="flex items-start space-x-3">
+                      <span style={{ color: '#baf200', fontSize: '16px' }}>•</span>
+                      <p style={{ color: '#f6f8f9', fontSize: '16px', fontWeight: '400' }}>
+                        Devlet teşvik ve hibe uygunluğu değerlendirmesi
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="border-t border-white/20 pt-6">
+                    <div className="flex justify-between items-center mb-2">
+                      <span style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '500' }}>
+                        Teslim Süresi:
+                      </span>
+                      <span style={{ color: '#baf200', fontSize: '14px', fontWeight: '600' }}>
+                        5 iş günü
+                      </span>
+                    </div>
+                    <div className="mt-4">
+                      <p style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '400' }}>
+                        <strong style={{ color: '#baf200' }}>Amaç:</strong> Yatırımcıya "başlamaya değer mi?" sorusunun cevabını vermek
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Package 2: Teknik Projelendirme */}
+              <div className="text-left">
+                <div
+                  className="bg-white/5 rounded-xl p-8 border-2"
+                  style={{ borderColor: '#baf200' }}
+                >
+                  <h3
+                    className="mb-6 text-center"
+                    style={{
+                      color: '#baf200',
+                      fontSize: '24px',
+                      fontWeight: '600'
+                    }}
+                  >
+                    2. Teknik Projelendirme Paketi
+                  </h3>
+
+                  <div className="space-y-4 mb-8">
+                    <div className="flex items-start space-x-3">
+                      <span style={{ color: '#baf200', fontSize: '16px' }}>•</span>
+                      <p style={{ color: '#f6f8f9', fontSize: '16px', fontWeight: '400' }}>
+                        Ön Fizibilite + detaylı teknik çizimler
+                      </p>
+                    </div>
+                    <div className="flex items-start space-x-3">
+                      <span style={{ color: '#baf200', fontSize: '16px' }}>•</span>
+                      <p style={{ color: '#f6f8f9', fontSize: '16px', fontWeight: '400' }}>
+                        Ekipman listesi ve marka/model önerileri
+                      </p>
+                    </div>
+                    <div className="flex items-start space-x-3">
+                      <span style={{ color: '#baf200', fontSize: '16px' }}>•</span>
+                      <p style={{ color: '#f6f8f9', fontSize: '16px', fontWeight: '400' }}>
+                        Isıtma, soğutma, sulama, otomasyon projeleri
+                      </p>
+                    </div>
+                    <div className="flex items-start space-x-3">
+                      <span style={{ color: '#baf200', fontSize: '16px' }}>•</span>
+                      <p style={{ color: '#f6f8f9', fontSize: '16px', fontWeight: '400' }}>
+                        Enerji ve su tüketim hesapları
+                      </p>
+                    </div>
+                    <div className="flex items-start space-x-3">
+                      <span style={{ color: '#baf200', fontSize: '16px' }}>•</span>
+                      <p style={{ color: '#f6f8f9', fontSize: '16px', fontWeight: '400' }}>
+                        Üretim kapasitesi planı
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="border-t border-white/20 pt-6">
+                    <div className="flex justify-between items-center mb-2">
+                      <span style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '500' }}>
+                        Teslim Süresi:
+                      </span>
+                      <span style={{ color: '#baf200', fontSize: '14px', fontWeight: '600' }}>
+                        10–15 iş günü
+                      </span>
+                    </div>
+                    <div className="mt-4">
+                      <p style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '400' }}>
+                        <strong style={{ color: '#baf200' }}>Amaç:</strong> Yatırımın tüm teknik altyapısını netleştirmek
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* CTA Button */}
+            <div className="mb-6">
+              <Link
+                href="/danismanlik"
+                className="hero-cta-button inline-block px-8 py-4 rounded-xl font-medium transition-all hover:opacity-90 hover:scale-105 transform"
+                style={{
+                  backgroundColor: '#baf200',
+                  color: '#1e3237',
+                  fontSize: '16px',
+                  fontWeight: '600'
+                }}
+              >
+                DANIŞMANLIK TALEBİ OLUŞTUR
+              </Link>
+            </div>
+
+            {/* Bottom note */}
+            <p
+              className="text-center"
+              style={{
+                color: '#f6f8f9',
+                fontSize: '14px',
+                fontWeight: '400'
+              }}
+            >
+              Profesyonel danışmanlık ile doğru adımları atın.
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* 5. 🎁 Sürprizimiz Var */}
       <section className="py-16">
         <div className="max-w-[1200px] mx-auto px-6 text-center">
