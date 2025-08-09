@@ -263,10 +263,14 @@ export default function TestNewPage() {
             {/* AI Icon with animated shadow */}
             <div className="flex justify-center mb-6">
               <div
-                className="ai-icon-animated w-16 h-16 rounded-full flex items-center justify-center text-3xl"
-                style={{ backgroundColor: '#baf200', color: '#1e3237' }}
+                className="ai-icon-animated w-16 h-16 rounded-2xl flex items-center justify-center overflow-hidden"
+                style={{ backgroundColor: '#baf200' }}
               >
-                🤖
+                <img
+                  src="https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2F7bea4b82baf14e29a0d5bf80ccec9613?format=webp&width=800"
+                  alt="AI Icon"
+                  className="w-full h-full object-cover"
+                />
               </div>
             </div>
 
