@@ -358,7 +358,7 @@ export default function SettingsPage() {
                 <button
                   onClick={handleSaveProfile}
                   disabled={saving === 'profile'}
-                  className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center"
+                  className="px-6 py-3 bg-[#baf200] text-[#1e3237] rounded-lg hover:bg-[#baf200]/90 font-medium disabled:opacity-50 disabled:cursor-not-allowed flex items-center"
                 >
                   {saving === 'profile' ? (
                     <>
@@ -458,7 +458,7 @@ export default function SettingsPage() {
                 <button
                   onClick={handleSaveProfile}
                   disabled={saving === 'profile'}
-                  className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center"
+                  className="px-6 py-3 bg-[#baf200] text-[#1e3237] rounded-lg hover:bg-[#baf200]/90 font-medium disabled:opacity-50 disabled:cursor-not-allowed flex items-center"
                 >
                   {saving === 'profile' ? (
                     <>
@@ -572,7 +572,7 @@ export default function SettingsPage() {
                   <button
                     onClick={handleSavePreferences}
                     disabled={saving === 'preferences'}
-                    className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center"
+                    className="px-6 py-3 bg-[#baf200] text-[#1e3237] rounded-lg hover:bg-[#baf200]/90 font-medium disabled:opacity-50 disabled:cursor-not-allowed flex items-center"
                   >
                     {saving === 'preferences' ? (
                       <>
@@ -688,7 +688,7 @@ export default function SettingsPage() {
                   <button
                     onClick={handleSavePreferences}
                     disabled={saving === 'preferences'}
-                    className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center"
+                    className="px-6 py-3 bg-[#baf200] text-[#1e3237] rounded-lg hover:bg-[#baf200]/90 font-medium disabled:opacity-50 disabled:cursor-not-allowed flex items-center"
                   >
                     {saving === 'preferences' ? (
                       <>
@@ -797,7 +797,7 @@ export default function SettingsPage() {
                   <button
                     onClick={handleSavePreferences}
                     disabled={saving === 'preferences'}
-                    className="mt-4 px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="mt-4 px-6 py-2 bg-[#baf200] text-[#1e3237] rounded-lg hover:bg-[#baf200]/90 font-medium disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     Gizlilik Tercihlerini Kaydet
                   </button>
