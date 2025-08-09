@@ -393,9 +393,11 @@ export default function TokensPage() {
                   <p className="text-[#1e3237]/70 text-sm mb-4">{pkg.description}</p>
                   
                   <div className="text-center mb-4">
-                    <div className="text-2xl font-bold text-[#146448] mb-2 flex items-center justify-center">
-                      <span className="mr-2">🧠</span>
-                      {pkg.tokens}
+                    <div className="text-center mb-4">
+                      <div className="text-3xl font-bold text-[#146448] mb-1">
+                        {pkg.tokens}
+                      </div>
+                      <div className="text-sm text-[#1e3237]/60">Token</div>
                     </div>
                     <div className="flex items-center justify-center space-x-2">
                       {pkg.price === 0 ? (
