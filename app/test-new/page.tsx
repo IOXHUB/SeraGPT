@@ -674,18 +674,64 @@ export default function TestNewPage() {
               </p>
             </div>
 
-            {/* Blog mockup visual */}
-            <div className="max-w-[600px] mx-auto mb-8">
-              <div className="rounded-2xl p-8 shadow-lg" style={{ backgroundColor: '#f6f8f9' }}>
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="bg-gray-100 h-24 rounded-lg flex items-center justify-center">
-                    <span style={{ color: '#1e3237', fontSize: '14px' }}>📄 PDF Rehber</span>
+            {/* Image Gallery - 900px with horizontal scrolling */}
+            <div className="max-w-[900px] mx-auto mb-8 relative">
+              <div className="overflow-x-auto scrollbar-hide" id="gallery-container">
+                <div className="flex space-x-4 pb-4" style={{ width: 'fit-content' }}>
+                  <div className="flex-shrink-0 w-[580px] h-[300px] rounded-xl overflow-hidden">
+                    <img
+                      src="https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2Fd2a7df13e2bd48f794cea5b31b5b1c8c"
+                      alt="Sera Projesi 1"
+                      className="w-full h-full object-cover"
+                    />
                   </div>
-                  <div className="bg-gray-100 h-24 rounded-lg flex items-center justify-center">
-                    <span style={{ color: '#1e3237', fontSize: '14px' }}>📖 Blog Yazıları</span>
+                  <div className="flex-shrink-0 w-[580px] h-[300px] rounded-xl overflow-hidden">
+                    <div className="w-full h-full bg-gradient-to-br from-green-400 via-green-500 to-green-600 flex items-center justify-center">
+                      <div className="text-center text-white">
+                        <div className="text-4xl mb-2">🌱</div>
+                        <p className="text-lg font-semibold">Domates Serası</p>
+                        <p className="text-sm opacity-90">Antalya - 5000m²</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex-shrink-0 w-[580px] h-[300px] rounded-xl overflow-hidden">
+                    <div className="w-full h-full bg-gradient-to-br from-blue-400 via-blue-500 to-blue-600 flex items-center justify-center">
+                      <div className="text-center text-white">
+                        <div className="text-4xl mb-2">🥒</div>
+                        <p className="text-lg font-semibold">Salatalık Serası</p>
+                        <p className="text-sm opacity-90">İzmir - 3000m²</p>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
+
+              {/* Navigation Arrows */}
+              <button
+                className="absolute left-4 top-1/2 transform -translate-y-1/2 w-10 h-10 rounded-full flex items-center justify-center transition-all hover:scale-110"
+                style={{ backgroundColor: '#baf200' }}
+                onClick={() => {
+                  const container = document.getElementById('gallery-container');
+                  container?.scrollBy({ left: -300, behavior: 'smooth' });
+                }}
+              >
+                <svg className="w-6 h-6" style={{ color: '#1e3237' }} fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clipRule="evenodd" />
+                </svg>
+              </button>
+
+              <button
+                className="absolute right-4 top-1/2 transform -translate-y-1/2 w-10 h-10 rounded-full flex items-center justify-center transition-all hover:scale-110"
+                style={{ backgroundColor: '#baf200' }}
+                onClick={() => {
+                  const container = document.getElementById('gallery-container');
+                  container?.scrollBy({ left: 300, behavior: 'smooth' });
+                }}
+              >
+                <svg className="w-6 h-6" style={{ color: '#1e3237' }} fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
+                </svg>
+              </button>
             </div>
 
             <Link 
