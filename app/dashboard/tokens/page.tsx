@@ -257,7 +257,7 @@ export default function TokensPage() {
         <div className="flex items-center justify-center min-h-64">
           <div className="text-center">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-            <p className="text-gray-600">Token bilgileri y��kleniyor...</p>
+            <p className="text-gray-600">Token bilgileri yükleniyor...</p>
           </div>
         </div>
       </DashboardLayout>
@@ -453,8 +453,8 @@ export default function TokensPage() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           
           {/* Usage History */}
-          <div className="bg-white rounded-xl p-6 border border-gray-200">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">📊 Kullanım Geçmişi</h3>
+          <div className="bg-[#f6f8f9] rounded-xl p-6 border border-gray-200 shadow-lg">
+            <h3 className="text-lg font-semibold text-[#1e3237] mb-4">📊 Kullanım Geçmişi</h3>
             
             {tokenHistory.length > 0 ? (
               <div className="space-y-3 max-h-64 overflow-y-auto">
