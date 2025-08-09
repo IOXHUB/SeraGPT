@@ -560,7 +560,7 @@ Hangi konuda derinlemesine konuşmak istersiniz?`;
                   </div>
                   <button
                     onClick={() => setSelectedFile(null)}
-                    className="text-white/70 hover:text-white p-1"
+                    className="text-[#1e3237]/70 hover:text-[#1e3237] p-1"
                   >
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
