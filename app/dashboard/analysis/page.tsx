@@ -104,7 +104,7 @@ export default function AnalysesListPage() {
       <DashboardLayout title="Analizlerim" subtitle="Oluşturduğunuz analiz raporları">
         <div className="space-y-4">
           {[1, 2, 3].map(i => (
-            <div key={i} className="bg-white rounded-lg border p-6 animate-pulse">
+            <div key={i} className="bg-[#f6f8f9] rounded-lg border p-6 animate-pulse shadow-lg">
               <div className="flex items-center space-x-4">
                 <div className="w-12 h-12 bg-gray-200 rounded-lg"></div>
                 <div className="flex-1">
