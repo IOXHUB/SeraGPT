@@ -534,7 +534,7 @@ export default function TestNewPage() {
                   <p style={{ color: '#f6f8f9' }}>Yerinde keşif ve teknik analiz (ISITMAX)</p>
                   <p style={{ color: '#f6f8f9' }}>Statik & yapısal proje çizimleri</p>
                   <p style={{ color: '#f6f8f9' }}>XXXXX menşeli otomasyon, ekipman ve kurulum hizmeti</p>
-                  <p style={{ color: '#f6f8f9' }}>ISITMAX süpervizörlüğünde şantiye yönetimi</p>
+                  <p style={{ color: '#f6f8f9' }}>ISITMAX s��pervizörlüğünde şantiye yönetimi</p>
                   <p style={{ color: '#f6f8f9' }}>Tam kapsamlı fiyat teklifi ve mühendislik dosyası (PDF)</p>
                 </div>
               </div>
@@ -1251,6 +1251,92 @@ export default function TestNewPage() {
               >
                 📝 Danışmanlık Formunu Doldurun
               </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 8. 💪 Final CTA Section */}
+      <section className="py-20">
+        <div className="max-w-[1200px] mx-auto px-6 text-center">
+          <div className="max-w-[800px] mx-auto">
+            {/* Inspiring title */}
+            <div className="max-w-[576px] mx-auto mb-8">
+              <h2
+                className="leading-tight text-center mb-8"
+                style={{
+                  color: '#f6f8f9',
+                  fontSize: '36px',
+                  fontWeight: '600'
+                }}
+              >
+                Vizyonunuza ve Azminize Hayranız.
+              </h2>
+            </div>
+
+            {/* Motivational message */}
+            <div className="max-w-[576px] mx-auto mb-8">
+              <p
+                className="leading-relaxed text-center mb-6"
+                style={{
+                  color: '#f6f8f9',
+                  fontSize: '20px',
+                  fontWeight: '400'
+                }}
+              >
+                Siz ürettikçe bu ülke büyür. Biz de yatırımınızı güçlendirecek doğru verileri, mühendisliği ve yapay zekâyı bir araya getiriyoruz.
+              </p>
+
+              <p
+                className="leading-relaxed text-center"
+                style={{
+                  color: '#f6f8f9',
+                  fontSize: '18px',
+                  fontWeight: '400'
+                }}
+              >
+                Hemen raporunuzu oluşturun, geleceğinizi şekillendirin.
+              </p>
+            </div>
+
+            {/* Final CTA Button */}
+            <div className="mb-8">
+              <Link
+                href="/auth/login"
+                className="hero-cta-button inline-block px-12 py-5 rounded-xl font-medium transition-all hover:opacity-90 hover:scale-105 transform"
+                style={{
+                  backgroundColor: '#baf200',
+                  color: '#1e3237',
+                  fontSize: '18px',
+                  fontWeight: '600'
+                }}
+              >
+                Ücretsiz Rapor Al
+              </Link>
+            </div>
+
+            {/* Supporting visual element */}
+            <div className="max-w-[600px] mx-auto">
+              <div className="flex justify-center items-center space-x-6 opacity-80">
+                <div className="text-center">
+                  <div className="text-3xl mb-2">🌱</div>
+                  <p style={{ color: '#f6f8f9', fontSize: '12px', fontWeight: '400' }}>
+                    Doğru Yatırım
+                  </p>
+                </div>
+                <div className="text-center">
+                  <div className="text-3xl mb-2">📊</div>
+                  <p style={{ color: '#f6f8f9', fontSize: '12px', fontWeight: '400' }}>
+                    Doğru Analiz
+                  </p>
+                </div>
+                <div className="text-center">
+                  <div className="text-3xl mb-2">🚀</div>
+                  <p style={{ color: '#f6f8f9', fontSize: '12px', fontWeight: '400' }}>
+                    Doğru Gelecek
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
