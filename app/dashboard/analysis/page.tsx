@@ -135,7 +135,7 @@ export default function AnalysesListPage() {
             <div className="text-sm text-[#1e3237]/70">Tamamlanan</div>
           </div>
           <div className="bg-[#f6f8f9] rounded-lg border p-4 shadow-lg">
-            <div className="text-2xl font-bold text-blue-600">
+            <div className="text-2xl font-bold text-[#baf200]">
               {analyses.filter(a => a.status === 'in_progress').length}
             </div>
             <div className="text-sm text-[#1e3237]/70">İşleniyor</div>
@@ -250,7 +250,7 @@ export default function AnalysesListPage() {
                             href={`/dashboard/reports/${analysis.type}/${analysis.id}`}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-blue-600 hover:text-blue-800 text-sm font-medium"
+                            className="text-[#baf200] hover:text-blue-800 text-sm font-medium"
                           >
                             Görüntüle
                           </a>
