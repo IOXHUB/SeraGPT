@@ -427,12 +427,12 @@ export default function DashboardLayout({ children, title, subtitle }: Dashboard
         sidebarCollapsed ? 'lg:ml-16' : 'lg:ml-64'
       }`}>
         {/* Top Header */}
-        <header className="bg-white border-b border-gray-200 sticky top-0 z-30">
+        <header className="bg-[#f6f8f9] border-b border-[#146448]/20 sticky top-0 z-30 shadow-sm">
           <div className="flex items-center justify-between h-16 px-4 lg:px-6">
             <div className="flex items-center min-w-0 flex-1">
               <button
                 onClick={() => setSidebarOpen(true)}
-                className="lg:hidden p-2 rounded-md text-gray-400 hover:text-gray-600 mr-3 flex-shrink-0"
+                className="lg:hidden p-2 rounded-md text-[#1e3237]/60 hover:text-[#146448] hover:bg-[#146448]/10 mr-3 flex-shrink-0 transition-colors"
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
@@ -441,12 +441,12 @@ export default function DashboardLayout({ children, title, subtitle }: Dashboard
 
               <div className="min-w-0">
                 <div className="flex items-center space-x-3">
-                  <h1 className="text-lg font-semibold text-gray-900 truncate leading-tight">Volkan Ş.</h1>
-                  <span className="px-2 py-1 text-xs font-medium bg-gradient-to-r from-cyan-400 to-cyan-500 text-white rounded-full shadow-sm">
+                  <h1 className="text-lg font-semibold text-[#1e3237] truncate leading-tight">Volkan Ş.</h1>
+                  <span className="px-2 py-1 text-xs font-medium bg-[#baf200] text-[#1e3237] rounded-full shadow-sm">
                     Premium
                   </span>
                 </div>
-                <p className="text-sm text-gray-500 truncate leading-tight -mt-0.5">Hoş Geldiniz</p>
+                <p className="text-sm text-[#1e3237]/70 truncate leading-tight -mt-0.5">Hoş Geldiniz</p>
               </div>
             </div>
 
