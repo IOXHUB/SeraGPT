@@ -455,7 +455,7 @@ export default function DashboardLayout({ children, title, subtitle }: Dashboard
               {/* Mobile AI Chat */}
               <a
                 href="/dashboard/ai-chat"
-                className="sm:hidden p-2.5 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white rounded-lg transition-all duration-200"
+                className="sm:hidden p-2.5 bg-[#baf200] hover:bg-[#baf200]/90 text-[#1e3237] rounded-lg transition-all duration-200 shadow-md"
               >
                 <span className="text-base">🤖</span>
               </a>
