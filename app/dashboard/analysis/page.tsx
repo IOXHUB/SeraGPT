@@ -124,23 +124,23 @@ export default function AnalysesListPage() {
       <div className="space-y-6">
         {/* Stats Cards */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-          <div className="bg-white rounded-lg border p-4">
+          <div className="bg-[#f6f8f9] rounded-lg border p-4 shadow-lg">
             <div className="text-2xl font-bold text-gray-900">{analyses.length}</div>
             <div className="text-sm text-gray-600">Toplam Analiz</div>
           </div>
-          <div className="bg-white rounded-lg border p-4">
+          <div className="bg-[#f6f8f9] rounded-lg border p-4 shadow-lg">
             <div className="text-2xl font-bold text-green-600">
               {analyses.filter(a => a.status === 'completed').length}
             </div>
             <div className="text-sm text-gray-600">Tamamlanan</div>
           </div>
-          <div className="bg-white rounded-lg border p-4">
+          <div className="bg-[#f6f8f9] rounded-lg border p-4 shadow-lg">
             <div className="text-2xl font-bold text-blue-600">
               {analyses.filter(a => a.status === 'in_progress').length}
             </div>
             <div className="text-sm text-gray-600">İşleniyor</div>
           </div>
-          <div className="bg-white rounded-lg border p-4">
+          <div className="bg-[#f6f8f9] rounded-lg border p-4 shadow-lg">
             <div className="text-2xl font-bold text-gray-600">
               {analyses.filter(a => {
                 const created = new Date(a.createdAt);
@@ -153,7 +153,7 @@ export default function AnalysesListPage() {
         </div>
 
         {/* Filters and Actions */}
-        <div className="bg-white rounded-lg border p-4">
+        <div className="bg-[#f6f8f9] rounded-lg border p-4 shadow-lg">
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center space-y-4 sm:space-y-0">
             <div className="flex space-x-4">
               <select 
