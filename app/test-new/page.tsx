@@ -302,14 +302,92 @@ export default function TestNewPage() {
                 <div className="relative max-w-sm mx-auto">
                   {/* Mobile Phone Frame */}
                   <div className="relative bg-black rounded-[2.5rem] p-2 shadow-2xl">
-                    <div className="bg-white rounded-[2rem] overflow-hidden">
-                      {/* Mobile AI Assistant Interface */}
-                      <img
-                        src="https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2F01c1e8a05ef6424b912d584875377957?format=webp&width=800"
-                        alt="Mobile AI Asistan Mockup"
-                        className="w-full h-auto object-cover"
-                        style={{ aspectRatio: '9/16' }}
-                      />
+                    <div className="bg-white rounded-[2rem] overflow-hidden" style={{ aspectRatio: '9/16', width: '300px' }}>
+                      {/* Mobile AI Assistant Interface - ROI Analysis Chat */}
+                      <div className="h-full flex flex-col bg-gray-50">
+                        {/* Chat Header */}
+                        <div className="bg-white border-b p-4 flex items-center space-x-3">
+                          <div className="w-8 h-8 rounded-full bg-gradient-to-r from-green-400 to-green-600 flex items-center justify-center">
+                            <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                              <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                          </div>
+                          <div>
+                            <h3 className="text-sm font-semibold text-gray-900">SeraGPT AI</h3>
+                            <p className="text-xs text-gray-500">ROI Analiz Uzmanı</p>
+                          </div>
+                        </div>
+
+                        {/* Chat Messages */}
+                        <div className="flex-1 p-3 space-y-3 overflow-y-auto">
+                          {/* AI Message */}
+                          <div className="flex space-x-2">
+                            <div className="w-6 h-6 rounded-full bg-green-500 flex items-center justify-center flex-shrink-0">
+                              <span className="text-xs text-white">AI</span>
+                            </div>
+                            <div className="bg-white rounded-lg p-2 shadow-sm max-w-[80%]">
+                              <p className="text-xs text-gray-800">
+                                Merhaba! Sera ROI analiziniz için lokasyon ve bitki türü bilgilerinizi paylaşır mısınız?
+                              </p>
+                            </div>
+                          </div>
+
+                          {/* User Message */}
+                          <div className="flex justify-end">
+                            <div className="bg-green-500 rounded-lg p-2 max-w-[80%]">
+                              <p className="text-xs text-white">
+                                Antalya'da 5000m² domates serası kurma maliyeti nedir?
+                              </p>
+                            </div>
+                          </div>
+
+                          {/* AI Response with Analysis */}
+                          <div className="flex space-x-2">
+                            <div className="w-6 h-6 rounded-full bg-green-500 flex items-center justify-center flex-shrink-0">
+                              <span className="text-xs text-white">AI</span>
+                            </div>
+                            <div className="bg-white rounded-lg p-2 shadow-sm max-w-[80%]">
+                              <p className="text-xs text-gray-800 mb-2">
+                                Antalya 5000m² domates serası analizi:
+                              </p>
+                              <div className="bg-gray-50 rounded p-2 text-xs">
+                                <div className="flex justify-between mb-1">
+                                  <span>Kurulum:</span>
+                                  <span className="font-semibold">₺2.800.000</span>
+                                </div>
+                                <div className="flex justify-between mb-1">
+                                  <span>Yıllık Gelir:</span>
+                                  <span className="font-semibold text-green-600">₺1.950.000</span>
+                                </div>
+                                <div className="flex justify-between">
+                                  <span>ROI:</span>
+                                  <span className="font-bold text-green-600">%34.2</span>
+                                </div>
+                              </div>
+                              <p className="text-xs text-gray-600 mt-2">
+                                Detaylı rapor PDF'i oluşturayım mı?
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Chat Input */}
+                        <div className="border-t p-3">
+                          <div className="flex items-center space-x-2">
+                            <input
+                              type="text"
+                              placeholder="Mesaj yazın..."
+                              className="flex-1 px-3 py-2 text-xs border rounded-full focus:outline-none focus:ring-1 focus:ring-green-500"
+                              readOnly
+                            />
+                            <button className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
+                              <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"/>
+                              </svg>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                     {/* Phone Details */}
                     <div className="absolute top-6 left-1/2 transform -translate-x-1/2 w-20 h-1 bg-gray-800 rounded-full"></div>
@@ -428,7 +506,7 @@ export default function TestNewPage() {
                     <span style={{ color: '#1e3237', fontSize: '14px' }}>📄 PDF Rehber</span>
                   </div>
                   <div className="bg-gray-100 h-24 rounded-lg flex items-center justify-center">
-                    <span style={{ color: '#1e3237', fontSize: '14px' }}>📖 Blog Yazıları</span>
+                    <span style={{ color: '#1e3237', fontSize: '14px' }}>���� Blog Yazıları</span>
                   </div>
                 </div>
               </div>
@@ -501,7 +579,7 @@ export default function TestNewPage() {
                   fontWeight: '600' 
                 }}
               >
-                🧠 Destek Sayfas��nı Ziyaret Et
+                🧠 Destek Sayfasını Ziyaret Et
               </Link>
             </div>
           </div>
@@ -579,7 +657,7 @@ export default function TestNewPage() {
                   fontWeight: '600' 
                 }}
               >
-                📝 Danışmanlık Formunu Doldurun
+                ���� Danışmanlık Formunu Doldurun
               </Link>
             </div>
           </div>
