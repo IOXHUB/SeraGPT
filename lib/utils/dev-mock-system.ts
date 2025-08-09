@@ -59,7 +59,7 @@ export const MOCK_USERS: Record<string, MockUser> = {
 // Mock analyses data
 export const MOCK_ANALYSES: MockAnalysis[] = [
   {
-    id: 'analysis-001',
+    id: 'demo-roi-001',
     type: 'roi',
     title: 'Antalya Domates Serası ROI Analizi',
     status: 'completed',
@@ -73,7 +73,7 @@ export const MOCK_ANALYSES: MockAnalysis[] = [
     }
   },
   {
-    id: 'analysis-002', 
+    id: 'demo-climate-001',
     type: 'climate',
     title: 'İzmir İklim Uygunluk Analizi',
     status: 'completed',
@@ -86,20 +86,83 @@ export const MOCK_ANALYSES: MockAnalysis[] = [
     }
   },
   {
-    id: 'analysis-003',
+    id: 'demo-equipment-001',
     type: 'equipment',
     title: 'Hidroponik Sistem Ekipman Listesi',
-    status: 'in_progress',
+    status: 'completed',
     createdAt: '2024-01-16T14:20:00Z',
-    updatedAt: '2024-01-16T15:00:00Z'
+    updatedAt: '2024-01-16T15:00:00Z',
+    results: {
+      totalCost: 185000,
+      equipmentCount: 15,
+      categories: ['heating', 'cooling', 'irrigation', 'monitoring']
+    }
   },
   {
-    id: 'analysis-004',
+    id: 'demo-market-001',
     type: 'market',
     title: 'Salatalık Pazar Fiyat Analizi',
-    status: 'draft',
+    status: 'completed',
     createdAt: '2024-01-17T08:45:00Z',
-    updatedAt: '2024-01-17T08:45:00Z'
+    updatedAt: '2024-01-17T09:30:00Z',
+    results: {
+      averagePrice: 8.50,
+      priceVolatility: 15,
+      demandScore: 78
+    }
+  },
+  {
+    id: 'demo-layout-001',
+    type: 'layout',
+    title: 'Modern Sera Layout Planı',
+    status: 'completed',
+    createdAt: '2024-01-18T11:20:00Z',
+    updatedAt: '2024-01-18T12:45:00Z',
+    results: {
+      totalArea: 1500,
+      efficiency: 88,
+      layoutType: 'modern'
+    }
+  },
+  {
+    id: 'demo-roi-002',
+    type: 'roi',
+    title: 'Mersin Biber Serası Karlılık Analizi',
+    status: 'completed',
+    createdAt: '2024-01-12T16:30:00Z',
+    updatedAt: '2024-01-12T17:45:00Z',
+    results: {
+      roiPercentage: 18.2,
+      paybackPeriod: 3.5,
+      netPresentValue: 285000,
+      breakEvenYear: 4
+    }
+  },
+  {
+    id: 'demo-climate-002',
+    type: 'climate',
+    title: 'Bursa Marul Üretimi İklim Raporu',
+    status: 'completed',
+    createdAt: '2024-01-10T14:15:00Z',
+    updatedAt: '2024-01-10T15:30:00Z',
+    results: {
+      climateScore: 76,
+      riskLevel: 'medium',
+      seasonalRisks: ['winter_cold', 'humidity_high']
+    }
+  },
+  {
+    id: 'demo-equipment-002',
+    type: 'equipment',
+    title: 'Geleneksel Sera Ekipman Paketi',
+    status: 'completed',
+    createdAt: '2024-01-09T10:45:00Z',
+    updatedAt: '2024-01-09T11:30:00Z',
+    results: {
+      totalCost: 125000,
+      equipmentCount: 12,
+      categories: ['heating', 'irrigation', 'ventilation']
+    }
   }
 ];
 
