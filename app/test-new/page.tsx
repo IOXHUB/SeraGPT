@@ -456,7 +456,7 @@ export default function TestNewPage() {
                 </p>
 
                 <div className="bg-white/10 rounded-xl p-6 backdrop-blur-sm">
-                  <p>Keşif, projelendirme ve süpervizörlük hizmetleri ISITMAX tarafından. Tüm imalat, ekipman, otomasyon ve saha kurulum süreçleri ise XXXXX Spain tarafından sağlanır</p>
+                  <p style={{ color: '#f6f8f9', fontSize: '16px', fontWeight: '400' }}>Keşif, projelendirme ve süpervizörlük hizmetleri ISITMAX tarafından. Tüm imalat, ekipman, otomasyon ve saha kurulum süreçleri ise XXXXX Spain tarafından sağlanır</p>
                 </div>
               </div>
             </div>
@@ -531,11 +531,11 @@ export default function TestNewPage() {
                     fontWeight: '400'
                   }}
                 >
-                  <p>Yerinde keşif ve teknik analiz (ISITMAX)</p>
-                  <p>Statik & yapısal proje çizimleri</p>
-                  <p>XXXXX menşeli otomasyon, ekipman ve kurulum hizmeti</p>
-                  <p>ISITMAX süpervizörlüğünde şantiye yönetimi</p>
-                  <p>Tam kapsamlı fiyat teklifi ve mühendislik dosyası (PDF)</p>
+                  <p style={{ color: '#f6f8f9' }}>Yerinde keşif ve teknik analiz (ISITMAX)</p>
+                  <p style={{ color: '#f6f8f9' }}>Statik & yapısal proje çizimleri</p>
+                  <p style={{ color: '#f6f8f9' }}>XXXXX menşeli otomasyon, ekipman ve kurulum hizmeti</p>
+                  <p style={{ color: '#f6f8f9' }}>ISITMAX süpervizörlüğünde şantiye yönetimi</p>
+                  <p style={{ color: '#f6f8f9' }}>Tam kapsamlı fiyat teklifi ve mühendislik dosyası (PDF)</p>
                 </div>
               </div>
 
@@ -559,9 +559,9 @@ export default function TestNewPage() {
                     fontWeight: '400'
                   }}
                 >
-                  <p>1.000 m² ve üzeri yatırım düşünen profesyonel üreticiler</p>
-                  <p>Hibe/destek başvurusu için teknik dosya gereksinimi olanlar</p>
-                  <p>Sera projelerinde uzun ömür, otomasyon ve enerji verimliliğini öncelikleyen yatırımcılar</p>
+                  <p style={{ color: '#f6f8f9' }}>1.000 m² ve üzeri yatırım düşünen profesyonel üreticiler</p>
+                  <p style={{ color: '#f6f8f9' }}>Hibe/destek başvurusu için teknik dosya gereksinimi olanlar</p>
+                  <p style={{ color: '#f6f8f9' }}>Sera projelerinde uzun ömür, otomasyon ve enerji verimliliğini öncelikleyen yatırımcılar</p>
                 </div>
               </div>
             </div>
