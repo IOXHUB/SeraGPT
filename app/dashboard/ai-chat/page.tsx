@@ -309,7 +309,7 @@ Hangi konuda derinlemesine konuşmak istersiniz?`;
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: index * 0.1 }}
                         onClick={() => handleReportSelect(report.id)}
-                        className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 hover:bg-white/20 cursor-pointer transition-all duration-200"
+                        className="bg-[#f6f8f9] border border-white/20 rounded-2xl p-6 hover:bg-white cursor-pointer transition-all duration-200 shadow-lg"
                       >
                         <div className="flex items-start justify-between">
                           <div className="flex-1">
