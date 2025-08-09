@@ -452,16 +452,11 @@ export default function TestNewPage() {
                 }}
               >
                 <p>
-                  Sera yatırımınız için SeraGPT ile analiz yaptınız. Şimdi sıra, bu verileri sahaya taşımakta.
+                  Sera yatırımınız için SeraGPT ile analiz yaptınız. Şimdi sıra, bu verileri sahaya taşımakta. ISITMAX ve XXXXX İspanya ortaklığıyla yürüttüğümüz anahtar teslim proje sistemimizde:
                 </p>
 
-                <p className="font-medium">
-                  ISITMAX ve XXXXX İspanya ortaklığıyla yürüttüğümüz anahtar teslim proje sistemimizde:
-                </p>
-
-                <div className="space-y-4 bg-white/10 rounded-xl p-6 backdrop-blur-sm">
-                  <p>Keşif, projelendirme ve süpervizörlük hizmetleri ISITMAX tarafından</p>
-                  <p>Tüm imalat, ekipman, otomasyon ve saha kurulum süreçleri ise XXXXX Spain tarafından sağlanır</p>
+                <div className="bg-white/10 rounded-xl p-6 backdrop-blur-sm">
+                  <p>Keşif, projelendirme ve süpervizörlük hizmetleri ISITMAX tarafından. Tüm imalat, ekipman, otomasyon ve saha kurulum süreçleri ise XXXXX Spain tarafından sağlanır</p>
                 </div>
               </div>
             </div>
@@ -663,7 +658,7 @@ export default function TestNewPage() {
                 fontWeight: '600' 
               }}
             >
-              📚 Sizin İçin Hazırladığımız Rehberler
+              📚 Sizin İçin Hazırladığ��mız Rehberler
             </h2>
 
             <div className="max-w-[576px] mx-auto mb-12">
