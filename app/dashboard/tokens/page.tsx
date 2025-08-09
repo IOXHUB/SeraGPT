@@ -476,7 +476,11 @@ export default function TokensPage() {
               </div>
             ) : (
               <div className="text-center py-8 text-[#1e3237]/70">
-                <div className="text-4xl mb-2">🧠</div>
+                <div className="w-12 h-12 bg-[#146448]/10 rounded-full flex items-center justify-center mx-auto mb-3">
+                  <svg className="w-6 h-6 text-[#146448]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                  </svg>
+                </div>
                 <p className="text-sm">Henüz token aktivitesi yok</p>
                 <p className="text-xs mt-1">İlk token satın alımınızı yapın</p>
               </div>
