@@ -374,14 +374,14 @@ export default function TokensPage() {
             {tokenPackages.map((pkg) => (
               <div 
                 key={pkg.id} 
-                className={`relative bg-white rounded-xl border-2 transition-all duration-300 hover:shadow-md ${
-                  pkg.popular ? 'border-green-500 ring-2 ring-green-200' : 'border-gray-200 hover:border-blue-300'
+                className={`relative bg-[#f6f8f9] rounded-xl border-2 transition-all duration-300 hover:shadow-md ${
+                  pkg.popular ? 'border-[#baf200] ring-2 ring-[#baf200]/20' : 'border-gray-200 hover:border-[#146448]'
                 }`}
               >
                 {pkg.badge && (
                   <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                    <span className={`text-white text-xs px-3 py-1 rounded-full ${
-                      pkg.popular ? 'bg-green-500' : pkg.price === 0 ? 'bg-blue-500' : 'bg-purple-500'
+                    <span className={`text-[#1e3237] text-xs px-3 py-1 rounded-full ${
+                      pkg.popular ? 'bg-[#baf200]' : pkg.price === 0 ? 'bg-[#146448] text-white' : 'bg-[#1e3237] text-white'
                     }`}>
                       {pkg.badge}
                     </span>
@@ -389,8 +389,8 @@ export default function TokensPage() {
                 )}
 
                 <div className="p-5">
-                  <h3 className="text-lg font-bold text-gray-900 mb-2">{pkg.name}</h3>
-                  <p className="text-gray-600 text-sm mb-4">{pkg.description}</p>
+                  <h3 className="text-lg font-bold text-[#1e3237] mb-2">{pkg.name}</h3>
+                  <p className="text-[#1e3237]/70 text-sm mb-4">{pkg.description}</p>
                   
                   <div className="text-center mb-4">
                     <div className="text-2xl font-bold text-blue-600 mb-2 flex items-center justify-center">
@@ -487,7 +487,7 @@ export default function TokensPage() {
             
             <div className="space-y-4">
               <div className="p-4 bg-blue-50 rounded-lg border border-blue-200">
-                <h4 className="font-medium text-blue-900 mb-2">🧠 Token Tasarrufu</h4>
+                <h4 className="font-medium text-blue-900 mb-2">�� Token Tasarrufu</h4>
                 <p className="text-sm text-blue-800">
                   Büyük paketler satın alarak token başına daha az ödeyebilirsiniz. 
                   Premium paket en iyi değeri sunar.
