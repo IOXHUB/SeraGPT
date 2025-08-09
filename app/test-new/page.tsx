@@ -426,46 +426,112 @@ export default function TestNewPage() {
         </div>
       </section>
 
-      {/* 4. 💥 Peki Ya Buna Ne Dersiniz? */}
-      <section className="py-16">
+      {/* 4. 💥 Anahtar Teslim Sera Kurulumu */}
+      <section className="py-20">
         <div className="max-w-[1200px] mx-auto px-6 text-center">
           <div className="max-w-[800px] mx-auto">
-            <h2 
-              className="mb-8"
-              style={{ 
-                color: '#f6f8f9', 
-                fontSize: '24px', 
-                fontWeight: '600' 
-              }}
-            >
-              🔧 Anahtar Teslim Sera mı Arıyorsunuz?
-            </h2>
-
-            <div className="max-w-[576px] mx-auto mb-12">
-              <p 
-                className="leading-relaxed"
-                style={{ 
-                  color: '#f6f8f9', 
-                  fontSize: '14px', 
-                  fontWeight: '400' 
+            {/* Main title */}
+            <div className="max-w-[576px] mx-auto mb-8">
+              <h2
+                className="leading-tight text-center"
+                style={{
+                  color: '#f6f8f9',
+                  fontSize: '36px',
+                  fontWeight: '600'
                 }}
               >
-                Sadece fikir değil, uygulama da bizden. Hazır sera paketlerimizi görün veya tamamen size özel çözümler üretelim.
-              </p>
+                Anahtar Teslim Sera Kurulumu
+              </h2>
             </div>
 
-            <Link 
-              href="/anahtar-teslim-proje" 
-              className="inline-block px-8 py-4 rounded-xl font-medium transition-all hover:opacity-90"
-              style={{ 
-                backgroundColor: '#baf200', 
-                color: '#1e3237', 
-                fontSize: '14px', 
-                fontWeight: '600' 
+            {/* Detailed description */}
+            <div className="max-w-[576px] mx-auto mb-12">
+              <div
+                className="leading-relaxed text-left space-y-6"
+                style={{
+                  color: '#f6f8f9',
+                  fontSize: '16px',
+                  fontWeight: '400'
+                }}
+              >
+                <p>
+                  Sera yatırımınız için SeraGPT ile analiz yaptınız. Şimdi sıra, bu verileri sahaya taşımakta.
+                </p>
+
+                <p>
+                  ISITMAX ve XXXXX İspanya ortaklığıyla yürüttüğümüz anahtar teslim proje sistemimizde:
+                </p>
+
+                <div className="space-y-2 ml-4">
+                  <p>• Keşif, projelendirme ve süpervizörlük hizmetleri ISITMAX tarafından</p>
+                  <p>• Tüm imalat, ekipman, otomasyon ve saha kurulum süreçleri ise XXXXX Spain tarafından sağlanır.</p>
+                </div>
+
+                <p className="font-semibold">Bu yapı sayesinde:</p>
+                <div className="space-y-2 ml-4">
+                  <p>✅ Türkiye'de yerinde planlama avantajı</p>
+                  <p>✅ Avrupa standardında malzeme ve kurulum</p>
+                  <p>✅ Tek elden yönetilen, zamanında teslim edilen projeler</p>
+                </div>
+
+                <div className="border-t border-white/20 pt-4">
+                  <p className="font-semibold mb-3">Hizmet Kapsamı:</p>
+                  <div className="space-y-2 ml-4">
+                    <p>• Yerinde keşif ve teknik analiz (ISITMAX)</p>
+                    <p>• Statik & yapısal proje çizimleri</p>
+                    <p>• XXXXX menşeli otomasyon, ekipman ve kurulum hizmeti</p>
+                    <p>• ISITMAX süpervizörlüğünde şantiye yönetimi</p>
+                    <p>• Tam kapsamlı fiyat teklifi ve mühendislik dosyası (PDF)</p>
+                  </div>
+                </div>
+
+                <div className="border-t border-white/20 pt-4">
+                  <p className="font-semibold mb-3">Bu İş Modeli Kimler İçin Uygundur?</p>
+                  <div className="space-y-2 ml-4">
+                    <p>• 1.000 m² ve üzeri yatırım düşünen profesyonel üreticiler</p>
+                    <p>• Hibe/destek başvurusu için teknik dosya gereksinimi olanlar</p>
+                    <p>• Sera projelerinde uzun ömür, otomasyon ve enerji verimliliğini öncelikleyen yatırımcılar</p>
+                  </div>
+                </div>
+
+                <div className="border-t border-white/20 pt-4">
+                  <p className="font-semibold mb-3">Güvence ve Tecrübe:</p>
+                  <div className="space-y-2 ml-4">
+                    <p>• +500 tamamlanmış sera projesi</p>
+                    <p>• İspanya, Türkiye ve Ortadoğu'da uygulanan sistem mimarisi</p>
+                    <p>• Tarım Bakanlığı desteklerine ve bankacılık standartlarına uygunluk</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* CTA Button */}
+            <div className="mb-6">
+              <Link
+                href="/anahtar-teslim-proje"
+                className="hero-cta-button inline-block px-8 py-4 rounded-xl font-medium transition-all hover:opacity-90 hover:scale-105 transform"
+                style={{
+                  backgroundColor: '#baf200',
+                  color: '#1e3237',
+                  fontSize: '16px',
+                  fontWeight: '600'
+                }}
+              >
+                KURUMSAL TEKLİF AL
+              </Link>
+            </div>
+
+            {/* Bottom slogan */}
+            <p
+              className="text-center"
+              style={{
+                color: '#f6f8f9',
+                fontSize: '14px',
+                fontWeight: '400'
               }}
             >
-              🏗️ Anahtar Teslim Sera Fiyatlarını Gör
-            </Link>
+              Profesyonel sera kurulumunda güvenilir ortaklık.
+            </p>
           </div>
         </div>
       </section>
@@ -506,7 +572,7 @@ export default function TestNewPage() {
                     <span style={{ color: '#1e3237', fontSize: '14px' }}>📄 PDF Rehber</span>
                   </div>
                   <div className="bg-gray-100 h-24 rounded-lg flex items-center justify-center">
-                    <span style={{ color: '#1e3237', fontSize: '14px' }}>���� Blog Yazıları</span>
+                    <span style={{ color: '#1e3237', fontSize: '14px' }}>📖 Blog Yazıları</span>
                   </div>
                 </div>
               </div>
@@ -657,7 +723,7 @@ export default function TestNewPage() {
                   fontWeight: '600' 
                 }}
               >
-                ���� Danışmanlık Formunu Doldurun
+                📝 Danışmanlık Formunu Doldurun
               </Link>
             </div>
           </div>
