@@ -606,9 +606,9 @@ Hangi konuda derinlemesine konuşmak istersiniz?`;
             <button
               onClick={toggleVoice}
               className={`p-3 rounded-full transition-colors ${
-                isListening 
-                  ? 'bg-red-500 hover:bg-red-600' 
-                  : 'bg-white/20 backdrop-blur-sm hover:bg-white/30'
+                isListening
+                  ? 'bg-red-500 hover:bg-red-600'
+                  : 'bg-[#146448] hover:bg-[#146448]/90'
               }`}
             >
               <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
