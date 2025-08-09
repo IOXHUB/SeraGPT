@@ -139,7 +139,7 @@ export default function BlogPage() {
                   <span>{featuredPost.date}</span>
                   <span>{featuredPost.category}</span>
                 </div>
-                <h2 className="text-2xl font-semibold text-[#1e3237] leading-tight group-hover:text-gray-700 transition-colors">
+                <h2 className="text-2xl font-semibold text-[#1e3237] leading-tight group-hover:text-[#1e3237]/80 transition-colors">
                   {featuredPost.title}
                 </h2>
                 <p className="text-[#1e3237]/70 leading-relaxed">
@@ -213,7 +213,7 @@ export default function BlogPage() {
                       <div className="text-sm text-[#1e3237]/60">
                         {post.date}
                       </div>
-                      <h3 className="text-lg font-semibold text-[#1e3237] group-hover:text-gray-700 transition-colors leading-tight">
+                      <h3 className="text-lg font-semibold text-[#1e3237] group-hover:text-[#1e3237]/80 transition-colors leading-tight">
                         {post.title}
                       </h3>
                       <p className="text-[#1e3237]/70 text-sm leading-relaxed">
