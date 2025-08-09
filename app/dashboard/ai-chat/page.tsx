@@ -353,7 +353,7 @@ Hangi konuda derinlemesine konuşmak istersiniz?`;
                       Henüz {getCategoryTitle(selectedCategory).toLowerCase()} raporu yok
                     </h3>
                     <p className="text-white/70 mb-6">
-                      Bu kategoride hen��z tamamlanmış bir raporunuz bulunmuyor.
+                      Bu kategoride henüz tamamlanmış bir raporunuz bulunmuyor.
                     </p>
                     <button
                       onClick={() => setShowReportSelection(false)}
@@ -416,8 +416,8 @@ Hangi konuda derinlemesine konuşmak istersiniz?`;
                       <div className={`max-w-[80%] ${message.role === 'user' ? 'order-2' : 'order-1'}`}>
                         <div className={`px-4 py-3 rounded-3xl shadow-sm ${
                           message.role === 'user'
-                            ? 'bg-white/20 backdrop-blur-sm text-white border border-white/30 rounded-br-lg'
-                            : 'bg-white/95 backdrop-blur-sm text-gray-800 rounded-bl-lg'
+                            ? 'bg-[#baf200] text-[#1e3237] rounded-br-lg'
+                            : 'bg-[#f6f8f9] text-[#1e3237] rounded-bl-lg'
                         }`}>
                           {/* AI Avatar */}
                           {message.role === 'assistant' && (
