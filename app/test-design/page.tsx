@@ -9,13 +9,13 @@ export default function TestDesignPage() {
   return (
     <div className="min-h-screen" style={{ backgroundColor: '#146448' }}>
       {/* Header */}
-      <header className="relative py-4">
+      <header className="relative py-4" style={{ backgroundColor: '#146448' }}>
         <div className="max-w-[1200px] mx-auto px-4 sm:px-6">
-          <div 
+          <div
             className="rounded-2xl p-4 shadow-lg"
-            style={{ backgroundColor: '#f6f8f9' }}
+            style={{ backgroundColor: '#146448' }}
           >
-            <div className="flex items-center justify-between">
+            <div className="flex justify-center text-left">
               {/* Logo */}
               <div className="flex items-center space-x-3">
                 <div 
