@@ -942,15 +942,15 @@ export default function TestNewPage() {
       <section className="py-16">
         <div className="max-w-[1200px] mx-auto px-6 text-center">
           <div className="max-w-[800px] mx-auto">
-            <h2 
+            <h2
               className="mb-8"
-              style={{ 
-                color: '#f6f8f9', 
-                fontSize: '24px', 
-                fontWeight: '600' 
+              style={{
+                color: '#f6f8f9',
+                fontSize: '24px',
+                fontWeight: '600'
               }}
             >
-              🧑‍💼 Hemen Destek Alın
+              Hemen Destek Alın
             </h2>
 
             <div className="max-w-[576px] mx-auto mb-12">
@@ -1008,7 +1008,7 @@ export default function TestNewPage() {
                 fontWeight: '600' 
               }}
             >
-              🚀 500'ün Üzerinde Sera Projesinin İçindeydik
+              ��� 500'ün Üzerinde Sera Projesinin İçindeydik
             </h2>
 
             <div className="max-w-[576px] mx-auto mb-12">
