@@ -727,7 +727,7 @@ export default function TestNewPage() {
                     </div>
                     <div className="mt-4">
                       <p style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '400' }}>
-                        <strong style={{ color: '#baf200' }}>Amaç:</strong> Yatırımcıya "başlamaya değer mi?" sorusunun cevabını vermek
+                        <strong style={{ color: '#baf200' }}>Amaç:</strong> Yatır��mcıya "başlamaya değer mi?" sorusunun cevabını vermek
                       </p>
                     </div>
                   </div>
@@ -1345,8 +1345,8 @@ export default function TestNewPage() {
       {/* Footer */}
       <footer className="py-12" style={{ backgroundColor: '#146448' }}>
         <div className="max-w-[1200px] mx-auto px-6">
-          <div className="grid md:grid-cols-4 gap-8 max-w-[800px] mx-auto">
-            
+          <div className="grid md:grid-cols-4 gap-8">
+
             {/* Company Info */}
             <div>
               <div className="flex items-center space-x-3 mb-4">
@@ -1360,13 +1360,19 @@ export default function TestNewPage() {
                     className="w-full h-full object-cover"
                   />
                 </div>
-            </div>
-              <p 
+                <span
+                  className="font-semibold"
+                  style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '600' }}
+                >
+                  SeraGPT
+                </span>
+              </div>
+              <p
                 className="leading-relaxed"
-                style={{ 
-                  color: '#f6f8f9', 
-                  fontSize: '14px', 
-                  fontWeight: '400' 
+                style={{
+                  color: '#f6f8f9',
+                  fontSize: '14px',
+                  fontWeight: '400'
                 }}
               >
                 AI destekli sera analiz platformu. Doğru yatırım, doğru analizle başlar.
@@ -1375,63 +1381,81 @@ export default function TestNewPage() {
 
             {/* Services */}
             <div>
-              <h3 
+              <h3
                 className="mb-4"
-                style={{ 
-                  color: '#f6f8f9', 
-                  fontSize: '14px', 
-                  fontWeight: '600' 
+                style={{
+                  color: '#f6f8f9',
+                  fontSize: '14px',
+                  fontWeight: '600'
                 }}
               >
                 Hizmetler
               </h3>
               <ul className="space-y-2">
                 <li>
-                  <Link 
-                    href="/danismanlik" 
+                  <Link
+                    href="/auth/login"
                     className="transition-opacity hover:opacity-70"
                     style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '400' }}
                   >
-                    Danışmanlık
+                    Ücretsiz Analiz Başlat
                   </Link>
                 </li>
                 <li>
-                  <Link 
-                    href="/anahtar-teslim-proje" 
+                  <Link
+                    href="/danismanlik"
                     className="transition-opacity hover:opacity-70"
                     style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '400' }}
                   >
-                    Anahtar Teslim Proje
+                    Danışmanlık AL
                   </Link>
                 </li>
                 <li>
-                  <Link 
-                    href="/destek" 
+                  <Link
+                    href="/anahtar-teslim-proje"
                     className="transition-opacity hover:opacity-70"
                     style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '400' }}
                   >
-                    Destek
+                    Anahtar Teslim Sera Teklifi İste
                   </Link>
                 </li>
               </ul>
             </div>
 
-            {/* Legal */}
+            {/* Support */}
             <div>
-              <h3 
+              <h3
                 className="mb-4"
-                style={{ 
-                  color: '#f6f8f9', 
-                  fontSize: '14px', 
-                  fontWeight: '600' 
+                style={{
+                  color: '#f6f8f9',
+                  fontSize: '14px',
+                  fontWeight: '600'
                 }}
               >
-                Yasal
+                Destek
               </h3>
               <ul className="space-y-2">
                 <li>
-                  <Link 
-                    href="/privacy" 
+                  <Link
+                    href="/auth/login"
+                    className="transition-opacity hover:opacity-70"
+                    style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '400' }}
+                  >
+                    Kullanıcı Paneli Giriş
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/destek"
+                    className="transition-opacity hover:opacity-70"
+                    style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '400' }}
+                  >
+                    Destek Kaydı Aç
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/privacy"
                     className="transition-opacity hover:opacity-70"
                     style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '400' }}
                   >
@@ -1439,8 +1463,8 @@ export default function TestNewPage() {
                   </Link>
                 </li>
                 <li>
-                  <Link 
-                    href="/terms" 
+                  <Link
+                    href="/terms"
                     className="transition-opacity hover:opacity-70"
                     style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '400' }}
                   >
@@ -1452,36 +1476,56 @@ export default function TestNewPage() {
 
             {/* Contact */}
             <div>
-              <h3 
+              <h3
                 className="mb-4"
-                style={{ 
-                  color: '#f6f8f9', 
-                  fontSize: '14px', 
-                  fontWeight: '600' 
+                style={{
+                  color: '#f6f8f9',
+                  fontSize: '14px',
+                  fontWeight: '600'
                 }}
               >
                 İletişim
               </h3>
-              <p 
-                className="leading-relaxed"
-                style={{ 
-                  color: '#f6f8f9', 
-                  fontSize: '14px', 
-                  fontWeight: '400' 
-                }}
-              >
-                info@seragpt.com<br />
-                www.seragpt.com
-              </p>
+              <div className="space-y-2">
+                <p
+                  style={{
+                    color: '#f6f8f9',
+                    fontSize: '14px',
+                    fontWeight: '400'
+                  }}
+                >
+                  info@seragpt.com
+                </p>
+                <p
+                  style={{
+                    color: '#f6f8f9',
+                    fontSize: '14px',
+                    fontWeight: '400'
+                  }}
+                >
+                  0850 888 8110
+                </p>
+                <p
+                  className="leading-relaxed"
+                  style={{
+                    color: '#f6f8f9',
+                    fontSize: '14px',
+                    fontWeight: '400'
+                  }}
+                >
+                  Perpa Trade Centre, No:1458<br />
+                  Şişli / İstanbul
+                </p>
+              </div>
             </div>
           </div>
 
           <div className="border-t border-white/20 mt-8 pt-6 text-center">
-            <p 
-              style={{ 
-                color: '#f6f8f9', 
-                fontSize: '14px', 
-                fontWeight: '400' 
+            <p
+              style={{
+                color: '#f6f8f9',
+                fontSize: '14px',
+                fontWeight: '400'
               }}
             >
               © 2025 SeraGPT. Tüm hakları saklıdır.
