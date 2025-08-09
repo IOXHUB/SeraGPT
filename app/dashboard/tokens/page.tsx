@@ -453,7 +453,7 @@ export default function TokensPage() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           
           {/* Usage History */}
-          <div className="bg-[#f6f8f9] rounded-xl p-6 border border-gray-200 shadow-lg">
+          <div className="bg-white rounded-xl p-6 border border-[#146448]/10 shadow-lg">
             <h3 className="text-lg font-semibold text-[#1e3237] mb-4">📊 Kullanım Geçmişi</h3>
             
             {tokenHistory.length > 0 ? (
