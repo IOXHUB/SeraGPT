@@ -473,7 +473,7 @@ export default function TokensPage() {
                 ))}
               </div>
             ) : (
-              <div className="text-center py-8 text-gray-500">
+              <div className="text-center py-8 text-[#1e3237]/70">
                 <div className="text-4xl mb-2">🧠</div>
                 <p className="text-sm">Henüz token aktivitesi yok</p>
                 <p className="text-xs mt-1">İlk token satın alımınızı yapın</p>
