@@ -431,9 +431,9 @@ export default function TestNewPage() {
         <div className="max-w-[1200px] mx-auto px-6 text-center">
           <div className="max-w-[800px] mx-auto">
             {/* Main title */}
-            <div className="max-w-[576px] mx-auto mb-8">
+            <div className="max-w-[576px] mx-auto mb-16">
               <h2
-                className="leading-tight text-center"
+                className="leading-tight text-center mb-8"
                 style={{
                   color: '#f6f8f9',
                   fontSize: '36px',
@@ -442,12 +442,9 @@ export default function TestNewPage() {
               >
                 Anahtar Teslim Sera Kurulumu
               </h2>
-            </div>
 
-            {/* Detailed description - centered and organized */}
-            <div className="max-w-[576px] mx-auto mb-12 text-center">
               <div
-                className="leading-relaxed space-y-8"
+                className="space-y-6 text-center"
                 style={{
                   color: '#f6f8f9',
                   fontSize: '16px',
@@ -458,106 +455,168 @@ export default function TestNewPage() {
                   Sera yatırımınız için SeraGPT ile analiz yaptınız. Şimdi sıra, bu verileri sahaya taşımakta.
                 </p>
 
-                <p>
+                <p className="font-medium">
                   ISITMAX ve XXXXX İspanya ortaklığıyla yürüttüğümüz anahtar teslim proje sistemimizde:
                 </p>
 
-                <div className="space-y-3">
+                <div className="space-y-4 bg-white/10 rounded-xl p-6 backdrop-blur-sm">
                   <p>Keşif, projelendirme ve süpervizörlük hizmetleri ISITMAX tarafından</p>
-                  <p>Tüm imalat, ekipman, otomasyon ve saha kurulum süreçleri ise XXXXX Spain tarafından sağlanır.</p>
+                  <p>Tüm imalat, ekipman, otomasyon ve saha kurulum süreçleri ise XXXXX Spain tarafından sağlanır</p>
                 </div>
+              </div>
+            </div>
 
-                {/* Special container for 3 key benefits */}
-                <div
-                  className="max-w-[600px] mx-auto p-6 rounded-xl"
-                  style={{ backgroundColor: '#f6f8f9', color: '#1e3237' }}
+            {/* Key Benefits Grid */}
+            <div className="grid md:grid-cols-3 gap-6 mb-16 max-w-[800px] mx-auto">
+              <div
+                className="p-6 rounded-xl border-2 border-white/20 bg-white/5 backdrop-blur-sm"
+                style={{ borderColor: '#baf200' }}
+              >
+                <h4
+                  className="font-semibold mb-3"
+                  style={{ color: '#baf200', fontSize: '18px' }}
                 >
-                  <div className="space-y-3">
-                    <p>Türkiye'de yerinde planlama avantajı</p>
-                    <p>Avrupa standardında malzeme ve kurulum</p>
-                    <p>Tek elden yönetilen, zamanında teslim edilen projeler</p>
-                  </div>
+                  Türkiye Avantajı
+                </h4>
+                <p style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '400' }}>
+                  Yerinde planlama ve süpervizörlük hizmetleri
+                </p>
+              </div>
+
+              <div
+                className="p-6 rounded-xl border-2 border-white/20 bg-white/5 backdrop-blur-sm"
+                style={{ borderColor: '#baf200' }}
+              >
+                <h4
+                  className="font-semibold mb-3"
+                  style={{ color: '#baf200', fontSize: '18px' }}
+                >
+                  Avrupa Standardı
+                </h4>
+                <p style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '400' }}>
+                  Kaliteli malzeme ve profesyonel kurulum
+                </p>
+              </div>
+
+              <div
+                className="p-6 rounded-xl border-2 border-white/20 bg-white/5 backdrop-blur-sm"
+                style={{ borderColor: '#baf200' }}
+              >
+                <h4
+                  className="font-semibold mb-3"
+                  style={{ color: '#baf200', fontSize: '18px' }}
+                >
+                  Tek Elden Yönetim
+                </h4>
+                <p style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '400' }}>
+                  Zamanında teslim edilen projeler
+                </p>
+              </div>
+            </div>
+
+            {/* Two Column Layout for Services and Target */}
+            <div className="grid lg:grid-cols-2 gap-12 mb-16 max-w-[900px] mx-auto">
+              {/* Service Scope */}
+              <div className="text-center">
+                <h3
+                  className="mb-6"
+                  style={{
+                    color: '#f6f8f9',
+                    fontSize: '24px',
+                    fontWeight: '600'
+                  }}
+                >
+                  Hizmet Kapsamı
+                </h3>
+                <div
+                  className="space-y-4 bg-white/5 rounded-xl p-6"
+                  style={{
+                    color: '#f6f8f9',
+                    fontSize: '14px',
+                    fontWeight: '400'
+                  }}
+                >
+                  <p>Yerinde keşif ve teknik analiz (ISITMAX)</p>
+                  <p>Statik & yapısal proje çizimleri</p>
+                  <p>XXXXX menşeli otomasyon, ekipman ve kurulum hizmeti</p>
+                  <p>ISITMAX süpervizörlüğünde şantiye yönetimi</p>
+                  <p>Tam kapsamlı fiyat teklifi ve mühendislik dosyası (PDF)</p>
+                </div>
+              </div>
+
+              {/* Target Audience */}
+              <div className="text-center">
+                <h3
+                  className="mb-6"
+                  style={{
+                    color: '#f6f8f9',
+                    fontSize: '24px',
+                    fontWeight: '600'
+                  }}
+                >
+                  Kimler İçin Uygun?
+                </h3>
+                <div
+                  className="space-y-4 bg-white/5 rounded-xl p-6"
+                  style={{
+                    color: '#f6f8f9',
+                    fontSize: '14px',
+                    fontWeight: '400'
+                  }}
+                >
+                  <p>1.000 m² ve üzeri yatırım düşünen profesyonel üreticiler</p>
+                  <p>Hibe/destek başvurusu için teknik dosya gereksinimi olanlar</p>
+                  <p>Sera projelerinde uzun ömür, otomasyon ve enerji verimliliğini öncelikleyen yatırımcılar</p>
                 </div>
               </div>
             </div>
 
-            {/* Service Scope Section */}
-            <div className="max-w-[576px] mx-auto mb-12 text-center">
+            {/* Experience Stats */}
+            <div className="mb-16">
               <h3
-                className="mb-6"
+                className="mb-8 text-center"
                 style={{
                   color: '#f6f8f9',
-                  fontSize: '30px',
-                  fontWeight: '400'
-                }}
-              >
-                Hizmet Kapsamı
-              </h3>
-              <div
-                className="space-y-3"
-                style={{
-                  color: '#f6f8f9',
-                  fontSize: '16px',
-                  fontWeight: '400'
-                }}
-              >
-                <p>Yerinde keşif ve teknik analiz (ISITMAX)</p>
-                <p>Statik & yapısal proje çizimleri</p>
-                <p>XXXXX menşeli otomasyon, ekipman ve kurulum hizmeti</p>
-                <p>ISITMAX süpervizörlüğünde şantiye yönetimi</p>
-                <p>Tam kapsamlı fiyat teklifi ve mühendislik dosyası (PDF)</p>
-              </div>
-            </div>
-
-            {/* Target Audience Section */}
-            <div className="max-w-[576px] mx-auto mb-12 text-center">
-              <h3
-                className="mb-6"
-                style={{
-                  color: '#f6f8f9',
-                  fontSize: '30px',
-                  fontWeight: '400'
-                }}
-              >
-                Bu İş Modeli Kimler İçin Uygundur?
-              </h3>
-              <div
-                className="space-y-3"
-                style={{
-                  color: '#f6f8f9',
-                  fontSize: '16px',
-                  fontWeight: '400'
-                }}
-              >
-                <p>1.000 m² ve üzeri yatırım düşünen profesyonel üreticiler</p>
-                <p>Hibe/destek başvurusu için teknik dosya gereksinimi olanlar</p>
-                <p>Sera projelerinde uzun ömür, otomasyon ve enerji verimliliğini öncelikleyen yatırımcılar</p>
-              </div>
-            </div>
-
-            {/* Experience Section */}
-            <div className="max-w-[576px] mx-auto mb-12 text-center">
-              <h3
-                className="mb-6"
-                style={{
-                  color: '#f6f8f9',
-                  fontSize: '30px',
-                  fontWeight: '400'
+                  fontSize: '24px',
+                  fontWeight: '600'
                 }}
               >
                 Güvence ve Tecrübe
               </h3>
-              <div
-                className="space-y-3"
-                style={{
-                  color: '#f6f8f9',
-                  fontSize: '16px',
-                  fontWeight: '400'
-                }}
-              >
-                <p>+500 tamamlanmış sera projesi</p>
-                <p>İspanya, Türkiye ve Ortadoğu'da uygulanan sistem mimarisi</p>
-                <p>Tarım Bakanlığı desteklerine ve bankacılık standartlarına uygunluk</p>
+              <div className="grid md:grid-cols-3 gap-6 max-w-[600px] mx-auto">
+                <div className="text-center">
+                  <div
+                    className="text-4xl font-bold mb-2"
+                    style={{ color: '#baf200' }}
+                  >
+                    500+
+                  </div>
+                  <p style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '400' }}>
+                    Tamamlanmış Sera Projesi
+                  </p>
+                </div>
+                <div className="text-center">
+                  <div
+                    className="text-4xl font-bold mb-2"
+                    style={{ color: '#baf200' }}
+                  >
+                    3
+                  </div>
+                  <p style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '400' }}>
+                    Ülkede Uygulanan Sistem
+                  </p>
+                </div>
+                <div className="text-center">
+                  <div
+                    className="text-4xl font-bold mb-2"
+                    style={{ color: '#baf200' }}
+                  >
+                    %100
+                  </div>
+                  <p style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '400' }}>
+                    Standartlara Uygunluk
+                  </p>
+                </div>
               </div>
             </div>
 
