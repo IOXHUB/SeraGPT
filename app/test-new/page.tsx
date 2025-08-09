@@ -451,7 +451,7 @@ export default function TestNewPage() {
                   fontWeight: '400'
                 }}
               >
-                <p>
+                <p style={{ color: '#f6f8f9', fontSize: '16px', fontWeight: '400' }}>
                   Sera yatırımınız için SeraGPT ile analiz yaptınız. Şimdi sıra, bu verileri sahaya taşımakta. ISITMAX ve XXXXX İspanya ortaklığıyla yürüttüğümüz anahtar teslim proje sistemimizde:
                 </p>
 
