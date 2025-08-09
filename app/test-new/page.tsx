@@ -966,30 +966,212 @@ export default function TestNewPage() {
               </p>
             </div>
 
+            {/* FAQ Section */}
+            <div className="max-w-[800px] mx-auto mb-12">
+              <h3
+                className="mb-8 text-center"
+                style={{
+                  color: '#f6f8f9',
+                  fontSize: '24px',
+                  fontWeight: '600'
+                }}
+              >
+                Sıkça Sorulan Sorular
+              </h3>
+
+              <div className="space-y-4">
+                {/* FAQ 1 */}
+                <div className="bg-white/5 rounded-xl border border-white/20">
+                  <button
+                    className="w-full text-left p-6 flex justify-between items-center"
+                    onClick={() => {
+                      const content = document.getElementById('faq-1');
+                      const arrow = document.getElementById('arrow-1');
+                      if (content.style.display === 'none' || !content.style.display) {
+                        content.style.display = 'block';
+                        arrow.style.transform = 'rotate(180deg)';
+                      } else {
+                        content.style.display = 'none';
+                        arrow.style.transform = 'rotate(0deg)';
+                      }
+                    }}
+                  >
+                    <span style={{ color: '#f6f8f9', fontSize: '16px', fontWeight: '500' }}>
+                      1. Raporlarınız hangi veriler ve metotlarla hazırlanıyor?
+                    </span>
+                    <svg id="arrow-1" className="w-5 h-5 transition-transform" style={{ color: '#baf200' }} fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+                    </svg>
+                  </button>
+                  <div id="faq-1" style={{ display: 'none' }} className="px-6 pb-6">
+                    <div className="space-y-3" style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '400' }}>
+                      <p>Raporlarımız; bölgenize ait gerçek zamanlı iklim verileri, TÜİK tarım istatistikleri, Copernicus uydu görüntüleri, FAO ve yerel pazar fiyat verileri gibi güvenilir kaynaklar kullanılarak hazırlanır.</p>
+                      <p>Enerji ihtiyacı ve iklimlendirme hesaplamalarında ASHRAE tabloları ve mühendislik formülleri uygulanır.</p>
+                      <p>Bu sayede sonuçlar yalnızca tahmini değil, sahada uygulanabilir ve yatırım kararına doğrudan temel oluşturacak nitelikte olur.</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* FAQ 2 */}
+                <div className="bg-white/5 rounded-xl border border-white/20">
+                  <button
+                    className="w-full text-left p-6 flex justify-between items-center"
+                    onClick={() => {
+                      const content = document.getElementById('faq-2');
+                      const arrow = document.getElementById('arrow-2');
+                      if (content.style.display === 'none' || !content.style.display) {
+                        content.style.display = 'block';
+                        arrow.style.transform = 'rotate(180deg)';
+                      } else {
+                        content.style.display = 'none';
+                        arrow.style.transform = 'rotate(0deg)';
+                      }
+                    }}
+                  >
+                    <span style={{ color: '#f6f8f9', fontSize: '16px', fontWeight: '500' }}>
+                      2. Sera tipini ve ekipman seçimlerini nasıl belirliyorsunuz?
+                    </span>
+                    <svg id="arrow-2" className="w-5 h-5 transition-transform" style={{ color: '#baf200' }} fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+                    </svg>
+                  </button>
+                  <div id="faq-2" style={{ display: 'none' }} className="px-6 pb-6">
+                    <div className="space-y-3" style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '400' }}>
+                      <p>Sera tipini ve ekipmanlarını belirlerken şu parametreler analiz edilir:</p>
+                      <ul className="space-y-2 ml-4">
+                        <li>• Lokasyonun yıllık ortalama ve ekstrem sıcaklık/soğuk değerleri</li>
+                        <li>• Güneşlenme süresi ve ışık şiddeti</li>
+                        <li>• Ürün tipi ve yetiştirme modeli (topraklı/hidroponik)</li>
+                        <li>• Su kaynağı ve sulama kapasitesi</li>
+                        <li>• Enerji kaynakları ve maliyetleri</li>
+                      </ul>
+                      <p>Tüm bu veriler yapay zeka ve mühendis ekibimizin değerlendirmesiyle optimum yatırım modeli olarak raporlanır.</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* FAQ 3 */}
+                <div className="bg-white/5 rounded-xl border border-white/20">
+                  <button
+                    className="w-full text-left p-6 flex justify-between items-center"
+                    onClick={() => {
+                      const content = document.getElementById('faq-3');
+                      const arrow = document.getElementById('arrow-3');
+                      if (content.style.display === 'none' || !content.style.display) {
+                        content.style.display = 'block';
+                        arrow.style.transform = 'rotate(180deg)';
+                      } else {
+                        content.style.display = 'none';
+                        arrow.style.transform = 'rotate(0deg)';
+                      }
+                    }}
+                  >
+                    <span style={{ color: '#f6f8f9', fontSize: '16px', fontWeight: '500' }}>
+                      3. Devlet hibeleri ve teşvikler için uygunluk analizi nasıl yapılıyor?
+                    </span>
+                    <svg id="arrow-3" className="w-5 h-5 transition-transform" style={{ color: '#baf200' }} fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+                    </svg>
+                  </button>
+                  <div id="faq-3" style={{ display: 'none' }} className="px-6 pb-6">
+                    <div className="space-y-3" style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '400' }}>
+                      <p>Raporlarımızda TKDK, IPARD ve Ziraat Bankası gibi kurumların kriterleri dikkate alınır.</p>
+                      <p>Bölgesel hibe oranları, yatırım bütçesi limitleri ve teknik gereklilikler proje dosyasına eklenir.</p>
+                      <p>Eğer yatırımınız uygun bulunursa, hibe başvurusu sırasında gerekli teknik çizim ve fizibilite raporları tarafımızdan hazırlanabilir.</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* FAQ 4 */}
+                <div className="bg-white/5 rounded-xl border border-white/20">
+                  <button
+                    className="w-full text-left p-6 flex justify-between items-center"
+                    onClick={() => {
+                      const content = document.getElementById('faq-4');
+                      const arrow = document.getElementById('arrow-4');
+                      if (content.style.display === 'none' || !content.style.display) {
+                        content.style.display = 'block';
+                        arrow.style.transform = 'rotate(180deg)';
+                      } else {
+                        content.style.display = 'none';
+                        arrow.style.transform = 'rotate(0deg)';
+                      }
+                    }}
+                  >
+                    <span style={{ color: '#f6f8f9', fontSize: '16px', fontWeight: '500' }}>
+                      4. Ekipman listesinde yer alan markalar ve modeller nasıl seçiliyor?
+                    </span>
+                    <svg id="arrow-4" className="w-5 h-5 transition-transform" style={{ color: '#baf200' }} fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+                    </svg>
+                  </button>
+                  <div id="faq-4" style={{ display: 'none' }} className="px-6 pb-6">
+                    <div className="space-y-3" style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '400' }}>
+                      <p>Ekipman seçiminde aşağıdaki kriterler uygulanır:</p>
+                      <ul className="space-y-2 ml-4">
+                        <li>• Enerji verimliliği (A++ veya üzeri)</li>
+                        <li>• Türkiye'de servis ve yedek parça desteği</li>
+                        <li>• Uluslararası kalite belgeleri (CE, ISO, TÜV)</li>
+                        <li>• Daha önce kurduğumuz projelerdeki performans verileri</li>
+                      </ul>
+                      <p>Liste yalnızca tavsiye niteliğindedir, yatırımcı dilerse alternatif markalar talep edebilir.</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* FAQ 5 */}
+                <div className="bg-white/5 rounded-xl border border-white/20">
+                  <button
+                    className="w-full text-left p-6 flex justify-between items-center"
+                    onClick={() => {
+                      const content = document.getElementById('faq-5');
+                      const arrow = document.getElementById('arrow-5');
+                      if (content.style.display === 'none' || !content.style.display) {
+                        content.style.display = 'block';
+                        arrow.style.transform = 'rotate(180deg)';
+                      } else {
+                        content.style.display = 'none';
+                        arrow.style.transform = 'rotate(0deg)';
+                      }
+                    }}
+                  >
+                    <span style={{ color: '#f6f8f9', fontSize: '16px', fontWeight: '500' }}>
+                      5. Raporlarda görsel ve teknik çizim desteği var mı?
+                    </span>
+                    <svg id="arrow-5" className="w-5 h-5 transition-transform" style={{ color: '#baf200' }} fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+                    </svg>
+                  </button>
+                  <div id="faq-5" style={{ display: 'none' }} className="px-6 pb-6">
+                    <div className="space-y-3" style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '400' }}>
+                      <p>Evet. Teknik projelendirme ve anahtar teslim paketlerde:</p>
+                      <ul className="space-y-2 ml-4">
+                        <li>• 2D yerleşim planı</li>
+                        <li>• 3D sera modeli</li>
+                        <li>• Elektrik tesisat şeması</li>
+                        <li>• Sulama ve drenaj hattı planı</li>
+                        <li>• Isıtma hattı ve ekipman yerleşimi</li>
+                      </ul>
+                      <p>gibi detaylı görseller PDF rapora dahil edilir.</p>
+                      <p>Bu çizimler hem yatırımcı sunumlarında hem de yüklenici firmalara teklif alırken kullanılabilir.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link 
-                href="/destek" 
+              <Link
+                href="/destek"
                 className="inline-block px-8 py-4 rounded-xl font-medium transition-all hover:opacity-90"
-                style={{ 
-                  backgroundColor: '#baf200', 
-                  color: '#1e3237', 
-                  fontSize: '14px', 
-                  fontWeight: '600' 
+                style={{
+                  backgroundColor: '#baf200',
+                  color: '#1e3237',
+                  fontSize: '14px',
+                  fontWeight: '600'
                 }}
               >
-                📞 Bize Ulaşın
-              </Link>
-              <Link 
-                href="/destek" 
-                className="inline-block px-8 py-4 rounded-xl font-medium transition-all hover:opacity-90"
-                style={{ 
-                  backgroundColor: '#baf200', 
-                  color: '#1e3237', 
-                  fontSize: '14px', 
-                  fontWeight: '600' 
-                }}
-              >
-                🧠 Destek Sayfasını Ziyaret Et
+                Destek Sayfamız
               </Link>
             </div>
           </div>
@@ -1008,7 +1190,7 @@ export default function TestNewPage() {
                 fontWeight: '600' 
               }}
             >
-              ��� 500'ün Üzerinde Sera Projesinin İçindeydik
+              🚀 500'ün Üzerinde Sera Projesinin İçindeydik
             </h2>
 
             <div className="max-w-[576px] mx-auto mb-12">
