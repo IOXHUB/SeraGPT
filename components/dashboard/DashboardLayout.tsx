@@ -70,7 +70,7 @@ export default function DashboardLayout({ children, title, subtitle }: Dashboard
             { name: 'Verimlilik Artırma', href: '/dashboard/ai-chat?prompt=efficiency', icon: '📊', prompt: 'Sera verimliliğimi artırmak için hangi stratejileri uygulayabilirim? Detaylı öneriler istiyorum.' },
             { name: 'Teknoloji Yenilikleri', href: '/dashboard/ai-chat?prompt=technology', icon: '🚀', prompt: 'Sera teknolojilerindeki son yenilikler ve bunları işletmeme entegre etme yolları nelerdir?' },
             { name: 'Pazarlama Stratejileri', href: '/dashboard/ai-chat?prompt=marketing', icon: '📢', prompt: 'Sera ürünlerimi pazarlama ve satış kanallarını geliştirme konusunda stratejik öneriler istiyorum.' },
-            { name: 'Sürdürülebilirlik', href: '/dashboard/ai-chat?prompt=sustainability', icon: '🌱', prompt: 'Sera işletmemi daha sürdürülebilir hale getirmek için çevre dostu çözümler önerir misin?' }
+            { name: 'Sürdürülebilirlik', href: '/dashboard/ai-chat?prompt=sustainability', icon: '🌱', prompt: 'Sera işletmemi daha sürd��rülebilir hale getirmek için çevre dostu çözümler önerir misin?' }
           ]
         },
         {
@@ -205,12 +205,14 @@ export default function DashboardLayout({ children, title, subtitle }: Dashboard
                           }`}
                           title={sidebarCollapsed ? item.name : undefined}
                         >
-                          <span className={`text-base ${sidebarCollapsed ? 'mx-auto' : 'mr-3'}`}>
-                            {item.icon}
-                          </span>
+                          {item.icon && (
+                            <span className={`text-base ${sidebarCollapsed ? 'mx-auto' : 'mr-3'}`}>
+                              {item.icon}
+                            </span>
+                          )}
                           {!sidebarCollapsed && (
                             <>
-                              <span className="flex-1">{item.name}</span>
+                              <span className="flex-1">{item.name === 'Anasayfa' ? <p>Anasayfa</p> : item.name}</span>
                               <div className="flex items-center space-x-1">
                                 {item.badge && (
                                   <span className="px-1.5 py-0.5 text-xs bg-green-100 text-green-600 rounded-full">
