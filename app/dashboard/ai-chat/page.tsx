@@ -209,7 +209,7 @@ export default function AIChatPage() {
   const generateMockResponse = (userInput: string): string => {
     return `🌱 **SeraGPT 5 ile Sera Uzmanınız**
 
-Merhaba! Size sera konularında en güncel ve akıllı çözümler sunmak için buradayım.
+Merhaba! Size sera konularında en güncel ve akıllı çöz��mler sunmak için buradayım.
 
 **Sorunuza yanıt:**
 ${userInput} konusunda detaylı analiz yapabilirim. Modern sera teknolojileri ve AI destekli önerilerle en optimal çözümleri bulalım.
@@ -274,8 +274,8 @@ Hangi konuda derinlemesine konuşmak istersiniz?`;
     
     return (
       <DashboardLayout>
-        <div className="h-full bg-gradient-to-br from-orange-400 via-purple-500 to-blue-600">
-          <div className="h-full flex flex-col">
+        <div className="h-full bg-gradient-to-br from-orange-400 via-purple-500 to-blue-600 min-h-0">
+          <div className="h-full flex flex-col min-h-0">
             {/* Header */}
             <div className="p-4 sm:p-6">
               <div className="max-w-4xl mx-auto">
