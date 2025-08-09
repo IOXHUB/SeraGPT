@@ -471,8 +471,20 @@ export default function DashboardLayout({ children, title, subtitle }: Dashboard
         {/* Main Content Area */}
         <main className="flex-1 max-w-full overflow-auto">
           <div className="p-6 bg-[#146448] min-h-full">
-            <div className="bg-[#f6f8f9] rounded-xl shadow-lg p-6 min-h-[calc(100vh-8rem)]">
-              {children}
+            <div className="bg-[#f6f8f9] rounded-xl shadow-lg min-h-[calc(100vh-8rem)]">
+              {(title || subtitle) && (
+                <div className="p-6 border-b border-[#146448]/10">
+                  {title && (
+                    <h1 className="text-2xl font-bold text-[#1e3237] mb-2">{title}</h1>
+                  )}
+                  {subtitle && (
+                    <p className="text-[#1e3237]/70">{subtitle}</p>
+                  )}
+                </div>
+              )}
+              <div className="p-6">
+                {children}
+              </div>
             </div>
           </div>
         </main>
