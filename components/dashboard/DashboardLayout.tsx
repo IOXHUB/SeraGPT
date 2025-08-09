@@ -67,7 +67,7 @@ export default function DashboardLayout({ children, title, subtitle }: Dashboard
           category: 'AI',
           submenu: [
             { name: 'Maliyet Optimizasyonu', href: '/dashboard/ai-chat?prompt=cost_optimization', icon: '💰', prompt: 'Sera işletmemde maliyet tasarrufu ve optimizasyon konularında önerilerinizi almak istiyorum.' },
-            { name: 'Verimlilik Artırma', href: '/dashboard/ai-chat?prompt=efficiency', icon: '📊', prompt: 'Sera verimliliğimi artırmak için hangi stratejileri uygulayabilirim? Detaylı öneriler istiyorum.' },
+            { name: 'Verimlilik Artırma', href: '/dashboard/ai-chat?prompt=efficiency', icon: '📊', prompt: 'Sera verimlili��imi artırmak için hangi stratejileri uygulayabilirim? Detaylı öneriler istiyorum.' },
             { name: 'Teknoloji Yenilikleri', href: '/dashboard/ai-chat?prompt=technology', icon: '🚀', prompt: 'Sera teknolojilerindeki son yenilikler ve bunları işletmeme entegre etme yolları nelerdir?' },
             { name: 'Pazarlama Stratejileri', href: '/dashboard/ai-chat?prompt=marketing', icon: '📢', prompt: 'Sera ürünlerimi pazarlama ve satış kanallarını geliştirme konusunda stratejik öneriler istiyorum.' },
             { name: 'Sürdürülebilirlik', href: '/dashboard/ai-chat?prompt=sustainability', icon: '🌱', prompt: 'Sera işletmemi daha sürd��rülebilir hale getirmek için çevre dostu çözümler önerir misin?' }
@@ -146,22 +146,22 @@ export default function DashboardLayout({ children, title, subtitle }: Dashboard
   };
 
   return (
-    <div className="h-screen bg-gray-50 overflow-hidden">
+    <div className="h-screen bg-[#f6f8f9] overflow-hidden">
       {/* Mobile sidebar backdrop */}
       {sidebarOpen && (
-        <div 
+        <div
           className="fixed inset-0 z-50 bg-black bg-opacity-50 lg:hidden"
           onClick={() => setSidebarOpen(false)}
         />
       )}
 
       {/* Desktop Sidebar */}
-      <div className={`fixed inset-y-0 left-0 z-40 bg-white border-r border-gray-200 transition-all duration-300 ease-in-out hidden lg:block ${
+      <div className={`fixed inset-y-0 left-0 z-40 bg-[#f6f8f9] border-r border-[#146448]/20 shadow-lg transition-all duration-300 ease-in-out hidden lg:block ${
         sidebarCollapsed ? 'w-16' : 'w-64'
       }`}>
         <div className="flex flex-col h-full">
           {/* Logo Header */}
-          <div className={`flex items-center justify-between h-16 px-4 border-b border-gray-200 ${sidebarCollapsed ? 'px-2' : ''}`}>
+          <div className={`flex items-center justify-between h-16 px-4 border-b border-[#146448]/20 ${sidebarCollapsed ? 'px-2' : ''}`}>
             <a href="/dashboard" className="flex items-center space-x-3">
               {sidebarCollapsed ? (
                 <div className="w-8 h-8 bg-gradient-to-br from-green-500 to-green-600 rounded-lg flex items-center justify-center">
