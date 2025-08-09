@@ -12,13 +12,17 @@ export default function TestNewPage() {
           <div className="flex items-center justify-between">
             {/* Logo */}
             <div className="flex items-center space-x-3">
-              <div 
-                className="w-12 h-12 rounded-xl flex items-center justify-center font-bold text-xl"
-                style={{ backgroundColor: '#baf200', color: '#1e3237' }}
+              <div
+                className="w-12 h-12 rounded-xl flex items-center justify-center overflow-hidden"
+                style={{ backgroundColor: '#baf200' }}
               >
-                🌱
+                <img
+                  src="https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2F01c1e8a05ef6424b912d584875377957?format=webp&width=800"
+                  alt="SeraGPT Logo"
+                  className="w-full h-full object-cover"
+                />
               </div>
-              <h1 
+              <h1
                 className="text-2xl font-semibold"
                 style={{ color: '#f6f8f9', fontSize: '24px', fontWeight: '600' }}
               >
@@ -299,23 +303,38 @@ export default function TestNewPage() {
               </p>
             </div>
 
-            {/* AI Assistant Chat Screen Mock Up - 800px */}
+            {/* Mobile AI Assistant Mock Up - 800px */}
             <div className="max-w-[800px] mx-auto mb-8">
-              <div className="rounded-2xl p-6 shadow-lg" style={{ backgroundColor: '#ffffff' }}>
-                <div className="aspect-video rounded-xl overflow-hidden" style={{ backgroundColor: '#f8f9fa' }}>
-                  <img
-                    src="https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2F45fa11ef7af4440b88d9283767fb401a?format=webp&width=800"
-                    alt="AI Asistan Sohbet Ekranı"
-                    className="w-full h-full object-cover"
-                  />
+              <div className="flex justify-center">
+                <div className="relative max-w-sm mx-auto">
+                  {/* Mobile Phone Frame */}
+                  <div className="relative bg-black rounded-[2.5rem] p-2 shadow-2xl">
+                    <div className="bg-white rounded-[2rem] overflow-hidden">
+                      {/* Mobile AI Assistant Interface */}
+                      <img
+                        src="https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2F01c1e8a05ef6424b912d584875377957?format=webp&width=800"
+                        alt="Mobile AI Asistan Mockup"
+                        className="w-full h-auto object-cover"
+                        style={{ aspectRatio: '9/16' }}
+                      />
+                    </div>
+                    {/* Phone Details */}
+                    <div className="absolute top-6 left-1/2 transform -translate-x-1/2 w-20 h-1 bg-gray-800 rounded-full"></div>
+                    <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 w-12 h-1 bg-gray-800 rounded-full"></div>
+                  </div>
+
+                  {/* Floating Elements */}
+                  <div className="absolute -top-4 -right-4 w-8 h-8 bg-gradient-to-r from-green-400 to-blue-500 rounded-full animate-bounce opacity-80"></div>
+                  <div className="absolute -bottom-4 -left-4 w-6 h-6 bg-gradient-to-r from-purple-400 to-pink-500 rounded-full animate-pulse opacity-80"></div>
                 </div>
-                <div className="mt-4 text-center">
-                  <p
-                    style={{ color: '#454b4b', fontSize: '14px', fontWeight: '400' }}
-                  >
-                    📱 Mobile AI Asistan Özelliği Simülasyonu
-                  </p>
-                </div>
+              </div>
+
+              <div className="mt-6 text-center">
+                <p
+                  style={{ color: '#454b4b', fontSize: '14px', fontWeight: '400' }}
+                >
+                  📱 Mobile AI Asistan Özelliği Simülasyonu
+                </p>
               </div>
             </div>
 
@@ -519,7 +538,7 @@ export default function TestNewPage() {
                   fontWeight: '400' 
                 }}
               >
-                20 yılı aşkın süredir 50+ ilde yüzlerce projeye imza attık. Şimdi bu deneyimle size özel danışmanlık veriyoruz.
+                20 yılı aşkın süredir 50+ ilde y��zlerce projeye imza attık. Şimdi bu deneyimle size özel danışmanlık veriyoruz.
               </p>
             </div>
 
