@@ -759,7 +759,7 @@ export default function TestNewPage() {
                       </p>
                     </div>
                     <div className="flex items-start space-x-3">
-                      <span style={{ color: '#baf200', fontSize: '16px' }}>��</span>
+                      <span style={{ color: '#baf200', fontSize: '16px' }}>•</span>
                       <p style={{ color: '#f6f8f9', fontSize: '16px', fontWeight: '400' }}>
                         Ekipman listesi ve marka/model önerileri
                       </p>
@@ -795,7 +795,7 @@ export default function TestNewPage() {
                     </div>
                     <div className="mt-4">
                       <p style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '400' }}>
-                        <strong style={{ color: '#baf200' }}>Amaç:</strong> Yatırımın tüm teknik altyapısını netleştirmek
+                        <strong style={{ color: '#baf200' }}>Amaç:</strong> Yatırımın tüm teknik altyapısın�� netleştirmek
                       </p>
                     </div>
                   </div>
@@ -1202,7 +1202,7 @@ export default function TestNewPage() {
                 fontWeight: '400'
               }}
             >
-              Sera yatırımı ve tarım teknolojileri hakk��nda güncel bilgiler ve uzman görüşleri
+              Sera yatırımı ve tarım teknolojileri hakkında güncel bilgiler ve uzman görüşleri
             </p>
           </div>
 
@@ -1469,6 +1469,90 @@ export default function TestNewPage() {
           </div>
         </div>
       </section>
+
+      {/* Final CTA Section */}
+      <div className="max-w-[1200px] mx-auto px-6 text-center">
+        <div className="max-w-[800px] mx-auto">
+          {/* Inspiring title */}
+          <div className="max-w-[576px] mx-auto mb-8">
+            <h2
+              className="leading-tight text-center mb-8"
+              style={{
+                color: '#f6f8f9',
+                fontSize: '36px',
+                fontWeight: '600'
+              }}
+            >
+              Vizyonunuza ve Azminize Hayranız.
+            </h2>
+          </div>
+
+          {/* Motivational message */}
+          <div className="max-w-[576px] mx-auto mb-8">
+            <p
+              className="leading-relaxed text-center mb-6"
+              style={{
+                color: '#f6f8f9',
+                fontSize: '20px',
+                fontWeight: '400'
+              }}
+            >
+              Siz ürettikçe bu ülke büyür. Biz de yatırımınızı güçlendirecek doğru verileri, mühendisliği ve yapay zekâyı bir araya getiriyoruz.
+            </p>
+
+            <p
+              className="leading-relaxed text-center"
+              style={{
+                color: '#f6f8f9',
+                fontSize: '18px',
+                fontWeight: '400'
+              }}
+            >
+              Hemen raporunuzu oluşturun, geleceğinizi şekillendirin.
+            </p>
+          </div>
+
+          {/* Final CTA Button */}
+          <div className="mb-8">
+            <Link
+              href="/auth/login"
+              className="hero-cta-button inline-block px-12 py-5 rounded-xl font-medium transition-all hover:opacity-90 hover:scale-105 transform"
+              style={{
+                backgroundColor: '#baf200',
+                color: '#1e3237',
+                fontSize: '18px',
+                fontWeight: '600'
+              }}
+            >
+              Ücretsiz Rapor Al
+            </Link>
+          </div>
+
+          {/* Supporting visual element */}
+          <div className="max-w-[600px] mx-auto">
+            <div className="flex justify-center items-center space-x-6 opacity-80">
+              <div className="text-center">
+                <div className="text-3xl mb-2">🌱</div>
+                <p style={{ color: '#f6f8f9', fontSize: '12px', fontWeight: '400' }}>
+                  Doğru Yatırım
+                </p>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl mb-2">📊</div>
+                <p style={{ color: '#f6f8f9', fontSize: '12px', fontWeight: '400' }}>
+                  Doğru Analiz
+                </p>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl mb-2">🚀</div>
+                <p style={{ color: '#f6f8f9', fontSize: '12px', fontWeight: '400' }}>
+                  Doğru Gelecek
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
       {/* Footer */}
       <footer className="py-12" style={{ backgroundColor: '#146448' }}>
