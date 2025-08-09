@@ -501,7 +501,7 @@ export default function TokensPage() {
               </div>
               
               <div className="p-4 bg-green-50 rounded-lg border border-green-200">
-                <h4 className="font-medium text-green-900 mb-2">🤖 AI Ücretsiz</h4>
+                <h4 className="font-medium text-green-900 mb-2">AI Ücretsiz</h4>
                 <p className="text-sm text-green-800">
                   AI Asistan kullanımı tamamen ücretsiz! Raporlar için token gerekir.
                 </p>
