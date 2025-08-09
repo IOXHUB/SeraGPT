@@ -423,7 +423,7 @@ export default function DashboardLayout({ children, title, subtitle }: Dashboard
       </div>
 
       {/* Main Content */}
-      <div className={`flex flex-col h-screen transition-all duration-300 ${
+      <div className={`flex flex-col min-h-screen transition-all duration-300 ${
         sidebarCollapsed ? 'lg:ml-16' : 'lg:ml-64'
       }`}>
         {/* Top Header */}
