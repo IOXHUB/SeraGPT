@@ -43,6 +43,7 @@ export default function AIChatPage() {
   // Get prompt from URL parameter
   const promptParam = searchParams?.get('prompt');
   const sessionParam = searchParams?.get('session');
+  const reportParam = searchParams?.get('report');
 
   // Initialize chat session
   useEffect(() => {
