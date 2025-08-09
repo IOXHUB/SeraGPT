@@ -369,14 +369,14 @@ export default function DashboardLayout({ children, title, subtitle }: Dashboard
                                 onClick={() => toggleSubSubmenu(subItem.name)}
                                 className={`w-full group flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-all ${
                                   expandedSubMenus[subItem.name]
-                                    ? 'bg-green-100 text-green-700'
-                                    : 'text-gray-600 hover:bg-gray-100 hover:text-gray-800'
+                                    ? 'bg-[#146448]/15 text-[#146448]'
+                                    : 'text-[#1e3237]/60 hover:bg-[#146448]/8 hover:text-[#146448]'
                                 }`}
                               >
                                 <span className="text-base mr-3">{subItem.icon}</span>
                                 <span className="flex-1 text-left">{subItem.name}</span>
                                 <svg
-                                  className={`w-4 h-4 text-gray-400 transition-transform ${expandedSubMenus[subItem.name] ? 'rotate-90' : ''}`}
+                                  className={`w-4 h-4 text-[#1e3237]/40 transition-transform ${expandedSubMenus[subItem.name] ? 'rotate-90' : ''}`}
                                   fill="none"
                                   stroke="currentColor"
                                   viewBox="0 0 24 24"
