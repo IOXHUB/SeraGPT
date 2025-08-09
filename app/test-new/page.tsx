@@ -444,10 +444,10 @@ export default function TestNewPage() {
               </h2>
             </div>
 
-            {/* Detailed description */}
-            <div className="max-w-[576px] mx-auto mb-12">
+            {/* Detailed description - centered and organized */}
+            <div className="max-w-[576px] mx-auto mb-12 text-center">
               <div
-                className="leading-relaxed text-left space-y-6"
+                className="leading-relaxed space-y-8"
                 style={{
                   color: '#f6f8f9',
                   fontSize: '16px',
@@ -462,46 +462,102 @@ export default function TestNewPage() {
                   ISITMAX ve XXXXX İspanya ortaklığıyla yürüttüğümüz anahtar teslim proje sistemimizde:
                 </p>
 
-                <div className="space-y-2 ml-4">
-                  <p>• Keşif, projelendirme ve süpervizörlük hizmetleri ISITMAX tarafından</p>
-                  <p>• Tüm imalat, ekipman, otomasyon ve saha kurulum süreçleri ise XXXXX Spain tarafından sağlanır.</p>
+                <div className="space-y-3">
+                  <p>Keşif, projelendirme ve süpervizörlük hizmetleri ISITMAX tarafından</p>
+                  <p>Tüm imalat, ekipman, otomasyon ve saha kurulum süreçleri ise XXXXX Spain tarafından sağlanır.</p>
                 </div>
 
-                <p className="font-semibold">Bu yapı sayesinde:</p>
-                <div className="space-y-2 ml-4">
-                  <p>✅ Türkiye'de yerinde planlama avantajı</p>
-                  <p>✅ Avrupa standardında malzeme ve kurulum</p>
-                  <p>✅ Tek elden yönetilen, zamanında teslim edilen projeler</p>
-                </div>
-
-                <div className="border-t border-white/20 pt-4">
-                  <p className="font-semibold mb-3">Hizmet Kapsamı:</p>
-                  <div className="space-y-2 ml-4">
-                    <p>• Yerinde keşif ve teknik analiz (ISITMAX)</p>
-                    <p>• Statik & yapısal proje çizimleri</p>
-                    <p>• XXXXX menşeli otomasyon, ekipman ve kurulum hizmeti</p>
-                    <p>• ISITMAX süpervizörlüğünde şantiye yönetimi</p>
-                    <p>• Tam kapsamlı fiyat teklifi ve mühendislik dosyası (PDF)</p>
+                {/* Special container for 3 key benefits */}
+                <div
+                  className="max-w-[600px] mx-auto p-6 rounded-xl"
+                  style={{ backgroundColor: '#f6f8f9', color: '#1e3237' }}
+                >
+                  <div className="space-y-3">
+                    <p>Türkiye'de yerinde planlama avantajı</p>
+                    <p>Avrupa standardında malzeme ve kurulum</p>
+                    <p>Tek elden yönetilen, zamanında teslim edilen projeler</p>
                   </div>
                 </div>
+              </div>
+            </div>
 
-                <div className="border-t border-white/20 pt-4">
-                  <p className="font-semibold mb-3">Bu İş Modeli Kimler İçin Uygundur?</p>
-                  <div className="space-y-2 ml-4">
-                    <p>• 1.000 m² ve üzeri yatırım düşünen profesyonel üreticiler</p>
-                    <p>• Hibe/destek başvurusu için teknik dosya gereksinimi olanlar</p>
-                    <p>• Sera projelerinde uzun ömür, otomasyon ve enerji verimliliğini öncelikleyen yatırımcılar</p>
-                  </div>
-                </div>
+            {/* Service Scope Section */}
+            <div className="max-w-[576px] mx-auto mb-12 text-center">
+              <h3
+                className="mb-6"
+                style={{
+                  color: '#f6f8f9',
+                  fontSize: '30px',
+                  fontWeight: '400'
+                }}
+              >
+                Hizmet Kapsamı
+              </h3>
+              <div
+                className="space-y-3"
+                style={{
+                  color: '#f6f8f9',
+                  fontSize: '16px',
+                  fontWeight: '400'
+                }}
+              >
+                <p>Yerinde keşif ve teknik analiz (ISITMAX)</p>
+                <p>Statik & yapısal proje çizimleri</p>
+                <p>XXXXX menşeli otomasyon, ekipman ve kurulum hizmeti</p>
+                <p>ISITMAX süpervizörlüğünde şantiye yönetimi</p>
+                <p>Tam kapsamlı fiyat teklifi ve mühendislik dosyası (PDF)</p>
+              </div>
+            </div>
 
-                <div className="border-t border-white/20 pt-4">
-                  <p className="font-semibold mb-3">Güvence ve Tecrübe:</p>
-                  <div className="space-y-2 ml-4">
-                    <p>• +500 tamamlanmış sera projesi</p>
-                    <p>• İspanya, Türkiye ve Ortadoğu'da uygulanan sistem mimarisi</p>
-                    <p>• Tarım Bakanlığı desteklerine ve bankacılık standartlarına uygunluk</p>
-                  </div>
-                </div>
+            {/* Target Audience Section */}
+            <div className="max-w-[576px] mx-auto mb-12 text-center">
+              <h3
+                className="mb-6"
+                style={{
+                  color: '#f6f8f9',
+                  fontSize: '30px',
+                  fontWeight: '400'
+                }}
+              >
+                Bu İş Modeli Kimler İçin Uygundur?
+              </h3>
+              <div
+                className="space-y-3"
+                style={{
+                  color: '#f6f8f9',
+                  fontSize: '16px',
+                  fontWeight: '400'
+                }}
+              >
+                <p>1.000 m² ve üzeri yatırım düşünen profesyonel üreticiler</p>
+                <p>Hibe/destek başvurusu için teknik dosya gereksinimi olanlar</p>
+                <p>Sera projelerinde uzun ömür, otomasyon ve enerji verimliliğini öncelikleyen yatırımcılar</p>
+              </div>
+            </div>
+
+            {/* Experience Section */}
+            <div className="max-w-[576px] mx-auto mb-12 text-center">
+              <h3
+                className="mb-6"
+                style={{
+                  color: '#f6f8f9',
+                  fontSize: '30px',
+                  fontWeight: '400'
+                }}
+              >
+                Güvence ve Tecrübe
+              </h3>
+              <div
+                className="space-y-3"
+                style={{
+                  color: '#f6f8f9',
+                  fontSize: '16px',
+                  fontWeight: '400'
+                }}
+              >
+                <p>+500 tamamlanmış sera projesi</p>
+                <p>İspanya, Türkiye ve Ortadoğu'da uygulanan sistem mimarisi</p>
+                <p>Tarım Bakanlığı desteklerine ve bankacılık standartlarına uygunluk</p>
               </div>
             </div>
 
