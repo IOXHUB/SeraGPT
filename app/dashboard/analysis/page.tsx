@@ -129,7 +129,7 @@ export default function AnalysesListPage() {
             <div className="text-sm text-[#1e3237]/70">Toplam Analiz</div>
           </div>
           <div className="bg-[#f6f8f9] rounded-lg border p-4 shadow-lg">
-            <div className="text-2xl font-bold text-green-600">
+            <div className="text-2xl font-bold text-[#146448]">
               {analyses.filter(a => a.status === 'completed').length}
             </div>
             <div className="text-sm text-[#1e3237]/70">Tamamlanan</div>
@@ -268,7 +268,7 @@ export default function AnalysesListPage() {
                                 alert('PDF indirme sırasında bir hata oluştu');
                               }
                             }}
-                            className="text-green-600 hover:text-green-800 text-sm font-medium"
+                            className="text-[#146448] hover:text-green-800 text-sm font-medium"
                           >
                             PDF İndir
                           </button>
