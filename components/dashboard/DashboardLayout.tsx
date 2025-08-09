@@ -469,9 +469,11 @@ export default function DashboardLayout({ children, title, subtitle }: Dashboard
         </header>
 
         {/* Main Content Area */}
-        <main className="flex-1 max-w-full overflow-hidden">
-          <div className="h-full max-w-none">
-            {children}
+        <main className="flex-1 max-w-full overflow-auto">
+          <div className="p-6 bg-[#146448] min-h-full">
+            <div className="bg-[#f6f8f9] rounded-xl shadow-lg p-6 min-h-[calc(100vh-8rem)]">
+              {children}
+            </div>
           </div>
         </main>
       </div>
