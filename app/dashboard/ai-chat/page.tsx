@@ -353,7 +353,7 @@ Hangi konuda derinlemesine konuşmak istersiniz?`;
                       Henüz {getCategoryTitle(selectedCategory).toLowerCase()} raporu yok
                     </h3>
                     <p className="text-white/70 mb-6">
-                      Bu kategoride henüz tamamlanmış bir raporunuz bulunmuyor.
+                      Bu kategoride hen��z tamamlanmış bir raporunuz bulunmuyor.
                     </p>
                     <button
                       onClick={() => setShowReportSelection(false)}
@@ -373,7 +373,7 @@ Hangi konuda derinlemesine konuşmak istersiniz?`;
 
   return (
     <DashboardLayout>
-      <div className="h-full bg-gradient-to-br from-orange-400 via-purple-500 to-blue-600 flex flex-col overflow-hidden min-h-0">
+      <div className="h-full bg-[#146448] flex flex-col overflow-hidden min-h-0">
 
         {/* Header */}
         <div className="flex items-center justify-between px-6 py-4">
