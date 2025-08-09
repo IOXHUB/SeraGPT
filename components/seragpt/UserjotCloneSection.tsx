@@ -445,7 +445,7 @@ export default function UserjotCloneSection() {
               </div>
 
               {/* Card 5 - Teknik Plan */}
-              <div className="md:flex-shrink-0 w-full md:w-80 bg-white/10 backdrop-blur-sm rounded-2xl p-6 md:p-8 border border-white/20 relative shadow-xl hover:bg-white/20 transition-all">
+              <div className="md:flex-shrink-0 w-full md:w-80 bg-gradient-to-br from-orange-400 via-purple-500 to-blue-600 rounded-2xl p-6 md:p-8 relative shadow-xl hover:shadow-2xl transition-all">
                 <div className="absolute top-4 md:top-6 left-4 md:left-6 text-4xl md:text-6xl font-bold text-white/20">05</div>
                 <div className="mt-12 md:mt-16">
                   <h3 className="text-lg md:text-xl font-bold text-white mb-4 leading-tight">
