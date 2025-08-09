@@ -257,7 +257,7 @@ Hangi konuda derinlemesine konuşmak istersiniz?`;
                 transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
                 className="text-2xl"
               >
-                🤖
+                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C13.1 2 14 2.9 14 4C14 5.1 13.1 6 12 6C10.9 6 10 5.1 10 4C10 2.9 10.9 2 12 2ZM21 9V7L15 1H9V3H7C5.9 3 5 3.9 5 5V9C5 10.1 5.9 11 7 11H9V21H11V11H13V21H15V11H17C18.1 11 19 10.1 19 9Z"/></svg>
               </motion.div>
             </div>
             <h3 className="text-lg font-semibold text-white mb-2">SeraGPT 5 Hazırlanıyor</h3>
@@ -285,7 +285,7 @@ Hangi konuda derinlemesine konuşmak istersiniz?`;
                   className="text-center"
                 >
                   <div className="w-16 h-16 bg-[#f6f8f9] rounded-3xl flex items-center justify-center mx-auto mb-4 shadow-lg">
-                    <span className="text-2xl">🤖</span>
+                    <span className="text-2xl"><svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C13.1 2 14 2.9 14 4C14 5.1 13.1 6 12 6C10.9 6 10 5.1 10 4C10 2.9 10.9 2 12 2ZM21 9V7L15 1H9V3H7C5.9 3 5 3.9 5 5V9C5 10.1 5.9 11 7 11H9V21H11V11H13V21H15V11H17C18.1 11 19 10.1 19 9Z"/></svg></span>
                   </div>
                   <h1 className="text-2xl font-bold text-white mb-2">
                     {getCategoryTitle(selectedCategory)} Raporlarınız
@@ -423,7 +423,7 @@ Hangi konuda derinlemesine konuşmak istersiniz?`;
                           {message.role === 'assistant' && (
                             <div className="flex items-center mb-3">
                               <div className="w-6 h-6 bg-[#146448] rounded-full flex items-center justify-center mr-2">
-                                <span className="text-white text-xs">🤖</span>
+                                <span className="text-white text-xs"><svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C13.1 2 14 2.9 14 4C14 5.1 13.1 6 12 6C10.9 6 10 5.1 10 4C10 2.9 10.9 2 12 2ZM21 9V7L15 1H9V3H7C5.9 3 5 3.9 5 5V9C5 10.1 5.9 11 7 11H9V21H11V11H13V21H15V11H17C18.1 11 19 10.1 19 9Z"/></svg></span>
                               </div>
                               <span className="text-sm font-medium text-[#1e3237]">SeraGPT 5</span>
                             </div>
@@ -483,7 +483,7 @@ Hangi konuda derinlemesine konuşmak istersiniz?`;
                   >
                     <div className="flex items-start space-x-3">
                       <div className="w-6 h-6 bg-[#146448] rounded-full flex items-center justify-center mt-1">
-                        <span className="text-white text-xs">🤖</span>
+                        <span className="text-white text-xs"><svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C13.1 2 14 2.9 14 4C14 5.1 13.1 6 12 6C10.9 6 10 5.1 10 4C10 2.9 10.9 2 12 2ZM21 9V7L15 1H9V3H7C5.9 3 5 3.9 5 5V9C5 10.1 5.9 11 7 11H9V21H11V11H13V21H15V11H17C18.1 11 19 10.1 19 9Z"/></svg></span>
                       </div>
                       <div className="bg-[#f6f8f9] rounded-3xl rounded-bl-lg px-6 py-4 shadow-lg">
                         <div className="flex items-center space-x-2">
