@@ -399,7 +399,7 @@ export default function TokensPage() {
                     </div>
                     <div className="flex items-center justify-center space-x-2">
                       {pkg.price === 0 ? (
-                        <span className="text-2xl font-bold text-green-600">Ücretsiz</span>
+                        <span className="text-2xl font-bold text-[#146448]">Ücretsiz</span>
                       ) : (
                         <span className="text-2xl font-bold text-gray-900">
                           {pkg.price.toLocaleString('tr-TR')} ₺
