@@ -310,7 +310,7 @@ export default function DashboardLayout({ children, title, subtitle }: Dashboard
             <SeraGPTLogo size="sm" priority />
             <button
               onClick={() => setSidebarOpen(false)}
-              className="p-2 rounded-md text-gray-400 hover:text-gray-600"
+              className="p-2 rounded-md text-[#1e3237]/60 hover:text-[#146448] hover:bg-[#146448]/10 transition-colors"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
