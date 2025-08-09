@@ -344,8 +344,8 @@ Hangi konuda derinlemesine konuşmak istersiniz?`;
                     animate={{ opacity: 1 }}
                     className="text-center py-12"
                   >
-                    <div className="w-24 h-24 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center mx-auto mb-4">
-                      <svg className="w-10 h-10 text-white/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div className="w-24 h-24 bg-[#f6f8f9] rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
+                      <svg className="w-10 h-10 text-[#1e3237]/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                       </svg>
                     </div>
@@ -357,7 +357,7 @@ Hangi konuda derinlemesine konuşmak istersiniz?`;
                     </p>
                     <button
                       onClick={() => setShowReportSelection(false)}
-                      className="px-6 py-3 bg-white/20 backdrop-blur-sm text-white rounded-2xl hover:bg-white/30 transition-colors border border-white/30"
+                      className="px-6 py-3 bg-[#baf200] text-[#1e3237] rounded-2xl hover:bg-[#baf200]/90 transition-colors font-medium shadow-lg"
                     >
                       Genel Sohbete Geç
                     </button>
