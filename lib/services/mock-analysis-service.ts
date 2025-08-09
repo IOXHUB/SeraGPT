@@ -79,6 +79,11 @@ export class MockAnalysisService {
     return DevMockSystem.getAnalysis(analysisId);
   }
 
+  // Get analysis by ID with alias for reports
+  static async getAnalysisById(analysisId: string): Promise<MockAnalysis | null> {
+    return this.getAnalysis(analysisId);
+  }
+
   // Generate analysis preview/summary
   static async getAnalysisPreview(type: string, formData: AnalysisFormData): Promise<any> {
     await this.delay(800);
