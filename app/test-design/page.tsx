@@ -254,21 +254,16 @@ export default function TestDesignPage() {
           
           {/* Section Header */}
           <div className="text-center mb-12">
-            <div 
-              className="inline-block rounded-2xl p-8 shadow-lg max-w-[576px]"
-              style={{ backgroundColor: '#f6f8f9' }}
+            <h2
+              className="leading-tight"
+              style={{
+                color: '#1e3237',
+                fontSize: '36px',
+                fontWeight: '600'
+              }}
             >
-              <h2 
-                className="leading-tight"
-                style={{ 
-                  color: '#1e3237', 
-                  fontSize: '36px', 
-                  fontWeight: '600' 
-                }}
-              >
-                Analiz Türleri ve Özellikleri
-              </h2>
-            </div>
+              Analiz Türleri ve Özellikleri
+            </h2>
           </div>
 
           {/* Features Grid */}
@@ -415,7 +410,7 @@ export default function TestDesignPage() {
                 className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 text-2xl"
                 style={{ backgroundColor: '#baf200' }}
               >
-                📈
+                ��
               </div>
               <h3 
                 className="mb-3"
