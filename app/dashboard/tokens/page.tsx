@@ -350,7 +350,7 @@ export default function TokensPage() {
         </div>
 
         {/* Key Info */}
-        <div className="bg-[#f6f8f9] rounded-lg border border-gray-200 p-4 shadow-lg">
+        <div className="bg-white rounded-lg border border-[#146448]/10 p-4 shadow-lg">
           <div className="flex items-center space-x-4 text-sm">
             <div className="flex items-center space-x-2">
               <span className="text-lg">🧠</span>
