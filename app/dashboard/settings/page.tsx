@@ -279,7 +279,7 @@ export default function SettingsPage() {
                     type="text"
                     value={profileData.full_name || ''}
                     onChange={(e) => setProfileData(prev => ({ ...prev, full_name: e.target.value }))}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#146448] bg-white"
                     placeholder="Adınız ve soyadınız"
                   />
                 </div>
@@ -290,7 +290,7 @@ export default function SettingsPage() {
                     type="tel"
                     value={profileData.phone || ''}
                     onChange={(e) => setProfileData(prev => ({ ...prev, phone: e.target.value }))}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#146448] bg-white"
                     placeholder="05XX XXX XX XX"
                   />
                 </div>
@@ -300,7 +300,7 @@ export default function SettingsPage() {
                   <select
                     value={profileData.profession || ''}
                     onChange={(e) => setProfileData(prev => ({ ...prev, profession: e.target.value as any }))}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#146448] bg-white"
                   >
                     <option value="">Meslek seçin</option>
                     <option value={PROFESSIONS.FARMER}>Çiftçi</option>
@@ -317,7 +317,7 @@ export default function SettingsPage() {
                   <select
                     value={profileData.experience_level || ''}
                     onChange={(e) => setProfileData(prev => ({ ...prev, experience_level: e.target.value as any }))}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#146448] bg-white"
                   >
                     <option value="">Deneyim seviyesi seçin</option>
                     <option value={EXPERIENCE_LEVELS.BEGINNER}>Başlangıç (0-2 yıl)</option>
@@ -331,7 +331,7 @@ export default function SettingsPage() {
                   <select
                     value={profileData.specialization || ''}
                     onChange={(e) => setProfileData(prev => ({ ...prev, specialization: e.target.value as any }))}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#146448] bg-white"
                   >
                     <option value="">Uzmanlık alanı seçin</option>
                     <option value={SPECIALIZATIONS.GREENHOUSE}>Sera Tarımı</option>
@@ -348,7 +348,7 @@ export default function SettingsPage() {
                     type="text"
                     value={profileData.company_name || ''}
                     onChange={(e) => setProfileData(prev => ({ ...prev, company_name: e.target.value }))}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#146448] bg-white"
                     placeholder="Şirket veya çiftlik adınız (opsiyonel)"
                   />
                 </div>
@@ -388,7 +388,7 @@ export default function SettingsPage() {
                       ...prev, 
                       location: { ...prev.location, city: e.target.value }
                     }))}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#146448] bg-white"
                     placeholder="Şehriniz"
                   />
                 </div>
@@ -402,7 +402,7 @@ export default function SettingsPage() {
                       ...prev, 
                       location: { ...prev.location, district: e.target.value }
                     }))}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#146448] bg-white"
                     placeholder="İlçeniz"
                   />
                 </div>
@@ -415,7 +415,7 @@ export default function SettingsPage() {
                       ...prev, 
                       location: { ...prev.location, region: e.target.value }
                     }))}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#146448] bg-white"
                   >
                     <option value="">Coğrafi bölge seçin</option>
                     <option value="marmara">Marmara Bölgesi</option>
@@ -433,7 +433,7 @@ export default function SettingsPage() {
                   <select
                     value={profileData.language || ''}
                     onChange={(e) => setProfileData(prev => ({ ...prev, language: e.target.value as any }))}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#146448] bg-white"
                   >
                     <option value="tr">Türkçe</option>
                     <option value="en">English</option>
@@ -445,7 +445,7 @@ export default function SettingsPage() {
                   <select
                     value={profileData.currency || ''}
                     onChange={(e) => setProfileData(prev => ({ ...prev, currency: e.target.value as any }))}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#146448] bg-white"
                   >
                     <option value="TRY">Türk Lirası (₺)</option>
                     <option value="USD">US Dollar ($)</option>
@@ -487,7 +487,7 @@ export default function SettingsPage() {
                       <select
                         value={preferencesData.theme || 'light'}
                         onChange={(e) => setPreferencesData(prev => ({ ...prev, theme: e.target.value as any }))}
-                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#146448] bg-white"
                       >
                         <option value="light">Açık Tema</option>
                         <option value="dark">Koyu Tema</option>
@@ -500,7 +500,7 @@ export default function SettingsPage() {
                       <select
                         value={preferencesData.dashboard_layout || 'default'}
                         onChange={(e) => setPreferencesData(prev => ({ ...prev, dashboard_layout: e.target.value as any }))}
-                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#146448] bg-white"
                       >
                         <option value="default">Varsayılan</option>
                         <option value="compact">Kompakt</option>
@@ -518,7 +518,7 @@ export default function SettingsPage() {
                       <select
                         value={preferencesData.default_currency || 'TRY'}
                         onChange={(e) => setPreferencesData(prev => ({ ...prev, default_currency: e.target.value as any }))}
-                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#146448] bg-white"
                       >
                         <option value="TRY">Türk Lirası (₺)</option>
                         <option value="USD">US Dollar ($)</option>
@@ -531,7 +531,7 @@ export default function SettingsPage() {
                       <select
                         value={preferencesData.default_units || 'metric'}
                         onChange={(e) => setPreferencesData(prev => ({ ...prev, default_units: e.target.value as any }))}
-                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#146448] bg-white"
                       >
                         <option value="metric">Metrik</option>
                         <option value="imperial">Imperial</option>
@@ -543,7 +543,7 @@ export default function SettingsPage() {
                       <select
                         value={preferencesData.pdf_template || 'standard'}
                         onChange={(e) => setPreferencesData(prev => ({ ...prev, pdf_template: e.target.value as any }))}
-                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#146448] bg-white"
                       >
                         <option value="standard">Standart</option>
                         <option value="detailed">Detaylı</option>
