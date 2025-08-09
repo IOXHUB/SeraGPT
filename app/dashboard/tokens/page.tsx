@@ -374,8 +374,8 @@ export default function TokensPage() {
             {tokenPackages.map((pkg) => (
               <div 
                 key={pkg.id} 
-                className={`relative bg-[#f6f8f9] rounded-xl border-2 transition-all duration-300 hover:shadow-md ${
-                  pkg.popular ? 'border-[#baf200] ring-2 ring-[#baf200]/20' : 'border-gray-200 hover:border-[#146448]'
+                className={`relative bg-white rounded-xl border-2 transition-all duration-300 hover:shadow-xl ${
+                  pkg.popular ? 'border-[#baf200] ring-2 ring-[#baf200]/20' : 'border-[#146448]/10 hover:border-[#146448]'
                 }`}
               >
                 {pkg.badge && (
