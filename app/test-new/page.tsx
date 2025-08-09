@@ -734,17 +734,17 @@ export default function TestNewPage() {
               </button>
             </div>
 
-            <Link 
-              href="/blog" 
+            <Link
+              href="/anahtar-teslim-proje"
               className="inline-block px-8 py-4 rounded-xl font-medium transition-all hover:opacity-90"
-              style={{ 
-                backgroundColor: '#baf200', 
-                color: '#1e3237', 
-                fontSize: '14px', 
-                fontWeight: '600' 
+              style={{
+                backgroundColor: '#baf200',
+                color: '#1e3237',
+                fontSize: '16px',
+                fontWeight: '600'
               }}
             >
-              📖 Rehberleri İncele
+              Anahtar Teslim Sera
             </Link>
           </div>
         </div>
