@@ -135,7 +135,7 @@ export default function BlogPage() {
                 </div>
               </div>
               <div className="flex-1 space-y-4">
-                <div className="flex items-center space-x-4 text-sm text-gray-500">
+                <div className="flex items-center space-x-4 text-sm text-[#1e3237]/60">
                   <span>{featuredPost.date}</span>
                   <span>{featuredPost.category}</span>
                 </div>
@@ -156,7 +156,7 @@ export default function BlogPage() {
             transition={{ duration: 0.6, delay: 0.4 }}
             className="mb-16"
           >
-            <h2 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-6">
+            <h2 className="text-sm font-semibold text-[#1e3237]/60 uppercase tracking-wider mb-6">
               KATEGORİLER
             </h2>
             <div className="relative">
@@ -185,7 +185,7 @@ export default function BlogPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.6 }}
           >
-            <h2 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-6">
+            <h2 className="text-sm font-semibold text-[#1e3237]/60 uppercase tracking-wider mb-6">
               SON YAZILAR
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -210,7 +210,7 @@ export default function BlogPage() {
                       />
                     </div>
                     <div className="space-y-3">
-                      <div className="text-sm text-gray-500">
+                      <div className="text-sm text-[#1e3237]/60">
                         {post.date}
                       </div>
                       <h3 className="text-lg font-semibold text-[#1e3237] group-hover:text-gray-700 transition-colors leading-tight">
