@@ -630,7 +630,7 @@ Hangi konuda derinlemesine konuşmak istersiniz?`;
                 </svg>
               </motion.button>
             ) : (
-              <button className="p-3 bg-black rounded-full">
+              <button className="p-3 bg-[#1e3237] rounded-full">
                 <div className="flex items-center space-x-0.5">
                   <motion.div
                     animate={{ height: [8, 16, 8] }}
