@@ -375,7 +375,7 @@ export default function DanismanlikPage() {
                   <span>Danışmanlık Talep Et</span>
                 </motion.button>
                 <p className="text-xs text-gray-500 text-center mt-2">
-                  Uzman danışmanlarımızla iletişime geçin
+                  Uzman danışmanlar��mızla iletişime geçin
                 </p>
               </div>
             </div>
@@ -383,7 +383,7 @@ export default function DanismanlikPage() {
 
           {/* Main Content */}
           <div className="flex-1">
-            <div className="bg-white rounded-lg border border-gray-200 p-8">
+            <div className="bg-white rounded-lg border border-gray-200 p-8 shadow-lg">
               {/* Breadcrumb */}
               <div className="text-sm text-gray-500 mb-6">
                 {currentContent.subtitle}
