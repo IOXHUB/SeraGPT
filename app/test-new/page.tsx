@@ -1262,7 +1262,7 @@ export default function TestNewPage() {
           {/* Section Title */}
           <div className="text-center mb-12">
             <h2
-              className="mb-8"
+              className="mb-8 text-center"
               style={{
                 color: '#f6f8f9',
                 fontSize: '36px',
