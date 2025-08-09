@@ -39,7 +39,7 @@ export default function DashboardLayout({ children, title, subtitle }: Dashboard
   const pathname = usePathname();
 
   const menuItems: MenuItem[] = [
-    { name: 'Anasayfa', href: '/dashboard', icon: '', category: 'Menu' },
+    { name: 'Anasayfa', href: '/dashboard' },
     {
       name: 'AI Asistan',
       href: '/dashboard/ai-chat',
@@ -67,7 +67,7 @@ export default function DashboardLayout({ children, title, subtitle }: Dashboard
           category: 'AI',
           submenu: [
             { name: 'Maliyet Optimizasyonu', href: '/dashboard/ai-chat?prompt=cost_optimization', icon: '💰', prompt: 'Sera işletmemde maliyet tasarrufu ve optimizasyon konularında önerilerinizi almak istiyorum.' },
-            { name: 'Verimlilik Artırma', href: '/dashboard/ai-chat?prompt=efficiency', icon: '📊', prompt: 'Sera verimliliğimi artırmak için hangi stratejileri uygulayabilirim? Detaylı öneriler istiyorum.' },
+            { name: 'Verimlilik Artırma', href: '/dashboard/ai-chat?prompt=efficiency', icon: '📊', prompt: 'Sera verimlili��imi artırmak için hangi stratejileri uygulayabilirim? Detaylı öneriler istiyorum.' },
             { name: 'Teknoloji Yenilikleri', href: '/dashboard/ai-chat?prompt=technology', icon: '🚀', prompt: 'Sera teknolojilerindeki son yenilikler ve bunları işletmeme entegre etme yolları nelerdir?' },
             { name: 'Pazarlama Stratejileri', href: '/dashboard/ai-chat?prompt=marketing', icon: '📢', prompt: 'Sera ürünlerimi pazarlama ve satış kanallarını geliştirme konusunda stratejik öneriler istiyorum.' },
             { name: 'Sürdürülebilirlik', href: '/dashboard/ai-chat?prompt=sustainability', icon: '🌱', prompt: 'Sera işletmemi daha sürd��rülebilir hale getirmek için çevre dostu çözümler önerir misin?' }
