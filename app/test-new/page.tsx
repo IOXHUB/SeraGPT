@@ -1641,23 +1641,12 @@ export default function TestNewPage() {
 
             {/* Company Info */}
             <div>
-              <div className="flex items-center space-x-3 mb-4">
-                <div
-                  className="w-8 h-8 rounded-lg flex items-center justify-center overflow-hidden"
-                  style={{ backgroundColor: '#baf200' }}
-                >
-                  <img
-                    src="https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2F8e66dc449c7e47c59dff0ff61984ff12"
-                    alt="SeraGPT Logo"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <span
-                  className="font-semibold"
-                  style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '600' }}
-                >
-                  SeraGPT
-                </span>
+              <div className="mb-4">
+                <img
+                  src="https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2F01c1e8a05ef6424b912d584875377957?format=webp&width=800"
+                  alt="SeraGPT Logo"
+                  className="h-12 w-auto object-contain"
+                />
               </div>
               <p
                 className="leading-relaxed"
