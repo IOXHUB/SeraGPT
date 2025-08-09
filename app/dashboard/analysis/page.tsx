@@ -126,29 +126,29 @@ export default function AnalysesListPage() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
           <div className="bg-[#f6f8f9] rounded-lg border p-4 shadow-lg">
             <div className="text-2xl font-bold text-[#1e3237]">{analyses.length}</div>
-            <div className="text-sm text-gray-600">Toplam Analiz</div>
+            <div className="text-sm text-[#1e3237]/70">Toplam Analiz</div>
           </div>
           <div className="bg-[#f6f8f9] rounded-lg border p-4 shadow-lg">
             <div className="text-2xl font-bold text-green-600">
               {analyses.filter(a => a.status === 'completed').length}
             </div>
-            <div className="text-sm text-gray-600">Tamamlanan</div>
+            <div className="text-sm text-[#1e3237]/70">Tamamlanan</div>
           </div>
           <div className="bg-[#f6f8f9] rounded-lg border p-4 shadow-lg">
             <div className="text-2xl font-bold text-blue-600">
               {analyses.filter(a => a.status === 'in_progress').length}
             </div>
-            <div className="text-sm text-gray-600">İşleniyor</div>
+            <div className="text-sm text-[#1e3237]/70">İşleniyor</div>
           </div>
           <div className="bg-[#f6f8f9] rounded-lg border p-4 shadow-lg">
-            <div className="text-2xl font-bold text-gray-600">
+            <div className="text-2xl font-bold text-[#1e3237]/70">
               {analyses.filter(a => {
                 const created = new Date(a.createdAt);
                 const now = new Date();
                 return created.getMonth() === now.getMonth() && created.getFullYear() === now.getFullYear();
               }).length}
             </div>
-            <div className="text-sm text-gray-600">Bu Ay</div>
+            <div className="text-sm text-[#1e3237]/70">Bu Ay</div>
           </div>
         </div>
 
@@ -208,7 +208,7 @@ export default function AnalysesListPage() {
           <div className="bg-white rounded-lg border p-8 text-center">
             <div className="text-4xl mb-4">📊</div>
             <h3 className="text-lg font-medium text-[#1e3237] mb-2">Henüz analiz bulunmuyor</h3>
-            <p className="text-gray-600 mb-4">İlk analizinizi oluşturmak için aşağıdaki butonları kullanın</p>
+            <p className="text-[#1e3237]/70 mb-4">İlk analizinizi oluşturmak için aşağıdaki butonları kullanın</p>
             <div className="flex flex-wrap justify-center gap-2">
               <a href="/dashboard/analysis/roi" className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg text-sm transition-colors">
                 📊 ROI Analizi
@@ -233,9 +233,9 @@ export default function AnalysesListPage() {
                     <div>
                       <h3 className="font-medium text-[#1e3237]">{analysis.title}</h3>
                       <div className="flex items-center space-x-2 mt-1">
-                        <span className="text-sm text-gray-600">{getTypeName(analysis.type)}</span>
+                        <span className="text-sm text-[#1e3237]/70">{getTypeName(analysis.type)}</span>
                         <span className="text-gray-400">•</span>
-                        <span className="text-sm text-gray-600">{formatDate(analysis.createdAt)}</span>
+                        <span className="text-sm text-[#1e3237]/70">{formatDate(analysis.createdAt)}</span>
                       </div>
                     </div>
                   </div>
@@ -300,7 +300,7 @@ export default function AnalysesListPage() {
                     <div className="w-full bg-gray-200 rounded-full h-2">
                       <div className="bg-blue-600 h-2 rounded-full animate-pulse" style={{ width: '60%' }}></div>
                     </div>
-                    <p className="text-sm text-gray-600 mt-1">Analiz işleniyor... Yaklaşık 2-3 dakika sürebilir.</p>
+                    <p className="text-sm text-[#1e3237]/70 mt-1">Analiz işleniyor... Yaklaşık 2-3 dakika sürebilir.</p>
                   </div>
                 )}
               </div>
