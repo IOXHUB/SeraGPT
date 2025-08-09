@@ -482,27 +482,27 @@ Hangi konuda derinlemesine konuşmak istersiniz?`;
                     className="flex justify-start"
                   >
                     <div className="flex items-start space-x-3">
-                      <div className="w-6 h-6 bg-gradient-to-br from-orange-400 to-purple-600 rounded-full flex items-center justify-center mt-1">
+                      <div className="w-6 h-6 bg-[#146448] rounded-full flex items-center justify-center mt-1">
                         <span className="text-white text-xs">🤖</span>
                       </div>
-                      <div className="bg-white/95 backdrop-blur-sm rounded-3xl rounded-bl-lg px-6 py-4">
+                      <div className="bg-[#f6f8f9] rounded-3xl rounded-bl-lg px-6 py-4 shadow-lg">
                         <div className="flex items-center space-x-2">
-                          <span className="text-sm text-gray-600">AI yazıyor</span>
+                          <span className="text-sm text-[#1e3237]">AI yazıyor</span>
                           <div className="flex space-x-1">
                             <motion.div
                               animate={{ scale: [1, 1.3, 1] }}
                               transition={{ duration: 0.8, repeat: Infinity, delay: 0 }}
-                              className="w-2 h-2 bg-orange-500 rounded-full"
+                              className="w-2 h-2 bg-[#146448] rounded-full"
                             />
                             <motion.div
                               animate={{ scale: [1, 1.3, 1] }}
                               transition={{ duration: 0.8, repeat: Infinity, delay: 0.2 }}
-                              className="w-2 h-2 bg-purple-500 rounded-full"
+                              className="w-2 h-2 bg-[#baf200] rounded-full"
                             />
                             <motion.div
                               animate={{ scale: [1, 1.3, 1] }}
                               transition={{ duration: 0.8, repeat: Infinity, delay: 0.4 }}
-                              className="w-2 h-2 bg-blue-500 rounded-full"
+                              className="w-2 h-2 bg-[#146448] rounded-full"
                             />
                           </div>
                         </div>
