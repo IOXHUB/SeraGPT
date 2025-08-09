@@ -76,7 +76,7 @@ export default function AnahtarTeslimProjePage() {
         {
           title: '3. Tekliflendirme',
           items: [
-            'Detayl�� malzeme listesi hazırlanır',
+            'Detaylı malzeme listesi hazırlanır',
             'Kurulum süreci planlanır',
             'Teslim süresi belirlenir',
             'Şeffaf fiyat detayları sunulur'
@@ -394,7 +394,7 @@ export default function AnahtarTeslimProjePage() {
                         onClick={() => setActiveSection(item.id)}
                         className={`block w-full text-left px-3 py-2 text-sm rounded-lg transition-all duration-200 ${
                           activeSection === item.id
-                            ? 'bg-green-100 text-green-900 font-medium'
+                            ? 'bg-[#baf200]/30 text-[#1e3237] font-medium'
                             : 'text-[#1e3237]/70 hover:text-[#1e3237] hover:bg-gray-50'
                         }`}
                       >
