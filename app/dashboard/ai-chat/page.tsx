@@ -598,7 +598,7 @@ Hangi konuda derinlemesine konuşmak istersiniz?`;
                 onChange={(e) => setInputValue(e.target.value)}
                 onKeyPress={handleKeyPress}
                 placeholder="Herhangi bir şey sor"
-                className="w-full bg-transparent border-none outline-none text-white placeholder-white/70 text-base"
+                className="w-full bg-transparent border-none outline-none text-[#1e3237] placeholder-[#1e3237]/70 text-base"
               />
             </div>
 
