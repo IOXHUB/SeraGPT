@@ -623,7 +623,7 @@ Hangi konuda derinlemesine konuşmak istersiniz?`;
                 whileTap={{ scale: 0.95 }}
                 onClick={handleSendMessage}
                 disabled={isTyping}
-                className="p-3 bg-white text-purple-600 rounded-full hover:bg-white/90 transition-colors disabled:opacity-50"
+                className="p-3 bg-[#baf200] text-[#1e3237] rounded-full hover:bg-[#baf200]/90 transition-colors disabled:opacity-50"
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
