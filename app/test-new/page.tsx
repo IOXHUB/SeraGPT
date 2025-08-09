@@ -1256,6 +1256,298 @@ export default function TestNewPage() {
         </div>
       </section>
 
+      {/* 7.5. 📝 Blog Yazılarımız */}
+      <section className="py-20">
+        <div className="max-w-[1200px] mx-auto px-6">
+          {/* Section Title */}
+          <div className="text-center mb-12">
+            <h2
+              className="mb-8"
+              style={{
+                color: '#f6f8f9',
+                fontSize: '36px',
+                fontWeight: '600'
+              }}
+            >
+              Blog Yazılarımız
+            </h2>
+            <p
+              className="max-w-[576px] mx-auto leading-relaxed text-center"
+              style={{
+                color: '#f6f8f9',
+                fontSize: '18px',
+                fontWeight: '400'
+              }}
+            >
+              Sera yatırımı ve tarım teknolojileri hakkında güncel bilgiler ve uzman görüşleri
+            </p>
+          </div>
+
+          {/* Horizontal Scrolling Blog Cards */}
+          <div className="relative">
+            <div className="overflow-x-auto scrollbar-hide" id="blog-container">
+              <div className="flex space-x-6 pb-4" style={{ width: 'fit-content' }}>
+
+                {/* Blog Post 1 */}
+                <div className="flex-shrink-0 w-[350px]">
+                  <Link href="/blog/gizli-maliyetler-sera-yatirimi" className="block group">
+                    <div className="bg-white/5 rounded-xl p-6 border border-white/10 hover:border-white/20 transition-all">
+                      <div className="mb-4">
+                        <span
+                          className="text-xs px-3 py-1 rounded-full"
+                          style={{ backgroundColor: '#baf200', color: '#1e3237', fontWeight: '500' }}
+                        >
+                          Yatırım
+                        </span>
+                      </div>
+                      <h3
+                        className="mb-3 group-hover:opacity-80 transition-opacity"
+                        style={{ color: '#f6f8f9', fontSize: '18px', fontWeight: '600', lineHeight: '1.4' }}
+                      >
+                        Sera Yatırımının Gizli Maliyetleri: Başlamadan Bilmeniz Gerekenler
+                      </h3>
+                      <p
+                        className="mb-4 opacity-80"
+                        style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '400', lineHeight: '1.6' }}
+                      >
+                        Sera kurulumunda görünmeyen masraflar yatırım bütçenizi nasıl etkiler? Elektrik, su, işçilik ve bakım maliyetlerini önceden hesaplayın.
+                      </p>
+                      <div className="flex items-center justify-between">
+                        <span
+                          className="opacity-60"
+                          style={{ color: '#f6f8f9', fontSize: '12px', fontWeight: '400' }}
+                        >
+                          5 dk okuma
+                        </span>
+                        <span
+                          className="text-xs group-hover:translate-x-1 transition-transform"
+                          style={{ color: '#baf200' }}
+                        >
+                          →
+                        </span>
+                      </div>
+                    </div>
+                  </Link>
+                </div>
+
+                {/* Blog Post 2 */}
+                <div className="flex-shrink-0 w-[350px]">
+                  <Link href="/blog/iklim-krizi-tarim" className="block group">
+                    <div className="bg-white/5 rounded-xl p-6 border border-white/10 hover:border-white/20 transition-all">
+                      <div className="mb-4">
+                        <span
+                          className="text-xs px-3 py-1 rounded-full"
+                          style={{ backgroundColor: '#baf200', color: '#1e3237', fontWeight: '500' }}
+                        >
+                          İklim
+                        </span>
+                      </div>
+                      <h3
+                        className="mb-3 group-hover:opacity-80 transition-opacity"
+                        style={{ color: '#f6f8f9', fontSize: '18px', fontWeight: '600', lineHeight: '1.4' }}
+                      >
+                        İklim Krizi ve Tarım: Seracılığın Rolü ve Geleceği
+                      </h3>
+                      <p
+                        className="mb-4 opacity-80"
+                        style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '400', lineHeight: '1.6' }}
+                      >
+                        Değişen iklim koşulları tarımı nasıl etkiliyor? Sera teknolojileri ile sürdürülebilir üretim modelleri ve çözüm önerileri.
+                      </p>
+                      <div className="flex items-center justify-between">
+                        <span
+                          className="opacity-60"
+                          style={{ color: '#f6f8f9', fontSize: '12px', fontWeight: '400' }}
+                        >
+                          7 dk okuma
+                        </span>
+                        <span
+                          className="text-xs group-hover:translate-x-1 transition-transform"
+                          style={{ color: '#baf200' }}
+                        >
+                          →
+                        </span>
+                      </div>
+                    </div>
+                  </Link>
+                </div>
+
+                {/* Blog Post 3 */}
+                <div className="flex-shrink-0 w-[350px]">
+                  <Link href="/blog/roi-maliyet-analizi" className="block group">
+                    <div className="bg-white/5 rounded-xl p-6 border border-white/10 hover:border-white/20 transition-all">
+                      <div className="mb-4">
+                        <span
+                          className="text-xs px-3 py-1 rounded-full"
+                          style={{ backgroundColor: '#baf200', color: '#1e3237', fontWeight: '500' }}
+                        >
+                          Analiz
+                        </span>
+                      </div>
+                      <h3
+                        className="mb-3 group-hover:opacity-80 transition-opacity"
+                        style={{ color: '#f6f8f9', fontSize: '18px', fontWeight: '600', lineHeight: '1.4' }}
+                      >
+                        ROI Maliyet Analizi: Sera Yatırımınız Ne Zaman Geri Döner?
+                      </h3>
+                      <p
+                        className="mb-4 opacity-80"
+                        style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '400', lineHeight: '1.6' }}
+                      >
+                        Sera yatırımınızın karlılığını nasıl hesaplarsınız? Domates, salatalık ve diğer ürünler için gerçek ROI hesaplamaları.
+                      </p>
+                      <div className="flex items-center justify-between">
+                        <span
+                          className="opacity-60"
+                          style={{ color: '#f6f8f9', fontSize: '12px', fontWeight: '400' }}
+                        >
+                          6 dk okuma
+                        </span>
+                        <span
+                          className="text-xs group-hover:translate-x-1 transition-transform"
+                          style={{ color: '#baf200' }}
+                        >
+                          →
+                        </span>
+                      </div>
+                    </div>
+                  </Link>
+                </div>
+
+                {/* Blog Post 4 */}
+                <div className="flex-shrink-0 w-[350px]">
+                  <Link href="/blog/sera-mimarligi-tasarim" className="block group">
+                    <div className="bg-white/5 rounded-xl p-6 border border-white/10 hover:border-white/20 transition-all">
+                      <div className="mb-4">
+                        <span
+                          className="text-xs px-3 py-1 rounded-full"
+                          style={{ backgroundColor: '#baf200', color: '#1e3237', fontWeight: '500' }}
+                        >
+                          Tasarım
+                        </span>
+                      </div>
+                      <h3
+                        className="mb-3 group-hover:opacity-80 transition-opacity"
+                        style={{ color: '#f6f8f9', fontSize: '18px', fontWeight: '600', lineHeight: '1.4' }}
+                      >
+                        Sera Mimarliği ve Tasarım: Verimli Üretim için Doğru Planlama
+                      </h3>
+                      <p
+                        className="mb-4 opacity-80"
+                        style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '400', lineHeight: '1.6' }}
+                      >
+                        Sera tasarımı nasıl yapılır? Yönlendirme, boyutlandırma ve iç mekân düzenlemesi ile üretim verimliliğini artırın.
+                      </p>
+                      <div className="flex items-center justify-between">
+                        <span
+                          className="opacity-60"
+                          style={{ color: '#f6f8f9', fontSize: '12px', fontWeight: '400' }}
+                        >
+                          8 dk okuma
+                        </span>
+                        <span
+                          className="text-xs group-hover:translate-x-1 transition-transform"
+                          style={{ color: '#baf200' }}
+                        >
+                          →
+                        </span>
+                      </div>
+                    </div>
+                  </Link>
+                </div>
+
+                {/* Blog Post 5 */}
+                <div className="flex-shrink-0 w-[350px]">
+                  <Link href="/blog/sera-teknolojilerinde-2025-yenilikleri" className="block group">
+                    <div className="bg-white/5 rounded-xl p-6 border border-white/10 hover:border-white/20 transition-all">
+                      <div className="mb-4">
+                        <span
+                          className="text-xs px-3 py-1 rounded-full"
+                          style={{ backgroundColor: '#baf200', color: '#1e3237', fontWeight: '500' }}
+                        >
+                          Teknoloji
+                        </span>
+                      </div>
+                      <h3
+                        className="mb-3 group-hover:opacity-80 transition-opacity"
+                        style={{ color: '#f6f8f9', fontSize: '18px', fontWeight: '600', lineHeight: '1.4' }}
+                      >
+                        Sera Teknolojilerinde 2025 Yenilikleri ve Geleceğin Tarımı
+                      </h3>
+                      <p
+                        className="mb-4 opacity-80"
+                        style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '400', lineHeight: '1.6' }}
+                      >
+                        Yapay zeka, IoT sensörleri ve otomasyon sistemleri ile sera üretiminde devrim. 2025 teknolojik trendleri ve uygulamaları.
+                      </p>
+                      <div className="flex items-center justify-between">
+                        <span
+                          className="opacity-60"
+                          style={{ color: '#f6f8f9', fontSize: '12px', fontWeight: '400' }}
+                        >
+                          9 dk okuma
+                        </span>
+                        <span
+                          className="text-xs group-hover:translate-x-1 transition-transform"
+                          style={{ color: '#baf200' }}
+                        >
+                          →
+                        </span>
+                      </div>
+                    </div>
+                  </Link>
+                </div>
+
+              </div>
+            </div>
+
+            {/* Navigation Arrows */}
+            <button
+              className="absolute left-0 top-1/2 transform -translate-y-1/2 w-10 h-10 rounded-full flex items-center justify-center transition-all hover:scale-110 opacity-80 hover:opacity-100"
+              style={{ backgroundColor: '#baf200' }}
+              onClick={() => {
+                const container = document.getElementById('blog-container');
+                container?.scrollBy({ left: -370, behavior: 'smooth' });
+              }}
+            >
+              <svg className="w-6 h-6" style={{ color: '#1e3237' }} fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clipRule="evenodd" />
+              </svg>
+            </button>
+
+            <button
+              className="absolute right-0 top-1/2 transform -translate-y-1/2 w-10 h-10 rounded-full flex items-center justify-center transition-all hover:scale-110 opacity-80 hover:opacity-100"
+              style={{ backgroundColor: '#baf200' }}
+              onClick={() => {
+                const container = document.getElementById('blog-container');
+                container?.scrollBy({ left: 370, behavior: 'smooth' });
+              }}
+            >
+              <svg className="w-6 h-6" style={{ color: '#1e3237' }} fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
+              </svg>
+            </button>
+          </div>
+
+          {/* CTA Button */}
+          <div className="text-center mt-12">
+            <Link
+              href="/blog"
+              className="inline-block px-8 py-4 rounded-xl font-medium transition-all hover:opacity-90"
+              style={{
+                backgroundColor: 'transparent',
+                border: '2px solid #baf200',
+                color: '#baf200',
+                fontSize: '16px',
+                fontWeight: '600'
+              }}
+            >
+              Tüm Blog Yazılarını Gör
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* 8. 💪 Final CTA Section */}
       <section className="py-20">
         <div className="max-w-[1200px] mx-auto px-6 text-center">
