@@ -260,13 +260,15 @@ export class DevMockSystem {
     if (!isDevEnvironment()) {
       return [];
     }
-    
+
     // Return different analyses based on user type
     if (this.currentUser?.role === 'admin') {
       return MOCK_ANALYSES; // Admin sees all
     }
-    return MOCK_ANALYSES.filter(analysis => 
-      analysis.status === 'completed' || analysis.status === 'in_progress'
+
+    // Return only completed analyses for regular users to show working reports
+    return MOCK_ANALYSES.filter(analysis =>
+      analysis.status === 'completed'
     );
   }
 
