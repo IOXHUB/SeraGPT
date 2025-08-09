@@ -272,7 +272,7 @@ export default function TokensPage() {
       <div className="space-y-6">
 
         {/* Current Token Status */}
-        <div className="bg-[#f6f8f9] rounded-xl p-6 border border-gray-200 shadow-lg">
+        <div className="bg-white rounded-xl p-6 border border-[#146448]/10 shadow-lg">
           <div className="flex items-center justify-between">
             <div>
               <h2 className="text-xl font-bold text-[#1e3237] mb-2">🧠 Mevcut Token Durumu</h2>
