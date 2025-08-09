@@ -1,294 +1,242 @@
 'use client';
 
 import { useState } from 'react';
-import { motion } from 'framer-motion';
 import DashboardLayout from '@/components/dashboard/DashboardLayout';
+import { MockAnalysisService } from '@/lib/services/mock-analysis-service';
 
-interface Report {
-  id: string;
-  title: string;
-  analysisType: string;
-  date: string;
-  status: 'completed' | 'processing' | 'failed';
-  downloadUrl?: string;
-  preview: string;
-}
+export const dynamic = 'force-dynamic';
 
 export default function ReportsPage() {
-  const [filterType, setFilterType] = useState('all');
-  const [sortBy, setSortBy] = useState('date');
+  const [selectedType, setSelectedType] = useState<string>('all');
 
-  // Mock reports data - this would come from API in real implementation
-  const reports: Report[] = [
+  const reportTypes = [
     {
-      id: '1',
-      title: 'Antalya Domates Serası ROI Analizi',
-      analysisType: 'ROI Simülasyonu',
-      date: '2024-01-15',
-      status: 'completed',
-      downloadUrl: '/reports/roi-antalya-domates.pdf',
-      preview: 'Yatırım geri dönüş süresi: 2.8 yıl, ROI: %34.2, Net kar: ₺285K'
+      type: 'roi',
+      title: 'ROI Analizi',
+      description: 'Sera yatırımı geri dönüş analizi ve finansal projeksiyon',
+      icon: '📊',
+      color: 'bg-green-50 border-green-200 text-green-800',
+      buttonColor: 'bg-green-600 hover:bg-green-700'
     },
     {
-      id: '2',
-      title: 'İzmir Salatalık İklim Uygunluğu',
-      analysisType: 'İklim Analizi',
-      date: '2024-01-12',
-      status: 'completed',
-      downloadUrl: '/reports/climate-izmir-cucumber.pdf',
-      preview: 'Uygunluk skoru: %87, Düşük don riski, Optimal verim beklentisi'
+      type: 'climate',
+      title: 'İklim Analizi',
+      description: 'Lokasyon bazlı iklim uygunluk raporu ve risk değerlendirmesi',
+      icon: '����️',
+      color: 'bg-blue-50 border-blue-200 text-blue-800',
+      buttonColor: 'bg-blue-600 hover:bg-blue-700'
     },
     {
-      id: '3',
-      title: 'Bursa Biber Serası Ekipman Listesi',
-      analysisType: 'Ekipman Listesi',
-      date: '2024-01-10',
-      status: 'completed',
-      downloadUrl: '/reports/equipment-bursa-pepper.pdf',
-      preview: '23 ekipman önerisi, Toplam maliyet: ₺285K, 8 hafta kurulum'
+      type: 'equipment',
+      title: 'Ekipman Listesi',
+      description: 'Mühendis onaylı ekipman önerileri ve maliyet analizi',
+      icon: '🔧',
+      color: 'bg-purple-50 border-purple-200 text-purple-800',
+      buttonColor: 'bg-purple-600 hover:bg-purple-700'
     },
     {
-      id: '4',
-      title: 'Mersin Domates Pazar Analizi',
-      analysisType: 'Pazar Analizi',
-      date: '2024-01-08',
-      status: 'completed',
-      downloadUrl: '/reports/market-mersin-tomato.pdf',
-      preview: 'Ortalama fiyat: ₺12.5/kg, Bölge verimi: 85 ton/ha, Mayıs optimal'
+      type: 'market',
+      title: 'Pazar Analizi',
+      description: 'Ürün fiyat analizi, rekabet durumu ve pazar öngörüleri',
+      icon: '📈',
+      color: 'bg-orange-50 border-orange-200 text-orange-800',
+      buttonColor: 'bg-orange-600 hover:bg-orange-700'
     },
     {
-      id: '5',
-      title: 'Konya Sera Yerleşim Planı',
-      analysisType: 'Teknik Planlar',
-      date: '2024-01-05',
-      status: 'processing',
-      preview: 'Teknik çizimler hazırlanıyor... %75 tamamlandı'
+      type: 'layout',
+      title: 'Layout Planlama',
+      description: '2D/3D sera tasarımı ve teknik çizimler',
+      icon: '📐',
+      color: 'bg-indigo-50 border-indigo-200 text-indigo-800',
+      buttonColor: 'bg-indigo-600 hover:bg-indigo-700'
     }
   ];
 
-  const filteredReports = reports.filter(report => {
-    if (filterType === 'all') return true;
-    return report.analysisType.toLowerCase().includes(filterType);
-  });
-
-  const sortedReports = filteredReports.sort((a, b) => {
-    if (sortBy === 'date') {
-      return new Date(b.date).getTime() - new Date(a.date).getTime();
-    }
-    return a.title.localeCompare(b.title);
-  });
-
-  const getStatusColor = (status: Report['status']) => {
-    switch (status) {
-      case 'completed': return 'bg-green-100 text-green-800';
-      case 'processing': return 'bg-yellow-100 text-yellow-800';
-      case 'failed': return 'bg-red-100 text-red-800';
-      default: return 'bg-gray-100 text-gray-800';
-    }
-  };
-
-  const getStatusText = (status: Report['status']) => {
-    switch (status) {
-      case 'completed': return 'Tamamlandı';
-      case 'processing': return 'İşleniyor';
-      case 'failed': return 'Başarısız';
-      default: return 'Bilinmiyor';
+  const createSampleAnalysis = async (type: string) => {
+    try {
+      const sampleData = {
+        type: type,
+        title: `Örnek ${reportTypes.find(t => t.type === type)?.title}`,
+        status: 'completed' as const
+      };
+      
+      const analysis = await MockAnalysisService.createAnalysis(sampleData);
+      
+      // Analizin oluşturulmasını bekle
+      setTimeout(() => {
+        window.open(`/dashboard/reports/${type}/${analysis.id}`, '_blank');
+      }, 500);
+      
+    } catch (error) {
+      console.error('Örnek analiz oluşturulamadı:', error);
+      alert('Örnek analiz oluşturulamadı');
     }
   };
 
   return (
-    <DashboardLayout>
-      <div className="min-h-screen bg-gray-50 text-gray-600">
-        <div className="max-w-6xl mx-auto space-y-8">
-          {/* Page Header */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="flex items-center justify-between"
-          >
-            <div>
-              <h1 className="text-3xl font-bold text-gray-900">Raporlarım</h1>
-              <p className="text-gray-600 mt-1">Oluşturduğunuz analiz raporlarını görüntüleyin ve indirin</p>
-            </div>
-            <div className="flex items-center space-x-4">
-              <select
-                value={filterType}
-                onChange={(e) => setFilterType(e.target.value)}
-                className="bg-white border border-gray-300 rounded-lg px-4 py-2 text-sm"
-              >
-                <option value="all">Tüm Raporlar</option>
-                <option value="roi">ROI Simülasyonu</option>
-                <option value="iklim">İklim Analizi</option>
-                <option value="ekipman">Ekipman Listesi</option>
-                <option value="pazar">Pazar Analizi</option>
-                <option value="teknik">Teknik Planlar</option>
-              </select>
-              <select
-                value={sortBy}
-                onChange={(e) => setSortBy(e.target.value)}
-                className="bg-white border border-gray-300 rounded-lg px-4 py-2 text-sm"
-              >
-                <option value="date">Tarihe Göre</option>
-                <option value="title">İsme Göre</option>
-              </select>
-            </div>
-          </motion.div>
-
-          {/* Stats Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="bg-white rounded-2xl p-6 shadow-sm border border-gray-200"
-            >
-              <h3 className="text-sm font-medium text-gray-600 mb-1">Toplam Rapor</h3>
-              <p className="text-2xl font-bold text-gray-900">{reports.length}</p>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="bg-white rounded-2xl p-6 shadow-sm border border-gray-200"
-            >
-              <h3 className="text-sm font-medium text-gray-600 mb-1">Tamamlanan</h3>
-              <p className="text-2xl font-bold text-green-600">{reports.filter(r => r.status === 'completed').length}</p>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="bg-white rounded-2xl p-6 shadow-sm border border-gray-200"
-            >
-              <h3 className="text-sm font-medium text-gray-600 mb-1">İşleniyor</h3>
-              <p className="text-2xl font-bold text-yellow-600">{reports.filter(r => r.status === 'processing').length}</p>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="bg-white rounded-2xl p-6 shadow-sm border border-gray-200"
-            >
-              <h3 className="text-sm font-medium text-gray-600 mb-1">Bu Ay</h3>
-              <p className="text-2xl font-bold text-blue-600">{reports.filter(r => 
-                new Date(r.date).getMonth() === new Date().getMonth()
-              ).length}</p>
-            </motion.div>
+    <DashboardLayout title="Analiz Raporları" subtitle="İndirilebilir rapor örnekleri ve yapıları">
+      <div className="space-y-8">
+        {/* Overview Stats */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="bg-white rounded-lg border p-6 text-center">
+            <div className="text-3xl font-bold text-gray-900">5</div>
+            <div className="text-sm text-gray-600">Analiz Türü</div>
           </div>
+          <div className="bg-white rounded-lg border p-6 text-center">
+            <div className="text-3xl font-bold text-blue-600">PDF</div>
+            <div className="text-sm text-gray-600">İndirilebilir Format</div>
+          </div>
+          <div className="bg-white rounded-lg border p-6 text-center">
+            <div className="text-3xl font-bold text-green-600">AI</div>
+            <div className="text-sm text-gray-600">Powered Reports</div>
+          </div>
+        </div>
 
-          {/* Reports List */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.5 }}
-            className="bg-white rounded-2xl shadow-sm border border-gray-200"
-          >
-            <div className="p-6 border-b border-gray-200">
-              <h2 className="text-lg font-semibold text-gray-900">Rapor Listesi</h2>
-            </div>
-            <div className="p-6">
-              {sortedReports.length === 0 ? (
-                <div className="text-center py-12">
-                  <div className="text-gray-400 mb-4">
-                    <svg className="w-16 h-16 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                    </svg>
+        {/* Report Types */}
+        <div className="bg-white rounded-lg border p-6">
+          <h2 className="text-xl font-semibold text-gray-900 mb-6">Rapor Türleri</h2>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            {reportTypes.map((reportType) => (
+              <div
+                key={reportType.type}
+                className={`border-2 rounded-xl p-6 ${reportType.color}`}
+              >
+                <div className="flex items-start justify-between mb-4">
+                  <div className="flex items-center space-x-3">
+                    <div className="text-3xl">{reportType.icon}</div>
+                    <div>
+                      <h3 className="text-lg font-semibold">{reportType.title}</h3>
+                      <p className="text-sm opacity-80">{reportType.description}</p>
+                    </div>
                   </div>
-                  <h3 className="text-lg font-medium text-gray-900 mb-1">Henüz rapor yok</h3>
-                  <p className="text-gray-600 mb-4">İlk analizinizi yaparak rapor oluşturun</p>
-                  <a
-                    href="/dashboard"
-                    className="bg-gray-600 hover:bg-gray-700 text-white px-6 py-2 rounded-lg font-medium transition-colors"
+                </div>
+                
+                {/* Features */}
+                <div className="mb-4">
+                  <div className="text-sm opacity-80 mb-2">Rapor İçeriği:</div>
+                  <ul className="text-xs space-y-1 opacity-70">
+                    {reportType.type === 'roi' && (
+                      <>
+                        <li>• Finansal projeksiyon tabloları</li>
+                        <li>• Risk analizi ve fırsatlar</li>
+                        <li>• 5 yıllık geri dönüş hesaplaması</li>
+                      </>
+                    )}
+                    {reportType.type === 'climate' && (
+                      <>
+                        <li>• 12 aylık iklim verileri</li>
+                        <li>• Risk faktörleri değerlendirmesi</li>
+                        <li>• Mevsimsel uygunluk analizi</li>
+                      </>
+                    )}
+                    {reportType.type === 'equipment' && (
+                      <>
+                        <li>• Kategorize edilmiş ekipman listesi</li>
+                        <li>• Marka-model önerileri</li>
+                        <li>• Kurulum takvimi ve maliyetler</li>
+                      </>
+                    )}
+                    {reportType.type === 'market' && (
+                      <>
+                        <li>• Güncel fiyat analizi</li>
+                        <li>• Rekabet haritası</li>
+                        <li>• Gelecek dönem tahminleri</li>
+                      </>
+                    )}
+                    {reportType.type === 'layout' && (
+                      <>
+                        <li>• 2D teknik çizimler</li>
+                        <li>• Malzeme listesi ve maliyetler</li>
+                        <li>• Uygulama takvimi</li>
+                      </>
+                    )}
+                  </ul>
+                </div>
+
+                {/* Action Buttons */}
+                <div className="flex space-x-3">
+                  <button
+                    onClick={() => createSampleAnalysis(reportType.type)}
+                    className={`flex-1 ${reportType.buttonColor} text-white px-4 py-2 rounded-lg font-medium transition-colors text-sm`}
                   >
-                    Analiz Yap
+                    📄 Örnek Rapor Görüntüle
+                  </button>
+                  <a
+                    href={`/dashboard/analysis/${reportType.type}`}
+                    className="bg-white text-gray-700 border border-gray-300 px-4 py-2 rounded-lg font-medium transition-colors text-sm hover:bg-gray-50"
+                  >
+                    Yeni Analiz
                   </a>
                 </div>
-              ) : (
-                <div className="space-y-4">
-                  {sortedReports.map((report, index) => (
-                    <motion.div
-                      key={report.id}
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.5, delay: index * 0.1 }}
-                      className="border border-gray-200 rounded-xl p-6 hover:bg-gray-50 transition-colors"
-                    >
-                      <div className="flex items-center justify-between">
-                        <div className="flex-1">
-                          <div className="flex items-center space-x-3 mb-2">
-                            <h3 className="text-lg font-semibold text-gray-900">{report.title}</h3>
-                            <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getStatusColor(report.status)}`}>
-                              {getStatusText(report.status)}
-                            </span>
-                          </div>
-                          <div className="flex items-center space-x-4 text-sm text-gray-600 mb-3">
-                            <span>{report.analysisType}</span>
-                            <span>•</span>
-                            <span>{new Date(report.date).toLocaleDateString('tr-TR')}</span>
-                          </div>
-                          <p className="text-sm text-gray-600 mb-4">{report.preview}</p>
-                        </div>
-                        <div className="flex items-center space-x-3">
-                          {report.status === 'completed' && report.downloadUrl && (
-                            <button className="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
-                              PDF İndir
-                            </button>
-                          )}
-                          <button className="text-gray-600 hover:text-gray-700 px-4 py-2 rounded-lg border border-gray-300 text-sm font-medium transition-colors">
-                            Detaylar
-                          </button>
-                        </div>
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
-              )}
-            </div>
-          </motion.div>
+              </div>
+            ))}
+          </div>
+        </div>
 
-          {/* Quick Actions */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.6 }}
-            className="bg-white rounded-2xl shadow-sm border border-gray-200"
-          >
-            <div className="p-6 border-b border-gray-200">
-              <h2 className="text-lg font-semibold text-gray-900">Hızlı İşlemler</h2>
+        {/* Report Features */}
+        <div className="bg-white rounded-lg border p-6">
+          <h2 className="text-xl font-semibold text-gray-900 mb-6">Rapor Özellikleri</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="text-center">
+              <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-3">
+                <span className="text-blue-600 text-xl">📊</span>
+              </div>
+              <h3 className="font-medium text-gray-900 mb-2">Detaylı Analizler</h3>
+              <p className="text-sm text-gray-600">Kapsamlı veri analizi ve görselleştirme</p>
             </div>
-            <div className="p-6">
-              <div className="grid md:grid-cols-3 gap-4">
-                <a
-                  href="/dashboard"
-                  className="flex items-center p-4 bg-gray-50 hover:bg-gray-100 rounded-xl transition-colors"
-                >
-                  <div>
-                    <h3 className="font-medium text-gray-900 mb-1">Yeni Analiz</h3>
-                    <p className="text-sm text-gray-600">ROI, İklim, Ekipman analizi yap</p>
-                  </div>
-                </a>
-                <a
-                  href="/dashboard/ai-chat"
-                  className="flex items-center p-4 bg-gray-50 hover:bg-gray-100 rounded-xl transition-colors"
-                >
-                  <div>
-                    <h3 className="font-medium text-gray-900 mb-1">AI ile Konuş</h3>
-                    <p className="text-sm text-gray-600">Raporlarınız hakkında soru sorun</p>
-                  </div>
-                </a>
-                <a
-                  href="/dashboard/consulting"
-                  className="flex items-center p-4 bg-gray-50 hover:bg-gray-100 rounded-xl transition-colors"
-                >
-                  <div>
-                    <h3 className="font-medium text-gray-900 mb-1">Mühendis Desteği</h3>
-                    <p className="text-sm text-gray-600">Uzman danışmanlık alın</p>
-                  </div>
-                </a>
+            
+            <div className="text-center">
+              <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-3">
+                <span className="text-green-600 text-xl">📄</span>
+              </div>
+              <h3 className="font-medium text-gray-900 mb-2">PDF İndirme</h3>
+              <p className="text-sm text-gray-600">Profesyonel PDF formatında raporlar</p>
+            </div>
+            
+            <div className="text-center">
+              <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mx-auto mb-3">
+                <span className="text-purple-600 text-xl">🖨️</span>
+              </div>
+              <h3 className="font-medium text-gray-900 mb-2">Yazdırma Desteği</h3>
+              <p className="text-sm text-gray-600">Optimize edilmiş yazdırma düzeni</p>
+            </div>
+            
+            <div className="text-center">
+              <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mx-auto mb-3">
+                <span className="text-orange-600 text-xl">🔄</span>
+              </div>
+              <h3 className="font-medium text-gray-900 mb-2">Güncel Veriler</h3>
+              <p className="text-sm text-gray-600">Real-time pazar ve iklim verileri</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Instructions */}
+        <div className="bg-blue-50 rounded-lg border border-blue-200 p-6">
+          <h2 className="text-lg font-semibold text-blue-900 mb-4">💡 Rapor Nasıl Oluşturulur?</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm">
+            <div className="flex items-start space-x-3">
+              <div className="w-6 h-6 bg-blue-600 text-white rounded-full flex items-center justify-center text-xs font-bold">1</div>
+              <div>
+                <p className="font-medium text-blue-900 mb-1">Analiz Türü Seçin</p>
+                <p className="text-blue-700">5 farklı analiz türünden birini seçerek analiz sürecini başlatın</p>
               </div>
             </div>
-          </motion.div>
+            <div className="flex items-start space-x-3">
+              <div className="w-6 h-6 bg-blue-600 text-white rounded-full flex items-center justify-center text-xs font-bold">2</div>
+              <div>
+                <p className="font-medium text-blue-900 mb-1">Parametreler Girin</p>
+                <p className="text-blue-700">Sera büyüklüğü, lokasyon, ürün türü gibi gerekli bilgileri doldurun</p>
+              </div>
+            </div>
+            <div className="flex items-start space-x-3">
+              <div className="w-6 h-6 bg-blue-600 text-white rounded-full flex items-center justify-center text-xs font-bold">3</div>
+              <div>
+                <p className="font-medium text-blue-900 mb-1">Rapor İndirin</p>
+                <p className="text-blue-700">AI analizi tamamlandıktan sonra PDF olarak raporunuzu indirin</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </DashboardLayout>
