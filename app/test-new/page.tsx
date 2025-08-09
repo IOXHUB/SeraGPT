@@ -160,75 +160,91 @@ export default function TestNewPage() {
       <section className="py-16">
         <div className="max-w-[1200px] mx-auto px-6 text-center">
           <div className="max-w-[800px] mx-auto">
-            <h2 
-              className="mb-8"
-              style={{ 
-                color: '#f6f8f9', 
-                fontSize: '24px', 
-                fontWeight: '600' 
-              }}
-            >
-              🌱 Cevap Basit: SeraGPT ile Yatırımınızı Bilgiye Dayalı Planlayın
-            </h2>
+            {/* Title and description with 567px limit */}
+            <div className="max-w-[567px] mx-auto mb-12">
+              <h2
+                className="mb-8 text-center"
+                style={{
+                  color: '#f6f8f9',
+                  fontSize: '30px',
+                  fontWeight: '600'
+                }}
+              >
+                Cevap Basit: SeraGPT ile Yatırımınızı Bilgiye Dayalı Planlayın
+              </h2>
 
-            <div className="max-w-[576px] mx-auto mb-12">
-              <p 
-                className="leading-relaxed"
-                style={{ 
-                  color: '#f6f8f9', 
-                  fontSize: '14px', 
-                  fontWeight: '400' 
+              <p
+                className="leading-relaxed text-center"
+                style={{
+                  color: '#f6f8f9',
+                  fontSize: '16px',
+                  fontWeight: '400'
                 }}
               >
                 Lokasyon, iklim, bitki türü ve yatırım bütçenizi girin. Size özel analizle geri dönüş süresinden kurulum maliyetine kadar tüm detayları öğrenin.
               </p>
             </div>
 
-            {/* Features with icons */}
+            {/* Features with icons - centered */}
             <div className="grid md:grid-cols-5 gap-6 mb-12 max-w-[800px] mx-auto">
-              <div className="text-center">
+              <div className="flex flex-col items-center text-center">
                 <div className="text-4xl mb-3">📊</div>
-                <p style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '400' }}>
+                <p
+                  className="text-center"
+                  style={{ color: '#f6f8f9', fontSize: '16px', fontWeight: '400' }}
+                >
                   ROI Hesaplama
                 </p>
               </div>
-              <div className="text-center">
+              <div className="flex flex-col items-center text-center">
                 <div className="text-4xl mb-3">🌡️</div>
-                <p style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '400' }}>
+                <p
+                  className="text-center"
+                  style={{ color: '#f6f8f9', fontSize: '16px', fontWeight: '400' }}
+                >
                   İklim Uygunluğu
                 </p>
               </div>
-              <div className="text-center">
+              <div className="flex flex-col items-center text-center">
                 <div className="text-4xl mb-3">⚙️</div>
-                <p style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '400' }}>
+                <p
+                  className="text-center"
+                  style={{ color: '#f6f8f9', fontSize: '16px', fontWeight: '400' }}
+                >
                   Mühendis Onaylı Ekipmanlar
                 </p>
               </div>
-              <div className="text-center">
+              <div className="flex flex-col items-center text-center">
                 <div className="text-4xl mb-3">📈</div>
-                <p style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '400' }}>
+                <p
+                  className="text-center"
+                  style={{ color: '#f6f8f9', fontSize: '16px', fontWeight: '400' }}
+                >
                   Pazara Uygunluk
                 </p>
               </div>
-              <div className="text-center">
+              <div className="flex flex-col items-center text-center">
                 <div className="text-4xl mb-3">🔢</div>
-                <p style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '400' }}>
+                <p
+                  className="text-center"
+                  style={{ color: '#f6f8f9', fontSize: '16px', fontWeight: '400' }}
+                >
                   110+ Veri Seti
                 </p>
               </div>
             </div>
 
-            <Link 
-              href="/auth/login" 
-              className="inline-block px-8 py-4 rounded-xl font-medium transition-all hover:opacity-90"
-              style={{ 
-                backgroundColor: '#baf200', 
-                color: '#1e3237', 
-                fontSize: '14px', 
-                fontWeight: '600' 
+            <Link
+              href="/auth/login"
+              className="hero-cta-button inline-block px-8 py-4 rounded-xl font-medium transition-all hover:opacity-90 hover:scale-105 transform"
+              style={{
+                backgroundColor: '#baf200',
+                color: '#1e3237',
+                fontSize: '16px',
+                fontWeight: '400'
               }}
             >
-              🎯 İlk Raporu Hemen Al (Ücretsiz)
+              İlk Raporu Hemen Al (Ücretsiz)
             </Link>
           </div>
         </div>
