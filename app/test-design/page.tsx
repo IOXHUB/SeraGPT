@@ -15,17 +15,47 @@ export default function TestDesignPage() {
             className="rounded-2xl p-4 shadow-lg"
             style={{ backgroundColor: '#146448' }}
           >
-            <div className="flex justify-center text-left">
+            <div
+              className="flex"
+              style={{
+                justifyContent: 'flex-start',
+                textAlign: 'left',
+                gap: '50px',
+                width: '100%',
+                maxWidth: '1200px',
+                minWidth: '1200px',
+                flexDirection: 'row'
+              }}
+            >
+              {/* Mobile Menu Button */}
+              <button
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                className="md:hidden p-2 rounded-lg transition-colors"
+                style={{ backgroundColor: '#146448', display: 'none' }}
+              >
+                <svg className="w-5 h-5" style={{ color: '#f6f8f9' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+              </button>
+
               {/* Logo */}
               <div className="flex items-center space-x-3">
-                <div 
+                <div
                   className="w-12 h-12 rounded-xl flex items-center justify-center font-bold text-xl"
-                  style={{ backgroundColor: '#146448', color: '#f6f8f9' }}
+                  style={{
+                    backgroundColor: '#146448',
+                    color: '#f6f8f9',
+                    borderRadius: '12px',
+                    fontSize: '20px',
+                    fontWeight: '700',
+                    height: '48px',
+                    width: '48px'
+                  }}
                 >
                   🌱
                 </div>
                 <div>
-                  <h1 
+                  <h1
                     className="text-2xl font-bold"
                     style={{ color: '#1e3237', fontSize: '24px', fontWeight: '600' }}
                   >
@@ -36,22 +66,22 @@ export default function TestDesignPage() {
 
               {/* Desktop Navigation */}
               <nav className="hidden md:flex items-center space-x-8">
-                <Link 
-                  href="/danismanlik" 
+                <Link
+                  href="/danismanlik"
                   className="font-normal transition-opacity hover:opacity-70"
                   style={{ color: '#1e3237', fontSize: '14px', fontWeight: '400' }}
                 >
                   Danışmanlık
                 </Link>
-                <Link 
-                  href="/anahtar-teslim-proje" 
+                <Link
+                  href="/anahtar-teslim-proje"
                   className="font-normal transition-opacity hover:opacity-70"
                   style={{ color: '#1e3237', fontSize: '14px', fontWeight: '400' }}
                 >
                   Anahtar Teslim
                 </Link>
-                <Link 
-                  href="/destek" 
+                <Link
+                  href="/destek"
                   className="font-normal transition-opacity hover:opacity-70"
                   style={{ color: '#1e3237', fontSize: '14px', fontWeight: '400' }}
                 >
@@ -64,27 +94,16 @@ export default function TestDesignPage() {
                 <Link
                   href="/auth/login"
                   className="px-6 py-3 rounded-xl font-medium transition-all hover:opacity-90 shadow-md"
-                  style={{ 
-                    backgroundColor: '#baf200', 
-                    color: '#1e3237', 
-                    fontSize: '14px', 
-                    fontWeight: '600' 
+                  style={{
+                    backgroundColor: '#baf200',
+                    color: '#1e3237',
+                    fontSize: '14px',
+                    fontWeight: '600'
                   }}
                 >
                   Ücretsiz Başla
                 </Link>
               </div>
-
-              {/* Mobile Menu Button */}
-              <button
-                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="md:hidden p-2 rounded-lg transition-colors"
-                style={{ backgroundColor: '#146448' }}
-              >
-                <svg className="w-5 h-5" style={{ color: '#f6f8f9' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
-              </button>
             </div>
           </div>
         </div>
@@ -138,134 +157,153 @@ export default function TestDesignPage() {
         )}
       </header>
 
-      {/* Hero Section */}
-      <section className="py-16 sm:py-20">
-        <div className="max-w-[1200px] mx-auto px-4 sm:px-6">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+      {/* Main Content Area - Centered Design */}
+      <main className="flex-1 flex justify-center items-center py-16">
+        <div className="w-full max-w-4xl px-6">
+          {/* Hero Header */}
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center justify-center w-16 h-16 rounded-full mb-6" style={{ backgroundColor: '#baf200' }}>
+              <span className="text-2xl">⚠️</span>
+            </div>
+            <h1
+              className="text-4xl font-semibold mb-4"
+              style={{ color: '#f6f8f9' }}
+            >
+              60 Saniyede Sera Yatırım Raporun Hazır!
+            </h1>
+            <p
+              className="text-lg leading-relaxed max-w-2xl mx-auto"
+              style={{ color: '#f6f8f9', opacity: 0.9 }}
+            >
+              SeraGPT; 20 yılı aşkın mühendislik deneyimi, 500'den fazla tamamlanmış proje ve 110'dan fazla gerçek zamanlı veri setiyle, tarımsal yatırım kararlarınızı saniyeler içinde analiz eder.
+            </p>
+          </div>
 
-            {/* Text Content - 576px max width */}
-            <div className="max-w-[576px] text-center">
+          {/* Feature Cards Grid */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+            <div className="bg-black bg-opacity-20 backdrop-blur-sm rounded-xl p-6 text-center hover:bg-opacity-30 transition-all">
+              <div className="text-3xl mb-3">💻</div>
+              <h3 className="font-semibold mb-2" style={{ color: '#f6f8f9' }}>Kod Yazma</h3>
+              <p className="text-sm" style={{ color: '#f6f8f9', opacity: 0.8 }}>Programlama yardımı</p>
+            </div>
+            <div className="bg-black bg-opacity-20 backdrop-blur-sm rounded-xl p-6 text-center hover:bg-opacity-30 transition-all">
+              <div className="text-3xl mb-3">📝</div>
+              <h3 className="font-semibold mb-2" style={{ color: '#f6f8f9' }}>Metin Yazma</h3>
+              <p className="text-sm" style={{ color: '#f6f8f9', opacity: 0.8 }}>İçerik oluşturma</p>
+            </div>
+            <div className="bg-black bg-opacity-20 backdrop-blur-sm rounded-xl p-6 text-center hover:bg-opacity-30 transition-all">
+              <div className="text-3xl mb-3">📊</div>
+              <h3 className="font-semibold mb-2" style={{ color: '#f6f8f9' }}>Görsel Analiz</h3>
+              <p className="text-sm" style={{ color: '#f6f8f9', opacity: 0.8 }}>Resim açıklama</p>
+            </div>
+            <div className="bg-black bg-opacity-20 backdrop-blur-sm rounded-xl p-6 text-center hover:bg-opacity-30 transition-all">
+              <div className="text-3xl mb-3">⚠️</div>
+              <h3 className="font-semibold mb-2" style={{ color: '#f6f8f9' }}>Problem Çözme</h3>
+              <p className="text-sm" style={{ color: '#f6f8f9', opacity: 0.8 }}>Analitik düşünme</p>
+            </div>
+          </div>
+
+          {/* Chat Interface */}
+          <div className="space-y-6">
+            {/* Assistant Message */}
+            <div className="flex items-start space-x-3">
+              <div className="w-8 h-8 rounded-full flex items-center justify-center" style={{ backgroundColor: '#baf200' }}>
+                <span className="text-sm">🤖</span>
+              </div>
               <div
-                className="rounded-2xl p-8 shadow-lg"
-                style={{ backgroundColor: '#146448' }}
+                className="bg-white rounded-2xl p-4 max-w-2xl"
+                style={{ backgroundColor: 'rgba(255, 255, 255, 0.95)' }}
               >
-                <h1 
-                  className="leading-tight mb-6"
-                  style={{ 
-                    color: '#1e3237', 
-                    fontSize: '36px', 
-                    fontWeight: '600' 
-                  }}
-                >
-                  60 Saniyede Sera Yatırım Raporunuz Hazır!
-                </h1>
-                
-                <p 
-                  className="leading-relaxed mb-8"
-                  style={{ 
-                    color: '#1e3237', 
-                    fontSize: '14px', 
-                    fontWeight: '400' 
-                  }}
-                >
-                  SeraGPT; 20 yılı aşkın mühendislik deneyimi, 500'den fazla tamamlanmış proje ve 110'dan fazla gerçek zamanlı veri setiyle, tarımsal yatırım kararlarınızı saniyeler içinde analiz eder.
+                <p style={{ color: '#1e3237' }}>
+                  Merhaba! Ben ChatGPT. Öğrenel tarafından geliştirilen bir yapay zeka asistanıyım. Size nasıl yardımcı olabilirim?
                 </p>
-
-                <div className="space-y-4 mb-8">
-                  <div className="flex items-center space-x-3">
-                    <div 
-                      className="w-2 h-2 rounded-full"
-                      style={{ backgroundColor: '#baf200' }}
-                    ></div>
-                    <span 
-                      style={{ color: '#1e3237', fontSize: '14px', fontWeight: '400' }}
-                    >
-                      +20 Yıl Mühendislik Deneyimi
-                    </span>
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    <div 
-                      className="w-2 h-2 rounded-full"
-                      style={{ backgroundColor: '#baf200' }}
-                    ></div>
-                    <span 
-                      style={{ color: '#1e3237', fontSize: '14px', fontWeight: '400' }}
-                    >
-                      +500 Tamamlanmış Proje
-                    </span>
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    <div 
-                      className="w-2 h-2 rounded-full"
-                      style={{ backgroundColor: '#baf200' }}
-                    ></div>
-                    <span 
-                      style={{ color: '#1e3237', fontSize: '14px', fontWeight: '400' }}
-                    >
-                      +110 Gerçek Zamanlı Veri Seti
-                    </span>
-                  </div>
-                </div>
-
-                <Link
-                  href="/auth/login"
-                  className="inline-block px-8 py-4 rounded-xl font-medium transition-all hover:opacity-90 shadow-lg"
-                  style={{ 
-                    backgroundColor: '#baf200', 
-                    color: '#1e3237', 
-                    fontSize: '14px', 
-                    fontWeight: '600' 
-                  }}
-                >
-                  🚀 İlk 5 Rapor Ücretsiz - Hemen Başla
-                </Link>
+                <div className="text-xs mt-2" style={{ color: '#666' }}>16:45</div>
               </div>
             </div>
 
-            {/* Visual Content - 800px max width */}
-            <div className="max-w-[800px]">
+            {/* Chat Input */}
+            <div className="relative">
               <div
-                className="rounded-2xl p-8 shadow-lg"
-                style={{ backgroundColor: '#146448' }}
+                className="bg-white rounded-2xl p-4 shadow-lg"
+                style={{ backgroundColor: 'rgba(255, 255, 255, 0.95)' }}
               >
-                <div className="aspect-video rounded-xl overflow-hidden">
-                  <img
-                    src="https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2F1cd1d24d2413420fa7c24610e14c9006"
-                    alt="SeraGPT Dashboard Preview"
-                    className="w-full h-full object-cover"
+                <div className="flex items-center space-x-3">
+                  <button className="text-gray-400 hover:text-gray-600">
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13" />
+                    </svg>
+                  </button>
+                  <input
+                    type="text"
+                    placeholder="ChatGPT'ye bir mesaj yazın..."
+                    className="flex-1 bg-transparent border-none outline-none text-gray-700"
                   />
-                </div>
-                <div className="mt-6 text-center">
-                  <p 
-                    style={{ color: '#1e3237', fontSize: '14px', fontWeight: '400' }}
+                  <button
+                    className="p-2 rounded-lg transition-colors"
+                    style={{ backgroundColor: '#baf200' }}
                   >
-                    📊 Analiz Paneli Önizlemesi
-                  </p>
+                    <svg className="w-4 h-4" style={{ color: '#1e3237' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                    </svg>
+                  </button>
                 </div>
+              </div>
+              <div className="text-center mt-3">
+                <p className="text-sm" style={{ color: '#f6f8f9', opacity: 0.7 }}>
+                  ChatGPT hata yapabilir. Önemli bilgileri doğrulayın.
+                </p>
               </div>
             </div>
           </div>
         </div>
-      </section>
+      </main>
 
-      {/* Features Section */}
-      <section className="py-16">
-        <div className="max-w-[1200px] mx-auto px-4 sm:px-6">
-          
-          {/* Section Header */}
-          <div className="text-center mb-12">
-            <h2
-              className="leading-tight"
-              style={{
-                color: '#1e3237',
-                fontSize: '36px',
-                fontWeight: '600'
-              }}
+      {/* Optional Sidebar for future use */}
+      <aside className="hidden lg:block w-64 bg-white shadow-lg">
+        <div className="p-6">
+          <button
+            className="w-full mb-6 px-4 py-3 rounded-xl font-medium transition-all hover:opacity-90 shadow-md"
+            style={{
+              backgroundColor: '#baf200',
+              color: '#1e3237',
+              fontSize: '14px',
+              fontWeight: '600'
+            }}
+          >
+            + Yeni Sohbet
+          </button>
+
+          <div className="space-y-2">
+            <div
+              className="p-3 rounded-lg"
+              style={{ backgroundColor: 'rgba(186, 242, 0, 0.1)' }}
             >
-              Analiz Türleri ve Özellikleri
-            </h2>
+              <h4 className="font-medium" style={{ color: '#1e3237' }}>Yeni Sohbet</h4>
+              <p className="text-sm" style={{ color: '#666' }}>Merhaba! Ben ChatGPT</p>
+            </div>
           </div>
 
+          <div className="mt-8 pt-6 border-t border-gray-200">
+            <div className="flex items-center space-x-3 text-sm" style={{ color: '#1e3237' }}>
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+              <span>Ayarlar</span>
+            </div>
+            <div className="flex items-center space-x-3 text-sm mt-3" style={{ color: '#1e3237' }}>
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+              </svg>
+              <span>Profil</span>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      {/* Features Section - Simplified */}
+      <section className="py-16 hidden">
+        <div className="max-w-[1200px] mx-auto px-4 sm:px-6">
           {/* Features Grid */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             
@@ -536,8 +574,8 @@ export default function TestDesignPage() {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-16">
+      {/* CTA Section - Hidden for centered design */}
+      <section className="py-16 hidden">
         <div className="max-w-[1200px] mx-auto px-4 sm:px-6">
           <div className="text-center">
             <h2
@@ -550,30 +588,6 @@ export default function TestDesignPage() {
             >
               Hemen Başlayın
             </h2>
-
-            <p
-              className="leading-relaxed mb-8"
-              style={{
-                color: '#1e3237',
-                fontSize: '14px',
-                fontWeight: '400'
-              }}
-            >
-              İlk 5 raporunuz ücretsiz! Sera yatırım kararlarınızı bilim ve deneyim ışığında verin.
-            </p>
-
-            <Link
-              href="/auth/login"
-              className="inline-block px-8 py-4 rounded-xl font-medium transition-all hover:opacity-90 shadow-lg"
-              style={{
-                backgroundColor: '#baf200',
-                color: '#1e3237',
-                fontSize: '14px',
-                fontWeight: '600'
-              }}
-            >
-              🚀 Ücretsiz Hesap Oluştur
-            </Link>
           </div>
         </div>
       </section>
