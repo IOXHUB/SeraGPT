@@ -373,7 +373,7 @@ Hangi konuda derinlemesine konuşmak istersiniz?`;
 
   return (
     <DashboardLayout>
-      <div className="h-full bg-gradient-to-br from-orange-400 via-purple-500 to-blue-600 flex flex-col overflow-hidden">
+      <div className="h-full bg-gradient-to-br from-orange-400 via-purple-500 to-blue-600 flex flex-col overflow-hidden min-h-0">
         
         {/* Mobile Status Bar */}
         <div className="flex items-center justify-between px-6 py-2 text-white/90 text-sm">
