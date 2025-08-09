@@ -240,21 +240,21 @@ export default function AnalysesListPage() {
                     <div className="flex space-x-2">
                       {analysis.status === 'completed' && (
                         <>
-                          <button 
+                          <a
+                            href={`/dashboard/reports/${analysis.type}/${analysis.id}`}
                             className="text-blue-600 hover:text-blue-800 text-sm font-medium"
-                            onClick={() => alert(`Analiz detayları: ${analysis.id}`)}
                           >
                             Görüntüle
-                          </button>
-                          <button 
+                          </a>
+                          <a
+                            href={`/dashboard/reports/${analysis.type}/${analysis.id}`}
                             className="text-green-600 hover:text-green-800 text-sm font-medium"
-                            onClick={() => alert(`PDF indirme: ${analysis.id}`)}
                           >
                             PDF İndir
-                          </button>
+                          </a>
                         </>
                       )}
-                      <button 
+                      <button
                         className="text-red-600 hover:text-red-800 text-sm font-medium"
                         onClick={() => {
                           if (confirm('Bu analizi silmek istediğinizden emin misiniz?')) {
