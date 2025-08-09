@@ -125,7 +125,7 @@ export default function AnalysesListPage() {
         {/* Stats Cards */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
           <div className="bg-[#f6f8f9] rounded-lg border p-4 shadow-lg">
-            <div className="text-2xl font-bold text-gray-900">{analyses.length}</div>
+            <div className="text-2xl font-bold text-[#1e3237]">{analyses.length}</div>
             <div className="text-sm text-gray-600">Toplam Analiz</div>
           </div>
           <div className="bg-[#f6f8f9] rounded-lg border p-4 shadow-lg">
@@ -207,7 +207,7 @@ export default function AnalysesListPage() {
         {filteredAnalyses.length === 0 ? (
           <div className="bg-white rounded-lg border p-8 text-center">
             <div className="text-4xl mb-4">📊</div>
-            <h3 className="text-lg font-medium text-gray-900 mb-2">Henüz analiz bulunmuyor</h3>
+            <h3 className="text-lg font-medium text-[#1e3237] mb-2">Henüz analiz bulunmuyor</h3>
             <p className="text-gray-600 mb-4">İlk analizinizi oluşturmak için aşağıdaki butonları kullanın</p>
             <div className="flex flex-wrap justify-center gap-2">
               <a href="/dashboard/analysis/roi" className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg text-sm transition-colors">
@@ -231,7 +231,7 @@ export default function AnalysesListPage() {
                       {getTypeIcon(analysis.type)}
                     </div>
                     <div>
-                      <h3 className="font-medium text-gray-900">{analysis.title}</h3>
+                      <h3 className="font-medium text-[#1e3237]">{analysis.title}</h3>
                       <div className="flex items-center space-x-2 mt-1">
                         <span className="text-sm text-gray-600">{getTypeName(analysis.type)}</span>
                         <span className="text-gray-400">•</span>
