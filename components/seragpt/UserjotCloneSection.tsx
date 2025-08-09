@@ -290,12 +290,12 @@ export default function UserjotCloneSection() {
         </div>
       </div>
 
-      {/* How It Works Section - WITH GRADIENT BACKGROUND */}
-      <div className="section bg-gradient-to-br from-orange-400 via-purple-500 to-blue-600 relative">
+      {/* How It Works Section */}
+      <div className="section" style={{ background: '#f9fafb' }}>
         <div className="body-container">
           <div className="text-center mb-8">
             <div className="text-container">
-              <h2 className="heading-2 text-center text-white">
+              <h2 className="heading-2 text-center">
                 Panelde Sizi Bekleyen Analiz Türleri ve Özellikleri
               </h2>
             </div>
@@ -306,7 +306,7 @@ export default function UserjotCloneSection() {
             {/* Mobile: Vertical stack, Tablet+: Horizontal scroll */}
             <div className="md:flex md:overflow-x-auto md:scrollbar-hide md:space-x-6 md:pb-6 space-y-6 md:space-y-0">
               {/* Card 1 - ROI Simülasyonu */}
-              <div className="md:flex-shrink-0 w-full md:w-80 bg-white/10 backdrop-blur-sm rounded-2xl p-6 md:p-8 border border-white/20 relative shadow-xl hover:bg-white/20 transition-all">
+              <div className="md:flex-shrink-0 w-full md:w-80 bg-gradient-to-br from-orange-400 via-purple-500 to-blue-600 rounded-2xl p-6 md:p-8 relative shadow-xl hover:shadow-2xl transition-all">
                 <div className="absolute top-4 md:top-6 left-4 md:left-6 text-4xl md:text-6xl font-bold text-white/20">01</div>
                 <div className="mt-12 md:mt-16">
                   <h3 className="text-lg md:text-xl font-bold text-white mb-4 leading-tight">
@@ -517,7 +517,7 @@ export default function UserjotCloneSection() {
               },
               {
                 question: "Ödeme nasıl yapılıyor?",
-                answer: "İlk 5 rapor ücretsizdir. Sonrasında, kredi kartı veya havale/EFT ile jeton (token) satın alabilirsiniz. Ödeme altyapısı %100 güvenlidir."
+                answer: "İlk 5 rapor ücretsizdir. Sonrasında, kredi kartı veya havale/EFT ile jeton (token) satın alabilirsiniz. Ödeme altyapısı %100 g��venlidir."
               }
             ].map((faq, index) => (
               <div
