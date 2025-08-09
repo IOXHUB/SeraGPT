@@ -534,7 +534,7 @@ export default function TestNewPage() {
                   <p style={{ color: '#f6f8f9' }}>Yerinde keşif ve teknik analiz (ISITMAX)</p>
                   <p style={{ color: '#f6f8f9' }}>Statik & yapısal proje çizimleri</p>
                   <p style={{ color: '#f6f8f9' }}>XXXXX menşeli otomasyon, ekipman ve kurulum hizmeti</p>
-                  <p style={{ color: '#f6f8f9' }}>ISITMAX süpervizörlüğünde şantiye yönetimi</p>
+                  <p style={{ color: '#f6f8f9' }}>ISITMAX s��pervizörlüğünde şantiye yönetimi</p>
                   <p style={{ color: '#f6f8f9' }}>Tam kapsamlı fiyat teklifi ve mühendislik dosyası (PDF)</p>
                 </div>
               </div>
@@ -943,10 +943,10 @@ export default function TestNewPage() {
         <div className="max-w-[1200px] mx-auto px-6 text-center">
           <div className="max-w-[800px] mx-auto">
             <h2
-              className="mb-8"
+              className="mb-8 text-center"
               style={{
                 color: '#f6f8f9',
-                fontSize: '24px',
+                fontSize: '36px',
                 fontWeight: '600'
               }}
             >
