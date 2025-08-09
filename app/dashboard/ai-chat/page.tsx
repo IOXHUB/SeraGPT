@@ -244,43 +244,244 @@ Hangi konuda konuşmak istersiniz?`;
   const generateMockResponse = (userInput: string): string => {
     const input = userInput.toLowerCase();
 
+    // Rapor bazlı yanıtlar
+    if (reportParam) {
+      if (reportParam.includes('roi')) {
+        if (input.includes('optimiz') || input.includes('iyileştir') || input.includes('geri dönüş')) {
+          return `🌱 **${getReportTitle(reportParam)} - ROI Optimizasyon Önerileri**
+
+Raporunuzu detaylı analiz ettim. İşte ROI'nizi artırmak için kritik önerilerim:
+
+**📈 Hızlı ROI Artırma Stratejileri:**
+
+• **Ürün Karışımı Optimizasyonu**: Premium çeşitlere odaklanarak m² başına geliri %15-20 artırabilirsiniz
+• **Sezon Uzatma**: Erken ve geç sezon üretimiyle yıllık hasatı 2 aydan fazla uzatın
+• **Direkt Satış Kanalları**: Perakende zincirler ve çiftlik pazarı satışlarıyla %25-30 fiyat primi
+• **Malzeme Verimliliği**: Su ve gübre tasarrufu ile yıllık %8-12 maliyet azaltması
+
+**💡 Teknoloji Yatırımları:**
+• Akıllı iklim kontrolü ile %20 enerji tasarrufu
+• Precision farming ile %15 verim artışı
+• Otomasyon ile işçilik maliyetinde %30 azalma
+
+**Hangi stratejileri öncelikli olarak uygulamak istiyorsunuz?**`;
+        }
+
+        return `📊 **ROI Analizi Uzmanı Görüşü**
+
+${getReportTitle(reportParam)} raporunuzda önemli fırsatlar görüyorum:
+
+**🎯 Ana Bulgular:**
+• Mevcut ROI: %18.5 - Sektör ortalaması üstünde
+• Geri dönüş süresi: 3.2 yıl - Kabul edilebilir seviye
+• Risk seviyesi: Orta - Yönetilebilir faktörler
+
+**💰 Optimizasyon Potansiyeli:**
+• Domates premium çeşitler: +%25 gelir
+• Sezon uzatma: +45 gün üretim
+• Enerji verimliliği: -%15 işletme maliyeti
+
+Hangi alanda detaylı optimizasyon planı oluşturalım?`;
+      }
+
+      if (reportParam.includes('climate')) {
+        if (input.includes('verimlilik') || input.includes('dönem') || input.includes('optimiz')) {
+          return `🌡️ **İklim Analizi Bazlı Verimlilik Optimizasyonu**
+
+${getReportTitle(reportParam)} raporunuza göre stratejik önerilerim:
+
+**🌟 Maksimum Verimlilik Dönemleri:**
+
+• **Mart-Mayıs (İlkbahar)**: %92 uygunluk - Ana üretim dönemi
+• **Eylül-Kasım (Sonbahar)**: %88 uygunluk - İkinci hasat döngüsü
+• **Aralık-Şubat (Kış)**: %75 uygunluk - Ek ısıtma ile karlı
+
+**⚡ Kritik İyileştirmeler:**
+
+• **Yaz Stratejisi**: Gölgeleme ve soğutma ile %30 verim artışı
+• **Kış Optimizasyonu**: Isı pompası sistemiyle %40 enerji tasarrufu
+• **Don Koruması**: Erken uyarı sistemiyle %100 kayıp önleme
+• **Nem Kontrolü**: Otomatik havalandırma ile hastalık riski -%70
+
+Hangi sezon için detaylı uygulama planı hazırlayalım?`;
+        }
+
+        return `🌱 **İklim Uzmanı Değerlendirmesi**
+
+İzmir bölgesi iklim analizi çok olumlu sonuçlar gösteriyor:
+
+**🎯 Uygunluk Skoru: 85/100** - Mükemmel seviye!
+
+**✅ Güçlü Yönler:**
+• Düşük don riski - Sadece 8 gün/yıl
+• Uzun yetiştirme sezonu - 285 gün
+• Optimal nem seviyeleri - %68 ortalama
+
+**⚠️ Dikkat Edilecek Alanlar:**
+• Yaz sıcaklıkları (42°C max) - Soğutma sistemi kritik
+• Sonbahar yağışları - Drenaj planlaması önemli
+
+Hangi iklim faktörü için detaylı çözüm önerileri istersiniz?`;
+      }
+
+      if (reportParam.includes('equipment')) {
+        return `⚙️ **Ekipman Optimizasyon Uzmanı**
+
+${getReportTitle(reportParam)} raporunuzda maliyet optimizasyonu fırsatları:
+
+**💰 Maliyet Azaltma Stratejileri:**
+
+• **Hibrit Sistemler**: %25-30 başlangıç maliyeti azaltmas��
+• **Aşamalı Kurulum**: Nakit akışını iyileştirme
+• **Yerel Tedarik**: İthalat yerine yerli ekipmanlarla %20 tasarruf
+• **Kullanılmış Ekipman**: Seçili kategorilerde %40-50 tasarruf
+
+**🔧 Öncelikli Ekipman Kategorileri:**
+1. **İklim Kontrolü** - Zorunlu, ertelenmez
+2. **Sulama Sistemi** - Hemen kurulmalı
+3. **Otomasyon** - Aşamalı eklenebilir
+4. **Güneş Paneli** - ROI pozitif olunca
+
+Hangi kategori için alternatif çözümler araştıralım?`;
+      }
+
+      if (reportParam.includes('market')) {
+        return `📈 **Pazar Analizi Stratejisti**
+
+${getReportTitle(reportParam)} raporunda önemli fırsatlar var:
+
+**🎯 Kar Maximizasyonu Stratejileri:**
+
+• **Premium Ürün Konumlandırması**: %15-20 fiyat primi
+• **Sezonsal Zamanlama**: Kış fiyatları %40 daha yüksek
+• **Direkt Satış Kanalları**: Aracı marjını elimine etme
+• **Kontrat Tarımı**: Fiyat garantisi ve risk azaltma
+
+**📊 Optimal Satış Takvimi:**
+• **Ekim-Şubat**: En yüksek fiyat dönemi (₺13.50/kg)
+• **Mart-Mayıs**: Orta seviye (₺9.20/kg)
+• **Haziran-Ağustos**: En düşük (₺7.20/kg) - Stok dönemi
+
+**💡 Değer Katma Fırsatları:**
+• Organik sertifikasyon: +%30 prim
+• Ambalajlama ve marka: +%25 prim
+• İşlenmiş ürünler: +%50-100 katma değer
+
+Hangi stratejiyi öncelikli olarak geliştirmek istiyorsuniz?`;
+      }
+
+      if (reportParam.includes('layout')) {
+        return `📐 **Layout Optimizasyon Uzmanı**
+
+${getReportTitle(reportParam)} için verimlilik artırma önerilerim:
+
+**⚡ Hızlı Verimlilik Artışları:**
+
+• **Alan Kullanımı**: Mevcut %88'den %95'e çıkarılabilir
+• **İş Akışı**: Akıllı geçit düzeniyle %20 zaman tasarrufu
+• **Bitki Kapasitesi**: 1,792'den 2,100 bitkiye çıkış mümkün
+• **Otomasyon Entegrasyonu**: Manuel işçiliği %40 azaltma
+
+**🏗️ Layout İyileştirme Alanları:**
+
+• **Giriş Zonları**: Malzeme akışını optimize etme
+• **Çalışma Alanları**: %8'den %12'ye çıkarılabilir
+• **Depolama**: Dikey depolama ile %50 alan tasarrufu
+• **Gelecek Genişleme**: Modüler tasarımla hazırlık
+
+**🔧 Teknik Optimizasyonlar:**
+• Işık geçirgeni artırma
+• Havalandırma optimizasyonu
+• Su sistemi düzenleme
+• Elektrik altyapısı güçlendirme
+
+Hangi optimizasyon alanında detay planlama yapalım?`;
+      }
+    }
+
+    // Genel yanıtlar
     if (input.includes('maliyet') || input.includes('para') || input.includes('fiyat')) {
-      return `Sera maliyetleri konusunda size detaylı bilgi verebilirim.
+      return `💰 **Sera Maliyet Uzmanı**
 
-**Temel Maliyet Kategorileri:**
+Size özel maliyet analizi hazırlayabilirim:
 
-• **Yapı Maliyeti**: Sera konstrüksiyonu ve örtü sistemi
-• **Ekipman Maliyeti**: İklim kontrolü, sulama, otomasyon
-• **Altyapı Maliyeti**: Elektrik, su, yol bağlantısı
-• **İşletme Maliyeti**: Enerji, işgücü, bakım, girdiler
+**🏗️ Temel Maliyet Kategorileri:**
 
-Hangi boyutta sera düşünüyorsunuz? Size özel bir maliyet analizi hazırlayabilirim.`;
+��� **Yapı Maliyeti** (40-50%): Konstrüksiyon, örtü, temel
+• **Ekipman Maliyeti** (30-35%): İklim, sulama, otomasyon
+• **Altyapı Maliyeti** (10-15%): Elektrik, su, yol
+• **İşletme Maliyeti** (Yıllık): Enerji, işgücü, bakım
+
+**📊 Maliyet Optimizasyon Taktikleri:**
+• Aşamalı kurulum stratejisi
+• Yerel vs ithal ekipman analizi
+• Finansman alternatifleri
+• Hibrit teknoloji çözümleri
+
+Hangi boyutta sera planlıyorsunuz? Size özel analiz hazırlayalım.`;
     }
 
     if (input.includes('roi') || input.includes('geri dönüş') || input.includes('kâr')) {
-      return `ROI hesaplaması için size kapsamlı bir analiz sunabilirim.
+      return `📈 **ROI Analiz Uzmanı**
 
-**ROI Değerlendirme Faktörleri:**
+Sera yatırımı ROI hesaplaması için detaylı yaklaşım:
 
-• **Yatırım Tutarı**: Toplam kuruluş maliyeti
-• **İşletme Giderleri**: Yıllık operasyon maliyetleri  
-• **Gelir Projeksiyonu**: Üretim kapasitesi × satış fiyatı
-• **Pazar Koşulları**: Talep, rekabet, fiyat dalgalanmaları
+**🎯 ROI Değerlendirme Matrisi:**
 
-Sera büyüklüğünüz ve üretim planınız hakkında bilgi alabilir miyim?`;
+• **Yatırım Tutarı**: Toplam kuruluş + işletme sermayesi
+• **Yıllık Gelir**: Kapasite × verim × fiyat × sezon uzunluğu
+• **İşletme Giderleri**: Enerji + işgücü + malzeme + bakım
+• **Net Kâr**: Gelir - giderler - amortisman
+
+**⚡ ROI Artırma Faktörleri:**
+• Premium çeşit seçimi
+• Sezon uzatma teknikleri
+• Direkt satış kanalları
+• Otomasyon yatırımları
+
+Sera büyüklüğü ve hedef ürününüz nedir? Spesifik ROI analizi yapalım.`;
     }
 
-    return `Size en iyi şekilde yardımcı olabilmem için lütfen sorunuzu biraz daha detaylandırın.
+    if (input.includes('ekipman') || input.includes('teknoloji') || input.includes('sistem')) {
+      return `🔧 **Sera Teknoloji Uzmanı**
 
-**Yardımcı olabileceğim konular:**
+Modern sera ekipmanları konusunda kapsamlı destek sunabilirim:
 
-• Sera yatırım analizi ve ROI hesaplamaları
-• Bölge seçimi ve iklim değerlendirmesi
-• Ekipman seçimi ve teknoloji önerileri  
-• Pazar analizi ve fırsat değerlendirmesi
-• Üretim planlaması ve maliyet optimizasyonu
+**🏆 Kritik Teknoloji Alanları:**
 
-Hangi konuda derinlemesine analiz istersiniz?`;
+• **İklim Kontrolü**: Sıcaklık, nem, CO2 yönetimi
+• **Sulama Sistemleri**: Precision irrigation, fertigasyon
+• **Otomasyon**: IoT sensörler, AI destekli kontrol
+• **Enerji Verimliliği**: LED aydınlatma, ısı pompası
+
+**💡 2024 Teknoloji Trendleri:**
+• Akıllı sera yönetim sistemleri
+• Yenilenebilir enerji entegrasyonu
+• Precision farming teknolojileri
+• Vertkal farming hibrit çözümleri
+
+Hangi teknoloji alanında detaylı rehberlik istersiniz?`;
+    }
+
+    return `🌱 **SeraGPT Uzman Asistanınız**
+
+Size en değerli tavsiyeleri sunabilmem için hangi konuda derinlemesine analiz yapmak istiyorsunuz?
+
+**🚀 Uzmanlık Alanlarım:**
+
+• **Yatırım Analizi**: ROI hesaplama, risk değerlendirme, finansman
+• **Teknoloji Seçimi**: Ekipman karşılaştırma, maliyet-fayda analizi
+• **İklim Optimizasyonu**: Bölgesel uygunluk, risk yönetimi
+• **Pazar Stratejisi**: Fiyat analizi, satış kanalları, zamanlama
+• **Operasyonel Verimlilik**: Layout, süreç optimizasyonu
+
+**🎯 Özel Hizmetlerim:**
+✅ Raporlarınızı analiz etme ve iyileştirme önerileri
+✅ Spesifik problemlere özel çözümler geliştirme
+✅ Adım adım uygulama planları hazırlama
+✅ Maliyet-fayda hesaplamaları
+
+Hangi konuda konuşmaya başlayalım?`;
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
