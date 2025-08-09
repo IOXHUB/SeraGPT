@@ -139,7 +139,7 @@ export default function BlogPage() {
                   <span>{featuredPost.date}</span>
                   <span>{featuredPost.category}</span>
                 </div>
-                <h2 className="text-2xl font-semibold text-gray-900 leading-tight group-hover:text-gray-700 transition-colors">
+                <h2 className="text-2xl font-semibold text-[#1e3237] leading-tight group-hover:text-gray-700 transition-colors">
                   {featuredPost.title}
                 </h2>
                 <p className="text-gray-600 leading-relaxed">
@@ -213,7 +213,7 @@ export default function BlogPage() {
                       <div className="text-sm text-gray-500">
                         {post.date}
                       </div>
-                      <h3 className="text-lg font-semibold text-gray-900 group-hover:text-gray-700 transition-colors leading-tight">
+                      <h3 className="text-lg font-semibold text-[#1e3237] group-hover:text-gray-700 transition-colors leading-tight">
                         {post.title}
                       </h3>
                       <p className="text-gray-600 text-sm leading-relaxed">
