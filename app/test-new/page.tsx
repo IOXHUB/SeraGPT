@@ -106,14 +106,12 @@ export default function TestNewPage() {
             <div className="mb-6">
               <Link
                 href="/auth/login"
-                className="inline-block px-8 py-4 rounded-xl font-medium transition-all hover:opacity-90 hover:scale-105 transform animate-pulse"
+                className="hero-cta-button inline-block px-8 py-4 rounded-xl font-medium transition-all hover:opacity-90 hover:scale-105 transform"
                 style={{
                   backgroundColor: '#baf200',
                   color: '#1e3237',
                   fontSize: '16px',
-                  fontWeight: '600',
-                  boxShadow: '0 10px 25px rgba(186, 242, 0, 0.3), 0 0 20px rgba(186, 242, 0, 0.2)',
-                  animation: 'shadow-pulse 2s ease-in-out infinite alternate'
+                  fontWeight: '600'
                 }}
               >
                 60 Saniyede Sera Raporunu Al
