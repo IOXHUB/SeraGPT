@@ -215,13 +215,13 @@ export default function DashboardLayout({ children, title, subtitle }: Dashboard
                               <span className="flex-1">{item.name === 'Anasayfa' ? <p>Anasayfa</p> : item.name}</span>
                               <div className="flex items-center space-x-1">
                                 {item.badge && (
-                                  <span className="px-1.5 py-0.5 text-xs bg-green-100 text-green-600 rounded-full">
+                                  <span className="px-1.5 py-0.5 text-xs bg-[#baf200] text-[#1e3237] rounded-full font-medium">
                                     {item.badge}
                                   </span>
                                 )}
                                 {item.submenu && (
                                   <svg
-                                    className={`w-3 h-3 text-gray-400 transition-transform ${expandedMenus[item.name] ? 'rotate-90' : ''}`}
+                                    className={`w-3 h-3 text-[#1e3237]/40 transition-transform ${expandedMenus[item.name] ? 'rotate-90' : ''}`}
                                     fill="none"
                                     stroke="currentColor"
                                     viewBox="0 0 24 24"
