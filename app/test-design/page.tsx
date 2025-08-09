@@ -590,13 +590,13 @@ export default function TestDesignPage() {
               {/* Company Info */}
               <div>
                 <div className="flex items-center space-x-3 mb-4">
-                  <div 
+                  <div
                     className="w-8 h-8 rounded-lg flex items-center justify-center font-bold"
-                    style={{ backgroundColor: '#146448', color: '#f6f8f9' }}
+                    style={{ backgroundColor: '#baf200', color: '#1e3237' }}
                   >
                     🌱
                   </div>
-                  <span 
+                  <span
                     className="font-bold"
                     style={{ color: '#1e3237', fontSize: '16px', fontWeight: '600' }}
                   >
