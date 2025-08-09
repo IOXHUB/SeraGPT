@@ -508,7 +508,7 @@ export default function TokensPage() {
               </div>
               
               <div className="p-4 bg-purple-50 rounded-lg border border-purple-200">
-                <h4 className="font-medium text-purple-900 mb-2">📊 Eşit Fiyat</h4>
+                <h4 className="font-medium text-purple-900 mb-2">Eşit Fiyat</h4>
                 <p className="text-sm text-purple-800">
                   Tüm raporlar 1 token harcar. ROI, iklim, pazar - hepsi aynı fiyat!
                 </p>
