@@ -422,10 +422,10 @@ Hangi konuda derinlemesine konuşmak istersiniz?`;
                           {/* AI Avatar */}
                           {message.role === 'assistant' && (
                             <div className="flex items-center mb-3">
-                              <div className="w-6 h-6 bg-gradient-to-br from-orange-400 to-purple-600 rounded-full flex items-center justify-center mr-2">
+                              <div className="w-6 h-6 bg-[#146448] rounded-full flex items-center justify-center mr-2">
                                 <span className="text-white text-xs">🤖</span>
                               </div>
-                              <span className="text-sm font-medium text-gray-600">SeraGPT 5</span>
+                              <span className="text-sm font-medium text-[#1e3237]">SeraGPT 5</span>
                             </div>
                           )}
 
