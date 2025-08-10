@@ -22,11 +22,6 @@ const nextConfig = {
     unoptimized: false
   },
 
-  // Production optimizations
-  experimental: {
-    optimizePackageImports: ['framer-motion', '@supabase/supabase-js'],
-  },
-
   // No trailing slash for standard deployment
   trailingSlash: false,
 
@@ -62,11 +57,13 @@ const nextConfig = {
     return 'seragpt-build-' + Date.now();
   },
 
-  // Experimental configuration for better auth handling
+  // Production optimizations and experimental features
   experimental: {
     optimizePackageImports: ['framer-motion', '@supabase/supabase-js'],
     // Force specific routes to be dynamic
     forceSwcTransforms: false,
+    // Skip static optimization for all pages to prevent build errors
+    skipTrailingSlashRedirect: true,
   },
 
   // Custom webpack configuration
