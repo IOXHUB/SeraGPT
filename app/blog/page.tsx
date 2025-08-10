@@ -220,14 +220,10 @@ export default function BlogPage() {
                   <a href={`/blog/${post.slug}`} className="block">
                     <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
                       <div className="relative overflow-hidden">
-                        <OptimizedImage
+                        <img
                           src={post.image}
                           alt={post.title}
-                          width={400}
-                          height={240}
                           className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
-                          preset="thumbnail"
-                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                       </div>
