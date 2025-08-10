@@ -224,50 +224,47 @@ export default function SettingsPage() {
 
   return (
     <DashboardLayout title="Ayarlar" subtitle="Hesap ve uygulama ayarlarınızı yönetin">
-      <div className="flex flex-col lg:flex-row gap-8">
-        
-        {/* Sidebar */}
-        <div className="lg:w-64 flex-shrink-0">
-          <div className="bg-[#f6f8f9] rounded-xl border border-gray-200 p-4 shadow-lg">
-            <h3 className="font-semibold text-[#1e3237] mb-4">Ayar Kategorileri</h3>
-            <nav className="space-y-2">
-              {tabs.map((tab) => (
-                <button
-                  key={tab.id}
-                  onClick={() => setActiveTab(tab.id)}
-                  className={`w-full text-left px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
-                    activeTab === tab.id
-                      ? 'bg-[#baf200]/30 text-[#1e3237] border border-[#baf200]'
-                      : 'text-[#1e3237]/70 hover:text-[#1e3237] hover:bg-white'
-                  }`}
-                >
-                  <span className="mr-2">{tab.icon}</span>
-                  {tab.name}
-                </button>
-              ))}
-            </nav>
+      <div className="space-y-6">
 
-            {/* Profile Completion */}
-            <div className="mt-6 p-4 bg-gray-50 rounded-lg">
-              <h4 className="text-sm font-medium text-[#1e3237] mb-2">Profil Tamamlanma</h4>
-              <div className="flex items-center">
-                <div className="flex-1 bg-gray-200 rounded-full h-2">
-                  <div 
-                    className="bg-[#146448] h-2 rounded-full transition-all duration-300"
-                    style={{ width: `${profileCompletion}%` }}
-                  />
-                </div>
-                <span className="ml-2 text-sm font-medium text-[#1e3237]">{profileCompletion}%</span>
+        {/* Tab Navigation */}
+        <div className="bg-[#f6f8f9] rounded-xl border border-gray-200 p-6 shadow-lg">
+          <div className="flex flex-wrap gap-2 mb-4">
+            {tabs.map((tab) => (
+              <button
+                key={tab.id}
+                onClick={() => setActiveTab(tab.id)}
+                className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                  activeTab === tab.id
+                    ? 'bg-[#baf200] text-[#1e3237]'
+                    : 'text-[#1e3237]/70 hover:text-[#1e3237] hover:bg-white'
+                }`}
+              >
+                <span className="mr-2">{tab.icon}</span>
+                {tab.name}
+              </button>
+            ))}
+          </div>
+
+          {/* Profile Completion */}
+          <div className="mt-4 p-4 bg-gray-50 rounded-lg">
+            <h4 className="text-sm font-medium text-[#1e3237] mb-2">Profil Tamamlanma</h4>
+            <div className="flex items-center">
+              <div className="flex-1 bg-gray-200 rounded-full h-2">
+                <div
+                  className="bg-[#146448] h-2 rounded-full transition-all duration-300"
+                  style={{ width: `${profileCompletion}%` }}
+                />
               </div>
-              <p className="text-xs text-[#1e3237]/60 mt-1">
-                Profil tamamlama oranınızı artırarak daha iyi öneriler alın
-              </p>
+              <span className="ml-2 text-sm font-medium text-[#1e3237]">{profileCompletion}%</span>
             </div>
+            <p className="text-xs text-[#1e3237]/60 mt-1">
+              Profil tamamlama oranınızı artırarak daha iyi öneriler alın
+            </p>
           </div>
         </div>
 
         {/* Main Content */}
-        <div className="flex-1">
+        <div>
           {/* Message */}
           {message && (
             <div className={`mb-6 p-4 rounded-lg ${
