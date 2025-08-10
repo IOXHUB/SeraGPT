@@ -130,6 +130,24 @@ export default function DashboardLayout({ children, title, subtitle }: Dashboard
         </div>
       </header>
 
+      {/* Dashboard Subheader */}
+      <div className="bg-[#f6f8f9] border-b border-[#f6f8f9]/20">
+        <div className="max-w-[1200px] mx-auto px-6">
+          <nav className="flex items-center space-x-8 py-4 overflow-x-auto">
+            {dashboardNavItems.map((item) => (
+              <a
+                key={item.href}
+                href={item.href}
+                className="whitespace-nowrap font-medium text-[#1e3237] hover:text-[#146448] transition-colors border-b-2 border-transparent hover:border-[#146448] pb-1"
+                style={{ fontSize: '14px' }}
+              >
+                {item.name}
+              </a>
+            ))}
+          </nav>
+        </div>
+      </div>
+
       {/* Main Content */}
       <main className="py-8" style={{ minHeight: '1000px' }}>
         <div className="max-w-[1200px] mx-auto px-6">
