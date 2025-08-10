@@ -64,7 +64,13 @@ const nextConfig = {
     forceSwcTransforms: false,
     // Skip static optimization for all pages to prevent build errors
     skipTrailingSlashRedirect: true,
+    // Force dynamic rendering for all pages
+    isrMemoryCacheSize: 0,
   },
+
+  // Force all pages to be dynamic (no static generation)
+  trailingSlash: false,
+  generateStaticParams: false,
 
   // Custom webpack configuration
   webpack: (config, { dev, isServer }) => {
