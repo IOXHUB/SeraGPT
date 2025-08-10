@@ -34,8 +34,7 @@ export default function SeraGPTLogo({ size = 'md', priority = false, className, 
       height={sizeConfig.height}
       className={finalClassName}
       priority={priority}
-      placeholder="blur"
-      blurDataURL={BLUR_DATA_URL}
+      unoptimized={true}
       sizes="(max-width: 768px) 96px, (max-width: 1200px) 120px, 160px"
     />
   );
