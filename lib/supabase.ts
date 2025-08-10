@@ -23,10 +23,6 @@ const key = (supabaseAnonKey &&
   ? supabaseAnonKey
   : defaultKey
 
-// Build-time check - don't create client during build if variables are missing
-const isBuildTime = typeof window === 'undefined' && process.env.NODE_ENV !== 'development'
-const shouldCreateClient = !isBuildTime || isSupabaseConfigured()
-
 // Helper to check if Supabase is properly configured
 export const isSupabaseConfigured = () => {
   return !!(supabaseUrl &&
@@ -37,6 +33,10 @@ export const isSupabaseConfigured = () => {
            supabaseAnonKey !== 'your-supabase-anon-key' &&
            supabaseUrl.includes('supabase.co'))
 }
+
+// Build-time check - don't create client during build if variables are missing
+const isBuildTime = typeof window === 'undefined' && process.env.NODE_ENV !== 'development'
+const shouldCreateClient = !isBuildTime || isSupabaseConfigured()
 
 // Create Supabase client with safe configuration
 export const supabase = shouldCreateClient ? createClient(url, key, {
