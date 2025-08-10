@@ -36,27 +36,42 @@ export const isSupabaseConfigured = () => {
 
 // Build-time check - don't create client during build if variables are missing
 const isBuildTime = typeof window === 'undefined' && process.env.NODE_ENV !== 'development'
-const shouldCreateClient = !isBuildTime || isSupabaseConfigured()
 
-// Create Supabase client with safe configuration
-export const supabase = shouldCreateClient ? createClient(url, key, {
-  auth: {
-    // Disable auto refresh during build/static generation
-    autoRefreshToken: typeof window !== 'undefined',
-    persistSession: typeof window !== 'undefined',
-    detectSessionInUrl: typeof window !== 'undefined',
-    // Use PKCE flow for better security with proper callback
-    flowType: 'pkce',
-    // Ensure proper storage and session detection
-    storage: typeof window !== 'undefined' ? window.localStorage : undefined,
-    storageKey: 'supabase.auth.token'
-  },
-  global: {
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  },
-}) : null
+// Lazy initialization to prevent build-time errors
+let _supabaseClient: any = null;
+
+const createSupabaseClient = () => {
+  if (!_supabaseClient) {
+    const shouldCreateClient = !isBuildTime || isSupabaseConfigured()
+
+    if (shouldCreateClient) {
+      _supabaseClient = createClient(url, key, {
+        auth: {
+          // Disable auto refresh during build/static generation
+          autoRefreshToken: typeof window !== 'undefined',
+          persistSession: typeof window !== 'undefined',
+          detectSessionInUrl: typeof window !== 'undefined',
+          // Use PKCE flow for better security with proper callback
+          flowType: 'pkce',
+          // Ensure proper storage and session detection
+          storage: typeof window !== 'undefined' ? window.localStorage : undefined,
+          storageKey: 'supabase.auth.token'
+        },
+        global: {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        },
+      })
+    } else {
+      _supabaseClient = null
+    }
+  }
+  return _supabaseClient
+}
+
+// Export client getter instead of direct instance
+export const supabase = createSupabaseClient()
 
 // Export a safe version that handles null client
 export const getSupabaseClient = () => {
