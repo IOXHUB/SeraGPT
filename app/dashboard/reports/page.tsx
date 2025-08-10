@@ -55,7 +55,7 @@ export default function ReportsPage() {
   const createSampleAnalysis = async (type: string) => {
     try {
       const sampleData = {
-        type: type,
+        type: type as "layout" | "roi" | "climate" | "equipment" | "market",
         title: `Örnek ${reportTypes.find(t => t.type === type)?.title}`,
         status: 'completed' as const
       };
