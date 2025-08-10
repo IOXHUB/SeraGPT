@@ -113,7 +113,7 @@ export default function ClimateAnalysisPage() {
         setUserTokens(prev => prev - 1);
         setStep(3);
       } else {
-        alert('İklim analizi sırasında bir hata oluştu: ' + analysisResults.error);
+        alert('İklim analizi s��rasında bir hata oluştu: ' + analysisResults.error);
       }
     } catch (error) {
       console.error('Climate analysis failed:', error);
@@ -448,7 +448,10 @@ export default function ClimateAnalysisPage() {
   );
 
   return (
-    <DashboardLayout>
+    <DashboardLayout
+      title="İklim Analizi"
+      subtitle="Bölgesel iklim verilerini analiz ederek sera uygunluk skorlarını hesaplayın"
+    >
       <div className="min-h-screen bg-gray-50 p-6">
         <div className="max-w-4xl mx-auto">
           {/* Header */}
