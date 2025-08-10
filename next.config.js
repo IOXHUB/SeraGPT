@@ -54,30 +54,8 @@ const nextConfig = {
     ignoreDuringBuilds: true,
   },
 
-  // Force dynamic rendering to avoid SSR issues
-  output: 'export',
-  trailingSlash: true,
-
-  // Disable image optimization for static export
-  images: {
-    unoptimized: true,
-    domains: ['cdn.builder.io'],
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'cdn.builder.io',
-        port: '',
-        pathname: '/api/v1/image/assets/**',
-      },
-      {
-        protocol: 'https',
-        hostname: '*.builder.io',
-      }
-    ],
-    formats: ['image/avif', 'image/webp'],
-    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
-    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
-  },
+  // Force standalone output for Vercel deployment
+  output: 'standalone',
 
   // Generate static pages where possible
   generateBuildId: async () => {
