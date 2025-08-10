@@ -3,6 +3,9 @@
 import { useState, useEffect } from 'react';
 import DashboardLayout from '@/components/dashboard/DashboardLayout';
 
+// Force dynamic rendering to prevent SSR
+export const dynamic = 'force-dynamic';
+
 interface PerformanceData {
   summary: {
     totalEntries: number;
