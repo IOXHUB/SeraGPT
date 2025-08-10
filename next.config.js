@@ -62,6 +62,25 @@ const nextConfig = {
     return 'seragpt-build-' + Date.now();
   },
 
+  // Experimental configuration for better auth handling
+  experimental: {
+    optimizePackageImports: ['framer-motion', '@supabase/supabase-js'],
+    // Force specific routes to be dynamic
+    forceSwcTransforms: false,
+  },
+
+  // Custom webpack configuration
+  webpack: (config, { dev, isServer }) => {
+    // In production builds, disable certain optimizations for auth pages
+    if (!dev && !isServer) {
+      config.optimization = {
+        ...config.optimization,
+        sideEffects: false,
+      };
+    }
+    return config;
+  },
+
   // Security headers for production
   async headers() {
     return [
