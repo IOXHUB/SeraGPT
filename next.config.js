@@ -22,28 +22,28 @@ const nextConfig = {
     unoptimized: false
   },
 
-  // No trailing slash for standard deployment
-  trailingSlash: false,
-
   // Production optimizations
   experimental: {
     optimizePackageImports: ['framer-motion', '@supabase/supabase-js'],
   },
-  
+
+  // No trailing slash for standard deployment
+  trailingSlash: false,
+
   // Environment variables - let Vercel handle these naturally
   env: {
     NODE_ENV: process.env.NODE_ENV,
   },
-  
+
   // Performance and optimization
   poweredByHeader: false,
-  
+
   // Compression
   compress: true,
-  
+
   // React strict mode for production
   reactStrictMode: true,
-  
+
   // SWC minification (faster than Terser)
   swcMinify: true,
 
@@ -59,9 +59,6 @@ const nextConfig = {
 
   // Force dynamic rendering to avoid SSR issues
   output: 'standalone',
-
-  // Static site generation configuration
-  trailingSlash: false,
 
   // Generate static pages where possible
   generateBuildId: async () => {
