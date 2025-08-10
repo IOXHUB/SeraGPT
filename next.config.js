@@ -30,10 +30,7 @@ const nextConfig = {
   // No trailing slash for standard deployment
   trailingSlash: false,
 
-  // Environment variables - let Vercel handle these naturally
-  env: {
-    NODE_ENV: process.env.NODE_ENV,
-  },
+  // Environment variables will be handled by Vercel automatically
 
   // Performance and optimization
   poweredByHeader: false,
