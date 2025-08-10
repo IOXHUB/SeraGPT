@@ -520,7 +520,7 @@ export default function SettingsPage() {
                 </div>
 
                 <div>
-                  <h3 className="text-lg font-medium text-gray-900 mb-4">Rapor Ayarları</h3>
+                  <h3 className="text-lg font-medium text-[#1e3237] mb-4">Rapor Ayarları</h3>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">Varsayılan Para Birimi</label>
