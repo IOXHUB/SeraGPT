@@ -30,10 +30,9 @@ const nextConfig = {
     optimizePackageImports: ['framer-motion', '@supabase/supabase-js'],
   },
   
-  // Environment variables that should be available in the browser
+  // Environment variables - let Vercel handle these naturally
   env: {
-    NEXT_PUBLIC_SUPABASE_URL: process.env.NEXT_PUBLIC_SUPABASE_URL,
-    NEXT_PUBLIC_SUPABASE_ANON_KEY: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
+    NODE_ENV: process.env.NODE_ENV,
   },
   
   // Performance and optimization
@@ -61,10 +60,12 @@ const nextConfig = {
   // Force dynamic rendering to avoid SSR issues
   output: 'standalone',
 
-  // Experimental features for better deployment
-  experimental: {
-    optimizePackageImports: ['framer-motion', '@supabase/supabase-js'],
-    serverComponentsExternalPackages: ['@supabase/supabase-js'],
+  // Static site generation configuration
+  trailingSlash: false,
+
+  // Generate static pages where possible
+  generateBuildId: async () => {
+    return 'seragpt-build-' + Date.now();
   },
 
   // Security headers for production
