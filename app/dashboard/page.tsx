@@ -415,9 +415,10 @@ export default function DashboardPage() {
                         >
                           {activity.description}
                         </h3>
-                        <p 
+                        <p
                           className="text-xs"
                           style={{ color: '#1e3237', opacity: 0.6 }}
+                          suppressHydrationWarning
                         >
                           {formatTime(activity.timestamp)}
                         </p>
