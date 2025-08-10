@@ -53,9 +53,9 @@ export default function DashboardLayout({ children, title, subtitle }: Dashboard
               <SeraGPTLogo variant="white" size="sm" priority />
             </div>
 
-            {/* Homepage Navigation - Desktop */}
+            {/* Header Navigation - Desktop */}
             <nav className="hidden lg:flex items-center space-x-8">
-              {homepageNavItems.map((item) => (
+              {headerNavItems.map((item) => (
                 <a
                   key={item.href}
                   href={item.href}
