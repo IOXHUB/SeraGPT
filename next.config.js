@@ -29,15 +29,6 @@ const nextConfig = {
   experimental: {
     optimizePackageImports: ['framer-motion', '@supabase/supabase-js'],
   },
-
-  // Exclude test files from build
-  pageExtensions: ['tsx', 'ts', 'jsx', 'js'].filter(ext => {
-    // In production, exclude test files
-    if (process.env.NODE_ENV === 'production') {
-      return !['test-*'].some(pattern => pattern.match(/test-/));
-    }
-    return true;
-  }),
   
   // Environment variables that should be available in the browser
   env: {
