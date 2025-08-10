@@ -48,21 +48,6 @@ const nextConfig = {
     serverComponentsExternalPackages: ['@supabase/supabase-js'],
   },
 
-  // Static generation exclusions
-  exportPathMap: async function (defaultPathMap) {
-    const pathMap = { ...defaultPathMap }
-    // Remove problematic auth-dependent pages from static generation
-    delete pathMap['/dashboard']
-    delete pathMap['/dashboard/projects']
-    delete pathMap['/dashboard/help']
-    delete pathMap['/dashboard/analysis/market']
-    delete pathMap['/dashboard/analysis/roi']
-    delete pathMap['/dashboard/analysis/climate']
-    delete pathMap['/dashboard/analysis/equipment']
-    delete pathMap['/dashboard/analysis/layout']
-    return pathMap
-  },
-
   // Custom webpack configuration
   webpack: (config, { dev, isServer }) => {
     // In production builds, disable certain optimizations for auth pages
