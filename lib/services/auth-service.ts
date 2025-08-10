@@ -143,14 +143,19 @@ class AuthService {
       const token = await this.getAuthToken();
       if (token) {
         // Use API endpoint
-        const { data, error } = await this.apiCall<UserProfile>('/auth/profile', {
+        const { data, error } = await this.apiCall<{success: boolean; data: UserProfile; message?: string}>('/auth/profile', {
           method: 'PUT',
           headers: { 'Authorization': `Bearer ${token}` },
           body: JSON.stringify(updates)
         });
 
-        if (!error && data) {
-          return data;
+        if (error) {
+          console.error('API profile update error:', error);
+          throw new Error(typeof error === 'string' ? error : error.message || 'API güncelleme başarısız');
+        }
+
+        if (data && data.success && data.data) {
+          return data.data;
         }
       }
 
@@ -166,14 +171,14 @@ class AuthService {
         .single();
 
       if (error) {
-        console.error('Error updating user profile:', error);
-        return null;
+        console.error('Database profile update error:', error);
+        throw new Error(`Profil güncelleme hatası: ${error.message}`);
       }
 
       return data;
-    } catch (error) {
+    } catch (error: any) {
       console.error('Failed to update user profile:', error);
-      return null;
+      throw error; // Re-throw to let the calling component handle it
     }
   }
 
