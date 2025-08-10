@@ -84,7 +84,9 @@ export default function DashboardLayout({ children, title, subtitle }: Dashboard
             <div className="hidden md:flex items-center space-x-4">
               {/* User Info */}
               <div className="flex items-center space-x-3">
-                <span className="text-white font-medium">Volkan Ş.</span>
+                <span className="text-white font-medium">
+                  {user?.user_metadata?.full_name || user?.email?.split('@')[0] || 'Kullanıcı'}
+                </span>
                 <span className="px-3 py-1 text-xs font-medium bg-[#baf200] text-[#1e3237] rounded-full">
                   Premium
                 </span>
@@ -131,11 +133,24 @@ export default function DashboardLayout({ children, title, subtitle }: Dashboard
             <div className="md:hidden mt-4 py-4 border-t border-white/20">
               <div className="space-y-2">
                 {/* User Info Mobile */}
-                <div className="flex items-center space-x-3 px-4 py-2">
-                  <h2 className="text-lg font-semibold text-white">Volkan Ş.</h2>
-                  <span className="px-2 py-1 text-xs font-medium bg-[#baf200] text-[#1e3237] rounded-full">
-                    Premium
-                  </span>
+                <div className="flex items-center justify-between px-4 py-2">
+                  <div className="flex items-center space-x-3">
+                    <h2 className="text-lg font-semibold text-white">
+                      {user?.user_metadata?.full_name || user?.email?.split('@')[0] || 'Kullanıcı'}
+                    </h2>
+                    <span className="px-2 py-1 text-xs font-medium bg-[#baf200] text-[#1e3237] rounded-full">
+                      Premium
+                    </span>
+                  </div>
+                  <button
+                    onClick={handleLogout}
+                    className="p-2 bg-red-500/20 hover:bg-red-500/30 text-red-300 rounded-lg transition-all"
+                    title="Çıkış Yap"
+                  >
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                    </svg>
+                  </button>
                 </div>
 
                 {/* Header Nav Mobile */}
@@ -148,6 +163,19 @@ export default function DashboardLayout({ children, title, subtitle }: Dashboard
                     {item.name}
                   </a>
                 ))}
+
+                {/* Mobile Logout Button */}
+                <button
+                  onClick={handleLogout}
+                  className="block w-full text-left px-4 py-2 text-red-300 hover:bg-red-500/10 rounded-lg mx-2 transition-all"
+                >
+                  <div className="flex items-center space-x-2">
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                    </svg>
+                    <span>Çıkış Yap</span>
+                  </div>
+                </button>
               </div>
             </div>
           )}
