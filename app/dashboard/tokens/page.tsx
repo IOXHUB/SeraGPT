@@ -110,13 +110,8 @@ export default function TokensPage() {
       setDataLoading(true);
       setError(null);
 
-      // Check if we're in development mode
-      const isDev = typeof window !== 'undefined' && (
-        process.env.NODE_ENV === 'development' ||
-        window.location.hostname.includes('fly.dev') ||
-        window.location.hostname.includes('builder.my') ||
-        window.location.hostname.includes('localhost')
-      );
+      // Use mock data consistently to prevent hydration mismatch
+      const isDev = process.env.NODE_ENV === 'development';
 
       if (isDev) {
         // Use mock data in development
