@@ -1,19 +1,31 @@
 import { createClient } from '@supabase/supabase-js'
 
+// Get environment variables safely
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
 
-// Production-safe fallbacks that won't cause network requests during build
-const defaultUrl = 'https://build-placeholder.local'
-const defaultKey = 'build-placeholder-key'
+// Build-safe fallbacks that won't trigger network requests
+const defaultUrl = 'https://localhost:54321'  // Local Supabase default
+const defaultKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS1kZW1vIiwicm9sZSI6ImFub24iLCJleHAiOjE5ODM4MTIwMDB9.CRXP1A7WOeoJeXxjNni43kdQwgnWNReilDMblYTn_I0'
 
-// Only use real values if they're properly set, otherwise use safe defaults
-const url = (supabaseUrl && supabaseUrl !== 'undefined' && !supabaseUrl.includes('placeholder'))
+// Safe URL and key selection
+const url = (supabaseUrl &&
+             supabaseUrl !== 'undefined' &&
+             supabaseUrl !== 'your-supabase-url' &&
+             supabaseUrl.includes('supabase.co'))
   ? supabaseUrl
   : defaultUrl
-const key = (supabaseAnonKey && supabaseAnonKey !== 'undefined' && !supabaseAnonKey.includes('placeholder'))
+
+const key = (supabaseAnonKey &&
+             supabaseAnonKey !== 'undefined' &&
+             supabaseAnonKey !== 'your-supabase-anon-key' &&
+             supabaseAnonKey.length > 100)
   ? supabaseAnonKey
   : defaultKey
+
+// Build-time check - don't create client during build if variables are missing
+const isBuildTime = typeof window === 'undefined' && process.env.NODE_ENV !== 'development'
+const shouldCreateClient = !isBuildTime || isSupabaseConfigured()
 
 export const supabase = createClient(url, key, {
   auth: {
