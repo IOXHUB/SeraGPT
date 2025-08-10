@@ -3,6 +3,9 @@
 import { useState, useEffect } from 'react';
 import { createBrowserClient } from '@supabase/ssr';
 
+// Force dynamic rendering to prevent SSR
+export const dynamic = 'force-dynamic';
+
 export default function BulletproofSuccessPage() {
   const [user, setUser] = useState<any>(null);
   const [loading, setLoading] = useState(true);
