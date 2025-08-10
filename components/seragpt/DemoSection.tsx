@@ -48,7 +48,7 @@ export default function DemoSection() {
                     🌱 Sera Yatırım Analizi Raporu
                   </h3>
                   <p className="text-sm text-gray-600">
-                    Lokasyon: Antalya, Aksu • Tarih: {new Date().toLocaleDateString('tr-TR')}
+                    Lokasyon: Antalya, Aksu • Tarih: 16.01.2024
                   </p>
                 </div>
                 
