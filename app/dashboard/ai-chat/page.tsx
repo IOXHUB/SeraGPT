@@ -4,8 +4,6 @@ import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useAuth } from '@/lib/hooks/useAuth';
 import DashboardLayout from '@/components/dashboard/DashboardLayout';
-import { useSearchParams } from 'next/navigation';
-import { DevMockSystem, MOCK_ANALYSES } from '@/lib/utils/dev-mock-system';
 
 // Force dynamic rendering
 export const dynamic = 'force-dynamic';
@@ -15,213 +13,175 @@ interface ChatMessage {
   role: 'user' | 'assistant';
   content: string;
   timestamp: Date;
-  session_id?: string;
-  attachments?: string[];
+  attachments?: any[];
+}
+
+interface Report {
+  id: string;
+  title: string;
+  type: 'roi' | 'climate' | 'equipment' | 'market' | 'layout';
+  date: string;
+  summary: string;
+  status: 'completed' | 'in-progress';
 }
 
 interface ChatSession {
   id: string;
   title: string;
-  messages: ChatMessage[];
-  created_at: Date;
-  updated_at: Date;
-  user_id: string;
-  selectedReport?: string;
+  lastMessage: string;
+  date: string;
+  messageCount: number;
 }
 
-type AnalysisType = 'roi' | 'climate' | 'equipment' | 'market' | 'layout';
-
 export default function AIChatPage() {
-  const { user, loading } = useAuth();
-  const searchParams = useSearchParams();
-
-  const [chatSession, setChatSession] = useState<ChatSession | null>(null);
+  const { user } = useAuth();
+  const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [inputValue, setInputValue] = useState('');
   const [isTyping, setIsTyping] = useState(false);
-  const [selectedFile, setSelectedFile] = useState<File | null>(null);
-  const [showReportSelection, setShowReportSelection] = useState(false);
-  const [selectedCategory, setSelectedCategory] = useState<AnalysisType | null>(null);
-  const [isListening, setIsListening] = useState(false);
-
-  const messagesEndRef = useRef<HTMLDivElement>(null);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [activeView, setActiveView] = useState<'welcome' | 'chat'>('welcome');
+  const [selectedContext, setSelectedContext] = useState<'report' | 'chat' | null>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
-  const fileInputRef = useRef<HTMLInputElement>(null);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
 
-  // Get prompt from URL parameter
-  const promptParam = searchParams?.get('prompt');
-  const sessionParam = searchParams?.get('session');
-  const reportParam = searchParams?.get('report');
-  const categoryParam = searchParams?.get('category') as AnalysisType;
-
-  // Initialize chat session
-  useEffect(() => {
-    if (user && !loading) {
-      if (categoryParam && !reportParam) {
-        setSelectedCategory(categoryParam);
-        setShowReportSelection(true);
-      } else {
-        initializeNewSession();
-      }
+  // Mock data - önceki raporlar
+  const previousReports: Report[] = [
+    {
+      id: '1',
+      title: 'Antalya Domates ROI Analizi',
+      type: 'roi',
+      date: '2024-01-15',
+      summary: '2,500 m² sera yatırımı için detaylı karlılık analizi. %34.2 ROI hesaplanmış.',
+      status: 'completed'
+    },
+    {
+      id: '2',
+      title: 'İzmir İklim Uygunluk Analizi',
+      type: 'climate',
+      date: '2024-01-10',
+      summary: 'Salatalık yetiştiriciliği için 12 aylık iklim değerlendirmesi.',
+      status: 'completed'
+    },
+    {
+      id: '3',
+      title: 'Hidroponik Sistem Ekipmanları',
+      type: 'equipment',
+      date: '2024-01-08',
+      summary: 'Modern hidroponik sera için ekipman listesi ve maliyet analizi.',
+      status: 'completed'
     }
-  }, [user, loading, categoryParam, reportParam]);
+  ];
 
-  // Auto-scroll to bottom
-  useEffect(() => {
-    scrollToBottom();
-  }, [chatSession?.messages]);
+  // Mock data - önceki sohbetler
+  const previousChats: ChatSession[] = [
+    {
+      id: '1',
+      title: 'Sera ROI Optimizasyonu',
+      lastMessage: 'Maliyet düşürme stratejileri hakkında konuştuk...',
+      date: '2024-01-16',
+      messageCount: 24
+    },
+    {
+      id: '2',
+      title: 'İklim Kontrol Sistemleri',
+      lastMessage: 'Otomatik iklim kontrol çözümleri...',
+      date: '2024-01-14',
+      messageCount: 18
+    },
+    {
+      id: '3',
+      title: 'Pazarlama Stratejileri',
+      lastMessage: 'Organik ürün satış kanalları...',
+      date: '2024-01-12',
+      messageCount: 15
+    }
+  ];
 
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
-  const initializeNewSession = () => {
-    if (!user) return;
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
 
-    const newSession: ChatSession = {
-      id: `session_${Date.now()}`,
-      title: getSessionTitle(),
-      messages: [],
-      created_at: new Date(),
-      updated_at: new Date(),
-      user_id: user.id,
-      selectedReport: reportParam || undefined
-    };
-
-    setChatSession(newSession);
-
-    // Auto-start with custom prompt if provided
-    if (promptParam) {
-      setTimeout(() => {
-        setInputValue(getCustomPrompt(promptParam));
-        inputRef.current?.focus();
-      }, 1000);
+  useEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.style.height = 'auto';
+      inputRef.current.style.height = inputRef.current.scrollHeight + 'px';
     }
-  };
+  }, [inputValue]);
 
-  const getSessionTitle = () => {
-    if (reportParam) return getReportTitle(reportParam);
-    if (promptParam?.includes('roi')) return 'ROI Analizi';
-    if (promptParam?.includes('climate')) return 'İklim Analizi';
-    if (promptParam?.includes('equipment')) return 'Ekipman Analizi';
-    if (promptParam?.includes('market')) return 'Pazar Analizi';
-    if (promptParam?.includes('layout')) return 'Layout Analizi';
-    return 'SeraGPT 5';
-  };
-
-  const getCategoryTitle = (category: AnalysisType) => {
-    const titles = {
-      roi: 'ROI Analizi',
-      climate: 'İklim Analizi',
-      equipment: 'Ekipman Analizi',
-      market: 'Pazar Analizi',
-      layout: 'Layout Analizi'
-    };
-    return titles[category];
-  };
-
-  const getCategoryReports = (category: AnalysisType) => {
-    return MOCK_ANALYSES.filter(analysis => 
-      analysis.type === category && analysis.status === 'completed'
-    );
-  };
-
-  const getReportTitle = (reportId: string) => {
-    const analysis = MOCK_ANALYSES.find(a => a.id === reportId);
-    return analysis?.title || 'Analiz Raporu';
-  };
-
-  const getCustomPrompt = (prompt: string) => {
-    const prompts = {
-      'roi_report': 'Bu ROI analiz raporundaki finansal projeksiyonları nasıl optimize edebilirim?',
-      'climate_report': 'İklim raporum temelinde hangi dönemlerde en yüksek verimlilik elde edebilirim?',
-      'equipment_report': 'Ekipman listesindeki maliyetleri nasıl optimize edebilirim?',
-      'market_report': 'Pazar analizi sonuçlarına göre hangi stratejilerle daha yüksek kar elde edebilirim?',
-      'layout_report': 'Layout planımda verimlilik nasıl artırılabilir?'
-    };
-
-    return prompts[prompt as keyof typeof prompts] || '';
-  };
-
-  const handleReportSelect = (reportId: string) => {
-    setShowReportSelection(false);
+  const handleStartWithReport = (report: Report) => {
+    setActiveView('chat');
+    setSelectedContext('report');
     
-    const url = new URL(window.location.href);
-    url.searchParams.set('report', reportId);
-    url.searchParams.delete('category');
-    window.history.pushState({}, '', url.toString());
+    // AI'nın raporu analiz ettiği mesajı
+    const welcomeMessage: ChatMessage = {
+      id: Date.now().toString(),
+      role: 'assistant',
+      content: `Merhaba! "${report.title}" raporunuzu analiz ettim ve hafızama aldım. \n\nRapor özeti: ${report.summary}\n\nBu rapor temelinde size nasıl yardımcı olabilirim? Şu konularda derinlemesine konuşabiliriz:\n\n• Maliyet optimizasyonu stratejileri\n• Verimlilik artırma yöntemleri\n• Risk faktörleri ve çözüm önerileri\n• Teknoloji güncellemeleri\n• Pazar fırsatları\n\nHangi konuda derinlemesine konuşmak istersiniz?`,
+      timestamp: new Date()
+    };
+    
+    setMessages([welcomeMessage]);
+  };
 
-    setTimeout(() => {
-      initializeNewSession();
-    }, 100);
+  const handleContinueChat = (chat: ChatSession) => {
+    setActiveView('chat');
+    setSelectedContext('chat');
+    
+    // Önceki sohbeti devam ettirme mesajı
+    const continueMessage: ChatMessage = {
+      id: Date.now().toString(),
+      role: 'assistant',
+      content: `"${chat.title}" sohbetimize devam ediyoruz! \n\nÖnceki konuşmamızda: ${chat.lastMessage}\n\nKaldığımız yerden devam edelim. Bu konuda başka hangi ayrıntıları öğrenmek istiyorsunuz?`,
+      timestamp: new Date()
+    };
+    
+    setMessages([continueMessage]);
+  };
+
+  const handleStartFresh = () => {
+    setActiveView('chat');
+    setSelectedContext(null);
+    
+    const freshStartMessage: ChatMessage = {
+      id: Date.now().toString(),
+      role: 'assistant',
+      content: `Merhaba! SeraGPT asistanınıza hoş geldiniz. Size sera tarımcılığı konusunda kapsamlı destek sağlayabilirim.\n\nHangi konuda yardıma ihtiyacınız var?\n\n• ROI ve karlılık analizleri\n• İklim ve çevre koşulları değerlendirmesi\n• Ekipman seçimi ve optimizasyonu\n• Pazar analizi ve satış stratejileri\n• Teknik planlama ve layout tasarımı\n• Genel sera işletmeciliği danışmanlığı\n\nSorularınızı paylaşın, detaylı bir şekilde yanıtlayayım!`,
+      timestamp: new Date()
+    };
+    
+    setMessages([freshStartMessage]);
   };
 
   const handleSendMessage = async () => {
-    if (!inputValue.trim() || !chatSession || isTyping || !user) return;
+    if (!inputValue.trim()) return;
 
     const userMessage: ChatMessage = {
-      id: `msg_${Date.now()}_user`,
+      id: Date.now().toString(),
       role: 'user',
-      content: inputValue.trim(),
-      timestamp: new Date(),
-      session_id: chatSession.id,
-      attachments: selectedFile ? [selectedFile.name] : undefined
+      content: inputValue,
+      timestamp: new Date()
     };
 
-    const updatedSession = {
-      ...chatSession,
-      messages: [...chatSession.messages, userMessage]
-    };
-    setChatSession(updatedSession);
-
-    const currentInput = inputValue.trim();
+    setMessages(prev => [...prev, userMessage]);
     setInputValue('');
-    setSelectedFile(null);
     setIsTyping(true);
 
-    if (inputRef.current) {
-      inputRef.current.style.height = 'auto';
-    }
-
-    try {
-      setTimeout(() => {
-        const mockResponse = generateMockResponse(currentInput);
-        const aiMessage: ChatMessage = {
-          id: `msg_${Date.now()}_ai`,
-          role: 'assistant',
-          content: mockResponse,
-          timestamp: new Date(),
-          session_id: chatSession.id
-        };
-
-        const finalSession = {
-          ...updatedSession,
-          messages: [...updatedSession.messages, aiMessage]
-        };
-        setChatSession(finalSession);
-        setIsTyping(false);
-      }, 1500 + Math.random() * 2000);
-    } catch (error) {
-      console.error('Chat error:', error);
+    // Simulate AI response
+    setTimeout(() => {
+      const aiResponse: ChatMessage = {
+        id: (Date.now() + 1).toString(),
+        role: 'assistant',
+        content: `Anladım! "${inputValue}" konusunda size yardımcı olabilirim. Bu konu hakkında detaylı analiz ve öneriler hazırlayabilirim. Daha spesifik hangi bilgilere ihtiyacınız var?`,
+        timestamp: new Date()
+      };
+      
+      setMessages(prev => [...prev, aiResponse]);
       setIsTyping(false);
-    }
-  };
-
-  const generateMockResponse = (userInput: string): string => {
-    return `🌱 **SeraGPT 5 ile Sera Uzmanınız**
-
-Merhaba! Size sera konularında en güncel ve akıllı çöz��mler sunmak için buradayım.
-
-**Sorunuza yanıt:**
-${userInput} konusunda detaylı analiz yapabilirim. Modern sera teknolojileri ve AI destekli önerilerle en optimal çözümleri bulalım.
-
-**Size nasıl yardımcı olabilirim?**
-• Sera yatırım analizi ve ROI hesaplaması
-• İklim koşulları optimizasyonu  
-• Ekipman seçimi ve maliyet analizi
-• Pazar fırsatları değerlendirmesi
-• Teknik layout planlaması
-
-Hangi konuda derinlemesine konuşmak istersiniz?`;
+    }, 1500);
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
@@ -231,139 +191,139 @@ Hangi konuda derinlemesine konuşmak istersiniz?`;
     }
   };
 
-  const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      setSelectedFile(file);
-    }
-  };
-
-  const toggleVoice = () => {
-    setIsListening(!isListening);
-  };
-
-  if (loading) {
+  if (activeView === 'welcome') {
     return (
       <DashboardLayout>
-        <div className="flex items-center justify-center h-full bg-[#146448]">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            className="text-center"
-          >
-            <div className="w-16 h-16 bg-[#f6f8f9] rounded-3xl flex items-center justify-center mx-auto mb-4 shadow-lg">
-              <motion.div
-                animate={{ rotate: 360 }}
-                transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-                className="text-2xl"
-              >
-                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C13.1 2 14 2.9 14 4C14 5.1 13.1 6 12 6C10.9 6 10 5.1 10 4C10 2.9 10.9 2 12 2ZM21 9V7L15 1H9V3H7C5.9 3 5 3.9 5 5V9C5 10.1 5.9 11 7 11H9V21H11V11H13V21H15V11H17C18.1 11 19 10.1 19 9Z"/></svg>
-              </motion.div>
+        <div className="h-[calc(100vh-200px)] flex flex-col">
+          {/* Welcome Header */}
+          <div className="text-center py-12">
+            <div className="w-20 h-20 bg-[#146448] rounded-full flex items-center justify-center mx-auto mb-6">
+              <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+              </svg>
             </div>
-            <h3 className="text-lg font-semibold text-white mb-2">SeraGPT 5 Hazırlanıyor</h3>
-            <p className="text-white/80">AI asistanınız yükleniyor...</p>
-          </motion.div>
-        </div>
-      </DashboardLayout>
-    );
-  }
+            <h1 className="text-3xl font-bold text-[#1e3237] mb-3">SeraGPT AI Asistan'a Hoş Geldiniz</h1>
+            <p className="text-[#1e3237]/70 text-lg max-w-2xl mx-auto">
+              Size nasıl yardımcı olabilirim? Önceki raporlarınızdan birini analiz edelim, 
+              devam eden bir sohbetimize dönelim veya yeni bir konuşma başlatalım.
+            </p>
+          </div>
 
-  // Report Selection Screen
-  if (showReportSelection && selectedCategory) {
-    const categoryReports = getCategoryReports(selectedCategory);
-    
-    return (
-      <DashboardLayout>
-        <div className="h-full bg-[#146448] min-h-0">
-          <div className="h-full flex flex-col min-h-0">
-            {/* Header */}
-            <div className="p-4 sm:p-6">
-              <div className="max-w-4xl mx-auto">
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="text-center"
-                >
-                  <div className="w-16 h-16 bg-[#f6f8f9] rounded-3xl flex items-center justify-center mx-auto mb-4 shadow-lg">
-                    <span className="text-2xl"><svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C13.1 2 14 2.9 14 4C14 5.1 13.1 6 12 6C10.9 6 10 5.1 10 4C10 2.9 10.9 2 12 2ZM21 9V7L15 1H9V3H7C5.9 3 5 3.9 5 5V9C5 10.1 5.9 11 7 11H9V21H11V11H13V21H15V11H17C18.1 11 19 10.1 19 9Z"/></svg></span>
-                  </div>
-                  <h1 className="text-2xl font-bold text-white mb-2">
-                    {getCategoryTitle(selectedCategory)} Raporlarınız
-                  </h1>
-                  <p className="text-white/80">
-                    AI Asistan ile konuşmak için bir rapor seçin
-                  </p>
-                </motion.div>
+          {/* Options Grid */}
+          <div className="flex-1 grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-7xl mx-auto w-full">
+            
+            {/* Previous Reports */}
+            <div className="bg-white rounded-xl p-6 shadow-lg border border-[#146448]/10">
+              <div className="flex items-center mb-6">
+                <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mr-3">
+                  <svg className="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                </div>
+                <h2 className="text-xl font-bold text-[#1e3237]">Önceki Raporlarım</h2>
               </div>
-            </div>
-
-            {/* Report List */}
-            <div className="flex-1 overflow-y-auto p-4 sm:p-6">
-              <div className="max-w-4xl mx-auto">
-                {categoryReports.length > 0 ? (
-                  <div className="space-y-4">
-                    {categoryReports.map((report, index) => (
-                      <motion.div
-                        key={report.id}
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: index * 0.1 }}
-                        onClick={() => handleReportSelect(report.id)}
-                        className="bg-[#f6f8f9] border border-white/20 rounded-2xl p-6 hover:bg-white cursor-pointer transition-all duration-200 shadow-lg"
-                      >
-                        <div className="flex items-start justify-between">
-                          <div className="flex-1">
-                            <h3 className="text-lg font-semibold text-[#1e3237] mb-2">
-                              {report.title}
-                            </h3>
-                            <div className="flex items-center space-x-4 text-sm text-[#1e3237]/70">
-                              <span className="flex items-center">
-                                <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                                </svg>
-                                {new Date(report.createdAt).toLocaleDateString('tr-TR')}
-                              </span>
-                              <span className="flex items-center">
-                                <div className="w-2 h-2 bg-green-400 rounded-full mr-1"></div>
-                                Tamamlandı
-                              </span>
-                            </div>
-                          </div>
-                          <div className="flex items-center text-[#1e3237]/70">
-                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-                            </svg>
-                          </div>
-                        </div>
-                      </motion.div>
-                    ))}
-                  </div>
-                ) : (
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    className="text-center py-12"
+              <p className="text-[#1e3237]/70 text-sm mb-4">
+                Daha önce oluşturduğunuz raporları temel alarak devam edelim.
+              </p>
+              <div className="space-y-3">
+                {previousReports.map((report) => (
+                  <motion.button
+                    key={report.id}
+                    onClick={() => handleStartWithReport(report)}
+                    className="w-full p-4 bg-[#f6f8f9] rounded-lg border border-gray-200 hover:border-[#146448]/30 hover:shadow-md transition-all text-left group"
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
                   >
-                    <div className="w-24 h-24 bg-[#f6f8f9] rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
-                      <svg className="w-10 h-10 text-[#1e3237]/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                      </svg>
+                    <div className="flex items-start justify-between mb-2">
+                      <h3 className="font-semibold text-[#1e3237] text-sm group-hover:text-[#146448] transition-colors">
+                        {report.title}
+                      </h3>
+                      <span className="text-xs text-[#1e3237]/60">{report.date}</span>
                     </div>
-                    <h3 className="text-lg font-medium text-white mb-2">
-                      Henüz {getCategoryTitle(selectedCategory).toLowerCase()} raporu yok
-                    </h3>
-                    <p className="text-white/70 mb-6">
-                      Bu kategoride henüz tamamlanmış bir raporunuz bulunmuyor.
-                    </p>
-                    <button
-                      onClick={() => setShowReportSelection(false)}
-                      className="px-6 py-3 bg-[#baf200] text-[#1e3237] rounded-2xl hover:bg-[#baf200]/90 transition-colors font-medium shadow-lg"
-                    >
-                      Genel Sohbete Geç
-                    </button>
-                  </motion.div>
-                )}
+                    <p className="text-xs text-[#1e3237]/70 line-clamp-2">{report.summary}</p>
+                  </motion.button>
+                ))}
               </div>
+            </div>
+
+            {/* Previous Chats */}
+            <div className="bg-white rounded-xl p-6 shadow-lg border border-[#146448]/10">
+              <div className="flex items-center mb-6">
+                <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center mr-3">
+                  <svg className="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                  </svg>
+                </div>
+                <h2 className="text-xl font-bold text-[#1e3237]">Önceki Sohbetlerim</h2>
+              </div>
+              <p className="text-[#1e3237]/70 text-sm mb-4">
+                Devam eden konuşmalarınızdan birini sürdürelim.
+              </p>
+              <div className="space-y-3">
+                {previousChats.map((chat) => (
+                  <motion.button
+                    key={chat.id}
+                    onClick={() => handleContinueChat(chat)}
+                    className="w-full p-4 bg-[#f6f8f9] rounded-lg border border-gray-200 hover:border-[#146448]/30 hover:shadow-md transition-all text-left group"
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    <div className="flex items-start justify-between mb-2">
+                      <h3 className="font-semibold text-[#1e3237] text-sm group-hover:text-[#146448] transition-colors">
+                        {chat.title}
+                      </h3>
+                      <span className="text-xs text-[#1e3237]/60">{chat.messageCount} mesaj</span>
+                    </div>
+                    <p className="text-xs text-[#1e3237]/70 line-clamp-2">{chat.lastMessage}</p>
+                    <span className="text-xs text-[#1e3237]/60">{chat.date}</span>
+                  </motion.button>
+                ))}
+              </div>
+            </div>
+
+            {/* Start Fresh */}
+            <div className="bg-white rounded-xl p-6 shadow-lg border border-[#146448]/10">
+              <div className="flex items-center mb-6">
+                <div className="w-10 h-10 bg-[#146448]/10 rounded-lg flex items-center justify-center mr-3">
+                  <svg className="w-5 h-5 text-[#146448]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                  </svg>
+                </div>
+                <h2 className="text-xl font-bold text-[#1e3237]">Yeni Sohbet</h2>
+              </div>
+              <p className="text-[#1e3237]/70 text-sm mb-6">
+                Sera tarımcılığı hakkında yeni bir konuşma başlatalım.
+              </p>
+              
+              <div className="space-y-4 mb-6">
+                <div className="p-3 bg-[#f6f8f9] rounded-lg">
+                  <div className="flex items-center space-x-2 text-sm text-[#1e3237]/70">
+                    <div className="w-1.5 h-1.5 bg-[#146448] rounded-full"></div>
+                    <span>ROI ve karlılık analizleri</span>
+                  </div>
+                </div>
+                <div className="p-3 bg-[#f6f8f9] rounded-lg">
+                  <div className="flex items-center space-x-2 text-sm text-[#1e3237]/70">
+                    <div className="w-1.5 h-1.5 bg-[#146448] rounded-full"></div>
+                    <span>İklim ve çevre koşulları</span>
+                  </div>
+                </div>
+                <div className="p-3 bg-[#f6f8f9] rounded-lg">
+                  <div className="flex items-center space-x-2 text-sm text-[#1e3237]/70">
+                    <div className="w-1.5 h-1.5 bg-[#146448] rounded-full"></div>
+                    <span>Ekipman seçimi ve optimizasyonu</span>
+                  </div>
+                </div>
+              </div>
+
+              <motion.button
+                onClick={handleStartFresh}
+                className="w-full bg-[#146448] text-white py-3 px-4 rounded-lg font-medium hover:bg-[#146448]/90 transition-colors"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                Yeni Sohbet Başlat
+              </motion.button>
             </div>
           </div>
         </div>
@@ -373,194 +333,22 @@ Hangi konuda derinlemesine konuşmak istersiniz?`;
 
   return (
     <DashboardLayout>
-      <div className="h-full bg-[#146448] flex flex-col overflow-hidden min-h-0">
-
-        {/* Header */}
-        <div className="flex items-center justify-between px-6 py-4">
-          <button className="p-2">
-            <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
-          </button>
-          
-          <div className="flex items-center space-x-2">
-            <h1 className="text-lg font-semibold text-white">{getSessionTitle()}</h1>
-            <svg className="w-4 h-4 text-white/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-            </svg>
-          </div>
-
-          <button className="p-2">
-            <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-            </svg>
-          </button>
-        </div>
-
-        {/* Main Content Area */}
-        <div className="flex-1 flex flex-col">
-          {chatSession?.messages && chatSession.messages.length > 0 ? (
-            // Messages Area
-            <div className="flex-1 overflow-y-auto px-6 py-4">
-              <div className="space-y-4">
-                <AnimatePresence initial={false}>
-                  {chatSession?.messages.map((message, index) => (
-                    <motion.div
-                      key={message.id}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -20 }}
-                      transition={{ duration: 0.3 }}
-                      className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
-                    >
-                      <div className={`max-w-[80%] ${message.role === 'user' ? 'order-2' : 'order-1'}`}>
-                        <div className={`px-4 py-3 rounded-3xl shadow-sm ${
-                          message.role === 'user'
-                            ? 'bg-[#baf200] text-[#1e3237] rounded-br-lg'
-                            : 'bg-[#f6f8f9] text-[#1e3237] rounded-bl-lg'
-                        }`}>
-                          {/* AI Avatar */}
-                          {message.role === 'assistant' && (
-                            <div className="flex items-center mb-3">
-                              <div className="w-6 h-6 bg-[#146448] rounded-full flex items-center justify-center mr-2">
-                                <span className="text-white text-xs"><svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C13.1 2 14 2.9 14 4C14 5.1 13.1 6 12 6C10.9 6 10 5.1 10 4C10 2.9 10.9 2 12 2ZM21 9V7L15 1H9V3H7C5.9 3 5 3.9 5 5V9C5 10.1 5.9 11 7 11H9V21H11V11H13V21H15V11H17C18.1 11 19 10.1 19 9Z"/></svg></span>
-                              </div>
-                              <span className="text-sm font-medium text-[#1e3237]">SeraGPT 5</span>
-                            </div>
-                          )}
-
-                          {/* Message Content */}
-                          <div className="prose prose-sm max-w-none">
-                            {message.content.split('\n').map((line, lineIndex) => {
-                              if (line.trim().match(/^\*\*.+\*\*$/)) {
-                                return (
-                                  <div key={lineIndex} className={`font-bold text-base mb-3 mt-4 first:mt-0 ${
-                                    message.role === 'user' ? 'text-[#1e3237]' : 'text-[#1e3237]'
-                                  }`}>
-                                    {line.replace(/\*\*/g, '')}
-                                  </div>
-                                );
-                              }
-
-                              if (line.trim().startsWith('•')) {
-                                return (
-                                  <div key={lineIndex} className="flex items-start mb-2">
-                                    <span className="mr-3 mt-1">•</span>
-                                    <span>{line.replace(/^•\s*/, '')}</span>
-                                  </div>
-                                );
-                              }
-
-                              return line.trim() ? (
-                                <p key={lineIndex} className="mb-3 last:mb-0 leading-relaxed">{line}</p>
-                              ) : (
-                                <br key={lineIndex} />
-                              );
-                            })}
-                          </div>
-                        </div>
-
-                        <div className={`text-xs mt-2 ${
-                          message.role === 'user' ? 'text-right text-white/70' : 'text-left text-white/70'
-                        }`}>
-                          {message.timestamp.toLocaleTimeString('tr-TR', {
-                            hour: '2-digit',
-                            minute: '2-digit'
-                          })}
-                        </div>
-                      </div>
-                    </motion.div>
-                  ))}
-                </AnimatePresence>
-
-                {/* Typing Indicator */}
-                {isTyping && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -20 }}
-                    className="flex justify-start"
-                  >
-                    <div className="flex items-start space-x-3">
-                      <div className="w-6 h-6 bg-[#146448] rounded-full flex items-center justify-center mt-1">
-                        <span className="text-white text-xs"><svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C13.1 2 14 2.9 14 4C14 5.1 13.1 6 12 6C10.9 6 10 5.1 10 4C10 2.9 10.9 2 12 2ZM21 9V7L15 1H9V3H7C5.9 3 5 3.9 5 5V9C5 10.1 5.9 11 7 11H9V21H11V11H13V21H15V11H17C18.1 11 19 10.1 19 9Z"/></svg></span>
-                      </div>
-                      <div className="bg-[#f6f8f9] rounded-3xl rounded-bl-lg px-6 py-4 shadow-lg">
-                        <div className="flex items-center space-x-2">
-                          <span className="text-sm text-[#1e3237]">AI yazıyor</span>
-                          <div className="flex space-x-1">
-                            <motion.div
-                              animate={{ scale: [1, 1.3, 1] }}
-                              transition={{ duration: 0.8, repeat: Infinity, delay: 0 }}
-                              className="w-2 h-2 bg-[#146448] rounded-full"
-                            />
-                            <motion.div
-                              animate={{ scale: [1, 1.3, 1] }}
-                              transition={{ duration: 0.8, repeat: Infinity, delay: 0.2 }}
-                              className="w-2 h-2 bg-[#baf200] rounded-full"
-                            />
-                            <motion.div
-                              animate={{ scale: [1, 1.3, 1] }}
-                              transition={{ duration: 0.8, repeat: Infinity, delay: 0.4 }}
-                              className="w-2 h-2 bg-[#146448] rounded-full"
-                            />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </motion.div>
-                )}
-
-                <div ref={messagesEndRef} />
-              </div>
-            </div>
-          ) : (
-            // Welcome Screen
-            <div className="flex-1 flex items-center justify-center px-6">
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
-                className="text-center"
-              >
-                <motion.h1 
-                  className="text-4xl md:text-5xl font-bold text-white mb-6"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.2 }}
-                >
-                  SeraGPT 5 ile tanışın
-                </motion.h1>
-                
-                <motion.p 
-                  className="text-lg text-white/90 leading-relaxed max-w-md mx-auto"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.4 }}
-                >
-                  SeraGPT artık en akıllı, en hızlı ve en kullanışlı modelimize sahip; düşünme yeteneğiyle her seferinde en iyi cevabı alırsınız.
-                </motion.p>
-              </motion.div>
-            </div>
-          )}
-        </div>
-
-        {/* Bottom Input Area */}
-        <div className="p-6 pb-8">
-          {/* Selected file indicator */}
-          {selectedFile && (
-            <div className="mb-4">
-              <div className="bg-[#f6f8f9] border border-white/20 rounded-2xl p-3 shadow-lg">
+      <div className="h-[calc(100vh-200px)] flex">
+        {/* Sidebar */}
+        <AnimatePresence>
+          {sidebarOpen && (
+            <motion.div
+              initial={{ x: -300, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              exit={{ x: -300, opacity: 0 }}
+              className="w-80 border-r border-[#146448]/10 bg-white/50 backdrop-blur-sm"
+            >
+              <div className="p-4 border-b border-[#146448]/10">
                 <div className="flex items-center justify-between">
-                  <div className="flex items-center space-x-2">
-                    <span className="text-white text-lg">📎</span>
-                    <div>
-                      <span className="text-sm text-[#1e3237] font-medium block">{selectedFile.name}</span>
-                    </div>
-                  </div>
+                  <h3 className="font-semibold text-[#1e3237]">Geçmiş & Raporlar</h3>
                   <button
-                    onClick={() => setSelectedFile(null)}
-                    className="text-[#1e3237]/70 hover:text-[#1e3237] p-1"
+                    onClick={() => setSidebarOpen(false)}
+                    className="p-1 hover:bg-[#146448]/10 rounded"
                   >
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -568,93 +356,167 @@ Hangi konuda derinlemesine konuşmak istersiniz?`;
                   </button>
                 </div>
               </div>
-            </div>
-          )}
-
-          <div className="bg-[#f6f8f9] border border-white/20 rounded-full p-3 flex items-center space-x-3 shadow-lg">
-            {/* Plus Button */}
-            <button
-              onClick={() => fileInputRef.current?.click()}
-              className="p-3 bg-[#146448] rounded-full hover:bg-[#146448]/90 transition-colors"
-            >
-              <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
-              </svg>
-            </button>
-
-            {/* Input Field */}
-            <div className="flex-1">
-              <input
-                ref={fileInputRef}
-                type="file"
-                className="hidden"
-                accept=".pdf,.doc,.docx,.txt,.png,.jpg,.jpeg,.dwg,.xlsx,.xls,.ppt,.pptx,.csv,.zip,.rar"
-                onChange={handleFileSelect}
-              />
               
-              <input
-                ref={inputRef}
-                value={inputValue}
-                onChange={(e) => setInputValue(e.target.value)}
-                onKeyPress={handleKeyPress}
-                placeholder="Herhangi bir şey sor"
-                className="w-full bg-transparent border-none outline-none text-[#1e3237] placeholder-[#1e3237]/70 text-base"
-              />
+              <div className="p-4 space-y-4 max-h-96 overflow-y-auto">
+                <div>
+                  <h4 className="text-sm font-medium text-[#1e3237]/70 mb-2">Son Raporlar</h4>
+                  {previousReports.slice(0, 3).map((report) => (
+                    <button
+                      key={report.id}
+                      onClick={() => {
+                        handleStartWithReport(report);
+                        setSidebarOpen(false);
+                      }}
+                      className="w-full p-2 text-left hover:bg-[#146448]/5 rounded mb-1"
+                    >
+                      <div className="text-sm font-medium text-[#1e3237] truncate">{report.title}</div>
+                      <div className="text-xs text-[#1e3237]/60">{report.date}</div>
+                    </button>
+                  ))}
+                </div>
+                
+                <div>
+                  <h4 className="text-sm font-medium text-[#1e3237]/70 mb-2">Son Sohbetler</h4>
+                  {previousChats.slice(0, 3).map((chat) => (
+                    <button
+                      key={chat.id}
+                      onClick={() => {
+                        handleContinueChat(chat);
+                        setSidebarOpen(false);
+                      }}
+                      className="w-full p-2 text-left hover:bg-[#146448]/5 rounded mb-1"
+                    >
+                      <div className="text-sm font-medium text-[#1e3237] truncate">{chat.title}</div>
+                      <div className="text-xs text-[#1e3237]/60">{chat.messageCount} mesaj</div>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* Chat Area */}
+        <div className="flex-1 flex flex-col">
+          {/* Chat Header */}
+          <div className="flex items-center justify-between p-4 border-b border-[#146448]/10 bg-white/50 backdrop-blur-sm">
+            <div className="flex items-center space-x-3">
+              <button
+                onClick={() => setSidebarOpen(!sidebarOpen)}
+                className="p-2 hover:bg-[#146448]/10 rounded-lg transition-colors"
+              >
+                <svg className="w-5 h-5 text-[#1e3237]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+              </button>
+              
+              <div className="flex items-center space-x-3">
+                <div className="w-8 h-8 bg-[#146448] rounded-full flex items-center justify-center">
+                  <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="font-semibold text-[#1e3237]">SeraGPT</h3>
+                  <p className="text-xs text-green-500">Çevrimiçi</p>
+                </div>
+              </div>
             </div>
 
-            {/* Voice Button */}
-            <button
-              onClick={toggleVoice}
-              className={`p-3 rounded-full transition-colors ${
-                isListening
-                  ? 'bg-red-500 hover:bg-red-600'
-                  : 'bg-[#146448] hover:bg-[#146448]/90'
-              }`}
-            >
-              <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
-              </svg>
-            </button>
+            <div className="flex items-center space-x-2">
+              <button
+                onClick={() => setActiveView('welcome')}
+                className="p-2 hover:bg-[#146448]/10 rounded-lg transition-colors"
+                title="Ana Ekrana Dön"
+              >
+                <svg className="w-5 h-5 text-[#1e3237]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                </svg>
+              </button>
+              
+              <button className="p-2 hover:bg-[#146448]/10 rounded-lg transition-colors">
+                <svg className="w-5 h-5 text-[#1e3237]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
+                </svg>
+              </button>
+            </div>
+          </div>
 
-            {/* Audio Waveform / Send Button */}
-            {inputValue.trim() ? (
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+          {/* Messages Area */}
+          <div className="flex-1 overflow-y-auto p-4 space-y-4">
+            <AnimatePresence>
+              {messages.map((message) => (
+                <motion.div
+                  key={message.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
+                >
+                  <div
+                    className={`max-w-2xl px-4 py-3 rounded-2xl ${
+                      message.role === 'user'
+                        ? 'bg-[#146448] text-white'
+                        : 'bg-white text-[#1e3237] shadow-sm border border-[#146448]/10'
+                    }`}
+                  >
+                    <div className="whitespace-pre-wrap text-sm leading-relaxed">
+                      {message.content}
+                    </div>
+                    <div className={`text-xs mt-2 ${
+                      message.role === 'user' ? 'text-white/70' : 'text-[#1e3237]/60'
+                    }`}>
+                      {message.timestamp.toLocaleTimeString('tr-TR', { 
+                        hour: '2-digit', 
+                        minute: '2-digit' 
+                      })}
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </AnimatePresence>
+            
+            {isTyping && (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="flex justify-start"
+              >
+                <div className="bg-white text-[#1e3237] shadow-sm border border-[#146448]/10 px-4 py-3 rounded-2xl">
+                  <div className="flex space-x-1">
+                    <div className="w-2 h-2 bg-[#146448] rounded-full animate-bounce"></div>
+                    <div className="w-2 h-2 bg-[#146448] rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
+                    <div className="w-2 h-2 bg-[#146448] rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+                  </div>
+                </div>
+              </motion.div>
+            )}
+            <div ref={messagesEndRef} />
+          </div>
+
+          {/* Input Area */}
+          <div className="p-4 border-t border-[#146448]/10 bg-white/50 backdrop-blur-sm">
+            <div className="flex items-end space-x-3">
+              <div className="flex-1 relative">
+                <textarea
+                  ref={inputRef}
+                  value={inputValue}
+                  onChange={(e) => setInputValue(e.target.value)}
+                  onKeyPress={handleKeyPress}
+                  placeholder="SeraGPT hazır ve sizi bekliyor..."
+                  className="w-full resize-none rounded-xl border border-[#146448]/20 px-4 py-3 pr-12 focus:outline-none focus:ring-2 focus:ring-[#146448]/20 focus:border-[#146448]/30 bg-white text-[#1e3237] min-h-[48px] max-h-32"
+                  rows={1}
+                />
+              </div>
+              <button
                 onClick={handleSendMessage}
-                disabled={isTyping}
-                className="p-3 bg-[#baf200] text-[#1e3237] rounded-full hover:bg-[#baf200]/90 transition-colors disabled:opacity-50"
+                disabled={!inputValue.trim()}
+                className="bg-[#146448] text-white p-3 rounded-xl hover:bg-[#146448]/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
                 </svg>
-              </motion.button>
-            ) : (
-              <button className="p-3 bg-[#1e3237] rounded-full">
-                <div className="flex items-center space-x-0.5">
-                  <motion.div
-                    animate={{ height: [8, 16, 8] }}
-                    transition={{ duration: 1, repeat: Infinity, ease: "easeInOut" }}
-                    className="w-1 bg-white rounded-full"
-                  />
-                  <motion.div
-                    animate={{ height: [12, 8, 12] }}
-                    transition={{ duration: 1, repeat: Infinity, ease: "easeInOut", delay: 0.1 }}
-                    className="w-1 bg-white rounded-full"
-                  />
-                  <motion.div
-                    animate={{ height: [16, 12, 16] }}
-                    transition={{ duration: 1, repeat: Infinity, ease: "easeInOut", delay: 0.2 }}
-                    className="w-1 bg-white rounded-full"
-                  />
-                  <motion.div
-                    animate={{ height: [8, 16, 8] }}
-                    transition={{ duration: 1, repeat: Infinity, ease: "easeInOut", delay: 0.3 }}
-                    className="w-1 bg-white rounded-full"
-                  />
-                </div>
               </button>
-            )}
+            </div>
           </div>
         </div>
       </div>
