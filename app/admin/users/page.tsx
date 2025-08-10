@@ -4,6 +4,9 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import DashboardLayout from '@/components/dashboard/DashboardLayout';
 
+// Force dynamic rendering to prevent SSR
+export const dynamic = 'force-dynamic';
+
 interface User {
   id: string;
   name: string;
