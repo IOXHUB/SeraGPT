@@ -27,12 +27,32 @@ export function useAuth(): AuthContextType {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  const supabase = typeof window !== 'undefined' && isSupabaseConfigured()
-    ? createBrowserClient(
-        process.env.NEXT_PUBLIC_SUPABASE_URL!,
-        process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-      )
-    : getSupabaseClient();
+  // SSR-safe client creation - only create when in browser
+  const getClient = () => {
+    if (typeof window === 'undefined') {
+      // Return mock client for SSR
+      return {
+        auth: {
+          getSession: () => Promise.resolve({ data: { session: null }, error: null }),
+          signInWithPassword: () => Promise.resolve({ data: null, error: null }),
+          signUp: () => Promise.resolve({ data: null, error: null }),
+          signOut: () => Promise.resolve({ error: null }),
+          resetPasswordForEmail: () => Promise.resolve({ data: null, error: null }),
+          onAuthStateChange: () => ({ data: { subscription: { unsubscribe: () => {} } } })
+        },
+        rpc: () => Promise.resolve({ data: null, error: null })
+      } as any;
+    }
+
+    return isSupabaseConfigured()
+      ? createBrowserClient(
+          process.env.NEXT_PUBLIC_SUPABASE_URL!,
+          process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+        )
+      : getSupabaseClient();
+  };
+
+  const supabase = getClient();
 
   // Fetch user profile data using API endpoints
   const fetchUserData = useCallback(async (userId: string) => {
