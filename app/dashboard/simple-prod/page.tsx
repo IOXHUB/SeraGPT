@@ -2,6 +2,9 @@
 
 import DashboardLayout from '@/components/dashboard/DashboardLayout';
 
+// Force dynamic rendering
+export const dynamic = 'force-dynamic';
+
 export default function SimpleDashboard() {
   return (
     <DashboardLayout title="Dashboard" subtitle="SeraGPT Kontrol Paneli">
