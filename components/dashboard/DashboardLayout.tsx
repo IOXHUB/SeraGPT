@@ -11,28 +11,35 @@ interface DashboardLayoutProps {
 
 export default function DashboardLayout({ children, title, subtitle }: DashboardLayoutProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [analysisDropdownOpen, setAnalysisDropdownOpen] = useState(false);
 
-  // Homepage navigation items (main header)
-  const homepageNavItems = [
+  // Header navigation items
+  const headerNavItems = [
     { name: 'Anasayfa', href: '/' },
-    { name: 'Sera Analizi', href: '/#analiz' },
-    { name: 'Hizmetler', href: '/#hizmetler' },
-    { name: 'Blog', href: '/blog' },
+    { name: 'Destek', href: '/destek' },
     { name: 'Danışmanlık', href: '/danismanlik' },
-    { name: 'Anahtar Teslim', href: '/anahtar-teslim-proje' },
-    { name: 'Destek', href: '/destek' }
+    { name: 'Anahtar Teslim Sera', href: '/anahtar-teslim-proje' },
+    { name: 'Blog', href: '/blog' }
+  ];
+
+  // Analysis dropdown items
+  const analysisItems = [
+    { name: 'ROI Analizi', href: '/dashboard/analysis/roi' },
+    { name: 'İklim Analizi', href: '/dashboard/analysis/climate' },
+    { name: 'Ekipman Analizi', href: '/dashboard/analysis/equipment' },
+    { name: 'Pazar Analizi', href: '/dashboard/analysis/market' },
+    { name: 'Layout Analizi', href: '/dashboard/analysis/layout' }
   ];
 
   // Dashboard navigation items (subheader)
   const dashboardNavItems = [
     { name: 'Dashboard', href: '/dashboard' },
     { name: 'AI Asistan', href: '/dashboard/ai-chat' },
-    { name: 'ROI Analizi', href: '/dashboard/analysis/roi' },
-    { name: 'İklim Analizi', href: '/dashboard/analysis/climate' },
-    { name: 'Ekipman', href: '/dashboard/analysis/equipment' },
-    { name: 'Pazar Analizi', href: '/dashboard/analysis/market' },
-    { name: 'Token Yönetimi', href: '/dashboard/tokens' },
+    { name: 'Analizler', href: '#', dropdown: true },
+    { name: 'Token', href: '/dashboard/tokens' },
     { name: 'Projeler', href: '/dashboard/projects' },
+    { name: 'Raporlar', href: '/dashboard/reports' },
+    { name: 'Ayarlar', href: '/dashboard/settings' }
   ];
 
   return (
