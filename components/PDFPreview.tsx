@@ -40,7 +40,7 @@ export function PDFPreview({ isOpen, onClose, content, language }: PDFPreviewPro
     const element = document.createElement('a')
     const file = new Blob([content], { type: 'text/plain' })
     element.href = URL.createObjectURL(file)
-    element.download = `seragpt-report-${Date.now()}.txt`
+    element.download = `seragpt-report-${new Date().toISOString().split('T')[0]}.txt`
     document.body.appendChild(element)
     element.click()
     document.body.removeChild(element)
