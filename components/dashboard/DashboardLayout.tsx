@@ -166,17 +166,17 @@ export default function DashboardLayout({ children, title, subtitle }: Dashboard
       {/* Main Content */}
       <main className="py-8" style={{ minHeight: '1000px' }}>
         <div className="max-w-[1200px] mx-auto px-6">
-          {/* Page Header */}
-          {(title || subtitle) && (
-            <div className="mb-8">
-              {title && (
-                <h1 className="text-3xl font-bold text-[#f6f8f9] mb-2">{title}</h1>
-              )}
-              {subtitle && (
-                <p className="text-[#f6f8f9]/80 text-lg">{subtitle}</p>
-              )}
-            </div>
+          {/* Page Header & Subheader */}
+      {(title || subtitle) && (
+        <div className="mb-8 text-center">
+          {title && (
+            <h1 className="text-4xl font-bold text-[#f6f8f9] mb-4">{title}</h1>
           )}
+          {subtitle && (
+            <p className="text-[#f6f8f9]/90 text-xl leading-relaxed max-w-4xl mx-auto">{subtitle}</p>
+          )}
+        </div>
+      )}
 
           {/* Content Container */}
           <div className="bg-[#146448] rounded-xl shadow-lg p-6 min-h-[600px]">
