@@ -204,7 +204,7 @@ export default function AIChatPage() {
               className="w-80 bg-[#1e3237] border-r border-[#f6f8f9]/10 flex flex-col"
             >
               {/* Sidebar Header */}
-              <div className="p-4 border-b border-[#f6f8f9]/10">
+              <div className="p-4 border-b border-[#f6f8f9]/10 bg-[#146448] text-white">
                 <button
                   onClick={handleNewChat}
                   className="w-full bg-[#baf200] text-[#1e3237] py-3 px-4 rounded-lg font-medium hover:bg-[#baf200]/90 transition-colors flex items-center justify-center space-x-2"
@@ -217,10 +217,10 @@ export default function AIChatPage() {
               </div>
 
               {/* Chat History */}
-              <div className="flex-1 overflow-y-auto p-4">
+              <div className="flex-1 overflow-y-auto p-4 bg-[#146448]">
                 <div className="space-y-4">
                   <div>
-                    <h3 className="text-sm font-medium text-[#f6f8f9]/70 mb-3">Son Sohbetler</h3>
+                    <h3 className="text-base font-bold text-[#f6f8f9]/70 mb-3">Sohbetlerim</h3>
                     <div className="space-y-2">
                       {chatSessions.map((chat) => (
                         <button
