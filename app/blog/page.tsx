@@ -275,8 +275,185 @@ export default function BlogPage() {
           </main>
         </div>
 
-        {/* Footer */}
-        <Footer />
+        {/* Footer - matching homepage */}
+        <footer className="py-12" style={{ backgroundColor: '#146448' }}>
+          <div className="max-w-[1200px] mx-auto px-6">
+            <div className="grid md:grid-cols-4 gap-8">
+
+              {/* Company Info */}
+              <div>
+                <div className="mb-4">
+                  <img
+                    src="https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2F01c1e8a05ef6424b912d584875377957?format=webp&width=800"
+                    alt="SeraGPT Logo"
+                    className="h-12 w-auto object-contain"
+                  />
+                </div>
+                <p
+                  className="leading-relaxed"
+                  style={{
+                    color: '#f6f8f9',
+                    fontSize: '14px',
+                    fontWeight: '400'
+                  }}
+                >
+                  AI destekli sera analiz platformu. Doğru yatırım, doğru analizle başlar.
+                </p>
+              </div>
+
+              {/* Services */}
+              <div>
+                <h3
+                  className="mb-4"
+                  style={{
+                    color: '#f6f8f9',
+                    fontSize: '14px',
+                    fontWeight: '600'
+                  }}
+                >
+                  Hizmetler
+                </h3>
+                <ul className="space-y-2">
+                  <li>
+                    <Link
+                      href="/auth/login"
+                      className="transition-opacity hover:opacity-70"
+                      style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '400' }}
+                    >
+                      Ücretsiz Analiz Başlat
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href="/danismanlik"
+                      className="transition-opacity hover:opacity-70"
+                      style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '400' }}
+                    >
+                      Danışmanlık AL
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href="/anahtar-teslim-proje"
+                      className="transition-opacity hover:opacity-70"
+                      style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '400' }}
+                    >
+                      Anahtar Teslim Sera Teklifi İste
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Support */}
+              <div>
+                <h3
+                  className="mb-4"
+                  style={{
+                    color: '#f6f8f9',
+                    fontSize: '14px',
+                    fontWeight: '600'
+                  }}
+                >
+                  Destek
+                </h3>
+                <ul className="space-y-2">
+                  <li>
+                    <Link
+                      href="/auth/login"
+                      className="transition-opacity hover:opacity-70"
+                      style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '400' }}
+                    >
+                      Kullanıcı Paneli Giriş
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href="/destek"
+                      className="transition-opacity hover:opacity-70"
+                      style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '400' }}
+                    >
+                      Destek Kaydı Aç
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href="/privacy"
+                      className="transition-opacity hover:opacity-70"
+                      style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '400' }}
+                    >
+                      Gizlilik Politikası
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href="/terms"
+                      className="transition-opacity hover:opacity-70"
+                      style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '400' }}
+                    >
+                      Kullanım Koşulları
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Contact */}
+              <div>
+                <h3
+                  className="mb-4"
+                  style={{
+                    color: '#f6f8f9',
+                    fontSize: '14px',
+                    fontWeight: '600'
+                  }}
+                >
+                  İletişim
+                </h3>
+                <div className="space-y-2">
+                  <p
+                    style={{
+                      color: '#f6f8f9',
+                      fontSize: '14px',
+                      fontWeight: '400'
+                    }}
+                  >
+                    info@seragpt.com
+                  </p>
+                  <p
+                    style={{
+                      color: '#f6f8f9',
+                      fontSize: '14px',
+                      fontWeight: '400'
+                    }}
+                  >
+                    0850 303 0 GPT
+                  </p>
+                  <p
+                    style={{
+                      color: '#f6f8f9',
+                      fontSize: '14px',
+                      fontWeight: '400'
+                    }}
+                  >
+                    Türkiye
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Bottom */}
+            <div className="border-t border-white/20 mt-8 pt-8 text-center">
+              <p
+                style={{
+                  color: '#f6f8f9',
+                  fontSize: '14px',
+                  fontWeight: '400'
+                }}
+              >
+                © 2025 SeraGPT. Tüm hakları saklıdır.
+              </p>
+            </div>
+          </div>
+        </footer>
       </div>
     </>
   );
