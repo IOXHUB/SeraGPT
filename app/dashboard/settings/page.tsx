@@ -116,7 +116,10 @@ export default function SettingsPage() {
         return;
       }
 
+      console.log('Updating profile with data:', profileData);
       const result = await updateProfile(profileData);
+      console.log('Profile update result:', result);
+
       if (result.error) {
         console.error('Profile update error:', result.error);
         showMessage('error', result.error.message || 'Profil güncellenirken hata oluştu');
