@@ -37,7 +37,7 @@ export default function SettingsPage() {
     { id: 'location', name: 'Konum & İşletme', icon: '📍' },
     { id: 'preferences', name: 'Tercihler', icon: '⚙️' },
     { id: 'notifications', name: 'Bildirimler', icon: '🔔' },
-    { id: 'security', name: 'Güvenlik', icon: '🔒' },
+    { id: 'security', name: 'G��venlik', icon: '🔒' },
     { id: 'data', name: 'Veri Yönetimi', icon: '💾' }
   ];
 
@@ -599,7 +599,7 @@ export default function SettingsPage() {
 
           {/* Notifications Tab */}
           {activeTab === 'notifications' && (
-            <div className="bg-white rounded-xl border border-gray-200 p-6">
+            <div className="bg-[#f6f8f9] rounded-xl border border-gray-200 p-6 shadow-lg">
               <h2 className="text-xl font-semibold text-gray-900 mb-6">🔔 Bildirim Ayarları</h2>
               
               <div className="space-y-6">
