@@ -322,6 +322,183 @@ export default function AdminDashboard() {
             </div>
           </div>
 
+          {/* External API Services */}
+          <div>
+            <div className="flex justify-between items-center mb-4">
+              <h2 className="text-lg font-semibold text-gray-900">External API Services</h2>
+              <button
+                onClick={testExternalApis}
+                disabled={apiLoading}
+                className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors disabled:opacity-50"
+              >
+                {apiLoading ? '🔄 Test Ediliyor...' : '🧪 API Test Et'}
+              </button>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              {/* Weather & Climate Services */}
+              <div className="bg-white rounded-lg border p-6">
+                <div className="flex items-center mb-4">
+                  <div className="text-2xl mr-3">🌤️</div>
+                  <div>
+                    <h3 className="font-medium text-gray-900">Hava Durumu & İklim</h3>
+                    <p className="text-sm text-gray-600">İklim uyum skoru, ısıtma/soğutma yükleri</p>
+                  </div>
+                </div>
+                <div className="space-y-3">
+                  {[
+                    { name: 'Open-Meteo', desc: '16-gün tahmin, saatlik/günlük metrikler', tier: 'FREE' },
+                    { name: 'Meteostat', desc: 'Geçmiş iklim verileri, uzun yıllar ortalaması', tier: 'FREE' },
+                    { name: 'NASA POWER', desc: 'Güneşlenme, radyasyon, yüzey meteorolojisi', tier: 'FREE' },
+                    { name: 'Copernicus ERA5', desc: '1979-günümüz, yüksek çözünürlüklü reanalysis', tier: 'FREE' }
+                  ].map((api, index) => (
+                    <div key={index} className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                      <div>
+                        <div className="font-medium text-sm text-gray-900">{api.name}</div>
+                        <div className="text-xs text-gray-600">{api.desc}</div>
+                      </div>
+                      <div className="flex items-center space-x-2">
+                        <span className="px-2 py-1 text-xs bg-green-100 text-green-800 rounded-full">{api.tier}</span>
+                        <div className={`w-3 h-3 rounded-full ${
+                          apiStatusData?.[api.name]?.status === 'active' ? 'bg-green-500' :
+                          apiStatusData?.[api.name]?.status === 'error' ? 'bg-red-500' : 'bg-gray-400'
+                        }`}></div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Satellite & Terrain Services */}
+              <div className="bg-white rounded-lg border p-6">
+                <div className="flex items-center mb-4">
+                  <div className="text-2xl mr-3">🛰️</div>
+                  <div>
+                    <h3 className="font-medium text-gray-900">Uydu, Arazi, Toprak</h3>
+                    <p className="text-sm text-gray-600">Parsel uygunluğu, NDVI, toprak sınıfları</p>
+                  </div>
+                </div>
+                <div className="space-y-3">
+                  {[
+                    { name: 'Sentinel-2', desc: 'NDVI, EVI, NBR; 10-30m çözünürlük', tier: 'FREE' },
+                    { name: 'SoilGrids', desc: 'Küresel toprak haritaları, pH, organik madde', tier: 'FREE' },
+                    { name: 'SRTM DEM', desc: 'Sayısal Yükseklik Modeli (30m)', tier: 'FREE' },
+                    { name: 'PVGIS', desc: 'Güneş potansiyeli, PV üretim simülasyonu', tier: 'FREE' }
+                  ].map((api, index) => (
+                    <div key={index} className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                      <div>
+                        <div className="font-medium text-sm text-gray-900">{api.name}</div>
+                        <div className="text-xs text-gray-600">{api.desc}</div>
+                      </div>
+                      <div className="flex items-center space-x-2">
+                        <span className="px-2 py-1 text-xs bg-green-100 text-green-800 rounded-full">{api.tier}</span>
+                        <div className={`w-3 h-3 rounded-full ${
+                          api.name === 'SoilGrids' && apiStatusData?.['SoilGrids']?.status === 'active' ? 'bg-green-500' :
+                          api.name === 'PVGIS' && apiStatusData?.['PVGIS']?.status === 'active' ? 'bg-green-500' :
+                          'bg-gray-400'
+                        }`}></div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Market & Financial Services */}
+              <div className="bg-white rounded-lg border p-6">
+                <div className="flex items-center mb-4">
+                  <div className="text-2xl mr-3">📈</div>
+                  <div>
+                    <h3 className="font-medium text-gray-900">Pazar & Finans</h3>
+                    <p className="text-sm text-gray-600">Fiyat trendleri, döviz kurları</p>
+                  </div>
+                </div>
+                <div className="space-y-3">
+                  {[
+                    { name: 'FAO Data', desc: 'Global tarım fiyat endeksleri', tier: 'FREE' },
+                    { name: 'TÜİK', desc: 'Bölgesel üretim/hasat istatistikleri', tier: 'FREE' },
+                    { name: 'TCMB', desc: 'Güncel döviz kurları', tier: 'FREE' },
+                    { name: 'EPİAŞ', desc: 'Elektrik piyasa verileri (PTF/SMF)', tier: 'FREE' }
+                  ].map((api, index) => (
+                    <div key={index} className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                      <div>
+                        <div className="font-medium text-sm text-gray-900">{api.name}</div>
+                        <div className="text-xs text-gray-600">{api.desc}</div>
+                      </div>
+                      <div className="flex items-center space-x-2">
+                        <span className="px-2 py-1 text-xs bg-green-100 text-green-800 rounded-full">{api.tier}</span>
+                        <div className={`w-3 h-3 rounded-full ${
+                          api.name === 'TCMB' && apiStatusData?.['TCMB']?.status === 'active' ? 'bg-green-500' :
+                          'bg-gray-400'
+                        }`}></div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Geographic Services */}
+              <div className="bg-white rounded-lg border p-6">
+                <div className="flex items-center mb-4">
+                  <div className="text-2xl mr-3">🗺️</div>
+                  <div>
+                    <h3 className="font-medium text-gray-900">Coğrafi Servisler</h3>
+                    <p className="text-sm text-gray-600">Geocoding, mesafe, lojistik rota</p>
+                  </div>
+                </div>
+                <div className="space-y-3">
+                  {[
+                    { name: 'Nominatim', desc: 'Geocoding / Reverse geocoding', tier: 'FREE' },
+                    { name: 'OpenRouteService', desc: 'Sürüş mesafesi, süre, isochrone', tier: 'FREE' },
+                    { name: 'Google Maps', desc: 'Yüksek doğruluk, SLA', tier: 'PAID' },
+                    { name: 'Mapbox', desc: 'Harita görselleştirme + erişilebilirlik', tier: 'PAID' }
+                  ].map((api, index) => (
+                    <div key={index} className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                      <div>
+                        <div className="font-medium text-sm text-gray-900">{api.name}</div>
+                        <div className="text-xs text-gray-600">{api.desc}</div>
+                      </div>
+                      <div className="flex items-center space-x-2">
+                        <span className={`px-2 py-1 text-xs rounded-full ${
+                          api.tier === 'FREE' ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800'
+                        }`}>{api.tier}</span>
+                        <div className={`w-3 h-3 rounded-full ${
+                          api.name === 'Nominatim' && apiStatusData?.['Nominatim']?.status === 'active' ? 'bg-green-500' :
+                          'bg-gray-400'
+                        }`}></div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* API Status Details */}
+            {apiStatusData && (
+              <div className="mt-6 bg-white rounded-lg border p-6">
+                <h3 className="font-medium text-gray-900 mb-4">API Test Sonuçları</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                  {Object.entries(apiStatusData).map(([apiName, status]: [string, any]) => (
+                    <div key={apiName} className="p-4 border rounded-lg">
+                      <div className="flex justify-between items-center mb-2">
+                        <span className="font-medium text-sm">{apiName}</span>
+                        <span className={`px-2 py-1 text-xs rounded-full ${
+                          status.status === 'active' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
+                        }`}>
+                          {status.status === 'active' ? 'Aktif' : 'Hata'}
+                        </span>
+                      </div>
+                      <div className="text-xs text-gray-600">
+                        <div>Yanıt Süresi: {status.responseTime}</div>
+                        <div>Son Test: {new Date(status.lastChecked).toLocaleTimeString('tr-TR')}</div>
+                        {status.error && <div className="text-red-600 mt-1">Hata: {status.error}</div>}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+
           {/* Quick Actions */}
           <div>
             <h2 className="text-lg font-semibold text-gray-900 mb-4">Hızlı İşlemler</h2>
