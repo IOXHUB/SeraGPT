@@ -322,11 +322,11 @@ export default function CorporateDashboardTest() {
                 >
                   Yeni ROI Analizi
                 </button>
-                <button 
+                <button
                   className="w-full px-4 py-2 text-left rounded-lg transition-colors"
                   style={{ color: '#1e3237', backgroundColor: 'transparent' }}
-                  onMouseEnter={(e) => e.target.style.backgroundColor = '#baf200'}
-                  onMouseLeave={(e) => e.target.style.backgroundColor = 'transparent'}
+                  onMouseEnter={(e) => (e.target as HTMLElement).style.backgroundColor = '#baf200'}
+                  onMouseLeave={(e) => (e.target as HTMLElement).style.backgroundColor = 'transparent'}
                 >
                   İklim Analizi
                 </button>
