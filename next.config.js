@@ -81,6 +81,25 @@ const nextConfig = {
     return config;
   },
 
+  // Skip static optimization for auth-dependent routes
+  async rewrites() {
+    return [
+      // Force all auth and dashboard routes to be server-side rendered
+      {
+        source: '/dashboard/:path*',
+        destination: '/dashboard/:path*',
+      },
+      {
+        source: '/admin/:path*',
+        destination: '/admin/:path*',
+      },
+      {
+        source: '/auth/:path*',
+        destination: '/auth/:path*',
+      },
+    ];
+  },
+
   // Security headers for production
   async headers() {
     return [
