@@ -2,29 +2,35 @@ import { NextRequest, NextResponse } from 'next/server';
 
 export async function POST(request: NextRequest) {
   try {
-    const { email, password, role } = await request.json();
+    const body = await request.json();
+    const { email, password, role = 'user', metadata = {} } = body;
+    
+    if (!email || !password) {
+      return NextResponse.json({ 
+        error: 'Email and password are required' 
+      }, { status: 400 });
+    }
 
-    console.log('Admin user creation request received:', { email, role });
-
-    // Mock implementation for build stability
-    // In production, this would integrate with Supabase admin API
-    const mockUser = {
-      id: `mock-${Date.now()}`,
+    // For now, return mock response - integrate with Supabase later
+    const newUser = {
+      id: `user_${Date.now()}`,
       email,
-      role: role || 'admin'
+      role,
+      metadata,
+      created_at: new Date().toISOString(),
+      email_confirmed: false
     };
 
-    return NextResponse.json({
-      success: true,
-      user: mockUser,
-      message: 'User creation endpoint is ready (using mock for build stability)'
+    return NextResponse.json({ 
+      success: true, 
+      user: newUser,
+      message: 'User created successfully (mock)' 
     });
 
-  } catch (error) {
-    console.error('Admin user creation exception:', error);
-    return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 }
-    );
+  } catch (error: any) {
+    console.error('Create user error:', error);
+    return NextResponse.json({ 
+      error: 'Failed to create user: ' + error.message 
+    }, { status: 500 });
   }
 }
