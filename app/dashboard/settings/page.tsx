@@ -385,7 +385,7 @@ export default function SettingsPage() {
           {/* Location Tab */}
           {activeTab === 'location' && (
             <div className="bg-[#f6f8f9] rounded-xl border border-gray-200 p-6 shadow-lg">
-              <h2 className="text-xl font-semibold text-gray-900 mb-6">📍 Konum & İşletme Bilgileri</h2>
+              <h2 className="text-xl font-semibold text-[#1e3237] mb-6">📍 Konum & İşletme Bilgileri</h2>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
@@ -658,7 +658,7 @@ export default function SettingsPage() {
                         onChange={(e) => setPreferencesData(prev => ({ ...prev, price_alerts: e.target.checked }))}
                         className="mr-3 h-4 w-4 text-blue-600 border-gray-300 rounded"
                       />
-                      <span className="text-sm text-gray-700">Fiyat uyarılar��</span>
+                      <span className="text-sm text-gray-700">Fiyat uyarıları</span>
                     </label>
 
                     <label className="flex items-center">
