@@ -11,8 +11,8 @@ export async function POST(request: NextRequest) {
     }
 
     // Test email using Resend API
-    const resend = await import('resend');
-    const resendClient = new resend.Resend(process.env.RESEND_API_KEY);
+    const { Resend } = await import('resend');
+    const resendClient = new Resend(process.env.RESEND_API_KEY);
 
     const result = await resendClient.emails.send({
       from: 'SeraGPT <no-reply@seragpt.com>',
