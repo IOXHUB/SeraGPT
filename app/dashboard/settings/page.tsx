@@ -102,6 +102,7 @@ export default function SettingsPage() {
   };
 
   const showMessage = (type: 'success' | 'error', text: string) => {
+    console.log(`Settings message: [${type}] ${text}`);
     setMessage({ type, text });
     setTimeout(() => setMessage(null), 5000);
   };
