@@ -13,41 +13,39 @@ export const dynamic = 'force-dynamic';
 
 export default function BlogPage() {
   const [seoConfig, setSeoConfig] = useState(SEOService.generateBlogPageSEO());
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
   useEffect(() => {
     setSeoConfig(SEOService.generateBlogPageSEO());
   }, []);
 
-  const featuredPost = {
-    id: 1,
-    slug: "sera-teknolojilerinde-2025-yenilikleri",
-    title: "Sera Teknolojilerinde 2025 Yenilikleri",
-    excerpt: "Modern sera teknolojileri ile tarımsal verimliliği artırmanın yolları. İklim kontrolü, otomasyon sistemleri ve sürdürülebilir tarım uygulamalarında son gelişmeler.",
-    image: "https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2F382157220f6b4482a9c765091441c587",
-    date: "15 Ocak 2025",
-    category: "Tarım Teknolojisi"
-  };
-
   const categories = [
-    { name: "Veriye Dayalı Tarım", color: "bg-[#146448]/10", textColor: "text-[#1e3237]", slug: "veriye-dayali-tarim" },
-    { name: "Gizli Maliyetler", color: "bg-[#baf200]/20", textColor: "text-[#1e3237]", slug: "gizli-maliyetler" },
-    { name: "Akıllı Sera Modelleri", color: "bg-[#f6f8f9]", textColor: "text-[#1e3237]", slug: "akilli-sera-modelleri" },
-    { name: "Tarımsal Zeka", color: "bg-[#baf200]/30", textColor: "text-[#1e3237]", slug: "tarimsal-zeka" },
-    { name: "ROI & Maliyet İçerikleri", color: "bg-[#146448]/15", textColor: "text-[#1e3237]", slug: "roi-maliyet" },
-    { name: "İklim Krizi ve Tarım", color: "bg-[#baf200]/25", textColor: "text-[#1e3237]", slug: "iklim-krizi-tarim" },
-    { name: "Ticari Ürün Rehberi", color: "bg-[#146448]/20", textColor: "text-[#1e3237]", slug: "ticari-urun-rehberi" },
-    { name: "Tarımda Kadın Eli", color: "bg-[#baf200]/15", textColor: "text-[#1e3237]", slug: "tarimda-kadin-eli" },
-    { name: "Sera Mimarlığı & Tasarım", color: "bg-[#146448]/12", textColor: "text-[#1e3237]", slug: "sera-mimarligi-tasarim" }
+    { name: "Tümü", color: "bg-[#146448]", textColor: "text-white", slug: "all", count: 6 },
+    { name: "Veriye Dayalı Tarım", color: "bg-[#146448]/10", textColor: "text-[#1e3237]", slug: "veriye-dayali-tarim", count: 2 },
+    { name: "Gizli Maliyetler", color: "bg-[#baf200]/20", textColor: "text-[#1e3237]", slug: "gizli-maliyetler", count: 1 },
+    { name: "ROI & Maliyet", color: "bg-[#146448]/15", textColor: "text-[#1e3237]", slug: "roi-maliyet", count: 1 },
+    { name: "İklim & Tarım", color: "bg-[#baf200]/25", textColor: "text-[#1e3237]", slug: "iklim-krizi-tarim", count: 1 },
+    { name: "Sera Mimarlığı", color: "bg-[#146448]/12", textColor: "text-[#1e3237]", slug: "sera-mimarligi-tasarim", count: 1 }
   ];
 
-  const latestPosts = [
+  const allPosts = [
+    {
+      id: 1,
+      slug: "sera-teknolojilerinde-2025-yenilikleri",
+      title: "Sera Teknolojilerinde 2025 Yenilikleri",
+      excerpt: "Modern sera teknolojileri ile tarımsal verimliliği artırmanın yolları. İklim kontrolü, otomasyon sistemleri ve sürdürülebilir tarım.",
+      image: "https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2F382157220f6b4482a9c765091441c587",
+      date: "15 Ocak 2025",
+      category: "veriye-dayali-tarim"
+    },
     {
       id: 2,
       slug: "gizli-maliyetler-sera-yatirimi",
       title: "Gizli Maliyetler: Sera Yatırımında Dikkat Edilmesi Gerekenler",
       excerpt: "Sera kurulumunda öngörülmeyen masraflar ve bunlardan nasıl kaçınılır?",
       image: "https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2Fa9783275f0b14277aa1513bc9ca47a7b",
-      date: "12 Ocak 2025"
+      date: "12 Ocak 2025",
+      category: "gizli-maliyetler"
     },
     {
       id: 3,
@@ -55,7 +53,8 @@ export default function BlogPage() {
       title: "ROI & Maliyet Analizi: Sera Yatırımının Geri Dönüşü",
       excerpt: "Sera yatırımının karlılık analizi ve geri dönüş süresi hesaplamaları.",
       image: "https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2Fd1956ad26a134fa1b292da0acfb10217",
-      date: "10 Ocak 2025"
+      date: "10 Ocak 2025",
+      category: "roi-maliyet"
     },
     {
       id: 4,
@@ -63,7 +62,8 @@ export default function BlogPage() {
       title: "İklim Krizi ve Tarım: Sürdürülebilir Çözümler",
       excerpt: "İklim değişikliğinin tarıma etkileri ve sera teknolojileri ile alınacak önlemler.",
       image: "https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2F10278e2b44aa42168429a20e4e5a9fb8",
-      date: "8 Ocak 2025"
+      date: "8 Ocak 2025",
+      category: "iklim-krizi-tarim"
     },
     {
       id: 5,
@@ -71,25 +71,23 @@ export default function BlogPage() {
       title: "Ticari Ürün Rehberi: Hangi Sebze En Karlı?",
       excerpt: "Sera üretiminde en karlı sebze türleri ve pazar analizi.",
       image: "https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2F4abcdd109aff4ed9bb3759b448e84aef",
-      date: "5 Ocak 2025"
+      date: "5 Ocak 2025",
+      category: "veriye-dayali-tarim"
     },
     {
       id: 6,
-      slug: "tarimda-kadin-eli",
-      title: "Tarımda Kadın Eli: Teknoloji ve Fırsat Eşitliği",
-      excerpt: "Tarım sektöründe kadın girişimciler ve teknolojinin rolü.",
-      image: "https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2F405802b9b3874e1ea1f0d929fac155b6",
-      date: "3 Ocak 2025"
-    },
-    {
-      id: 7,
       slug: "sera-mimarligi-tasarim",
       title: "Sera Mimarlığı & Tasarım: Verimlilik Odaklı Yaklaşım",
       excerpt: "Modern sera tasarımında dikkat edilmesi gereken kriterler ve mimari detaylar.",
       image: "https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2Fc9cd6cb37b81445aabef80d84b74e313",
-      date: "1 Ocak 2025"
+      date: "1 Ocak 2025",
+      category: "sera-mimarligi-tasarim"
     }
   ];
+
+  const filteredPosts = selectedCategory && selectedCategory !== 'all'
+    ? allPosts.filter(post => post.category === selectedCategory)
+    : allPosts;
 
   return (
     <>
