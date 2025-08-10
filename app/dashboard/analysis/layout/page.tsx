@@ -299,7 +299,7 @@ export default function LayoutPlanningPage() {
 
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
-              Geçit Genişliği (metre)
+              Geçit Genişli��i (metre)
             </label>
             <input
               type="number"
@@ -632,7 +632,10 @@ export default function LayoutPlanningPage() {
   };
 
   return (
-    <DashboardLayout>
+    <DashboardLayout
+      title="Layout Planlama"
+      subtitle="2D/3D sera layout tasarımı ve CAD AI Tools entegrasyonu"
+    >
       <div className="min-h-screen bg-gray-50 text-gray-600">
         <div className="max-w-6xl mx-auto space-y-8">
           {/* Header */}
