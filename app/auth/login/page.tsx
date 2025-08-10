@@ -172,9 +172,8 @@ export default function AuthPage() {
 
         // Wait a moment for auth context to update, then redirect based on role
         setTimeout(() => {
-          // Check if user is admin
-          const isUserAdmin = result.data.user.user_metadata?.role === 'admin' ||
-                             result.data.user.email === 'admin@seragpt.com' ||
+          // Only redirect to admin for actual admin users
+          const isUserAdmin = result.data.user.email === 'admin@seragpt.com' ||
                              result.data.user.email === 'info@isitmax.com';
 
           if (isUserAdmin) {
