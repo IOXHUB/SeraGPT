@@ -12,9 +12,20 @@ interface DashboardLayoutProps {
 export default function DashboardLayout({ children, title, subtitle }: DashboardLayoutProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  // Main navigation items (from sidebar)
-  const mainNavItems = [
-    { name: 'Anasayfa', href: '/dashboard' },
+  // Homepage navigation items (main header)
+  const homepageNavItems = [
+    { name: 'Anasayfa', href: '/' },
+    { name: 'Sera Analizi', href: '/#analiz' },
+    { name: 'Hizmetler', href: '/#hizmetler' },
+    { name: 'Blog', href: '/blog' },
+    { name: 'Danışmanlık', href: '/danismanlik' },
+    { name: 'Anahtar Teslim', href: '/anahtar-teslim-proje' },
+    { name: 'Destek', href: '/destek' }
+  ];
+
+  // Dashboard navigation items (subheader)
+  const dashboardNavItems = [
+    { name: 'Dashboard', href: '/dashboard' },
     { name: 'AI Asistan', href: '/dashboard/ai-chat' },
     { name: 'ROI Analizi', href: '/dashboard/analysis/roi' },
     { name: 'İklim Analizi', href: '/dashboard/analysis/climate' },
@@ -22,13 +33,6 @@ export default function DashboardLayout({ children, title, subtitle }: Dashboard
     { name: 'Pazar Analizi', href: '/dashboard/analysis/market' },
     { name: 'Token Yönetimi', href: '/dashboard/tokens' },
     { name: 'Projeler', href: '/dashboard/projects' },
-  ];
-
-  // Secondary navigation (previously in header)
-  const secondaryNavItems = [
-    { name: 'Danışmanlık', href: '/danismanlik' },
-    { name: 'Anahtar Teslim', href: '/anahtar-teslim-proje' },
-    { name: 'Destek', href: '/destek' }
   ];
 
   return (
