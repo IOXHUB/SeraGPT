@@ -128,7 +128,10 @@ export default function MarketAnalysisPage() {
   };
 
   return (
-    <DashboardLayout>
+    <DashboardLayout
+      title="Pazar Analizi"
+      subtitle="Güncel pazar fiyatları ve trend analizleri ile karlılık projeksiyonları"
+    >
       <div className="min-h-screen bg-gray-50 text-gray-600">
         <div className="max-w-6xl mx-auto space-y-8">
           {/* Header */}
