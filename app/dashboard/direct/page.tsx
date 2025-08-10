@@ -11,10 +11,7 @@ export default function DirectDashboardPage() {
   const [loading, setLoading] = useState(true);
   const [authMethod, setAuthMethod] = useState('');
 
-  const supabase = createBrowserClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-  );
+  const supabase = getSupabaseClient();
 
   useEffect(() => {
     const checkAuth = async () => {
