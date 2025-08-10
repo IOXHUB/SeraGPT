@@ -3,6 +3,9 @@
 import { useState } from 'react';
 import Link from 'next/link';
 
+// Force dynamic rendering
+export const dynamic = 'force-dynamic';
+
 export default function CorporateDashboardTest() {
   const [activeTab, setActiveTab] = useState('overview');
 
