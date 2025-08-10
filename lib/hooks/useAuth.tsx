@@ -86,6 +86,12 @@ export function useAuth(): AuthContextType {
   }, []);
 
   useEffect(() => {
+    // Skip during SSR/build time
+    if (typeof window === 'undefined') {
+      setLoading(false);
+      return;
+    }
+
     const getUser = async () => {
       try {
         setLoading(true);
