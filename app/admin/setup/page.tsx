@@ -2,6 +2,9 @@
 
 import { useState } from 'react';
 
+// Force dynamic rendering
+export const dynamic = 'force-dynamic';
+
 export default function AdminSetupPage() {
   const [email, setEmail] = useState('info@isitmax.com');
   const [password, setPassword] = useState('Ev30082023-.-');
