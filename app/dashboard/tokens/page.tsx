@@ -246,7 +246,7 @@ export default function TokensPage() {
     } else if (activity.activity_type === 'token_used') {
       const tokens = activity.details?.tokens_consumed || 1;
       const purpose = activity.details?.purpose || 'Analiz';
-      return `${tokens} 🧠 token kullanıldı - ${purpose}`;
+      return `${tokens} ��� token kullanıldı - ${purpose}`;
     }
     return 'Token aktivitesi';
   };
@@ -429,9 +429,9 @@ export default function TokensPage() {
                     disabled={purchaseLoading === pkg.id || pkg.price === 0}
                     className={`w-full py-2.5 px-4 rounded-lg font-medium transition-all duration-200 text-sm ${
                       pkg.price === 0
-                        ? 'bg-[#baf200]/30 text-[#1e3237] cursor-default'
+                        ? 'bg-[#baf200] text-black cursor-default'
                         : pkg.popular
-                        ? 'bg-[#baf200] hover:bg-[#baf200]/90 text-[#1e3237] hover:scale-105'
+                        ? 'bg-[#baf200] hover:bg-[#baf200]/90 text-black hover:scale-105'
                         : 'bg-[#146448] hover:bg-[#146448]/90 text-white hover:scale-105'
                     } disabled:opacity-50 disabled:cursor-not-allowed`}
                   >
