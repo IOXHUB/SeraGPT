@@ -369,7 +369,7 @@ export default function TokensPage() {
 
         {/* Token Packages */}
         <div>
-          <h2 className="text-xl font-bold text-[#1e3237] mb-4">Token Paketleri</h2>
+          <h2 className="text-xl font-bold text-white mb-4">Token Paketleri</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             {tokenPackages.map((pkg) => (
               <div 
