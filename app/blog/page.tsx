@@ -97,97 +97,62 @@ export default function BlogPage() {
         <Header />
 
         {/* Main Content */}
-        <main className="max-w-6xl mx-auto px-6 py-12">
+        <main className="max-w-7xl mx-auto px-6 py-8">
           {/* Header Section */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="mb-12 flex flex-col"
+            className="text-center mb-12"
           >
-            <h1 className="text-4xl font-semibold text-[#1e3237] mb-12 self-center">
+            <h1 className="text-5xl font-light text-[#1e3237] mb-4 tracking-wide">
               BLOG
             </h1>
+            <p className="text-[#1e3237]/60 text-lg max-w-2xl mx-auto">
+              Sera teknolojileri, tarımsal verimlilik ve sürdürülebilir tarım hakkında uzman içerikleri
+            </p>
           </motion.div>
 
-          {/* Featured Post */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="mb-16"
-          >
-            <a href={`/blog/${featuredPost.slug}`} className="flex gap-8 items-start group">
-              <div className="w-80 flex-shrink-0">
-                <div className="relative overflow-hidden rounded-lg">
-                  <OptimizedImage
-                    src={featuredPost.image}
-                    alt={featuredPost.title}
-                    width={640}
-                    height={384}
-                    className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-                    priority
-                    preset="hero"
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 80vw, 640px"
-                  />
-                </div>
-              </div>
-              <div className="flex-1 space-y-4">
-                <div className="flex items-center space-x-4 text-sm text-[#1e3237]/60">
-                  <span>{featuredPost.date}</span>
-                  <span>{featuredPost.category}</span>
-                </div>
-                <h2 className="text-2xl font-semibold text-[#1e3237] leading-tight group-hover:text-[#1e3237]/80 transition-colors">
-                  {featuredPost.title}
-                </h2>
-                <p className="text-[#1e3237]/70 leading-relaxed">
-                  {featuredPost.excerpt}
-                </p>
-              </div>
-            </a>
-          </motion.div>
-
-          {/* Categories */}
+          {/* Categories Filter */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="mb-16"
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="mb-12"
           >
-            <h2 className="text-sm font-semibold text-[#1e3237]/60 uppercase tracking-wider mb-6">
-              KATEGORİLER
-            </h2>
-            <div className="relative">
-              <div className="flex overflow-x-auto scrollbar-hide space-x-4 pb-6">
-                {categories.map((category, index) => (
-                  <motion.a
-                    key={category.name}
-                    href={`/blog/category/${category.slug}`}
-                    initial={{ opacity: 0, x: 30 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.6, delay: 0.1 * index }}
-                    className={`${category.color} rounded-lg p-4 hover:shadow-lg transition-shadow cursor-pointer block group flex-shrink-0 min-w-max`}
-                  >
-                    <h3 className={`text-sm font-semibold ${category.textColor} group-hover:opacity-80 transition-opacity whitespace-nowrap`}>
-                      {category.name}
-                    </h3>
-                  </motion.a>
-                ))}
-              </div>
+            <div className="flex flex-wrap justify-center gap-3">
+              {categories.map((category, index) => (
+                <motion.button
+                  key={category.slug}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.4, delay: 0.1 * index }}
+                  onClick={() => setSelectedCategory(category.slug === 'all' ? null : category.slug)}
+                  className={`
+                    ${selectedCategory === category.slug || (selectedCategory === null && category.slug === 'all')
+                      ? category.color === 'bg-[#146448]' ? 'bg-[#146448] text-white' : 'bg-[#146448] text-white'
+                      : category.color + ' ' + category.textColor
+                    }
+                    px-6 py-3 rounded-full text-sm font-medium transition-all duration-300
+                    hover:shadow-lg hover:scale-105 cursor-pointer
+                    border border-transparent hover:border-[#146448]/20
+                  `}
+                >
+                  {category.name}
+                  <span className="ml-2 text-xs opacity-70">({category.count})</span>
+                </motion.button>
+              ))}
             </div>
           </motion.div>
 
-          {/* Latest Posts */}
+          {/* Posts Grid */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.6 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
           >
-            <h2 className="text-sm font-semibold text-[#1e3237]/60 uppercase tracking-wider mb-6">
-              SON YAZILAR
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {latestPosts.map((post, index) => (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {filteredPosts.map((post, index) => (
                 <motion.article
                   key={post.id}
                   initial={{ opacity: 0, y: 30 }}
@@ -196,32 +161,64 @@ export default function BlogPage() {
                   className="group cursor-pointer"
                 >
                   <a href={`/blog/${post.slug}`} className="block">
-                    <div className="relative overflow-hidden rounded-lg mb-4">
-                      <OptimizedImage
-                        src={post.image}
-                        alt={post.title}
-                        width={400}
-                        height={300}
-                        className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-                        preset="thumbnail"
-                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px"
-                      />
-                    </div>
-                    <div className="space-y-3">
-                      <div className="text-sm text-[#1e3237]/60">
-                        {post.date}
+                    <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                      <div className="relative overflow-hidden">
+                        <OptimizedImage
+                          src={post.image}
+                          alt={post.title}
+                          width={400}
+                          height={240}
+                          className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
+                          preset="thumbnail"
+                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                       </div>
-                      <h3 className="text-lg font-semibold text-[#1e3237] group-hover:text-[#1e3237]/80 transition-colors leading-tight">
-                        {post.title}
-                      </h3>
-                      <p className="text-[#1e3237]/70 text-sm leading-relaxed">
-                        {post.excerpt}
-                      </p>
+                      <div className="p-6 space-y-4">
+                        <div className="flex items-center justify-between">
+                          <span className="text-xs text-[#146448] font-medium uppercase tracking-wider">
+                            {post.date}
+                          </span>
+                          <span className="px-2 py-1 bg-[#baf200]/20 text-[#1e3237] text-xs rounded-full font-medium">
+                            {categories.find(cat => cat.slug === post.category)?.name.split(' ')[0] || 'Blog'}
+                          </span>
+                        </div>
+                        <h3 className="text-xl font-semibold text-[#1e3237] group-hover:text-[#146448] transition-colors leading-tight line-clamp-2">
+                          {post.title}
+                        </h3>
+                        <p className="text-[#1e3237]/70 text-sm leading-relaxed line-clamp-3">
+                          {post.excerpt}
+                        </p>
+                        <div className="pt-2">
+                          <span className="text-[#146448] text-sm font-medium group-hover:underline">
+                            Devamını Oku →
+                          </span>
+                        </div>
+                      </div>
                     </div>
                   </a>
                 </motion.article>
               ))}
             </div>
+
+            {/* Empty State */}
+            {filteredPosts.length === 0 && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="text-center py-16"
+              >
+                <div className="text-[#1e3237]/40 text-lg mb-4">
+                  Bu kategoride henüz içerik bulunmuyor.
+                </div>
+                <button
+                  onClick={() => setSelectedCategory(null)}
+                  className="text-[#146448] font-medium hover:underline"
+                >
+                  Tüm yazıları görüntüle
+                </button>
+              </motion.div>
+            )}
           </motion.div>
         </main>
 
