@@ -91,8 +91,8 @@ export default function TokensPage() {
         'Tüm premium özellikler',
         '7/24 telefon desteği',
         '90 gün geçerlilik',
-        'Mühendis danışmanlığı',
-        'Özel raporlama'
+        'Telefon Desteği',
+        'Gelişmiş Raporlama'
       ]
     }
   ];
@@ -195,7 +195,7 @@ export default function TokensPage() {
         await loadTokenData();
         
         // Show success message
-        alert(`✅ ${selectedPackage.tokens} 🧠 token ba��arıyla hesabınıza eklendi!`);
+        alert(`✅ ${selectedPackage.tokens} 🧠 token başarıyla hesabınıza eklendi!`);
         
         // Log the purchase
         await authService.logUserActivity(
@@ -293,7 +293,7 @@ export default function TokensPage() {
                   <p className="text-2xl font-bold text-[#baf200]">
                     {tokens?.expiry_date ? 
                       Math.ceil((new Date(tokens.expiry_date).getTime() - Date.now()) / (1000 * 60 * 60 * 24)) 
-                      : '∞'
+                      : '��'
                     }
                   </p>
                   <p className="text-sm text-[#1e3237]/70">Gün kaldı</p>
