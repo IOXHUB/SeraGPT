@@ -40,7 +40,7 @@ export default function TokensPage() {
         '5 analiz token\'ı',
         'Her rapor 1 token harcar',
         'AI Asistan ücretsiz kullanım',
-        'Temel raporlar',
+        'Gelişmiş raporlar',
         'Email desteği'
       ]
     },
@@ -195,7 +195,7 @@ export default function TokensPage() {
         await loadTokenData();
         
         // Show success message
-        alert(`✅ ${selectedPackage.tokens} 🧠 token başarıyla hesabınıza eklendi!`);
+        alert(`✅ ${selectedPackage.tokens} 🧠 token ba��arıyla hesabınıza eklendi!`);
         
         // Log the purchase
         await authService.logUserActivity(
