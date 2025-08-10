@@ -121,8 +121,8 @@ export default function DashboardLayout({ children, title, subtitle }: Dashboard
                   </span>
                 </div>
 
-                {/* Homepage Nav Mobile */}
-                {homepageNavItems.map((item) => (
+                {/* Header Nav Mobile */}
+                {headerNavItems.map((item) => (
                   <a
                     key={item.href}
                     href={item.href}
