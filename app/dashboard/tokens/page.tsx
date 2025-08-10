@@ -281,7 +281,7 @@ export default function TokensPage() {
                   <p className="text-sm text-[#1e3237]/70">Toplam</p>
                 </div>
                 <div className="text-center">
-                  <p className="text-2xl font-bold text-[#baf200]">
+                  <p className="text-2xl font-bold text-[#baf200]" suppressHydrationWarning>
                     {tokens?.expiry_date ? 
                       Math.ceil((new Date(tokens.expiry_date).getTime() - new Date('2024-01-16T15:00:00.000Z').getTime()) / (1000 * 60 * 60 * 24)) 
                       : '��'
@@ -431,7 +431,7 @@ export default function TokensPage() {
                     ) : purchaseLoading === pkg.id ? (
                       <div className="flex items-center justify-center">
                         <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-current mr-2"></div>
-                        Satın Alınıyor...
+                        Satın Alın��yor...
                       </div>
                     ) : (
                       'Satın Al'
