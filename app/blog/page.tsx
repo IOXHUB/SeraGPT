@@ -4,7 +4,6 @@ import { motion } from 'framer-motion';
 import SEOHead from '@/components/SEOHead';
 import Footer from '@/components/Footer';
 import Link from 'next/link';
-import OptimizedImage from '@/components/ui/OptimizedImage';
 import { SEOService } from '@/lib/seo';
 import { useState, useEffect } from 'react';
 
