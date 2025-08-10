@@ -75,7 +75,7 @@ export default function AdminDashboard() {
       console.log('🔍 Testing external APIs...');
       const status = await externalApiService.getApiStatus();
       setApiStatusData(status);
-      console.log('📊 API Status:', status);
+      console.log('�� API Status:', status);
     } catch (error) {
       console.error('Failed to test APIs:', error);
     } finally {
@@ -513,6 +513,12 @@ export default function AdminDashboard() {
                 <div className="text-3xl mb-3">📊</div>
                 <h3 className="font-medium text-gray-900">Analitik Raporları</h3>
                 <p className="text-sm text-gray-600 mt-1">Detaylı sistem analitiği</p>
+              </a>
+
+              <a href="/admin/api-test" className="bg-green-50 rounded-lg border-2 border-green-200 p-6 hover:shadow-md transition-shadow">
+                <div className="text-3xl mb-3">🔌</div>
+                <h3 className="font-medium text-green-900">API Test</h3>
+                <p className="text-sm text-green-700 mt-1">Production API'lerini test et</p>
               </a>
               
               <a href="/admin/settings" className="bg-white rounded-lg border p-6 hover:shadow-md transition-shadow">
