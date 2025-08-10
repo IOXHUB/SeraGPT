@@ -8,6 +8,9 @@
 
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '@/lib/hooks/useAuth';
+
+// Force dynamic rendering to prevent SSR
+export const dynamic = 'force-dynamic';
 import { 
   runAllTests, 
   testAuthService, 
