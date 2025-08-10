@@ -69,6 +69,20 @@ export default function AdminDashboard() {
     }
   };
 
+  const testExternalApis = async () => {
+    setApiLoading(true);
+    try {
+      console.log('🔍 Testing external APIs...');
+      const status = await externalApiService.getApiStatus();
+      setApiStatusData(status);
+      console.log('📊 API Status:', status);
+    } catch (error) {
+      console.error('Failed to test APIs:', error);
+    } finally {
+      setApiLoading(false);
+    }
+  };
+
   // Redirect non-admin users
   if (!loading && user && !isAdmin()) {
     return (
