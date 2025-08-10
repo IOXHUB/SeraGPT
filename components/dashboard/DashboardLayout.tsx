@@ -104,35 +104,22 @@ export default function DashboardLayout({ children, title, subtitle }: Dashboard
 
           {/* Mobile Menu */}
           {mobileMenuOpen && (
-            <div className="md:hidden mt-4 py-4 border-t border-[#f6f8f9]/20">
+            <div className="md:hidden mt-4 py-4 border-t border-white/20">
               <div className="space-y-2">
                 {/* User Info Mobile */}
                 <div className="flex items-center space-x-3 px-4 py-2">
-                  <h2 className="text-lg font-semibold text-[#f6f8f9]">Volkan Ş.</h2>
+                  <h2 className="text-lg font-semibold text-white">Volkan Ş.</h2>
                   <span className="px-2 py-1 text-xs font-medium bg-[#baf200] text-[#1e3237] rounded-full">
                     Premium
                   </span>
                 </div>
-                
-                {/* Main Nav Mobile */}
-                {mainNavItems.map((item) => (
+
+                {/* Homepage Nav Mobile */}
+                {homepageNavItems.map((item) => (
                   <a
                     key={item.href}
                     href={item.href}
-                    className="block px-4 py-2 text-[#f6f8f9] hover:bg-[#f6f8f9]/10 rounded-lg mx-2 transition-all"
-                  >
-                    {item.name}
-                  </a>
-                ))}
-                
-                <div className="border-t border-[#f6f8f9]/20 my-2"></div>
-                
-                {/* Secondary Nav Mobile */}
-                {secondaryNavItems.map((item) => (
-                  <a
-                    key={item.href}
-                    href={item.href}
-                    className="block px-4 py-2 text-[#f6f8f9]/80 hover:bg-[#f6f8f9]/10 rounded-lg mx-2 transition-all"
+                    className="block px-4 py-2 text-white hover:bg-white/10 rounded-lg mx-2 transition-all"
                   >
                     {item.name}
                   </a>
