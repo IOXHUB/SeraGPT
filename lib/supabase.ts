@@ -3,13 +3,17 @@ import { createClient } from '@supabase/supabase-js'
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
 
-// Fallback values for build time when env vars might not be available
-const defaultUrl = 'https://placeholder.supabase.co'
-const defaultKey = 'placeholder-anon-key'
+// Production-safe fallbacks that won't cause network requests during build
+const defaultUrl = 'https://build-placeholder.local'
+const defaultKey = 'build-placeholder-key'
 
-// Use fallback values during build or when env vars are missing
-const url = supabaseUrl || defaultUrl
-const key = supabaseAnonKey || defaultKey
+// Only use real values if they're properly set, otherwise use safe defaults
+const url = (supabaseUrl && supabaseUrl !== 'undefined' && !supabaseUrl.includes('placeholder'))
+  ? supabaseUrl
+  : defaultUrl
+const key = (supabaseAnonKey && supabaseAnonKey !== 'undefined' && !supabaseAnonKey.includes('placeholder'))
+  ? supabaseAnonKey
+  : defaultKey
 
 export const supabase = createClient(url, key, {
   auth: {
