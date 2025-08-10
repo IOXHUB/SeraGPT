@@ -161,90 +161,10 @@ export default function DashboardPage() {
   }
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: '#146448' }}>
-      {/* Header */}
-      <header className="border-b" style={{ backgroundColor: '#146448', borderBottomColor: '#1e3237' }}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            {/* Logo */}
-            <div className="flex items-center">
-              <img
-                src="https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2F01c1e8a05ef6424b912d584875377957?format=webp&width=800"
-                alt="SeraGPT Logo"
-                className="h-8 w-auto"
-              />
-            </div>
-
-            {/* Navigation */}
-            <nav className="hidden md:flex space-x-8">
-              <button
-                onClick={() => setActiveTab('overview')}
-                className={`px-3 py-2 text-sm font-medium transition-colors ${
-                  activeTab === 'overview' 
-                    ? 'text-white border-b-2 border-[#baf200]' 
-                    : 'text-white/80 hover:text-white'
-                }`}
-              >
-                Genel Bakış
-              </button>
-              <button
-                onClick={() => setActiveTab('analyses')}
-                className={`px-3 py-2 text-sm font-medium transition-colors ${
-                  activeTab === 'analyses' 
-                    ? 'text-white border-b-2 border-[#baf200]' 
-                    : 'text-white/80 hover:text-white'
-                }`}
-              >
-                Analizler
-              </button>
-              <button
-                onClick={() => setActiveTab('reports')}
-                className={`px-3 py-2 text-sm font-medium transition-colors ${
-                  activeTab === 'reports' 
-                    ? 'text-white border-b-2 border-[#baf200]' 
-                    : 'text-white/80 hover:text-white'
-                }`}
-              >
-                Raporlar
-              </button>
-            </nav>
-
-            {/* User Actions */}
-            <div className="flex items-center space-x-4">
-              <Link 
-                href="/dashboard/analysis/roi"
-                className="px-4 py-2 rounded-lg font-medium transition-all hover:opacity-90"
-                style={{ backgroundColor: '#baf200', color: '#1e3237' }}
-              >
-                Yeni Analiz
-              </Link>
-              <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center">
-                <span className="text-sm font-medium text-white">
-                  {profile?.full_name ? profile.full_name.charAt(0).toUpperCase() : 'U'}
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </header>
-
-      {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Welcome Section */}
-        <div className="mb-8">
-          <h1 
-            className="text-3xl font-bold mb-2"
-            style={{ color: '#f6f8f9' }}
-          >
-            Hoş Geldiniz{profile?.full_name ? `, ${profile.full_name}` : ''}
-          </h1>
-          <p 
-            className="text-lg"
-            style={{ color: '#f6f8f9', opacity: 0.8 }}
-          >
-            Sera yatırım analizlerinizi yönetin ve raporlarınızı görüntüleyin
-          </p>
-        </div>
+    <DashboardLayout
+      title={`Dashboard${profile?.full_name ? ` - Hoş Geldiniz ${profile.full_name}` : ''}`}
+      subtitle="Sera yatırım analizlerinizi yönetin, AI asistanınızla konuşun ve raporlarınızı görüntüleyin"
+    >
 
         {/* Stats Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
@@ -635,7 +555,6 @@ export default function DashboardPage() {
             </div>
           </div>
         </div>
-      </main>
-    </div>
+    </DashboardLayout>
   );
 }
