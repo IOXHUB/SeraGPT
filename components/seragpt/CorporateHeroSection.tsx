@@ -56,7 +56,7 @@ export default function CorporateHeroSection() {
               <a href="#" className="text-slate-600 hover:text-blue-600 font-medium transition-colors">Ürünler</a>
               <a href="#" className="text-slate-600 hover:text-blue-600 font-medium transition-colors">Kurumsal</a>
               <a href="#" className="text-slate-600 hover:text-blue-600 font-medium transition-colors">Destek</a>
-              <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-semibold transition-colors">
+              <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-base font-medium transition-colors">
                 Demo Talep Et
               </button>
             </nav>
@@ -92,14 +92,14 @@ export default function CorporateHeroSection() {
               <motion.button
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg text-lg font-semibold shadow-lg transition-all"
+                className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-base font-medium shadow-md transition-all"
               >
                 Ücretsiz Konsültasyon
               </motion.button>
               <motion.button
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="border-2 border-slate-300 hover:border-blue-600 text-slate-700 hover:text-blue-600 px-8 py-4 rounded-lg text-lg font-semibold transition-all"
+                className="border-2 border-slate-300 hover:border-blue-600 text-slate-700 hover:text-blue-600 px-4 py-2 rounded-lg text-base font-medium transition-all"
               >
                 Ürün Demosu
               </motion.button>
@@ -202,7 +202,7 @@ export default function CorporateHeroSection() {
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     type="submit"
-                    className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors"
+                    className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-base font-medium transition-colors"
                   >
                     Gönder
                   </motion.button>

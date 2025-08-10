@@ -4,6 +4,9 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import DashboardLayout from '@/components/dashboard/DashboardLayout';
 
+// Force dynamic rendering to prevent SSR
+export const dynamic = 'force-dynamic';
+
 const faqData = [
   {
     id: 1,
@@ -27,7 +30,7 @@ const faqData = [
   },
   {
     id: 5,
-    question: 'Mühendislik danışmanlığı nasıl alınır?',
+    question: 'Mühendislik danışmanlığ�� nasıl alınır?',
     answer: 'Danışmanlık sekmesinden uzman mühendislerimize bağlanabilirsiniz. Sera kurulum, ekipman seçimi, sistem optimizasyonu gibi konularda profesyonel destek alabilirsiniz.'
   },
   {
@@ -75,7 +78,7 @@ export default function HelpPage() {
 
   return (
     <DashboardLayout>
-      <div className="min-h-screen bg-gray-50 text-gray-600">
+      <div className="min-h-screen bg-[#f6f8f9] text-[#1e3237]">
         <div className="max-w-4xl mx-auto space-y-8">
           {/* Page Header */}
           <motion.div
@@ -83,8 +86,8 @@ export default function HelpPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <h1 className="text-3xl font-bold text-gray-900">Yardım ve Destek</h1>
-            <p className="text-gray-600 mt-1">SeraGPT kullanımı hakkında rehberler ve sıkça sorulan sorular</p>
+            <h1 className="text-3xl font-bold text-[#1e3237]">Yardım ve Destek</h1>
+            <p className="text-[#1e3237]/70 mt-1">SeraGPT kullanımı hakkında rehberler ve sıkça sorulan sorular</p>
           </motion.div>
 
           {/* Tabs */}
@@ -92,15 +95,15 @@ export default function HelpPage() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="bg-white rounded-2xl shadow-sm border border-gray-200"
+            className="bg-[#f6f8f9] rounded-2xl shadow-lg border border-gray-200"
           >
             <div className="flex border-b border-gray-200">
               <button
                 onClick={() => setActiveTab('faq')}
                 className={`px-6 py-4 text-sm font-medium transition-colors ${
                   activeTab === 'faq'
-                    ? 'text-gray-900 border-b-2 border-gray-600'
-                    : 'text-gray-500 hover:text-gray-700'
+                    ? 'text-[#1e3237] border-b-2 border-[#146448]'
+                    : 'text-[#1e3237]/60 hover:text-[#1e3237]'
                 }`}
               >
                 Sıkça Sorulan Sorular
@@ -109,8 +112,8 @@ export default function HelpPage() {
                 onClick={() => setActiveTab('guide')}
                 className={`px-6 py-4 text-sm font-medium transition-colors ${
                   activeTab === 'guide'
-                    ? 'text-gray-900 border-b-2 border-gray-600'
-                    : 'text-gray-500 hover:text-gray-700'
+                    ? 'text-[#1e3237] border-b-2 border-[#146448]'
+                    : 'text-[#1e3237]/60 hover:text-[#1e3237]'
                 }`}
               >
                 Kullanım Rehberi
@@ -119,8 +122,8 @@ export default function HelpPage() {
                 onClick={() => setActiveTab('contact')}
                 className={`px-6 py-4 text-sm font-medium transition-colors ${
                   activeTab === 'contact'
-                    ? 'text-gray-900 border-b-2 border-gray-600'
-                    : 'text-gray-500 hover:text-gray-700'
+                    ? 'text-[#1e3237] border-b-2 border-[#146448]'
+                    : 'text-[#1e3237]/60 hover:text-[#1e3237]'
                 }`}
               >
                 İletişim
@@ -137,19 +140,19 @@ export default function HelpPage() {
                   className="space-y-4"
                 >
                   {faqData.map((faq) => (
-                    <div key={faq.id} className="border border-gray-200 rounded-lg">
+                    <div key={faq.id} className="border border-gray-200 rounded-lg bg-white shadow-sm">
                       <button
                         onClick={() => toggleFAQ(faq.id)}
-                        className="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-gray-50 transition-colors"
+                        className="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-[#f6f8f9] transition-colors"
                       >
-                        <span className="font-medium text-gray-900">{faq.question}</span>
+                        <span className="font-medium text-[#1e3237]">{faq.question}</span>
                         <span className={`transform transition-transform ${openFAQ === faq.id ? 'rotate-180' : ''}`}>
                           ▼
                         </span>
                       </button>
                       {openFAQ === faq.id && (
                         <div className="px-6 pb-4 border-t border-gray-200">
-                          <p className="text-gray-600 pt-4">{faq.answer}</p>
+                          <p className="text-[#1e3237]/80 pt-4">{faq.answer}</p>
                         </div>
                       )}
                     </div>
@@ -165,23 +168,23 @@ export default function HelpPage() {
                   transition={{ duration: 0.4 }}
                   className="space-y-6"
                 >
-                  <h2 className="text-xl font-semibold text-gray-900">Adım Adım Kullanım Rehberi</h2>
+                  <h2 className="text-xl font-semibold text-[#1e3237]">Adım Adım Kullanım Rehberi</h2>
                   <div className="space-y-6">
                     {guideSteps.map((guide) => (
                       <div key={guide.step} className="flex items-start space-x-4">
-                        <div className="w-8 h-8 bg-gray-600 text-white rounded-full flex items-center justify-center font-semibold text-sm">
+                        <div className="w-8 h-8 bg-[#146448] text-white rounded-full flex items-center justify-center font-semibold text-sm">
                           {guide.step}
                         </div>
                         <div>
-                          <h3 className="font-semibold text-gray-900 mb-1">{guide.title}</h3>
-                          <p className="text-gray-600">{guide.description}</p>
+                          <h3 className="font-semibold text-[#1e3237] mb-1">{guide.title}</h3>
+                          <p className="text-[#1e3237]/80">{guide.description}</p>
                         </div>
                       </div>
                     ))}
                   </div>
                   
-                  <div className="bg-gray-50 rounded-lg p-6 mt-8">
-                    <h3 className="font-semibold text-gray-900 mb-3">Video Rehberler</h3>
+                  <div className="bg-white rounded-lg p-6 mt-8 shadow-sm">
+                    <h3 className="font-semibold text-[#1e3237] mb-3">Video Rehberler</h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div className="bg-white rounded-lg p-4 border border-gray-200">
                         <h4 className="font-medium text-gray-900 mb-2">ROI Analizi Nasıl Yapılır?</h4>
@@ -284,7 +287,7 @@ export default function HelpPage() {
                       
                       <button
                         type="submit"
-                        className="bg-gray-600 hover:bg-gray-700 text-white px-6 py-2 rounded-lg font-medium transition-colors"
+                        className="bg-[#baf200] hover:bg-[#baf200]/90 text-[#1e3237] px-6 py-2 rounded-lg font-medium transition-colors"
                       >
                         Mesaj Gönder
                       </button>

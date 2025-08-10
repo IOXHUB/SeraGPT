@@ -5,6 +5,9 @@ import { motion } from 'framer-motion';
 import DashboardLayout from '@/components/dashboard/DashboardLayout';
 import { layoutService, LayoutSpecs, Layout2D, LayoutAnalysis } from '@/lib/services/layout-service';
 
+// Force dynamic rendering to prevent SSR
+export const dynamic = 'force-dynamic';
+
 export default function LayoutPlanningPage() {
   const [currentStep, setCurrentStep] = useState(1);
   const [loading, setLoading] = useState(false);
@@ -299,7 +302,7 @@ export default function LayoutPlanningPage() {
 
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
-              Geçit Genişliği (metre)
+              Geçit Genişli��i (metre)
             </label>
             <input
               type="number"
@@ -632,7 +635,10 @@ export default function LayoutPlanningPage() {
   };
 
   return (
-    <DashboardLayout>
+    <DashboardLayout
+      title="Layout Planlama"
+      subtitle="2D/3D sera layout tasarımı ve CAD AI Tools entegrasyonu"
+    >
       <div className="min-h-screen bg-gray-50 text-gray-600">
         <div className="max-w-6xl mx-auto space-y-8">
           {/* Header */}

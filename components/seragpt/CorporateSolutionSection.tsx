@@ -157,14 +157,14 @@ export default function CorporateSolutionSection() {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="bg-white text-blue-600 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-blue-50 transition-colors"
+              className="bg-white text-blue-600 px-4 py-2 rounded-lg text-base font-medium hover:bg-blue-50 transition-colors"
             >
               Enterprise Demo
             </motion.button>
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="border-2 border-white text-white hover:bg-white hover:text-blue-600 px-8 py-4 rounded-lg text-lg font-semibold transition-colors"
+              className="border-2 border-white text-white hover:bg-white hover:text-blue-600 px-4 py-2 rounded-lg text-base font-medium transition-colors"
             >
               Fiyat Teklifi Al
             </motion.button>

@@ -40,7 +40,7 @@ export function PDFPreview({ isOpen, onClose, content, language }: PDFPreviewPro
     const element = document.createElement('a')
     const file = new Blob([content], { type: 'text/plain' })
     element.href = URL.createObjectURL(file)
-    element.download = `seragpt-report-${Date.now()}.txt`
+    element.download = `seragpt-report-${new Date().toISOString().split('T')[0]}.txt`
     document.body.appendChild(element)
     element.click()
     document.body.removeChild(element)
@@ -107,11 +107,7 @@ export function PDFPreview({ isOpen, onClose, content, language }: PDFPreviewPro
               <div className="border-b border-gray-200 pb-4 mb-6">
                 <h1 className="text-2xl font-bold text-gray-900 mb-2">SeraGPT Raporu</h1>
                 <p className="text-gray-600">
-                  {new Date().toLocaleDateString(language === 'tr' ? 'tr-TR' : 'en-US', {
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric'
-                  })}
+                  {language === 'tr' ? '16 Ocak 2024' : 'January 16, 2024'}
                 </p>
               </div>
               

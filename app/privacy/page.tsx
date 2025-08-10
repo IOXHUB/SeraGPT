@@ -4,6 +4,9 @@ import { motion } from 'framer-motion';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
+// Force dynamic rendering due to Header using useAuth
+export const dynamic = 'force-dynamic';
+
 export default function PrivacyPage() {
   const sections = [
     { title: "Neleri topladığımız ve neden", href: "#what-we-collect" },

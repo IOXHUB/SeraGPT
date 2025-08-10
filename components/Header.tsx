@@ -2,11 +2,12 @@
 
 import { motion } from 'framer-motion';
 import { useState } from 'react';
+import SeraGPTLogo from './ui/SeraGPTLogo';
 import { useAuth } from '../lib/hooks/useAuth';
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const { user, loading } = useAuth();
+  const { user, loading, signOut, isAdmin } = useAuth();
 
   return (
     <header className="w-full bg-gray-50">
@@ -14,23 +15,19 @@ export default function Header() {
         {/* Logo - clickable to homepage */}
         <div className="flex items-center space-x-3">
           <a href="/" className="flex items-center space-x-3">
-            <img
-              src="https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2F96da5382e9584c3fb2d32eca60944359?format=webp&width=800"
-              alt="SeraGPT Logo"
-              className="h-8 w-auto"
-            />
+<SeraGPTLogo size="md" priority />
           </a>
         </div>
 
         {/* Center navigation - 3 links */}
         <nav className="hidden md:flex items-center space-x-8">
-          <a href="#" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
+          <a href="/danismanlik" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
             Danışmanlık
           </a>
-          <a href="#" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
+          <a href="/anahtar-teslim-proje" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
             Anahtar Teslim Proje
           </a>
-          <a href="/dashboard/help" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
+          <a href="/destek" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
             Destek
           </a>
         </nav>
@@ -40,17 +37,30 @@ export default function Header() {
           {!loading && (
             <>
               {user ? (
-                // For logged in users - show Dashboard
-                <a href="/dashboard" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
-                  Dashboard
-                </a>
+                // For logged in users - show Dashboard and optional Admin
+                <div className="flex items-center space-x-4">
+                  <a href="/dashboard/direct" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
+                    Dashboard
+                  </a>
+                  {isAdmin() && (
+                    <a href="/admin/auth" className="text-purple-700 hover:text-purple-900 font-medium transition-colors">
+                      👑 Admin
+                    </a>
+                  )}
+                  <button
+                    onClick={signOut}
+                    className="text-gray-700 hover:text-gray-900 font-medium transition-colors"
+                  >
+                    Çıkış
+                  </button>
+                </div>
               ) : (
                 // For logged out users - show Login or Sign Up CTA
                 <>
                   <a href="/auth/login" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
                     Giriş Yap
                   </a>
-                  <a href="/dashboard" className="bg-gray-600 text-white px-6 py-2 rounded-xl font-semibold hover:bg-gray-800 transition-colors">
+                  <a href="/auth/login" className="bg-gray-600 text-white px-6 py-2 rounded-xl font-semibold hover:bg-gray-800 transition-colors">
                     Ücretsiz Başla
                   </a>
                 </>
@@ -87,21 +97,21 @@ export default function Header() {
             {/* Center navigation links */}
             <div className="space-y-3">
               <a
-                href="#"
+                href="/danismanlik"
                 className="block text-gray-700 hover:text-gray-900 font-medium transition-colors py-2"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Danışmanlık
               </a>
               <a
-                href="#"
+                href="/anahtar-teslim-proje"
                 className="block text-gray-700 hover:text-gray-900 font-medium transition-colors py-2"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Anahtar Teslim Proje
               </a>
               <a
-                href="/dashboard/help"
+                href="/destek"
                 className="block text-gray-700 hover:text-gray-900 font-medium transition-colors py-2"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
@@ -117,14 +127,34 @@ export default function Header() {
               {!loading && (
                 <>
                   {user ? (
-                    // For logged in users - show Dashboard
-                    <a
-                      href="/dashboard"
-                      className="block text-gray-700 hover:text-gray-900 font-medium transition-colors py-2"
-                      onClick={() => setIsMobileMenuOpen(false)}
-                    >
-                      Dashboard
-                    </a>
+                    // For logged in users - show Dashboard and optional Admin
+                    <>
+                      <a
+                        href="/dashboard/direct"
+                        className="block text-gray-700 hover:text-gray-900 font-medium transition-colors py-2"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                      >
+                        Dashboard
+                      </a>
+                      {isAdmin() && (
+                        <a
+                          href="/admin/auth"
+                          className="block text-purple-700 hover:text-purple-900 font-medium transition-colors py-2"
+                          onClick={() => setIsMobileMenuOpen(false)}
+                        >
+                          👑 Admin Panel
+                        </a>
+                      )}
+                      <button
+                        onClick={() => {
+                          signOut();
+                          setIsMobileMenuOpen(false);
+                        }}
+                        className="block w-full text-left text-gray-700 hover:text-gray-900 font-medium transition-colors py-2"
+                      >
+                        Çıkış Yap
+                      </button>
+                    </>
                   ) : (
                     // For logged out users - show Login and Sign Up
                     <>
@@ -136,7 +166,7 @@ export default function Header() {
                         Giriş Yap
                       </a>
                       <a
-                        href="/dashboard"
+                        href="/auth/login"
                         className="block bg-gray-600 hover:bg-gray-800 text-white px-4 py-3 rounded-xl font-medium transition-colors text-center"
                         onClick={() => setIsMobileMenuOpen(false)}
                       >

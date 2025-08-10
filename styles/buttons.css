@@ -1,0 +1,439 @@
+/* ====================================
+   SERAGPT BUTTON SYSTEM
+   ====================================
+   
+   Consistent button styles for all components
+   Uses design tokens for maintainability
+*/
+
+@import './design-tokens.css';
+
+/* ====================================
+   BASE BUTTON STYLES
+   ==================================== */
+
+.btn {
+  /* Reset */
+  border: none;
+  background: none;
+  padding: 0;
+  margin: 0;
+  
+  /* Base styles */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  
+  font-family: var(--font-family-primary);
+  font-weight: var(--font-weight-medium);
+  text-decoration: none;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  
+  border-radius: var(--radius-lg);
+  transition: all var(--transition-base);
+  cursor: pointer;
+  user-select: none;
+  
+  /* Focus styles */
+  outline: none;
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--color-brand-primary);
+  outline-offset: 2px;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ====================================
+   BUTTON SIZES
+   ==================================== */
+
+/* Small buttons */
+.btn-sm {
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--font-size-xs);
+  line-height: var(--line-height-tight);
+  min-height: 2rem;
+}
+
+/* Base buttons */
+.btn-base {
+  padding: var(--space-3) var(--space-4);
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-snug);
+  min-height: 2.5rem;
+}
+
+/* Large buttons */
+.btn-lg {
+  padding: var(--space-4) var(--space-6);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-snug);
+  min-height: 3rem;
+}
+
+/* Extra large buttons */
+.btn-xl {
+  padding: var(--space-5) var(--space-8);
+  font-size: var(--font-size-lg);
+  line-height: var(--line-height-snug);
+  min-height: 3.5rem;
+}
+
+/* ====================================
+   BUTTON VARIANTS
+   ==================================== */
+
+/* Primary button - main brand action */
+.btn-primary {
+  background-color: var(--color-brand-primary);
+  color: white;
+  border: 1px solid var(--color-brand-primary);
+  box-shadow: var(--shadow-brand);
+}
+
+.btn-primary:hover {
+  background-color: #7c3aed;
+  border-color: #7c3aed;
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-lg);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+  box-shadow: var(--shadow-base);
+}
+
+/* Secondary button - secondary actions */
+.btn-secondary {
+  background-color: var(--color-brand-secondary);
+  color: white;
+  border: 1px solid var(--color-brand-secondary);
+}
+
+.btn-secondary:hover {
+  background-color: #0891b2;
+  border-color: #0891b2;
+  transform: translateY(-1px);
+}
+
+/* Success button - positive actions */
+.btn-success {
+  background-color: var(--color-brand-success);
+  color: white;
+  border: 1px solid var(--color-brand-success);
+  box-shadow: var(--shadow-success);
+}
+
+.btn-success:hover {
+  background-color: #16a34a;
+  border-color: #16a34a;
+  transform: translateY(-1px);
+}
+
+/* Warning button - caution actions */
+.btn-warning {
+  background-color: var(--color-brand-warning);
+  color: white;
+  border: 1px solid var(--color-brand-warning);
+}
+
+.btn-warning:hover {
+  background-color: #d97706;
+  border-color: #d97706;
+  transform: translateY(-1px);
+}
+
+/* Error button - destructive actions */
+.btn-error {
+  background-color: var(--color-brand-error);
+  color: white;
+  border: 1px solid var(--color-brand-error);
+  box-shadow: var(--shadow-error);
+}
+
+.btn-error:hover {
+  background-color: #dc2626;
+  border-color: #dc2626;
+  transform: translateY(-1px);
+}
+
+/* ====================================
+   OUTLINE BUTTONS
+   ==================================== */
+
+.btn-outline {
+  background-color: transparent;
+  border: 1px solid var(--color-border-strong);
+  color: var(--color-text-primary);
+}
+
+.btn-outline:hover {
+  background-color: var(--color-gray-50);
+  border-color: var(--color-brand-primary);
+  color: var(--color-brand-primary);
+}
+
+.btn-outline-primary {
+  background-color: transparent;
+  border: 1px solid var(--color-brand-primary);
+  color: var(--color-brand-primary);
+}
+
+.btn-outline-primary:hover {
+  background-color: var(--color-brand-primary);
+  color: white;
+}
+
+.btn-outline-secondary {
+  background-color: transparent;
+  border: 1px solid var(--color-brand-secondary);
+  color: var(--color-brand-secondary);
+}
+
+.btn-outline-secondary:hover {
+  background-color: var(--color-brand-secondary);
+  color: white;
+}
+
+/* ====================================
+   GHOST BUTTONS
+   ==================================== */
+
+.btn-ghost {
+  background-color: transparent;
+  border: 1px solid transparent;
+  color: var(--color-text-secondary);
+}
+
+.btn-ghost:hover {
+  background-color: var(--color-gray-100);
+  color: var(--color-text-primary);
+}
+
+.btn-ghost-primary {
+  background-color: transparent;
+  border: 1px solid transparent;
+  color: var(--color-brand-primary);
+}
+
+.btn-ghost-primary:hover {
+  background-color: #f3f4f6;
+  color: var(--color-brand-primary);
+}
+
+/* ====================================
+   SPECIAL BUTTONS
+   ==================================== */
+
+/* Gradient button */
+.btn-gradient {
+  background: linear-gradient(135deg, var(--color-brand-primary), var(--color-brand-secondary));
+  color: white;
+  border: 1px solid transparent;
+  box-shadow: var(--shadow-brand);
+}
+
+.btn-gradient:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Dark button */
+.btn-dark {
+  background-color: var(--color-gray-900);
+  color: white;
+  border: 1px solid var(--color-gray-900);
+}
+
+.btn-dark:hover {
+  background-color: var(--color-gray-800);
+  border-color: var(--color-gray-800);
+  transform: translateY(-1px);
+}
+
+/* Light button */
+.btn-light {
+  background-color: var(--color-gray-100);
+  color: var(--color-text-primary);
+  border: 1px solid var(--color-gray-200);
+}
+
+.btn-light:hover {
+  background-color: var(--color-gray-200);
+  border-color: var(--color-gray-300);
+}
+
+/* ====================================
+   BUTTON GROUPS
+   ==================================== */
+
+.btn-group {
+  display: inline-flex;
+  align-items: center;
+}
+
+.btn-group .btn {
+  border-radius: 0;
+  margin-left: -1px;
+}
+
+.btn-group .btn:first-child {
+  border-top-left-radius: var(--radius-lg);
+  border-bottom-left-radius: var(--radius-lg);
+  margin-left: 0;
+}
+
+.btn-group .btn:last-child {
+  border-top-right-radius: var(--radius-lg);
+  border-bottom-right-radius: var(--radius-lg);
+}
+
+.btn-group .btn:hover {
+  z-index: 1;
+  position: relative;
+}
+
+/* ====================================
+   ICON BUTTONS
+   ==================================== */
+
+.btn-icon {
+  padding: var(--space-3);
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.btn-icon.btn-sm {
+  padding: var(--space-2);
+  width: 2rem;
+  height: 2rem;
+}
+
+.btn-icon.btn-lg {
+  padding: var(--space-4);
+  width: 3rem;
+  height: 3rem;
+}
+
+.btn-icon.btn-xl {
+  padding: var(--space-5);
+  width: 3.5rem;
+  height: 3.5rem;
+}
+
+/* ====================================
+   LOADING STATES
+   ==================================== */
+
+.btn-loading {
+  position: relative;
+  color: transparent;
+}
+
+.btn-loading::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid currentColor;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  color: currentColor;
+  opacity: 0.7;
+}
+
+@keyframes spin {
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+/* ====================================
+   FULL WIDTH BUTTONS
+   ==================================== */
+
+.btn-full {
+  width: 100%;
+}
+
+.btn-full-mobile {
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .btn-full-mobile {
+    width: auto;
+  }
+}
+
+/* ====================================
+   RESPONSIVE BUTTONS
+   ==================================== */
+
+@media (max-width: 767px) {
+  .btn-base {
+    padding: var(--space-3) var(--space-4);
+    font-size: var(--font-size-xs);
+    min-height: 2.25rem;
+  }
+  
+  .btn-lg {
+    padding: var(--space-3) var(--space-5);
+    font-size: var(--font-size-sm);
+    min-height: 2.5rem;
+  }
+  
+  .btn-xl {
+    padding: var(--space-4) var(--space-6);
+    font-size: var(--font-size-base);
+    min-height: 3rem;
+  }
+}
+
+/* ====================================
+   BUTTON COMBINATIONS (UTILITY CLASSES)
+   ==================================== */
+
+/* Most common combinations for easy use */
+.btn-primary-lg {
+  @apply btn btn-primary btn-lg;
+}
+
+.btn-secondary-base {
+  @apply btn btn-secondary btn-base;
+}
+
+.btn-outline-sm {
+  @apply btn btn-outline btn-sm;
+}
+
+.btn-ghost-icon {
+  @apply btn btn-ghost btn-icon;
+}
+
+/* SeraGPT specific button combinations */
+.seragpt-cta {
+  @apply btn btn-gradient btn-lg;
+  font-weight: var(--font-weight-semibold);
+}
+
+.seragpt-secondary {
+  @apply btn btn-outline-primary btn-base;
+}
+
+.seragpt-minimal {
+  @apply btn btn-ghost-primary btn-base;
+}

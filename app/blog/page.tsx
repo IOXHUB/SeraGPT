@@ -2,8 +2,7 @@
 
 import { motion } from 'framer-motion';
 import SEOHead from '@/components/SEOHead';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+import Link from 'next/link';
 import { SEOService } from '@/lib/seo';
 import { useState, useEffect } from 'react';
 
@@ -12,41 +11,39 @@ export const dynamic = 'force-dynamic';
 
 export default function BlogPage() {
   const [seoConfig, setSeoConfig] = useState(SEOService.generateBlogPageSEO());
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
   useEffect(() => {
     setSeoConfig(SEOService.generateBlogPageSEO());
   }, []);
 
-  const featuredPost = {
-    id: 1,
-    slug: "sera-teknolojilerinde-2025-yenilikleri",
-    title: "Sera Teknolojilerinde 2025 Yenilikleri",
-    excerpt: "Modern sera teknolojileri ile tarımsal verimliliği artırmanın yolları. İklim kontrolü, otomasyon sistemleri ve sürdürülebilir tarım uygulamalarında son gelişmeler.",
-    image: "https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2F382157220f6b4482a9c765091441c587",
-    date: "15 Ocak 2025",
-    category: "Tarım Teknolojisi"
-  };
-
   const categories = [
-    { name: "Veriye Dayalı Tarım", color: "bg-blue-100", textColor: "text-blue-900", slug: "veriye-dayali-tarim" },
-    { name: "Gizli Maliyetler", color: "bg-red-100", textColor: "text-red-900", slug: "gizli-maliyetler" },
-    { name: "Akıllı Sera Modelleri", color: "bg-purple-100", textColor: "text-purple-900", slug: "akilli-sera-modelleri" },
-    { name: "Tarımsal Zeka", color: "bg-yellow-100", textColor: "text-yellow-900", slug: "tarimsal-zeka" },
-    { name: "ROI & Maliyet İçerikleri", color: "bg-green-100", textColor: "text-green-900", slug: "roi-maliyet" },
-    { name: "İklim Krizi ve Tarım", color: "bg-orange-100", textColor: "text-orange-900", slug: "iklim-krizi-tarim" },
-    { name: "Ticari Ürün Rehberi", color: "bg-teal-100", textColor: "text-teal-900", slug: "ticari-urun-rehberi" },
-    { name: "Tarımda Kadın Eli", color: "bg-pink-100", textColor: "text-pink-900", slug: "tarimda-kadin-eli" },
-    { name: "Sera Mimarlığı & Tasarım", color: "bg-indigo-100", textColor: "text-indigo-900", slug: "sera-mimarligi-tasarim" }
+    { name: "Tümü", color: "bg-[#146448]", textColor: "text-white", slug: "all", count: 6 },
+    { name: "Veriye Dayalı Tarım", color: "bg-[#146448]/10", textColor: "text-[#1e3237]", slug: "veriye-dayali-tarim", count: 2 },
+    { name: "Gizli Maliyetler", color: "bg-[#baf200]/20", textColor: "text-[#1e3237]", slug: "gizli-maliyetler", count: 1 },
+    { name: "ROI & Maliyet", color: "bg-[#146448]/15", textColor: "text-[#1e3237]", slug: "roi-maliyet", count: 1 },
+    { name: "İklim & Tarım", color: "bg-[#baf200]/25", textColor: "text-[#1e3237]", slug: "iklim-krizi-tarim", count: 1 },
+    { name: "Sera Mimarlığı", color: "bg-[#146448]/12", textColor: "text-[#1e3237]", slug: "sera-mimarligi-tasarim", count: 1 }
   ];
 
-  const latestPosts = [
+  const allPosts = [
+    {
+      id: 1,
+      slug: "sera-teknolojilerinde-2025-yenilikleri",
+      title: "Sera Teknolojilerinde 2025 Yenilikleri",
+      excerpt: "Modern sera teknolojileri ile tarımsal verimliliği artırmanın yolları. İklim kontrolü, otomasyon sistemleri ve sürdürülebilir tarım.",
+      image: "https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2F382157220f6b4482a9c765091441c587",
+      date: "15 Ocak 2025",
+      category: "veriye-dayali-tarim"
+    },
     {
       id: 2,
       slug: "gizli-maliyetler-sera-yatirimi",
       title: "Gizli Maliyetler: Sera Yatırımında Dikkat Edilmesi Gerekenler",
       excerpt: "Sera kurulumunda öngörülmeyen masraflar ve bunlardan nasıl kaçınılır?",
       image: "https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2Fa9783275f0b14277aa1513bc9ca47a7b",
-      date: "12 Ocak 2025"
+      date: "12 Ocak 2025",
+      category: "gizli-maliyetler"
     },
     {
       id: 3,
@@ -54,7 +51,8 @@ export default function BlogPage() {
       title: "ROI & Maliyet Analizi: Sera Yatırımının Geri Dönüşü",
       excerpt: "Sera yatırımının karlılık analizi ve geri dönüş süresi hesaplamaları.",
       image: "https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2Fd1956ad26a134fa1b292da0acfb10217",
-      date: "10 Ocak 2025"
+      date: "10 Ocak 2025",
+      category: "roi-maliyet"
     },
     {
       id: 4,
@@ -62,7 +60,8 @@ export default function BlogPage() {
       title: "İklim Krizi ve Tarım: Sürdürülebilir Çözümler",
       excerpt: "İklim değişikliğinin tarıma etkileri ve sera teknolojileri ile alınacak önlemler.",
       image: "https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2F10278e2b44aa42168429a20e4e5a9fb8",
-      date: "8 Ocak 2025"
+      date: "8 Ocak 2025",
+      category: "iklim-krizi-tarim"
     },
     {
       id: 5,
@@ -70,120 +69,145 @@ export default function BlogPage() {
       title: "Ticari Ürün Rehberi: Hangi Sebze En Karlı?",
       excerpt: "Sera üretiminde en karlı sebze türleri ve pazar analizi.",
       image: "https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2F4abcdd109aff4ed9bb3759b448e84aef",
-      date: "5 Ocak 2025"
+      date: "5 Ocak 2025",
+      category: "veriye-dayali-tarim"
     },
     {
       id: 6,
-      slug: "tarimda-kadin-eli",
-      title: "Tarımda Kadın Eli: Teknoloji ve Fırsat Eşitliği",
-      excerpt: "Tarım sektöründe kadın girişimciler ve teknolojinin rolü.",
-      image: "https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2F405802b9b3874e1ea1f0d929fac155b6",
-      date: "3 Ocak 2025"
-    },
-    {
-      id: 7,
       slug: "sera-mimarligi-tasarim",
       title: "Sera Mimarlığı & Tasarım: Verimlilik Odaklı Yaklaşım",
       excerpt: "Modern sera tasarımında dikkat edilmesi gereken kriterler ve mimari detaylar.",
       image: "https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2Fc9cd6cb37b81445aabef80d84b74e313",
-      date: "1 Ocak 2025"
+      date: "1 Ocak 2025",
+      category: "sera-mimarligi-tasarim"
     }
   ];
+
+  const filteredPosts = selectedCategory && selectedCategory !== 'all'
+    ? allPosts.filter(post => post.category === selectedCategory)
+    : allPosts;
 
   return (
     <>
       <SEOHead config={seoConfig} />
-      <div className="min-h-screen bg-white">
-        {/* Header */}
-        <Header />
+      <div className="min-h-screen" style={{ backgroundColor: '#146448' }}>
+        {/* Header - matching homepage */}
+        <header className="py-4" style={{ backgroundColor: '#146448' }}>
+          <div className="max-w-[1200px] mx-auto px-6">
+            <div className="flex items-center justify-between">
+              {/* Logo */}
+              <div className="flex items-center">
+                <Link href="/">
+                  <img
+                    src="https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2F01c1e8a05ef6424b912d584875377957?format=webp&width=800"
+                    alt="SeraGPT Logo"
+                    className="h-12 w-auto object-contain"
+                  />
+                </Link>
+              </div>
 
-        {/* Main Content */}
-        <main className="max-w-6xl mx-auto px-6 py-12">
+              {/* Navigation */}
+              <nav className="hidden md:flex items-center space-x-8">
+                <Link
+                  href="/danismanlik"
+                  className="font-medium transition-opacity hover:opacity-70"
+                  style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '400' }}
+                >
+                  Danışmanlık
+                </Link>
+                <Link
+                  href="/anahtar-teslim-proje"
+                  className="font-medium transition-opacity hover:opacity-70"
+                  style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '400' }}
+                >
+                  Anahtar Teslim Proje
+                </Link>
+                <Link
+                  href="/destek"
+                  className="font-medium transition-opacity hover:opacity-70"
+                  style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '400' }}
+                >
+                  Destek
+                </Link>
+              </nav>
+
+              {/* CTA Button */}
+              <div className="hidden md:flex items-center">
+                <Link
+                  href="/auth/login"
+                  className="px-6 py-3 rounded-xl font-medium transition-all hover:opacity-90"
+                  style={{
+                    backgroundColor: '#baf200',
+                    color: '#1e3237',
+                    fontSize: '14px',
+                    fontWeight: '600'
+                  }}
+                >
+                  Ücretsiz Başla
+                </Link>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        {/* Main Content Background */}
+        <div style={{ backgroundColor: '#f6f8f9' }}>
+          <main className="max-w-7xl mx-auto px-6 py-8">
           {/* Header Section */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="mb-12 flex flex-col"
+            className="text-center mb-12"
           >
-            <h1 className="text-4xl font-semibold text-gray-900 mb-12 self-center">
+            <h1 className="text-5xl font-light text-[#1e3237] mb-4 tracking-wide text-center">
               BLOG
             </h1>
+            <p className="text-[#1e3237]/60 text-lg max-w-2xl mx-auto">
+              Sera teknolojileri, tarımsal verimlilik ve sürdürülebilir tarım hakkında uzman içerikleri
+            </p>
           </motion.div>
 
-          {/* Featured Post */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="mb-16"
-          >
-            <a href={`/blog/${featuredPost.slug}`} className="flex gap-8 items-start group">
-              <div className="w-80 flex-shrink-0">
-                <div className="relative overflow-hidden rounded-lg">
-                  <img
-                    src={featuredPost.image}
-                    alt={featuredPost.title}
-                    className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
-                </div>
-              </div>
-              <div className="flex-1 space-y-4">
-                <div className="flex items-center space-x-4 text-sm text-gray-500">
-                  <span>{featuredPost.date}</span>
-                  <span>{featuredPost.category}</span>
-                </div>
-                <h2 className="text-2xl font-semibold text-gray-900 leading-tight group-hover:text-gray-700 transition-colors">
-                  {featuredPost.title}
-                </h2>
-                <p className="text-gray-600 leading-relaxed">
-                  {featuredPost.excerpt}
-                </p>
-              </div>
-            </a>
-          </motion.div>
-
-          {/* Categories */}
+          {/* Categories Filter */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="mb-16"
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="mb-12"
           >
-            <h2 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-6">
-              KATEGORİLER
-            </h2>
-            <div className="relative">
-              <div className="flex overflow-x-auto scrollbar-hide space-x-4 pb-6">
-                {categories.map((category, index) => (
-                  <motion.a
-                    key={category.name}
-                    href={`/blog/category/${category.slug}`}
-                    initial={{ opacity: 0, x: 30 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.6, delay: 0.1 * index }}
-                    className={`${category.color} rounded-lg p-4 hover:shadow-lg transition-shadow cursor-pointer block group flex-shrink-0 min-w-max`}
-                  >
-                    <h3 className={`text-sm font-semibold ${category.textColor} group-hover:opacity-80 transition-opacity whitespace-nowrap`}>
-                      {category.name}
-                    </h3>
-                  </motion.a>
-                ))}
-              </div>
+            <div className="flex flex-wrap justify-center gap-3">
+              {categories.map((category, index) => (
+                <motion.button
+                  key={category.slug}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.4, delay: 0.1 * index }}
+                  onClick={() => setSelectedCategory(category.slug === 'all' ? null : category.slug)}
+                  className={`
+                    ${selectedCategory === category.slug || (selectedCategory === null && category.slug === 'all')
+                      ? category.color === 'bg-[#146448]' ? 'bg-[#146448] text-white' : 'bg-[#146448] text-white'
+                      : category.color + ' ' + category.textColor
+                    }
+                    px-6 py-3 rounded-full text-sm font-medium transition-all duration-300
+                    hover:shadow-lg hover:scale-105 cursor-pointer
+                    border border-transparent hover:border-[#146448]/20
+                  `}
+                >
+                  {category.name}
+                  <span className="ml-2 text-xs opacity-70">({category.count})</span>
+                </motion.button>
+              ))}
             </div>
           </motion.div>
 
-          {/* Latest Posts */}
+          {/* Posts Grid */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.6 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
           >
-            <h2 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-6">
-              SON YAZILAR
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {latestPosts.map((post, index) => (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {filteredPosts.map((post, index) => (
                 <motion.article
                   key={post.id}
                   initial={{ opacity: 0, y: 30 }}
@@ -192,33 +216,243 @@ export default function BlogPage() {
                   className="group cursor-pointer"
                 >
                   <a href={`/blog/${post.slug}`} className="block">
-                    <div className="relative overflow-hidden rounded-lg mb-4">
-                      <img
-                        src={post.image}
-                        alt={post.title}
-                        className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-                      />
-                    </div>
-                    <div className="space-y-3">
-                      <div className="text-sm text-gray-500">
-                        {post.date}
+                    <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                      <div className="relative overflow-hidden">
+                        <img
+                          src={post.image}
+                          alt={post.title}
+                          className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                       </div>
-                      <h3 className="text-lg font-semibold text-gray-900 group-hover:text-gray-700 transition-colors leading-tight">
-                        {post.title}
-                      </h3>
-                      <p className="text-gray-600 text-sm leading-relaxed">
-                        {post.excerpt}
-                      </p>
+                      <div className="p-6 space-y-4">
+                        <div className="flex items-center justify-between">
+                          <span className="text-xs text-[#146448] font-medium uppercase tracking-wider">
+                            {post.date}
+                          </span>
+                          <span className="px-2 py-1 bg-[#baf200]/20 text-[#1e3237] text-xs rounded-full font-medium">
+                            {categories.find(cat => cat.slug === post.category)?.name.split(' ')[0] || 'Blog'}
+                          </span>
+                        </div>
+                        <h3 className="text-xl font-semibold text-[#1e3237] group-hover:text-[#146448] transition-colors leading-tight line-clamp-2">
+                          {post.title}
+                        </h3>
+                        <p className="text-[#1e3237]/70 text-sm leading-relaxed line-clamp-3">
+                          {post.excerpt}
+                        </p>
+                        <div className="pt-2">
+                          <span className="text-[#146448] text-sm font-medium group-hover:underline">
+                            Devamını Oku →
+                          </span>
+                        </div>
+                      </div>
                     </div>
                   </a>
                 </motion.article>
               ))}
             </div>
-          </motion.div>
-        </main>
 
-        {/* Footer */}
-        <Footer />
+            {/* Empty State */}
+            {filteredPosts.length === 0 && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="text-center py-16"
+              >
+                <div className="text-[#1e3237]/40 text-lg mb-4">
+                  Bu kategoride henüz içerik bulunmuyor.
+                </div>
+                <button
+                  onClick={() => setSelectedCategory(null)}
+                  className="text-[#146448] font-medium hover:underline"
+                >
+                  Tüm yazıları görüntüle
+                </button>
+              </motion.div>
+            )}
+          </motion.div>
+          </main>
+        </div>
+
+        {/* Footer - matching homepage */}
+        <footer className="py-12" style={{ backgroundColor: '#146448' }}>
+          <div className="max-w-[1200px] mx-auto px-6">
+            <div className="grid md:grid-cols-4 gap-8">
+
+              {/* Company Info */}
+              <div>
+                <div className="mb-4">
+                  <img
+                    src="https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2F01c1e8a05ef6424b912d584875377957?format=webp&width=800"
+                    alt="SeraGPT Logo"
+                    className="h-12 w-auto object-contain"
+                  />
+                </div>
+                <p
+                  className="leading-relaxed"
+                  style={{
+                    color: '#f6f8f9',
+                    fontSize: '14px',
+                    fontWeight: '400'
+                  }}
+                >
+                  AI destekli sera analiz platformu. Doğru yatırım, doğru analizle başlar.
+                </p>
+              </div>
+
+              {/* Services */}
+              <div>
+                <h3
+                  className="mb-4"
+                  style={{
+                    color: '#f6f8f9',
+                    fontSize: '14px',
+                    fontWeight: '600'
+                  }}
+                >
+                  Hizmetler
+                </h3>
+                <ul className="space-y-2">
+                  <li>
+                    <Link
+                      href="/auth/login"
+                      className="transition-opacity hover:opacity-70"
+                      style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '400' }}
+                    >
+                      Ücretsiz Analiz Başlat
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href="/danismanlik"
+                      className="transition-opacity hover:opacity-70"
+                      style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '400' }}
+                    >
+                      Danışmanlık AL
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href="/anahtar-teslim-proje"
+                      className="transition-opacity hover:opacity-70"
+                      style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '400' }}
+                    >
+                      Anahtar Teslim Sera Teklifi İste
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Support */}
+              <div>
+                <h3
+                  className="mb-4"
+                  style={{
+                    color: '#f6f8f9',
+                    fontSize: '14px',
+                    fontWeight: '600'
+                  }}
+                >
+                  Destek
+                </h3>
+                <ul className="space-y-2">
+                  <li>
+                    <Link
+                      href="/auth/login"
+                      className="transition-opacity hover:opacity-70"
+                      style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '400' }}
+                    >
+                      Kullanıcı Paneli Giriş
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href="/destek"
+                      className="transition-opacity hover:opacity-70"
+                      style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '400' }}
+                    >
+                      Destek Kaydı Aç
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href="/privacy"
+                      className="transition-opacity hover:opacity-70"
+                      style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '400' }}
+                    >
+                      Gizlilik Politikası
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href="/terms"
+                      className="transition-opacity hover:opacity-70"
+                      style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '400' }}
+                    >
+                      Kullanım Koşulları
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Contact */}
+              <div>
+                <h3
+                  className="mb-4"
+                  style={{
+                    color: '#f6f8f9',
+                    fontSize: '14px',
+                    fontWeight: '600'
+                  }}
+                >
+                  İletişim
+                </h3>
+                <div className="space-y-2">
+                  <p
+                    style={{
+                      color: '#f6f8f9',
+                      fontSize: '14px',
+                      fontWeight: '400'
+                    }}
+                  >
+                    info@seragpt.com
+                  </p>
+                  <p
+                    style={{
+                      color: '#f6f8f9',
+                      fontSize: '14px',
+                      fontWeight: '400'
+                    }}
+                  >
+                    0850 303 0 GPT
+                  </p>
+                  <p
+                    style={{
+                      color: '#f6f8f9',
+                      fontSize: '14px',
+                      fontWeight: '400'
+                    }}
+                  >
+                    Türkiye
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Bottom */}
+            <div className="border-t border-white/20 mt-8 pt-8 text-center">
+              <p
+                style={{
+                  color: '#f6f8f9',
+                  fontSize: '14px',
+                  fontWeight: '400'
+                }}
+              >
+                © 2025 SeraGPT. Tüm hakları saklıdır.
+              </p>
+            </div>
+          </div>
+        </footer>
       </div>
     </>
   );

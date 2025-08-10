@@ -6,6 +6,9 @@ import DashboardLayout from '@/components/dashboard/DashboardLayout';
 import { marketService, MarketPrice, MarketAnalysis, CropCalendar } from '@/lib/services/market-service';
 import { pdfService } from '@/lib/services/pdf-service';
 
+// Force dynamic rendering to prevent SSR
+export const dynamic = 'force-dynamic';
+
 export default function MarketAnalysisPage() {
   const [selectedProduct, setSelectedProduct] = useState('domates');
   const [selectedRegion, setSelectedRegion] = useState('Antalya');
@@ -128,7 +131,10 @@ export default function MarketAnalysisPage() {
   };
 
   return (
-    <DashboardLayout>
+    <DashboardLayout
+      title="Pazar Analizi"
+      subtitle="Güncel pazar fiyatları ve trend analizleri ile karlılık projeksiyonları"
+    >
       <div className="min-h-screen bg-gray-50 text-gray-600">
         <div className="max-w-6xl mx-auto space-y-8">
           {/* Header */}

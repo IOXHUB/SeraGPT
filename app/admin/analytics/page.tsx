@@ -3,6 +3,10 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import DashboardLayout from '@/components/dashboard/DashboardLayout';
+import AdminErrorBoundary from '@/components/AdminErrorBoundary';
+
+// Force dynamic rendering to prevent SSR
+export const dynamic = 'force-dynamic';
 
 const analyticsData = {
   overview: {
@@ -36,7 +40,8 @@ export default function AdminAnalyticsPage() {
   const [timeRange, setTimeRange] = useState('7d');
 
   return (
-    <DashboardLayout>
+    <AdminErrorBoundary>
+      <DashboardLayout>
       <div className="min-h-screen bg-gray-50 text-gray-600">
         <div className="page-section-container space-y-8">
           {/* Page Header */}
@@ -294,6 +299,7 @@ export default function AdminAnalyticsPage() {
           </motion.div>
         </div>
       </div>
-    </DashboardLayout>
+      </DashboardLayout>
+    </AdminErrorBoundary>
   );
 }

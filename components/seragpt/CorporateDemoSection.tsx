@@ -118,7 +118,7 @@ export default function CorporateDemoSection() {
                   
                   <div className="grid grid-cols-2 gap-4">
                     <div className="flex justify-between">
-                      <span className="text-slate-600">⏱️ Tamamlanma:</span>
+                      <span className="text-slate-600">��️ Tamamlanma:</span>
                       <span className="font-semibold">14 ay</span>
                     </div>
                     <div className="flex justify-between">
@@ -220,7 +220,7 @@ export default function CorporateDemoSection() {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="w-full bg-purple-600 hover:bg-purple-700 text-white px-8 py-4 rounded-lg text-lg font-semibold shadow-lg transition-colors flex items-center justify-center space-x-3"
+                className="w-full bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg text-base font-medium shadow-md transition-colors flex items-center justify-center space-x-2"
               >
                 <span>🖥️</span>
                 <span>Canlı Demo İzle</span>
@@ -229,7 +229,7 @@ export default function CorporateDemoSection() {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="w-full border-2 border-slate-300 hover:border-purple-600 text-slate-700 hover:text-purple-600 px-8 py-4 rounded-lg text-lg font-semibold transition-colors flex items-center justify-center space-x-3"
+                className="w-full border-2 border-slate-300 hover:border-purple-600 text-slate-700 hover:text-purple-600 px-4 py-2 rounded-lg text-base font-medium transition-colors flex items-center justify-center space-x-2"
               >
                 <span>📄</span>
                 <span>Örnek Rapor İndir</span>

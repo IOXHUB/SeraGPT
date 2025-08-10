@@ -1,0 +1,307 @@
+/* ====================================
+   SERAGPT TYPOGRAPHY SYSTEM
+   ====================================
+   
+   Consistent typography across all components
+   Uses design tokens for maintainability
+*/
+
+@import './design-tokens.css';
+
+/* ====================================
+   BASE TYPOGRAPHY
+   ==================================== */
+
+html {
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-normal);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  color: var(--color-text-primary);
+  font-weight: var(--font-weight-normal);
+  background-color: var(--color-background-primary);
+  margin: 0;
+  padding: 0;
+}
+
+/* ====================================
+   HEADING STYLES
+   ==================================== */
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-tight);
+  color: var(--color-text-primary);
+}
+
+/* Main page heading */
+.heading-1,
+h1 {
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-brand-primary);
+  margin-bottom: var(--space-6);
+}
+
+/* Section headings */
+.heading-2,
+h2 {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-brand-secondary);
+  margin-bottom: var(--space-4);
+}
+
+/* Sub-section headings */
+.heading-3,
+h3 {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-brand-accent);
+  margin-bottom: var(--space-3);
+}
+
+/* Card/Component headings */
+.heading-4,
+h4 {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-2);
+}
+
+/* Small headings */
+.heading-5,
+h5 {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-2);
+}
+
+.heading-6,
+h6 {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-1);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* ====================================
+   TEXT STYLES
+   ==================================== */
+
+/* Body text */
+.text-body,
+p {
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-relaxed);
+  color: var(--color-text-secondary);
+  margin: 0 0 var(--space-4) 0;
+  font-weight: var(--font-weight-light);
+}
+
+/* Lead text */
+.text-lead {
+  font-size: var(--font-size-lg);
+  line-height: var(--line-height-relaxed);
+  color: var(--color-text-primary);
+  font-weight: var(--font-weight-normal);
+}
+
+/* Small text */
+.text-small {
+  font-size: var(--font-size-xs);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-tertiary);
+}
+
+/* Caption text */
+.text-caption {
+  font-size: var(--font-size-xs);
+  line-height: var(--line-height-snug);
+  color: var(--color-text-muted);
+  font-weight: var(--font-weight-normal);
+}
+
+/* ====================================
+   TEXT UTILITIES
+   ==================================== */
+
+/* Text colors */
+.text-primary { color: var(--color-text-primary); }
+.text-secondary { color: var(--color-text-secondary); }
+.text-tertiary { color: var(--color-text-tertiary); }
+.text-muted { color: var(--color-text-muted); }
+
+/* Brand colors */
+.text-brand { color: var(--color-brand-primary); }
+.text-brand-secondary { color: var(--color-brand-secondary); }
+.text-brand-accent { color: var(--color-brand-accent); }
+.text-success { color: var(--color-brand-success); }
+.text-warning { color: var(--color-brand-warning); }
+.text-error { color: var(--color-brand-error); }
+
+/* Font weights */
+.font-light { font-weight: var(--font-weight-light); }
+.font-normal { font-weight: var(--font-weight-normal); }
+.font-medium { font-weight: var(--font-weight-medium); }
+.font-semibold { font-weight: var(--font-weight-semibold); }
+.font-bold { font-weight: var(--font-weight-bold); }
+
+/* Text alignment */
+.text-left { text-align: left; }
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+
+/* Text decoration */
+.text-underline { text-decoration: underline; }
+.text-no-underline { text-decoration: none; }
+
+/* ====================================
+   LINK STYLES
+   ==================================== */
+
+a {
+  color: var(--color-brand-primary);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+a:hover {
+  color: var(--color-brand-secondary);
+  text-decoration: underline;
+}
+
+a:focus {
+  outline: 2px solid var(--color-brand-primary);
+  outline-offset: 2px;
+}
+
+/* Link variants */
+.link-subtle {
+  color: var(--color-text-secondary);
+}
+
+.link-subtle:hover {
+  color: var(--color-brand-primary);
+}
+
+.link-muted {
+  color: var(--color-text-muted);
+}
+
+.link-muted:hover {
+  color: var(--color-text-secondary);
+}
+
+/* ====================================
+   LIST STYLES
+   ==================================== */
+
+ul, ol {
+  margin: 0 0 var(--space-4) 0;
+  padding-left: var(--space-6);
+}
+
+li {
+  margin-bottom: var(--space-1);
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-relaxed);
+  color: var(--color-text-secondary);
+}
+
+/* Clean list */
+.list-none {
+  list-style: none;
+  padding-left: 0;
+}
+
+/* ====================================
+   CODE STYLES
+   ==================================== */
+
+code {
+  font-family: var(--font-family-mono);
+  font-size: 0.875em;
+  background-color: var(--color-gray-100);
+  color: var(--color-text-primary);
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-sm);
+}
+
+pre {
+  font-family: var(--font-family-mono);
+  background-color: var(--color-gray-100);
+  color: var(--color-text-primary);
+  padding: var(--space-4);
+  border-radius: var(--radius-md);
+  overflow-x: auto;
+  margin: var(--space-4) 0;
+}
+
+pre code {
+  background: none;
+  padding: 0;
+}
+
+/* ====================================
+   RESPONSIVE TYPOGRAPHY
+   ==================================== */
+
+@media (max-width: 767px) {
+  /* Smaller text on mobile */
+  .text-body, p {
+    font-size: var(--font-size-xs);
+  }
+  
+  .heading-1, h1 {
+    font-size: var(--font-size-2xl);
+  }
+  
+  .heading-2, h2 {
+    font-size: var(--font-size-xl);
+  }
+  
+  .heading-3, h3 {
+    font-size: var(--font-size-lg);
+  }
+  
+  .heading-4, h4 {
+    font-size: var(--font-size-base);
+  }
+}
+
+/* ====================================
+   USER PANEL SPECIFIC TYPOGRAPHY
+   ==================================== */
+
+.user-panel-heading {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-brand-primary);
+  margin-bottom: var(--space-3);
+  line-height: var(--line-height-tight);
+}
+
+.user-panel-text {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-light);
+  color: var(--color-text-secondary);
+  line-height: var(--line-height-relaxed);
+  margin-bottom: var(--space-3);
+}
+
+.user-panel-caption {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  line-height: var(--line-height-normal);
+}

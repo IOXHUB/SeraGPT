@@ -48,7 +48,7 @@ export default function DemoSection() {
                     🌱 Sera Yatırım Analizi Raporu
                   </h3>
                   <p className="text-sm text-gray-600">
-                    Lokasyon: Antalya, Aksu • Tarih: {new Date().toLocaleDateString('tr-TR')}
+                    Lokasyon: Antalya, Aksu • Tarih: 16.01.2024
                   </p>
                 </div>
                 
@@ -147,7 +147,7 @@ export default function DemoSection() {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="w-full bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-lg text-lg font-semibold shadow-lg transition-colors"
+                className="w-full bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg text-base font-medium shadow-md transition-colors"
               >
                 📄 PDF Raporu İndir
               </motion.button>
@@ -155,7 +155,7 @@ export default function DemoSection() {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="w-full bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg text-lg font-semibold shadow-lg transition-colors"
+                className="w-full bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-base font-medium shadow-md transition-colors"
               >
                 🚀 Demo Al
               </motion.button>

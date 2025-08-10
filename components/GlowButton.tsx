@@ -53,8 +53,8 @@ export function GlowButton({
             animate={{ 
               opacity: [0, 1, 0],
               scale: [0, 1, 0],
-              x: Math.random() * 100 - 50,
-              y: Math.random() * 50 - 25
+              x: (i * 17) % 100 - 50,
+              y: (i * 13) % 50 - 25
             }}
             transition={{
               duration: 2,
@@ -62,8 +62,8 @@ export function GlowButton({
               delay: i * 0.1
             }}
             style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`
+              left: `${(i * 37) % 100}%`,
+              top: `${(i * 23) % 100}%`
             }}
           />
         ))}

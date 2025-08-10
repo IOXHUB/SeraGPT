@@ -1,43 +1,86 @@
 'use client';
 
-import { motion } from 'framer-motion';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import BlogCardsSection from './BlogCardsSection';
 import Footer from '../Footer';
-import { useAuth } from '../../lib/hooks/useAuth';
+import SeraGPTLogo from '../ui/SeraGPTLogo';
 
 export default function UserjotCloneSection() {
+  const router = useRouter();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [openFAQ, setOpenFAQ] = useState<number | null>(null); // No FAQ open by default
-  const { user, loading } = useAuth();
+  const [openFAQ, setOpenFAQ] = useState<number | null>(null);
+  const [user, setUser] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
+
+  const handleNavigation = (href: string) => {
+    setIsMobileMenuOpen(false);
+    router.push(href);
+  };
+
+  // Simple auth check without context
+  useEffect(() => {
+    const checkAuth = async () => {
+      try {
+        // Check for development user first
+        if (typeof window !== 'undefined' && process.env.NODE_ENV === 'development') {
+          const devUser = localStorage.getItem('seragpt_user');
+          if (devUser) {
+            setUser(JSON.parse(devUser));
+            setLoading(false);
+            return;
+          }
+        }
+
+        // Check if user is logged in via API
+        const response = await fetch('/api/auth/status', {
+          credentials: 'include',
+          headers: {
+            'Accept': 'application/json',
+          }
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          if (data.isAuthenticated && data.user) {
+            setUser(data.user);
+          }
+        }
+      } catch (error) {
+        console.warn('Auth status check failed:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    checkAuth();
+  }, []);
+
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Header - Full width with 960px content container */}
-      <header className="w-full bg-gray-50">
-        <div className="navbar-footer-container">
+    <div className="page-container">
+      {/* Header - Clean layout */}
+      <header className="header">
+        <div className="header-footer-container">
           {/* Logo - clickable to homepage */}
           <div className="flex items-center space-x-3">
-            <a href="/" className="flex items-center space-x-3">
-              <img
-                src="https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2F96da5382e9584c3fb2d32eca60944359?format=webp&width=800"
-                alt="SeraGPT Logo"
-                className="h-8 w-auto"
-              />
-            </a>
+            <Link href="/" className="flex items-center space-x-3">
+              <SeraGPTLogo size="md" priority />
+            </Link>
           </div>
 
           {/* Center navigation - 3 links */}
           <nav className="hidden md:flex items-center space-x-8">
-            <a href="#" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
+            <Link href="/danismanlik" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
               Danışmanlık
-            </a>
-            <a href="#" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
+            </Link>
+            <Link href="/anahtar-teslim-proje" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
               Anahtar Teslim Proje
-            </a>
-            <a href="#" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
+            </Link>
+            <Link href="/destek" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
               Destek
-            </a>
+            </Link>
           </nav>
 
           {/* Right menu - conditional based on user state */}
@@ -46,450 +89,383 @@ export default function UserjotCloneSection() {
               <>
                 {user ? (
                   // For logged in users - show Dashboard
-                  <a href="/dashboard" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
+                  <Link href="/dashboard" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
                     Dashboard
-                  </a>
+                  </Link>
                 ) : (
                   // For logged out users - show Login or Sign Up CTA
                   <>
-                    <a href="/auth/login" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
+                    <Link href="/auth/login" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
                       Giriş Yap
-                    </a>
-                    <a href="/dashboard" className="bg-gray-600 text-white px-6 py-2 rounded-xl font-semibold hover:bg-gray-800 transition-colors">
+                    </Link>
+                    <Link href="/auth/login" className="bg-gray-600 text-white px-4 py-2 rounded-lg text-base font-medium hover:bg-gray-800 transition-colors">
                       Ücretsiz Başla
-                    </a>
+                    </Link>
                   </>
                 )}
               </>
             )}
           </div>
 
-          {/* Mobile menu button - hamburger icon */}
+          {/* Modern mobile menu button */}
           <button
-            className="md:hidden p-2"
+            className="md:hidden relative p-2 rounded-lg bg-gray-100 hover:bg-gray-200 transition-colors"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
-            <svg className="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div>
               {isMobileMenuOpen ? (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                <svg className="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
               ) : (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                <svg className="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
               )}
-            </svg>
+            </div>
           </button>
         </div>
 
-        {/* Mobile Menu */}
+        {/* Modern Mobile Menu */}
         {isMobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.2 }}
-            className="md:hidden bg-gray-50 border-t border-gray-200"
-          >
-            <div className="text-section-container py-4 space-y-4">
-              {/* Center navigation links */}
-              <div className="space-y-3">
-                <a
-                  href="#"
-                  className="block text-gray-700 hover:text-gray-900 font-medium transition-colors py-2"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  Danışmanlık
-                </a>
-                <a
-                  href="#"
-                  className="block text-gray-700 hover:text-gray-900 font-medium transition-colors py-2"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  Anahtar Teslim Proje
-                </a>
-                <a
-                  href="#"
-                  className="block text-gray-700 hover:text-gray-900 font-medium transition-colors py-2"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  Destek
-                </a>
+          <div className="md:hidden absolute top-full left-0 right-0 bg-white border-t border-gray-100 shadow-xl z-50">
+            <div className="max-w-md mx-auto p-6 space-y-6">
+              {/* Header */}
+              <div className="text-center border-b border-gray-100 pb-4">
+                <h3 className="text-lg font-semibold text-gray-900">Menü</h3>
               </div>
 
-              {/* Divider */}
-              <div className="border-t border-gray-200 my-4"></div>
-
-              {/* Right menu actions */}
+              {/* Navigation Links */}
               <div className="space-y-3">
+                <button
+                  onClick={() => handleNavigation('/destek')}
+                  className="w-full text-left block text-gray-700 hover:text-gray-900 hover:bg-gray-50 py-3 px-4 rounded-lg transition-all"
+                >
+                  <div className="flex items-center space-x-3">
+                    <span className="text-lg">❓</span>
+                    <span className="text-base font-medium">Destek</span>
+                  </div>
+                </button>
+                <button
+                  onClick={() => handleNavigation('/danismanlik')}
+                  className="w-full text-left block text-gray-700 hover:text-gray-900 hover:bg-gray-50 py-3 px-4 rounded-lg transition-all"
+                >
+                  <div className="flex items-center space-x-3">
+                    <span className="text-lg">🎯</span>
+                    <span className="text-base font-medium">Danışmanlık</span>
+                  </div>
+                </button>
+                <button
+                  onClick={() => handleNavigation('/anahtar-teslim-proje')}
+                  className="w-full text-left block text-gray-700 hover:text-gray-900 hover:bg-gray-50 py-3 px-4 rounded-lg transition-all"
+                >
+                  <div className="flex items-center space-x-3">
+                    <span className="text-lg">🏗️</span>
+                    <span className="text-base font-medium">Anahtar Teslim Sera</span>
+                  </div>
+                </button>
+                <button
+                  onClick={() => handleNavigation('/blog')}
+                  className="w-full text-left block text-gray-700 hover:text-gray-900 hover:bg-gray-50 py-3 px-4 rounded-lg transition-all"
+                >
+                  <div className="flex items-center space-x-3">
+                    <span className="text-lg">📖</span>
+                    <span className="text-base font-medium">Blog</span>
+                  </div>
+                </button>
+              </div>
+
+              {/* Panel Access Button */}
+              <div className="border-t border-gray-100 pt-4">
                 {!loading && (
                   <>
                     {user ? (
-                      // For logged in users - show Dashboard
-                      <a
-                        href="/dashboard"
-                        className="block text-gray-700 hover:text-gray-900 font-medium transition-colors py-2"
-                        onClick={() => setIsMobileMenuOpen(false)}
+                      <button
+                        onClick={() => handleNavigation('/dashboard')}
+                        className="flex items-center justify-center w-full bg-gradient-to-r from-gray-700 to-gray-800 text-white py-3 px-4 rounded-xl font-medium transition-all hover:from-gray-800 hover:to-gray-900 shadow-lg"
                       >
-                        Dashboard
-                      </a>
+                        <span className="text-lg mr-2">📊</span>
+                        <span>Panelime Git</span>
+                      </button>
                     ) : (
-                      // For logged out users - show Login and Sign Up
-                      <>
-                        <a
-                          href="/auth/login"
-                          className="block text-gray-700 hover:text-gray-900 font-medium transition-colors py-2"
-                          onClick={() => setIsMobileMenuOpen(false)}
+                      <div className="space-y-3">
+                        <button
+                          onClick={() => handleNavigation('/auth/login')}
+                          className="flex items-center justify-center w-full bg-gradient-to-r from-gray-700 to-gray-800 text-white py-3 px-4 rounded-xl font-medium transition-all hover:from-gray-800 hover:to-gray-900 shadow-lg"
                         >
-                          Giriş Yap
-                        </a>
-                        <a
-                          href="/dashboard"
-                          className="block bg-black hover:bg-gray-800 text-white px-4 py-3 rounded-xl font-medium transition-colors text-center"
-                          onClick={() => setIsMobileMenuOpen(false)}
-                        >
-                          Ücretsiz Başla
-                        </a>
-                      </>
+                          <span className="text-lg mr-2">🔐</span>
+                          <span>Panele Giriş</span>
+                        </button>
+                        <div className="flex space-x-2">
+                          <button
+                            onClick={() => handleNavigation('/auth/login')}
+                            className="flex-1 text-center border border-gray-300 text-gray-700 py-2 px-3 rounded-lg text-sm font-medium hover:bg-gray-50 transition-colors"
+                          >
+                            Giriş Yap
+                          </button>
+                          <button
+                            onClick={() => handleNavigation('/auth/login')}
+                            className="flex-1 text-center bg-gray-600 text-white py-2 px-3 rounded-lg text-sm font-medium hover:bg-gray-700 transition-colors"
+                          >
+                            Kayıt Ol
+                          </button>
+                        </div>
+                      </div>
                     )}
                   </>
                 )}
               </div>
             </div>
-          </motion.div>
+          </div>
         )}
       </header>
 
-      {/* Main content - Full viewport hero */}
-      <main className="min-h-screen flex items-center justify-center px-4 sm:px-6 -mt-12">
-        <div className="text-section-container text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="space-y-5"
-          >
-            {/* Small text above headline */}
-            <p className="text-gray-500 text-sm font-medium uppercase tracking-wider">
-              +20 YIL, +500 PROJE, +110 VERİ SETİ
-            </p>
+      {/* Main content - Mobile-Optimized Hero Section */}
+      <main className="hero-section">
+        <div className="hero-content px-4 md:px-0">
+          {/* Small text above headline - Mobile responsive */}
+          <p className="hero-subtitle text-xs sm:text-sm">
+            +20 YIL, +500 PROJE, +110 VERİ SETİ
+          </p>
 
-            {/* Main headline */}
-            <h1 className="text-4xl font-bold text-gray-900 leading-tight space-y-2">
-              <div className="text-gray-600">🚀 60 Saniyede</div>
-              <div className="text-gray-600">Sera Yatırım Raporun Hazır!</div>
-            </h1>
+          {/* Main headline - Mobile responsive typography */}
+          <h1 className="hero-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight">
+            <span className="block">60 Saniyede</span>
+            <span className="block" style={{ color: 'rgba(23, 23, 23, 1)' }}>Sera Yatırım Raporun Hazır!</span>
+          </h1>
 
-            {/* Description paragraph */}
-            <p className="text-sm text-gray-600 leading-relaxed px-4 mt-5">
-              SeraGPT; 20 yılı aşkın mühendislik deneyimi, 500'den fazla
-              tamamlanmış proje ve 110'dan fazla gerçek zamanlı veri
-              setiyle, tarımsal yatırım kararlarınızı saniyeler içinde
-              analiz eder.
-            </p>
+          {/* Description paragraph - Mobile responsive */}
+          <p className="hero-description text-sm sm:text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
+            SeraGPT; 20 yılı aşkın mühendislik deneyimi, 500'den fazla
+            tamamlanmış proje ve 110'dan fazla gerçek zamanlı veri
+            setiyle, tarımsal yatırım kararlarınızı saniyeler içinde
+            analiz eder.
+          </p>
 
-            {/* CTA Button */}
-            <div className="mt-5">
-              <motion.a
-                href="https://17ddca60910e4daea7522c0f6038c4a4-dd51946acbf540e29f8c9d1d0.fly.dev/dashboard"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="bg-gray-600 hover:bg-gray-800 text-white px-8 py-4 rounded-xl text-lg font-semibold transition-colors inline-flex items-center space-x-3"
-              >
-                <span className="text-center">Şimdi Oluştur – İlk 5 Rapor Ücretsiz</span>
-              </motion.a>
-            </div>
+          {/* CTA Button - Mobile optimized */}
+          <Link href="/auth/login" className="btn btn-primary mb-4 w-full sm:w-auto max-w-sm mx-auto block text-center">
+            <span className="hidden sm:inline">Şimdi Oluştur – İlk 5 Rapor Ücretsiz</span>
+            <span className="sm:hidden">🚀 Ücretsiz Başla</span>
+          </Link>
 
-            {/* Small text under button */}
-            <p className="text-gray-500 text-sm pb-10">
-              Doğru yatırım, doğru analizle başlar.
-            </p>
-          </motion.div>
+          {/* Small text under button */}
+          <p className="text-small text-center text-xs sm:text-sm">
+            Doğru yatırım, doğru analizle başlar.
+          </p>
         </div>
       </main>
 
-      {/* AI Chat Section - Single View */}
-      <div className="relative -mt-20 z-10">
+      {/* User Panel Section - Single View */}
+      <div className="section relative z-10">
         <div className="max-w-[900px] mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.2 }}
-            viewport={{ once: true }}
-            className="relative"
-          >
-            <div className="bg-gradient-to-br from-blue-50 to-indigo-100 rounded-2xl p-8 shadow-2xl shadow-blue-500/25 border border-blue-100">
+          <div className="relative">
+            <div className="rounded-2xl p-8 shadow-lg shadow-purple-400/20 hover:shadow-purple-500/30 transition-all duration-300 bg-center bg-cover bg-no-repeat border-4 border-purple-400" style={{ color: '#cdd6fd' }}>
               <div className="bg-white rounded-xl shadow-lg overflow-hidden">
-                {/* Placeholder Image for User Panel */}
-                <div className="w-full h-96 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
-                  <div className="text-center">
-                    <div className="w-16 h-16 bg-gray-300 rounded-lg mx-auto mb-4 flex items-center justify-center">
-                      <span className="text-2xl">📊</span>
+                {/* Dashboard Image - Mobile Responsive */}
+                <div
+                  className="w-full h-48 sm:h-64 md:h-80 lg:h-96 bg-center bg-cover bg-no-repeat flex items-center justify-center rounded-t-xl"
+                  style={{
+                    backgroundImage: "url(https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2F1cd1d24d2413420fa7c24610e14c9006)"
+                  }}
+                >
+                  <div className="text-center p-4">
+                    <div className="bg-black bg-opacity-20 rounded-lg p-3 backdrop-blur-sm">
+                      <p className="text-white text-xs sm:text-sm font-medium">📊 Analiz Paneli Önizleme</p>
                     </div>
-                    <h3 className="text-lg font-semibold text-gray-700 mb-2">Kullanıcı Paneli</h3>
-                    <p className="text-sm text-gray-500">Sera Yatırım Analiz Merkezi Önizlemesi</p>
                   </div>
                 </div>
               </div>
             </div>
-          </motion.div>
+          </div>
 
           {/* CTA Button */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            viewport={{ once: true }}
-            className="text-center mt-12"
-          >
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="bg-gray-600 hover:bg-gray-800 text-white px-10 py-4 rounded-xl text-xl font-bold transition-colors shadow-lg hover:shadow-xl"
-            >
+          <div className="text-center mt-12">
+            <Link href="/auth/login" className="btn btn-primary mb-4">
               Kullanıcı Paneline Giriş Yapın
-            </motion.button>
-            <p className="text-gray-500 text-sm mt-4">
+            </Link>
+            <p className="text-small text-center">
               Tüm sera projelerinizi tek platformdan yönetin
             </p>
-          </motion.div>
+          </div>
         </div>
       </div>
 
-      {/* How It Works Section - Horizontal Scrolling */}
-      <div className="py-20 bg-gray-50 text-gray-600">
-        <div className="page-section-container">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-xl font-bold text-gray-900 mb-6">
-              Panelde Sizi Bekleyen Analiz Türleri ve ��zellikleri
-            </h2>
-          </motion.div>
+      {/* How It Works Section */}
+      <div className="section" style={{ background: '#f9fafb' }}>
+        <div className="body-container">
+          <div className="text-center mb-8">
+            <div className="text-container">
+              <h2 className="heading-2 text-center">
+                Panelde Sizi Bekleyen Analiz Türleri ve Özellikleri
+              </h2>
+            </div>
+          </div>
 
-          {/* Horizontal Scrolling Cards */}
+          {/* Mobile-Responsive Cards Grid */}
           <div className="relative">
-            <div className="flex overflow-x-auto scrollbar-hide space-x-6 pb-6">
+            {/* Mobile: Vertical stack, Tablet+: Horizontal scroll */}
+            <div className="md:flex md:overflow-x-auto md:scrollbar-hide md:space-x-6 md:pb-6 space-y-6 md:space-y-0">
               {/* Card 1 - ROI Simülasyonu */}
-              <motion.div
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6 }}
-                viewport={{ once: true }}
-                className="flex-shrink-0 w-80 bg-white rounded-2xl p-8 border border-gray-200 relative"
-              >
-                <div className="absolute top-6 left-6 text-6xl font-bold text-gray-100">01</div>
-                <div className="mt-16">
-                  <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-4">Yatırım Geri Dönüş (ROI) Simülasyonu</h3>
+              <div className="md:flex-shrink-0 w-full md:w-80 bg-gradient-to-br from-orange-400 via-purple-500 to-blue-600 rounded-2xl p-6 md:p-8 relative shadow-xl hover:shadow-2xl transition-all">
+                <div className="absolute top-4 md:top-6 left-4 md:left-6 text-4xl md:text-6xl font-bold text-white/20">01</div>
+                <div className="mt-12 md:mt-16">
+                  <h3 className="text-lg md:text-xl font-bold text-white mb-4 leading-tight">
+                    <span className="block sm:hidden">ROI Simülasyonu</span>
+                    <span className="hidden sm:block">Yatırım Geri Dönüş (ROI) Simülasyonu</span>
+                  </h3>
 
                   <div className="space-y-3 mb-4">
                     <div>
-                      <p className="text-gray-800 text-xs font-semibold mb-1">🎯 3 Önemli Fayda:</p>
-                      <p className="text-gray-600 text-xs">• Yatırımın geri dönüş süresi</p>
-                      <p className="text-gray-600 text-xs">• Kar marjı ve yıllık getiri tahmini</p>
-                      <p className="text-gray-600 text-xs">• İşletme maliyetleri kıyaslaması</p>
+                      <p className="text-white/90 text-xs sm:text-sm font-semibold mb-2">🎯 Temel Faydalar:</p>
+                      <div className="space-y-1">
+                        <p className="text-white/80 text-xs sm:text-sm flex items-start">
+                          <span className="text-green-400 mr-2">•</span>
+                          <span>Yatırımın geri dönüş süresi</span>
+                        </p>
+                        <p className="text-white/80 text-xs sm:text-sm flex items-start">
+                          <span className="text-green-400 mr-2">•</span>
+                          <span>Kar marjı ve yıllık getiri tahmini</span>
+                        </p>
+                        <p className="text-white/80 text-xs sm:text-sm flex items-start">
+                          <span className="text-green-400 mr-2">•</span>
+                          <span>İşletme maliyetleri kıyaslaması</span>
+                        </p>
+                      </div>
                     </div>
 
                     <div>
-                      <p className="text-gray-800 text-xs font-semibold mb-1">🔗 Veri Kaynakları:</p>
-                      <p className="text-gray-600 text-xs">• OpenWeather, FAO & TÜİK</p>
-                      <p className="text-gray-600 text-xs">• Seraburada / e-Tarım API</p>
+                      <p className="text-white/90 text-xs font-semibold mb-1">🔗 Veri Kaynakları:</p>
+                      <p className="text-white/70 text-xs">• OpenWeather, FAO & TÜİK</p>
+                      <p className="text-white/70 text-xs">• Seraburada / e-Tarım API</p>
                     </div>
 
                     <div>
-                      <p className="text-gray-800 text-xs font-semibold mb-1">👤 Kullanıcı Girdisi:</p>
-                      <p className="text-gray-600 text-xs">• Lokasyon, bitki türü, üretim hedefi</p>
+                      <p className="text-white/90 text-xs font-semibold mb-1">👤 Kullanıcı Girdisi:</p>
+                      <p className="text-white/70 text-xs">• Lokasyon, bitki türü, üretim hedefi</p>
                     </div>
 
                     <div>
-                      <p className="text-gray-800 text-xs font-semibold mb-1">📄 PDF İçeriği:</p>
-                      <p className="text-gray-600 text-xs">• ROI tablosu ve 3 yıllık projeksiyonu</p>
+                      <p className="text-white/90 text-xs font-semibold mb-1">📄 PDF İçeriği:</p>
+                      <p className="text-white/70 text-xs">• ROI tablosu ve 3 yıllık projeksiyonu</p>
                     </div>
                   </div>
 
-                  <div className="mt-4 p-3 bg-gray-50 rounded-lg">
-                    <p className="text-gray-700 text-sm font-medium">"Yatırımınız size ne zaman geri döner?"</p>
-                    <button className="mt-2 text-blue-600 text-xs font-medium hover:underline">[PDF'yi Örnekle Gör]</button>
+                  <div className="mt-4 p-3 bg-white/20 backdrop-blur-sm rounded-lg border border-white/30">
+                    <p className="text-white font-medium mb-2">"Yatırımınız size ne zaman geri döner?"</p>
+                    <button className="w-full sm:w-auto bg-white text-purple-600 px-4 py-2 rounded-lg text-xs font-medium hover:bg-white/90 transition-colors">
+                      <span className="sm:hidden">📄 Örnek PDF</span>
+                      <span className="hidden sm:inline">📄 PDF'yi Örnekle Gör</span>
+                    </button>
                   </div>
                 </div>
-              </motion.div>
+              </div>
 
               {/* Card 2 - İklim Analizi */}
-              <motion.div
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: 0.1 }}
-                viewport={{ once: true }}
-                className="flex-shrink-0 w-80 bg-white rounded-2xl p-8 border border-gray-200 relative"
-              >
-                <div className="absolute top-6 left-6 text-6xl font-bold text-gray-100">02</div>
-                <div className="mt-16">
-                  <h3 className="text-xl font-bold text-gray-900 mb-4">İklim Uyumu & Risk Analizi</h3>
-
+              <div className="md:flex-shrink-0 w-full md:w-80 bg-gradient-to-br from-orange-400 via-purple-500 to-blue-600 rounded-2xl p-6 md:p-8 relative shadow-xl hover:shadow-2xl transition-all">
+                <div className="absolute top-4 md:top-6 left-4 md:left-6 text-4xl md:text-6xl font-bold text-white/20">02</div>
+                <div className="mt-12 md:mt-16">
+                  <h3 className="text-lg md:text-xl font-bold text-white mb-4 leading-tight">
+                    <span className="block sm:hidden">İklim & Risk Analizi</span>
+                    <span className="hidden sm:block">İklim Uyumu & Risk Analizi</span>
+                  </h3>
                   <div className="space-y-3 mb-4">
                     <div>
-                      <p className="text-gray-800 text-xs font-semibold mb-1">🎯 3 Önemli Fayda:</p>
-                      <p className="text-gray-600 text-xs">• Seçilen ürün için uygunluk skoru</p>
-                      <p className="text-gray-600 text-xs">• Don, rüzgar, nem riskleri</p>
-                      <p className="text-gray-600 text-xs">• Geçmiş yıllardaki iklim olayları</p>
+                      <p className="text-white/90 text-xs font-semibold mb-1">🎯 3 Önemli Fayda:</p>
+                      <p className="text-white/80 text-xs">• Seçilen ürün için uygunluk skoru</p>
+                      <p className="text-white/80 text-xs">• Don, rüzgar, nem riskleri</p>
+                      <p className="text-white/80 text-xs">• Geçmiş yıllardaki iklim olayları</p>
                     </div>
-
                     <div>
-                      <p className="text-gray-800 text-xs font-semibold mb-1">🔗 Veri Kaynakları:</p>
-                      <p className="text-gray-600 text-xs">• Open-Meteo, Copernicus Climate</p>
-                      <p className="text-gray-600 text-xs">• ERA5 verileri, MGMT</p>
-                    </div>
-
-                    <div>
-                      <p className="text-gray-800 text-xs font-semibold mb-1">👤 Kullanıcı Girdisi:</p>
-                      <p className="text-gray-600 text-xs">• İl/ilçe, bitki türü, sera tipi</p>
-                    </div>
-
-                    <div>
-                      <p className="text-gray-800 text-xs font-semibold mb-1">📄 PDF İçeriği:</p>
-                      <p className="text-gray-600 text-xs">• Uygunluk skoru ve risk matrisi</p>
+                      <p className="text-white/90 text-xs font-semibold mb-1">🔗 Veri Kaynakları:</p>
+                      <p className="text-white/70 text-xs">• Open-Meteo, Copernicus Climate</p>
+                      <p className="text-white/70 text-xs">• ERA5 verileri, MGMT</p>
                     </div>
                   </div>
-
-                  <div className="mt-4 p-3 bg-gray-50 rounded-lg">
-                    <p className="text-gray-700 text-sm font-medium">"İklim bu yatırıma uygun mu?"</p>
-                    <button className="mt-2 text-blue-600 text-xs font-medium hover:underline">[İklim Skorunu Gör]</button>
+                  <div className="mt-4 p-3 bg-white/20 backdrop-blur-sm rounded-lg border border-white/30">
+                    <p className="text-white font-medium">"İklim bu yatırıma uygun mu?"</p>
+                    <button className="mt-2 text-white/90 text-xs font-medium hover:text-white hover:underline">[İklim Skorunu Gör]</button>
                   </div>
                 </div>
-              </motion.div>
+              </div>
 
               {/* Card 3 - Ekipman Listesi */}
-              <motion.div
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                viewport={{ once: true }}
-                className="flex-shrink-0 w-80 bg-white rounded-2xl p-8 border border-gray-200 relative"
-              >
-                <div className="absolute top-6 left-6 text-6xl font-bold text-gray-100">03</div>
-                <div className="mt-16">
-                  <h3 className="text-xl font-bold text-gray-900 mb-4">Mühendis Onaylı Ekipman Listesi</h3>
-
+              <div className="md:flex-shrink-0 w-full md:w-80 bg-gradient-to-br from-orange-400 via-purple-500 to-blue-600 rounded-2xl p-6 md:p-8 relative shadow-xl hover:shadow-2xl transition-all">
+                <div className="absolute top-4 md:top-6 left-4 md:left-6 text-4xl md:text-6xl font-bold text-white/20">03</div>
+                <div className="mt-12 md:mt-16">
+                  <h3 className="text-lg md:text-xl font-bold text-white mb-4 leading-tight">
+                    <span className="block sm:hidden">Ekipman Listesi</span>
+                    <span className="hidden sm:block">Mühendis Onaylı Ekipman Listesi</span>
+                  </h3>
                   <div className="space-y-3 mb-4">
                     <div>
-                      <p className="text-gray-800 text-xs font-semibold mb-1">🏗️ 3 Önemli Fayda:</p>
-                      <p className="text-gray-600 text-xs">• Bölgeye uygun yapı ve iklimlendirme</p>
-                      <p className="text-gray-600 text-xs">• Anahtar teslim modüler öneriler</p>
-                      <p className="text-gray-600 text-xs">• Genişletilebilirlik alternatifleri</p>
-                    </div>
-
-                    <div>
-                      <p className="text-gray-800 text-xs font-semibold mb-1">🔗 Veri Kaynakları:</p>
-                      <p className="text-gray-600 text-xs">• Internal equipment DB</p>
-                      <p className="text-gray-600 text-xs">• Mühendis doğrulama kütüphanesi</p>
-                    </div>
-
-                    <div>
-                      <p className="text-gray-800 text-xs font-semibold mb-1">👤 Kullanıcı Girdisi:</p>
-                      <p className="text-gray-600 text-xs">• Sera büyüklüğü, yapı tipi, enerji</p>
-                    </div>
-
-                    <div>
-                      <p className="text-gray-800 text-xs font-semibold mb-1">📄 PDF İçeriği:</p>
-                      <p className="text-gray-600 text-xs">• Modüler ekipman ve maliyet listesi</p>
+                      <p className="text-white/90 text-xs sm:text-sm font-semibold mb-2">🏗️ Temel Faydalar:</p>
+                      <div className="space-y-1">
+                        <p className="text-white/80 text-xs sm:text-sm flex items-start">
+                          <span className="text-green-400 mr-2">•</span>
+                          <span>Bölgeye uygun yapı ve iklimlendirme</span>
+                        </p>
+                        <p className="text-white/80 text-xs sm:text-sm flex items-start">
+                          <span className="text-green-400 mr-2">•</span>
+                          <span>Anahtar teslim modüler öneriler</span>
+                        </p>
+                      </div>
                     </div>
                   </div>
-
-                  <div className="mt-4 p-3 bg-gray-50 rounded-lg">
-                    <p className="text-gray-700 text-sm font-medium">"Mühendislerin önerdiği en doğru sistem"</p>
-                    <button className="mt-2 text-blue-600 text-xs font-medium hover:underline">[Ekipman Listesine Bak]</button>
+                  <div className="mt-4 p-3 bg-white/20 backdrop-blur-sm rounded-lg border border-white/30">
+                    <p className="text-white font-medium mb-2">"Mühendislerin önerdiği en doğru sistem"</p>
+                    <button className="w-full sm:w-auto bg-white text-purple-600 px-4 py-2 rounded-lg text-xs font-medium hover:bg-white/90 transition-colors">
+                      <span className="sm:hidden">📄 Ekipman PDF</span>
+                      <span className="hidden sm:inline">📄 Ekipman Listesine Bak</span>
+                    </button>
                   </div>
                 </div>
-              </motion.div>
+              </div>
 
               {/* Card 4 - Pazar Verisi */}
-              <motion.div
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-                viewport={{ once: true }}
-                className="flex-shrink-0 w-80 bg-white rounded-2xl p-8 border border-gray-200 relative"
-              >
-                <div className="absolute top-6 left-6 text-6xl font-bold text-gray-100">04</div>
-                <div className="mt-16">
-                  <h3 className="text-xl font-bold text-gray-900 mb-4">Pazar ve Tarım Verisi Entegrasyonu</h3>
-
+              <div className="md:flex-shrink-0 w-full md:w-80 bg-gradient-to-br from-orange-400 via-purple-500 to-blue-600 rounded-2xl p-6 md:p-8 relative shadow-xl hover:shadow-2xl transition-all">
+                <div className="absolute top-4 md:top-6 left-4 md:left-6 text-4xl md:text-6xl font-bold text-white/20">04</div>
+                <div className="mt-12 md:mt-16">
+                  <h3 className="text-lg md:text-xl font-bold text-white mb-4 leading-tight">
+                    <span className="block sm:hidden">Pazar & Tarım Verisi</span>
+                    <span className="hidden sm:block">Pazar ve Tarım Verisi Entegrasyonu</span>
+                  </h3>
                   <div className="space-y-3 mb-4">
                     <div>
-                      <p className="text-gray-800 text-xs font-semibold mb-1">🎯 3 Önemli Fayda:</p>
-                      <p className="text-gray-600 text-xs">• Bitki türüne göre pazar fiyat analizi</p>
-                      <p className="text-gray-600 text-xs">• Bölgeye göre verim ortalamaları</p>
-                      <p className="text-gray-600 text-xs">• Hasat-zamanlama optimizasyonu</p>
-                    </div>
-
-                    <div>
-                      <p className="text-gray-800 text-xs font-semibold mb-1">🔗 Veri Kaynakları:</p>
-                      <p className="text-gray-600 text-xs">• TUİK, FAO, Türkiye Hal Fiyatları</p>
-                      <p className="text-gray-600 text-xs">• TMO & Ziraat Odası verileri</p>
-                    </div>
-
-                    <div>
-                      <p className="text-gray-800 text-xs font-semibold mb-1">👤 Kullanıcı Girdisi:</p>
-                      <p className="text-gray-600 text-xs">• Bitki türü, sezon, pazarlama hedefi</p>
-                    </div>
-
-                    <div>
-                      <p className="text-gray-800 text-xs font-semibold mb-1">📄 PDF İçeriği:</p>
-                      <p className="text-gray-600 text-xs">• Fiyat analizi ve hasat çizelgesi</p>
+                      <p className="text-white/90 text-xs font-semibold mb-1">🎯 3 Önemli Fayda:</p>
+                      <p className="text-white/80 text-xs">• Bitki türüne göre pazar fiyat analizi</p>
+                      <p className="text-white/80 text-xs">• Bölgeye göre verim ortalamaları</p>
+                      <p className="text-white/80 text-xs">• Hasat-zamanlama optimizasyonu</p>
                     </div>
                   </div>
-
-                  <div className="mt-4 p-3 bg-gray-50 rounded-lg">
-                    <p className="text-gray-700 text-sm font-medium">"Pazarlar ne diyor? Bitkiniz değerli mi?"</p>
-                    <button className="mt-2 text-blue-600 text-xs font-medium hover:underline">[Verileri Göster]</button>
+                  <div className="mt-4 p-3 bg-white/20 backdrop-blur-sm rounded-lg border border-white/30">
+                    <p className="text-white font-medium">"Pazarlar ne diyor? Bitkiniz değerli mi?"</p>
+                    <button className="mt-2 text-white/90 text-xs font-medium hover:text-white hover:underline">[Verileri Göster]</button>
                   </div>
                 </div>
-              </motion.div>
+              </div>
 
               {/* Card 5 - Teknik Plan */}
-              <motion.div
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: 0.4 }}
-                viewport={{ once: true }}
-                className="flex-shrink-0 w-80 bg-white rounded-2xl p-8 border border-gray-200 relative"
-              >
-                <div className="absolute top-6 left-6 text-6xl font-bold text-gray-100">05</div>
-                <div className="mt-16">
-                  <h3 className="text-xl font-bold text-gray-900 mb-4">Yerleşim ve Teknik Plan Görselleştirmesi</h3>
-
+              <div className="md:flex-shrink-0 w-full md:w-80 bg-gradient-to-br from-orange-400 via-purple-500 to-blue-600 rounded-2xl p-6 md:p-8 relative shadow-xl hover:shadow-2xl transition-all">
+                <div className="absolute top-4 md:top-6 left-4 md:left-6 text-4xl md:text-6xl font-bold text-white/20">05</div>
+                <div className="mt-12 md:mt-16">
+                  <h3 className="text-lg md:text-xl font-bold text-white mb-4 leading-tight">
+                    <span className="block sm:hidden">Teknik Plan Görselleştirmesi</span>
+                    <span className="hidden sm:block">Yerleşim ve Teknik Plan Görselleştirmesi</span>
+                  </h3>
                   <div className="space-y-3 mb-4">
                     <div>
-                      <p className="text-gray-800 text-xs font-semibold mb-1">🎯 3 Önemli Fayda:</p>
-                      <p className="text-gray-600 text-xs">• Sera yerleşim planı (2D çizim)</p>
-                      <p className="text-gray-600 text-xs">• Elektrik ve sulama hat planı</p>
-                      <p className="text-gray-600 text-xs">• Teknik kabin, depo gösterimi</p>
-                    </div>
-
-                    <div>
-                      <p className="text-gray-800 text-xs font-semibold mb-1">🔗 Veri Kaynakları:</p>
-                      <p className="text-gray-600 text-xs">• Planner 2D, CAD AI Tools</p>
-                      <p className="text-gray-600 text-xs">• HerbaTools yerleşim kütüphanesi</p>
-                    </div>
-
-                    <div>
-                      <p className="text-gray-800 text-xs font-semibold mb-1">👤 Kullanıcı Girdisi:</p>
-                      <p className="text-gray-600 text-xs">• Parsel ölçüleri, teknik bölmeler</p>
-                    </div>
-
-                    <div>
-                      <p className="text-gray-800 text-xs font-semibold mb-1">📄 PDF İçeriği:</p>
-                      <p className="text-gray-600 text-xs">• Teknik çizim ve montaj önerileri</p>
+                      <p className="text-white/90 text-xs font-semibold mb-1">🎯 3 Önemli Fayda:</p>
+                      <p className="text-white/80 text-xs">• Sera yerleşim planı (2D çizim)</p>
+                      <p className="text-white/80 text-xs">• Elektrik ve sulama hat planı</p>
+                      <p className="text-white/80 text-xs">• Teknik kabin, depo gösterimi</p>
                     </div>
                   </div>
-
-                  <div className="mt-4 p-3 bg-gray-50 rounded-lg">
-                    <p className="text-gray-700 text-sm font-medium">"2D/3D Yerleşim Planı Hazır!"</p>
-                    <button className="mt-2 text-blue-600 text-xs font-medium hover:underline">[Planı Önizle]</button>
+                  <div className="mt-4 p-3 bg-white/20 backdrop-blur-sm rounded-lg border border-white/30">
+                    <p className="text-white font-medium">"2D/3D Yerleşim Planı Hazır!"</p>
+                    <button className="mt-2 text-white/90 text-xs font-medium hover:text-white hover:underline">[Planı Önizle]</button>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             </div>
 
             {/* Navigation Arrows */}
@@ -509,293 +485,19 @@ export default function UserjotCloneSection() {
         </div>
       </div>
 
-      {/* AI Chat Section */}
-      <div className="py-20 text-gray-600">
-        <div className="text-section-container">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-xl font-bold text-gray-900 mb-6">
-              Tarımsal Zeka Panelinizde Sizi Bekliyor!
-            </h2>
-            <p className="text-sm text-gray-600 text-section-container leading-relaxed">
-              Proje çıktılarınız üzerine sohbet edebileceğiniz, derinlemesine araştırma yapabileceğiniz özel asistanınız panelinizde sizi bekliyor, üstelik tamamen ücretsiz
-            </p>
-          </motion.div>
-
-          {/* AI Chat Flow */}
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.2 }}
-            viewport={{ once: true }}
-            className="relative max-w-[900px] mx-auto"
-          >
-            <div className="bg-gradient-to-br from-blue-50 to-indigo-100 rounded-2xl p-8 shadow-2xl shadow-blue-500/25 border border-blue-100">
-              <div className="bg-gray-50 rounded-xl p-6 space-y-6">
-                {/* Placeholder Image for AI Assistant */}
-                <div className="w-full h-96 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center rounded-lg">
-                  <div className="text-center">
-                    <div className="w-16 h-16 bg-gray-300 rounded-lg mx-auto mb-4 flex items-center justify-center">
-                      <span className="text-2xl">📊</span>
-                    </div>
-                    <h3 className="text-lg font-semibold text-gray-700 mb-2">AI Asistan</h3>
-                    <p className="text-sm text-gray-500">SeraGPT AI Sohbet Arayüzü Önizlemesi</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* CTA Button */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            viewport={{ once: true }}
-            className="text-center mt-12"
-          >
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="bg-gray-600 hover:bg-gray-800 text-white px-10 py-4 rounded-xl text-xl font-bold transition-colors shadow-lg hover:shadow-xl"
-            >
-              AI Asistanınızı Test Edin
-            </motion.button>
-            <p className="text-gray-500 text-sm mt-4">
-              Adil Kullanım Kotası İle Birlikte Ücretsizdir
-            </p>
-          </motion.div>
-        </div>
-      </div>
-
-      {/* Visual Gallery Section */}
-      <div className="py-20 bg-gray-50 text-gray-600">
-        <div className="page-section-container bg-gray-50">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center mb-16 flex flex-col"
-          >
-            <h2 className="text-xl font-bold text-gray-900 mb-6 flex flex-col max-w-[576px] mx-auto">
-              <span className="mx-auto text-3xl">
-                Yatırımcılarımızın Tercih Ettiği Sera Çözümleri
-              </span>
-              <br />
-            </h2>
-            <p className="text-sm text-gray-900 max-w-[576px] mx-auto leading-relaxed">
-              Çözüm ortaklarımız ile hayata geçirilen sera projelerimiz
-            </p>
-          </motion.div>
-
-          {/* Horizontal Scrolling Gallery */}
-          <div className="relative mb-12 visual-section-container">
-            <div className="flex overflow-x-auto scrollbar-hide gap-6 pb-6">
-              {/* Gallery Image 1 */}
-              <motion.div
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6 }}
-                viewport={{ once: true }}
-                className="flex-shrink-0 w-80 h-60 bg-gray-200 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
-              >
-                <div className="w-full h-full bg-gradient-to-br from-green-100 to-blue-100 flex items-center justify-center">
-                  <div className="text-center">
-                    <p className="text-gray-700 font-medium">Modern Sera Kompleksi</p>
-                    <p className="text-gray-500 text-sm">Antalya, 5.000 m²</p>
-                  </div>
-                </div>
-              </motion.div>
-
-              {/* Gallery Image 2 */}
-              <motion.div
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: 0.1 }}
-                viewport={{ once: true }}
-                className="flex-shrink-0 w-80 h-60 bg-gray-200 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
-              >
-                <div className="w-full h-full bg-gradient-to-br from-orange-100 to-red-100 flex items-center justify-center">
-                  <div className="text-center">
-                    <p className="text-gray-700 font-medium">Domates Üretim Serası</p>
-                    <p className="text-gray-500 text-sm">Mersin, 3.200 m²</p>
-                  </div>
-                </div>
-              </motion.div>
-
-              {/* Gallery Image 3 */}
-              <motion.div
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                viewport={{ once: true }}
-                className="flex-shrink-0 w-80 h-60 bg-gray-200 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
-              >
-                <div className="w-full h-full bg-gradient-to-br from-purple-100 to-pink-100 flex items-center justify-center">
-                  <div className="text-center">
-                    <p className="text-gray-700 font-medium">Hidroponik Sera Sistemi</p>
-                    <p className="text-gray-500 text-sm">İzmir, 2.800 m²</p>
-                  </div>
-                </div>
-              </motion.div>
-
-              {/* Gallery Image 4 */}
-              <motion.div
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-                viewport={{ once: true }}
-                className="flex-shrink-0 w-80 h-60 bg-gray-200 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
-              >
-                <div className="w-full h-full bg-gradient-to-br from-yellow-100 to-orange-100 flex items-center justify-center">
-                  <div className="text-center">
-                    <p className="text-gray-700 font-medium">Fide Üretim Tesisi</p>
-                    <p className="text-gray-500 text-sm">Bursa, 4.500 m²</p>
-                  </div>
-                </div>
-              </motion.div>
-
-              {/* Gallery Image 5 */}
-              <motion.div
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: 0.4 }}
-                viewport={{ once: true }}
-                className="flex-shrink-0 w-80 h-60 bg-gray-200 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
-              >
-                <div className="w-full h-full bg-gradient-to-br from-blue-100 to-indigo-100 flex items-center justify-center">
-                  <div className="text-center">
-                    <div className="text-4xl mb-3">🌡️</div>
-                    <p className="text-gray-700 font-medium">İklim Kontrollü Sera</p>
-                    <p className="text-gray-500 text-sm">Konya, 6.000 m²</p>
-                  </div>
-                </div>
-              </motion.div>
-
-              {/* Gallery Image 6 */}
-              <motion.div
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: 0.5 }}
-                viewport={{ once: true }}
-                className="flex-shrink-0 w-80 h-60 bg-gray-200 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
-              >
-                <div className="w-full h-full bg-gradient-to-br from-emerald-100 to-teal-100 flex items-center justify-center">
-                  <div className="text-center">
-                    <div className="text-4xl mb-3">🥒</div>
-                    <p className="text-gray-700 font-medium">Salatalık Üretim Serası</p>
-                    <p className="text-gray-500 text-sm">Muğla, 2.100 m²</p>
-                  </div>
-                </div>
-              </motion.div>
-
-              {/* Gallery Image 7 */}
-              <motion.div
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: 0.6 }}
-                viewport={{ once: true }}
-                className="flex-shrink-0 w-80 h-60 bg-gray-200 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
-              >
-                <div className="w-full h-full bg-gradient-to-br from-rose-100 to-pink-100 flex items-center justify-center">
-                  <div className="text-center">
-                    <div className="text-4xl mb-3">🌹</div>
-                    <p className="text-gray-700 font-medium">Çiçek Üretim Serası</p>
-                    <p className="text-gray-500 text-sm">Isparta, 1.800 m²</p>
-                  </div>
-                </div>
-              </motion.div>
-
-              {/* Gallery Image 8 */}
-              <motion.div
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: 0.7 }}
-                viewport={{ once: true }}
-                className="flex-shrink-0 w-80 h-60 bg-gray-200 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
-              >
-                <div className="w-full h-full bg-gradient-to-br from-amber-100 to-yellow-100 flex items-center justify-center">
-                  <div className="text-center">
-                    <div className="text-4xl mb-3">🥬</div>
-                    <p className="text-gray-700 font-medium">Organik Sebze Serası</p>
-                    <p className="text-gray-500 text-sm">Çanakkale, 3.700 m²</p>
-                  </div>
-                </div>
-              </motion.div>
-            </div>
-
-            {/* Scroll indicators */}
-            <div className="flex justify-center mt-6 space-x-2">
-              <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
-              <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
-              <div className="w-2 h-2 bg-gray-900 rounded-full"></div>
-              <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
-              <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
-            </div>
-          </div>
-
-          {/* CTA Button */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            viewport={{ once: true }}
-            className="text-center"
-          >
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pb-11">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="bg-gray-600 hover:bg-gray-700 text-white px-10 py-4 rounded-xl text-xl font-bold transition-colors shadow-lg hover:shadow-xl mt-12"
-              >
-                Anahtar Teslim Fiyat Alın
-              </motion.button>
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="bg-gray-600 hover:bg-gray-700 text-white px-10 py-4 rounded-xl text-xl font-bold transition-colors shadow-lg hover:shadow-xl mt-12"
-              >
-                Kurumsal Danışmanlık Hizmeti
-              </motion.button>
-            </div>
-            <p className="text-gray-500 text-sm mt-4">
-              Uzman ekibimiz size özel teklifini hazırlayacak
-            </p>
-          </motion.div>
-        </div>
-      </div>
-
       {/* Blog Cards Section */}
       <BlogCardsSection />
 
       {/* FAQ Section */}
-      <motion.div
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        viewport={{ once: true }}
-        className="bg-white py-20 text-gray-600"
-      >
-        <div className="text-section-container">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
+      <div className="section">
+        <div className="text-container">
+          <div className="text-center mb-16">
             <h2 className="text-xl font-bold text-gray-900 mb-4">
               Sıkça Sorulan Sorular (SSS)
             </h2>
-          </motion.div>
+          </div>
 
-          <div className="space-y-2">
+          <div className="space-y-2" style={{ fontSize: '16px', lineHeight: '24px', backgroundColor: 'rgba(245, 245, 245, 1)' }}>
             {[
               {
                 question: "Raporlar ne kadar doğru?",
@@ -818,12 +520,8 @@ export default function UserjotCloneSection() {
                 answer: "İlk 5 rapor ücretsizdir. Sonrasında, kredi kartı veya havale/EFT ile jeton (token) satın alabilirsiniz. Ödeme altyapısı %100 güvenlidir."
               }
             ].map((faq, index) => (
-              <motion.div
+              <div
                 key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.05 }}
-                viewport={{ once: true }}
                 className="bg-gray-50 rounded-xl overflow-hidden"
               >
                 <button
@@ -847,43 +545,31 @@ export default function UserjotCloneSection() {
                   </div>
                 </button>
                 {openFAQ === index && (
-                  <motion.div
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: 'auto' }}
-                    exit={{ opacity: 0, height: 0 }}
-                    transition={{ duration: 0.3 }}
-                    className="px-6 pb-6 text-sm md:text-base text-gray-600 leading-relaxed"
-                  >
+                  <div className="px-6 pb-6 text-sm md:text-base text-gray-600 leading-relaxed">
                     {faq.answer}
-                  </motion.div>
+                  </div>
                 )}
-              </motion.div>
+              </div>
             ))}
           </div>
 
           {/* Support Link */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            viewport={{ once: true }}
-            className="text-center mt-12"
-          >
-            <p className="text-gray-600 mb-4">
+          <div className="text-center mt-12">
+            <p className="text-body text-center mb-4">
               Sorunuza cevap bulamadınız mı?
             </p>
-            <a
-              href="/dashboard/help"
-              className="inline-flex items-center space-x-2 bg-gray-600 hover:bg-gray-700 text-white px-6 py-3 rounded-lg font-medium transition-colors"
+            <Link
+              href="/destek"
+              className="inline-flex items-center space-x-2 bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded-lg text-base font-medium transition-colors"
             >
               <span>Destek Sayfamıza Gidin</span>
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
-            </a>
-          </motion.div>
+            </Link>
+          </div>
         </div>
-      </motion.div>
+      </div>
 
       {/* Footer */}
       <Footer />

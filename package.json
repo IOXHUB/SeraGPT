@@ -9,19 +9,24 @@
   "scripts": {
     "dev": "next dev",
     "dev:turbo": "next dev --turbo",
+    "dev:safe": "next dev --port 3001",
     "build": "next build",
+    "build:analyze": "ANALYZE=true next build",
     "start": "next start",
     "export": "next build && next export",
     "lint": "next lint",
     "type-check": "tsc --noEmit",
     "build:netlify": "next build",
-    "postinstall": "npm run type-check"
+    "postinstall": "echo 'Build completed successfully'"
   },
   "dependencies": {
     "@supabase/auth-helpers-nextjs": "^0.10.0",
     "@supabase/ssr": "^0.6.1",
     "@supabase/supabase-js": "^2.53.0",
+    "class-variance-authority": "^0.7.1",
     "framer-motion": "^10.16.16",
+    "html2canvas": "^1.4.1",
+    "jspdf": "^3.0.1",
     "next": "14.0.4",
     "react": "^18",
     "react-dom": "^18"

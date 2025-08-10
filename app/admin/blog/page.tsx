@@ -4,6 +4,9 @@ import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { BlogService, BlogPost } from '@/lib/blog';
 
+// Force dynamic rendering
+export const dynamic = 'force-dynamic';
+
 export default function BlogAdminPage() {
   const [posts, setPosts] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(true);

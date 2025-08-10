@@ -4,6 +4,9 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import DashboardLayout from '@/components/dashboard/DashboardLayout';
 
+// Force dynamic rendering to prevent SSR
+export const dynamic = 'force-dynamic';
+
 export default function AdminSettingsPage() {
   const [systemSettings, setSystemSettings] = useState({
     maintenanceMode: false,
