@@ -344,7 +344,10 @@ export default function EquipmentAnalysisPage() {
   );
 
   return (
-    <DashboardLayout>
+    <DashboardLayout
+      title="Ekipman Analizi"
+      subtitle="20 yıllık deneyime sahip mühendislerimizin onayladığı ekipman önerileri alın"
+    >
       <div className="min-h-screen bg-gray-50 p-6">
         <div className="max-w-6xl mx-auto">
           {/* Header */}
