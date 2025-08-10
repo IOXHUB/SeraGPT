@@ -49,12 +49,15 @@ export async function GET(request: NextRequest) {
 
 export async function PUT(request: NextRequest) {
   try {
+    console.log('Profile PUT endpoint called');
     const supabase = createRouteHandlerClient({ cookies });
 
     // Get the current user
     const { data: { user }, error: authError } = await supabase.auth.getUser();
+    console.log('Auth check:', { hasUser: !!user, authError: authError?.message });
 
     if (authError || !user) {
+      console.log('Authentication failed');
       return NextResponse.json({
         success: false,
         error: 'Unauthorized - Authentication required'
@@ -63,9 +66,11 @@ export async function PUT(request: NextRequest) {
 
     // Parse request body
     const updates = await request.json();
+    console.log('Profile updates received:', updates);
 
     // Validate required fields
     if (!updates || typeof updates !== 'object') {
+      console.log('Invalid request body');
       return NextResponse.json({
         success: false,
         error: 'Invalid request body'
