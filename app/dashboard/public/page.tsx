@@ -2,6 +2,9 @@
 
 import { useState } from 'react';
 
+// Force dynamic rendering to prevent SSR
+export const dynamic = 'force-dynamic';
+
 export default function PublicDashboardPage() {
   const [showWelcome, setShowWelcome] = useState(true);
 
