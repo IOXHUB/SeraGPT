@@ -639,7 +639,7 @@ export default function SettingsPage() {
                 </div>
 
                 <div>
-                  <h3 className="text-lg font-medium text-gray-900 mb-4">Bildirim Türleri</h3>
+                  <h3 className="text-lg font-medium text-[#1e3237] mb-4">Bildirim Türleri</h3>
                   <div className="space-y-4">
                     <label className="flex items-center">
                       <input
