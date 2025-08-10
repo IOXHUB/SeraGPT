@@ -92,12 +92,68 @@ export default function BlogPage() {
   return (
     <>
       <SEOHead config={seoConfig} />
-      <div className="min-h-screen bg-[#f6f8f9]">
-        {/* Header */}
-        <Header />
+      <div className="min-h-screen" style={{ backgroundColor: '#146448' }}>
+        {/* Header - matching homepage */}
+        <header className="py-4" style={{ backgroundColor: '#146448' }}>
+          <div className="max-w-[1200px] mx-auto px-6">
+            <div className="flex items-center justify-between">
+              {/* Logo */}
+              <div className="flex items-center">
+                <Link href="/">
+                  <img
+                    src="https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2F01c1e8a05ef6424b912d584875377957?format=webp&width=800"
+                    alt="SeraGPT Logo"
+                    className="h-12 w-auto object-contain"
+                  />
+                </Link>
+              </div>
+
+              {/* Navigation */}
+              <nav className="hidden md:flex items-center space-x-8">
+                <Link
+                  href="/danismanlik"
+                  className="font-medium transition-opacity hover:opacity-70"
+                  style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '400' }}
+                >
+                  Danışmanlık
+                </Link>
+                <Link
+                  href="/anahtar-teslim-proje"
+                  className="font-medium transition-opacity hover:opacity-70"
+                  style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '400' }}
+                >
+                  Anahtar Teslim Proje
+                </Link>
+                <Link
+                  href="/destek"
+                  className="font-medium transition-opacity hover:opacity-70"
+                  style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '400' }}
+                >
+                  Destek
+                </Link>
+              </nav>
+
+              {/* CTA Button */}
+              <div className="hidden md:flex items-center">
+                <Link
+                  href="/auth/login"
+                  className="px-6 py-3 rounded-xl font-medium transition-all hover:opacity-90"
+                  style={{
+                    backgroundColor: '#baf200',
+                    color: '#1e3237',
+                    fontSize: '14px',
+                    fontWeight: '600'
+                  }}
+                >
+                  Ücretsiz Başla
+                </Link>
+              </div>
+            </div>
+          </div>
+        </header>
 
         {/* Main Content */}
-        <main className="max-w-7xl mx-auto px-6 py-8">
+        <main className="max-w-7xl mx-auto px-6 py-8" style={{ backgroundColor: '#f6f8f9' }}>
           {/* Header Section */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
