@@ -8,6 +8,7 @@ import { motion } from 'framer-motion';
 import { useAuth } from '@/lib/hooks/useAuth';
 import DashboardLayout from '@/components/dashboard/DashboardLayout';
 import AdminErrorBoundary from '@/components/AdminErrorBoundary';
+import { externalApiService } from '@/lib/services/external-api-service';
 
 export default function AdminDashboard() {
   const { user, isAdmin, loading } = useAuth();
