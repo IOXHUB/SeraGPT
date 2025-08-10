@@ -384,7 +384,7 @@ export default function SettingsPage() {
 
           {/* Location Tab */}
           {activeTab === 'location' && (
-            <div className="bg-white rounded-xl border border-gray-200 p-6">
+            <div className="bg-[#f6f8f9] rounded-xl border border-gray-200 p-6 shadow-lg">
               <h2 className="text-xl font-semibold text-gray-900 mb-6">📍 Konum & İşletme Bilgileri</h2>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
