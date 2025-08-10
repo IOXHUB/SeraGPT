@@ -18,24 +18,25 @@ export async function middleware(request: NextRequest) {
     // Enable auth protection for protected routes
     const response = await updateSession(request)
     
-    // Add debug headers to confirm middleware is working
-    response.headers.set('X-Debug-Mode', 'true')
-    response.headers.set('X-Middleware-Bypass', 'complete')
-    response.headers.set('X-Request-Path', pathname)
+    // Add security headers
+    response.headers.set('X-Frame-Options', 'DENY')
+    response.headers.set('X-Content-Type-Options', 'nosniff')
     response.headers.set('X-Processing-Time', `${Date.now() - startTime}ms`)
-    
+
     const processingTime = Date.now() - startTime
-    console.log(`✅ [BYPASS] Request completed in ${processingTime}ms`)
+    console.log(`✅ [SECURITY] Request completed in ${processingTime}ms`)
 
     return response
 
   } catch (error) {
-    console.error(`❌ [BYPASS] Middleware error for ${pathname}:`, error)
-    
-    // Even on error, just pass through without blocking
-    let response = NextResponse.next()
-    response.headers.set('X-Error-Bypass', 'true')
-    return response
+    console.error(`❌ [SECURITY] Middleware error for ${pathname}:`, error)
+
+    // On auth error, redirect to login
+    if (pathname.startsWith('/dashboard') || pathname.startsWith('/admin')) {
+      return NextResponse.redirect(new URL('/auth/login', request.url))
+    }
+
+    return NextResponse.next()
   }
 }
 
