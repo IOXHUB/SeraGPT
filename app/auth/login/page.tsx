@@ -369,7 +369,7 @@ export default function AuthPage() {
               <div className={`w-2 h-2 rounded-full mr-2 ${
                 connectionTest.success ? 'bg-green-600' : 'bg-red-600'
               }`}></div>
-              {connectionTest.success ? 'Bağlantı Aktif' : 'Bağlantı Sorunu'}
+              {connectionTest.success ? 'Sunucu Bağlantısı Aktif' : 'Sunucu Bağlantı Sorunu - Sayfayı yenileyin'}
             </div>
           )}
         </div>
