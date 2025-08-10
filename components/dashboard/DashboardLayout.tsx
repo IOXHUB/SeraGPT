@@ -142,14 +142,45 @@ export default function DashboardLayout({ children, title, subtitle }: Dashboard
         <div className="max-w-[1200px] mx-auto px-6">
           <nav className="flex items-center space-x-8 py-4 overflow-x-auto">
             {dashboardNavItems.map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                className="whitespace-nowrap font-medium text-[#1e3237] hover:text-[#146448] transition-colors border-b-2 border-transparent hover:border-[#146448] pb-1"
-                style={{ fontSize: '14px' }}
-              >
-                {item.name}
-              </a>
+              <div key={item.name} className="relative">
+                {item.dropdown ? (
+                  <div className="relative">
+                    <button
+                      onClick={() => setAnalysisDropdownOpen(!analysisDropdownOpen)}
+                      className="flex items-center space-x-1 whitespace-nowrap font-medium text-[#1e3237] hover:text-[#146448] transition-colors border-b-2 border-transparent hover:border-[#146448] pb-1"
+                      style={{ fontSize: '14px' }}
+                    >
+                      <span>{item.name}</span>
+                      <svg className={`w-4 h-4 transition-transform ${analysisDropdownOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </button>
+
+                    {analysisDropdownOpen && (
+                      <div className="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-50">
+                        {analysisItems.map((analysisItem) => (
+                          <a
+                            key={analysisItem.href}
+                            href={analysisItem.href}
+                            className="block px-4 py-2 text-[#1e3237] hover:bg-[#f6f8f9] hover:text-[#146448] transition-colors"
+                            onClick={() => setAnalysisDropdownOpen(false)}
+                          >
+                            {analysisItem.name}
+                          </a>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                ) : (
+                  <a
+                    href={item.href}
+                    className="whitespace-nowrap font-medium text-[#1e3237] hover:text-[#146448] transition-colors border-b-2 border-transparent hover:border-[#146448] pb-1"
+                    style={{ fontSize: '14px' }}
+                  >
+                    {item.name}
+                  </a>
+                )}
+              </div>
             ))}
           </nav>
         </div>
