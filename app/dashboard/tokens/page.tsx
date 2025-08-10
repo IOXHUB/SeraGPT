@@ -221,13 +221,9 @@ export default function TokensPage() {
   };
 
   const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('tr-TR', {
-      year: 'numeric',
-      month: 'short',
-      day: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit'
-    });
+    const date = new Date(dateString);
+    // Use consistent formatting to prevent hydration mismatch
+    return date.toISOString().split('T')[0] + ' ' + date.toISOString().split('T')[1].split('.')[0];
   };
 
   const getActivityIcon = (activityType: string) => {
