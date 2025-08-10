@@ -62,8 +62,8 @@ export function GlowButton({
               delay: i * 0.1
             }}
             style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`
+              left: `${(i * 37) % 100}%`,
+              top: `${(i * 23) % 100}%`
             }}
           />
         ))}
