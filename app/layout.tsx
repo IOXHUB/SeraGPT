@@ -7,9 +7,6 @@ import ImageOptimizationProvider from '@/components/providers/ImageOptimizationP
 import DevToolsWidget from '@/components/dev/DevToolsWidget'
 import DevNavigation from '@/components/DevNavigation'
 
-// Force dynamic rendering for the entire app to prevent SSR build errors
-export const dynamic = 'force-dynamic'
-
 export const metadata: Metadata = {
   title: 'SeraGPT',
   description: 'AI-powered chat application',
