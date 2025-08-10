@@ -27,7 +27,19 @@ const key = (supabaseAnonKey &&
 const isBuildTime = typeof window === 'undefined' && process.env.NODE_ENV !== 'development'
 const shouldCreateClient = !isBuildTime || isSupabaseConfigured()
 
-export const supabase = createClient(url, key, {
+// Helper to check if Supabase is properly configured
+export const isSupabaseConfigured = () => {
+  return !!(supabaseUrl &&
+           supabaseAnonKey &&
+           supabaseUrl !== 'undefined' &&
+           supabaseAnonKey !== 'undefined' &&
+           supabaseUrl !== 'your-supabase-url' &&
+           supabaseAnonKey !== 'your-supabase-anon-key' &&
+           supabaseUrl.includes('supabase.co'))
+}
+
+// Create Supabase client with safe configuration
+export const supabase = shouldCreateClient ? createClient(url, key, {
   auth: {
     // Disable auto refresh during build/static generation
     autoRefreshToken: typeof window !== 'undefined',
@@ -44,24 +56,20 @@ export const supabase = createClient(url, key, {
       'Content-Type': 'application/json',
     },
   },
-  // Add fetch configuration for better error handling
-  // fetch: (url: RequestInfo | URL, options: RequestInit = {}) => {
-  //   return fetch(url, {
-  //     ...options,
-  //     headers: {
-  //       ...options.headers,
-  //       'Content-Type': 'application/json',
-  //     },
-  //   }).catch((error) => {
-  //     console.error('Supabase fetch error:', error);
-  //     throw new Error(`Network error: ${error.message}`);
-  //   });
-  // }
-})
+}) : null
 
-// Helper to check if Supabase is properly configured
-export const isSupabaseConfigured = () => {
-  return !!(supabaseUrl && supabaseAnonKey &&
-           supabaseUrl !== defaultUrl &&
-           supabaseAnonKey !== defaultKey)
+// Export a safe version that handles null client
+export const getSupabaseClient = () => {
+  if (!supabase) {
+    console.warn('Supabase client not initialized - using mock client')
+    return {
+      auth: {
+        getSession: () => Promise.resolve({ data: { session: null }, error: null }),
+        getUser: () => Promise.resolve({ data: { user: null }, error: null }),
+        signOut: () => Promise.resolve({ error: null }),
+        onAuthStateChange: () => ({ data: { subscription: { unsubscribe: () => {} } } })
+      }
+    } as any
+  }
+  return supabase
 }
