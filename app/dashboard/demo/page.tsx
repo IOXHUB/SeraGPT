@@ -4,6 +4,9 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import DashboardLayout from '@/components/dashboard/DashboardLayout';
 
+// Force dynamic rendering
+export const dynamic = 'force-dynamic';
+
 export default function DemoDashboard() {
   const [activeTab, setActiveTab] = useState('overview');
 
