@@ -51,46 +51,9 @@ export default function AuthPage() {
 
   // Redirect if user is already logged in (with delay to prevent premature redirects)
   useEffect(() => {
-<<<<<<< HEAD
-    const isDev = typeof window !== 'undefined' && (
-      process.env.NODE_ENV === 'development' ||
-      window.location.hostname.includes('fly.dev') ||
-      window.location.hostname.includes('builder.my') ||
-      window.location.hostname.includes('localhost')
-    );
-
     if (user && !authLoading && mounted) {
-      console.log('User already logged in, checking redirect...');
-
-      // In development environment, check for mock user
-      if (isDev) {
-        const mockUser = localStorage.getItem('seragpt_user');
-        if (mockUser) {
-          try {
-            const parsedUser = JSON.parse(mockUser);
-            console.log('Mock user found, redirecting to appropriate dashboard');
-
-            setTimeout(() => {
-              if (parsedUser.role === 'admin') {
-                router.push('/admin');
-              } else {
-                router.push('/dashboard');
-              }
-            }, 1000);
-            return;
-          } catch (e) {
-            console.warn('Failed to parse mock user');
-          }
-        }
-      }
-
-      // Normal redirect for authenticated users
-      setTimeout(() => {
-        router.push('/dashboard');
-      }, 1000);
-=======
-    if (user && !authLoading) {
       console.log('User already logged in, checking role for redirect');
+
       // Check if user is admin
       const isUserAdmin = user?.user_metadata?.role === 'admin' ||
                          user?.email === 'admin@seragpt.com' ||
@@ -103,7 +66,6 @@ export default function AuthPage() {
         console.log('Regular user detected, redirecting to user dashboard');
         router.push('/dashboard');
       }
->>>>>>> 6c9674f8b6cab435193670a79acb6e32d263b1f9
     }
   }, [user, authLoading, router, mounted]);
 
@@ -167,7 +129,7 @@ export default function AuthPage() {
     }
 
     try {
-      console.log('🔑 Attempting login with enhanced auth system...');
+      console.log('�� Attempting login with enhanced auth system...');
       setMessage('🔍 Giriş bilgileri kontrol ediliyor...');
 
       const result = await signIn(email, password);
