@@ -138,7 +138,7 @@ export default function TokensPage() {
             created_at: '2024-01-16T13:00:00.000Z'
           }
         ];
-        setTokenHistory(mockActivity);
+        setTokenHistory(mockActivity as any);
       } else {
         // Load token usage history from API
         const activity = await authService.getUserActivity(user.id, 50, 'payment');
@@ -431,7 +431,7 @@ export default function TokensPage() {
                     ) : purchaseLoading === pkg.id ? (
                       <div className="flex items-center justify-center">
                         <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-current mr-2"></div>
-                        Satın Alın��yor...
+                        Satın Alınıyor...
                       </div>
                     ) : (
                       'Satın Al'
