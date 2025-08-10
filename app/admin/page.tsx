@@ -14,6 +14,8 @@ export default function AdminDashboard() {
   const [timeRange, setTimeRange] = useState('7days');
   const [adminData, setAdminData] = useState<any>(null);
   const [dataLoading, setDataLoading] = useState(true);
+  const [apiStatusData, setApiStatusData] = useState<any>(null);
+  const [apiLoading, setApiLoading] = useState(false);
 
   useEffect(() => {
     if (user && !loading) {
