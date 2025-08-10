@@ -186,9 +186,10 @@ export default function DashboardPage() {
                 >
                   Toplam Analiz
                 </p>
-                <p 
+                <p
                   className="text-2xl font-bold"
                   style={{ color: '#1e3237' }}
+                  suppressHydrationWarning
                 >
                   {stats.totalAnalyses}
                 </p>
