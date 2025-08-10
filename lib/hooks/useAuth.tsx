@@ -27,10 +27,12 @@ export function useAuth(): AuthContextType {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  const supabase = typeof window !== 'undefined' ? createBrowserClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-  ) : null;
+  const supabase = typeof window !== 'undefined' && isSupabaseConfigured()
+    ? createBrowserClient(
+        process.env.NEXT_PUBLIC_SUPABASE_URL!,
+        process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+      )
+    : getSupabaseClient();
 
   // Fetch user profile data using API endpoints
   const fetchUserData = useCallback(async (userId: string) => {
