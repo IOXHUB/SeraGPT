@@ -7,7 +7,7 @@ export default function SimpleDashboard() {
   const [timestamp, setTimestamp] = useState('');
 
   useEffect(() => {
-    setTimestamp(new Date().toLocaleString('tr-TR'));
+    setTimestamp('16.01.2024 15:00:00');
     
     // Check localStorage for mock user
     const stored = localStorage.getItem('seragpt_user');
