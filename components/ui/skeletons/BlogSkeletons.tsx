@@ -43,7 +43,7 @@ export function BlogListSkeleton() {
           <Skeleton 
             key={i} 
             height="2rem" 
-            width={`${Math.random() * 4 + 6}rem`} 
+            width={`${(i % 4) + 6}rem`} 
             rounded="full" 
           />
         ))}
@@ -161,7 +161,7 @@ export function BlogPostSkeleton() {
           <Skeleton 
             key={i} 
             height="1.5rem" 
-            width={`${Math.random() * 3 + 4}rem`} 
+            width={`${(i % 3) + 4}rem`} 
             rounded="full" 
           />
         ))}
