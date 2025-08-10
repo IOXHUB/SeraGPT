@@ -271,18 +271,6 @@ export default function AIChatPage() {
                 </div>
               </div>
 
-              {/* Sidebar Footer */}
-              <div className="p-4 border-t border-[#f6f8f9]/10">
-                <div className="flex items-center space-x-3">
-                  <div className="w-8 h-8 bg-[#baf200] rounded-full flex items-center justify-center">
-                    <span className="text-[#1e3237] text-sm font-bold">V</span>
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <div className="text-sm font-medium text-[#f6f8f9] truncate">Volkan Ş.</div>
-                    <div className="text-xs text-[#f6f8f9]/60">Premium Üye</div>
-                  </div>
-                </div>
-              </div>
             </motion.div>
           )}
         </AnimatePresence>
@@ -318,7 +306,7 @@ export default function AIChatPage() {
             <div className="flex items-center space-x-2">
               <div className="hidden md:flex items-center space-x-2 text-xs text-[#f6f8f9]/60">
                 <span>💬 24/7 Aktif</span>
-                <span>•</span>
+                <span>���</span>
                 <span>🚀 Anında Yanıt</span>
               </div>
               <button className="p-2 hover:bg-[#f6f8f9]/10 rounded-lg transition-colors">
