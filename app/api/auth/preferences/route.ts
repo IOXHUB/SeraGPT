@@ -6,11 +6,7 @@
 // Created: 2024-12-01
 // =====================================================
 
-import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
-import { cookies } from 'next/headers';
 import { NextRequest, NextResponse } from 'next/server';
-import { authService } from '@/lib/services/auth-service';
-import type { UpdateUserPreferencesRequest } from '@/types/auth';
 
 // =====================================================
 // GET - Get User Preferences
