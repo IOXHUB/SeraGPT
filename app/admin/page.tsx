@@ -32,24 +32,24 @@ export default function AdminDashboard() {
       
       const mockAdminData = {
         systemStats: [
-          { name: 'Toplam Kullanıcı', value: Math.floor(Math.random() * 1000) + 500, change: `+${Math.floor(Math.random() * 20) + 5} bu hafta`, changeType: 'positive' },
-          { name: 'Aktif Analizler', value: Math.floor(Math.random() * 100) + 50, change: `+${Math.floor(Math.random() * 30) + 10} bugün`, changeType: 'positive' },
-          { name: 'Jeton Kullanımı', value: Math.floor(Math.random() * 3000) + 1000, change: `+${Math.floor(Math.random() * 200) + 50} bu hafta`, changeType: 'positive' },
+          { name: 'Toplam Kullanıcı', value: 847, change: '+12 bu hafta', changeType: 'positive' },
+          { name: 'Aktif Analizler', value: 73, change: '+18 bugün', changeType: 'positive' },
+          { name: 'Jeton Kullanımı', value: 2156, change: '+142 bu hafta', changeType: 'positive' },
           { name: 'Sistem Durumu', value: '99.9%', change: 'Tüm sistemler aktif', changeType: 'positive' },
         ],
-        recentUsers: Array.from({ length: 5 }, (_, i) => ({
-          name: ['Mehmet Yılmaz', 'Ayşe Kaya', 'Ali Demir', 'Fatma Şen', 'Mustafa Özkan'][i],
-          email: ['mehmet@example.com', 'ayse@example.com', 'ali@example.com', 'fatma@example.com', 'mustafa@example.com'][i],
-          role: Math.random() > 0.8 ? 'premium' : 'user',
-          joinDate: `${Math.floor(Math.random() * 7) + 1} gün önce`,
-          status: Math.random() > 0.2 ? 'active' : 'pending'
-        })),
+        recentUsers: [
+          { name: 'Mehmet Yılmaz', email: 'mehmet@example.com', role: 'user', joinDate: '2 gün önce', status: 'active' },
+          { name: 'Ayşe Kaya', email: 'ayse@example.com', role: 'premium', joinDate: '3 gün önce', status: 'active' },
+          { name: 'Ali Demir', email: 'ali@example.com', role: 'user', joinDate: '1 gün önce', status: 'active' },
+          { name: 'Fatma Şen', email: 'fatma@example.com', role: 'user', joinDate: '4 gün önce', status: 'pending' },
+          { name: 'Mustafa Özkan', email: 'mustafa@example.com', role: 'user', joinDate: '5 gün önce', status: 'active' }
+        ],
         apiStatus: [
-          { name: 'OpenWeather API', status: 'active', responseTime: `${Math.floor(Math.random() * 200) + 100}ms`, requests: Math.floor(Math.random() * 3000) + 1000 },
-          { name: 'FAO Data API', status: 'active', responseTime: `${Math.floor(Math.random() * 300) + 150}ms`, requests: Math.floor(Math.random() * 2000) + 500 },
-          { name: 'TUİK API', status: Math.random() > 0.8 ? 'warning' : 'active', responseTime: `${Math.floor(Math.random() * 500) + 200}ms`, requests: Math.floor(Math.random() * 1000) + 200 },
-          { name: 'Supabase DB', status: 'active', responseTime: `${Math.floor(Math.random() * 100) + 50}ms`, requests: Math.floor(Math.random() * 8000) + 2000 },
-          { name: 'Vercel Hosting', status: 'active', responseTime: `${Math.floor(Math.random() * 80) + 20}ms`, requests: Math.floor(Math.random() * 15000) + 5000 },
+          { name: 'OpenWeather API', status: 'active', responseTime: '145ms', requests: 2340 },
+          { name: 'FAO Data API', status: 'active', responseTime: '223ms', requests: 1245 },
+          { name: 'TUİK API', status: 'active', responseTime: '334ms', requests: 567 },
+          { name: 'Supabase DB', status: 'active', responseTime: '89ms', requests: 5670 },
+          { name: 'Vercel Hosting', status: 'active', responseTime: '45ms', requests: 12340 },
         ]
       };
       
@@ -140,7 +140,7 @@ export default function AdminDashboard() {
 
           {/* System Stats */}
           <div>
-            <h2 className="text-lg font-semibold text-gray-900 mb-4">Sistem İstatistikleri</h2>
+            <h2 className="text-lg font-semibold text-gray-900 mb-4">Sistem ��statistikleri</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {systemStats.map((stat: any, index: number) => (
                 <motion.div
