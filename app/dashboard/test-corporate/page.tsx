@@ -236,7 +236,7 @@ export default function CorporateDashboardTest() {
                   <div 
                     key={index} 
                     className="flex items-center justify-between p-4 border rounded-lg"
-                    style={{ borderColor: '#1e3237', borderOpacity: 0.1 }}
+                    style={{ borderColor: '#1e323733' }}
                   >
                     <div>
                       <h3 
