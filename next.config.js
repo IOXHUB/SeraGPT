@@ -32,8 +32,8 @@ const nextConfig = {
   
   // Environment variables that should be available in the browser
   env: {
-    NEXT_PUBLIC_SUPABASE_URL: process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://placeholder.supabase.co',
-    NEXT_PUBLIC_SUPABASE_ANON_KEY: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'placeholder-anon-key',
+    NEXT_PUBLIC_SUPABASE_URL: process.env.NEXT_PUBLIC_SUPABASE_URL,
+    NEXT_PUBLIC_SUPABASE_ANON_KEY: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
   },
   
   // Performance and optimization
@@ -60,6 +60,12 @@ const nextConfig = {
 
   // Force dynamic rendering to avoid SSR issues
   output: 'standalone',
+
+  // Experimental features for better deployment
+  experimental: {
+    optimizePackageImports: ['framer-motion', '@supabase/supabase-js'],
+    serverComponentsExternalPackages: ['@supabase/supabase-js'],
+  },
 
   // Security headers for production
   async headers() {
