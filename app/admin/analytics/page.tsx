@@ -5,6 +5,9 @@ import { motion } from 'framer-motion';
 import DashboardLayout from '@/components/dashboard/DashboardLayout';
 import AdminErrorBoundary from '@/components/AdminErrorBoundary';
 
+// Force dynamic rendering to prevent SSR
+export const dynamic = 'force-dynamic';
+
 const analyticsData = {
   overview: {
     totalUsers: 1247,
