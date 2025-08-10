@@ -158,7 +158,7 @@ export default function AIChatPage() {
     if (!inputValue.trim()) return;
 
     const userMessage: ChatMessage = {
-      id: `msg_${Math.random().toString(36).substr(2, 9)}`,
+      id: `msg_${Date.now()}_${Math.floor(Math.random() * 1000)}`,
       role: 'user',
       content: inputValue,
       timestamp: new Date()
@@ -171,7 +171,7 @@ export default function AIChatPage() {
     // Simulate AI response
     setTimeout(() => {
       const aiResponse: ChatMessage = {
-        id: `ai_${Math.random().toString(36).substr(2, 9)}`,
+        id: `ai_${Date.now()}_${Math.floor(Math.random() * 1000)}`,
         role: 'assistant',
         content: `**"${inputValue}" Hakkında Kapsamlı Analiz**\n\nBu konuda size detaylı ve pratik çözümler sunabilirim. 20+ yıllık sera tecrübemle:\n\n🔍 **Durumu Analiz Edelim:**\n• Mevcut durumunuzun detaylarını paylaşabilirsiniz\n• Karşılaştığınız spesifik zorlukları belirtebilirsiniz\n• Hedeflediğiniz sonuçları tanımlayabilirsiniz\n\n📊 **Size Özel Çözümler Geliştirelim:**\n• Sektörel en iyi uygulamaları sizin durumunuza adapte edebilirim\n• Maliyet-fayda analizleri yapabilirim\n• Uygulama planları hazırlayabilirim\n\n💡 **Hemen Harekete Geçelim:**\nBu konuda daha derine inmek için hangi aşamada yardıma ihtiyacınız var? Analiz, planlama, uygulama veya optimizasyon aşamalarından hangisinde odaklanmamızı istiyorsunuz?`,
         timestamp: new Date('2024-01-16T15:00:00.000Z')
