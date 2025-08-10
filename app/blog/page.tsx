@@ -161,7 +161,7 @@ export default function BlogPage() {
             transition={{ duration: 0.6 }}
             className="text-center mb-12"
           >
-            <h1 className="text-5xl font-light text-[#1e3237] mb-4 tracking-wide">
+            <h1 className="text-5xl font-light text-[#1e3237] mb-4 tracking-wide text-center">
               BLOG
             </h1>
             <p className="text-[#1e3237]/60 text-lg max-w-2xl mx-auto">
