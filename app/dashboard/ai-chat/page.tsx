@@ -247,7 +247,7 @@ export default function AIChatPage() {
                   </div>
 
                   <div>
-                    <h3 className="text-sm font-medium text-[#f6f8f9]/70 mb-3">Raporlarımdan Başla</h3>
+                    <h3 className="text-base font-semibold text-[#f6f8f9]/70 mb-3">Raporlarım</h3>
                     <div className="space-y-2">
                       {previousReports.map((report) => (
                         <button
