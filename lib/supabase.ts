@@ -75,7 +75,8 @@ export const supabase = createSupabaseClient()
 
 // Export a safe version that handles null client
 export const getSupabaseClient = () => {
-  if (!supabase) {
+  const client = createSupabaseClient()
+  if (!client) {
     console.warn('Supabase client not initialized - using mock client')
     return {
       auth: {
@@ -86,5 +87,5 @@ export const getSupabaseClient = () => {
       }
     } as any
   }
-  return supabase
+  return client
 }
