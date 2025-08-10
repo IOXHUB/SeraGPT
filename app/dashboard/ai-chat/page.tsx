@@ -119,14 +119,14 @@ export default function AIChatPage() {
   }, [inputValue]);
 
   const handleNewChat = () => {
-    const newChatId = Date.now().toString();
+    const newChatId = `chat_${Math.random().toString(36).substr(2, 9)}`;
     setCurrentChatId(newChatId);
     setMessages([
       {
         id: '1',
         role: 'assistant',
         content: 'Merhaba! SeraGPT asistanınıza hoş geldiniz. Size sera tarımcılığı konusunda nasıl yardımcı olabilirim?\n\n🌱 **Özelleştirilmiş Analizler**: Mevcut raporlarınızı analiz ederek size özel öneriler sunabilirim\n📊 **Detaylı İncelemeler**: ROI, iklim, ekipman ve pazar analizlerinizi derinlemesine inceliyorum\n💡 **Pratik Çözümler**: Karşılaştığınız sorunlara anında çözüm önerileri geli��tirebilirim\n\nHangi konuda size yardımcı olmamı istiyorsunuz?',
-        timestamp: new Date()
+        timestamp: new Date('2024-01-16T15:00:00.000Z')
       }
     ]);
   };
@@ -140,11 +140,11 @@ export default function AIChatPage() {
   };
 
   const handleStartWithReport = (report: Report) => {
-    const newChatId = Date.now().toString();
+    const newChatId = `chat_${Math.random().toString(36).substr(2, 9)}`;
     setCurrentChatId(newChatId);
     
     const welcomeMessage: ChatMessage = {
-      id: Date.now().toString(),
+      id: `msg_${Math.random().toString(36).substr(2, 9)}`,
       role: 'assistant',
       content: `📋 **"${report.title}" Raporu Analiz Edildi**\n\nRaporunuzu detaylı olarak inceledim ve hafızama aldım.\n\n**📝 Rapor Özeti:**\n${report.summary}\n\n**🎯 Size Nasıl Yardımcı Olabilirim?**\n\n• **💰 Maliyet Optimizasyonu**: Gider kalemlerinizi analiz ederek tasarruf noktalarını belirleyebilirim\n• **📈 Verimlilik Artırma**: Üretim süreçlerinizi optimize edecek yöntemler önerebilirim\n• **⚠️ Risk Analizi**: Potansiyel riskleri tespit ederek önleyici çözümler geliştirebilirim\n• **🔬 Teknoloji Güncellemeleri**: En son teknolojik gelişmeleri projenizdeki uygulanabilirliğini değerlendirebilirim\n• **🏪 Pazar Fırsatları**: Mevcut pazar trendlerini analiz ederek satış stratejileri önerebilirim\n\nHangi konuda derinlemesine konuşmak istiyorsunuz?`,
       timestamp: new Date()
@@ -157,7 +157,7 @@ export default function AIChatPage() {
     if (!inputValue.trim()) return;
 
     const userMessage: ChatMessage = {
-      id: Date.now().toString(),
+      id: `msg_${Math.random().toString(36).substr(2, 9)}`,
       role: 'user',
       content: inputValue,
       timestamp: new Date()
@@ -170,10 +170,10 @@ export default function AIChatPage() {
     // Simulate AI response
     setTimeout(() => {
       const aiResponse: ChatMessage = {
-        id: (Date.now() + 1).toString(),
+        id: `ai_${Math.random().toString(36).substr(2, 9)}`,
         role: 'assistant',
         content: `**"${inputValue}" Hakkında Kapsamlı Analiz**\n\nBu konuda size detaylı ve pratik çözümler sunabilirim. 20+ yıllık sera tecrübemle:\n\n🔍 **Durumu Analiz Edelim:**\n• Mevcut durumunuzun detaylarını paylaşabilirsiniz\n• Karşılaştığınız spesifik zorlukları belirtebilirsiniz\n• Hedeflediğiniz sonuçları tanımlayabilirsiniz\n\n📊 **Size Özel Çözümler Geliştirelim:**\n• Sektörel en iyi uygulamaları sizin durumunuza adapte edebilirim\n• Maliyet-fayda analizleri yapabilirim\n• Uygulama planları hazırlayabilirim\n\n💡 **Hemen Harekete Geçelim:**\nBu konuda daha derine inmek için hangi aşamada yardıma ihtiyacınız var? Analiz, planlama, uygulama veya optimizasyon aşamalarından hangisinde odaklanmamızı istiyorsunuz?`,
-        timestamp: new Date()
+        timestamp: new Date('2024-01-16T15:00:00.000Z')
       };
       
       setMessages(prev => [...prev, aiResponse]);
@@ -405,10 +405,7 @@ export default function AIChatPage() {
                         <div className={`text-xs mt-3 ${
                           message.role === 'user' ? 'text-[#1e3237]/70' : 'text-[#f6f8f9]/60'
                         }`}>
-                          {message.timestamp.toLocaleTimeString('tr-TR', { 
-                            hour: '2-digit', 
-                            minute: '2-digit' 
-                          })}
+                          {message.timestamp.toISOString().split('T')[1].split('.')[0].slice(0, 5)}
                         </div>
                       </div>
                       {message.role === 'user' && (
