@@ -122,7 +122,7 @@ export default function AIChatPage() {
       {
         id: '1',
         role: 'assistant',
-        content: 'Merhaba! SeraGPT asistanınıza hoş geldiniz. Size sera tarımcılığı konusunda nasıl yardımcı olabilirim?\n\n🌱 **Özelleştirilmiş Analizler**: Mevcut raporlarınızı analiz ederek size özel öneriler sunabilirim\n📊 **Detaylı İncelemeler**: ROI, iklim, ekipman ve pazar analizlerinizi derinlemesine inceliyorum\n💡 **Pratik Çözümler**: Karşılaştığınız sorunlara anında çözüm önerileri geliştirebilirim\n\nHangi konuda size yardımcı olmamı istiyorsunuz?',
+        content: 'Merhaba! SeraGPT asistanınıza hoş geldiniz. Size sera tarımcılığı konusunda nasıl yardımcı olabilirim?\n\n🌱 **Özelleştirilmiş Analizler**: Mevcut raporlarınızı analiz ederek size özel öneriler sunabilirim\n📊 **Detaylı İncelemeler**: ROI, iklim, ekipman ve pazar analizlerinizi derinlemesine inceliyorum\n💡 **Pratik Çözümler**: Karşılaştığınız sorunlara anında çözüm önerileri geli��tirebilirim\n\nHangi konuda size yardımcı olmamı istiyorsunuz?',
         timestamp: new Date()
       }
     ]);
@@ -191,10 +191,7 @@ export default function AIChatPage() {
   };
 
   return (
-    <DashboardLayout 
-      title="SeraGPT AI Asistan" 
-      subtitle="Sera tarımcılığı konusunda 7/24 uzman desteği. Raporlarınızı analiz ederek size özel çözümler sunuyorum."
-    >
+    <DashboardLayout>
       <div className="relative h-[calc(100vh-300px)] flex bg-[#146448] rounded-xl overflow-hidden" style={{ minHeight: '800px' }}>
         
         {/* Sidebar */}
