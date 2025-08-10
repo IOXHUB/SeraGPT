@@ -142,7 +142,7 @@ export default function AdminDashboard() {
           <div>
             <h2 className="text-lg font-semibold text-gray-900 mb-4">Sistem İstatistikleri</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {systemStats.map((stat, index) => (
+              {systemStats.map((stat: any, index: number) => (
                 <motion.div
                   key={stat.name}
                   initial={{ opacity: 0, y: 20 }}
