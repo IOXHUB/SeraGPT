@@ -215,9 +215,10 @@ export default function DashboardPage() {
                 >
                   Kalan Token
                 </p>
-                <p 
+                <p
                   className="text-2xl font-bold"
                   style={{ color: '#1e3237' }}
+                  suppressHydrationWarning
                 >
                   {tokens?.remaining_tokens || 0}
                 </p>
