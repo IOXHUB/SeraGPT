@@ -317,7 +317,7 @@ export default function DashboardPage() {
                         ? 'border-gray-200 hover:border-[#baf200] cursor-pointer'
                         : 'border-gray-100 bg-gray-50 opacity-60'
                     }`}
-                    style={{ borderColor: hasEnoughTokens ? '#1e3237' : '#e5e7eb', borderOpacity: 0.2 }}
+                    style={{ borderColor: hasEnoughTokens ? '#1e3237' : '#e5e7eb' }}
                   >
                     <div className="space-y-3">
                       <div className="flex items-start justify-between">
