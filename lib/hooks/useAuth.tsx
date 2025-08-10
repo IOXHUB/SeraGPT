@@ -345,11 +345,11 @@ export function useAuth(): AuthContextType {
   const updateProfile = async (updates: UpdateUserProfileRequest) => {
     try {
       if (!user) {
-        return { data: null, error: { message: 'User not authenticated' } };
+        return { data: null, error: { message: 'Kullanıcı girişi gerekli' } };
       }
 
       setError(null);
-      
+
       // Use enhanced auth service
       const data = await authService.updateUserProfile(user.id, updates);
 
@@ -358,13 +358,14 @@ export function useAuth(): AuthContextType {
         await logActivity('profile_updated', { fields: Object.keys(updates) });
         return { data, error: null };
       } else {
-        const error = { message: 'Failed to update profile' };
+        const error = { message: 'Profil güncellenemedi' };
         setError(error.message);
         return { data: null, error };
       }
     } catch (error: any) {
-      setError(error.message);
-      return { data: null, error };
+      const errorMessage = error.message || 'Beklenmeyen hata oluştu';
+      setError(errorMessage);
+      return { data: null, error: { message: errorMessage } };
     }
   };
 
