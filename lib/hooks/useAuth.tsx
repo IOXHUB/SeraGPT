@@ -17,6 +17,7 @@ import {
   AUTH_ERROR_CODES
 } from '@/types/auth';
 import { authService } from '@/lib/services/auth-service';
+import { getSupabaseClient, isSupabaseConfigured } from '@/lib/supabase';
 
 export function useAuth(): AuthContextType {
   const [user, setUser] = useState<ExtendedUser | null>(null);
