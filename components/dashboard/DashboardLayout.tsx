@@ -164,7 +164,7 @@ export default function DashboardLayout({ children, title, subtitle }: Dashboard
       </header>
 
       {/* Main Content */}
-      <main className="py-8">
+      <main className="py-8" style={{ minHeight: '1000px' }}>
         <div className="max-w-[1200px] mx-auto px-6">
           {/* Page Header */}
           {(title || subtitle) && (
