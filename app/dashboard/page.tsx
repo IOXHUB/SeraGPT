@@ -47,12 +47,12 @@ export default function DashboardPage() {
     setDataLoading(true);
     
     try {
-      // Mock data for development
+      // Mock data for development - fixed values to prevent hydration mismatch
       const mockStats: UserStats = {
-        totalAnalyses: Math.floor(Math.random() * 25) + 5,
-        tokensUsed: Math.floor(Math.random() * 50) + 10,
+        totalAnalyses: 12,
+        tokensUsed: 25,
         activeSession: true,
-        lastActivity: new Date(Date.now() - Math.random() * 3600000).toISOString()
+        lastActivity: '2024-01-16T10:30:00.000Z'
       };
 
       const mockActivity: ActivityItem[] = [
@@ -60,28 +60,28 @@ export default function DashboardPage() {
           id: '1',
           type: 'analysis',
           description: 'ROI Analizi tamamlandı',
-          timestamp: new Date(Date.now() - 1800000).toISOString(),
+          timestamp: '2024-01-16T14:30:00.000Z',
           status: 'completed'
         },
         {
-          id: '2', 
+          id: '2',
           type: 'analysis',
           description: 'Pazar Analizi başlatıldı',
-          timestamp: new Date(Date.now() - 3600000).toISOString(),
+          timestamp: '2024-01-16T13:30:00.000Z',
           status: 'in_progress'
         },
         {
           id: '3',
           type: 'token',
           description: 'Token satın alındı',
-          timestamp: new Date(Date.now() - 7200000).toISOString(),
+          timestamp: '2024-01-16T12:30:00.000Z',
           status: 'completed'
         },
         {
           id: '4',
           type: 'analysis',
           description: 'İklim Analizi tamamlandı',
-          timestamp: new Date(Date.now() - 10800000).toISOString(),
+          timestamp: '2024-01-16T11:30:00.000Z',
           status: 'completed'
         }
       ];
