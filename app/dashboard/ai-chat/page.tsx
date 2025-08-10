@@ -8,6 +8,9 @@ import DashboardLayout from '@/components/dashboard/DashboardLayout';
 // Force dynamic rendering
 export const dynamic = 'force-dynamic';
 
+// Utility function to prevent hydration mismatch
+const getStaticTimestamp = (offset = 0) => new Date('2024-01-16T15:00:00.000Z').getTime() + offset;
+
 interface ChatMessage {
   id: string;
   role: 'user' | 'assistant';
