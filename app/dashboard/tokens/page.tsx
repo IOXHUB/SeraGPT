@@ -126,21 +126,21 @@ export default function TokensPage() {
             activity_type: 'token_used',
             activity_category: 'payment',
             details: { tokens_consumed: 1, analysis_type: 'roi' },
-            created_at: new Date(Date.now() - 1000 * 60 * 30).toISOString()
+            created_at: '2024-01-16T14:30:00.000Z'
           },
           {
             id: '2',
             activity_type: 'token_purchased',
             activity_category: 'payment',
             details: { tokens_purchased: 50, amount_paid: 3500 },
-            created_at: new Date(Date.now() - 1000 * 60 * 60 * 24).toISOString()
+            created_at: '2024-01-15T15:00:00.000Z'
           },
           {
             id: '3',
             activity_type: 'token_used',
             activity_category: 'payment',
             details: { tokens_consumed: 2, analysis_type: 'climate' },
-            created_at: new Date(Date.now() - 1000 * 60 * 60 * 2).toISOString()
+            created_at: '2024-01-16T13:00:00.000Z'
           }
         ];
         setTokenHistory(mockActivity);
