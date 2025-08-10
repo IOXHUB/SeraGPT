@@ -78,13 +78,17 @@ export async function PUT(request: NextRequest) {
     }
 
     // Check if profile exists
-    const { data: existingProfile } = await supabase
+    console.log('Checking if profile exists for user:', user.id);
+    const { data: existingProfile, error: checkError } = await supabase
       .from('user_profiles')
       .select('id')
       .eq('id', user.id)
       .single();
 
+    console.log('Profile check result:', { hasProfile: !!existingProfile, checkError: checkError?.message });
+
     if (existingProfile) {
+      console.log('Updating existing profile');
       // Update existing profile
       const { data, error } = await supabase
         .from('user_profiles')
@@ -104,6 +108,7 @@ export async function PUT(request: NextRequest) {
         }, { status: 500 });
       }
 
+      console.log('Profile updated successfully:', data);
       return NextResponse.json({
         success: true,
         data: data,
@@ -111,6 +116,7 @@ export async function PUT(request: NextRequest) {
       });
 
     } else {
+      console.log('Creating new profile');
       // Create new profile
       const { data, error } = await supabase
         .from('user_profiles')
@@ -131,6 +137,7 @@ export async function PUT(request: NextRequest) {
         }, { status: 500 });
       }
 
+      console.log('Profile created successfully:', data);
       return NextResponse.json({
         success: true,
         data: data,
