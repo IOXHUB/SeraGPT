@@ -64,7 +64,7 @@ export default function NewDemoSection() {
                     🌱 Sera Yatırım Analizi
                   </h4>
                   <p className="text-sm text-gray-400">
-                    Lokasyon: Antalya, Aksu • {new Date().toLocaleDateString('tr-TR')}
+                    Lokasyon: Antalya, Aksu • 16.01.2024
                   </p>
                 </div>
                 
