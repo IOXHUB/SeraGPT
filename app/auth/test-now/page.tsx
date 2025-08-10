@@ -3,6 +3,8 @@
 import { useState } from 'react';
 import { supabase } from '@/lib/supabase';
 
+export const dynamic = 'force-dynamic';
+
 export default function TestAuthPage() {
   const [message, setMessage] = useState('');
   const [loading, setLoading] = useState(false);
