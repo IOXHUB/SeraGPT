@@ -4,6 +4,9 @@ import { useSimpleAuth } from '@/lib/hooks/useSimpleAuth';
 import DashboardLayout from '@/components/dashboard/DashboardLayout';
 import Link from 'next/link';
 
+// Force dynamic rendering to prevent SSR
+export const dynamic = 'force-dynamic';
+
 export default function SimpleDashboard() {
   const { user, isAdmin } = useSimpleAuth();
 
