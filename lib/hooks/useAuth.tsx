@@ -224,24 +224,27 @@ export function useAuth(): AuthContextType {
 
     getUser();
 
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, session) => {
-      console.log('Auth state change:', { event, hasUser: !!session?.user });
+    // Only set up auth listener in browser
+    if (typeof window !== 'undefined') {
+      const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, session) => {
+        console.log('Auth state change:', { event, hasUser: !!session?.user });
 
-      if (session?.user) {
-        const extendedUser: ExtendedUser = session.user;
-        setUser(extendedUser);
-        await fetchUserData(session.user.id);
-      } else {
-        setUser(null);
-        setProfile(null);
-        setTokens(null);
-        setPreferences(null);
-      }
+        if (session?.user) {
+          const extendedUser: ExtendedUser = session.user;
+          setUser(extendedUser);
+          await fetchUserData(session.user.id);
+        } else {
+          setUser(null);
+          setProfile(null);
+          setTokens(null);
+          setPreferences(null);
+        }
 
-      setLoading(false);
-    });
+        setLoading(false);
+      });
 
-    return () => subscription.unsubscribe();
+      return () => subscription.unsubscribe();
+    }
   }, [supabase.auth, fetchUserData, testAuthStatus]);
 
   // Authentication methods
