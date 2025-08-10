@@ -54,9 +54,8 @@ export default function AuthPage() {
     if (user && !authLoading && mounted) {
       console.log('User already logged in, checking role for redirect');
 
-      // Check if user is admin
-      const isUserAdmin = user?.user_metadata?.role === 'admin' ||
-                         user?.email === 'admin@seragpt.com' ||
+      // Only redirect to admin for actual admin users
+      const isUserAdmin = user?.email === 'admin@seragpt.com' ||
                          user?.email === 'info@isitmax.com';
 
       if (isUserAdmin) {
