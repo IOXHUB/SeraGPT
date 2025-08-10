@@ -88,8 +88,8 @@ export function useAuth(): AuthContextType {
               id: mockUser.id,
               email: mockUser.email,
               user_metadata: { role: mockUser.role, name: mockUser.name },
-              created_at: new Date().toISOString(),
-              updated_at: new Date().toISOString(),
+              created_at: new Date('2024-01-01T12:00:00.000Z').toISOString(),
+              updated_at: new Date('2024-01-16T15:00:00.000Z').toISOString(),
               aud: 'authenticated',
               app_metadata: {},
               role: 'authenticated'
@@ -113,9 +113,9 @@ export function useAuth(): AuthContextType {
               email_verified: true,
               phone_verified: mockUser.role !== 'user',
               onboarding_completed: true,
-              login_count: Math.floor(Math.random() * 50) + 1,
-              created_at: new Date(Date.now() - Math.random() * 365 * 24 * 60 * 60 * 1000).toISOString(),
-              updated_at: new Date().toISOString()
+              login_count: 23,
+              created_at: new Date('2024-01-01T12:00:00.000Z').toISOString(),
+              updated_at: new Date('2024-01-16T15:00:00.000Z').toISOString()
             };
             setProfile(mockProfile);
 
@@ -133,10 +133,10 @@ export function useAuth(): AuthContextType {
               total_spent: tokenData.purchased * 0.1, // Mock price per token
               last_purchase_amount: tokenData.purchased > 0 ? Math.floor(tokenData.purchased / 2) : 0,
               last_purchase_price: tokenData.purchased > 0 ? tokenData.purchased * 0.05 : 0,
-              tokens_used_today: Math.floor(Math.random() * 5),
+              tokens_used_today: 2,
               tokens_used_this_month: tokenData.used,
-              created_at: new Date(Date.now() - Math.random() * 30 * 24 * 60 * 60 * 1000).toISOString(),
-              updated_at: new Date().toISOString()
+              created_at: new Date('2024-01-01T12:00:00.000Z').toISOString(),
+              updated_at: new Date('2024-01-16T15:00:00.000Z').toISOString()
             };
             setTokens(mockTokens);
 
