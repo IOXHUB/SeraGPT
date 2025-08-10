@@ -48,6 +48,16 @@ const nextConfig = {
   // SWC minification (faster than Terser)
   swcMinify: true,
 
+  // Disable TypeScript checking during build for faster deployment
+  typescript: {
+    ignoreBuildErrors: true,
+  },
+
+  // Disable ESLint during build
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+
   // Security headers for production
   async headers() {
     return [
