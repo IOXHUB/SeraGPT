@@ -142,7 +142,7 @@ export default function SEOHead({ config }: SEOHeadProps) {
       
       {/* Contact and Business Info */}
       <meta name="contact" content="info@seragpt.com" />
-      <meta name="copyright" content={`© ${new Date().getFullYear()} SeraGPT. Tüm hakları saklıdır.`} />
+      <meta name="copyright" content="© 2024 SeraGPT. Tüm hakları saklıdır." />
       
       {/* Feed Discovery */}
       <link rel="alternate" type="application/rss+xml" title="SeraGPT Blog RSS" href="/blog/rss.xml" />
