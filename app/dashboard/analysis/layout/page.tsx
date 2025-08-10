@@ -5,6 +5,9 @@ import { motion } from 'framer-motion';
 import DashboardLayout from '@/components/dashboard/DashboardLayout';
 import { layoutService, LayoutSpecs, Layout2D, LayoutAnalysis } from '@/lib/services/layout-service';
 
+// Force dynamic rendering to prevent SSR
+export const dynamic = 'force-dynamic';
+
 export default function LayoutPlanningPage() {
   const [currentStep, setCurrentStep] = useState(1);
   const [loading, setLoading] = useState(false);
