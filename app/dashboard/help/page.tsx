@@ -4,6 +4,9 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import DashboardLayout from '@/components/dashboard/DashboardLayout';
 
+// Force dynamic rendering to prevent SSR
+export const dynamic = 'force-dynamic';
+
 const faqData = [
   {
     id: 1,
@@ -27,7 +30,7 @@ const faqData = [
   },
   {
     id: 5,
-    question: 'Mühendislik danışmanlığı nasıl alınır?',
+    question: 'Mühendislik danışmanlığ�� nasıl alınır?',
     answer: 'Danışmanlık sekmesinden uzman mühendislerimize bağlanabilirsiniz. Sera kurulum, ekipman seçimi, sistem optimizasyonu gibi konularda profesyonel destek alabilirsiniz.'
   },
   {
