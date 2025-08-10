@@ -1,6 +1,10 @@
 import { Metadata } from 'next'
 import './globals.css'
 import Script from 'next/script'
+
+// Force dynamic rendering for all pages to prevent SSR issues
+export const dynamic = 'force-dynamic';
+export const runtime = 'nodejs';
 import AnalyticsWrapper from '@/components/AnalyticsWrapper'
 import ProductionErrorHandler from '@/components/ProductionErrorHandler'
 import ImageOptimizationProvider from '@/components/providers/ImageOptimizationProvider'
