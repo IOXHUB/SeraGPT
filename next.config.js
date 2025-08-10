@@ -22,55 +22,24 @@ const nextConfig = {
     unoptimized: false
   },
 
-  // No trailing slash for standard deployment
-  trailingSlash: false,
-
-  // Environment variables will be handled by Vercel automatically
-
   // Performance and optimization
   poweredByHeader: false,
-
-  // Compression
   compress: true,
-
-  // React strict mode for production
   reactStrictMode: true,
-
-  // SWC minification (faster than Terser)
   swcMinify: true,
 
-  // Disable TypeScript checking during build for faster deployment
+  // Build settings for production
   typescript: {
     ignoreBuildErrors: true,
   },
-
-  // Disable ESLint during build
   eslint: {
     ignoreDuringBuilds: true,
   },
 
-  // Force standalone output for Vercel deployment
-  output: 'standalone',
-
-  // Generate static pages where possible
-  generateBuildId: async () => {
-    return 'seragpt-build-' + Date.now();
-  },
-
-  // Production optimizations and experimental features
+  // Basic experimental features
   experimental: {
     optimizePackageImports: ['framer-motion', '@supabase/supabase-js'],
-    // Force specific routes to be dynamic
-    forceSwcTransforms: false,
-    // Skip static optimization for all pages to prevent build errors
-    skipTrailingSlashRedirect: true,
-    // Force dynamic rendering for all pages
-    isrMemoryCacheSize: 0,
   },
-
-  // Force all pages to be dynamic (no static generation)
-  trailingSlash: false,
-  generateStaticParams: false,
 
   // Custom webpack configuration
   webpack: (config, { dev, isServer }) => {
