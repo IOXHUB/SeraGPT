@@ -120,7 +120,7 @@ export default function AIChatPage() {
   }, [inputValue]);
 
   const handleNewChat = () => {
-    const newChatId = `chat_${Math.random().toString(36).substr(2, 9)}`;
+    const newChatId = `chat_${Date.now()}_${Math.floor(Math.random() * 1000)}`;
     setCurrentChatId(newChatId);
     setMessages([
       {
@@ -141,14 +141,14 @@ export default function AIChatPage() {
   };
 
   const handleStartWithReport = (report: Report) => {
-    const newChatId = `chat_${Math.random().toString(36).substr(2, 9)}`;
+    const newChatId = `chat_${Date.now()}_${Math.floor(Math.random() * 1000)}`;
     setCurrentChatId(newChatId);
     
     const welcomeMessage: ChatMessage = {
-      id: `msg_${Math.random().toString(36).substr(2, 9)}`,
+      id: `msg_${Date.now()}_${Math.floor(Math.random() * 1000)}`,
       role: 'assistant',
       content: `📋 **"${report.title}" Raporu Analiz Edildi**\n\nRaporunuzu detaylı olarak inceledim ve hafızama aldım.\n\n**📝 Rapor Özeti:**\n${report.summary}\n\n**🎯 Size Nasıl Yardımcı Olabilirim?**\n\n• **💰 Maliyet Optimizasyonu**: Gider kalemlerinizi analiz ederek tasarruf noktalarını belirleyebilirim\n• **📈 Verimlilik Artırma**: Üretim süreçlerinizi optimize edecek yöntemler önerebilirim\n• **⚠️ Risk Analizi**: Potansiyel riskleri tespit ederek önleyici çözümler geliştirebilirim\n• **🔬 Teknoloji Güncellemeleri**: En son teknolojik gelişmeleri projenizdeki uygulanabilirliğini değerlendirebilirim\n• **🏪 Pazar Fırsatları**: Mevcut pazar trendlerini analiz ederek satış stratejileri önerebilirim\n\nHangi konuda derinlemesine konuşmak istiyorsunuz?`,
-      timestamp: new Date()
+      timestamp: new Date('2024-01-16T15:00:00.000Z')
     };
     
     setMessages([welcomeMessage]);
