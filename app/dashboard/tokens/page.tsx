@@ -283,7 +283,7 @@ export default function TokensPage() {
                 <div className="text-center">
                   <p className="text-2xl font-bold text-[#baf200]">
                     {tokens?.expiry_date ? 
-                      Math.ceil((new Date(tokens.expiry_date).getTime() - Date.now()) / (1000 * 60 * 60 * 24)) 
+                      Math.ceil((new Date(tokens.expiry_date).getTime() - new Date('2024-01-16T15:00:00.000Z').getTime()) / (1000 * 60 * 60 * 24)) 
                       : '��'
                     }
                   </p>
