@@ -3,6 +3,9 @@
 import { useState } from 'react';
 import DashboardLayout from '@/components/dashboard/DashboardLayout';
 
+// Force dynamic rendering
+export const dynamic = 'force-dynamic';
+
 export default function APITestPage() {
   const [emailTest, setEmailTest] = useState({
     to: '',
