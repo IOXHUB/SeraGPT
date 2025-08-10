@@ -58,6 +58,9 @@ const nextConfig = {
     ignoreDuringBuilds: true,
   },
 
+  // Force dynamic rendering to avoid SSR issues
+  output: 'standalone',
+
   // Security headers for production
   async headers() {
     return [
