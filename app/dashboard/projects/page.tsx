@@ -86,8 +86,8 @@ export default function ProjectsPage() {
         {/* Page Header */}
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-2xl font-bold text-gray-900">Sera Projeleri</h1>
-            <p className="text-gray-600">Tüm sera projelerinizi görüntüleyin ve yönetin</p>
+            <h1 className="text-2xl font-bold text-white">Sera Projeleri</h1>
+            <p className="text-white">Tüm sera projelerinizi görüntüleyin ve yönetin</p>
           </div>
           <button className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg font-medium flex items-center space-x-2">
             <span>➕</span>
