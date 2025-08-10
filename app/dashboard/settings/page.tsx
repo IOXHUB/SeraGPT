@@ -763,7 +763,7 @@ export default function SettingsPage() {
               
               <div className="space-y-6">
                 <div>
-                  <h3 className="text-lg font-medium text-gray-900 mb-4">Veri Dışa Aktarma</h3>
+                  <h3 className="text-lg font-medium text-[#1e3237] mb-4">Veri Dışa Aktarma</h3>
                   <p className="text-gray-600 mb-4">
                     Tüm kişisel verilerinizi JSON formatında indirebilirsiniz.
                   </p>
