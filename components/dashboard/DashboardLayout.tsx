@@ -191,12 +191,12 @@ export default function DashboardLayout({ children, title, subtitle }: Dashboard
         <div className="max-w-[1200px] mx-auto px-6">
           {/* Page Header & Subheader */}
       {(title || subtitle) && (
-        <div className="mb-8 text-center">
+        <div className="mb-8 text-center w-full flex flex-col items-center justify-center">
           {title && (
-            <h1 className="text-4xl font-bold text-[#f6f8f9] mb-4">{title}</h1>
+            <h1 className="text-4xl font-bold text-[#f6f8f9] mb-4 text-center w-full">{title}</h1>
           )}
           {subtitle && (
-            <p className="text-[#f6f8f9]/90 text-xl leading-relaxed max-w-4xl mx-auto">{subtitle}</p>
+            <p className="text-[#f6f8f9]/90 text-xl leading-relaxed max-w-4xl mx-auto text-center w-full">{subtitle}</p>
           )}
         </div>
       )}
