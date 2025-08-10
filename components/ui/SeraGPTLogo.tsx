@@ -28,7 +28,7 @@ export default function SeraGPTLogo({ size = 'md', priority = false, className, 
 
   return (
     <Image
-      src={LOGO_SRC}
+      src={LOGO_URLS[variant]}
       alt="SeraGPT Logo"
       width={sizeConfig.width}
       height={sizeConfig.height}
