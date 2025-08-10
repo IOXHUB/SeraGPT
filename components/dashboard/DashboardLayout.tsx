@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useAuth } from '@/lib/hooks/useAuth';
 import SeraGPTLogo from '@/components/ui/SeraGPTLogo';
 
 interface DashboardLayoutProps {
@@ -12,6 +13,18 @@ interface DashboardLayoutProps {
 export default function DashboardLayout({ children, title, subtitle }: DashboardLayoutProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [analysisDropdownOpen, setAnalysisDropdownOpen] = useState(false);
+  const { signOut, user, loading } = useAuth();
+
+  const handleLogout = async () => {
+    try {
+      await signOut();
+      window.location.href = '/auth/login';
+    } catch (error) {
+      console.error('Logout error:', error);
+      // Force redirect even if signOut fails
+      window.location.href = '/auth/login';
+    }
+  };
 
   // Header navigation items
   const headerNavItems = [
@@ -90,7 +103,11 @@ export default function DashboardLayout({ children, title, subtitle }: Dashboard
                   </svg>
                 </a>
 
-                <button className="p-2 bg-red-500/20 hover:bg-red-500/30 text-red-300 rounded-lg transition-all">
+                <button
+                  onClick={handleLogout}
+                  className="p-2 bg-red-500/20 hover:bg-red-500/30 text-red-300 rounded-lg transition-all"
+                  title="Çıkış Yap"
+                >
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
                   </svg>
