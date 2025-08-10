@@ -404,10 +404,12 @@ export default function AIChatPage() {
                           {message.content}
                         </div>
                         <div className={`text-xs mt-3 ${
-                          message.role === 'user' ? 'text-[#1e3237]/70' : 'text-[#f6f8f9]/60'
-                        }`}>
+                        message.role === 'user' ? 'text-[#1e3237]/70' : 'text-[#f6f8f9]/60'
+                      }`}>
+                        <ClientOnly fallback="--:--">
                           {message.timestamp.toISOString().split('T')[1].split('.')[0].slice(0, 5)}
-                        </div>
+                        </ClientOnly>
+                      </div>
                       </div>
                       {message.role === 'user' && (
                         <div className="w-10 h-10 bg-[#f6f8f9] rounded-full flex items-center justify-center flex-shrink-0">
