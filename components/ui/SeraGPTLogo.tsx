@@ -6,6 +6,7 @@ interface SeraGPTLogoProps {
   size?: 'sm' | 'md' | 'lg';
   priority?: boolean;
   className?: string;
+  variant?: 'default' | 'white';
 }
 
 const LOGO_SIZES = {
