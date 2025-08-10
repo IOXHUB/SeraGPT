@@ -340,7 +340,7 @@ export default function AIChatPage() {
                     <div className="text-[#baf200] text-3xl mb-4">💡</div>
                     <h3 className="font-bold text-[#f6f8f9] mb-3 text-lg">Pratik Çözümler</h3>
                     <p className="text-sm text-[#f6f8f9]/70 leading-relaxed">
-                      Karşılaştığınız her probleme anında çözüm önerileri sunar, uygulanabilir adımlar planlıyorum
+                      Karşılaştığınız her probleme anında çözüm önerileri sunar, uygulanabilir adımlar planlarım
                     </p>
                   </div>
                   
