@@ -429,20 +429,20 @@ export default function DashboardPage() {
                     </div>
                   ))
                 ) : (
-                  <div className="text-center py-8">
-                    <p 
-                      className="text-sm"
-                      style={{ color: '#1e3237', opacity: 0.6 }}
-                    >
-                      Henüz aktivite bulunmuyor
-                    </p>
-                    <p 
-                      className="text-xs mt-1"
-                      style={{ color: '#1e3237', opacity: 0.4 }}
-                    >
-                      İlk analizinizi yaparak başlayın
-                    </p>
-                  </div>
+                  <div className="text-center py-8" suppressHydrationWarning>
+              <p
+                className="text-sm"
+                style={{ color: '#1e3237', opacity: 0.6 }}
+              >
+                Henüz aktivite bulunmuyor
+              </p>
+              <p
+                className="text-xs mt-1"
+                style={{ color: '#1e3237', opacity: 0.4 }}
+              >
+                İlk analizinizi yaparak başlayın
+              </p>
+            </div>
                 )}
               </div>
             </div>
