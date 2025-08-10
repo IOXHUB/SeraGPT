@@ -75,7 +75,7 @@ export default function AdminDashboard() {
       console.log('🔍 Testing external APIs...');
       const status = await externalApiService.getApiStatus();
       setApiStatusData(status);
-      console.log('�� API Status:', status);
+      console.log('📊 API Status:', status);
     } catch (error) {
       console.error('Failed to test APIs:', error);
     } finally {
@@ -502,7 +502,7 @@ export default function AdminDashboard() {
           {/* Quick Actions */}
           <div>
             <h2 className="text-lg font-semibold text-gray-900 mb-4">Hızlı İşlemler</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
               <a href="/admin/users" className="bg-white rounded-lg border p-6 hover:shadow-md transition-shadow">
                 <div className="text-3xl mb-3">👥</div>
                 <h3 className="font-medium text-gray-900">Kullanıcı Yönetimi</h3>
