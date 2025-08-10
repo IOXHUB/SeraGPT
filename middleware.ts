@@ -1,9 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { updateSession } from '@/lib/auth'
 
 // =====================================================
-// COMPLETE MIDDLEWARE BYPASS FOR DEBUGGING
+// PRODUCTION MIDDLEWARE WITH SECURITY ENABLED
 // =====================================================
-// All security features disabled temporarily
+// Authentication and route protection active
 // =====================================================
 
 export async function middleware(request: NextRequest) {
@@ -11,14 +12,11 @@ export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
   const clientIP = request.ip || request.headers.get('x-forwarded-for') || '127.0.0.1'
 
-  console.log(`🟢 [BYPASS] ${request.method} ${pathname} from ${clientIP}`)
+  console.log(`🔒 [SECURITY] ${request.method} ${pathname} from ${clientIP}`)
 
   try {
-    // COMPLETE BYPASS - NO SECURITY CHECKS AT ALL
-    console.log(`🚀 [BYPASS] All security completely disabled for: ${pathname}`)
-    
-    // Just return NextResponse.next() with debug headers
-    let response = NextResponse.next()
+    // Enable auth protection for protected routes
+    const response = await updateSession(request)
     
     // Add debug headers to confirm middleware is working
     response.headers.set('X-Debug-Mode', 'true')
