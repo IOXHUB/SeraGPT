@@ -41,54 +41,40 @@ export default function DashboardLayout({ children, title, subtitle }: Dashboard
       <header className="py-4" style={{ backgroundColor: '#146448' }}>
         <div className="max-w-[1200px] mx-auto px-6">
           <div className="flex items-center justify-between">
-            {/* Logo & User Info */}
-            <div className="flex items-center space-x-6">
-              <SeraGPTLogo size="sm" priority />
-              
-              {/* User Info */}
-              <div className="hidden md:flex items-center space-x-3">
-                <h1 className="text-lg font-semibold text-[#f6f8f9]">Volkan Ş.</h1>
-                <span className="px-2 py-1 text-xs font-medium bg-[#baf200] text-[#1e3237] rounded-full">
-                  Premium
-                </span>
-              </div>
+            {/* Logo */}
+            <div className="flex items-center">
+              <SeraGPTLogo variant="white" size="sm" priority />
             </div>
 
-            {/* Main Navigation - Desktop */}
-            <nav className="hidden lg:flex items-center space-x-6">
-              {mainNavItems.map((item) => (
+            {/* Homepage Navigation - Desktop */}
+            <nav className="hidden lg:flex items-center space-x-8">
+              {homepageNavItems.map((item) => (
                 <a
                   key={item.href}
                   href={item.href}
-                  className="font-medium transition-opacity hover:opacity-70"
-                  style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '400' }}
+                  className="font-medium text-white transition-opacity hover:opacity-80"
+                  style={{ fontSize: '15px' }}
                 >
                   {item.name}
                 </a>
               ))}
             </nav>
 
-            {/* Secondary Actions */}
+            {/* User Actions */}
             <div className="hidden md:flex items-center space-x-4">
-              {/* Secondary Nav */}
-              <div className="flex items-center space-x-4">
-                {secondaryNavItems.map((item) => (
-                  <a
-                    key={item.href}
-                    href={item.href}
-                    className="font-medium transition-opacity hover:opacity-70"
-                    style={{ color: '#f6f8f9', fontSize: '13px', fontWeight: '400' }}
-                  >
-                    {item.name}
-                  </a>
-                ))}
+              {/* User Info */}
+              <div className="flex items-center space-x-3">
+                <span className="text-white font-medium">Volkan Ş.</span>
+                <span className="px-3 py-1 text-xs font-medium bg-[#baf200] text-[#1e3237] rounded-full">
+                  Premium
+                </span>
               </div>
 
               {/* Action Buttons */}
               <div className="flex items-center space-x-2">
                 <a
                   href="/dashboard/settings"
-                  className="p-2 bg-[#f6f8f9]/10 hover:bg-[#f6f8f9]/20 text-[#f6f8f9] rounded-lg transition-all"
+                  className="p-2 bg-white/10 hover:bg-white/20 text-white rounded-lg transition-all"
                   title="Ayarlar"
                 >
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -97,17 +83,7 @@ export default function DashboardLayout({ children, title, subtitle }: Dashboard
                   </svg>
                 </a>
 
-                <a
-                  href="/dashboard/help"
-                  className="p-2 bg-[#f6f8f9]/10 hover:bg-[#f6f8f9]/20 text-[#f6f8f9] rounded-lg transition-all"
-                  title="Yardım"
-                >
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                </a>
-
-                <button className="p-2 bg-red-500/10 hover:bg-red-500/20 text-red-400 rounded-lg transition-all">
+                <button className="p-2 bg-red-500/20 hover:bg-red-500/30 text-red-300 rounded-lg transition-all">
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
                   </svg>
