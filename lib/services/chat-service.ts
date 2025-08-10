@@ -256,12 +256,12 @@ export class ChatService {
   constructor() {
     this.aiConfig = {
       openai: {
-        apiKey: process.env.NEXT_PUBLIC_OPENAI_API_KEY || '',
+        apiKey: process.env.OPENAI_API_KEY || '',
         baseUrl: 'https://api.openai.com/v1',
-        organization: process.env.NEXT_PUBLIC_OPENAI_ORG_ID
+        organization: process.env.OPENAI_ORG_ID
       },
       anthropic: {
-        apiKey: process.env.NEXT_PUBLIC_ANTHROPIC_API_KEY || '',
+        apiKey: process.env.ANTHROPIC_API_KEY || '',
         baseUrl: 'https://api.anthropic.com/v1'
       }
     };
