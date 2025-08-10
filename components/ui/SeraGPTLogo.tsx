@@ -15,11 +15,14 @@ const LOGO_SIZES = {
   lg: { width: 160, height: 40, className: 'h-10 w-auto' }
 };
 
-const LOGO_SRC = 'https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2F96da5382e9584c3fb2d32eca60944359';
+const LOGO_URLS = {
+  default: 'https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2F96da5382e9584c3fb2d32eca60944359',
+  white: 'https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2F2d08e6d45db641759adb1b5dd41ba28f'
+};
 
 const BLUR_DATA_URL = 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k=';
 
-export default function SeraGPTLogo({ size = 'md', priority = false, className }: SeraGPTLogoProps) {
+export default function SeraGPTLogo({ size = 'md', priority = false, className, variant = 'default' }: SeraGPTLogoProps) {
   const sizeConfig = LOGO_SIZES[size];
   const finalClassName = className || sizeConfig.className;
 
