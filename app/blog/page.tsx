@@ -152,8 +152,9 @@ export default function BlogPage() {
           </div>
         </header>
 
-        {/* Main Content */}
-        <main className="max-w-7xl mx-auto px-6 py-8" style={{ backgroundColor: '#f6f8f9' }}>
+        {/* Main Content Background */}
+        <div style={{ backgroundColor: '#f6f8f9' }}>
+          <main className="max-w-7xl mx-auto px-6 py-8">
           {/* Header Section */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -276,7 +277,8 @@ export default function BlogPage() {
               </motion.div>
             )}
           </motion.div>
-        </main>
+          </main>
+        </div>
 
         {/* Footer */}
         <Footer />
