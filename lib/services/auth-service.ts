@@ -806,6 +806,36 @@ class AuthService {
 
   async testAuthConnection(): Promise<{ success: boolean; message: string }> {
     try {
+      // For unauthenticated connection test, directly call the API without token
+      const response = await fetch(`${this.baseUrl}/auth/test`, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+
+      if (!response.ok) {
+        return { success: false, message: `Connection failed: ${response.status} ${response.statusText}` };
+      }
+
+      const data = await response.json();
+
+      // Check if the response indicates successful connection
+      if (data.error) {
+        return { success: false, message: data.error };
+      }
+
+      // If we got here, the API endpoint is reachable
+      return {
+        success: true,
+        message: `Connection successful (Environment: ${data.environment?.NODE_ENV || 'unknown'})`
+      };
+    } catch (error: any) {
+      return { success: false, message: `Network error: ${error.message}` };
+    }
+  }
+
+  async testAuthConnectionWithToken(): Promise<{ success: boolean; message: string }> {
+    try {
       const token = await this.getAuthToken();
       if (!token) {
         return { success: false, message: 'No authentication token available' };
