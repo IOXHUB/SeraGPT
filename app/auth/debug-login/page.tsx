@@ -3,6 +3,9 @@
 import { useState } from 'react';
 import { createBrowserClient } from '@supabase/ssr';
 
+// Force dynamic rendering to prevent SSR
+export const dynamic = 'force-dynamic';
+
 export default function DebugLoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
