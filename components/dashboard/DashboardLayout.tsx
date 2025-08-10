@@ -1,7 +1,6 @@
 'use client';
 
-import { useState } from 'react';
-import { useAuth } from '@/lib/hooks/useAuth';
+import { useState, useEffect } from 'react';
 import SeraGPTLogo from '@/components/ui/SeraGPTLogo';
 
 interface DashboardLayoutProps {
@@ -13,18 +12,49 @@ interface DashboardLayoutProps {
 export default function DashboardLayout({ children, title, subtitle }: DashboardLayoutProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [analysisDropdownOpen, setAnalysisDropdownOpen] = useState(false);
-  const { signOut, user, loading } = useAuth();
+  const [user, setUser] = useState<any>(null);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+    // Check for user in localStorage for dev
+    if (typeof window !== 'undefined') {
+      const devUser = localStorage.getItem('seragpt_user');
+      if (devUser) {
+        try {
+          setUser(JSON.parse(devUser));
+        } catch (e) {
+          console.warn('Invalid user data in localStorage');
+        }
+      }
+    }
+  }, []);
 
   const handleLogout = async () => {
     try {
-      await signOut();
+      // Clear localStorage
+      if (typeof window !== 'undefined') {
+        localStorage.removeItem('seragpt_user');
+      }
+      // Redirect to login
       window.location.href = '/auth/login';
     } catch (error) {
       console.error('Logout error:', error);
-      // Force redirect even if signOut fails
+      // Force redirect even if logout fails
       window.location.href = '/auth/login';
     }
   };
+
+  // Don't render user-dependent UI during SSR
+  if (!mounted) {
+    return (
+      <div className="min-h-screen" style={{ backgroundColor: '#146448' }}>
+        <div className="flex items-center justify-center min-h-screen">
+          <div className="text-white text-lg">Loading...</div>
+        </div>
+      </div>
+    );
+  }
 
   // Header navigation items
   const headerNavItems = [
