@@ -600,7 +600,7 @@ export default function SettingsPage() {
           {/* Notifications Tab */}
           {activeTab === 'notifications' && (
             <div className="bg-[#f6f8f9] rounded-xl border border-gray-200 p-6 shadow-lg">
-              <h2 className="text-xl font-semibold text-gray-900 mb-6">🔔 Bildirim Ayarları</h2>
+              <h2 className="text-xl font-semibold text-[#1e3237] mb-6">🔔 Bildirim Ayarları</h2>
               
               <div className="space-y-6">
                 <div>
