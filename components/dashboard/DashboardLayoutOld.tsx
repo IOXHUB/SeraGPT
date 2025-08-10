@@ -38,7 +38,7 @@ export default function DashboardLayout({ children, title, subtitle }: Dashboard
   const [expandedSubMenus, setExpandedSubMenus] = useState<SubMenuState>({});
   const pathname = usePathname();
 
-  const menuItems: MenuItem[] = [
+  const menuItems: any[] = [
     { name: 'Anasayfa', href: '/dashboard' },
     {
       name: 'AI Asistan',
@@ -74,7 +74,7 @@ export default function DashboardLayout({ children, title, subtitle }: Dashboard
           ]
         },
         {
-          name: 'Sohbet Geçmişi',
+          name: 'Sohbet Geçmi��i',
           href: '/dashboard/ai-chat',
           icon: '💬',
           category: 'AI',
