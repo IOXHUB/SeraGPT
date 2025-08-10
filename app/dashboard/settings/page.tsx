@@ -109,8 +109,15 @@ export default function SettingsPage() {
   const handleSaveProfile = async () => {
     setSaving('profile');
     try {
+      // Validate required fields
+      if (!profileData.full_name?.trim()) {
+        showMessage('error', 'Ad Soyad alanı zorunludur');
+        return;
+      }
+
       const result = await updateProfile(profileData);
       if (result.error) {
+        console.error('Profile update error:', result.error);
         showMessage('error', result.error.message || 'Profil güncellenirken hata oluştu');
       } else {
         showMessage('success', 'Profil bilgileriniz başarıyla güncellendi!');
@@ -119,6 +126,7 @@ export default function SettingsPage() {
         }
       }
     } catch (error: any) {
+      console.error('Profile save error:', error);
       showMessage('error', error.message || 'Beklenmeyen hata oluştu');
     } finally {
       setSaving(null);
