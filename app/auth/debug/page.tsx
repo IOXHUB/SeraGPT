@@ -4,6 +4,9 @@ import { useEffect, useState } from 'react';
 import { useAuth } from '@/lib/hooks/useAuth';
 import { supabase } from '@/lib/supabase';
 
+// Force dynamic rendering to prevent SSR
+export const dynamic = 'force-dynamic';
+
 export default function AuthDebugPage() {
   const { user, loading } = useAuth();
   const [session, setSession] = useState<any>(null);
