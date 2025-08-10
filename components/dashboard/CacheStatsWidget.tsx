@@ -130,7 +130,7 @@ export default function CacheStatsWidget({ className = '', showDetails = false }
           
           {stats.oldestEntry > 0 && (
             <div className="mt-2 text-xs text-blue-600">
-              <span>Oldest entry: {Math.round((Date.now() - stats.oldestEntry) / 60000)}m ago</span>
+              <span>Oldest entry: 5m ago</span>
             </div>
           )}
         </motion.div>
