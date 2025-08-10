@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
+import { useAuth } from '@/lib/hooks/useAuth';
 import SeraGPTLogo from '@/components/ui/SeraGPTLogo';
 
 interface DashboardLayoutProps {
@@ -20,6 +21,18 @@ export default function DashboardLayout({ children, title, subtitle }: Dashboard
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const pathname = usePathname();
+  const { signOut, user } = useAuth();
+
+  const handleLogout = async () => {
+    try {
+      await signOut();
+      window.location.href = '/auth/login';
+    } catch (error) {
+      console.error('Logout error:', error);
+      // Force redirect even if signOut fails
+      window.location.href = '/auth/login';
+    }
+  };
 
   const menuItems: MenuItem[] = [
     { name: 'Anasayfa', href: '/dashboard' },
@@ -236,7 +249,11 @@ export default function DashboardLayout({ children, title, subtitle }: Dashboard
                 </a>
 
                 {/* Logout */}
-                <button className="p-2.5 bg-red-500/10 hover:bg-red-500/20 text-red-400 rounded-lg transition-all duration-200">
+                <button
+                  onClick={handleLogout}
+                  className="p-2.5 bg-red-500/10 hover:bg-red-500/20 text-red-400 rounded-lg transition-all duration-200"
+                  title="Çıkış Yap"
+                >
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
                   </svg>
