@@ -25,9 +25,10 @@ const nextConfig = {
   // No trailing slash for standard deployment
   trailingSlash: false,
 
-  // Simplified experimental features
+  // Production optimizations
   experimental: {
     optimizePackageImports: ['framer-motion', '@supabase/supabase-js'],
+    bundlePagesRouterDependencies: true,
   },
   
   // Environment variables that should be available in the browser
@@ -42,11 +43,49 @@ const nextConfig = {
   // Compression
   compress: true,
   
-  // React strict mode
-  reactStrictMode: false,
+  // React strict mode for production
+  reactStrictMode: true,
   
   // SWC minification (faster than Terser)
   swcMinify: true,
+
+  // Security headers for production
+  async headers() {
+    return [
+      {
+        source: '/(.*)',
+        headers: [
+          {
+            key: 'X-Frame-Options',
+            value: 'DENY'
+          },
+          {
+            key: 'X-Content-Type-Options',
+            value: 'nosniff'
+          },
+          {
+            key: 'Referrer-Policy',
+            value: 'strict-origin-when-cross-origin'
+          },
+          {
+            key: 'X-XSS-Protection',
+            value: '1; mode=block'
+          }
+        ]
+      }
+    ]
+  },
+
+  // Redirects for SEO and UX
+  async redirects() {
+    return [
+      {
+        source: '/dashboard/analysis/sera-tasarim',
+        destination: '/dashboard/analysis/layout',
+        permanent: true,
+      },
+    ]
+  }
 }
 
 module.exports = nextConfig;
