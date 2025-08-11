@@ -288,11 +288,7 @@ export default function AIChatPage() {
             </button>
             
             <div className="flex items-center ml-2">
-              <img 
-                src="https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2F9f4710c59a39492e92e469b69a3b57a3?format=webp&width=800" 
-                className="h-8" 
-                alt="SeraGPT Logo" 
-              />
+              <h1 className="text-white font-semibold text-lg">AI Dashboard</h1>
             </div>
 
             <div className="ml-auto">
