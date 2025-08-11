@@ -751,6 +751,13 @@ Lütfen daha sonra tekrar deneyin veya destek ekibimizle iletişime geçin.`,
                   style={{ backgroundColor: 'rgba(30, 50, 55, 0.98)' }}
                 >
 
+                {/* AI Dashboard Title */}
+                <div className="p-4 bg-[#146448] border-b border-[#f6f8f9]/10" style={{ marginTop: '70px' }}>
+                  <div className="text-center">
+                    <h2 className="text-[#baf200] font-bold text-lg">AI Dashboard</h2>
+                  </div>
+                </div>
+
                 {/* Chat History */}
                 <div className="flex-1 overflow-y-auto p-4 bg-[#146448] overscroll-contain"
                      style={{ scrollBehavior: 'smooth' }}>
@@ -864,9 +871,11 @@ Lütfen daha sonra tekrar deneyin veya destek ekibimizle iletişime geçin.`,
                 </button>
 
                 <div className="flex items-center">
-                  <svg className="h-8 w-auto" viewBox="0 0 160 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <text x="5" y="28" className="fill-white text-xl font-bold" style={{fontFamily: 'system-ui, sans-serif'}}>SeraGPT</text>
-                  </svg>
+                  <img
+                    src="https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2F9f4710c59a39492e92e469b69a3b57a3?format=webp&width=800"
+                    alt="SeraGPT Logo"
+                    className="h-8 w-auto"
+                  />
                 </div>
               </div>
 
@@ -952,17 +961,17 @@ Lütfen daha sonra tekrar deneyin veya destek ekibimizle iletişime geçin.`,
                 {!currentChatId && messages.length === 0 ? (
                   // Welcome State
                   <div className="flex flex-col items-center justify-center h-full min-h-[400px] py-8 mx-auto w-full max-w-[900px] px-4">
-                    <div className="text-center mb-8 max-w-2xl">
-                      <h1 className="font-bold text-[#f6f8f9] mb-6 text-3xl md:text-4xl lg:text-5xl">
+                    <div className="text-center mb-8 max-w-2xl mx-auto">
+                      <h1 className="font-bold text-[#f6f8f9] mb-6 text-3xl md:text-4xl lg:text-5xl text-center">
                         AI Dashboard'a Hoşgeldiniz
                       </h1>
 
-                      <div className="mb-8">
-                        <p className="text-[#f6f8f9]/90 mb-4 text-base md:text-lg">
+                      <div className="mb-8 text-center">
+                        <p className="text-[#f6f8f9]/90 mb-4 text-base md:text-lg text-center">
                           Aşağıdan Analiz Başlatabilirsiniz yada menüden düzenlemek istediğiniz geçmiş analizlerinden birini seçin.
                         </p>
-                        <p className="text-[#baf200] font-medium text-sm md:text-base">
-                          <p>Tam havamdayım, çalışalım. Ya siz?</p>
+                        <p className="text-[#baf200] font-medium text-sm md:text-base text-center">
+                          Tam havamdayım, çalışalım. Ya siz?
                         </p>
                       </div>
                     </div>
