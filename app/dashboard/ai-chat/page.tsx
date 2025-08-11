@@ -510,7 +510,7 @@ Lütfen daha sonra tekrar deneyin veya destek ekibimizle iletişime geçin.`,
       ],
       climate: [
         'Seçilen bölge üretim için uygun',
-        'Yıllık ortalama sıcaklık ideal aralıkta',
+        'Yıllık ortalama sıcaklık ideal aral��kta',
         'Enerji maliyeti %15 azaltılabilir'
       ],
       equipment: [
@@ -707,7 +707,7 @@ Lütfen daha sonra tekrar deneyin veya destek ekibimizle iletişime geçin.`,
                   <div className="flex items-center justify-center">
                     <img
                       src="https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2F01c1e8a05ef6424b912d584875377957?format=webp&width=800"
-                      alt="SeraGPT Logo - AI Destekli Sera Yatırım Dan��şmanı"
+                      alt="SeraGPT Logo - AI Destekli Sera Yatırım Danışmanı"
                       className="h-10 w-auto object-contain"
                       loading="eager"
                     />
@@ -1073,9 +1073,9 @@ Lütfen daha sonra tekrar deneyin veya destek ekibimizle iletişime geçin.`,
         {/* Fixed Input Area at Bottom */}
         <div className="fixed bottom-0 left-0 right-0 bg-[#146448] border-t border-[#f6f8f9]/10 z-40">
           <div className="flex justify-center">
-            <div className="chat-container w-full max-w-[900px] p-3"
+            <div className="w-full max-w-[900px] p-3 md:p-4"
                  style={{
-                   marginLeft: isDesktop && sidebarOpen ? '250px' : '0',
+                   marginLeft: isDesktop && sidebarOpen ? '0' : '0',
                    transition: 'margin-left 0.3s ease-in-out',
                    paddingLeft: 'max(12px, env(safe-area-inset-left))',
                    paddingRight: 'max(12px, env(safe-area-inset-right))'
