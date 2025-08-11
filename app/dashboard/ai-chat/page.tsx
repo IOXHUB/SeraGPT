@@ -508,29 +508,32 @@ export default function AIChatPage() {
             {/* Welcome State or Messages */}
             {!currentChatId && messages.length === 0 ? (
               // Welcome Content
-              <div className="flex-1 p-3 lg:p-4 bg-[#146448] overflow-hidden flex flex-col justify-center" style={{ paddingBottom: '100px' }}>
-                <div className="max-w-4xl mx-auto px-safe w-full"
-                     style={{ marginLeft: 'max(16px, env(safe-area-inset-left))',
-                             marginRight: 'max(16px, env(safe-area-inset-right))' }}>
+              <div className="flex-1 p-3 lg:p-4 bg-[#146448] overflow-hidden flex flex-col" style={{ paddingBottom: '100px' }}>
 
-                  <div className="text-center mb-6">
-                    <h1 className="font-bold text-[#f6f8f9] mb-3"
-                        style={{ fontSize: 'clamp(22px, 4vw, 36px)', lineHeight: 'clamp(26px, 5vw, 44px)' }}>
-                      Hoş Geldiniz, Test Kullanıcı!
-                    </h1>
-                    <p className="text-[#f6f8f9]/90 mb-2"
-                       style={{ fontSize: 'clamp(15px, 2.8vw, 20px)', lineHeight: 'clamp(20px, 3.8vw, 28px)' }}>
+                {/* Hero Title - Separated and Top-Aligned */}
+                <div className="pt-8 pb-4 text-center">
+                  <h1 className="font-bold text-[#f6f8f9] mb-3"
+                      style={{ fontSize: 'clamp(28px, 5vw, 42px)', lineHeight: 'clamp(32px, 6vw, 50px)' }}>
+                    Hoş Geldiniz, Test Kullanıcı!
+                  </h1>
+                </div>
+
+                {/* Content Container - Centered */}
+                <div className="flex-1 flex flex-col justify-center items-center max-w-5xl mx-auto w-full px-4">
+
+                  <div className="text-center mb-8 max-w-2xl">
+                    <p className="text-[#f6f8f9]/90 mb-3"
+                       style={{ fontSize: 'clamp(16px, 3vw, 20px)', lineHeight: 'clamp(22px, 4vw, 28px)' }}>
                       Aşağıdan Analiz Başlatabilirsiniz yada menüden düzenlemek istediğiniz geçmiş analizlerinden birini seçin.
                     </p>
                     <p className="text-[#baf200] font-medium"
-                       style={{ fontSize: 'clamp(14px, 2.5vw, 18px)', lineHeight: 'clamp(18px, 3.5vw, 24px)' }}>
+                       style={{ fontSize: 'clamp(15px, 2.8vw, 19px)', lineHeight: 'clamp(20px, 3.8vw, 26px)' }}>
                       Tam havamdayım, çalışalım. Ya siz? Yazalım.
                     </p>
                   </div>
 
-                  {/* Analysis Cards Grid - 3 rows, 2 columns - Centered */}
-                  <div className="grid grid-cols-2 gap-3 justify-center items-center"
-                       style={{ maxWidth: '480px', margin: '0 auto' }}>
+                  {/* Analysis Cards Grid - Perfectly Centered */}
+                  <div className="grid grid-cols-2 gap-4 w-full max-w-md mx-auto">
                     {analysisOptions.map((option) => (
                       <button
                         key={option.id}
