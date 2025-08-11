@@ -282,10 +282,12 @@ export default function AIChatPage() {
              height: 'calc(var(--vh, 1vh) * 100)',
              minHeight: '100svh',
              overscrollBehavior: 'contain',
-             touchAction: 'manipulation'
+             touchAction: 'manipulation',
+             maxWidth: '100vw',
+             width: '100%'
            }}>
-        <div className="flex flex-1 min-h-0 max-w-full mx-auto"
-             style={{ maxWidth: 'min(100vw, 1200px)' }}>
+        <div className="flex flex-1 min-h-0 max-w-full"
+             style={{ maxWidth: '100vw', width: '100%' }}>
           {/* Sidebar */}
           <AnimatePresence>
             {sidebarOpen && (
