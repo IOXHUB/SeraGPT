@@ -905,7 +905,7 @@ Lütfen daha sonra tekrar deneyin veya destek ekibimizle iletişime geçin.`,
             </div>
 
             {/* Chat Container - Modern Layout */}
-            <div className="flex-1 flex justify-center bg-[#146448] overflow-hidden">
+            <div className="flex-1 flex justify-center bg-[#146448] overflow-hidden items-start text-left" style={{ paddingBottom: '90px' }}>
               <div className="chat-container w-full max-w-[900px] flex flex-col overflow-hidden"
                    style={{
                      marginLeft: isDesktop && sidebarOpen ? '250px' : '0',
@@ -913,48 +913,52 @@ Lütfen daha sonra tekrar deneyin veya destek ekibimizle iletişime geçin.`,
                    }}>
 
                 {/* Messages Area */}
-                <div className="flex-1 overflow-y-auto px-3">
+                <div className="flex-1 overflow-y-auto px-3 flex flex-col" style={{ marginBottom: '70px' }}>
                   {!currentChatId && messages.length === 0 ? (
                     // Welcome State
-                    <div className="flex flex-col justify-center items-center min-h-full py-8">
-                      <div className="text-center mb-8 w-full max-w-4xl mx-auto px-4">
-                        <h1 className="font-bold text-[#f6f8f9] mb-6"
-                            style={{ fontSize: 'clamp(28px, 5vw, 42px)', lineHeight: 'clamp(32px, 6vw, 50px)' }}>
-                          Hoş Geldiniz, Test Kullanıcı!
-                        </h1>
+                    <div className="flex gap-5 max-lg:flex-col max-lg:gap-0">
+                      <div className="flex flex-col line-height-normal w-full">
+                        <div className="flex flex-col justify-start items-start min-h-full py-8" style={{ marginLeft: '-4px' }}>
+                          <div className="text-center mb-8 w-full max-w-4xl mx-auto px-4">
+                            <h1 className="font-bold text-[#f6f8f9] mb-6"
+                                style={{ fontSize: 'clamp(28px, 5vw, 42px)', lineHeight: 'clamp(32px, 6vw, 50px)' }}>
+                              Hoş Geldiniz, Test Kullanıcı!
+                            </h1>
 
-                        <div className="max-w-2xl mx-auto mb-8">
-                          <p className="text-[#f6f8f9]/90 mb-4"
-                             style={{ fontSize: 'clamp(16px, 3vw, 20px)', lineHeight: 'clamp(22px, 4vw, 28px)' }}>
-                            Aşağıdan Analiz Başlatabilirsiniz yada menüden düzenlemek istediğiniz geçmiş analizlerinden birini seçin.
-                          </p>
-                          <p className="text-[#baf200] font-medium"
-                             style={{ fontSize: 'clamp(15px, 2.8vw, 19px)', lineHeight: 'clamp(20px, 3.8vw, 26px)' }}>
-                            Tam havamdayım, çalışalım. Ya siz? Yazalım.
-                          </p>
-                        </div>
-                      </div>
+                            <div className="max-w-2xl mx-auto mb-8">
+                              <p className="text-[#f6f8f9]/90 mb-4"
+                                 style={{ fontSize: 'clamp(16px, 3vw, 20px)', lineHeight: 'clamp(22px, 4vw, 28px)' }}>
+                                Aşağıdan Analiz Başlatabilirsiniz yada menüden düzenlemek istediğiniz geçmiş analizlerinden birini seçin.
+                              </p>
+                              <p className="text-[#baf200] font-medium"
+                                 style={{ fontSize: 'clamp(15px, 2.8vw, 19px)', lineHeight: 'clamp(20px, 3.8vw, 26px)' }}>
+                                Tam havamdayım, çalışalım. Ya siz? Yazalım.
+                              </p>
+                            </div>
+                          </div>
 
-                      <div className="flex justify-center w-full">
-                        <div className="grid grid-cols-2 gap-4 max-w-md">
-                          {analysisOptions.map((option) => (
-                            <button
-                              key={option.id}
-                              onClick={() => handleAnalysisClick(option.id)}
-                              className="h-24 p-3 bg-white/95 hover:bg-white rounded-xl text-center transition-all hover:scale-105 hover:shadow-lg group flex flex-col justify-center items-center border border-[#baf200]/20 hover:border-[#baf200]/40"
-                            >
-                              <div className="w-full h-full flex flex-col justify-center items-center">
-                                <h3 className="font-semibold text-[#1e3237] mb-1 group-hover:text-[#146448] transition-colors"
-                                    style={{ fontSize: 'clamp(14px, 2.8vw, 17px)', lineHeight: 'clamp(17px, 3.2vw, 21px)' }}>
-                                  {option.title}
-                                </h3>
-                                <p className="text-[#1e3237]/70 leading-tight"
-                                   style={{ fontSize: 'clamp(11px, 2.2vw, 14px)', lineHeight: 'clamp(13px, 2.6vw, 17px)' }}>
-                                  {option.description}
-                                </p>
-                              </div>
-                            </button>
-                          ))}
+                          <div className="flex justify-center w-full">
+                            <div className="grid grid-cols-2 gap-4 max-w-md">
+                              {analysisOptions.map((option) => (
+                                <button
+                                  key={option.id}
+                                  onClick={() => handleAnalysisClick(option.id)}
+                                  className="h-24 p-3 bg-white/95 hover:bg-white rounded-xl text-center transition-all hover:scale-105 hover:shadow-lg group flex flex-col justify-center items-center border border-[#baf200]/20 hover:border-[#baf200]/40"
+                                >
+                                  <div className="w-full h-full flex flex-col justify-center items-center">
+                                    <h3 className="font-semibold text-[#1e3237] mb-1 group-hover:text-[#146448] transition-colors"
+                                        style={{ fontSize: 'clamp(14px, 2.8vw, 17px)', lineHeight: 'clamp(17px, 3.2vw, 21px)' }}>
+                                      {option.title}
+                                    </h3>
+                                    <p className="text-[#1e3237]/70 leading-tight"
+                                       style={{ fontSize: 'clamp(11px, 2.2vw, 14px)', lineHeight: 'clamp(13px, 2.6vw, 17px)' }}>
+                                      {option.description}
+                                    </p>
+                                  </div>
+                                </button>
+                              ))}
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
