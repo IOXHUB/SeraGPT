@@ -210,6 +210,80 @@ export default function AnalysisResultsPage() {
     return typeObj ? typeObj.title : type;
   };
 
+  const generateDetailedReport = (result: AnalysisResult) => {
+    alert(`Detaylı Rapor Oluşturuluyor...\n\nAnaliz: ${getAnalysisTypeName(result.analysisType)}\nKullanıcı: ${result.userName}\nDurum: ${getStatusText(result.status)}\n\nRapor PDF olarak indirilecek.`);
+  };
+
+  const downloadResult = (result: AnalysisResult) => {
+    const data = {
+      id: result.id,
+      type: result.analysisType,
+      user: result.userName,
+      status: result.status,
+      input: result.inputData,
+      output: result.outputData,
+      createdAt: result.createdAt,
+      cost: result.cost
+    };
+
+    const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `analysis-${result.id}.json`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+
+    alert('Analiz sonucu indirildi!');
+  };
+
+  const retryAnalysis = (result: AnalysisResult) => {
+    if (confirm('Bu analizi yeniden çalıştırmak istediğinizden emin misiniz?')) {
+      setAnalysisResults(prev => prev.map(r =>
+        r.id === result.id
+          ? { ...r, status: 'processing', errorMessage: undefined }
+          : r
+      ));
+
+      alert('Analiz yeniden başlatıldı!');
+
+      // Simulate completion after delay
+      setTimeout(() => {
+        setAnalysisResults(prev => prev.map(r =>
+          r.id === result.id
+            ? { ...r, status: 'completed', completedAt: new Date().toISOString(), outputData: { retried: true, success: true } }
+            : r
+        ));
+      }, 3000);
+    }
+  };
+
+  const cancelAnalysis = (result: AnalysisResult) => {
+    if (confirm('Bu analizi iptal etmek istediğinizden emin misiniz?')) {
+      setAnalysisResults(prev => prev.map(r =>
+        r.id === result.id
+          ? { ...r, status: 'failed', errorMessage: 'Kullanıcı tarafından iptal edildi' }
+          : r
+      ));
+
+      alert('Analiz iptal edildi!');
+    }
+  };
+
+  const deleteResult = (resultId: string) => {
+    if (confirm('Bu analiz sonucunu silmek istediğinizden emin misiniz?')) {
+      setAnalysisResults(prev => prev.filter(r => r.id !== resultId));
+
+      if (selectedResult?.id === resultId) {
+        setSelectedResult(null);
+      }
+
+      alert('Analiz sonucu silindi!');
+    }
+  };
+
   const filteredResults = analysisResults.filter(result => {
     const matchesType = filterType === 'all' || result.analysisType === filterType;
     const matchesStatus = filterStatus === 'all' || result.status === filterStatus;
@@ -524,16 +598,43 @@ export default function AnalysisResultsPage() {
 
                 <div className="flex space-x-2">
                   <button
+                    onClick={() => generateDetailedReport(selectedResult)}
                     className="px-4 py-2 rounded-lg font-medium transition-all hover:opacity-90"
                     style={{ backgroundColor: '#146448', color: '#f6f8f9' }}
                   >
                     📊 Detaylı Rapor
                   </button>
                   <button
+                    onClick={() => downloadResult(selectedResult)}
                     className="px-4 py-2 rounded-lg font-medium transition-all hover:opacity-90"
                     style={{ backgroundColor: '#baf200', color: '#1e3237' }}
                   >
                     📥 İndir
+                  </button>
+                  {selectedResult.status === 'failed' && (
+                    <button
+                      onClick={() => retryAnalysis(selectedResult)}
+                      className="px-4 py-2 rounded-lg font-medium transition-all hover:opacity-90 ml-2"
+                      style={{ backgroundColor: '#F59E0B', color: '#f6f8f9' }}
+                    >
+                      🔄 Tekrar Dene
+                    </button>
+                  )}
+                  {(selectedResult.status === 'processing' || selectedResult.status === 'pending') && (
+                    <button
+                      onClick={() => cancelAnalysis(selectedResult)}
+                      className="px-4 py-2 rounded-lg font-medium transition-all hover:opacity-90 ml-2"
+                      style={{ backgroundColor: '#EF4444', color: '#f6f8f9' }}
+                    >
+                      ❌ İptal Et
+                    </button>
+                  )}
+                  <button
+                    onClick={() => deleteResult(selectedResult.id)}
+                    className="px-4 py-2 rounded-lg font-medium transition-all hover:opacity-90 ml-2"
+                    style={{ backgroundColor: '#EF4444', color: '#f6f8f9' }}
+                  >
+                    🗑️ Sil
                   </button>
                 </div>
               </div>
