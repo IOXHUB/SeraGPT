@@ -1,11 +1,14 @@
 'use client';
 
+import { useState } from 'react';
 import DashboardLayout from '@/components/dashboard/DashboardLayout';
 
 // Force dynamic rendering for dashboard pages
 export const dynamic = 'force-dynamic';
 
 export default function ProjectsPage() {
+  const [selectedProject, setSelectedProject] = useState<any>(null);
+  const [modalType, setModalType] = useState<'view' | 'edit' | 'delete' | null>(null);
   const projects = [
     {
       id: 1,
