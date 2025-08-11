@@ -128,11 +128,13 @@ export default function AIChatPage() {
     { id: 'user', title: 'Kullanıcı İşlemleri' },
     { id: 'tokens', title: 'Token İşlemleri' },
     { id: 'ai-assistant', title: 'AI Asistan İşlemleri' },
+    { id: 'analysis', title: 'Tüm Analizler' },
+    { id: 'settings', title: 'Hesap Ayarları' },
     { id: 'support', title: 'Destek' },
     { id: 'consulting', title: 'Danışmanlık' },
     { id: 'turnkey', title: 'Anahtar Teslim' },
     { id: 'homepage', title: 'Anasayfaya Çıkış' },
-    { id: 'dashboard', title: 'Dashboarda Çıkış' },
+    { id: 'old-dashboard', title: 'Eski Dashboard' },
   ];
 
   const handleNewChat = () => {
