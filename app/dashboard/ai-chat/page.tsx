@@ -619,7 +619,7 @@ Lütfen daha sonra tekrar deneyin veya destek ekibimizle iletişime geçin.`,
   // Close menu popup when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (menuPopupOpen && !(event.target as Element)?.closest('.menu-popup-container')) {
+      if (menuPopupOpen && !(event.target as Element)?.closest('.right-menu-container')) {
         setMenuPopupOpen(false);
       }
     };
