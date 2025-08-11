@@ -568,23 +568,86 @@ export default function AIChatPage() {
                     key={message.id}
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
+                    className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'} group`}
                   >
-                    <div className={`max-w-xs sm:max-w-md lg:max-w-2xl p-3 lg:p-4 rounded-lg ${
+                    <div className={`relative max-w-xs sm:max-w-md lg:max-w-2xl p-3 lg:p-4 rounded-lg ${
                       message.role === 'user'
                         ? 'bg-[#baf200] text-[#1e3237]'
-                        : 'bg-[#f6f8f9]/10 text-[#f6f8f9] border border-[#f6f8f9]/20'
+                        : 'bg-[#f6f8f9]/10 text-white border border-[#f6f8f9]/20'
                     }`}>
                       <p className="whitespace-pre-wrap"
                          style={{ fontSize: 'clamp(14px, 2.5vw, 16px)', lineHeight: 'clamp(18px, 3.5vw, 24px)' }}>
                         {message.content}
                       </p>
                       <p className={`mt-2 ${
-                        message.role === 'user' ? 'text-[#1e3237]/60' : 'text-[#f6f8f9]/60'
+                        message.role === 'user' ? 'text-[#1e3237]/60' : 'text-white/60'
                       }`}
                          style={{ fontSize: 'clamp(11px, 2vw, 12px)', lineHeight: 'clamp(14px, 2.5vw, 16px)' }}>
                         {message.timestamp.toLocaleTimeString('tr-TR')}
                       </p>
+
+                      {/* Hover Menu */}
+                      <div className="absolute -top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-white rounded-lg shadow-lg border border-gray-200 p-1 flex space-x-1 z-10">
+                        {/* Kopyala */}
+                        <button
+                          onClick={() => navigator.clipboard.writeText(message.content)}
+                          className="p-1.5 hover:bg-gray-100 rounded text-gray-600 hover:text-gray-800 transition-colors"
+                          title="Kopyala"
+                        >
+                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                          </svg>
+                        </button>
+
+                        {/* Cevapla */}
+                        <button
+                          onClick={() => setInputValue(`"${message.content}" hakkında daha fazla bilgi verebilir misin?`)}
+                          className="p-1.5 hover:bg-gray-100 rounded text-gray-600 hover:text-gray-800 transition-colors"
+                          title="Cevapla"
+                        >
+                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6" />
+                          </svg>
+                        </button>
+
+                        {/* Paylaş */}
+                        <button
+                          onClick={() => {
+                            if (navigator.share) {
+                              navigator.share({ text: message.content });
+                            } else {
+                              navigator.clipboard.writeText(message.content);
+                            }
+                          }}
+                          className="p-1.5 hover:bg-gray-100 rounded text-gray-600 hover:text-gray-800 transition-colors"
+                          title="Paylaş"
+                        >
+                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.367 2.684 3 3 0 00-5.367-2.684z" />
+                          </svg>
+                        </button>
+
+                        {/* Kaydet */}
+                        <button
+                          className="p-1.5 hover:bg-gray-100 rounded text-gray-600 hover:text-gray-800 transition-colors"
+                          title="Kaydet"
+                        >
+                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
+                          </svg>
+                        </button>
+
+                        {/* Sil */}
+                        <button
+                          onClick={() => setMessages(prev => prev.filter(m => m.id !== message.id))}
+                          className="p-1.5 hover:bg-red-100 rounded text-red-600 hover:text-red-800 transition-colors"
+                          title="Sil"
+                        >
+                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                          </svg>
+                        </button>
+                      </div>
                     </div>
                   </motion.div>
                 ))}
