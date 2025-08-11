@@ -995,6 +995,567 @@ export default function AIChatPage() {
             </div>
           </footer>
         </div>
+
+        {/* MODAL SYSTEM */}
+        {activeModal && (
+          <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+            <div
+              className="w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-lg shadow-xl"
+              style={{ backgroundColor: '#f6f8f9' }}
+            >
+              {/* Modal Header */}
+              <div className="flex items-center justify-between p-6 border-b border-[#146448]/20">
+                <h2 className="text-2xl font-semibold" style={{ color: '#1e3237' }}>
+                  {activeModal === 'tokens' && 'Token İşlemleri'}
+                  {activeModal === 'user' && 'Kullanıcı İşlemleri'}
+                  {activeModal === 'settings' && 'Hesap Ayarları'}
+                  {activeModal === 'analysis' && 'Tüm Analizler'}
+                  {activeModal === 'ai-assistant' && 'AI Asistan İşlemleri'}
+                </h2>
+                <button
+                  onClick={() => {
+                    setActiveModal(null);
+                    setSelectedTokenCard(null);
+                  }}
+                  className="p-2 hover:bg-[#146448]/10 rounded-lg transition-colors"
+                  style={{ color: '#1e3237' }}
+                >
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+
+              {/* Modal Content */}
+              <div className="p-6">
+                {activeModal === 'tokens' && (
+                  <div>
+                    {!selectedTokenCard ? (
+                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        {tokenOperations.map((operation) => (
+                          <button
+                            key={operation.id}
+                            onClick={operation.action}
+                            className="rounded-lg p-6 hover:shadow-lg transition-all duration-200 text-left group border"
+                            style={{ backgroundColor: '#f6f8f9', borderColor: '#146448' }}
+                          >
+                            <div
+                              className="flex flex-col items-center text-center rounded-lg p-4"
+                              style={{ backgroundColor: '#baf200' }}
+                            >
+                              <div className="transition-colors mb-2" style={{ color: '#1e3237' }}>
+                                {operation.icon}
+                              </div>
+                              <div>
+                                <h3 className="text-lg font-medium mb-1" style={{ color: '#1e3237' }}>
+                                  {operation.title}
+                                </h3>
+                                <p className="text-sm opacity-70" style={{ color: '#1e3237' }}>
+                                  {operation.description}
+                                </p>
+                              </div>
+                            </div>
+                          </button>
+                        ))}
+                      </div>
+                    ) : (
+                      <div className="max-w-md mx-auto">
+                        <div className="flex items-center mb-6">
+                          <button
+                            onClick={() => setSelectedTokenCard(null)}
+                            className="mr-4 p-2 hover:bg-[#146448]/10 rounded-lg transition-colors"
+                            style={{ color: '#1e3237' }}
+                          >
+                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                            </svg>
+                          </button>
+                          <h3 className="text-xl font-semibold" style={{ color: '#1e3237' }}>
+                            {selectedTokenCard === 'view' && 'Token Bakiyesi'}
+                            {selectedTokenCard === 'purchase' && 'Token Satın Al'}
+                            {selectedTokenCard === 'usage' && 'Kullanım Geçmişi'}
+                            {selectedTokenCard === 'transaction' && 'İşlem Geçmişi'}
+                          </h3>
+                        </div>
+
+                        {/* Token Balance View */}
+                        {selectedTokenCard === 'view' && (
+                          <div className="text-center">
+                            <div className="mb-6">
+                              <div className="text-5xl font-bold mb-2" style={{ color: '#146448' }}>
+                                {userTokens}
+                              </div>
+                              <p className="text-sm opacity-70" style={{ color: '#1e3237' }}>
+                                Kalan Token Sayısı
+                              </p>
+                            </div>
+                            <div className="p-4 rounded-lg mb-4" style={{ backgroundColor: '#146448' }}>
+                              <p className="text-sm" style={{ color: '#f6f8f9' }}>
+                                Her analiz 1 token harcar. Daha fazla analiz için token satın alabilirsiniz.
+                              </p>
+                            </div>
+                            <button
+                              onClick={() => setSelectedTokenCard('purchase')}
+                              className="w-full py-3 px-4 rounded-lg font-medium transition-all hover:opacity-90"
+                              style={{ backgroundColor: '#baf200', color: '#1e3237' }}
+                            >
+                              Token Satın Al
+                            </button>
+                          </div>
+                        )}
+
+                        {/* Token Purchase */}
+                        {selectedTokenCard === 'purchase' && (
+                          <div>
+                            <div className="space-y-4">
+                              {tokenPackages.map((pkg) => (
+                                <div
+                                  key={pkg.id}
+                                  className={`p-4 rounded-lg border-2 cursor-pointer transition-all hover:shadow-md ${
+                                    pkg.popular ? 'border-opacity-100' : 'border-opacity-30 hover:border-opacity-60'
+                                  }`}
+                                  style={{ borderColor: '#146448' }}
+                                  onClick={() => handleTokenPurchase(pkg.id)}
+                                >
+                                  {pkg.popular && (
+                                    <div
+                                      className="text-xs font-medium mb-2 text-center px-2 py-1 rounded-full"
+                                      style={{ backgroundColor: '#baf200', color: '#1e3237' }}
+                                    >
+                                      EN POPÜLER
+                                    </div>
+                                  )}
+                                  <div className="flex justify-between items-center">
+                                    <div>
+                                      <div className="text-lg font-bold" style={{ color: '#1e3237' }}>
+                                        {pkg.amount} Token
+                                      </div>
+                                      <div className="text-sm opacity-70" style={{ color: '#1e3237' }}>
+                                        {pkg.amount} Analiz
+                                      </div>
+                                    </div>
+                                    <div className="text-right">
+                                      <div className="text-lg font-bold" style={{ color: '#146448' }}>
+                                        ₺{pkg.price}
+                                      </div>
+                                      <div className="text-xs opacity-70" style={{ color: '#1e3237' }}>
+                                        ₺{(pkg.price / pkg.amount).toFixed(2)}/token
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              ))}
+                            </div>
+                            <div className="mt-6 p-3 rounded-lg" style={{ backgroundColor: '#146448' }}>
+                              <p className="text-xs text-center" style={{ color: '#f6f8f9' }}>
+                                Güvenli ödeme için iyzico kullanılır. Kartınızdan ücret çekilir ve tokenlarınız hesabınıza yüklenir.
+                              </p>
+                            </div>
+                          </div>
+                        )}
+
+                        {/* Usage History */}
+                        {selectedTokenCard === 'usage' && (
+                          <div>
+                            <div className="space-y-3">
+                              <div className="flex justify-between items-center p-3 rounded-lg" style={{ backgroundColor: '#146448' }}>
+                                <div>
+                                  <p className="font-medium" style={{ color: '#f6f8f9' }}>ROI Analizi</p>
+                                  <p className="text-xs opacity-80" style={{ color: '#f6f8f9' }}>15 Ocak 2025, 14:30</p>
+                                </div>
+                                <div className="text-right">
+                                  <p className="font-medium" style={{ color: '#baf200' }}>-1 Token</p>
+                                </div>
+                              </div>
+                              <div className="flex justify-between items-center p-3 rounded-lg" style={{ backgroundColor: '#146448' }}>
+                                <div>
+                                  <p className="font-medium" style={{ color: '#f6f8f9' }}>İklim Analizi</p>
+                                  <p className="text-xs opacity-80" style={{ color: '#f6f8f9' }}>14 Ocak 2025, 09:15</p>
+                                </div>
+                                <div className="text-right">
+                                  <p className="font-medium" style={{ color: '#baf200' }}>-1 Token</p>
+                                </div>
+                              </div>
+                              <div className="flex justify-between items-center p-3 rounded-lg" style={{ backgroundColor: '#146448' }}>
+                                <div>
+                                  <p className="font-medium" style={{ color: '#f6f8f9' }}>Ekipman Analizi</p>
+                                  <p className="text-xs opacity-80" style={{ color: '#f6f8f9' }}>13 Ocak 2025, 16:45</p>
+                                </div>
+                                <div className="text-right">
+                                  <p className="font-medium" style={{ color: '#baf200' }}>-1 Token</p>
+                                </div>
+                              </div>
+                            </div>
+                            <div className="mt-6 text-center">
+                              <p className="text-sm opacity-70" style={{ color: '#1e3237' }}>
+                                Son 30 gün içinde 3 token kullandınız
+                              </p>
+                            </div>
+                          </div>
+                        )}
+
+                        {/* Transaction History */}
+                        {selectedTokenCard === 'transaction' && (
+                          <div>
+                            <div className="space-y-3">
+                              <div className="flex justify-between items-center p-3 rounded-lg" style={{ backgroundColor: '#146448' }}>
+                                <div>
+                                  <p className="font-medium" style={{ color: '#f6f8f9' }}>Token Satın Alma</p>
+                                  <p className="text-xs opacity-80" style={{ color: '#f6f8f9' }}>10 Ocak 2025, 12:00</p>
+                                </div>
+                                <div className="text-right">
+                                  <p className="font-medium" style={{ color: '#baf200' }}>+50 Token</p>
+                                  <p className="text-xs opacity-80" style={{ color: '#f6f8f9' }}>₺119.99</p>
+                                </div>
+                              </div>
+                              <div className="flex justify-between items-center p-3 rounded-lg" style={{ backgroundColor: '#146448' }}>
+                                <div>
+                                  <p className="font-medium" style={{ color: '#f6f8f9' }}>Token Satın Alma</p>
+                                  <p className="text-xs opacity-80" style={{ color: '#f6f8f9' }}>25 Aralık 2024, 15:30</p>
+                                </div>
+                                <div className="text-right">
+                                  <p className="font-medium" style={{ color: '#baf200' }}>+10 Token</p>
+                                  <p className="text-xs opacity-80" style={{ color: '#f6f8f9' }}>₺29.99</p>
+                                </div>
+                              </div>
+                            </div>
+                            <div className="mt-6 text-center">
+                              <p className="text-sm opacity-70" style={{ color: '#1e3237' }}>
+                                Toplam ₺149.98 harcadınız
+                              </p>
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    )}
+                  </div>
+                )}
+
+                {activeModal === 'user' && (
+                  <div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                      {userOperations.map((operation) => (
+                        <button
+                          key={operation.id}
+                          className={`rounded-lg p-6 hover:shadow-lg transition-all duration-200 text-left group border ${
+                            operation.id === 'logout'
+                              ? 'border-red-300 hover:border-red-400'
+                              : 'border-[#146448] hover:shadow-md'
+                          }`}
+                          style={{ backgroundColor: '#f6f8f9' }}
+                        >
+                          <div
+                            className={`flex flex-col items-center text-center rounded-lg p-4 ${
+                              operation.id === 'logout' ? 'bg-red-100' : ''
+                            }`}
+                            style={{ backgroundColor: operation.id === 'logout' ? '#fee2e2' : '#baf200' }}
+                          >
+                            <div
+                              className="transition-colors mb-3"
+                              style={{ color: operation.id === 'logout' ? '#dc2626' : '#1e3237' }}
+                            >
+                              {operation.icon}
+                            </div>
+                            <div>
+                              <h3
+                                className="text-lg font-medium mb-2"
+                                style={{ color: operation.id === 'logout' ? '#dc2626' : '#1e3237' }}
+                              >
+                                {operation.title}
+                              </h3>
+                              <p
+                                className="text-sm opacity-70"
+                                style={{ color: operation.id === 'logout' ? '#dc2626' : '#1e3237' }}
+                              >
+                                {operation.description}
+                              </p>
+                            </div>
+                          </div>
+                        </button>
+                      ))}
+                    </div>
+
+                    {/* User Info Card */}
+                    <div className="rounded-lg p-6 border" style={{ backgroundColor: '#146448', borderColor: '#146448' }}>
+                      <h3 className="text-lg font-semibold mb-4" style={{ color: '#f6f8f9' }}>
+                        Hesap Bilgileri
+                      </h3>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                          <p className="text-sm opacity-80" style={{ color: '#f6f8f9' }}>Ad Soyad</p>
+                          <p className="font-medium" style={{ color: '#baf200' }}>{user?.name || 'Volkan Şimşirkaya'}</p>
+                        </div>
+                        <div>
+                          <p className="text-sm opacity-80" style={{ color: '#f6f8f9' }}>E-posta</p>
+                          <p className="font-medium" style={{ color: '#baf200' }}>{user?.email || 'volkan@seragpt.com'}</p>
+                        </div>
+                        <div>
+                          <p className="text-sm opacity-80" style={{ color: '#f6f8f9' }}>Hesap Türü</p>
+                          <p className="font-medium" style={{ color: '#baf200' }}>Premium Kullanıcı</p>
+                        </div>
+                        <div>
+                          <p className="text-sm opacity-80" style={{ color: '#f6f8f9' }}>Kayıt Tarihi</p>
+                          <p className="font-medium" style={{ color: '#baf200' }}>25 Aralık 2024</p>
+                        </div>
+                        <div>
+                          <p className="text-sm opacity-80" style={{ color: '#f6f8f9' }}>Token Bakiyesi</p>
+                          <p className="font-medium" style={{ color: '#baf200' }}>{userTokens} Token</p>
+                        </div>
+                        <div>
+                          <p className="text-sm opacity-80" style={{ color: '#f6f8f9' }}>Son Giriş</p>
+                          <p className="font-medium" style={{ color: '#baf200' }}>Bugün, 14:30</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {activeModal === 'settings' && (
+                  <div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                      {settingsCategories.map((category) => (
+                        <button
+                          key={category.id}
+                          className="rounded-lg p-6 hover:shadow-lg transition-all duration-200 text-left group border border-[#146448] hover:shadow-md"
+                          style={{ backgroundColor: '#f6f8f9' }}
+                        >
+                          <div
+                            className="flex flex-col items-center text-center rounded-lg p-4"
+                            style={{ backgroundColor: '#baf200' }}
+                          >
+                            <div className="transition-colors mb-3" style={{ color: '#1e3237' }}>
+                              {category.icon}
+                            </div>
+                            <div>
+                              <h3 className="text-lg font-medium mb-2" style={{ color: '#1e3237' }}>
+                                {category.title}
+                              </h3>
+                              <p className="text-sm opacity-70" style={{ color: '#1e3237' }}>
+                                {category.description}
+                              </p>
+                            </div>
+                          </div>
+                        </button>
+                      ))}
+                    </div>
+
+                    {/* Quick Settings */}
+                    <div className="space-y-6">
+                      <div className="rounded-lg p-6 border" style={{ backgroundColor: '#146448', borderColor: '#146448' }}>
+                        <h3 className="text-lg font-semibold mb-4" style={{ color: '#f6f8f9' }}>
+                          Hızlı Ayarlar
+                        </h3>
+                        <div className="space-y-4">
+                          <div className="flex items-center justify-between">
+                            <div>
+                              <p className="font-medium" style={{ color: '#f6f8f9' }}>E-posta Bildirimleri</p>
+                              <p className="text-sm opacity-80" style={{ color: '#f6f8f9' }}>Yeni analiz sonuçları için bildirim al</p>
+                            </div>
+                            <button
+                              className="w-12 h-6 rounded-full relative focus:outline-none transition-colors"
+                              style={{ backgroundColor: '#baf200' }}
+                            >
+                              <div
+                                className="w-5 h-5 bg-white rounded-full absolute top-0.5 transition-transform transform translate-x-6"
+                                style={{ backgroundColor: '#1e3237' }}
+                              ></div>
+                            </button>
+                          </div>
+
+                          <div className="flex items-center justify-between">
+                            <div>
+                              <p className="font-medium" style={{ color: '#f6f8f9' }}>Otomatik Kaydetme</p>
+                              <p className="text-sm opacity-80" style={{ color: '#f6f8f9' }}>Analizleri otomatik olarak kaydet</p>
+                            </div>
+                            <button
+                              className="w-12 h-6 rounded-full relative focus:outline-none transition-colors"
+                              style={{ backgroundColor: '#baf200' }}
+                            >
+                              <div
+                                className="w-5 h-5 bg-white rounded-full absolute top-0.5 transition-transform transform translate-x-6"
+                                style={{ backgroundColor: '#1e3237' }}
+                              ></div>
+                            </button>
+                          </div>
+
+                          <div className="flex items-center justify-between">
+                            <div>
+                              <p className="font-medium" style={{ color: '#f6f8f9' }}>Karanlık Mod</p>
+                              <p className="text-sm opacity-80" style={{ color: '#f6f8f9' }}>Gece kullanımı için karanlık tema</p>
+                            </div>
+                            <button
+                              className="w-12 h-6 rounded-full relative focus:outline-none transition-colors bg-gray-300"
+                            >
+                              <div className="w-5 h-5 bg-white rounded-full absolute top-0.5 left-0.5 transition-transform"></div>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Account Actions */}
+                      <div className="rounded-lg p-6 border" style={{ backgroundColor: '#f6f8f9', borderColor: '#146448' }}>
+                        <h3 className="text-lg font-semibold mb-4" style={{ color: '#1e3237' }}>
+                          Hesap İşlemleri
+                        </h3>
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                          <button
+                            className="p-3 rounded-lg font-medium transition-all hover:opacity-90"
+                            style={{ backgroundColor: '#baf200', color: '#1e3237' }}
+                          >
+                            Şifre Değiştir
+                          </button>
+                          <button
+                            className="p-3 rounded-lg font-medium transition-all hover:opacity-90"
+                            style={{ backgroundColor: '#146448', color: '#f6f8f9' }}
+                          >
+                            Verileri Dışa Aktar
+                          </button>
+                          <button className="p-3 bg-red-100 text-red-700 rounded-lg font-medium hover:bg-red-200 transition-all">
+                            Hesabı Sil
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {activeModal === 'analysis' && (
+                  <div>
+                    {/* Analysis Categories */}
+                    <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-8">
+                      {analysisCategories.map((category) => (
+                        <button
+                          key={category.id}
+                          className="rounded-lg p-4 hover:shadow-lg transition-all duration-200 text-center group border border-[#146448] hover:shadow-md"
+                          style={{ backgroundColor: '#f6f8f9' }}
+                        >
+                          <div
+                            className="rounded-lg p-3 mb-3"
+                            style={{ backgroundColor: '#baf200' }}
+                          >
+                            <div className="text-2xl font-bold" style={{ color: '#1e3237' }}>
+                              {category.count}
+                            </div>
+                          </div>
+                          <h3 className="font-medium mb-1" style={{ color: '#1e3237' }}>
+                            {category.title}
+                          </h3>
+                          <p className="text-xs opacity-70" style={{ color: '#1e3237' }}>
+                            {category.description}
+                          </p>
+                        </button>
+                      ))}
+                    </div>
+
+                    {/* Recent Analyses */}
+                    <div className="rounded-lg p-6 border" style={{ backgroundColor: '#146448', borderColor: '#146448' }}>
+                      <div className="flex items-center justify-between mb-6">
+                        <h3 className="text-lg font-semibold" style={{ color: '#f6f8f9' }}>
+                          Son Analizler
+                        </h3>
+                        <button
+                          className="px-4 py-2 rounded-lg font-medium transition-all hover:opacity-90"
+                          style={{ backgroundColor: '#baf200', color: '#1e3237' }}
+                        >
+                          Tümünü Görüntüle
+                        </button>
+                      </div>
+
+                      <div className="space-y-4">
+                        {mockAnalyses.map((analysis) => (
+                          <div
+                            key={analysis.id}
+                            className="rounded-lg p-4 border border-white/10 hover:border-white/20 transition-colors cursor-pointer"
+                            style={{ backgroundColor: '#f6f8f9' }}
+                          >
+                            <div className="flex items-center justify-between">
+                              <div className="flex-1">
+                                <h4 className="font-medium mb-1" style={{ color: '#1e3237' }}>
+                                  {analysis.title}
+                                </h4>
+                                <div className="flex items-center space-x-4 text-sm">
+                                  <span className="opacity-70" style={{ color: '#1e3237' }}>
+                                    {analysis.date}
+                                  </span>
+                                  <span
+                                    className={`px-2 py-1 rounded-full text-xs font-medium ${
+                                      analysis.status === 'Tamamlandı'
+                                        ? 'bg-green-100 text-green-700'
+                                        : 'bg-yellow-100 text-yellow-700'
+                                    }`}
+                                  >
+                                    {analysis.status}
+                                  </span>
+                                  <span className="font-medium" style={{ color: '#146448' }}>
+                                    {analysis.result}
+                                  </span>
+                                </div>
+                              </div>
+                              <div className="flex space-x-2">
+                                <button
+                                  className="p-2 rounded-lg hover:opacity-80 transition-opacity"
+                                  style={{ backgroundColor: '#baf200', color: '#1e3237' }}
+                                  title="Görüntüle"
+                                >
+                                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9M12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17M12,4.5C7,4.5 2.73,7.61 1,12C2.73,16.39 7,19.5 12,19.5C17,19.5 21.27,16.39 23,12C21.27,7.61 17,4.5 12,4.5Z"/>
+                                  </svg>
+                                </button>
+                                <button
+                                  className="p-2 rounded-lg hover:opacity-80 transition-opacity"
+                                  style={{ backgroundColor: '#146448', color: '#f6f8f9' }}
+                                  title="İndir"
+                                >
+                                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M5,20H19V18H5M19,9H15V3H9V9H5L12,16L19,9Z"/>
+                                  </svg>
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Quick Actions */}
+                    <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <button
+                        className="p-4 rounded-lg font-medium transition-all hover:opacity-90 flex items-center justify-center space-x-2"
+                        style={{ backgroundColor: '#baf200', color: '#1e3237' }}
+                      >
+                        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z"/>
+                        </svg>
+                        <span>Yeni Analiz Başlat</span>
+                      </button>
+                      <button
+                        className="p-4 rounded-lg font-medium transition-all hover:opacity-90 flex items-center justify-center space-x-2"
+                        style={{ backgroundColor: '#146448', color: '#f6f8f9' }}
+                      >
+                        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z"/>
+                        </svg>
+                        <span>Tüm Raporları Dışa Aktar</span>
+                      </button>
+                    </div>
+                  </div>
+                )}
+
+                {activeModal === 'ai-assistant' && (
+                  <div className="text-center py-12">
+                    <div className="text-6xl mb-4">🤖</div>
+                    <h3 className="text-xl font-semibold mb-2" style={{ color: '#1e3237' }}>
+                      AI Asistan İşlemleri
+                    </h3>
+                    <p className="opacity-70" style={{ color: '#1e3237' }}>
+                      Bu modal yakında kullanıma açılacak
+                    </p>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </ClientOnly>
   );
