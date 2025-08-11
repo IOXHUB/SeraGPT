@@ -750,19 +750,6 @@ Lütfen daha sonra tekrar deneyin veya destek ekibimizle iletişime geçin.`,
                   className="w-64 sm:w-72 bg-[#1e3237] border-r border-[#f6f8f9]/20 flex flex-col h-full fixed lg:relative z-40 lg:z-auto max-w-[70vw] min-w-0 shadow-2xl"
                   style={{ backgroundColor: 'rgba(30, 50, 55, 0.98)' }}
                 >
-                {/* Sidebar Header - Logo */}
-                <div className="p-4 border-b border-[#f6f8f9]/10 bg-[#146448] text-white">
-                  <div className="flex items-center justify-center">
-                    <svg className="h-10 w-auto" viewBox="0 0 200 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <text x="10" y="35" className="fill-[#baf200] text-2xl font-bold" style={{fontFamily: 'system-ui, sans-serif'}}>SeraGPT</text>
-                    </svg>
-                  </div>
-                  <div className="mt-3 text-center text-xs text-[#baf200] leading-4"
-                       role="status"
-                       aria-live="polite">
-                    AI Dashboard
-                  </div>
-                </div>
 
                 {/* Chat History */}
                 <div className="flex-1 overflow-y-auto p-4 bg-[#146448] overscroll-contain"
@@ -878,7 +865,7 @@ Lütfen daha sonra tekrar deneyin veya destek ekibimizle iletişime geçin.`,
 
                 <div className="flex items-center">
                   <svg className="h-8 w-auto" viewBox="0 0 160 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <text x="5" y="28" className="fill-[#baf200] text-xl font-bold" style={{fontFamily: 'system-ui, sans-serif'}}>SeraGPT</text>
+                    <text x="5" y="28" className="fill-white text-xl font-bold" style={{fontFamily: 'system-ui, sans-serif'}}>SeraGPT</text>
                   </svg>
                 </div>
               </div>
@@ -967,7 +954,7 @@ Lütfen daha sonra tekrar deneyin veya destek ekibimizle iletişime geçin.`,
                   <div className="flex flex-col items-center justify-center h-full min-h-[400px] py-8 mx-auto w-full max-w-[900px] px-4">
                     <div className="text-center mb-8 max-w-2xl">
                       <h1 className="font-bold text-[#f6f8f9] mb-6 text-3xl md:text-4xl lg:text-5xl">
-                        Hoş Geldiniz, Test Kullanıcı!
+                        AI Dashboard'a Hoşgeldiniz
                       </h1>
 
                       <div className="mb-8">
@@ -975,7 +962,7 @@ Lütfen daha sonra tekrar deneyin veya destek ekibimizle iletişime geçin.`,
                           Aşağıdan Analiz Başlatabilirsiniz yada menüden düzenlemek istediğiniz geçmiş analizlerinden birini seçin.
                         </p>
                         <p className="text-[#baf200] font-medium text-sm md:text-base">
-                          Tam havamdayım, çalışalım. Ya siz? Yazalım.
+                          <p>Tam havamdayım, çalışalım. Ya siz?</p>
                         </p>
                       </div>
                     </div>
