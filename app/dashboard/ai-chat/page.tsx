@@ -90,7 +90,7 @@ export default function AIChatPage() {
       id: 'climate',
       title: 'İklim Uyumu ve Risk Skoru',
       description: 'Lokasyon bazlı iklim uygunluğu raporu',
-      icon: '��️',
+      icon: '🌡️',
       color: 'bg-blue-500',
     },
     {
@@ -403,7 +403,7 @@ export default function AIChatPage() {
           {/* Main Chat Area */}
           <div className="flex-1 flex flex-col min-w-0 h-full">
             
-            {/* Chat Header */}
+            {/* Dashboard Header */}
             <div className="flex items-center justify-between p-3 lg:p-4 border-b border-[#f6f8f9]/10 bg-[#146448] flex-shrink-0">
               <div className="flex items-center space-x-3">
                 <button
@@ -414,22 +414,33 @@ export default function AIChatPage() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
                   </svg>
                 </button>
-                
+
                 <div className="flex items-center space-x-3">
                   <div className="w-8 h-8 bg-[#baf200] rounded-full flex items-center justify-center">
-                    <span className="text-[#1e3237] text-sm font-bold">S</span>
+                    <span className="text-[#1e3237] text-sm font-bold">💬</span>
                   </div>
                   <div>
-                    <h3 className="font-semibold text-[#f6f8f9] text-lg">SeraGPT</h3>
-                    <p className="text-xs text-[#baf200]">Çevrimiçi • Aktif Asistan</p>
+                    <h3 className="font-semibold text-[#f6f8f9] text-lg">AI Sohbet</h3>
+                    <p className="text-xs text-[#baf200]">SeraGPT AI Asistanı</p>
                   </div>
                 </div>
               </div>
 
-              <div className="flex items-center space-x-2">
+              <div className="flex items-center space-x-3">
+                <div className="hidden sm:flex items-center space-x-3 bg-[#f6f8f9]/10 rounded-lg px-3 py-2">
+                  <div className="w-6 h-6 bg-[#baf200] rounded-full flex items-center justify-center">
+                    <span className="text-[#1e3237] text-xs font-bold">
+                      {user?.email?.charAt(0).toUpperCase() || 'T'}
+                    </span>
+                  </div>
+                  <div>
+                    <p className="text-sm font-medium text-[#f6f8f9]">Test Kullanıcı</p>
+                  </div>
+                </div>
+
                 <button className="p-2 hover:bg-[#f6f8f9]/10 rounded-lg transition-colors">
                   <svg className="w-5 h-5 text-[#f6f8f9]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 17h5l-5 5v-5zM9 1h6l5 5v7" />
                   </svg>
                 </button>
               </div>
