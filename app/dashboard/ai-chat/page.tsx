@@ -80,46 +80,14 @@ export default function AIChatPage() {
   // Analysis options for welcome screen
   const analysisOptions = [
     {
-      id: 'roi',
-      title: 'Yatırım Geri Dönüş (ROI) Analizi',
-      description: 'Geri dönme süresi ve karlılık oranı',
-      icon: '💰',
-      color: 'bg-yellow-500',
+      id: 'analysis',
+      title: 'Sera Analizi',
+      description: 'Kapsamlı sera yatırım analizi başlat',
     },
     {
-      id: 'climate',
-      title: 'İklim Uyumu ve Risk Skoru',
-      description: 'Lokasyon bazlı iklim uygunluğu raporu',
-      icon: '🌡️',
-      color: 'bg-blue-500',
-    },
-    {
-      id: 'equipment',
-      title: 'Mühendis Onaylı Ekipman Listesi',
-      description: 'Fiyat aralıkları ve tedarik önerileri',
-      icon: '⚙️',
-      color: 'bg-gray-500',
-    },
-    {
-      id: 'market',
-      title: 'Pazar ve Ticaret Verileri',
-      description: 'Bölgesel ve ürüne göre pazar trendleri',
-      icon: '📊',
-      color: 'bg-green-500',
-    },
-    {
-      id: 'layout',
-      title: '2D / 3D Yerleşim Plan ve Şema',
-      description: 'Sera yerleşim ve hat planları',
-      icon: '🏗️',
-      color: 'bg-orange-500',
-    },
-    {
-      id: 'pdf',
-      title: 'PDF Rapor - Anında İndirilebilir',
-      description: 'Hibe ve kredi başvurusunda uygun format',
-      icon: '📄',
-      color: 'bg-red-500',
+      id: 'reports',
+      title: 'Raporlarım',
+      description: 'Önceki analizlerinizi görüntüleyin',
     },
   ];
 
