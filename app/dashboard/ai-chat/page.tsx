@@ -913,7 +913,7 @@ Lütfen daha sonra tekrar deneyin veya destek ekibimizle iletişime geçin.`,
             </div>
 
             {/* Chat Container - Scrollable */}
-            <div className="flex-1 bg-[#146448] text-white flex flex-col overflow-hidden" style={{ paddingTop: '70px', paddingBottom: '140px' }}>
+            <div className="flex-1 bg-[#146448] text-white flex flex-col overflow-hidden" style={{ paddingTop: '70px', paddingBottom: '160px' }}>
               <main className="flex-1 overflow-y-auto">
                 {!currentChatId && messages.length === 0 ? (
                   // Welcome State
