@@ -520,7 +520,7 @@ export default function AIChatPage() {
 • Toplam ${messages.length} mesaj
 • ${favoriteMessages.size} favorili mesaj
 • Başlangıç: ${messages[0]?.timestamp.toLocaleString() || 'Bilinmiyor'}
-• Son: ${messages[messages.length-1]?.timestamp.toLocaleString() || 'Bilinmiyor'}
+�� Son: ${messages[messages.length-1]?.timestamp.toLocaleString() || 'Bilinmiyor'}
 
 🎯 Ana Konular: ${messages.filter(m => m.role === 'user').slice(0, 3).map(m => m.content.substring(0, 50)).join(', ')}...`;
 
@@ -742,9 +742,20 @@ export default function AIChatPage() {
 
         {/* Mobile overlay */}
         {sidebarOpen && (
-          <div 
+          <div
             className="fixed inset-0 bg-black/50 z-30 lg:hidden"
-            onClick={() => setSidebarOpen(false)}
+            onClick={() => {
+              setSidebarOpen(false);
+              setMenuPopupOpen(false);
+            }}
+          />
+        )}
+
+        {/* Menu popup overlay - popup açıkken arka plan tıklaması */}
+        {menuPopupOpen && (
+          <div
+            className="fixed inset-0 z-40"
+            onClick={() => setMenuPopupOpen(false)}
           />
         )}
 
