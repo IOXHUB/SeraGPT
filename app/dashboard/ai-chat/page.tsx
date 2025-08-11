@@ -687,7 +687,10 @@ export default function AIChatPage() {
           <div className="p-4 border-t border-white/10 mb-5 relative">
             <button
               className="w-full bg-[#baf200] border-l-4 border-[#baf200] rounded-lg p-3 hover:bg-[#baf200]/80 transition-colors"
-              onClick={() => setMenuPopupOpen(!menuPopupOpen)}
+              onClick={() => {
+                console.log('Ayarlar butonuna tıklandı, mevcut durum:', menuPopupOpen);
+                setMenuPopupOpen(!menuPopupOpen);
+              }}
             >
               <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-3">
@@ -1232,7 +1235,7 @@ export default function AIChatPage() {
                             </div>
                             <div className="mt-6 text-center">
                               <p className="text-sm opacity-70" style={{ color: '#1e3237' }}>
-                                Toplam ₺149.98 harcadınız
+                                Toplam ₺149.98 harcadın��z
                               </p>
                             </div>
                           </div>
