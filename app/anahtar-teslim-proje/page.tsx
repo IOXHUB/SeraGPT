@@ -67,16 +67,16 @@ export default function AnahtarTeslimProjePage() {
   ];
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen" style={{ backgroundColor: '#146448' }}>
       {/* Header */}
-      <div className="bg-white border-b border-gray-200">
+      <div className="border-b" style={{ backgroundColor: '#146448', borderBottomColor: '#f6f8f9' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center space-x-4">
-              <Link href="/" className="text-gray-600 hover:text-gray-900">
+              <Link href="/" className="hover:opacity-70 transition-opacity" style={{ color: '#f6f8f9' }}>
                 ← Ana Sayfa
               </Link>
-              <h1 className="text-xl font-semibold text-gray-900">Anahtar Teslim Proje</h1>
+              <h1 className="text-xl font-semibold" style={{ color: '#f6f8f9' }}>Anahtar Teslim Proje</h1>
             </div>
           </div>
         </div>
@@ -85,25 +85,26 @@ export default function AnahtarTeslimProjePage() {
       {/* Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="text-center mb-8">
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">Anahtar Teslim Sera Çözümleri</h2>
-          <p className="text-gray-600">Baştan sona tamamlanmış sera projeleri</p>
+          <h2 className="text-2xl font-bold mb-4" style={{ color: '#f6f8f9' }}>Anahtar Teslim Sera Çözümleri</h2>
+          <p style={{ color: '#f6f8f9', opacity: '0.8' }}>Baştan sona tamamlanmış sera projeleri</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {turnkeyServices.map((service) => (
             <button
               key={service.id}
-              className="bg-white border border-gray-200 rounded-lg p-6 hover:border-gray-300 hover:shadow-md transition-all duration-200 text-left group"
+              className="rounded-lg p-6 hover:shadow-lg transition-all duration-200 text-left group border"
+              style={{ backgroundColor: '#f6f8f9', borderColor: '#146448' }}
             >
               <div className="flex flex-col items-center text-center space-y-4">
-                <div className="text-black group-hover:text-gray-700 transition-colors">
+                <div className="transition-colors" style={{ color: '#1e3237' }}>
                   {service.icon}
                 </div>
                 <div>
-                  <h3 className="text-lg font-medium text-gray-900 mb-2">
+                  <h3 className="text-lg font-medium mb-2" style={{ color: '#1e3237' }}>
                     {service.title}
                   </h3>
-                  <p className="text-sm text-gray-600">
+                  <p className="text-sm opacity-70" style={{ color: '#1e3237' }}>
                     {service.description}
                   </p>
                 </div>
@@ -114,14 +115,14 @@ export default function AnahtarTeslimProjePage() {
 
         {/* CTA Section */}
         <div className="mt-12 text-center">
-          <div className="bg-gray-50 rounded-lg p-8">
-            <h3 className="text-xl font-semibold text-gray-900 mb-4">Anahtar Teslim Proje Teklifi Alın</h3>
-            <p className="text-gray-600 mb-6">Sera projeniz için detaylı fiyat teklifi alın</p>
+          <div className="rounded-lg p-8" style={{ backgroundColor: '#f6f8f9' }}>
+            <h3 className="text-xl font-semibold mb-4" style={{ color: '#1e3237' }}>Anahtar Teslim Proje Teklifi Alın</h3>
+            <p className="mb-6 opacity-70" style={{ color: '#1e3237' }}>Sera projeniz için detaylı fiyat teklifi alın</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-[#146448] text-white px-6 py-3 rounded-lg font-medium hover:bg-[#146448]/90 transition-colors">
+              <button className="px-6 py-3 rounded-lg font-medium hover:opacity-90 transition-all" style={{ backgroundColor: '#baf200', color: '#1e3237' }}>
                 Teklif Talep Et
               </button>
-              <button className="bg-gray-100 text-gray-700 px-6 py-3 rounded-lg font-medium hover:bg-gray-200 transition-colors">
+              <button className="px-6 py-3 rounded-lg font-medium hover:opacity-80 transition-all border" style={{ backgroundColor: '#146448', color: '#f6f8f9', borderColor: '#146448' }}>
                 Referans Projeler
               </button>
             </div>
