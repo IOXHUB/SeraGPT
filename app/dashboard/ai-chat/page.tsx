@@ -422,12 +422,43 @@ export default function AIChatPage() {
                   <textarea
                     ref={inputRef}
                     value={inputValue}
-                    onChange={(e) => setInputValue(e.target.value)}
+                    onChange={(e) => {
+                      setInputValue(e.target.value);
+                      // Auto-resize with max 4 lines
+                      const textarea = e.target as HTMLTextAreaElement;
+                      textarea.style.height = 'auto';
+                      const maxHeight = 24 * 4; // 4 lines × 24px line height
+                      const newHeight = Math.min(textarea.scrollHeight, maxHeight);
+                      textarea.style.height = newHeight + 'px';
+                    }}
                     onKeyDown={handleKeyPress}
                     placeholder="SeraGPT'ye bir mesaj yazın..."
-                    className="w-full p-3 pr-12 bg-white/95 border border-[#baf200]/30 rounded-lg resize-none focus:ring-2 focus:ring-[#baf200] focus:border-[#baf200] placeholder-[#1e3237]/50 text-[#1e3237]"
+                    className="w-full p-3 pl-16 pr-12 bg-white/95 border border-[#baf200]/30 rounded-lg resize-none focus:ring-2 focus:ring-[#baf200] focus:border-[#baf200] placeholder-[#1e3237]/50 text-[#1e3237] overflow-hidden"
                     rows={1}
+                    style={{
+                      minHeight: '48px',
+                      maxHeight: '96px', // 4 lines
+                      lineHeight: '24px'
+                    }}
                   />
+
+                  {/* Input Icons */}
+                  <div className="absolute left-3 top-1/2 transform -translate-y-1/2 flex items-center space-x-2">
+                    <button className="p-1 text-[#146448] hover:text-[#146448]/70 transition-colors" title="Dosya Ekle">
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13" />
+                      </svg>
+                    </button>
+                    <button
+                      className="p-1 text-[#146448] hover:text-[#146448]/70 transition-colors"
+                      title="Ses Kaydı"
+                      onClick={() => setIsRecording(!isRecording)}
+                    >
+                      <svg className={`w-4 h-4 ${isRecording ? 'animate-pulse' : ''}`} fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 1a3 3 0 013 3v8a3 3 0 01-6 0V4a3 3 0 013-3zM19 10v2a7 7 0 01-14 0v-2a1 1 0 012 0v2a5 5 0 0010 0v-2a1 1 0 012 0z"/>
+                      </svg>
+                    </button>
+                  </div>
                   <button
                     onClick={handleSendMessage}
                     disabled={!inputValue.trim()}
