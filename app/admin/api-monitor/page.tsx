@@ -182,26 +182,62 @@ export default function APIMonitorPage() {
   const testSingleAPI = async (endpoint: APIEndpoint) => {
     try {
       setSelectedEndpoint(endpoint);
-      
-      // Simulate API test
-      await new Promise(resolve => setTimeout(resolve, Math.random() * 2000 + 500));
-      
-      const mockResult: TestResult = {
-        endpoint: endpoint.name,
-        status: Math.random() > 0.1 ? 'success' : 'error',
-        responseTime: Math.random() * 2000 + 100,
-        statusCode: Math.random() > 0.1 ? 200 : 500,
-        response: {
-          data: 'Test response data',
-          message: 'API test completed successfully'
+
+      // Call real API test endpoint
+      const response = await fetch('/api/admin/test-api', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
         },
-        timestamp: new Date().toLocaleString('tr-TR')
-      };
-      
-      setTestResults(prev => [mockResult, ...prev.slice(0, 19)]);
-      
+        body: JSON.stringify({
+          testType: 'single',
+          apiData: {
+            url: endpoint.url,
+            method: endpoint.method,
+            timeout: 10000
+          }
+        })
+      });
+
+      const data = await response.json();
+
+      if (data.success && data.result) {
+        const testResult: TestResult = {
+          endpoint: endpoint.name,
+          status: data.result.success ? 'success' : 'error',
+          responseTime: data.result.responseTime,
+          statusCode: data.result.statusCode,
+          response: data.result.response,
+          timestamp: new Date().toLocaleString('tr-TR')
+        };
+
+        setTestResults(prev => [testResult, ...prev.slice(0, 19)]);
+
+        // Update endpoint status if needed
+        const newStatus = data.result.success ? 'active' : 'error';
+        setEndpoints(prev => prev.map(ep =>
+          ep.id === endpoint.id
+            ? { ...ep, status: newStatus, responseTime: data.result.responseTime, lastCheck: 'Az önce' }
+            : ep
+        ));
+      } else {
+        throw new Error(data.error || 'API test failed');
+      }
+
     } catch (error) {
       console.error('API test failed:', error);
+
+      // Add error result
+      const errorResult: TestResult = {
+        endpoint: endpoint.name,
+        status: 'error',
+        responseTime: 0,
+        statusCode: 0,
+        response: { error: error instanceof Error ? error.message : 'Unknown error' },
+        timestamp: new Date().toLocaleString('tr-TR')
+      };
+
+      setTestResults(prev => [errorResult, ...prev.slice(0, 19)]);
     } finally {
       setSelectedEndpoint(null);
     }
@@ -209,14 +245,63 @@ export default function APIMonitorPage() {
 
   const testAllAPIs = async () => {
     setIsTestingAll(true);
-    
+
     try {
-      for (const endpoint of endpoints) {
-        await testSingleAPI(endpoint);
-        await new Promise(resolve => setTimeout(resolve, 200));
+      // Use predefined API test which includes safe endpoints
+      const response = await fetch('/api/admin/test-api', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          testType: 'predefined'
+        })
+      });
+
+      const data = await response.json();
+
+      if (data.success && data.results) {
+        // Process all test results
+        const newResults = data.results.map((result: any) => ({
+          endpoint: result.endpoint || 'Unknown API',
+          status: result.success ? 'success' : 'error',
+          responseTime: result.responseTime,
+          statusCode: result.statusCode,
+          response: result.response,
+          timestamp: new Date().toLocaleString('tr-TR')
+        }));
+
+        setTestResults(prev => [...newResults, ...prev.slice(0, 10)]);
+
+        // Update endpoint statuses
+        setEndpoints(prev => prev.map(endpoint => {
+          const testResult = data.results.find((r: any) =>
+            endpoint.url.includes(r.endpoint) || r.endpoint.includes(endpoint.name)
+          );
+
+          if (testResult) {
+            return {
+              ...endpoint,
+              status: testResult.success ? 'active' : 'error',
+              responseTime: testResult.responseTime,
+              lastCheck: 'Az önce'
+            };
+          }
+
+          return endpoint;
+        }));
+      } else {
+        throw new Error(data.error || 'Bulk API test failed');
       }
+
     } catch (error) {
       console.error('Bulk API test failed:', error);
+
+      // Fallback to individual tests with delay
+      for (const endpoint of endpoints.slice(0, 5)) { // Limit to first 5 to avoid overload
+        await testSingleAPI(endpoint);
+        await new Promise(resolve => setTimeout(resolve, 500));
+      }
     } finally {
       setIsTestingAll(false);
     }
