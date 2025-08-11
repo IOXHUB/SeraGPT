@@ -46,7 +46,6 @@ export default function AIChatPage() {
   const [currentChatId, setCurrentChatId] = useState<string | null>(null);
   const [isRecording, setIsRecording] = useState(false);
   const [menuPopupOpen, setMenuPopupOpen] = useState(false);
-  const [activeTab, setActiveTab] = useState('ai-chat');
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
@@ -126,13 +125,14 @@ export default function AIChatPage() {
 
   // Dashboard menu items
   const dashboardMenuItems = [
-    { id: 'ai-chat', title: 'AI Sohbet', icon: '💬', active: true },
-    { id: 'analysis', title: 'Analizler', icon: '📊' },
-    { id: 'reports', title: 'Raporlar', icon: '📄' },
-    { id: 'projects', title: 'Projeler', icon: '🏗️' },
-    { id: 'consulting', title: 'Danışmanlık', icon: '👨‍🏫' },
-    { id: 'settings', title: 'Ayarlar', icon: '⚙️' },
-    { id: 'help', title: 'Yardım', icon: '❓' },
+    { id: 'user', title: 'Kullanıcı İşlemleri' },
+    { id: 'tokens', title: 'Token İşlemleri' },
+    { id: 'ai-assistant', title: 'AI Asistan İşlemleri' },
+    { id: 'support', title: 'Destek' },
+    { id: 'consulting', title: 'Danışmanlık' },
+    { id: 'turnkey', title: 'Anahtar Teslim' },
+    { id: 'homepage', title: 'Anasayfaya Çıkış' },
+    { id: 'dashboard', title: 'Dashboarda Çıkış' },
   ];
 
   const handleNewChat = () => {
@@ -345,272 +345,46 @@ export default function AIChatPage() {
                         initial={{ opacity: 0, y: 10, scale: 0.95 }}
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                        className="absolute bottom-full left-4 right-4 mb-2 bg-white rounded-xl shadow-2xl border border-[#f6f8f9]/20 z-[100] w-96 max-h-[80vh] overflow-hidden"
+                        className="absolute bottom-full left-4 right-4 mb-2 bg-white rounded-lg shadow-lg border border-gray-200 z-[100] min-w-64"
                       >
-                        {/* Dashboard Popup Header */}
-                        <div className="bg-[#146448] text-white p-4 border-b border-gray-200">
+                        {/* Header */}
+                        <div className="p-4 border-b border-gray-200">
                           <div className="flex items-center justify-between">
-                            <div className="flex items-center space-x-3">
-                              <div className="w-8 h-8 bg-[#baf200] rounded-full flex items-center justify-center">
-                                <span className="text-[#1e3237] text-sm font-bold">
-                                  {user?.email?.charAt(0).toUpperCase() || 'T'}
-                                </span>
-                              </div>
-                              <div>
-                                <p className="text-sm font-medium">Test Kullanıcı</p>
-                                <p className="text-xs text-[#baf200]">SeraGPT Dashboard</p>
-                              </div>
-                            </div>
+                            <h3 className="text-sm font-medium text-gray-900">Popup Menü</h3>
                             <button
                               onClick={() => setMenuPopupOpen(false)}
-                              className="p-1 hover:bg-white/10 rounded"
+                              className="text-gray-400 hover:text-gray-600"
                             >
-                              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                              </svg>
+                              ×
                             </button>
                           </div>
                         </div>
 
-                        {/* Tab Navigation */}
-                        <div className="flex border-b border-gray-200 bg-gray-50 overflow-x-auto">
+                        {/* Menu Items */}
+                        <div className="py-2">
                           {dashboardMenuItems.map((item) => (
                             <button
                               key={item.id}
-                              onClick={() => setActiveTab(item.id)}
-                              className={`flex items-center space-x-2 px-4 py-3 text-sm font-medium whitespace-nowrap transition-colors ${
-                                activeTab === item.id
-                                  ? 'bg-white text-[#146448] border-b-2 border-[#146448]'
-                                  : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
-                              }`}
+                              onClick={() => {
+                                // Handle navigation based on item id
+                                if (item.id === 'homepage') {
+                                  window.location.href = '/';
+                                } else if (item.id === 'dashboard') {
+                                  window.location.href = '/dashboard';
+                                } else if (item.id === 'consulting') {
+                                  window.location.href = '/danismanlik';
+                                } else if (item.id === 'turnkey') {
+                                  window.location.href = '/anahtar-teslim-proje';
+                                } else if (item.id === 'support') {
+                                  window.location.href = '/destek';
+                                }
+                                setMenuPopupOpen(false);
+                              }}
+                              className="w-full px-4 py-3 text-left text-sm text-gray-700 hover:bg-gray-100 border-b border-gray-100 last:border-b-0"
                             >
-                              <span className="text-base">{item.icon}</span>
-                              <span>{item.title}</span>
+                              {item.title}
                             </button>
                           ))}
-                        </div>
-
-                        {/* Tab Content */}
-                        <div className="p-4 max-h-96 overflow-y-auto">
-                          {activeTab === 'ai-chat' && (
-                            <div className="space-y-4">
-                              <div className="text-center">
-                                <div className="w-12 h-12 bg-[#146448] rounded-full flex items-center justify-center mx-auto mb-3">
-                                  <span className="text-white text-lg">💬</span>
-                                </div>
-                                <h3 className="text-lg font-semibold text-gray-900 mb-2">AI Sohbet</h3>
-                                <p className="text-sm text-gray-600 mb-4">SeraGPT AI Asistanı ile sohbet edin</p>
-                              </div>
-                              <button
-                                onClick={() => {
-                                  handleNewChat();
-                                  setMenuPopupOpen(false);
-                                }}
-                                className="w-full bg-[#146448] text-white py-3 px-4 rounded-lg font-medium hover:bg-[#146448]/90 transition-colors flex items-center justify-center space-x-2"
-                              >
-                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                                </svg>
-                                <span>Yeni Sohbet Başlat</span>
-                              </button>
-                              <div className="text-center">
-                                <p className="text-xs text-gray-500">Mevcut sohbet: {messages.length} mesaj</p>
-                              </div>
-                            </div>
-                          )}
-
-                          {activeTab === 'analysis' && (
-                            <div className="space-y-4">
-                              <div className="text-center mb-4">
-                                <div className="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-3">
-                                  <span className="text-white text-lg">📊</span>
-                                </div>
-                                <h3 className="text-lg font-semibold text-gray-900 mb-2">Analizler</h3>
-                                <p className="text-sm text-gray-600">Sera projesi analizlerini başlatın</p>
-                              </div>
-                              <div className="grid grid-cols-2 gap-2">
-                                {analysisOptions.slice(0, 4).map((option) => (
-                                  <button
-                                    key={option.id}
-                                    onClick={() => {
-                                      handleAnalysisClick(option.id);
-                                      setMenuPopupOpen(false);
-                                    }}
-                                    className="p-3 bg-gray-50 hover:bg-gray-100 rounded-lg text-left transition-colors group"
-                                  >
-                                    <div className="text-lg mb-1">{option.icon}</div>
-                                    <div className="text-xs font-medium text-gray-900 leading-tight">
-                                      {option.title.split(' ').slice(0, 2).join(' ')}
-                                    </div>
-                                  </button>
-                                ))}
-                              </div>
-                            </div>
-                          )}
-
-                          {activeTab === 'reports' && (
-                            <div className="space-y-4">
-                              <div className="text-center mb-4">
-                                <div className="w-12 h-12 bg-red-500 rounded-full flex items-center justify-center mx-auto mb-3">
-                                  <span className="text-white text-lg">📄</span>
-                                </div>
-                                <h3 className="text-lg font-semibold text-gray-900 mb-2">Raporlar</h3>
-                                <p className="text-sm text-gray-600">PDF raporlarınızı görüntüleyin ve indirin</p>
-                              </div>
-                              <div className="space-y-2">
-                                <div className="p-3 bg-gray-50 rounded-lg">
-                                  <div className="flex items-center justify-between">
-                                    <div>
-                                      <p className="text-sm font-medium text-gray-900">ROI Analizi</p>
-                                      <p className="text-xs text-gray-500">2 gün önce</p>
-                                    </div>
-                                    <button className="text-[#146448] hover:text-[#146448]/80">
-                                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                                      </svg>
-                                    </button>
-                                  </div>
-                                </div>
-                                <div className="p-3 bg-gray-50 rounded-lg">
-                                  <div className="flex items-center justify-between">
-                                    <div>
-                                      <p className="text-sm font-medium text-gray-900">İklim Analizi</p>
-                                      <p className="text-xs text-gray-500">1 hafta önce</p>
-                                    </div>
-                                    <button className="text-[#146448] hover:text-[#146448]/80">
-                                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                                      </svg>
-                                    </button>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          )}
-
-                          {activeTab === 'projects' && (
-                            <div className="space-y-4">
-                              <div className="text-center mb-4">
-                                <div className="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center mx-auto mb-3">
-                                  <span className="text-white text-lg">🏗️</span>
-                                </div>
-                                <h3 className="text-lg font-semibold text-gray-900 mb-2">Projeler</h3>
-                                <p className="text-sm text-gray-600">Sera projelerinizi yönetin</p>
-                              </div>
-                              <button className="w-full bg-[#146448] text-white py-3 px-4 rounded-lg font-medium hover:bg-[#146448]/90 transition-colors flex items-center justify-center space-x-2">
-                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                                </svg>
-                                <span>Yeni Proje</span>
-                              </button>
-                              <div className="space-y-2">
-                                <div className="p-3 bg-gray-50 rounded-lg">
-                                  <p className="text-sm font-medium text-gray-900">Ankara Sera Projesi</p>
-                                  <p className="text-xs text-gray-500">Aktif • 2500m²</p>
-                                </div>
-                                <div className="p-3 bg-gray-50 rounded-lg">
-                                  <p className="text-sm font-medium text-gray-900">İzmir Organik Sera</p>
-                                  <p className="text-xs text-gray-500">Planlama • 3000m²</p>
-                                </div>
-                              </div>
-                            </div>
-                          )}
-
-                          {activeTab === 'consulting' && (
-                            <div className="space-y-4">
-                              <div className="text-center mb-4">
-                                <div className="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center mx-auto mb-3">
-                                  <span className="text-white text-lg">👨‍🏫</span>
-                                </div>
-                                <h3 className="text-lg font-semibold text-gray-900 mb-2">Danışmanlık</h3>
-                                <p className="text-sm text-gray-600">Uzman danışmanlık hizmetleri</p>
-                              </div>
-                              <div className="space-y-3">
-                                <button className="w-full bg-[#146448] text-white py-3 px-4 rounded-lg font-medium hover:bg-[#146448]/90 transition-colors">
-                                  Randevu Al
-                                </button>
-                                <button className="w-full bg-gray-100 text-gray-700 py-3 px-4 rounded-lg font-medium hover:bg-gray-200 transition-colors">
-                                  Önceki Görüşmeler
-                                </button>
-                                <div className="p-3 bg-blue-50 rounded-lg">
-                                  <p className="text-sm font-medium text-blue-900">Bir sonraki randevu</p>
-                                  <p className="text-xs text-blue-600">15 Şubat 2025, 14:00</p>
-                                </div>
-                              </div>
-                            </div>
-                          )}
-
-                          {activeTab === 'settings' && (
-                            <div className="space-y-4">
-                              <div className="text-center mb-4">
-                                <div className="w-12 h-12 bg-gray-500 rounded-full flex items-center justify-center mx-auto mb-3">
-                                  <span className="text-white text-lg">⚙️</span>
-                                </div>
-                                <h3 className="text-lg font-semibold text-gray-900 mb-2">Ayarlar</h3>
-                                <p className="text-sm text-gray-600">Hesap ve uygulama ayarları</p>
-                              </div>
-                              <div className="space-y-3">
-                                <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                                  <span className="text-sm font-medium text-gray-900">Bildirimler</span>
-                                  <button className="w-10 h-6 bg-[#146448] rounded-full relative">
-                                    <div className="w-5 h-5 bg-white rounded-full absolute right-0.5 top-0.5"></div>
-                                  </button>
-                                </div>
-                                <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                                  <span className="text-sm font-medium text-gray-900">Otomatik Kaydet</span>
-                                  <button className="w-10 h-6 bg-[#146448] rounded-full relative">
-                                    <div className="w-5 h-5 bg-white rounded-full absolute right-0.5 top-0.5"></div>
-                                  </button>
-                                </div>
-                                <button className="w-full bg-gray-100 text-gray-700 py-3 px-4 rounded-lg font-medium hover:bg-gray-200 transition-colors text-left">
-                                  Profil Bilgileri
-                                </button>
-                                <button className="w-full bg-gray-100 text-gray-700 py-3 px-4 rounded-lg font-medium hover:bg-gray-200 transition-colors text-left">
-                                  Güvenlik
-                                </button>
-                              </div>
-                            </div>
-                          )}
-
-                          {activeTab === 'help' && (
-                            <div className="space-y-4">
-                              <div className="text-center mb-4">
-                                <div className="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-3">
-                                  <span className="text-white text-lg">❓</span>
-                                </div>
-                                <h3 className="text-lg font-semibold text-gray-900 mb-2">Yardım</h3>
-                                <p className="text-sm text-gray-600">Destek ve dokümantasyon</p>
-                              </div>
-                              <div className="space-y-3">
-                                <button className="w-full bg-[#146448] text-white py-3 px-4 rounded-lg font-medium hover:bg-[#146448]/90 transition-colors text-left">
-                                  📚 Kullanım Kılavuzu
-                                </button>
-                                <button className="w-full bg-gray-100 text-gray-700 py-3 px-4 rounded-lg font-medium hover:bg-gray-200 transition-colors text-left">
-                                  💬 Canlı Destek
-                                </button>
-                                <button className="w-full bg-gray-100 text-gray-700 py-3 px-4 rounded-lg font-medium hover:bg-gray-200 transition-colors text-left">
-                                  📧 İletişim
-                                </button>
-                                <button className="w-full bg-gray-100 text-gray-700 py-3 px-4 rounded-lg font-medium hover:bg-gray-200 transition-colors text-left">
-                                  🔄 Sürüm Notları
-                                </button>
-                              </div>
-                            </div>
-                          )}
-                        </div>
-
-                        {/* Logout Button */}
-                        <div className="border-t border-gray-200 p-4">
-                          <a
-                            href="/auth/login"
-                            className="flex items-center justify-center space-x-2 w-full p-3 bg-red-50 hover:bg-red-100 text-red-600 rounded-lg transition-colors"
-                            onClick={() => setMenuPopupOpen(false)}
-                          >
-                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
-                            </svg>
-                            <span className="font-medium">Çıkış Yap</span>
-                          </a>
                         </div>
                       </motion.div>
                     )}
