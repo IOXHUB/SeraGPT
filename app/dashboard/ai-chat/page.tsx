@@ -925,7 +925,7 @@ Lütfen daha sonra tekrar deneyin veya destek ekibimizle iletişime geçin.`,
                   </div>
 
                   {/* Analysis Cards Grid - Perfectly Centered */}
-                  <div className="grid grid-cols-2 gap-4 w-full max-w-md mx-auto">
+                  <div className="grid grid-cols-2 gap-4 max-w-md mx-auto">
                     {analysisOptions.map((option) => (
                       <button
                         key={option.id}
