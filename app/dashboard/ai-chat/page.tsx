@@ -103,7 +103,7 @@ export default function AIChatPage() {
       id: 'market',
       title: 'Pazar ve Ticaret Verileri',
       description: 'Bölgesel ve ürüne göre pazar trendleri',
-      icon: '���',
+      icon: '📊',
       color: 'bg-green-500',
     },
     {
@@ -449,12 +449,13 @@ export default function AIChatPage() {
                         setInputValue(e.target.value);
                         // Auto-resize textarea
                         const textarea = e.target as HTMLTextAreaElement;
-                        textarea.style.height = 'auto';
-                        textarea.style.height = Math.min(textarea.scrollHeight, 120) + 'px';
+                        textarea.style.height = '50px';
+                        const newHeight = Math.min(Math.max(textarea.scrollHeight, 50), 120);
+                        textarea.style.height = newHeight + 'px';
                       }}
                       onKeyPress={handleKeyPress}
                       placeholder="SeraGPT'ye bir mesaj yazın..."
-                      className="w-full p-3 lg:p-4 pr-12 bg-white/90 border border-[#f6f8f9]/20 rounded-xl resize-none focus:ring-2 focus:ring-[#baf200] focus:border-transparent placeholder-[#1e3237]/50 text-[#1e3237] text-sm lg:text-base"
+                      className="w-full p-3 lg:p-4 pr-12 bg-white/90 border border-[#f6f8f9]/20 rounded-xl resize-none focus:ring-2 focus:ring-[#baf200] focus:border-transparent placeholder-[#1e3237]/50 text-[#1e3237] text-sm lg:text-base overflow-hidden"
                       rows={1}
                       style={{ minHeight: '50px', maxHeight: '120px' }}
                     />
