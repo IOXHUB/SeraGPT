@@ -40,7 +40,7 @@ export default function AIPanelPage() {
     { id: 'training', title: 'Eğitim & Fine-tuning', icon: '🎯' },
     { id: 'prompts', title: 'Prompt Engineering', icon: '💬' },
     { id: 'performance', title: 'Performans İzleme', icon: '⚡' },
-    { id: 'costs', title: 'Maliyet Analizi', icon: '����' }
+    { id: 'costs', title: 'Maliyet Analizi', icon: '💰' }
   ];
 
   const analysisTypes = [
@@ -252,7 +252,7 @@ export default function AIPanelPage() {
                   </div>
                   <div className="text-2xl">⚡</div>
                 </div>
-                <p className="text-sm mt-2" style={{ color: '#146448' }}>Hedef: <3s</p>
+                <p className="text-sm mt-2" style={{ color: '#146448' }}>Hedef: &lt;3s</p>
               </div>
 
               <div className="rounded-lg p-6" style={{ backgroundColor: '#f6f8f9' }}>
@@ -640,7 +640,7 @@ export default function AIPanelPage() {
                       <ul className="text-sm text-yellow-700 space-y-1">
                         <li>• GPT-3.5-Turbo kullanımını %30 artırarak maliyet azaltılabilir</li>
                         <li>• Prompt optimizasyonu ile token kullanımı %15 azaltılabilir</li>
-                        <li>• Cache stratejisi ile tekrar eden sorgular önlenebilir</li>
+                        <li>��� Cache stratejisi ile tekrar eden sorgular önlenebilir</li>
                       </ul>
                     </div>
                     <div className="grid grid-cols-2 gap-4 text-center">
