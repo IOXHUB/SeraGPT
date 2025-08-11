@@ -707,7 +707,7 @@ Lütfen daha sonra tekrar deneyin veya destek ekibimizle iletişime geçin.`,
                   <div className="flex items-center justify-center">
                     <img
                       src="https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2F01c1e8a05ef6424b912d584875377957?format=webp&width=800"
-                      alt="SeraGPT Logo - AI Destekli Sera Yatırım Danışmanı"
+                      alt="SeraGPT Logo - AI Destekli Sera Yatırım Dan��şmanı"
                       className="h-10 w-auto object-contain"
                       loading="eager"
                     />
@@ -1044,13 +1044,13 @@ Lütfen daha sonra tekrar deneyin veya destek ekibimizle iletişime geçin.`,
                         <motion.div
                           initial={{ opacity: 0, y: 20 }}
                           animate={{ opacity: 1, y: 0 }}
-                          className="flex justify-start mb-4"
+                          className="flex justify-start"
+                          style={{ marginBottom: '14px' }}
                         >
-                          <div className="chat-message max-w-[70%] bg-[#f6f8f9]/10 text-[#f6f8f9] border border-[#f6f8f9]/20"
+                          <div className="max-w-[70%] bg-[#f6f8f9]/10 text-[#f6f8f9] border border-[#f6f8f9]/20 rounded-[10px]"
                                style={{
                                  padding: '10px 14px',
-                                 lineHeight: '1.5',
-                                 borderRadius: '10px'
+                                 lineHeight: '1.5'
                                }}>
                             <div className="flex space-x-1">
                               <div className="w-2 h-2 bg-[#baf200] rounded-full animate-bounce"></div>
