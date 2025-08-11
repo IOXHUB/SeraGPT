@@ -155,7 +155,7 @@ export default function AIChatPage() {
         { id: 'crop', question: 'Hangi ürünü yetiştireceksiniz?', type: 'select', options: ['Domates', 'Salatalık', 'Biber', 'Patlıcan', 'Marul', 'Çilek'], required: true },
         { id: 'budget', question: 'Başlangıç bütçeniz ne kadar? (TL)', type: 'number', required: true, validation: (v: number) => v >= 50000 },
         { id: 'automation', question: 'Otomasyon seviyesi tercihiniz?', type: 'select', options: ['Temel', 'Orta', 'İleri', 'Tam Otomatik'], required: true },
-        { id: 'timeline', question: 'Proje süresi kaç y��l?', type: 'number', required: true, validation: (v: number) => v >= 1 && v <= 20 }
+        { id: 'timeline', question: 'Proje süresi kaç yıl?', type: 'number', required: true, validation: (v: number) => v >= 1 && v <= 20 }
       ]
     },
     climate: {
@@ -281,6 +281,19 @@ Başlayalım! ${flowQuestions[0].question}`,
     };
 
     setMessages(prev => [...prev, userMessage]);
+
+    // Update current chat session
+    if (currentChatId) {
+      setChatSessions(prev => prev.map(chat =>
+        chat.id === currentChatId
+          ? { ...chat, lastMessage: inputValue.substring(0, 50) + '...', messageCount: chat.messageCount + 1 }
+          : chat
+      ));
+    } else {
+      // Create new chat if none exists
+      handleNewChat();
+    }
+
     setInputValue('');
     setIsTyping(true);
 
