@@ -551,7 +551,13 @@ export default function AIChatPage() {
             )}
 
             {/* Input Area */}
-            <div className="p-3 lg:p-4 border-t border-[#f6f8f9]/10 bg-[#146448] flex-shrink-0">
+            <div className="sticky bottom-0 border-t border-[#f6f8f9]/10 bg-[#146448] flex-shrink-0"
+                 style={{
+                   paddingTop: '12px',
+                   paddingBottom: 'max(12px, env(safe-area-inset-bottom))',
+                   paddingLeft: 'max(12px, env(safe-area-inset-left))',
+                   paddingRight: 'max(12px, env(safe-area-inset-right))'
+                 }}>
               <div className="max-w-4xl mx-auto">
                 <div className="flex items-end space-x-2 lg:space-x-3">
                   <div className="flex-1 relative">
@@ -566,16 +572,27 @@ export default function AIChatPage() {
                         const newHeight = Math.min(Math.max(textarea.scrollHeight, 50), 120);
                         textarea.style.height = newHeight + 'px';
                       }}
-                      onKeyPress={handleKeyPress}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter' && !e.shiftKey) {
+                          e.preventDefault();
+                          handleSendMessage();
+                        }
+                      }}
                       placeholder="SeraGPT'ye bir mesaj yazın..."
-                      className="w-full p-3 lg:p-4 pr-12 bg-white/90 border border-[#f6f8f9]/20 rounded-xl resize-none focus:ring-2 focus:ring-[#baf200] focus:border-transparent placeholder-[#1e3237]/50 text-[#1e3237] text-sm lg:text-base overflow-hidden"
+                      className="w-full p-3 lg:p-4 pr-12 bg-white/90 border border-[#f6f8f9]/20 rounded-xl resize-none focus:ring-2 focus:ring-[#baf200] focus:border-transparent placeholder-[#1e3237]/50 text-[#1e3237] overflow-hidden transition-all duration-200"
                       rows={1}
-                      style={{ minHeight: '50px', maxHeight: '120px' }}
+                      style={{
+                        minHeight: '50px',
+                        maxHeight: '120px',
+                        fontSize: 'clamp(14px, 2.5vw, 16px)',
+                        lineHeight: 'clamp(20px, 3.5vw, 24px)'
+                      }}
                     />
                     <button
                       onClick={handleSendMessage}
                       disabled={!inputValue.trim()}
-                      className="absolute right-2 bottom-2 p-2 bg-[#baf200] text-[#1e3237] rounded-lg hover:bg-[#baf200]/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="absolute right-2 bottom-2 p-2 bg-[#baf200] text-[#1e3237] rounded-lg hover:bg-[#baf200]/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed focus:ring-2 focus:ring-[#146448] focus:outline-none"
+                      aria-label="Mesaj gönder"
                     >
                       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
@@ -583,7 +600,6 @@ export default function AIChatPage() {
                     </button>
                   </div>
                 </div>
-                
               </div>
             </div>
           </div>
