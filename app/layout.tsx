@@ -28,7 +28,7 @@ export default function RootLayout({
       <body suppressHydrationWarning className="h-full">
         <DevNavigation />
         <ProductionErrorHandler />
-        <div className={process.env.NODE_ENV === 'development' ? 'pt-12 h-full' : 'h-full'}>
+        <div className="h-full">
           {children}
         </div>
         <DevToolsWidget />
