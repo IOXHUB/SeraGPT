@@ -654,25 +654,11 @@ export default function AIChatPage() {
                   <button
                     onClick={handleSendMessage}
                     disabled={!inputValue.trim()}
-                    className="absolute right-2 bottom-2 p-2.5 bg-gradient-to-r from-[#baf200] to-[#9ed31f] text-[#1e3237] rounded-xl hover:from-[#9ed31f] hover:to-[#baf200] transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed focus:ring-2 focus:ring-[#baf200] focus:outline-none shadow-md transform hover:scale-105"
+                    className="absolute right-2 bottom-2 p-2.5 bg-gradient-to-r from-[#baf200] to-[#9ed31f] text-[#1e3237] rounded-xl hover:from-[#9ed31f] hover:to-[#baf200] transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed focus:ring-2 focus:ring-[#baf200] focus:outline-none shadow-md transform hover:scale-105 sm:mb-0 mb-1"
                     aria-label="Mesaj gönder"
-                    style={{
-                      '@media (max-width: 640px)': {
-                        backgroundColor: '#baf200',
-                        backgroundImage: 'linear-gradient(to right, rgb(186, 242, 0), rgb(158, 211, 31))',
-                        marginBottom: '3px'
-                      }
-                    }}
                   >
                     <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                      <path
-                        d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"
-                        style={{
-                          '@media (max-width: 640px)': {
-                            marginBottom: '3px'
-                          }
-                        }}
-                      />
+                      <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
                     </svg>
                   </button>
                 </div>
