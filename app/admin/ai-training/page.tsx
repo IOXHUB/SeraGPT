@@ -39,6 +39,15 @@ export default function AITrainingPage() {
   const [trainingJobs, setTrainingJobs] = useState<TrainingJob[]>([]);
   const [datasets, setDatasets] = useState<TrainingDataset[]>([]);
   const [dataLoading, setDataLoading] = useState(true);
+  const [newTraining, setNewTraining] = useState({
+    name: '',
+    model: 'GPT-4-Turbo',
+    dataset: '',
+    epochs: 10,
+    learningRate: 0.001,
+    batchSize: 32,
+    description: ''
+  });
 
   const tabs = [
     { id: 'overview', title: 'Genel Bakış', icon: '📊' },
@@ -201,6 +210,68 @@ export default function AITrainingPage() {
       case 'preparing': return 'Hazırlanıyor';
       default: return 'Bilinmiyor';
     }
+  };
+
+  const startTraining = async () => {
+    if (!newTraining.name || !newTraining.dataset) {
+      alert('Lütfen ad ve veri seti seçin');
+      return;
+    }
+
+    const job: TrainingJob = {
+      id: `job-${Date.now()}`,
+      name: newTraining.name,
+      model: newTraining.model,
+      status: 'preparing',
+      progress: 0,
+      startTime: new Date().toLocaleString('tr-TR'),
+      estimatedCompletion: '4-6 saat',
+      datasetSize: datasets.find(d => d.id === newTraining.dataset)?.size || 0,
+      epochs: newTraining.epochs,
+      currentEpoch: 0,
+      loss: 0,
+      accuracy: 0,
+      cost: Math.random() * 200 + 100
+    };
+
+    setTrainingJobs(prev => [job, ...prev]);
+    setNewTraining({ name: '', model: 'GPT-4-Turbo', dataset: '', epochs: 10, learningRate: 0.001, batchSize: 32, description: '' });
+    alert('Eğitim işi başlatıldı!');
+
+    // Simulate training progress
+    setTimeout(() => {
+      setTrainingJobs(prev => prev.map(j =>
+        j.id === job.id ? { ...j, status: 'training', progress: 25, currentEpoch: 2 } : j
+      ));
+    }, 2000);
+  };
+
+  const pauseTraining = async (jobId: string) => {
+    setTrainingJobs(prev => prev.map(j =>
+      j.id === jobId ? { ...j, status: 'paused' } : j
+    ));
+    alert('Eğitim duraklatıldı!');
+  };
+
+  const resumeTraining = async (jobId: string) => {
+    setTrainingJobs(prev => prev.map(j =>
+      j.id === jobId ? { ...j, status: 'training' } : j
+    ));
+    alert('Eğitim devam ediyor!');
+  };
+
+  const viewTrainingDetails = (job: TrainingJob) => {
+    alert(`Eğitim Detayları:\n\nAd: ${job.name}\nModel: ${job.model}\nDurum: ${getStatusText(job.status)}\nİlerleme: ${job.progress}%\nDoğruluk: ${job.accuracy}%\nMaliyet: $${job.cost}`);
+  };
+
+  const inspectDataset = (dataset: TrainingDataset) => {
+    alert(`Veri Seti Detayları:\n\nAd: ${dataset.name}\nAçıklama: ${dataset.description}\nBoyut: ${dataset.size.toLocaleString()} kayıt\nFormat: ${dataset.format.toUpperCase()}\nKalite: ${dataset.quality}%`);
+  };
+
+  const startTrainingWithDataset = (dataset: TrainingDataset) => {
+    setNewTraining(prev => ({ ...prev, dataset: dataset.id, name: `${dataset.name}-Training-${Date.now()}` }));
+    setActiveTab('new-training');
+    alert(`${dataset.name} veri seti seçildi. Yeni eğitim formuna yönlendiriliyorsunuz.`);
   };
 
   if (loading || dataLoading) {
