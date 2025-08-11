@@ -519,8 +519,8 @@ export default function AIChatPage() {
                     </p>
                   </div>
 
-                  {/* Analysis Cards Grid - 2 columns */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-6 mb-8 max-w-2xl mx-auto">
+                  {/* Analysis Cards Grid - 3 rows, 2 columns */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-6 mb-32 max-w-2xl mx-auto">
                     {analysisOptions.map((option) => (
                       <button
                         key={option.id}
