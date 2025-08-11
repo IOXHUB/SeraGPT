@@ -278,11 +278,14 @@ export default function AIChatPage() {
                 </div>
 
                 {/* Chat History */}
-                <div className="flex-1 overflow-y-auto p-4 bg-[#146448]">
+                <div className="flex-1 overflow-y-auto p-4 bg-[#146448] overscroll-contain"
+                     style={{ scrollBehavior: 'smooth' }}>
                   <div className="space-y-4">
                     <div>
-                      <h3 className="text-sm font-medium text-[#f6f8f9]/70 mb-3 flex items-center">
-                        <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                      <h3 className="text-sm font-medium text-[#f6f8f9]/70 mb-3 flex items-center"
+                          role="heading"
+                          aria-level={2}>
+                        <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
                           <path d="M2 5a2 2 0 012-2h7a2 2 0 012 2v4a2 2 0 01-2 2H9l-3 3v-3H4a2 2 0 01-2-2V5z"/>
                         </svg>
                         ANALİZLER
