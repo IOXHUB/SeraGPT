@@ -40,6 +40,21 @@ interface Report {
   status: 'completed' | 'in-progress';
 }
 
+interface AnalysisFlow {
+  type: 'roi' | 'climate' | 'equipment' | 'market' | 'layout';
+  currentStep: number;
+  collectedData: any;
+  isActive: boolean;
+  questions: Array<{
+    id: string;
+    question: string;
+    type: 'text' | 'number' | 'select' | 'multiselect';
+    options?: string[];
+    validation?: (value: any) => boolean;
+    required: boolean;
+  }>;
+}
+
 export default function AIChatPage() {
   const { user } = useAuth();
   const [messages, setMessages] = useState<ChatMessage[]>([]);
@@ -49,6 +64,8 @@ export default function AIChatPage() {
   const [currentChatId, setCurrentChatId] = useState<string | null>(null);
   const [isRecording, setIsRecording] = useState(false);
   const [menuPopupOpen, setMenuPopupOpen] = useState(false);
+  const [analysisFlow, setAnalysisFlow] = useState<AnalysisFlow | null>(null);
+  const [userTokens, setUserTokens] = useState(5); // Mock token count
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
@@ -74,7 +91,7 @@ export default function AIChatPage() {
       id: '3',
       title: 'Yatırım Geri Dönüş (ROI) Analizi',
       lastMessage: 'Sohbet Başlatıldı...',
-      date: 'Şubat Başında',
+      date: 'Şubat Ba��ında',
       messageCount: 0,
       messages: []
     }
