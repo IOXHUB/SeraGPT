@@ -655,9 +655,11 @@ export default function AITrainingPage() {
                     <label className="block text-sm font-medium mb-2" style={{ color: '#1e3237' }}>
                       Eğitim Adı
                     </label>
-                    <input 
-                      type="text" 
-                      className="w-full p-3 border rounded-lg" 
+                    <input
+                      type="text"
+                      value={newTraining.name}
+                      onChange={(e) => setNewTraining({...newTraining, name: e.target.value})}
+                      className="w-full p-3 border rounded-lg"
                       style={{ borderColor: '#146448' }}
                       placeholder="Örn: SeraGPT-Equipment-v2"
                     />
@@ -668,10 +670,15 @@ export default function AITrainingPage() {
                       <label className="block text-sm font-medium mb-2" style={{ color: '#1e3237' }}>
                         Base Model
                       </label>
-                      <select className="w-full p-3 border rounded-lg" style={{ borderColor: '#146448' }}>
-                        <option>GPT-4-Turbo</option>
-                        <option>GPT-4</option>
-                        <option>GPT-3.5-Turbo</option>
+                      <select
+                        value={newTraining.model}
+                        onChange={(e) => setNewTraining({...newTraining, model: e.target.value})}
+                        className="w-full p-3 border rounded-lg"
+                        style={{ borderColor: '#146448' }}
+                      >
+                        <option value="GPT-4-Turbo">GPT-4-Turbo</option>
+                        <option value="GPT-4">GPT-4</option>
+                        <option value="GPT-3.5-Turbo">GPT-3.5-Turbo</option>
                       </select>
                     </div>
 
@@ -679,7 +686,13 @@ export default function AITrainingPage() {
                       <label className="block text-sm font-medium mb-2" style={{ color: '#1e3237' }}>
                         Veri Seti
                       </label>
-                      <select className="w-full p-3 border rounded-lg" style={{ borderColor: '#146448' }}>
+                      <select
+                        value={newTraining.dataset}
+                        onChange={(e) => setNewTraining({...newTraining, dataset: e.target.value})}
+                        className="w-full p-3 border rounded-lg"
+                        style={{ borderColor: '#146448' }}
+                      >
+                        <option value="">Veri seti seçin...</option>
                         {datasets.map(dataset => (
                           <option key={dataset.id} value={dataset.id}>
                             {dataset.name} ({dataset.size.toLocaleString()} kayıt)
@@ -694,11 +707,14 @@ export default function AITrainingPage() {
                       <label className="block text-sm font-medium mb-2" style={{ color: '#1e3237' }}>
                         Epochs
                       </label>
-                      <input 
-                        type="number" 
-                        className="w-full p-3 border rounded-lg" 
+                      <input
+                        type="number"
+                        value={newTraining.epochs}
+                        onChange={(e) => setNewTraining({...newTraining, epochs: parseInt(e.target.value) || 10})}
+                        className="w-full p-3 border rounded-lg"
                         style={{ borderColor: '#146448' }}
-                        defaultValue="10"
+                        min="1"
+                        max="50"
                       />
                     </div>
 
@@ -706,12 +722,15 @@ export default function AITrainingPage() {
                       <label className="block text-sm font-medium mb-2" style={{ color: '#1e3237' }}>
                         Learning Rate
                       </label>
-                      <input 
-                        type="number" 
+                      <input
+                        type="number"
                         step="0.0001"
-                        className="w-full p-3 border rounded-lg" 
+                        value={newTraining.learningRate}
+                        onChange={(e) => setNewTraining({...newTraining, learningRate: parseFloat(e.target.value) || 0.001})}
+                        className="w-full p-3 border rounded-lg"
                         style={{ borderColor: '#146448' }}
-                        defaultValue="0.001"
+                        min="0.0001"
+                        max="0.1"
                       />
                     </div>
 
@@ -719,11 +738,14 @@ export default function AITrainingPage() {
                       <label className="block text-sm font-medium mb-2" style={{ color: '#1e3237' }}>
                         Batch Size
                       </label>
-                      <input 
-                        type="number" 
-                        className="w-full p-3 border rounded-lg" 
+                      <input
+                        type="number"
+                        value={newTraining.batchSize}
+                        onChange={(e) => setNewTraining({...newTraining, batchSize: parseInt(e.target.value) || 32})}
+                        className="w-full p-3 border rounded-lg"
                         style={{ borderColor: '#146448' }}
-                        defaultValue="32"
+                        min="1"
+                        max="128"
                       />
                     </div>
                   </div>
@@ -732,8 +754,10 @@ export default function AITrainingPage() {
                     <label className="block text-sm font-medium mb-2" style={{ color: '#1e3237' }}>
                       Açıklama (İsteğe Bağlı)
                     </label>
-                    <textarea 
-                      className="w-full p-3 border rounded-lg h-24" 
+                    <textarea
+                      value={newTraining.description}
+                      onChange={(e) => setNewTraining({...newTraining, description: e.target.value})}
+                      className="w-full p-3 border rounded-lg h-24"
                       style={{ borderColor: '#146448' }}
                       placeholder="Bu eğitim işi hakkında notlar..."
                     />
@@ -749,6 +773,7 @@ export default function AITrainingPage() {
                   </div>
 
                   <button
+                    onClick={startTraining}
                     className="w-full py-3 rounded-lg font-medium transition-all hover:opacity-90"
                     style={{ backgroundColor: '#baf200', color: '#1e3237' }}
                   >
