@@ -313,6 +313,7 @@ export default function AITrainingPage() {
             </div>
             <div className="flex items-center space-x-3">
               <button
+                onClick={() => setActiveTab('new-training')}
                 className="px-4 py-2 rounded-lg font-medium transition-all hover:opacity-90"
                 style={{ backgroundColor: '#baf200', color: '#1e3237' }}
               >
@@ -548,13 +549,24 @@ export default function AITrainingPage() {
                       <div className="ml-6 flex space-x-2">
                         {job.status === 'training' && (
                           <button
+                            onClick={() => pauseTraining(job.id)}
                             className="px-3 py-2 rounded-lg font-medium transition-all hover:opacity-90"
                             style={{ backgroundColor: '#F59E0B', color: '#f6f8f9' }}
                           >
                             ⏸️ Duraklat
                           </button>
                         )}
+                        {job.status === 'paused' && (
+                          <button
+                            onClick={() => resumeTraining(job.id)}
+                            className="px-3 py-2 rounded-lg font-medium transition-all hover:opacity-90"
+                            style={{ backgroundColor: '#10B981', color: '#f6f8f9' }}
+                          >
+                            ▶️ Devam Et
+                          </button>
+                        )}
                         <button
+                          onClick={() => viewTrainingDetails(job)}
                           className="px-3 py-2 rounded-lg font-medium transition-all hover:opacity-90"
                           style={{ backgroundColor: '#146448', color: '#f6f8f9' }}
                         >
@@ -613,12 +625,14 @@ export default function AITrainingPage() {
 
                       <div className="ml-6 flex space-x-2">
                         <button
+                          onClick={() => inspectDataset(dataset)}
                           className="px-3 py-2 rounded-lg font-medium transition-all hover:opacity-90"
                           style={{ backgroundColor: '#146448', color: '#f6f8f9' }}
                         >
                           📊 İncele
                         </button>
                         <button
+                          onClick={() => startTrainingWithDataset(dataset)}
                           className="px-3 py-2 rounded-lg font-medium transition-all hover:opacity-90"
                           style={{ backgroundColor: '#baf200', color: '#1e3237' }}
                         >
