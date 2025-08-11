@@ -865,7 +865,7 @@ Lütfen daha sonra tekrar deneyin veya destek ekibimizle iletişime geçin.`,
                       initial={{ opacity: 0, y: 10, scale: 0.95 }}
                       animate={{ opacity: 1, y: 0, scale: 1 }}
                       exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                      className="absolute top-full right-0 mt-2 bg-white rounded-lg shadow-lg border border-gray-200 z-[100] min-w-64"
+                      className="absolute top-full right-0 mt-2 w-72 bg-white rounded-lg shadow-xl border border-gray-200 z-[100]"
                     >
                       {/* Header */}
                       <div className="p-4 border-b border-gray-200">
