@@ -1,589 +1,133 @@
 'use client';
 
-import { useState } from 'react';
 import Link from 'next/link';
-import TurnkeyProjectModal from '../../components/TurnkeyProjectModal';
 
 export default function AnahtarTeslimProjePage() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const turnkeyServices = [
+    {
+      id: 'design',
+      title: 'Tasarım ve Planlama',
+      description: 'Sera tasarımı ve mühendislik hesapları',
+      icon: (
+        <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12,2L13.09,8.26L22,9L13.09,9.74L12,16L10.91,9.74L2,9L10.91,8.26L12,2M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4Z"/>
+        </svg>
+      )
+    },
+    {
+      id: 'construction',
+      title: 'İnşaat ve Montaj',
+      description: 'Profesyonel ekip ile sera inşaatı',
+      icon: (
+        <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M22.7 19L13.6 9.9C14.5 7.6 14 4.9 12.1 3C10.1 1 7.1 0.6 4.7 1.7L9 6L6 9L1.6 4.7C0.4 7.1 0.9 10.1 2.9 12.1C4.8 14 7.5 14.5 9.8 13.6L18.9 22.7C19.3 23.1 19.9 23.1 20.3 22.7L22.6 20.4C23.1 20 23.1 19.3 22.7 19Z"/>
+        </svg>
+      )
+    },
+    {
+      id: 'climate-systems',
+      title: 'İklim Kontrol Sistemleri',
+      description: 'Otomatik ısıtma, soğutma ve havalandırma',
+      icon: (
+        <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12,8A4,4 0 0,1 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8M12,10A2,2 0 0,0 10,12A2,2 0 0,0 12,14A2,2 0 0,0 14,12A2,2 0 0,0 12,10M10,22C9.75,22 9.54,21.82 9.5,21.58L9.13,18.93C8.5,18.68 7.96,18.34 7.44,17.94L4.95,18.95C4.73,19.03 4.46,18.95 4.34,18.73L2.34,15.27C2.22,15.05 2.27,14.78 2.46,14.63L4.57,12.97C4.53,12.65 4.5,12.33 4.5,12C4.5,11.67 4.53,11.34 4.57,11L2.46,9.37C2.27,9.22 2.22,8.95 2.34,8.73L4.34,5.27C4.46,5.05 4.73,4.96 4.95,5.05L7.44,6.05C7.96,5.66 8.5,5.32 9.13,5.07L9.5,2.42C9.54,2.18 9.75,2 10,2H14C14.25,2 14.46,2.18 14.5,2.42L14.87,5.07C15.5,5.32 16.04,5.66 16.56,6.05L19.05,5.05C19.27,4.96 19.54,5.05 19.66,5.27L21.66,8.73C21.78,8.95 21.73,9.22 21.54,9.37L19.43,11C19.47,11.34 19.5,11.67 19.5,12C19.5,12.33 19.47,12.65 19.43,12.97L21.54,14.63C21.73,14.78 21.78,15.05 21.66,15.27L19.66,18.73C19.54,18.95 19.27,19.03 19.05,18.95L16.56,17.94C16.04,18.34 15.5,18.68 14.87,18.93L14.5,21.58C14.46,21.82 14.25,22 14,22H10M11.25,4L10.88,6.61C9.68,6.86 8.62,7.5 7.85,8.39L5.44,7.35L4.69,8.65L6.8,10.2C6.4,11.37 6.4,12.64 6.8,13.8L4.68,15.36L5.43,16.66L7.86,15.62C8.63,16.5 9.68,17.14 10.87,17.38L11.24,20H12.76L13.13,17.39C14.32,17.14 15.37,16.5 16.14,15.62L18.57,16.66L19.32,15.36L17.2,13.81C17.6,12.64 17.6,11.37 17.2,10.2L19.31,8.65L18.56,7.35L16.15,8.39C15.38,7.5 14.32,6.86 13.12,6.61L12.75,4H11.25Z"/>
+        </svg>
+      )
+    },
+    {
+      id: 'irrigation',
+      title: 'Sulama Sistemleri',
+      description: 'Modern damla sulama ve fertigation',
+      icon: (
+        <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12,3.25C12,3.25 6,10 6,14C6,17.32 8.69,20 12,20A6,6 0 0,0 18,14C18,10 12,3.25 12,3.25M14.47,9.97L15.53,11.03L9.53,17.03L8.47,15.97L14.47,9.97Z"/>
+        </svg>
+      )
+    },
+    {
+      id: 'automation',
+      title: 'Otomasyon Sistemleri',
+      description: 'Akıllı kontrol ve izleme sistemleri',
+      icon: (
+        <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4M11,6H13V8H11V6M11,10H13V16H11V10Z"/>
+        </svg>
+      )
+    },
+    {
+      id: 'maintenance',
+      title: 'Bakım ve Servis',
+      description: 'Düzenli bakım ve teknik destek',
+      icon: (
+        <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M19,19H5V8H19M16,1V3H8V1H6V3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3H18V1M17,12H12V17H17V12Z"/>
+        </svg>
+      )
+    }
+  ];
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: '#146448' }}>
-      {/* Header - matching homepage */}
-      <header className="py-4" style={{ backgroundColor: '#146448' }}>
-        <div className="max-w-[1200px] mx-auto px-6">
-          <div className="flex items-center justify-between">
-            {/* Logo */}
-            <div className="flex items-center">
-              <Link href="/">
-                <img
-                  src="https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2F01c1e8a05ef6424b912d584875377957?format=webp&width=800"
-                  alt="SeraGPT Logo"
-                  className="h-12 w-auto object-contain"
-                />
+    <div className="min-h-screen bg-white">
+      {/* Header */}
+      <div className="bg-white border-b border-gray-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16">
+            <div className="flex items-center space-x-4">
+              <Link href="/" className="text-gray-600 hover:text-gray-900">
+                ← Ana Sayfa
               </Link>
-            </div>
-
-            {/* Navigation */}
-            <nav className="hidden md:flex items-center space-x-8">
-              <Link
-                href="/danismanlik"
-                className="font-medium transition-opacity hover:opacity-70"
-                style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '400' }}
-              >
-                Danışmanlık
-              </Link>
-              <Link
-                href="/anahtar-teslim-proje"
-                className="font-medium transition-opacity hover:opacity-70"
-                style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '400' }}
-              >
-                Anahtar Teslim Proje
-              </Link>
-              <Link
-                href="/destek"
-                className="font-medium transition-opacity hover:opacity-70"
-                style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '400' }}
-              >
-                Destek
-              </Link>
-              <Link
-                href="/blog"
-                className="font-medium transition-opacity hover:opacity-70"
-                style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '400' }}
-              >
-                Blog
-              </Link>
-            </nav>
-
-            {/* CTA Button */}
-            <div className="hidden md:flex items-center">
-              <Link
-                href="/auth/login"
-                className="px-6 py-3 rounded-xl font-medium transition-all hover:opacity-90"
-                style={{
-                  backgroundColor: '#baf200',
-                  color: '#1e3237',
-                  fontSize: '14px',
-                  fontWeight: '600'
-                }}
-              >
-                Ücretsiz Başla
-              </Link>
+              <h1 className="text-xl font-semibold text-gray-900">Anahtar Teslim Proje</h1>
             </div>
           </div>
         </div>
-      </header>
+      </div>
 
-      {/* 💥 Anahtar Teslim Sera Kurulumu Section */}
-      <section className="py-20">
-        <div className="max-w-[1200px] mx-auto px-6 text-center">
-          <div className="max-w-[800px] mx-auto">
-            {/* Main title */}
-            <div className="max-w-[576px] mx-auto mb-16">
-              <h2
-                className="leading-tight text-center mb-8"
-                style={{
-                  color: '#f6f8f9',
-                  fontSize: '36px',
-                  fontWeight: '600'
-                }}
-              >
-                Anahtar Teslim Sera Kurulumu
-              </h2>
-
-              <div
-                className="space-y-6 text-center"
-                style={{
-                  color: '#f6f8f9',
-                  fontSize: '16px',
-                  fontWeight: '400'
-                }}
-              >
-                <p style={{ color: '#f6f8f9', fontSize: '16px', fontWeight: '400' }}>
-                  Sera yatırımınız için SeraGPT ile analiz yaptınız. Şimdi sıra, bu verileri sahaya taşımakta. ISITMAX ve XXXXX İspanya ortaklığıyla yürüttüğümüz anahtar teslim proje sistemimizde:
-                </p>
-
-                <div className="bg-white/10 rounded-xl p-6 backdrop-blur-sm">
-                  <p style={{ color: '#f6f8f9', fontSize: '16px', fontWeight: '400' }}>Keşif, projelendirme ve süpervizörlük hizmetleri ISITMAX tarafından. Tüm imalat, ekipman, otomasyon ve saha kurulum süreçleri ise XXXXX Spain tarafından sağlanır</p>
-                </div>
-              </div>
-            </div>
-
-            {/* Key Benefits Grid */}
-            <div className="grid md:grid-cols-3 gap-6 mb-16 max-w-[800px] mx-auto">
-              <div
-                className="p-6 rounded-xl border-2 border-white/20 bg-white/5 backdrop-blur-sm"
-                style={{ borderColor: '#baf200' }}
-              >
-                <h4
-                  className="font-semibold mb-3"
-                  style={{ color: '#baf200', fontSize: '18px' }}
-                >
-                  Türkiye Avantajı
-                </h4>
-                <p style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '400' }}>
-                  Yerinde planlama ve süpervizörlük hizmetleri
-                </p>
-              </div>
-
-              <div
-                className="p-6 rounded-xl border-2 border-white/20 bg-white/5 backdrop-blur-sm"
-                style={{ borderColor: '#baf200' }}
-              >
-                <h4
-                  className="font-semibold mb-3"
-                  style={{ color: '#baf200', fontSize: '18px' }}
-                >
-                  Avrupa Standardı
-                </h4>
-                <p style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '400' }}>
-                  Kaliteli malzeme ve profesyonel kurulum
-                </p>
-              </div>
-
-              <div
-                className="p-6 rounded-xl border-2 border-white/20 bg-white/5 backdrop-blur-sm"
-                style={{ borderColor: '#baf200' }}
-              >
-                <h4
-                  className="font-semibold mb-3"
-                  style={{ color: '#baf200', fontSize: '18px' }}
-                >
-                  Tek Elden Yönetim
-                </h4>
-                <p style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '400' }}>
-                  Zamanında teslim edilen projeler
-                </p>
-              </div>
-            </div>
-
-            {/* Two Column Layout for Services and Target */}
-            <div className="grid lg:grid-cols-2 gap-12 mb-16 max-w-[900px] mx-auto">
-              {/* Service Scope */}
-              <div className="text-center">
-                <h3
-                  className="mb-6"
-                  style={{
-                    color: '#f6f8f9',
-                    fontSize: '24px',
-                    fontWeight: '600'
-                  }}
-                >
-                  Hizmet Kapsamı
-                </h3>
-                <div
-                  className="space-y-4 bg-white/5 rounded-xl p-6"
-                  style={{
-                    color: '#f6f8f9',
-                    fontSize: '14px',
-                    fontWeight: '400'
-                  }}
-                >
-                  <p style={{ color: '#f6f8f9' }}>Yerinde keşif ve teknik analiz (ISITMAX)</p>
-                  <p style={{ color: '#f6f8f9' }}>Statik & yapısal proje çizimleri</p>
-                  <p style={{ color: '#f6f8f9' }}>XXXXX menşeli otomasyon, ekipman ve kurulum hizmeti</p>
-                  <p style={{ color: '#f6f8f9' }}>ISITMAX süpervizörlüğünde şantiye yönetimi</p>
-                  <p style={{ color: '#f6f8f9' }}>Tam kapsamlı fiyat teklifi ve mühendislik dosyası (PDF)</p>
-                </div>
-              </div>
-
-              {/* Target Audience */}
-              <div className="text-center">
-                <h3
-                  className="mb-6"
-                  style={{
-                    color: '#f6f8f9',
-                    fontSize: '24px',
-                    fontWeight: '600'
-                  }}
-                >
-                  Kimler İçin Uygun?
-                </h3>
-                <div
-                  className="space-y-4 bg-white/5 rounded-xl p-6"
-                  style={{
-                    color: '#f6f8f9',
-                    fontSize: '14px',
-                    fontWeight: '400'
-                  }}
-                >
-                  <p style={{ color: '#f6f8f9' }}>1.000 m² ve üzeri yatırım düşünen profesyonel üreticiler</p>
-                  <p style={{ color: '#f6f8f9' }}>Hibe/destek başvurusu için teknik dosya gereksinimi olanlar</p>
-                  <p style={{ color: '#f6f8f9' }}>Sera projelerinde uzun ömür, otomasyon ve enerji verimliliğini öncelikleyen yatırımcılar</p>
-                </div>
-              </div>
-            </div>
-
-            {/* Experience Stats */}
-            <div className="mb-16">
-              <h3
-                className="mb-8 text-center"
-                style={{
-                  color: '#f6f8f9',
-                  fontSize: '24px',
-                  fontWeight: '600'
-                }}
-              >
-                Güvence ve Tecrübe
-              </h3>
-              <div className="grid md:grid-cols-3 gap-6 max-w-[600px] mx-auto">
-                <div className="text-center">
-                  <div
-                    className="text-4xl font-bold mb-2"
-                    style={{ color: '#baf200' }}
-                  >
-                    500+
-                  </div>
-                  <p style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '400' }}>
-                    Tamamlanmış Sera Projesi
-                  </p>
-                </div>
-                <div className="text-center">
-                  <div
-                    className="text-4xl font-bold mb-2"
-                    style={{ color: '#baf200' }}
-                  >
-                    3
-                  </div>
-                  <p style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '400' }}>
-                    Ülkede Uygulanan Sistem
-                  </p>
-                </div>
-                <div className="text-center">
-                  <div
-                    className="text-4xl font-bold mb-2"
-                    style={{ color: '#baf200' }}
-                  >
-                    %100
-                  </div>
-                  <p style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '400' }}>
-                    Standartlara Uygunluk
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* CTA Button - Updated to open modal */}
-            <div className="mb-6">
-              <button
-                onClick={() => setIsModalOpen(true)}
-                className="hero-cta-button inline-block px-8 py-4 rounded-xl font-medium transition-all hover:opacity-90 hover:scale-105 transform"
-                style={{
-                  backgroundColor: '#baf200',
-                  color: '#1e3237',
-                  fontSize: '16px',
-                  fontWeight: '600'
-                }}
-              >
-                KURUMSAL TEKLİF AL
-              </button>
-            </div>
-
-            {/* Bottom slogan */}
-            <p
-              className="text-center"
-              style={{
-                color: '#f6f8f9',
-                fontSize: '14px',
-                fontWeight: '400'
-              }}
-            >
-              Profesyonel sera kurulumunda güvenilir ortaklık.
-            </p>
-          </div>
+      {/* Content */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className="text-center mb-8">
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">Anahtar Teslim Sera Çözümleri</h2>
+          <p className="text-gray-600">Baştan sona tamamlanmış sera projeleri</p>
         </div>
-      </section>
 
-      {/* 🎁 Referanslar Section */}
-      <section className="py-16">
-        <div className="max-w-[1200px] mx-auto px-6 text-center">
-          <div className="max-w-[800px] mx-auto flex flex-col">
-            <h2
-              className="mx-auto mb-8"
-              style={{
-                color: '#f6f8f9',
-                fontSize: '36px',
-                fontWeight: '600'
-              }}
-            >
-              Referanslarımız
-            </h2>
-
-            <div className="max-w-[576px] mx-auto mb-12">
-              <p
-                className="leading-relaxed text-center"
-                style={{
-                  color: '#f6f8f9',
-                  fontSize: '20px',
-                  fontWeight: '400'
-                }}
-              >
-                Fikir aşamasından projelendirmeye; Kurulum'dan üretim danışmanlığına kadar profesyonel hizmet
-              </p>
-            </div>
-
-            {/* Image Gallery - 900px with horizontal scrolling */}
-            <div className="max-w-[900px] mx-auto mb-8 relative">
-              <div className="overflow-x-auto scrollbar-hide" id="gallery-container">
-                <div className="flex space-x-4 pb-4" style={{ width: 'fit-content' }}>
-                  <div className="flex-shrink-0 w-[580px] h-[300px] rounded-xl overflow-hidden">
-                    <img
-                      src="https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2F9d3332e2ad3c411884d29aa35f7a626d"
-                      alt="Sera Projesi 1"
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <div className="flex-shrink-0 w-[580px] h-[300px] rounded-xl overflow-hidden">
-                    <div className="w-full h-full bg-gradient-to-br from-green-400 via-green-500 to-green-600 flex items-center justify-center">
-                      <div className="text-center text-white">
-                        <div className="text-4xl mb-2">🌱</div>
-                        <p className="text-lg font-semibold">Domates Serası</p>
-                        <p className="text-sm opacity-90">Antalya - 5000m²</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex-shrink-0 w-[580px] h-[300px] rounded-xl overflow-hidden">
-                    <div className="w-full h-full bg-gradient-to-br from-blue-400 via-blue-500 to-blue-600 flex items-center justify-center">
-                      <div className="text-center text-white">
-                        <div className="text-4xl mb-2">🥒</div>
-                        <p className="text-lg font-semibold">Salatalık Serası</p>
-                        <p className="text-sm opacity-90">İzmir - 3000m²</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Navigation Arrows */}
-              <button
-                className="absolute left-4 top-1/2 transform -translate-y-1/2 w-10 h-10 rounded-full flex items-center justify-center transition-all hover:scale-110"
-                style={{ backgroundColor: '#baf200' }}
-                onClick={() => {
-                  const container = document.getElementById('gallery-container');
-                  container?.scrollBy({ left: -300, behavior: 'smooth' });
-                }}
-              >
-                <svg className="w-6 h-6" style={{ color: '#1e3237' }} fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clipRule="evenodd" />
-                </svg>
-              </button>
-
-              <button
-                className="absolute right-4 top-1/2 transform -translate-y-1/2 w-10 h-10 rounded-xl flex items-center justify-center transition-all hover:scale-110"
-                style={{ backgroundColor: '#baf200' }}
-                onClick={() => {
-                  const container = document.getElementById('gallery-container');
-                  container?.scrollBy({ left: 300, behavior: 'smooth' });
-                }}
-              >
-                <svg className="w-6 h-6" style={{ color: '#1e3237' }} fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
-                </svg>
-              </button>
-            </div>
-
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {turnkeyServices.map((service) => (
             <button
-              onClick={() => setIsModalOpen(true)}
-              className="inline-block px-8 py-4 rounded-xl font-medium transition-all hover:opacity-90 mx-auto"
-              style={{
-                backgroundColor: '#baf200',
-                color: '#1e3237',
-                fontSize: '16px',
-                fontWeight: '600'
-              }}
+              key={service.id}
+              className="bg-white border border-gray-200 rounded-lg p-6 hover:border-gray-300 hover:shadow-md transition-all duration-200 text-left group"
             >
-              Anahtar Teslim Sera
+              <div className="flex flex-col items-center text-center space-y-4">
+                <div className="text-black group-hover:text-gray-700 transition-colors">
+                  {service.icon}
+                </div>
+                <div>
+                  <h3 className="text-lg font-medium text-gray-900 mb-2">
+                    {service.title}
+                  </h3>
+                  <p className="text-sm text-gray-600">
+                    {service.description}
+                  </p>
+                </div>
+              </div>
             </button>
+          ))}
+        </div>
+
+        {/* CTA Section */}
+        <div className="mt-12 text-center">
+          <div className="bg-gray-50 rounded-lg p-8">
+            <h3 className="text-xl font-semibold text-gray-900 mb-4">Anahtar Teslim Proje Teklifi Alın</h3>
+            <p className="text-gray-600 mb-6">Sera projeniz için detaylı fiyat teklifi alın</p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <button className="bg-[#146448] text-white px-6 py-3 rounded-lg font-medium hover:bg-[#146448]/90 transition-colors">
+                Teklif Talep Et
+              </button>
+              <button className="bg-gray-100 text-gray-700 px-6 py-3 rounded-lg font-medium hover:bg-gray-200 transition-colors">
+                Referans Projeler
+              </button>
+            </div>
           </div>
         </div>
-      </section>
-
-      {/* Footer - matching homepage */}
-      <footer className="py-12" style={{ backgroundColor: '#146448' }}>
-        <div className="max-w-[1200px] mx-auto px-6">
-          <div className="grid md:grid-cols-4 gap-8">
-            
-            {/* Company Info */}
-            <div>
-              <div className="mb-4">
-                <img
-                  src="https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2F01c1e8a05ef6424b912d584875377957?format=webp&width=800"
-                  alt="SeraGPT Logo"
-                  className="h-12 w-auto object-contain"
-                />
-              </div>
-              <p 
-                className="leading-relaxed"
-                style={{ 
-                  color: '#f6f8f9', 
-                  fontSize: '14px', 
-                  fontWeight: '400' 
-                }}
-              >
-                AI destekli sera analiz platformu. Doğru yatırım, doğru analizle başlar.
-              </p>
-            </div>
-
-            {/* Services */}
-            <div>
-              <h3 
-                className="mb-4"
-                style={{ 
-                  color: '#f6f8f9', 
-                  fontSize: '14px', 
-                  fontWeight: '600' 
-                }}
-              >
-                Hizmetler
-              </h3>
-              <ul className="space-y-2">
-                <li>
-                  <Link 
-                    href="/auth/login" 
-                    className="transition-opacity hover:opacity-70"
-                    style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '400' }}
-                  >
-                    Ücretsiz Analiz Başlat
-                  </Link>
-                </li>
-                <li>
-                  <Link 
-                    href="/danismanlik" 
-                    className="transition-opacity hover:opacity-70"
-                    style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '400' }}
-                  >
-                    Danışmanlık AL
-                  </Link>
-                </li>
-                <li>
-                  <Link 
-                    href="/anahtar-teslim-proje" 
-                    className="transition-opacity hover:opacity-70"
-                    style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '400' }}
-                  >
-                    Anahtar Teslim Sera Teklifi İste
-                  </Link>
-                </li>
-              </ul>
-            </div>
-
-            {/* Support */}
-            <div>
-              <h3 
-                className="mb-4"
-                style={{ 
-                  color: '#f6f8f9', 
-                  fontSize: '14px', 
-                  fontWeight: '600' 
-                }}
-              >
-                Destek
-              </h3>
-              <ul className="space-y-2">
-                <li>
-                  <Link 
-                    href="/auth/login" 
-                    className="transition-opacity hover:opacity-70"
-                    style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '400' }}
-                  >
-                    Kullanıcı Paneli Giriş
-                  </Link>
-                </li>
-                <li>
-                  <Link 
-                    href="/destek" 
-                    className="transition-opacity hover:opacity-70"
-                    style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '400' }}
-                  >
-                    Destek Kaydı Aç
-                  </Link>
-                </li>
-                <li>
-                  <Link 
-                    href="/privacy" 
-                    className="transition-opacity hover:opacity-70"
-                    style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '400' }}
-                  >
-                    Gizlilik Politikası
-                  </Link>
-                </li>
-                <li>
-                  <Link 
-                    href="/terms" 
-                    className="transition-opacity hover:opacity-70"
-                    style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '400' }}
-                  >
-                    Kullanım Koşulları
-                  </Link>
-                </li>
-              </ul>
-            </div>
-
-            {/* Contact */}
-            <div>
-              <h3 
-                className="mb-4"
-                style={{ 
-                  color: '#f6f8f9', 
-                  fontSize: '14px', 
-                  fontWeight: '600' 
-                }}
-              >
-                İletişim
-              </h3>
-              <div className="space-y-2">
-                <p 
-                  style={{ 
-                    color: '#f6f8f9', 
-                    fontSize: '14px', 
-                    fontWeight: '400' 
-                  }}
-                >
-                  info@seragpt.com
-                </p>
-                <p 
-                  style={{ 
-                    color: '#f6f8f9', 
-                    fontSize: '14px', 
-                    fontWeight: '400' 
-                  }}
-                >
-                  0850 303 0 GPT
-                </p>
-                <p 
-                  style={{ 
-                    color: '#f6f8f9', 
-                    fontSize: '14px', 
-                    fontWeight: '400' 
-                  }}
-                >
-                  Türkiye
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* Bottom */}
-          <div className="border-t border-white/20 mt-8 pt-8 text-center">
-            <p 
-              style={{ 
-                color: '#f6f8f9', 
-                fontSize: '14px', 
-                fontWeight: '400' 
-              }}
-            >
-              © 2025 SeraGPT. Tüm hakları saklıdır.
-            </p>
-          </div>
-        </div>
-      </footer>
-
-      {/* Turnkey Project Modal */}
-      <TurnkeyProjectModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-      />
+      </div>
     </div>
   );
 }
