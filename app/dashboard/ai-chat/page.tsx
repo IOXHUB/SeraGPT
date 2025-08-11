@@ -719,6 +719,11 @@ Lütfen daha sonra tekrar deneyin veya destek ekibimizle iletişime geçin.`,
                       onError={(e) => {
                         console.log('Logo loading error');
                         (e.target as HTMLImageElement).style.display = 'none';
+                        // Show fallback text
+                        const fallback = document.createElement('div');
+                        fallback.className = 'text-[#baf200] font-bold text-xl';
+                        fallback.textContent = 'SeraGPT';
+                        (e.target as HTMLImageElement).parentNode?.appendChild(fallback);
                       }}
                       onLoad={() => console.log('Logo loaded successfully')}
                     />
