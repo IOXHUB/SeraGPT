@@ -3,7 +3,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useAuth } from '@/lib/hooks/useAuth';
-import DashboardLayout from '@/components/dashboard/DashboardLayout';
 import ClientOnly from '@/components/ui/ClientOnly';
 
 // Force dynamic rendering
