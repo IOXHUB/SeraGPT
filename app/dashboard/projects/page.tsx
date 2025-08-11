@@ -219,9 +219,24 @@ export default function ProjectsPage() {
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
                       <div className="flex items-center space-x-2">
-                        <button className="text-green-600 hover:text-green-900">Görüntüle</button>
-                        <button className="text-blue-600 hover:text-blue-900">Düzenle</button>
-                        <button className="text-red-600 hover:text-red-900">Sil</button>
+                        <button
+                          onClick={() => { setSelectedProject(project); setModalType('view'); }}
+                          className="text-green-600 hover:text-green-900"
+                        >
+                          Görüntüle
+                        </button>
+                        <button
+                          onClick={() => { setSelectedProject(project); setModalType('edit'); }}
+                          className="text-blue-600 hover:text-blue-900"
+                        >
+                          Düzenle
+                        </button>
+                        <button
+                          onClick={() => { setSelectedProject(project); setModalType('delete'); }}
+                          className="text-red-600 hover:text-red-900"
+                        >
+                          Sil
+                        </button>
                       </div>
                     </td>
                   </tr>
