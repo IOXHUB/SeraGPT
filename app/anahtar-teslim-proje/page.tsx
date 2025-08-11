@@ -288,6 +288,110 @@ export default function AnahtarTeslimProjePage() {
         </div>
       </section>
 
+      {/* 🎁 Referanslar Section */}
+      <section className="py-16">
+        <div className="max-w-[1200px] mx-auto px-6 text-center">
+          <div className="max-w-[800px] mx-auto flex flex-col">
+            <h2
+              className="mx-auto mb-8"
+              style={{
+                color: '#f6f8f9',
+                fontSize: '36px',
+                fontWeight: '600'
+              }}
+            >
+              Referanslarımız
+            </h2>
+
+            <div className="max-w-[576px] mx-auto mb-12">
+              <p
+                className="leading-relaxed text-center"
+                style={{
+                  color: '#f6f8f9',
+                  fontSize: '20px',
+                  fontWeight: '400'
+                }}
+              >
+                Fikir aşamasından projelendirmeye; Kurulum'dan üretim danışmanlığına kadar profesyonel hizmet
+              </p>
+            </div>
+
+            {/* Image Gallery - 900px with horizontal scrolling */}
+            <div className="max-w-[900px] mx-auto mb-8 relative">
+              <div className="overflow-x-auto scrollbar-hide" id="gallery-container">
+                <div className="flex space-x-4 pb-4" style={{ width: 'fit-content' }}>
+                  <div className="flex-shrink-0 w-[580px] h-[300px] rounded-xl overflow-hidden">
+                    <img
+                      src="https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2F9d3332e2ad3c411884d29aa35f7a626d"
+                      alt="Sera Projesi 1"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="flex-shrink-0 w-[580px] h-[300px] rounded-xl overflow-hidden">
+                    <div className="w-full h-full bg-gradient-to-br from-green-400 via-green-500 to-green-600 flex items-center justify-center">
+                      <div className="text-center text-white">
+                        <div className="text-4xl mb-2">🌱</div>
+                        <p className="text-lg font-semibold">Domates Serası</p>
+                        <p className="text-sm opacity-90">Antalya - 5000m²</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex-shrink-0 w-[580px] h-[300px] rounded-xl overflow-hidden">
+                    <div className="w-full h-full bg-gradient-to-br from-blue-400 via-blue-500 to-blue-600 flex items-center justify-center">
+                      <div className="text-center text-white">
+                        <div className="text-4xl mb-2">🥒</div>
+                        <p className="text-lg font-semibold">Salatalık Serası</p>
+                        <p className="text-sm opacity-90">İzmir - 3000m²</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Navigation Arrows */}
+              <button
+                className="absolute left-4 top-1/2 transform -translate-y-1/2 w-10 h-10 rounded-full flex items-center justify-center transition-all hover:scale-110"
+                style={{ backgroundColor: '#baf200' }}
+                onClick={() => {
+                  const container = document.getElementById('gallery-container');
+                  container?.scrollBy({ left: -300, behavior: 'smooth' });
+                }}
+              >
+                <svg className="w-6 h-6" style={{ color: '#1e3237' }} fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clipRule="evenodd" />
+                </svg>
+              </button>
+
+              <button
+                className="absolute right-4 top-1/2 transform -translate-y-1/2 w-10 h-10 rounded-xl flex items-center justify-center transition-all hover:scale-110"
+                style={{ backgroundColor: '#baf200' }}
+                onClick={() => {
+                  const container = document.getElementById('gallery-container');
+                  container?.scrollBy({ left: 300, behavior: 'smooth' });
+                }}
+              >
+                <svg className="w-6 h-6" style={{ color: '#1e3237' }} fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
+                </svg>
+              </button>
+            </div>
+
+            <button
+              onClick={() => setIsModalOpen(true)}
+              className="inline-block px-8 py-4 rounded-xl font-medium transition-all hover:opacity-90 mx-auto"
+              style={{
+                backgroundColor: '#baf200',
+                color: '#1e3237',
+                fontSize: '16px',
+                fontWeight: '600'
+              }}
+            >
+              Anahtar Teslim Sera
+            </button>
+          </div>
+        </div>
+      </section>
+
       {/* Footer - matching homepage */}
       <footer className="py-12" style={{ backgroundColor: '#146448' }}>
         <div className="max-w-[1200px] mx-auto px-6">
