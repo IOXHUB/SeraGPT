@@ -1072,7 +1072,7 @@ Lütfen daha sonra tekrar deneyin veya destek ekibimizle iletişime geçin.`,
               </main>
 
               {/* Fixed Input at Bottom */}
-              <div className="fixed bottom-0 left-0 right-0 z-40 bg-[#146448]/95 backdrop-blur border-t border-white/10"
+              <div className="fixed bottom-0 left-0 right-0 z-50 bg-[#146448]/95 backdrop-blur border-t border-white/10"
                    style={{
                      paddingLeft: isDesktop && sidebarOpen ? '288px' : '0px',
                      transition: 'padding-left 0.3s ease-in-out'
