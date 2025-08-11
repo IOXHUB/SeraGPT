@@ -771,6 +771,94 @@ Lütfen daha sonra tekrar deneyin veya destek ekibimizle iletişime geçin.`,
                   </div>
                 </div>
 
+                {/* Fixed Bottom Menu */}
+                <div className="p-4 border-t border-[#f6f8f9]/10 bg-[#146448] relative menu-popup-container">
+                  <button
+                    onClick={() => setMenuPopupOpen(!menuPopupOpen)}
+                    className="w-full p-3 bg-[#baf200] hover:bg-[#baf200]/80 rounded-lg transition-colors flex items-center justify-between group"
+                  >
+                    <div className="flex items-center space-x-3">
+                      <div className="w-8 h-8 bg-[#146448] rounded-full flex items-center justify-center">
+                        <svg className="w-4 h-4 text-[#7ed321]" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clipRule="evenodd" />
+                        </svg>
+                      </div>
+                      <div className="text-left">
+                        <p className="mb-0 text-sm font-medium text-[#1e3237]">Menü</p>
+                        <p className="text-xs text-[#4a4a4a] -mt-0.5">Tüm özellikler</p>
+                      </div>
+                    </div>
+                    <svg
+                      className={`w-6 h-6 text-[#1e3237] transition-transform ${menuPopupOpen ? 'rotate-180' : ''}`}
+                      fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </button>
+
+                  {/* Menu Popup */}
+                  <AnimatePresence>
+                    {menuPopupOpen && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                        className="absolute bottom-full left-4 right-4 mb-2 bg-white rounded-lg shadow-lg border border-gray-200 z-[100] min-w-64"
+                      >
+                        {/* Header */}
+                        <div className="p-4 border-b border-gray-200">
+                          <div className="flex items-center justify-between">
+                            <h3 className="text-sm font-medium text-gray-900">Dashboard Menü</h3>
+                            <button
+                              onClick={() => setMenuPopupOpen(false)}
+                              className="text-gray-400 hover:text-gray-600"
+                            >
+                              ×
+                            </button>
+                          </div>
+                        </div>
+
+                        {/* Menu Items */}
+                        <div className="py-2 max-h-80 overflow-y-auto">
+                          {dashboardMenuItems.map((item) => (
+                            <button
+                              key={item.id}
+                              onClick={() => {
+                                // Handle navigation based on item id
+                                if (item.id === 'user') {
+                                  window.location.href = '/dashboard/kullanici-islemleri';
+                                } else if (item.id === 'tokens') {
+                                  window.location.href = '/dashboard/token-islemleri';
+                                } else if (item.id === 'ai-assistant') {
+                                  window.location.href = '/dashboard/ai-asistan-islemleri';
+                                } else if (item.id === 'analysis') {
+                                  window.location.href = '/dashboard/analysis';
+                                } else if (item.id === 'settings') {
+                                  window.location.href = '/dashboard/settings';
+                                } else if (item.id === 'support') {
+                                  window.location.href = '/destek';
+                                } else if (item.id === 'consulting') {
+                                  window.location.href = '/danismanlik';
+                                } else if (item.id === 'turnkey') {
+                                  window.location.href = '/anahtar-teslim-proje';
+                                } else if (item.id === 'homepage') {
+                                  window.location.href = '/';
+                                } else if (item.id === 'old-dashboard') {
+                                  window.location.href = '/dashboard';
+                                }
+                                setMenuPopupOpen(false);
+                              }}
+                              className="w-full px-4 py-3 text-left text-sm text-gray-700 hover:bg-gray-100 border-b border-gray-100 last:border-b-0"
+                            >
+                              {item.title}
+                            </button>
+                          ))}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+
                 </motion.div>
               </>
             )}
@@ -1000,94 +1088,9 @@ Lütfen daha sonra tekrar deneyin veya destek ekibimizle iletişime geçin.`,
                    paddingRight: 'max(12px, env(safe-area-inset-right))'
                  }}>
 
-              {/* Menu Button + Input Area on Same Line */}
-              <div className="mb-3 flex items-center gap-3">
-                {/* Yellow Menu Button */}
-                <button
-                  onClick={() => setMenuPopupOpen(!menuPopupOpen)}
-                  className="flex-shrink-0 px-4 py-3 bg-[#baf200] hover:bg-[#baf200]/80 rounded-lg transition-colors flex items-center space-x-2 text-[#1e3237] relative menu-popup-container"
-                >
-                  <div className="w-6 h-6 bg-[#146448] rounded-full flex items-center justify-center">
-                    <svg className="w-3 h-3 text-[#7ed321]" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clipRule="evenodd" />
-                    </svg>
-                  </div>
-                  <div className="text-left">
-                    <p className="text-sm font-medium leading-none">Menü</p>
-                    <p className="text-xs text-[#4a4a4a] leading-none mt-0.5">Tüm özellikler</p>
-                  </div>
-                  <svg
-                    className={`w-4 h-4 text-[#1e3237] transition-transform ${menuPopupOpen ? 'rotate-180' : ''}`}
-                    fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                  >
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                  </svg>
-
-                  {/* Menu Popup */}
-                  <AnimatePresence>
-                    {menuPopupOpen && (
-                      <motion.div
-                        initial={{ opacity: 0, y: 10, scale: 0.95 }}
-                        animate={{ opacity: 1, y: 0, scale: 1 }}
-                        exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                        className="absolute bottom-full left-0 mb-2 bg-white rounded-lg shadow-lg border border-gray-200 z-[100] min-w-64"
-                      >
-                        {/* Header */}
-                        <div className="p-4 border-b border-gray-200">
-                          <div className="flex items-center justify-between">
-                            <h3 className="text-sm font-medium text-gray-900">Dashboard Menü</h3>
-                            <button
-                              onClick={() => setMenuPopupOpen(false)}
-                              className="text-gray-400 hover:text-gray-600"
-                            >
-                              ×
-                            </button>
-                          </div>
-                        </div>
-
-                        {/* Menu Items */}
-                        <div className="py-2 max-h-80 overflow-y-auto">
-                          {dashboardMenuItems.map((item) => (
-                            <button
-                              key={item.id}
-                              onClick={() => {
-                                // Handle navigation based on item id
-                                if (item.id === 'user') {
-                                  window.location.href = '/dashboard/kullanici-islemleri';
-                                } else if (item.id === 'tokens') {
-                                  window.location.href = '/dashboard/token-islemleri';
-                                } else if (item.id === 'ai-assistant') {
-                                  window.location.href = '/dashboard/ai-asistan-islemleri';
-                                } else if (item.id === 'analysis') {
-                                  window.location.href = '/dashboard/analysis';
-                                } else if (item.id === 'settings') {
-                                  window.location.href = '/dashboard/settings';
-                                } else if (item.id === 'support') {
-                                  window.location.href = '/destek';
-                                } else if (item.id === 'consulting') {
-                                  window.location.href = '/danismanlik';
-                                } else if (item.id === 'turnkey') {
-                                  window.location.href = '/anahtar-teslim-proje';
-                                } else if (item.id === 'homepage') {
-                                  window.location.href = '/';
-                                } else if (item.id === 'old-dashboard') {
-                                  window.location.href = '/dashboard';
-                                }
-                                setMenuPopupOpen(false);
-                              }}
-                              className="w-full px-4 py-3 text-left text-sm text-gray-700 hover:bg-gray-100 border-b border-gray-100 last:border-b-0"
-                            >
-                              {item.title}
-                            </button>
-                          ))}
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </button>
-
-                {/* Input Area */}
-                <div className="flex-1 relative">
+              {/* Input Area */}
+              <div className="mb-3">
+                <div className="relative">
                   <textarea
                     ref={inputRef}
                     value={inputValue}
