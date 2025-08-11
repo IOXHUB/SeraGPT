@@ -917,7 +917,7 @@ Lütfen daha sonra tekrar deneyin veya destek ekibimizle iletişime geçin.`,
                   {!currentChatId && messages.length === 0 ? (
                     // Welcome State
                     <div className="flex flex-col justify-center items-center min-h-full py-8">
-                      <div className="text-center mb-8">
+                      <div className="text-center mb-8 w-full max-w-4xl mx-auto px-4">
                         <h1 className="font-bold text-[#f6f8f9] mb-6"
                             style={{ fontSize: 'clamp(28px, 5vw, 42px)', lineHeight: 'clamp(32px, 6vw, 50px)' }}>
                           Hoş Geldiniz, Test Kullanıcı!
@@ -935,25 +935,27 @@ Lütfen daha sonra tekrar deneyin veya destek ekibimizle iletişime geçin.`,
                         </div>
                       </div>
 
-                      <div className="grid grid-cols-2 gap-4 max-w-md mx-auto">
-                        {analysisOptions.map((option) => (
-                          <button
-                            key={option.id}
-                            onClick={() => handleAnalysisClick(option.id)}
-                            className="h-24 p-3 bg-white/95 hover:bg-white rounded-xl text-center transition-all hover:scale-105 hover:shadow-lg group flex flex-col justify-center items-center border border-[#baf200]/20 hover:border-[#baf200]/40"
-                          >
-                            <div className="w-full h-full flex flex-col justify-center items-center">
-                              <h3 className="font-semibold text-[#1e3237] mb-1 group-hover:text-[#146448] transition-colors"
-                                  style={{ fontSize: 'clamp(14px, 2.8vw, 17px)', lineHeight: 'clamp(17px, 3.2vw, 21px)' }}>
-                                {option.title}
-                              </h3>
-                              <p className="text-[#1e3237]/70 leading-tight"
-                                 style={{ fontSize: 'clamp(11px, 2.2vw, 14px)', lineHeight: 'clamp(13px, 2.6vw, 17px)' }}>
-                                {option.description}
-                              </p>
-                            </div>
-                          </button>
-                        ))}
+                      <div className="flex justify-center w-full">
+                        <div className="grid grid-cols-2 gap-4 max-w-md">
+                          {analysisOptions.map((option) => (
+                            <button
+                              key={option.id}
+                              onClick={() => handleAnalysisClick(option.id)}
+                              className="h-24 p-3 bg-white/95 hover:bg-white rounded-xl text-center transition-all hover:scale-105 hover:shadow-lg group flex flex-col justify-center items-center border border-[#baf200]/20 hover:border-[#baf200]/40"
+                            >
+                              <div className="w-full h-full flex flex-col justify-center items-center">
+                                <h3 className="font-semibold text-[#1e3237] mb-1 group-hover:text-[#146448] transition-colors"
+                                    style={{ fontSize: 'clamp(14px, 2.8vw, 17px)', lineHeight: 'clamp(17px, 3.2vw, 21px)' }}>
+                                  {option.title}
+                                </h3>
+                                <p className="text-[#1e3237]/70 leading-tight"
+                                   style={{ fontSize: 'clamp(11px, 2.2vw, 14px)', lineHeight: 'clamp(13px, 2.6vw, 17px)' }}>
+                                  {option.description}
+                                </p>
+                              </div>
+                            </button>
+                          ))}
+                        </div>
                       </div>
                     </div>
                   ) : (
