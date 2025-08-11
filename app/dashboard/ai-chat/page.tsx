@@ -53,6 +53,11 @@ export default function AIChatPage() {
   const [menuPopupOpen, setMenuPopupOpen] = useState(false);
   const [analysisFlow, setAnalysisFlow] = useState<AnalysisFlow | null>(null);
   const [userTokens, setUserTokens] = useState(5);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [showSearch, setShowSearch] = useState(false);
+  const [favoriteMessages, setFavoriteMessages] = useState<Set<string>>(new Set());
+  const [editingMessageId, setEditingMessageId] = useState<string | null>(null);
+  const [editValue, setEditValue] = useState('');
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
@@ -130,6 +135,103 @@ export default function AIChatPage() {
       window.location.href = '/dashboard/reports';
     }
   };
+
+  // Helper functions for new features
+  const toggleFavorite = (messageId: string) => {
+    setFavoriteMessages(prev => {
+      const newFavorites = new Set(prev);
+      if (newFavorites.has(messageId)) {
+        newFavorites.delete(messageId);
+      } else {
+        newFavorites.add(messageId);
+      }
+      return newFavorites;
+    });
+  };
+
+  const exportChat = () => {
+    const chatContent = messages.map(msg =>
+      `${msg.role === 'user' ? 'Kullanıcı' : 'AI'}: ${msg.content}`
+    ).join('\n\n');
+    const blob = new Blob([chatContent], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `sohbet-${new Date().toISOString().split('T')[0]}.txt`;
+    a.click();
+  };
+
+  const startEditMessage = (messageId: string, content: string) => {
+    setEditingMessageId(messageId);
+    setEditValue(content);
+  };
+
+  const saveEditMessage = () => {
+    if (editingMessageId && editValue.trim()) {
+      setMessages(prev => prev.map(msg =>
+        msg.id === editingMessageId
+          ? { ...msg, content: editValue, timestamp: new Date() }
+          : msg
+      ));
+      setEditingMessageId(null);
+      setEditValue('');
+    }
+  };
+
+  const renderMessageContent = (content: string) => {
+    // Basic markdown support for code blocks
+    if (content.includes('```')) {
+      const parts = content.split('```');
+      return (
+        <div>
+          {parts.map((part, i) =>
+            i % 2 === 0 ? (
+              <span key={i}>{part}</span>
+            ) : (
+              <pre key={i} className="bg-black/25 border border-white/10 rounded p-2 my-2 overflow-auto">
+                <code className="text-green-300">{part}</code>
+              </pre>
+            )
+          )}
+        </div>
+      );
+    }
+
+    // Basic table support
+    if (content.includes('|')) {
+      const lines = content.split('\n');
+      const tableLines = lines.filter(line => line.includes('|'));
+      if (tableLines.length > 1) {
+        return (
+          <div>
+            {lines.map((line, i) => {
+              if (line.includes('|')) {
+                const cells = line.split('|').filter(cell => cell.trim());
+                return (
+                  <div key={i} className="flex border-b border-white/10">
+                    {cells.map((cell, j) => (
+                      <div key={j} className="flex-1 p-2 border-r border-white/10 last:border-r-0">
+                        {cell.trim()}
+                      </div>
+                    ))}
+                  </div>
+                );
+              }
+              return <div key={i}>{line}</div>;
+            })}
+          </div>
+        );
+      }
+    }
+
+    return <div className="whitespace-pre-wrap">{content}</div>;
+  };
+
+  const filteredMessages = searchQuery.trim()
+    ? messages.filter(msg =>
+        msg.content.toLowerCase().includes(searchQuery.toLowerCase())
+      )
+    : messages;
 
   const handleSendMessage = async () => {
     if (!inputValue.trim()) return;
@@ -392,7 +494,32 @@ export default function AIChatPage() {
                         ? 'bg-[#baf200] text-[#146448]'
                         : 'bg-white/10 text-[#f6f8f9]'
                     }`}>
-                      {message.content}
+                      {editingMessageId === message.id ? (
+                        <div className="space-y-2">
+                          <textarea
+                            value={editValue}
+                            onChange={(e) => setEditValue(e.target.value)}
+                            className="w-full p-2 bg-white/10 border border-white/20 rounded text-white resize-none"
+                            rows={3}
+                          />
+                          <div className="flex space-x-2">
+                            <button
+                              onClick={saveEditMessage}
+                              className="px-3 py-1 bg-green-500/30 rounded text-xs"
+                            >
+                              Kaydet
+                            </button>
+                            <button
+                              onClick={() => setEditingMessageId(null)}
+                              className="px-3 py-1 bg-gray-500/30 rounded text-xs"
+                            >
+                              İptal
+                            </button>
+                          </div>
+                        </div>
+                      ) : (
+                        renderMessageContent(message.content)
+                      )}
 
                       {/* Message Actions */}
                       <div className={`opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex space-x-1 mt-2 ${
@@ -405,6 +532,24 @@ export default function AIChatPage() {
                         >
                           ⎘
                         </button>
+                        <button
+                          onClick={() => toggleFavorite(message.id)}
+                          className={`p-1.5 border border-white/20 rounded hover:bg-white/20 transition-colors text-xs ${
+                            favoriteMessages.has(message.id) ? 'bg-yellow-500/30' : 'bg-white/10'
+                          }`}
+                          title="Favorilere Ekle"
+                        >
+                          ★
+                        </button>
+                        {message.role === 'user' && (
+                          <button
+                            onClick={() => startEditMessage(message.id, message.content)}
+                            className="p-1.5 bg-white/10 border border-white/20 rounded hover:bg-white/20 transition-colors text-xs"
+                            title="Düzenle"
+                          >
+                            ✏
+                          </button>
+                        )}
                         <button
                           className="p-1.5 bg-white/10 border border-white/20 rounded hover:bg-white/20 transition-colors text-xs"
                           title="Alıntıla"
