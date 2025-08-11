@@ -252,17 +252,65 @@ export default function AIChatPage() {
             </div>
           </nav>
           
-          {/* Alt menü */}
+          {/* Alt menü - Ayarlar */}
           <div className="p-4 border-t border-white/10">
-            <div className="flex items-center space-x-3 p-3 bg-[#baf200]/10 rounded-lg">
-              <div className="w-8 h-8 bg-[#baf200] rounded-full flex items-center justify-center">
-                <span className="text-[#146448] font-bold text-sm">T</span>
+            <button
+              className="w-full bg-[#146448] border-l-4 border-[#baf200] rounded-lg p-3 hover:bg-[#146448]/80 transition-colors relative"
+              onClick={() => setMenuPopupOpen(!menuPopupOpen)}
+            >
+              <div className="flex items-center justify-between">
+                <div className="flex items-center space-x-3">
+                  <svg className="w-5 h-5 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                  </svg>
+                  <span className="text-sm font-medium text-black">Ayarlar</span>
+                </div>
               </div>
-              <div className="text-left">
-                <p className="text-sm font-medium text-[#f6f8f9]">Test Kullanıcı</p>
-                <p className="text-xs text-[#baf200]">{userTokens} token</p>
-              </div>
-            </div>
+
+              {/* Settings Menu Popup */}
+              {menuPopupOpen && (
+                <div className="absolute bottom-full left-0 right-0 mb-2 bg-white rounded-lg shadow-xl border border-gray-200 z-50">
+                  <div className="p-4 border-b border-gray-200">
+                    <div className="flex items-center justify-between">
+                      <h3 className="text-sm font-medium text-gray-900">Dashboard Menü</h3>
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setMenuPopupOpen(false);
+                        }}
+                        className="text-gray-400 hover:text-gray-600"
+                      >
+                        ×
+                      </button>
+                    </div>
+                  </div>
+                  <div className="py-2 max-h-80 overflow-y-auto">
+                    {dashboardMenuItems.map((item) => (
+                      <button
+                        key={item.id}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          if (item.id === 'user') window.location.href = '/dashboard/kullanici-islemleri';
+                          else if (item.id === 'tokens') window.location.href = '/dashboard/token-islemleri';
+                          else if (item.id === 'ai-assistant') window.location.href = '/dashboard/ai-asistan-islemleri';
+                          else if (item.id === 'analysis') window.location.href = '/dashboard/analysis';
+                          else if (item.id === 'settings') window.location.href = '/dashboard/settings';
+                          else if (item.id === 'support') window.location.href = '/destek';
+                          else if (item.id === 'consulting') window.location.href = '/danismanlik';
+                          else if (item.id === 'turnkey') window.location.href = '/anahtar-teslim-proje';
+                          else if (item.id === 'homepage') window.location.href = '/';
+                          else if (item.id === 'old-dashboard') window.location.href = '/dashboard';
+                          setMenuPopupOpen(false);
+                        }}
+                        className="w-full px-4 py-3 text-left text-sm text-gray-700 hover:bg-gray-100 border-b border-gray-100 last:border-b-0"
+                      >
+                        {item.title}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </button>
           </div>
         </aside>
 
