@@ -231,6 +231,50 @@ export default function AIChatPage() {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, [menuPopupOpen]);
 
+  // Prevent viewport jumping on mobile keyboard
+  useEffect(() => {
+    const viewport = document.querySelector('meta[name=viewport]');
+    const originalContent = viewport?.getAttribute('content');
+
+    const handleFocus = () => {
+      // Disable viewport scaling during keyboard input
+      viewport?.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no');
+      // Add visual viewport support
+      document.body.style.setProperty('--vh', `${window.visualViewport?.height || window.innerHeight}px`);
+    };
+
+    const handleBlur = () => {
+      // Restore original viewport settings
+      if (originalContent) {
+        viewport?.setAttribute('content', originalContent);
+      }
+      // Update viewport height
+      document.body.style.setProperty('--vh', `${window.visualViewport?.height || window.innerHeight}px`);
+    };
+
+    const handleVisualViewportChange = () => {
+      document.body.style.setProperty('--vh', `${window.visualViewport?.height || window.innerHeight}px`);
+    };
+
+    // Listen for focus/blur on input elements
+    const inputElement = inputRef.current;
+    inputElement?.addEventListener('focus', handleFocus);
+    inputElement?.addEventListener('blur', handleBlur);
+
+    // Listen for visual viewport changes (iOS Safari)
+    if (window.visualViewport) {
+      window.visualViewport.addEventListener('resize', handleVisualViewportChange);
+    }
+
+    return () => {
+      inputElement?.removeEventListener('focus', handleFocus);
+      inputElement?.removeEventListener('blur', handleBlur);
+      if (window.visualViewport) {
+        window.visualViewport.removeEventListener('resize', handleVisualViewportChange);
+      }
+    };
+  }, []);
+
   return (
     <ClientOnly>
       <div className="flex flex-col h-screen bg-[#146448] overflow-hidden"
