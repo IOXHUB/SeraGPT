@@ -47,6 +47,13 @@ export default function DanismanlikPage() {
               >
                 Destek
               </Link>
+              <Link
+                href="/blog"
+                className="font-medium transition-opacity hover:opacity-70"
+                style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '400' }}
+              >
+                Blog
+              </Link>
             </nav>
 
             {/* CTA Button */}
