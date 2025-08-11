@@ -1,134 +1,318 @@
 'use client';
 
 import Link from 'next/link';
+import { useState } from 'react';
 
 export default function DestekPage() {
-  const supportOptions = [
+  const [openFAQ, setOpenFAQ] = useState<number | null>(null);
+
+  const toggleFAQ = (index: number) => {
+    setOpenFAQ(openFAQ === index ? null : index);
+  };
+
+  const supportCategories = [
     {
-      id: 'quick-start',
-      title: 'Hızlı Başlangıç',
-      description: 'SeraGPT platformunu kullanmaya başlayın',
-      icon: (
-        <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M11,7V13H13V7H11M11,15V17H13V15H11Z"/>
-        </svg>
-      )
+      id: 'platform',
+      title: 'Platform Kullanımı',
+      description: 'SeraGPT arayüzü ve analiz araçları',
+      icon: '🖥️',
+      color: '#baf200'
     },
     {
-      id: 'account-setup',
-      title: 'Hesap Kurulumu',
-      description: 'Hesabınızı kurun ve optimize edin',
-      icon: (
-        <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z"/>
-        </svg>
-      )
-    },
-    {
-      id: 'analysis-help',
-      title: 'Analiz Desteği',
-      description: 'Analiz süreçleri ve raporlarla ilgili yardım',
-      icon: (
-        <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M19,3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3M5,5H19V19H5V5M7,10V16H9V10H7M11,8V16H13V8H11M15,12V16H17V12H15Z"/>
-        </svg>
-      )
-    },
-    {
-      id: 'technical-support',
+      id: 'technical',
       title: 'Teknik Destek',
-      description: 'Platform kullanımında karşılaştığınız sorunlar',
-      icon: (
-        <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M22.7 19L13.6 9.9C14.5 7.6 14 4.9 12.1 3C10.1 1 7.1 0.6 4.7 1.7L9 6L6 9L1.6 4.7C0.4 7.1 0.9 10.1 2.9 12.1C4.8 14 7.5 14.5 9.8 13.6L18.9 22.7C19.3 23.1 19.9 23.1 20.3 22.7L22.6 20.4C23.1 20 23.1 19.3 22.7 19Z"/>
-        </svg>
-      )
+      description: 'Sera teknolojileri ve mühendislik',
+      icon: '🔧',
+      color: '#baf200'
     },
     {
-      id: 'billing-support',
-      title: 'Faturalandırma',
-      description: 'Ödeme ve abonelik işlemleri',
-      icon: (
-        <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M11.8,10.9C9.53,10.31 8.8,9.7 8.8,8.75C8.8,7.66 9.81,6.9 11.5,6.9C13.28,6.9 13.94,7.75 14,9H16.21C16.14,7.28 15.09,5.7 13,5.19V3H10V5.16C8.06,5.58 6.5,6.84 6.5,8.77C6.5,11.08 8.41,12.23 11.2,12.9C13.7,13.5 14.2,14.38 14.2,15.31C14.2,16 13.71,17.1 11.5,17.1C9.44,17.1 8.63,16.18 8.5,15H6.32C6.44,17.19 8.08,18.42 10,18.83V21H13V18.85C14.95,18.5 16.5,17.35 16.5,15.3C16.5,12.46 14.07,11.5 11.8,10.9Z"/>
-        </svg>
-      )
+      id: 'reports',
+      title: 'Rapor Desteği',
+      description: 'Analiz sonuçları ve değerlendirme',
+      icon: '📊',
+      color: '#baf200'
+    },
+    {
+      id: 'financial',
+      title: 'Finansal Danışmanlık',
+      description: 'Yatırım ve finansman konuları',
+      icon: '💰',
+      color: '#baf200'
+    },
+    {
+      id: 'grants',
+      title: 'Hibe ve Teşvikler',
+      description: 'Devlet destekleri ve başvuru süreci',
+      icon: '🏛️',
+      color: '#baf200'
     },
     {
       id: 'live-chat',
-      title: 'Canlı Sohbet',
+      title: 'Canlı Destek',
       description: 'Uzmanlarımızla anlık görüşme',
-      icon: (
-        <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M12,3C17.5,3 22,6.58 22,11C22,15.42 17.5,19 12,19C10.76,19 9.57,18.82 8.47,18.5C5.55,21 2,21 2,21C4.33,18.67 4.7,17.1 4.75,16.5C3.05,15.07 2,13.13 2,11C2,6.58 6.5,3 12,3Z"/>
-        </svg>
-      )
+      icon: '💬',
+      color: '#baf200'
+    }
+  ];
+
+  const faqData = [
+    {
+      question: "Raporlarınız hangi veriler ve metotlarla hazırlanıyor?",
+      answer: [
+        "Raporlarımız; bölgenize ait gerçek zamanlı iklim verileri, TÜİK tarım istatistikleri, Copernicus uydu görüntüleri, FAO ve yerel pazar fiyat verileri gibi güvenilir kaynaklar kullanılarak hazırlanır.",
+        "Enerji ihtiyacı ve iklimlendirme hesaplamalarında ASHRAE tabloları ve mühendislik formülleri uygulanır.",
+        "Bu sayede sonuçlar yalnızca tahmini değil, sahada uygulanabilir ve yatırım kararına doğrudan temel oluşturacak nitelikte olur."
+      ]
+    },
+    {
+      question: "Sera tipini ve ekipman seçimlerini nasıl belirliyorsunuz?",
+      answer: [
+        "Sera tipini ve ekipmanlarını belirlerken şu parametreler analiz edilir:",
+        "• Lokasyonun yıllık ortalama ve ekstrem sıcaklık/soğuk değerleri",
+        "• Güneşlenme süresi ve ışık şiddeti", 
+        "• Ürün tipi ve yetiştirme modeli (topraklı/hidroponik)",
+        "• Su kaynağı ve sulama kapasitesi",
+        "• Enerji kaynakları ve maliyetleri",
+        "Tüm bu veriler yapay zeka ve mühendis ekibimizin değerlendirmesiyle optimum yatırım modeli olarak raporlanır."
+      ]
+    },
+    {
+      question: "Devlet hibeleri ve teşvikler için uygunluk analizi nasıl yapılıyor?",
+      answer: [
+        "Raporlarımızda TKDK, IPARD ve Ziraat Bankası gibi kurumların kriterleri dikkate alınır.",
+        "Bölgesel hibe oranları, yatırım bütçesi limitleri ve teknik gereklilikler proje dosyasına eklenir.",
+        "Eğer yatırımınız uygun bulunursa, hibe başvurusu sırasında gerekli teknik çizim ve fizibilite raporları tarafımızdan hazırlanabilir."
+      ]
+    },
+    {
+      question: "Ekipman marka ve model önerilerini hangi kriterlere göre yapıyorsunuz?",
+      answer: [
+        "Ekipman seçiminde kalite, güvenilirlik, enerji verimliliği ve yerel servis ağı faktörleri öncelik alır.",
+        "Uzun vadeli işletme maliyetleri, yedek parça temini ve teknik destek olanakları değerlendirilir.",
+        "Türkiye'deki temsilcilikleri olan ve yerel servis ağı güçlü markalar tercih edilir.",
+        "Maliyet-performans analizi ile her bütçeye uygun seçenekler sunulur."
+      ]
+    },
+    {
+      question: "Görsel çizim ve 3D modelleme desteği alabilir miyim?",
+      answer: [
+        "Evet, profesyonel danışmanlık paketlerimizde detaylı teknik çizimler ve 3D görseller yer almaktadır.",
+        "AutoCAD ortamında hazırlanan vaziyet planları, sera yerleşim planları ve kesit çizimleri sağlanır.",
+        "3D modelleme ile projenizi gerçekçi görseller halinde görüntüleyebilir, potansiyel yatırımcılara sunum yapabilirsiniz.",
+        "Tüm çizimler mühendis onaylı olup, ihale ve hibe başvurularında kullanılabilir niteliktedir."
+      ]
     }
   ];
 
   return (
     <div className="min-h-screen" style={{ backgroundColor: '#146448' }}>
       {/* Header */}
-      <div className="border-b" style={{ backgroundColor: '#146448', borderBottomColor: '#f6f8f9' }}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
+      <header className="py-4" style={{ backgroundColor: '#146448' }}>
+        <div className="max-w-[1200px] mx-auto px-6">
+          <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
               <Link href="/" className="hover:opacity-70 transition-opacity" style={{ color: '#f6f8f9' }}>
                 ← Ana Sayfa
               </Link>
-              <h1 className="text-xl font-semibold" style={{ color: '#f6f8f9' }}>Destek</h1>
+            </div>
+            <div className="flex items-center">
+              <img
+                src="https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2F01c1e8a05ef6424b912d584875377957?format=webp&width=800"
+                alt="SeraGPT Logo"
+                className="h-8 w-auto object-contain"
+              />
             </div>
           </div>
         </div>
-      </div>
+      </header>
 
-      {/* Content */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="text-center mb-8">
-          <h2 className="text-2xl font-bold mb-4" style={{ color: '#f6f8f9' }}>Size Nasıl Yardımcı Olabiliriz?</h2>
-          <p style={{ color: '#f6f8f9', opacity: '0.8' }}>SeraGPT platformunu kullanırken ihtiyacınız olan desteği bulun</p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {supportOptions.map((option) => (
-            <button
-              key={option.id}
-              className="rounded-lg p-6 hover:shadow-lg transition-all duration-200 text-left group border"
-              style={{ backgroundColor: '#f6f8f9', borderColor: '#146448' }}
+      {/* Main Content - Destek Section */}
+      <section className="py-16">
+        <div className="max-w-[1200px] mx-auto px-6 text-center">
+          <div className="max-w-[800px] mx-auto">
+            <h1
+              className="mb-8 text-center"
+              style={{
+                color: '#f6f8f9',
+                fontSize: '36px',
+                fontWeight: '600'
+              }}
             >
-              <div className="flex flex-col items-center text-center space-y-4">
-                <div className="transition-colors" style={{ color: '#1e3237' }}>
-                  {option.icon}
-                </div>
-                <div>
-                  <h3 className="text-lg font-medium mb-2" style={{ color: '#1e3237' }}>
-                    {option.title}
+              Hemen Destek Alın
+            </h1>
+
+            <div className="max-w-[576px] mx-auto mb-12">
+              <p
+                className="leading-relaxed text-center"
+                style={{
+                  color: '#f6f8f9',
+                  fontSize: '18px',
+                  fontWeight: '400'
+                }}
+              >
+                Sera yatırımınızla ilgili her konuda uzman ekibimiz size destek vermeye hazır.
+              </p>
+            </div>
+
+            {/* Support Categories */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+              {supportCategories.map((category) => (
+                <div
+                  key={category.id}
+                  className="bg-white/5 rounded-xl p-6 border border-white/10 hover:border-white/20 transition-all duration-200 cursor-pointer hover:bg-white/10"
+                >
+                  <div className="text-4xl mb-4">{category.icon}</div>
+                  <h3
+                    className="mb-3"
+                    style={{ color: category.color, fontSize: '18px', fontWeight: '600' }}
+                  >
+                    {category.title}
                   </h3>
-                  <p className="text-sm opacity-70" style={{ color: '#1e3237' }}>
-                    {option.description}
+                  <p style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '400', opacity: '0.8' }}>
+                    {category.description}
                   </p>
                 </div>
-              </div>
-            </button>
-          ))}
-        </div>
+              ))}
+            </div>
 
-        {/* Contact Section */}
-        <div className="mt-12 text-center">
-          <div className="rounded-lg p-8" style={{ backgroundColor: '#f6f8f9' }}>
-            <h3 className="text-xl font-semibold mb-4" style={{ color: '#1e3237' }}>Hala Yardıma İhtiyacınız Var?</h3>
-            <p className="mb-6 opacity-70" style={{ color: '#1e3237' }}>Doğrudan bizimle iletişime geçin</p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="px-6 py-3 rounded-lg font-medium hover:opacity-90 transition-all" style={{ backgroundColor: '#baf200', color: '#1e3237' }}>
-                Destek Talebi Oluştur
-              </button>
-              <button className="px-6 py-3 rounded-lg font-medium hover:opacity-80 transition-all border" style={{ backgroundColor: '#146448', color: '#f6f8f9', borderColor: '#146448' }}>
-                E-posta Gönder
-              </button>
+            {/* FAQ Section */}
+            <div className="max-w-[800px] mx-auto mb-12">
+              <h3
+                className="mb-8 text-center"
+                style={{
+                  color: '#f6f8f9',
+                  fontSize: '24px',
+                  fontWeight: '600'
+                }}
+              >
+                Sıkça Sorulan Sorular
+              </h3>
+
+              <div className="space-y-4">
+                {faqData.map((faq, index) => (
+                  <div
+                    key={index}
+                    className="bg-white/5 rounded-xl border border-white/10"
+                  >
+                    <button
+                      onClick={() => toggleFAQ(index)}
+                      className="w-full p-6 text-left flex justify-between items-center hover:bg-white/5 transition-colors"
+                    >
+                      <span
+                        style={{
+                          color: '#f6f8f9',
+                          fontSize: '16px',
+                          fontWeight: '500'
+                        }}
+                      >
+                        {index + 1}. {faq.question}
+                      </span>
+                      <svg 
+                        className={`w-5 h-5 transition-transform ${openFAQ === index ? 'rotate-180' : ''}`}
+                        style={{ color: '#baf200' }} 
+                        fill="currentColor" 
+                        viewBox="0 0 20 20"
+                      >
+                        <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+                      </svg>
+                    </button>
+                    {openFAQ === index && (
+                      <div className="px-6 pb-6">
+                        <div className="space-y-3 text-left" style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '400' }}>
+                          {faq.answer.map((paragraph, pIndex) => (
+                            <p key={pIndex} style={{ lineHeight: '1.6' }}>
+                              {paragraph}
+                            </p>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Contact Options */}
+            <div className="grid md:grid-cols-2 gap-6 mb-12 max-w-[600px] mx-auto">
+              <div className="bg-white/5 rounded-xl p-6 border border-white/10">
+                <h4
+                  className="mb-4"
+                  style={{ color: '#baf200', fontSize: '18px', fontWeight: '600' }}
+                >
+                  📞 Telefon Desteği
+                </h4>
+                <p style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '400', marginBottom: '16px' }}>
+                  Hafta içi 09:00 - 18:00 saatleri arası
+                </p>
+                <button
+                  className="w-full py-2 rounded-lg font-medium transition-all hover:opacity-90"
+                  style={{ backgroundColor: '#baf200', color: '#1e3237', fontSize: '14px' }}
+                >
+                  Ara: (312) 555-0123
+                </button>
+              </div>
+
+              <div className="bg-white/5 rounded-xl p-6 border border-white/10">
+                <h4
+                  className="mb-4"
+                  style={{ color: '#baf200', fontSize: '18px', fontWeight: '600' }}
+                >
+                  ✉️ E-posta Desteği
+                </h4>
+                <p style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '400', marginBottom: '16px' }}>
+                  24 saat içinde yanıt garantisi
+                </p>
+                <button
+                  className="w-full py-2 rounded-lg font-medium transition-all hover:opacity-90"
+                  style={{ backgroundColor: '#baf200', color: '#1e3237', fontSize: '14px' }}
+                >
+                  E-posta Gönder
+                </button>
+              </div>
+            </div>
+
+            {/* CTA Section */}
+            <div className="bg-white/5 rounded-xl p-8 border border-white/10 max-w-[600px] mx-auto">
+              <h4
+                className="mb-4"
+                style={{ color: '#baf200', fontSize: '20px', fontWeight: '600' }}
+              >
+                Özel Destek Gerekiyor mu?
+              </h4>
+              <p 
+                className="mb-6" 
+                style={{ color: '#f6f8f9', fontSize: '16px', fontWeight: '400', lineHeight: '1.6' }}
+              >
+                Kompleks projeler için özel danışmanlık hizmeti alabilirsiniz. 
+                Uzmanlarımız projenize özel çözümler geliştirir.
+              </p>
+              <Link
+                href="/auth/login"
+                className="inline-block px-6 py-3 rounded-xl font-medium transition-all hover:opacity-90"
+                style={{
+                  backgroundColor: '#baf200',
+                  color: '#1e3237',
+                  fontSize: '16px',
+                  fontWeight: '600'
+                }}
+              >
+                Özel Danışmanlık Talep Et
+              </Link>
+            </div>
+
+            {/* Bottom Link */}
+            <div className="mt-12">
+              <Link
+                href="/auth/login"
+                className="inline-block"
+                style={{ color: '#baf200', fontSize: '16px', fontWeight: '500', textDecoration: 'underline' }}
+              >
+                Destek Talebinizi Platform Üzerinden Oluşturun →
+              </Link>
             </div>
           </div>
         </div>
-      </div>
+      </section>
     </div>
   );
 }
