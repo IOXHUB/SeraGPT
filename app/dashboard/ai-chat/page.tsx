@@ -520,14 +520,18 @@ export default function AIChatPage() {
                     className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
                   >
                     <div className={`max-w-xs sm:max-w-md lg:max-w-2xl p-3 lg:p-4 rounded-lg ${
-                      message.role === 'user' 
-                        ? 'bg-[#baf200] text-[#1e3237]' 
+                      message.role === 'user'
+                        ? 'bg-[#baf200] text-[#1e3237]'
                         : 'bg-[#f6f8f9]/10 text-[#f6f8f9] border border-[#f6f8f9]/20'
                     }`}>
-                      <p className="whitespace-pre-wrap">{message.content}</p>
-                      <p className={`text-xs mt-2 ${
+                      <p className="whitespace-pre-wrap"
+                         style={{ fontSize: 'clamp(14px, 2.5vw, 16px)', lineHeight: 'clamp(18px, 3.5vw, 24px)' }}>
+                        {message.content}
+                      </p>
+                      <p className={`mt-2 ${
                         message.role === 'user' ? 'text-[#1e3237]/60' : 'text-[#f6f8f9]/60'
-                      }`}>
+                      }`}
+                         style={{ fontSize: 'clamp(11px, 2vw, 12px)', lineHeight: 'clamp(14px, 2.5vw, 16px)' }}>
                         {message.timestamp.toLocaleTimeString('tr-TR')}
                       </p>
                     </div>
