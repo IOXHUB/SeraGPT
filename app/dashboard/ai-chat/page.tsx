@@ -251,7 +251,7 @@ Başlayalım! ${flowQuestions[0].question}`,
       climate: 'İklim Analizi',
       equipment: 'Ekipman Analizi',
       market: 'Pazar Analizi',
-      layout: 'Yerleşim Planı Analizi'
+      layout: 'Yerleşim Plan�� Analizi'
     };
     return titles[type as keyof typeof titles] || type;
   };
@@ -899,7 +899,7 @@ Lütfen daha sonra tekrar deneyin veya destek ekibimizle iletişime geçin.`,
             {/* Welcome State or Messages */}
             {!currentChatId && messages.length === 0 ? (
               // Welcome Content
-              <div className="flex-1 p-3 lg:p-4 bg-[#146448] overflow-hidden flex flex-col" style={{ paddingBottom: '100px' }}>
+              <div className="flex-1 p-3 lg:p-4 bg-[#146448] overflow-hidden flex flex-col">
 
                 {/* Hero Title - Separated and Top-Aligned */}
                 <div className="pt-8 pb-4 text-center">
