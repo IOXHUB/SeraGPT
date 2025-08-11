@@ -293,7 +293,7 @@ export default function AIChatPage() {
                   initial={{ x: -300, opacity: 0 }}
                   animate={{ x: 0, opacity: 1 }}
                   exit={{ x: -300, opacity: 0 }}
-                  className="w-80 md:w-80 bg-[#1e3237] border-r border-[#f6f8f9]/20 flex flex-col h-full fixed md:relative z-[60] md:z-auto max-w-[80vw] min-w-0 shadow-2xl"
+                  className="w-72 sm:w-80 bg-[#1e3237] border-r border-[#f6f8f9]/20 flex flex-col h-full fixed md:relative z-[60] md:z-auto max-w-[75vw] min-w-0 shadow-2xl"
                   style={{ backgroundColor: 'rgba(30, 50, 55, 0.98)' }}
                 >
                 {/* Sidebar Header - Logo */}
