@@ -290,16 +290,18 @@ export default function AIChatPage() {
                         </svg>
                         ANALİZLER
                       </h3>
-                      <div className="space-y-2">
+                      <div className="space-y-2" role="list" aria-label="Analiz geçmişi">
                         {chatSessions.map((chat) => (
                           <button
                             key={chat.id}
                             onClick={() => handleSelectChat(chat.id)}
-                            className={`w-full p-3 rounded-lg text-left transition-colors group ${
-                              currentChatId === chat.id 
-                                ? 'bg-[#baf200]/20 border border-[#baf200]/30' 
+                            className={`w-full p-3 rounded-lg text-left transition-colors group focus:ring-2 focus:ring-[#baf200] focus:outline-none ${
+                              currentChatId === chat.id
+                                ? 'bg-[#baf200]/20 border border-[#baf200]/30'
                                 : 'bg-[#146448]/50 hover:bg-[#f6f8f9]/10'
                             }`}
+                            role="listitem"
+                            aria-pressed={currentChatId === chat.id}
                           >
                             <div className="text-sm font-medium text-[#f6f8f9] group-hover:text-[#baf200] transition-colors truncate">
                               {chat.title}
