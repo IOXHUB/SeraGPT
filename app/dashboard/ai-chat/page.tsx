@@ -123,6 +123,17 @@ export default function AIChatPage() {
     },
   ];
 
+  // Dashboard menu items
+  const dashboardMenuItems = [
+    { id: 'ai-chat', title: 'AI Sohbet', icon: '💬', href: '/dashboard/ai-chat', active: true },
+    { id: 'analysis', title: 'Analizler', icon: '📊', href: '/dashboard/analysis' },
+    { id: 'reports', title: 'Raporlar', icon: '📄', href: '/dashboard/reports' },
+    { id: 'projects', title: 'Projeler', icon: '🏗️', href: '/dashboard/projects' },
+    { id: 'consulting', title: 'Danışmanlık', icon: '👨‍🏫', href: '/dashboard/consulting' },
+    { id: 'settings', title: 'Ayarlar', icon: '⚙️', href: '/dashboard/settings' },
+    { id: 'help', title: 'Yardım', icon: '❓', href: '/dashboard/help' },
+  ];
+
   const handleNewChat = () => {
     setCurrentChatId(null);
     setMessages([]);
