@@ -469,7 +469,7 @@ export default function AIChatPage() {
           </AnimatePresence>
 
           {/* Main Chat Area */}
-          <div className="flex-1 flex flex-col min-w-0 h-full">
+          <div className="flex-1 flex flex-col min-w-0 h-full max-w-full overflow-hidden">
             
             {/* Dashboard Header */}
             <div className="flex items-center justify-between p-3 lg:p-4 border-b border-[#f6f8f9]/10 bg-[#146448] flex-shrink-0">
