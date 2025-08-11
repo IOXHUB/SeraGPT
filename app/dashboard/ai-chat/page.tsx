@@ -72,7 +72,7 @@ export default function AIChatPage() {
   const [chatSessions, setChatSessions] = useState<ChatSession[]>([
     {
       id: '1',
-      title: 'Yatırım Geri Dönüş (ROI) Analizi',
+      title: 'Yatırım Geri Dön��ş (ROI) Analizi',
       lastMessage: 'Sohbet Başlatıldı...',
       date: 'Şubat Başında',
       messageCount: 0,
@@ -258,7 +258,7 @@ export default function AIChatPage() {
       const fileMessage: ChatMessage = {
         id: Date.now().toString() + Math.random(),
         role: 'user',
-        content: `�� Dosya yüklendi: ${file.name} (${(file.size / 1024).toFixed(1)} KB)`,
+        content: `📎 Dosya yüklendi: ${file.name} (${(file.size / 1024).toFixed(1)} KB)`,
         timestamp: new Date(),
         attachments: [file]
       };
@@ -695,21 +695,35 @@ export default function AIChatPage() {
 
                   {/* Input Icons */}
                   <div className="absolute left-3 top-1/2 transform -translate-y-1/2 flex items-center space-x-2">
-                    <button className="p-1 text-[#146448] hover:text-[#146448]/70 transition-colors" title="Dosya Ekle">
+                    <button
+                      className="p-1 text-[#146448] hover:text-[#146448]/70 transition-colors"
+                      title="Dosya Ekle"
+                      onClick={() => fileInputRef.current?.click()}
+                    >
                       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13" />
                       </svg>
                     </button>
                     <button
-                      className="p-1 text-[#146448] hover:text-[#146448]/70 transition-colors"
-                      title="Ses Kaydı"
-                      onClick={() => setIsRecording(!isRecording)}
+                      className={`p-1 transition-colors ${isRecordingVoice ? 'text-red-500 animate-pulse' : 'text-[#146448] hover:text-[#146448]/70'}`}
+                      title="Sesli Mesaj"
+                      onClick={handleVoiceRecord}
                     >
-                      <svg className={`w-4 h-4 ${isRecording ? 'animate-pulse' : ''}`} fill="currentColor" viewBox="0 0 24 24">
+                      <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M12 1a3 3 0 013 3v8a3 3 0 01-6 0V4a3 3 0 013-3zM19 10v2a7 7 0 01-14 0v-2a1 1 0 012 0v2a5 5 0 0010 0v-2a1 1 0 012 0z"/>
                       </svg>
                     </button>
                   </div>
+
+                  {/* Hidden File Input */}
+                  <input
+                    ref={fileInputRef}
+                    type="file"
+                    multiple
+                    accept="image/*,video/*,.pdf,.doc,.docx,.txt,.csv,.xlsx"
+                    className="hidden"
+                    onChange={handleFileUpload}
+                  />
                   <button
                     onClick={handleSendMessage}
                     disabled={!inputValue.trim()}
