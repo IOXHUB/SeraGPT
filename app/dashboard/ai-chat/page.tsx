@@ -114,6 +114,242 @@ export default function AIChatPage() {
     { id: 'main-dashboard', title: 'Ana Dashboard', modal: false, href: '/dashboard' }
   ];
 
+  // Token packages for purchase
+  const tokenPackages = [
+    { id: 'small', amount: 10, price: 29.99, popular: false },
+    { id: 'medium', amount: 50, price: 119.99, popular: true },
+    { id: 'large', amount: 100, price: 199.99, popular: false }
+  ];
+
+  // Token operations
+  const tokenOperations = [
+    {
+      id: 'view',
+      title: 'Token Görüntüle',
+      description: 'Mevcut token bakiyenizi görüntüleyin',
+      icon: (
+        <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9M12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17M12,4.5C7,4.5 2.73,7.61 1,12C2.73,16.39 7,19.5 12,19.5C17,19.5 21.27,16.39 23,12C21.27,7.61 17,4.5 12,4.5Z"/>
+        </svg>
+      ),
+      action: () => setSelectedTokenCard('view')
+    },
+    {
+      id: 'purchase',
+      title: 'Token Satın Al',
+      description: 'Analiz için token satın alın',
+      icon: (
+        <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M7,15H9C9,16.08 10.37,17 12,17C13.63,17 15,16.08 15,15C15,13.9 13.96,13.5 11.76,12.97C9.64,12.44 7,11.78 7,9C7,7.21 8.47,5.69 10.5,5.18V3H13.5V5.18C15.53,5.69 17,7.21 17,9H15C15,7.92 13.63,7 12,7C10.37,7 9,7.92 9,9C9,10.1 10.04,10.5 12.24,11.03C14.36,11.56 17,12.22 17,15C17,16.79 15.53,18.31 13.5,18.82V21H10.5V18.82C8.47,18.31 7,16.79 7,15Z"/>
+        </svg>
+      ),
+      action: () => setSelectedTokenCard('purchase')
+    },
+    {
+      id: 'usage',
+      title: 'Kullanım Geçmişi',
+      description: 'Token kullanım raporlarınızı inceleyin',
+      icon: (
+        <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M22,21H2V3H4V19H6V10H10V19H12V6H16V19H18V14H22V21Z"/>
+        </svg>
+      ),
+      action: () => setSelectedTokenCard('usage')
+    },
+    {
+      id: 'transaction',
+      title: 'İşlem Geçmişi',
+      description: 'Ödeme ve token alım geçmişi',
+      icon: (
+        <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M19,3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3M19,5V19H5V5H19M16.5,16.25C16.5,16.8 16.05,17.25 15.5,17.25H14.5C13.95,17.25 13.5,16.8 13.5,16.25V15.75C13.5,15.2 13.95,14.75 14.5,14.75H15.5C16.05,14.75 16.5,15.2 16.5,15.75V16.25M16.5,13.5C16.5,14.05 16.05,14.5 15.5,14.5H14.5C13.95,14.5 13.5,14.05 13.5,13.5V6.75C13.5,6.2 13.95,5.75 14.5,5.75H15.5C16.05,5.75 16.5,6.2 16.5,6.75V13.5M11,16.25C11,16.8 10.55,17.25 10,17.25H9C8.45,17.25 8,16.8 8,16.25V15.75C8,15.2 8.45,14.75 9,14.75H10C10.55,14.75 11,15.2 11,15.75V16.25M11,13.5C11,14.05 10.55,14.5 10,14.5H9C8.45,14.5 8,14.05 8,13.5V6.75C8,6.2 8.45,5.75 9,5.75H10C10.55,5.75 11,6.2 11,6.75V13.5Z"/>
+        </svg>
+      ),
+      action: () => setSelectedTokenCard('transaction')
+    }
+  ];
+
+  // User operations
+  const userOperations = [
+    {
+      id: 'profile',
+      title: 'Profil Bilgileri',
+      description: 'Kişisel bilgilerinizi görüntüleyin ve düzenleyin',
+      icon: (
+        <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z"/>
+        </svg>
+      )
+    },
+    {
+      id: 'security',
+      title: 'Güvenlik Ayarları',
+      description: 'Şifre değiştirme ve güvenlik seçenekleri',
+      icon: (
+        <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12,1L3,5V11C3,16.55 6.84,21.74 12,23C17.16,21.74 21,16.55 21,11V5L12,1M12,7C13.4,7 14.8,8.6 14.8,10V11.5C15.4,11.5 16,12.4 16,13V16C16,17.4 15.4,18 14.8,18H9.2C8.6,18 8,17.4 8,16V13C8,12.4 8.6,11.5 9.2,11.5V10C9.2,8.6 10.6,7 12,7M12,8.2C11.2,8.2 10.5,8.7 10.5,10V11.5H13.5V10C13.5,8.7 12.8,8.2 12,8.2Z"/>
+        </svg>
+      )
+    },
+    {
+      id: 'preferences',
+      title: 'Tercihler',
+      description: 'Uygulama ayarları ve bildirim tercihleri',
+      icon: (
+        <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12,8A4,4 0 0,1 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8M12,10A2,2 0 0,0 10,12A2,2 0 0,0 12,14A2,2 0 0,0 14,12A2,2 0 0,0 12,10M10,22C9.75,22 9.54,21.82 9.5,21.58L9.13,18.93C8.5,18.68 7.96,18.34 7.44,17.94L4.95,18.95C4.73,19.03 4.46,18.95 4.34,18.73L2.34,15.27C2.21,15.05 2.27,14.78 2.46,14.63L4.57,12.97L4.5,12L4.57,11L2.46,9.37C2.27,9.22 2.21,8.95 2.34,8.73L4.34,5.27C4.46,5.05 4.73,4.96 4.95,5.05L7.44,6.05C7.96,5.66 8.5,5.32 9.13,5.07L9.5,2.42C9.54,2.18 9.75,2 10,2H14C14.25,2 14.46,2.18 14.5,2.42L14.87,5.07C15.5,5.32 16.04,5.66 16.56,6.05L19.05,5.05C19.27,4.96 19.54,5.05 19.66,5.27L21.66,8.73C21.79,8.95 21.73,9.22 21.54,9.37L19.43,11L19.5,12L19.43,13L21.54,14.63C21.73,14.78 21.79,15.05 21.66,15.27L19.66,18.73C19.54,18.95 19.27,19.04 19.05,18.95L16.56,17.95C16.04,18.34 15.5,18.68 14.87,18.93L14.5,21.58C14.46,21.82 14.25,22 14,22H10M11.25,4L10.88,6.61C9.68,6.86 8.62,7.5 7.85,8.39L5.44,7.35L4.69,8.65L6.8,10.2C6.4,11.37 6.4,12.64 6.8,13.8L4.68,15.36L5.43,16.66L7.86,15.62C8.63,16.5 9.68,17.14 10.87,17.38L11.24,20H12.76L13.13,17.39C14.32,17.14 15.37,16.5 16.14,15.62L18.57,16.66L19.32,15.36L17.2,13.81C17.6,12.64 17.6,11.37 17.2,10.2L19.31,8.65L18.56,7.35L16.15,8.39C15.38,7.5 14.32,6.86 13.12,6.62L12.75,4H11.25Z"/>
+        </svg>
+      )
+    },
+    {
+      id: 'logout',
+      title: 'Çıkış Yap',
+      description: 'Hesabınızdan güvenli çıkış yapın',
+      icon: (
+        <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M16,17V14H9V10H16V7L21,12L16,17M14,2A2,2 0 0,1 16,4V6H14V4H5V20H14V18H16V20A2,2 0 0,1 14,22H5A2,2 0 0,1 3,20V4A2,2 0 0,1 5,2H14Z"/>
+        </svg>
+      )
+    }
+  ];
+
+  // Settings categories
+  const settingsCategories = [
+    {
+      id: 'account',
+      title: 'Hesap Ayarları',
+      description: 'Kişisel bilgiler ve hesap yönetimi',
+      icon: (
+        <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z"/>
+        </svg>
+      )
+    },
+    {
+      id: 'notifications',
+      title: 'Bildirim Ayarları',
+      description: 'E-posta ve uygulama bildirimleri',
+      icon: (
+        <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M21,19V20H3V19L5,17V11C5,7.9 7.03,5.17 10,4.29C10,4.19 10,4.1 10,4A2,2 0 0,1 12,2A2,2 0 0,1 14,4C14,4.1 14,4.19 14,4.29C16.97,5.17 19,7.9 19,11V17L21,19M14,21A2,2 0 0,1 12,23A2,2 0 0,1 10,21"/>
+        </svg>
+      )
+    },
+    {
+      id: 'privacy',
+      title: 'Gizlilik ve Güvenlik',
+      description: 'Veri kontrolü ve güvenlik seçenekleri',
+      icon: (
+        <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12,1L3,5V11C3,16.55 6.84,21.74 12,23C17.16,21.74 21,16.55 21,11V5L12,1M12,7C13.4,7 14.8,8.6 14.8,10V11.5C15.4,11.5 16,12.4 16,13V16C16,17.4 15.4,18 14.8,18H9.2C8.6,18 8,17.4 8,16V13C8,12.4 8.6,11.5 9.2,11.5V10C9.2,8.6 10.6,7 12,7M12,8.2C11.2,8.2 10.5,8.7 10.5,10V11.5H13.5V10C13.5,8.7 12.8,8.2 12,8.2Z"/>
+        </svg>
+      )
+    },
+    {
+      id: 'preferences',
+      title: 'Uygulama Tercihleri',
+      description: 'Dil, tema ve görünüm ayarları',
+      icon: (
+        <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12,8A4,4 0 0,1 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8M12,10A2,2 0 0,0 10,12A2,2 0 0,0 12,14A2,2 0 0,0 14,12A2,2 0 0,0 12,10M10,22C9.75,22 9.54,21.82 9.5,21.58L9.13,18.93C8.5,18.68 7.96,18.34 7.44,17.94L4.95,18.95C4.73,19.03 4.46,18.95 4.34,18.73L2.34,15.27C2.21,15.05 2.27,14.78 2.46,14.63L4.57,12.97L4.5,12L4.57,11L2.46,9.37C2.27,9.22 2.21,8.95 2.34,8.73L4.34,5.27C4.46,5.05 4.73,4.96 4.95,5.05L7.44,6.05C7.96,5.66 8.5,5.32 9.13,5.07L9.5,2.42C9.54,2.18 9.75,2 10,2H14C14.25,2 14.46,2.18 14.5,2.42L14.87,5.07C15.5,5.32 16.04,5.66 16.56,6.05L19.05,5.05C19.27,4.96 19.54,5.05 19.66,5.27L21.66,8.73C21.79,8.95 21.73,9.22 21.54,9.37L19.43,11L19.5,12L19.43,13L21.54,14.63C21.73,14.78 21.79,15.05 21.66,15.27L19.66,18.73C19.54,18.95 19.27,19.04 19.05,18.95L16.56,17.95C16.04,18.34 15.5,18.68 14.87,18.93L14.5,21.58C14.46,21.82 14.25,22 14,22H10M11.25,4L10.88,6.61C9.68,6.86 8.62,7.5 7.85,8.39L5.44,7.35L4.69,8.65L6.8,10.2C6.4,11.37 6.4,12.64 6.8,13.8L4.68,15.36L5.43,16.66L7.86,15.62C8.63,16.5 9.68,17.14 10.87,17.38L11.24,20H12.76L13.13,17.39C14.32,17.14 15.37,16.5 16.14,15.62L18.57,16.66L19.32,15.36L17.2,13.81C17.6,12.64 17.6,11.37 17.2,10.2L19.31,8.65L18.56,7.35L16.15,8.39C15.38,7.5 14.32,6.86 13.12,6.62L12.75,4H11.25Z"/>
+        </svg>
+      )
+    }
+  ];
+
+  // Analysis categories and data
+  const analysisCategories = [
+    {
+      id: 'recent',
+      title: 'Son Analizler',
+      description: 'En yakın zamanda yapılan analizler',
+      count: 8
+    },
+    {
+      id: 'roi',
+      title: 'ROI Analizleri',
+      description: 'Yatırım geri dönüş hesaplamaları',
+      count: 5
+    },
+    {
+      id: 'climate',
+      title: 'İklim Analizleri',
+      description: 'Bölgesel iklim uygunluk raporları',
+      count: 3
+    },
+    {
+      id: 'equipment',
+      title: 'Ekipman Analizleri',
+      description: 'Sera ekipman listesi ve önerileri',
+      count: 4
+    },
+    {
+      id: 'market',
+      title: 'Pazar Analizleri',
+      description: 'Ticaret ve fiyat analiz raporları',
+      count: 2
+    },
+    {
+      id: 'layout',
+      title: 'Yerleşim Planları',
+      description: '2D/3D sera tasarım projeleri',
+      count: 6
+    }
+  ];
+
+  const mockAnalyses = [
+    {
+      id: '1',
+      title: 'Domates Serası ROI Analizi',
+      type: 'roi',
+      date: '15 Ocak 2025',
+      status: 'Tamamlandı',
+      result: 'Pozitif (%23 geri dönüş)'
+    },
+    {
+      id: '2',
+      title: 'Antalya İklim Uygunluk Raporu',
+      type: 'climate',
+      date: '14 Ocak 2025',
+      status: 'Tamamlandı',
+      result: 'Çok Uygun'
+    },
+    {
+      id: '3',
+      title: '500m² Sera Ekipman Listesi',
+      type: 'equipment',
+      date: '13 Ocak 2025',
+      status: 'Tamamlandı',
+      result: '₺145,000 toplam maliyet'
+    },
+    {
+      id: '4',
+      title: 'Salatalık Pazar Analizi',
+      type: 'market',
+      date: '12 Ocak 2025',
+      status: 'İşleniyor',
+      result: 'Beklemede'
+    },
+    {
+      id: '5',
+      title: 'Modern Sera Yerleşim Planı',
+      type: 'layout',
+      date: '11 Ocak 2025',
+      status: 'Tamamlandı',
+      result: '3D Model Hazır'
+    }
+  ];
+
+  // Token purchase handler
+  const handleTokenPurchase = (packageId: string) => {
+    const selectedPackage = tokenPackages.find(p => p.id === packageId);
+    if (selectedPackage) {
+      // Redirect to iyzico payment with package details
+      const iyzicoPay = `/api/payment/iyzico?tokens=${selectedPackage.amount}&price=${selectedPackage.price}`;
+      window.location.href = iyzicoPay;
+    }
+  };
+
   const handleNewChat = () => {
     const newChatId = Date.now().toString();
     const newChat: ChatSession = {
