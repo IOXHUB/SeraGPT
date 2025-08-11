@@ -1149,16 +1149,22 @@ Lütfen daha sonra tekrar deneyin veya destek ekibimizle iletişime geçin.`,
         </div>
 
         {/* Fixed Input Area at Bottom */}
-        <div className="fixed bottom-0 left-0 right-0 bg-[#146448] z-50"
-             style={{
-               paddingLeft: 'max(12px, env(safe-area-inset-left))',
-               paddingRight: 'max(12px, env(safe-area-inset-right))'
-             }}>
+        <div className="relative bg-[#146448] border-t border-[#f6f8f9]/10">
+          <div className="flex w-full"
+               style={{
+                 paddingLeft: 'max(12px, env(safe-area-inset-left))',
+                 paddingRight: 'max(12px, env(safe-area-inset-right))'
+               }}>
 
-          {/* Main Input Area */}
-          <div className="border-t border-[#f6f8f9]/10 pt-3 pb-2">
-            <div className="max-w-4xl mx-auto w-full">
-              <div className="flex items-end space-x-2 lg:space-x-3">
+            {/* Sidebar width spacer */}
+            {sidebarOpen && (
+              <div className="hidden md:block w-64 sm:w-72 flex-shrink-0"></div>
+            )}
+
+            {/* Input Container */}
+            <div className="flex-1 max-w-4xl mx-auto p-4">
+              <div className="flex items-end space-x-3">
+                {/* Input Area */}
                 <div className="flex-1 relative">
                   <textarea
                     ref={inputRef}
@@ -1190,7 +1196,7 @@ Lütfen daha sonra tekrar deneyin veya destek ekibimizle iletişime geçin.`,
                   <button
                     onClick={handleSendMessage}
                     disabled={!inputValue.trim()}
-                    className="absolute right-2 bottom-2 p-2.5 bg-gradient-to-r from-[#baf200] to-[#9ed31f] text-[#1e3237] rounded-xl hover:from-[#9ed31f] hover:to-[#baf200] transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed focus:ring-2 focus:ring-[#baf200] focus:outline-none shadow-md transform hover:scale-105 sm:mb-0 mb-1"
+                    className="absolute right-2 bottom-2 p-2.5 bg-gradient-to-r from-[#baf200] to-[#9ed31f] text-[#1e3237] rounded-xl hover:from-[#9ed31f] hover:to-[#baf200] transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed focus:ring-2 focus:ring-[#baf200] focus:outline-none shadow-md transform hover:scale-105"
                     aria-label="Mesaj gönder"
                   >
                     <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -1199,46 +1205,46 @@ Lütfen daha sonra tekrar deneyin veya destek ekibimizle iletişime geçin.`,
                   </button>
                 </div>
               </div>
+
+              {/* Bottom Action Bar */}
+              <div className="flex items-center justify-center space-x-6 pt-3"
+                   style={{ paddingBottom: 'max(12px, env(safe-area-inset-bottom))' }}>
+
+                {/* File Upload */}
+                <button className="p-3 hover:bg-[#f6f8f9]/10 rounded-xl transition-colors focus:ring-2 focus:ring-[#baf200] focus:outline-none group">
+                  <svg className="w-6 h-6 text-[#f6f8f9] group-hover:text-[#baf200] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13" />
+                  </svg>
+                </button>
+
+                {/* Voice Recording */}
+                <button
+                  className="p-3 hover:bg-[#f6f8f9]/10 rounded-xl transition-colors focus:ring-2 focus:ring-[#baf200] focus:outline-none group"
+                  onClick={() => setIsRecording(!isRecording)}
+                >
+                  <svg className={`w-6 h-6 transition-all duration-200 ${isRecording ? 'text-[#baf200] animate-pulse' : 'text-[#f6f8f9] group-hover:text-[#baf200]'}`} fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 1a3 3 0 013 3v8a3 3 0 01-6 0V4a3 3 0 013-3zM19 10v2a7 7 0 01-14 0v-2a1 1 0 012 0v2a5 5 0 0010 0v-2a1 1 0 012 0zM12 18.93a7.5 7.5 0 002-.27v1.34a1 1 0 01-2 0v-1.07zM10 19.66v1.34a1 1 0 01-2 0v-1.34a7.5 7.5 0 002.27-.27z"/>
+                  </svg>
+                </button>
+
+                {/* Voice Chat */}
+                <button className="p-3 hover:bg-[#f6f8f9]/10 rounded-xl transition-colors focus:ring-2 focus:ring-[#baf200] focus:outline-none group">
+                  <svg className="w-6 h-6 text-[#f6f8f9] group-hover:text-[#baf200] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                  </svg>
+                </button>
+
+                {/* New Chat */}
+                <button
+                  onClick={handleNewChat}
+                  className="p-3 hover:bg-[#f6f8f9]/10 rounded-xl transition-colors focus:ring-2 focus:ring-[#baf200] focus:outline-none group"
+                >
+                  <svg className="w-6 h-6 text-[#f6f8f9] group-hover:text-[#baf200] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                  </svg>
+                </button>
+              </div>
             </div>
-          </div>
-
-          {/* Bottom Action Bar */}
-          <div className="flex items-center justify-center space-x-6 py-3 border-t border-[#f6f8f9]/5"
-               style={{ paddingBottom: 'max(12px, env(safe-area-inset-bottom))' }}>
-
-            {/* File Upload */}
-            <button className="p-3 hover:bg-[#f6f8f9]/10 rounded-xl transition-colors focus:ring-2 focus:ring-[#baf200] focus:outline-none group">
-              <svg className="w-6 h-6 text-[#f6f8f9] group-hover:text-[#baf200] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13" />
-              </svg>
-            </button>
-
-            {/* Voice Recording */}
-            <button
-              className="p-3 hover:bg-[#f6f8f9]/10 rounded-xl transition-colors focus:ring-2 focus:ring-[#baf200] focus:outline-none group"
-              onClick={() => setIsRecording(!isRecording)}
-            >
-              <svg className={`w-6 h-6 transition-all duration-200 ${isRecording ? 'text-[#baf200] animate-pulse' : 'text-[#f6f8f9] group-hover:text-[#baf200]'}`} fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 1a3 3 0 013 3v8a3 3 0 01-6 0V4a3 3 0 013-3zM19 10v2a7 7 0 01-14 0v-2a1 1 0 012 0v2a5 5 0 0010 0v-2a1 1 0 012 0zM12 18.93a7.5 7.5 0 002-.27v1.34a1 1 0 01-2 0v-1.07zM10 19.66v1.34a1 1 0 01-2 0v-1.34a7.5 7.5 0 002.27-.27z"/>
-              </svg>
-            </button>
-
-            {/* Voice Chat */}
-            <button className="p-3 hover:bg-[#f6f8f9]/10 rounded-xl transition-colors focus:ring-2 focus:ring-[#baf200] focus:outline-none group">
-              <svg className="w-6 h-6 text-[#f6f8f9] group-hover:text-[#baf200] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-              </svg>
-            </button>
-
-            {/* New Chat */}
-            <button
-              onClick={handleNewChat}
-              className="p-3 hover:bg-[#f6f8f9]/10 rounded-xl transition-colors focus:ring-2 focus:ring-[#baf200] focus:outline-none group"
-            >
-              <svg className="w-6 h-6 text-[#f6f8f9] group-hover:text-[#baf200] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-              </svg>
-            </button>
           </div>
         </div>
       </div>
