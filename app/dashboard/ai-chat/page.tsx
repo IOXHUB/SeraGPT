@@ -503,45 +503,42 @@ export default function AIChatPage() {
             {/* Welcome State or Messages */}
             {!currentChatId && messages.length === 0 ? (
               // Welcome Content
-              <div className="flex-1 p-4 lg:p-8 bg-[#146448] overflow-y-auto overscroll-contain" style={{ paddingBottom: '120px' }}>
-                <div className="max-w-4xl mx-auto px-safe"
+              <div className="flex-1 p-3 lg:p-4 bg-[#146448] overflow-hidden flex flex-col justify-center" style={{ paddingBottom: '100px' }}>
+                <div className="max-w-4xl mx-auto px-safe w-full"
                      style={{ marginLeft: 'max(16px, env(safe-area-inset-left))',
                              marginRight: 'max(16px, env(safe-area-inset-right))' }}>
 
-                  <div className="text-center mb-8">
+                  <div className="text-center mb-4">
                     <h1 className="font-bold text-[#f6f8f9] mb-2"
-                        style={{ fontSize: 'clamp(24px, 5vw, 48px)', lineHeight: 'clamp(28px, 6vw, 56px)' }}>
+                        style={{ fontSize: 'clamp(20px, 4vw, 32px)', lineHeight: 'clamp(24px, 5vw, 40px)' }}>
                       Hoş Geldiniz, Test Kullanıcı!
                     </h1>
                     <p className="text-[#f6f8f9]/80"
-                       style={{ fontSize: 'clamp(16px, 3vw, 20px)', lineHeight: 'clamp(20px, 4vw, 28px)' }}>
+                       style={{ fontSize: 'clamp(14px, 2.5vw, 18px)', lineHeight: 'clamp(18px, 3.5vw, 24px)' }}>
                       Bugün size nasıl yardımcı olabilirim?
                     </p>
                   </div>
 
-                  {/* Analysis Cards Grid - 3 rows, 2 columns */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-6 mb-32 max-w-2xl mx-auto">
+                  {/* Analysis Cards Grid - 3 rows, 2 columns - Compact */}
+                  <div className="grid grid-cols-2 gap-3 max-w-xl mx-auto">
                     {analysisOptions.map((option) => (
                       <button
                         key={option.id}
                         onClick={() => handleAnalysisClick(option.id)}
-                        className="aspect-square p-6 bg-white/90 hover:bg-white rounded-xl text-center transition-all hover:scale-105 hover:shadow-lg group flex flex-col justify-center items-center"
+                        className="h-20 p-3 bg-white/90 hover:bg-white rounded-lg text-center transition-all hover:scale-105 hover:shadow-lg group flex flex-col justify-center items-center"
                       >
                         <div className="w-full h-full flex flex-col justify-center items-center">
-                          <h3 className="font-semibold text-[#1e3237] mb-3 group-hover:text-[#146448] transition-colors"
-                              style={{ fontSize: 'clamp(16px, 3vw, 20px)', lineHeight: 'clamp(20px, 4vw, 28px)' }}>
+                          <h3 className="font-semibold text-[#1e3237] mb-1 group-hover:text-[#146448] transition-colors"
+                              style={{ fontSize: 'clamp(13px, 2.5vw, 16px)', lineHeight: 'clamp(16px, 3vw, 20px)' }}>
                             {option.title}
                           </h3>
-                          <p className="text-[#1e3237]/70 leading-relaxed"
-                             style={{ fontSize: 'clamp(13px, 2.5vw, 16px)', lineHeight: 'clamp(16px, 3vw, 22px)' }}>
+                          <p className="text-[#1e3237]/70 leading-tight text-xs"
+                             style={{ fontSize: 'clamp(10px, 2vw, 13px)', lineHeight: 'clamp(12px, 2.5vw, 16px)' }}>
                             {option.description}
                           </p>
                         </div>
                       </button>
                     ))}
-                  </div>
-
-                  <div className="text-center">
                   </div>
                 </div>
               </div>
