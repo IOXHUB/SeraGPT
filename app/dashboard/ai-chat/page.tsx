@@ -464,10 +464,12 @@ export default function AIChatPage() {
                              marginRight: 'max(16px, env(safe-area-inset-right))' }}>
                   
                   <div className="text-center mb-8">
-                    <h1 className="text-3xl font-bold text-[#f6f8f9] mb-2">
+                    <h1 className="font-bold text-[#f6f8f9] mb-2"
+                        style={{ fontSize: 'clamp(24px, 5vw, 48px)', lineHeight: 'clamp(28px, 6vw, 56px)' }}>
                       Hoş Geldiniz, Test Kullanıcı!
                     </h1>
-                    <p className="text-[#f6f8f9]/80 text-lg">
+                    <p className="text-[#f6f8f9]/80"
+                       style={{ fontSize: 'clamp(16px, 3vw, 20px)', lineHeight: 'clamp(20px, 4vw, 28px)' }}>
                       Bugün size nasıl yardımcı olabilirim? Aşağıdaki analizlerden birini seçerek başlayabilirsiniz:
                     </p>
                   </div>
