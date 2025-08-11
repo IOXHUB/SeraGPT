@@ -307,7 +307,7 @@ Eğer analiz yapmak isterseniz, yukarıdaki analiz kartlarından birini seçebil
           const errorMessage: ChatMessage = {
             id: (Date.now() + 1).toString(),
             role: 'assistant',
-            content: `Lütfen geçerli bir sayı girin. ${currentQuestion.question}`,
+            content: `Lütfen geçerli bir say�� girin. ${currentQuestion.question}`,
             timestamp: new Date(),
             isAnalysisStep: true
           };
@@ -905,7 +905,7 @@ Lütfen daha sonra tekrar deneyin veya destek ekibimizle iletişime geçin.`,
                             </span>
                           </div>
                           <div>
-                            <p className="font-semibold">Test Kullanıcı</p>
+                            <p className="font-semibold">Test Kullan��cı</p>
                             <p className="text-sm opacity-80">Token: {userTokens}</p>
                           </div>
                         </div>
@@ -987,275 +987,220 @@ Lütfen daha sonra tekrar deneyin veya destek ekibimizle iletişime geçin.`,
               </div>
             </div>
 
-            {/* Welcome State or Messages */}
-            {!currentChatId && messages.length === 0 ? (
-              // Welcome Content
-              <div className="flex-1 p-3 lg:p-4 bg-[#146448] overflow-hidden flex flex-col">
+            {/* Chat Container - Modern Layout */}
+            <div className="flex-1 flex justify-center bg-[#146448] overflow-hidden">
+              <div className="chat-container w-full max-w-[900px] flex flex-col overflow-hidden"
+                   style={{
+                     marginLeft: sidebarOpen ? '250px' : '0',
+                     transition: 'margin-left 0.3s ease-in-out'
+                   }}>
 
-                {/* Content Container - Perfectly Centered */}
-                <div className="flex-1 flex flex-col justify-center items-center w-full">
+                {/* Messages Area */}
+                <div className="flex-1 overflow-y-auto px-3">
+                  {!currentChatId && messages.length === 0 ? (
+                    // Welcome State
+                    <div className="flex flex-col justify-center items-center min-h-full py-8">
+                      <div className="text-center mb-8">
+                        <h1 className="font-bold text-[#f6f8f9] mb-6"
+                            style={{ fontSize: 'clamp(28px, 5vw, 42px)', lineHeight: 'clamp(32px, 6vw, 50px)' }}>
+                          Hoş Geldiniz, Test Kullanıcı!
+                        </h1>
 
-                  {/* Hero Title */}
-                  <div className="text-center mb-8">
-                    <h1 className="font-bold text-[#f6f8f9] mb-6"
-                        style={{ fontSize: 'clamp(28px, 5vw, 42px)', lineHeight: 'clamp(32px, 6vw, 50px)' }}>
-                      Hoş Geldiniz, Test Kullanıcı!
-                    </h1>
-
-                    {/* Description */}
-                    <div className="max-w-2xl mx-auto mb-8">
-                      <p className="text-[#f6f8f9]/90 mb-4"
-                         style={{ fontSize: 'clamp(16px, 3vw, 20px)', lineHeight: 'clamp(22px, 4vw, 28px)' }}>
-                        Aşağıdan Analiz Başlatabilirsiniz yada menüden düzenlemek istediğiniz geçmiş analizlerinden birini seçin.
-                      </p>
-                      <p className="text-[#baf200] font-medium"
-                         style={{ fontSize: 'clamp(15px, 2.8vw, 19px)', lineHeight: 'clamp(20px, 3.8vw, 26px)' }}>
-                        Tam havamdayım, çalışalım. Ya siz? Yazalım.
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Analysis Cards Grid - Perfectly Centered */}
-                  <div className="grid grid-cols-2 gap-4 max-w-md mx-auto">
-                    {analysisOptions.map((option) => (
-                      <button
-                        key={option.id}
-                        onClick={() => handleAnalysisClick(option.id)}
-                        className="h-24 p-3 bg-white/95 hover:bg-white rounded-xl text-center transition-all hover:scale-105 hover:shadow-lg group flex flex-col justify-center items-center border border-[#baf200]/20 hover:border-[#baf200]/40"
-                      >
-                        <div className="w-full h-full flex flex-col justify-center items-center">
-                          <h3 className="font-semibold text-[#1e3237] mb-1 group-hover:text-[#146448] transition-colors"
-                              style={{ fontSize: 'clamp(14px, 2.8vw, 17px)', lineHeight: 'clamp(17px, 3.2vw, 21px)' }}>
-                            {option.title}
-                          </h3>
-                          <p className="text-[#1e3237]/70 leading-tight"
-                             style={{ fontSize: 'clamp(11px, 2.2vw, 14px)', lineHeight: 'clamp(13px, 2.6vw, 17px)' }}>
-                            {option.description}
+                        <div className="max-w-2xl mx-auto mb-8">
+                          <p className="text-[#f6f8f9]/90 mb-4"
+                             style={{ fontSize: 'clamp(16px, 3vw, 20px)', lineHeight: 'clamp(22px, 4vw, 28px)' }}>
+                            Aşağıdan Analiz Başlatabilirsiniz yada menüden düzenlemek istediğiniz geçmiş analizlerinden birini seçin.
+                          </p>
+                          <p className="text-[#baf200] font-medium"
+                             style={{ fontSize: 'clamp(15px, 2.8vw, 19px)', lineHeight: 'clamp(20px, 3.8vw, 26px)' }}>
+                            Tam havamdayım, çalışalım. Ya siz? Yazalım.
                           </p>
                         </div>
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            ) : (
-              // Chat Messages
-              <div className="flex-1 overflow-y-auto p-3 lg:p-4 bg-[#146448] overscroll-contain"
-                   style={{ scrollBehavior: 'smooth' }}>
-                <div className="max-w-4xl mx-auto space-y-4 px-safe"
-                     style={{ marginLeft: 'max(16px, env(safe-area-inset-left))',
-                             marginRight: 'max(16px, env(safe-area-inset-right))' }}>
-                {messages.map((message) => (
-                  <motion.div
-                    key={message.id}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'} group`}
-                  >
-                    {message.isAnalysisStep && message.stepType === 'completed' && message.analysisData ? (
-                      // Special analysis result card
-                      <div className="max-w-full lg:max-w-4xl w-full">
-                        <div className="bg-gradient-to-r from-[#baf200]/20 to-[#baf200]/10 border border-[#baf200]/30 rounded-xl p-4 lg:p-6">
-                          <div className="flex items-center space-x-3 mb-4">
-                            <div className="w-10 h-10 bg-[#baf200] rounded-full flex items-center justify-center">
-                              <svg className="w-6 h-6 text-[#1e3237]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                              </svg>
-                            </div>
-                            <div>
-                              <h3 className="text-[#ffffff] font-semibold text-lg">Analiz Tamamlandı!</h3>
-                              <p className="text-[#baf200] text-sm">{message.timestamp.toLocaleTimeString('tr-TR')}</p>
-                            </div>
-                          </div>
-
-                          <div className="whitespace-pre-wrap text-[#ffffff] mb-6"
-                               style={{ fontSize: 'clamp(14px, 2.5vw, 16px)', lineHeight: 'clamp(20px, 3.5vw, 26px)' }}>
-                            {message.content}
-                          </div>
-
-                          {/* Action buttons */}
-                          <div className="flex flex-wrap gap-3">
-                            <button
-                              onClick={() => window.open(message.analysisData.pdfUrl, '_blank')}
-                              className="flex items-center space-x-2 bg-[#baf200] hover:bg-[#baf200]/80 text-[#1e3237] px-4 py-2 rounded-lg font-medium transition-colors"
-                            >
-                              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                              </svg>
-                              <span>PDF İndir</span>
-                            </button>
-
-                            <button
-                              onClick={() => navigator.clipboard.writeText(message.content)}
-                              className="flex items-center space-x-2 bg-[#f6f8f9]/20 hover:bg-[#f6f8f9]/30 text-[#ffffff] px-4 py-2 rounded-lg border border-[#f6f8f9]/20 transition-colors"
-                            >
-                              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                              </svg>
-                              <span>Kopyala</span>
-                            </button>
-
-                            <button
-                              onClick={() => window.location.href = '/dashboard/reports'}
-                              className="flex items-center space-x-2 bg-[#f6f8f9]/20 hover:bg-[#f6f8f9]/30 text-[#ffffff] px-4 py-2 rounded-lg border border-[#f6f8f9]/20 transition-colors"
-                            >
-                              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                              </svg>
-                              <span>Tüm Raporlar</span>
-                            </button>
-                          </div>
-                        </div>
                       </div>
-                    ) : message.isAnalysisStep && message.stepType === 'processing' ? (
-                      // Processing animation card
-                      <div className="max-w-xs sm:max-w-md lg:max-w-2xl">
-                        <div className="bg-[#f6f8f9]/10 border border-[#baf200]/30 rounded-lg p-4">
-                          <div className="flex items-center space-x-3 mb-3">
-                            <div className="w-8 h-8 bg-[#baf200] rounded-full flex items-center justify-center animate-pulse">
-                              <svg className="w-5 h-5 text-[#1e3237]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-                              </svg>
+
+                      <div className="grid grid-cols-2 gap-4 max-w-md mx-auto">
+                        {analysisOptions.map((option) => (
+                          <button
+                            key={option.id}
+                            onClick={() => handleAnalysisClick(option.id)}
+                            className="h-24 p-3 bg-white/95 hover:bg-white rounded-xl text-center transition-all hover:scale-105 hover:shadow-lg group flex flex-col justify-center items-center border border-[#baf200]/20 hover:border-[#baf200]/40"
+                          >
+                            <div className="w-full h-full flex flex-col justify-center items-center">
+                              <h3 className="font-semibold text-[#1e3237] mb-1 group-hover:text-[#146448] transition-colors"
+                                  style={{ fontSize: 'clamp(14px, 2.8vw, 17px)', lineHeight: 'clamp(17px, 3.2vw, 21px)' }}>
+                                {option.title}
+                              </h3>
+                              <p className="text-[#1e3237]/70 leading-tight"
+                                 style={{ fontSize: 'clamp(11px, 2.2vw, 14px)', lineHeight: 'clamp(13px, 2.6vw, 17px)' }}>
+                                {option.description}
+                              </p>
                             </div>
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  ) : (
+                    // Chat Messages
+                    <div className="py-4 space-y-4">
+                      {messages.map((message) => (
+                        <motion.div
+                          key={message.id}
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'} mb-4`}
+                        >
+                          {message.isAnalysisStep && message.stepType === 'completed' && message.analysisData ? (
+                            // Analysis Result Card
+                            <div className="w-full max-w-[85%]">
+                              <div className="bg-gradient-to-r from-[#baf200]/20 to-[#baf200]/10 border border-[#baf200]/30 rounded-lg p-4">
+                                <div className="flex items-center space-x-3 mb-4">
+                                  <div className="w-8 h-8 bg-[#baf200] rounded-full flex items-center justify-center">
+                                    <svg className="w-5 h-5 text-[#1e3237]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                  </div>
+                                  <div>
+                                    <h3 className="text-[#ffffff] font-semibold">Analiz Tamamlandı!</h3>
+                                    <p className="text-[#baf200] text-sm">{message.timestamp.toLocaleTimeString('tr-TR')}</p>
+                                  </div>
+                                </div>
+
+                                <div className="text-[#ffffff] mb-4" style={{ lineHeight: '1.5' }}>
+                                  {message.content}
+                                </div>
+
+                                <div className="flex flex-wrap gap-2">
+                                  <button
+                                    onClick={() => window.open(message.analysisData.pdfUrl, '_blank')}
+                                    className="bg-[#baf200] hover:bg-[#baf200]/80 text-[#1e3237] px-3 py-1.5 rounded text-sm font-medium transition-colors"
+                                  >
+                                    PDF İndir
+                                  </button>
+                                  <button
+                                    onClick={() => navigator.clipboard.writeText(message.content)}
+                                    className="bg-[#f6f8f9]/20 hover:bg-[#f6f8f9]/30 text-[#ffffff] px-3 py-1.5 rounded text-sm transition-colors"
+                                  >
+                                    Kopyala
+                                  </button>
+                                  <button
+                                    onClick={() => window.location.href = '/dashboard/reports'}
+                                    className="bg-[#f6f8f9]/20 hover:bg-[#f6f8f9]/30 text-[#ffffff] px-3 py-1.5 rounded text-sm transition-colors"
+                                  >
+                                    Tüm Raporlar
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+                          ) : message.isAnalysisStep && message.stepType === 'processing' ? (
+                            // Processing Card
+                            <div className="max-w-[70%]">
+                              <div className="bg-[#f6f8f9]/10 border border-[#baf200]/30 rounded-lg p-4">
+                                <div className="flex items-center space-x-3 mb-3">
+                                  <div className="w-6 h-6 bg-[#baf200] rounded-full flex items-center justify-center animate-pulse">
+                                    <svg className="w-4 h-4 text-[#1e3237]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                                    </svg>
+                                  </div>
+                                  <div className="flex space-x-1">
+                                    <div className="w-2 h-2 bg-[#baf200] rounded-full animate-bounce"></div>
+                                    <div className="w-2 h-2 bg-[#baf200] rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
+                                    <div className="w-2 h-2 bg-[#baf200] rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+                                  </div>
+                                </div>
+                                <p className="text-[#ffffff]" style={{ lineHeight: '1.5' }}>
+                                  {message.content}
+                                </p>
+                                <p className="text-[#ffffff]/60 mt-2 text-sm">
+                                  {message.timestamp.toLocaleTimeString('tr-TR')}
+                                </p>
+                              </div>
+                            </div>
+                          ) : (
+                            // Regular Message Bubble
+                            <div className={`chat-message max-w-[70%] rounded-lg ${
+                              message.role === 'user'
+                                ? 'bg-[#baf200] text-[#1e3237] ml-auto'
+                                : 'bg-[#f6f8f9]/10 text-[#ffffff] border border-[#f6f8f9]/20'
+                            }`}
+                                 style={{
+                                   padding: '10px 14px',
+                                   lineHeight: '1.5',
+                                   borderRadius: '10px'
+                                 }}>
+                              <p className="whitespace-pre-wrap">
+                                {message.content}
+                              </p>
+                              <p className={`mt-2 text-xs ${
+                                message.role === 'user' ? 'text-[#1e3237]/60' : 'text-[#ffffff]/60'
+                              }`}>
+                                {message.timestamp.toLocaleTimeString('tr-TR')}
+                              </p>
+                            </div>
+                          )}
+                        </motion.div>
+                      ))}
+
+                      {isTyping && (
+                        <motion.div
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          className="flex justify-start mb-4"
+                        >
+                          <div className="chat-message max-w-[70%] bg-[#f6f8f9]/10 text-[#f6f8f9] border border-[#f6f8f9]/20"
+                               style={{
+                                 padding: '10px 14px',
+                                 lineHeight: '1.5',
+                                 borderRadius: '10px'
+                               }}>
                             <div className="flex space-x-1">
                               <div className="w-2 h-2 bg-[#baf200] rounded-full animate-bounce"></div>
                               <div className="w-2 h-2 bg-[#baf200] rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
                               <div className="w-2 h-2 bg-[#baf200] rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
                             </div>
                           </div>
-                          <p className="text-[#ffffff] whitespace-pre-wrap"
-                             style={{ fontSize: 'clamp(14px, 2.5vw, 16px)', lineHeight: 'clamp(18px, 3.5vw, 24px)' }}>
-                            {message.content}
-                          </p>
-                          <p className="text-[#ffffff]/60 mt-2 text-sm">
-                            {message.timestamp.toLocaleTimeString('tr-TR')}
-                          </p>
-                        </div>
-                      </div>
-                    ) : (
-                      // Regular message
-                      <div className={`relative max-w-xs sm:max-w-md lg:max-w-2xl p-3 lg:p-4 rounded-lg ${
-                        message.role === 'user'
-                          ? 'bg-[#baf200] text-[#1e3237]'
-                          : 'bg-[#f6f8f9]/10 text-[#ffffff] border border-[#f6f8f9]/20'
-                      }`}>
-                        <p className={`whitespace-pre-wrap ${message.role === 'assistant' ? 'text-[#ffffff]' : ''}`}
-                           style={{ fontSize: 'clamp(14px, 2.5vw, 16px)', lineHeight: 'clamp(18px, 3.5vw, 24px)' }}>
-                          {message.content}
-                        </p>
-                        <p className={`mt-2 ${
-                          message.role === 'user' ? 'text-[#1e3237]/60' : 'text-[#ffffff]/60'
-                        }`}
-                           style={{ fontSize: 'clamp(11px, 2vw, 12px)', lineHeight: 'clamp(14px, 2.5vw, 16px)' }}>
-                          {message.timestamp.toLocaleTimeString('tr-TR')}
-                        </p>
-
-                        {/* Hover Menu */}
-                        <div className="absolute -top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-white rounded-lg shadow-lg border border-gray-200 p-1 flex space-x-1 z-10">
-                          {/* Kopyala */}
-                          <button
-                            onClick={() => navigator.clipboard.writeText(message.content)}
-                            className="p-1.5 hover:bg-gray-100 rounded text-gray-600 hover:text-gray-800 transition-colors"
-                            title="Kopyala"
-                          >
-                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                            </svg>
-                          </button>
-
-                          {/* Cevapla */}
-                          <button
-                            onClick={() => setInputValue(`"${message.content}" hakkında daha fazla bilgi verebilir misin?`)}
-                            className="p-1.5 hover:bg-gray-100 rounded text-gray-600 hover:text-gray-800 transition-colors"
-                            title="Cevapla"
-                          >
-                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6" />
-                            </svg>
-                          </button>
-
-                          {/* Paylaş */}
-                          <button
-                            onClick={() => {
-                              if (navigator.share) {
-                                navigator.share({ text: message.content });
-                              } else {
-                                navigator.clipboard.writeText(message.content);
-                              }
-                            }}
-                            className="p-1.5 hover:bg-gray-100 rounded text-gray-600 hover:text-gray-800 transition-colors"
-                            title="Paylaş"
-                          >
-                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.367 2.684 3 3 0 00-5.367-2.684z" />
-                            </svg>
-                          </button>
-
-                          {/* Kaydet */}
-                          <button
-                            className="p-1.5 hover:bg-gray-100 rounded text-gray-600 hover:text-gray-800 transition-colors"
-                            title="Kaydet"
-                          >
-                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
-                            </svg>
-                          </button>
-
-                          {/* Sil */}
-                          <button
-                            onClick={() => setMessages(prev => prev.filter(m => m.id !== message.id))}
-                            className="p-1.5 hover:bg-red-100 rounded text-red-600 hover:text-red-800 transition-colors"
-                            title="Sil"
-                          >
-                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                            </svg>
-                          </button>
-                        </div>
-                      </div>
-                    )}
-                  </motion.div>
-                ))}
-
-                {isTyping && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="flex justify-start"
-                  >
-                    <div className="max-w-xs sm:max-w-md lg:max-w-2xl p-3 lg:p-4 rounded-lg bg-[#f6f8f9]/10 text-[#f6f8f9] border border-[#f6f8f9]/20">
-                      <div className="flex space-x-1">
-                        <div className="w-2 h-2 bg-[#baf200] rounded-full animate-bounce"></div>
-                        <div className="w-2 h-2 bg-[#baf200] rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
-                        <div className="w-2 h-2 bg-[#baf200] rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
-                      </div>
+                        </motion.div>
+                      )}
+                      <div ref={messagesEndRef} />
                     </div>
-                  </motion.div>
-                )}
-                <div ref={messagesEndRef} />
+                  )}
                 </div>
               </div>
-            )}
+            </div>
 
           </div>
         </div>
 
         {/* Fixed Input Area at Bottom */}
-        <div className="relative bg-[#146448] border-t border-[#f6f8f9]/10">
-          <div className="flex w-full"
-               style={{
-                 paddingLeft: 'max(12px, env(safe-area-inset-left))',
-                 paddingRight: 'max(12px, env(safe-area-inset-right))'
-               }}>
+        <div className="fixed bottom-0 left-0 right-0 bg-[#146448] border-t border-[#f6f8f9]/10 z-40">
+          <div className="flex justify-center">
+            <div className="chat-container w-full max-w-[900px] p-3"
+                 style={{
+                   marginLeft: sidebarOpen ? '250px' : '0',
+                   transition: 'margin-left 0.3s ease-in-out',
+                   paddingLeft: 'max(12px, env(safe-area-inset-left))',
+                   paddingRight: 'max(12px, env(safe-area-inset-right))'
+                 }}>
 
-            {/* Sidebar width spacer */}
-            {sidebarOpen && (
-              <div className="hidden md:block w-64 sm:w-72 flex-shrink-0"></div>
-            )}
+              {/* Input Row */}
+              <div className="flex items-end space-x-3 mb-3">
+                {/* Attachment Icons */}
+                <div className="flex space-x-2">
+                  <button className="p-2 hover:bg-[#f6f8f9]/10 rounded-lg transition-colors focus:ring-2 focus:ring-[#baf200] focus:outline-none group">
+                    <svg className="w-5 h-5 text-[#f6f8f9] group-hover:text-[#baf200] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13" />
+                    </svg>
+                  </button>
 
-            {/* Input Container */}
-            <div className="flex-1 max-w-4xl mx-auto p-4">
-              <div className="flex items-end space-x-3">
+                  <button
+                    className="p-2 hover:bg-[#f6f8f9]/10 rounded-lg transition-colors focus:ring-2 focus:ring-[#baf200] focus:outline-none group"
+                    onClick={() => setIsRecording(!isRecording)}
+                  >
+                    <svg className={`w-5 h-5 transition-all duration-200 ${isRecording ? 'text-[#baf200] animate-pulse' : 'text-[#f6f8f9] group-hover:text-[#baf200]'}`} fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M12 1a3 3 0 013 3v8a3 3 0 01-6 0V4a3 3 0 013-3zM19 10v2a7 7 0 01-14 0v-2a1 1 0 012 0v2a5 5 0 0010 0v-2a1 1 0 012 0z"/>
+                    </svg>
+                  </button>
+                </div>
+
                 {/* Input Area */}
                 <div className="flex-1 relative">
                   <textarea
@@ -1263,10 +1208,11 @@ Lütfen daha sonra tekrar deneyin veya destek ekibimizle iletişime geçin.`,
                     value={inputValue}
                     onChange={(e) => {
                       setInputValue(e.target.value);
-                      // Auto-resize textarea
+                      // Auto-resize with max 4 lines
                       const textarea = e.target as HTMLTextAreaElement;
-                      textarea.style.height = '50px';
-                      const newHeight = Math.min(Math.max(textarea.scrollHeight, 50), 120);
+                      textarea.style.height = 'auto';
+                      const maxHeight = 24 * 4; // 4 lines × 24px line height
+                      const newHeight = Math.min(textarea.scrollHeight, maxHeight);
                       textarea.style.height = newHeight + 'px';
                     }}
                     onKeyDown={(e) => {
@@ -1276,65 +1222,27 @@ Lütfen daha sonra tekrar deneyin veya destek ekibimizle iletişime geçin.`,
                       }
                     }}
                     placeholder="SeraGPT'ye bir mesaj yazın..."
-                    className="w-full p-3 lg:p-4 pr-14 bg-white/95 border-2 border-[#baf200]/30 rounded-2xl resize-none focus:ring-2 focus:ring-[#baf200] focus:border-[#baf200] placeholder-[#1e3237]/50 text-[#1e3237] overflow-hidden transition-all duration-200 shadow-lg"
+                    className="w-full p-3 pr-12 bg-white/95 border border-[#baf200]/30 rounded-lg resize-none focus:ring-2 focus:ring-[#baf200] focus:border-[#baf200] placeholder-[#1e3237]/50 text-[#1e3237] overflow-hidden transition-all duration-200"
                     rows={1}
                     style={{
-                      minHeight: '50px',
-                      maxHeight: '120px',
-                      fontSize: 'clamp(14px, 2.5vw, 16px)',
-                      lineHeight: 'clamp(20px, 3.5vw, 24px)'
+                      minHeight: '48px',
+                      maxHeight: '96px', // 4 lines
+                      lineHeight: '24px'
                     }}
                   />
+
+                  {/* Send Button */}
                   <button
                     onClick={handleSendMessage}
                     disabled={!inputValue.trim()}
-                    className="absolute right-2 bottom-2 p-2.5 bg-gradient-to-r from-[#baf200] to-[#9ed31f] text-[#1e3237] rounded-xl hover:from-[#9ed31f] hover:to-[#baf200] transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed focus:ring-2 focus:ring-[#baf200] focus:outline-none shadow-md transform hover:scale-105"
+                    className="absolute right-2 top-1/2 transform -translate-y-1/2 p-2 bg-[#baf200] hover:bg-[#baf200]/80 text-[#1e3237] rounded-lg transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed focus:ring-2 focus:ring-[#baf200] focus:outline-none"
                     aria-label="Mesaj gönder"
                   >
-                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
                     </svg>
                   </button>
                 </div>
-              </div>
-
-              {/* Bottom Action Bar */}
-              <div className="flex items-center justify-center space-x-6 pt-3"
-                   style={{ paddingBottom: 'max(12px, env(safe-area-inset-bottom))' }}>
-
-                {/* File Upload */}
-                <button className="p-3 hover:bg-[#f6f8f9]/10 rounded-xl transition-colors focus:ring-2 focus:ring-[#baf200] focus:outline-none group">
-                  <svg className="w-6 h-6 text-[#f6f8f9] group-hover:text-[#baf200] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13" />
-                  </svg>
-                </button>
-
-                {/* Voice Recording */}
-                <button
-                  className="p-3 hover:bg-[#f6f8f9]/10 rounded-xl transition-colors focus:ring-2 focus:ring-[#baf200] focus:outline-none group"
-                  onClick={() => setIsRecording(!isRecording)}
-                >
-                  <svg className={`w-6 h-6 transition-all duration-200 ${isRecording ? 'text-[#baf200] animate-pulse' : 'text-[#f6f8f9] group-hover:text-[#baf200]'}`} fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 1a3 3 0 013 3v8a3 3 0 01-6 0V4a3 3 0 013-3zM19 10v2a7 7 0 01-14 0v-2a1 1 0 012 0v2a5 5 0 0010 0v-2a1 1 0 012 0zM12 18.93a7.5 7.5 0 002-.27v1.34a1 1 0 01-2 0v-1.07zM10 19.66v1.34a1 1 0 01-2 0v-1.34a7.5 7.5 0 002.27-.27z"/>
-                  </svg>
-                </button>
-
-                {/* Voice Chat */}
-                <button className="p-3 hover:bg-[#f6f8f9]/10 rounded-xl transition-colors focus:ring-2 focus:ring-[#baf200] focus:outline-none group">
-                  <svg className="w-6 h-6 text-[#f6f8f9] group-hover:text-[#baf200] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                  </svg>
-                </button>
-
-                {/* New Chat */}
-                <button
-                  onClick={handleNewChat}
-                  className="p-3 hover:bg-[#f6f8f9]/10 rounded-xl transition-colors focus:ring-2 focus:ring-[#baf200] focus:outline-none group"
-                >
-                  <svg className="w-6 h-6 text-[#f6f8f9] group-hover:text-[#baf200] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                  </svg>
-                </button>
               </div>
             </div>
           </div>
