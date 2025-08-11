@@ -64,6 +64,8 @@ export default function AIChatPage() {
   const [analysisProgress, setAnalysisProgress] = useState(0);
   const [currentSummary, setCurrentSummary] = useState('');
   const [voiceEnabled, setVoiceEnabled] = useState(false);
+  const [activeModal, setActiveModal] = useState<string | null>(null);
+  const [selectedTokenCard, setSelectedTokenCard] = useState<string | null>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -545,7 +547,7 @@ export default function AIChatPage() {
                   </h1>
                   <div className="mb-8 text-center">
                     <p className="text-[#f6f8f9]/90 mb-4 text-base md:text-lg text-center">
-                      Aşağıdan Analiz Başlatabilirsiniz yada menüden düzenlemek istediğiniz geçmiş analizlerinden birini seçin.
+                      A��ağıdan Analiz Başlatabilirsiniz yada menüden düzenlemek istediğiniz geçmiş analizlerinden birini seçin.
                     </p>
                     <p className="text-[#baf200] font-medium text-sm md:text-base text-center">
                       Tam havamdayım, çalışalım. Ya siz?
