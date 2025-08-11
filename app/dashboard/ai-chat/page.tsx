@@ -52,7 +52,7 @@ export default function AIChatPage() {
   const [chatSessions, setChatSessions] = useState<ChatSession[]>([
     {
       id: '1',
-      title: 'Yatır��m Geri Dönüş (ROI) Analizi',
+      title: 'Yatırım Geri Dönüş (ROI) Analizi',
       lastMessage: 'Sohbet Başlatıldı...',
       date: 'Şubat Başında',
       messageCount: 0,
@@ -180,6 +180,27 @@ export default function AIChatPage() {
   useEffect(() => {
     if (messagesEndRef.current) {
       messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [messages]);
+
+  // Auto-resize textarea
+  useEffect(() => {
+    const textarea = inputRef.current;
+    if (textarea) {
+      const resizeTextarea = () => {
+        textarea.style.height = 'auto';
+        textarea.style.height = Math.min(textarea.scrollHeight, 120) + 'px';
+      };
+
+      textarea.addEventListener('input', resizeTextarea);
+      return () => textarea.removeEventListener('input', resizeTextarea);
+    }
+  }, []);
+
+  // Close sidebar on mobile when message is sent
+  useEffect(() => {
+    if (messages.length > 0 && window.innerWidth < 768) {
+      setSidebarOpen(false);
     }
   }, [messages]);
 
