@@ -546,7 +546,7 @@ Lütfen daha sonra tekrar deneyin veya destek ekibimizle iletişime geçin.`,
         'Su geri kazanım sistemi ekleyin'
       ],
       equipment: [
-        'Aşamalı kurulum yap��n',
+        'Aşamalı kurulum yapın',
         'Bakım anlaşması yapın',
         'Genişleme için yer bırak��n'
       ],
@@ -1125,7 +1125,7 @@ Lütfen daha sonra tekrar deneyin veya destek ekibimizle iletişime geçin.`,
 
                   {/* Bottom Action Icons */}
                   <div className="flex items-center justify-center space-x-6 py-2"
-                       style={{ paddingBottom: 'max(12px, env(safe-area-inset-bottom))' }}>
+                       style={{ paddingBottom: 'max(16px, env(safe-area-inset-bottom))' }}>
 
                     {/* File Upload */}
                     <button className="p-3 hover:bg-[#f6f8f9]/10 rounded-xl transition-colors focus:ring-2 focus:ring-[#baf200] focus:outline-none group">
