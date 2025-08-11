@@ -305,7 +305,7 @@ export default function AIChatPage() {
                   initial={{ x: -300, opacity: 0 }}
                   animate={{ x: 0, opacity: 1 }}
                   exit={{ x: -300, opacity: 0 }}
-                  className="w-80 md:w-80 bg-[#1e3237] border-r border-[#f6f8f9]/10 flex flex-col h-full fixed md:relative z-50 md:z-auto"
+                  className="w-80 md:w-80 bg-[#1e3237] border-r border-[#f6f8f9]/10 flex flex-col h-full fixed md:relative z-50 md:z-auto max-w-[80vw] min-w-0"
                 >
                 {/* Sidebar Header - Logo */}
                 <div className="p-4 border-b border-[#f6f8f9]/10 bg-[#146448] text-white">
