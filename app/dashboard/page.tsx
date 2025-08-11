@@ -243,6 +243,89 @@ export default function DashboardPage() {
     }
   ];
 
+  // Analysis categories and data
+  const analysisCategories = [
+    {
+      id: 'recent',
+      title: 'Son Analizler',
+      description: 'En yakın zamanda yapılan analizler',
+      count: 8
+    },
+    {
+      id: 'roi',
+      title: 'ROI Analizleri',
+      description: 'Yatırım geri dönüş hesaplamaları',
+      count: 5
+    },
+    {
+      id: 'climate',
+      title: 'İklim Analizleri',
+      description: 'Bölgesel iklim uygunluk raporları',
+      count: 3
+    },
+    {
+      id: 'equipment',
+      title: 'Ekipman Analizleri',
+      description: 'Sera ekipman listesi ve önerileri',
+      count: 4
+    },
+    {
+      id: 'market',
+      title: 'Pazar Analizleri',
+      description: 'Ticaret ve fiyat analiz raporları',
+      count: 2
+    },
+    {
+      id: 'layout',
+      title: 'Yerleşim Planları',
+      description: '2D/3D sera tasarım projeleri',
+      count: 6
+    }
+  ];
+
+  const mockAnalyses = [
+    {
+      id: '1',
+      title: 'Domates Serası ROI Analizi',
+      type: 'roi',
+      date: '15 Ocak 2025',
+      status: 'Tamamlandı',
+      result: 'Pozitif (%23 geri dönüş)'
+    },
+    {
+      id: '2',
+      title: 'Antalya İklim Uygunluk Raporu',
+      type: 'climate',
+      date: '14 Ocak 2025',
+      status: 'Tamamlandı',
+      result: 'Çok Uygun'
+    },
+    {
+      id: '3',
+      title: '500m² Sera Ekipman Listesi',
+      type: 'equipment',
+      date: '13 Ocak 2025',
+      status: 'Tamamlandı',
+      result: '₺145,000 toplam maliyet'
+    },
+    {
+      id: '4',
+      title: 'Salatalık Pazar Analizi',
+      type: 'market',
+      date: '12 Ocak 2025',
+      status: 'İşleniyor',
+      result: 'Beklemede'
+    },
+    {
+      id: '5',
+      title: 'Modern Sera Yerleşim Planı',
+      type: 'layout',
+      date: '11 Ocak 2025',
+      status: 'Tamamlandı',
+      result: '3D Model Hazır'
+    }
+  ];
+
   // Dashboard menu items - Updated for modal system
   const dashboardMenuItems = [
     { id: 'user', title: 'Kullanıcı İşlemleri', modal: true },
