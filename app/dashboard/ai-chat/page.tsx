@@ -260,23 +260,9 @@ export default function AIChatPage() {
                       className="h-10 w-auto object-contain"
                     />
                   </div>
-                  <div className="mt-3 text-center">
-                    <h2 className="text-lg font-bold text-[#f6f8f9]">SeraGPT</h2>
-                    <p className="text-xs text-[#baf200]">AI Dashboard</p>
+                  <div className="mt-3 text-center text-xs text-[#baf200] leading-4">
+                    AI Dashboard
                   </div>
-                </div>
-
-                {/* Quick Actions */}
-                <div className="p-4 border-b border-[#f6f8f9]/10 bg-[#146448]">
-                  <button
-                    onClick={handleNewChat}
-                    className="w-full bg-[#baf200] text-[#1e3237] py-3 px-4 rounded-lg font-medium hover:bg-[#baf200]/90 transition-colors flex items-center justify-center space-x-2"
-                  >
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                    </svg>
-                    <span>Yeni Sohbet</span>
-                  </button>
                 </div>
 
                 {/* Chat History */}
@@ -327,7 +313,7 @@ export default function AIChatPage() {
                 </div>
 
                 {/* Menu Popup Button */}
-                <div className="p-4 border-t border-[#f6f8f9]/10 bg-[#1e3237] relative menu-popup-container">
+                <div className="p-4 border-t border-[#f6f8f9]/10 bg-[#baf200] relative menu-popup-container">
                   <button
                     onClick={() => setMenuPopupOpen(!menuPopupOpen)}
                     className="w-full p-3 bg-[#146448] hover:bg-[#146448]/80 rounded-lg transition-colors flex items-center justify-between group"
@@ -339,7 +325,7 @@ export default function AIChatPage() {
                         </svg>
                       </div>
                       <div className="text-left">
-                        <p className="text-sm font-medium text-[#f6f8f9]">Dashboard Menü</p>
+                        <p>Menü</p>
                         <p className="text-xs text-[#f6f8f9]/60">Tüm özellikler</p>
                       </div>
                     </div>
@@ -428,12 +414,8 @@ export default function AIChatPage() {
                 </button>
 
                 <div className="flex items-center space-x-3">
-                  <div className="w-8 h-8 bg-[#baf200] rounded-full flex items-center justify-center">
-                    <span className="text-[#1e3237] text-sm font-bold">💬</span>
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-[#f6f8f9] text-lg">AI Sohbet</h3>
-                    <p className="text-xs text-[#baf200]">SeraGPT AI Asistanı</p>
+                  <div className="ml-3 text-[#f6f8f9] text-lg">
+                    <p>Hoşgeldiniz</p>
                   </div>
                 </div>
               </div>
@@ -465,9 +447,6 @@ export default function AIChatPage() {
                 <div className="max-w-4xl mx-auto">
                   
                   <div className="text-center mb-8">
-                    <div className="w-16 h-16 bg-[#baf200] rounded-full flex items-center justify-center mx-auto mb-4">
-                      <span className="text-[#1e3237] text-2xl font-bold">S</span>
-                    </div>
                     <h1 className="text-3xl font-bold text-[#f6f8f9] mb-2">
                       Hoş Geldiniz, Test Kullanıcı!
                     </h1>
@@ -502,9 +481,6 @@ export default function AIChatPage() {
                   </div>
 
                   <div className="text-center">
-                    <p className="text-sm text-[#f6f8f9]/60">
-                      © 2025 SeraGPT. İSITMAX AI merkzinde.
-                    </p>
                   </div>
                 </div>
               </div>
@@ -588,11 +564,6 @@ export default function AIChatPage() {
                   </div>
                 </div>
                 
-                <div className="flex items-center justify-center mt-3">
-                  <p className="text-xs text-[#f6f8f9]/40 text-center">
-                    2025 SeraGPT. İSITMAX AI merkezinde.
-                  </p>
-                </div>
               </div>
             </div>
           </div>
