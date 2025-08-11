@@ -367,16 +367,22 @@ export default function AIChatPage() {
                               key={item.id}
                               onClick={() => {
                                 // Handle navigation based on item id
-                                if (item.id === 'homepage') {
-                                  window.location.href = '/';
-                                } else if (item.id === 'dashboard') {
-                                  window.location.href = '/dashboard';
+                                if (item.id === 'user') {
+                                  window.location.href = '/dashboard/kullanici-islemleri';
+                                } else if (item.id === 'tokens') {
+                                  window.location.href = '/dashboard/token-islemleri';
+                                } else if (item.id === 'ai-assistant') {
+                                  window.location.href = '/dashboard/ai-asistan-islemleri';
+                                } else if (item.id === 'support') {
+                                  window.location.href = '/destek';
                                 } else if (item.id === 'consulting') {
                                   window.location.href = '/danismanlik';
                                 } else if (item.id === 'turnkey') {
                                   window.location.href = '/anahtar-teslim-proje';
-                                } else if (item.id === 'support') {
-                                  window.location.href = '/destek';
+                                } else if (item.id === 'homepage') {
+                                  window.location.href = '/';
+                                } else if (item.id === 'dashboard') {
+                                  window.location.href = '/dashboard';
                                 }
                                 setMenuPopupOpen(false);
                               }}
