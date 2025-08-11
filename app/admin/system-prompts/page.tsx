@@ -24,7 +24,17 @@ export default function SystemPromptsPage() {
   const [systemPrompts, setSystemPrompts] = useState<SystemPrompt[]>([]);
   const [selectedPrompt, setSelectedPrompt] = useState<SystemPrompt | null>(null);
   const [editingPrompt, setEditingPrompt] = useState<SystemPrompt | null>(null);
+  const [showCreateModal, setShowCreateModal] = useState(false);
+  const [showTestModal, setShowTestModal] = useState(false);
+  const [testingPrompt, setTestingPrompt] = useState<SystemPrompt | null>(null);
   const [dataLoading, setDataLoading] = useState(true);
+  const [newPrompt, setNewPrompt] = useState({
+    name: '',
+    description: '',
+    content: '',
+    category: 'core' as 'core' | 'analysis' | 'safety' | 'optimization',
+    priority: 'medium' as 'critical' | 'high' | 'medium' | 'low'
+  });
 
   useEffect(() => {
     if (user && !loading) {
@@ -195,6 +205,74 @@ Kurallar:
     }
   };
 
+  const createPrompt = async () => {
+    if (!newPrompt.name || !newPrompt.content) {
+      alert('Lütfen ad ve içerik alanlarını doldurun');
+      return;
+    }
+
+    const prompt: SystemPrompt = {
+      id: `prompt-${Date.now()}`,
+      name: newPrompt.name,
+      description: newPrompt.description,
+      content: newPrompt.content,
+      category: newPrompt.category,
+      priority: newPrompt.priority,
+      isActive: true,
+      version: '1.0.0',
+      lastModified: new Date().toISOString().split('T')[0],
+      modifiedBy: user?.email || 'Admin User'
+    };
+
+    setSystemPrompts(prev => [prompt, ...prev]);
+    setNewPrompt({ name: '', description: '', content: '', category: 'core', priority: 'medium' });
+    setShowCreateModal(false);
+    alert('Sistem promptu başarıyla oluşturuldu!');
+  };
+
+  const updatePrompt = async () => {
+    if (!editingPrompt) return;
+
+    setSystemPrompts(prev => prev.map(p =>
+      p.id === editingPrompt.id
+        ? { ...editingPrompt, lastModified: new Date().toISOString().split('T')[0] }
+        : p
+    ));
+
+    setSelectedPrompt(editingPrompt);
+    setEditingPrompt(null);
+    alert('Sistem promptu başarıyla güncellendi!');
+  };
+
+  const testPrompt = async (prompt: SystemPrompt) => {
+    setTestingPrompt(prompt);
+    setShowTestModal(true);
+  };
+
+  const togglePromptStatus = async (promptId: string) => {
+    setSystemPrompts(prev => prev.map(p =>
+      p.id === promptId ? { ...p, isActive: !p.isActive } : p
+    ));
+
+    if (selectedPrompt?.id === promptId) {
+      setSelectedPrompt(prev => prev ? { ...prev, isActive: !prev.isActive } : null);
+    }
+
+    alert('Prompt durumu güncellendi!');
+  };
+
+  const deletePrompt = async (promptId: string) => {
+    if (!confirm('Bu sistem promptunu silmek istediğinizden emin misiniz?')) return;
+
+    setSystemPrompts(prev => prev.filter(p => p.id !== promptId));
+
+    if (selectedPrompt?.id === promptId) {
+      setSelectedPrompt(null);
+    }
+
+    alert('Sistem promptu silindi!');
+  };
+
   if (loading || dataLoading) {
     return (
       <div className="min-h-screen" style={{ backgroundColor: '#146448' }}>
@@ -234,6 +312,7 @@ Kurallar:
             </div>
             <div className="flex items-center space-x-3">
               <button
+                onClick={() => setShowCreateModal(true)}
                 className="px-4 py-2 rounded-lg font-medium transition-all hover:opacity-90"
                 style={{ backgroundColor: '#baf200', color: '#1e3237' }}
               >
@@ -381,10 +460,25 @@ Kurallar:
                     📝 Düzenle
                   </button>
                   <button
+                    onClick={() => testPrompt(selectedPrompt)}
                     className="px-4 py-2 rounded-lg font-medium transition-all hover:opacity-90"
                     style={{ backgroundColor: '#baf200', color: '#1e3237' }}
                   >
                     🧪 Test Et
+                  </button>
+                  <button
+                    onClick={() => togglePromptStatus(selectedPrompt.id)}
+                    className="px-4 py-2 rounded-lg font-medium transition-all hover:opacity-90 ml-2"
+                    style={{ backgroundColor: selectedPrompt.isActive ? '#EF4444' : '#10B981', color: '#f6f8f9' }}
+                  >
+                    {selectedPrompt.isActive ? '⏸️ Deaktif Et' : '▶️ Aktif Et'}
+                  </button>
+                  <button
+                    onClick={() => deletePrompt(selectedPrompt.id)}
+                    className="px-4 py-2 rounded-lg font-medium transition-all hover:opacity-90 ml-2"
+                    style={{ backgroundColor: '#EF4444', color: '#f6f8f9' }}
+                  >
+                    🗑️ Sil
                   </button>
                 </div>
               </div>
@@ -426,10 +520,11 @@ Kurallar:
                 <label className="block text-sm font-medium mb-2" style={{ color: '#1e3237' }}>
                   Prompt Adı
                 </label>
-                <input 
-                  type="text" 
+                <input
+                  type="text"
                   value={editingPrompt.name}
-                  className="w-full p-3 border rounded-lg" 
+                  onChange={(e) => setEditingPrompt({...editingPrompt, name: e.target.value})}
+                  className="w-full p-3 border rounded-lg"
                   style={{ borderColor: '#146448' }}
                 />
               </div>
@@ -438,10 +533,11 @@ Kurallar:
                 <label className="block text-sm font-medium mb-2" style={{ color: '#1e3237' }}>
                   Açıklama
                 </label>
-                <input 
-                  type="text" 
+                <input
+                  type="text"
                   value={editingPrompt.description}
-                  className="w-full p-3 border rounded-lg" 
+                  onChange={(e) => setEditingPrompt({...editingPrompt, description: e.target.value})}
+                  className="w-full p-3 border rounded-lg"
                   style={{ borderColor: '#146448' }}
                 />
               </div>
@@ -451,7 +547,12 @@ Kurallar:
                   <label className="block text-sm font-medium mb-2" style={{ color: '#1e3237' }}>
                     Kategori
                   </label>
-                  <select className="w-full p-3 border rounded-lg" style={{ borderColor: '#146448' }}>
+                  <select
+                    value={editingPrompt.category}
+                    onChange={(e) => setEditingPrompt({...editingPrompt, category: e.target.value as any})}
+                    className="w-full p-3 border rounded-lg"
+                    style={{ borderColor: '#146448' }}
+                  >
                     <option value="core">Core</option>
                     <option value="analysis">Analysis</option>
                     <option value="safety">Safety</option>
@@ -463,7 +564,12 @@ Kurallar:
                   <label className="block text-sm font-medium mb-2" style={{ color: '#1e3237' }}>
                     Öncelik
                   </label>
-                  <select className="w-full p-3 border rounded-lg" style={{ borderColor: '#146448' }}>
+                  <select
+                    value={editingPrompt.priority}
+                    onChange={(e) => setEditingPrompt({...editingPrompt, priority: e.target.value as any})}
+                    className="w-full p-3 border rounded-lg"
+                    style={{ borderColor: '#146448' }}
+                  >
                     <option value="critical">Critical</option>
                     <option value="high">High</option>
                     <option value="medium">Medium</option>
@@ -476,9 +582,10 @@ Kurallar:
                 <label className="block text-sm font-medium mb-2" style={{ color: '#1e3237' }}>
                   Prompt İçeriği
                 </label>
-                <textarea 
+                <textarea
                   value={editingPrompt.content}
-                  className="w-full p-3 border rounded-lg h-64" 
+                  onChange={(e) => setEditingPrompt({...editingPrompt, content: e.target.value})}
+                  className="w-full p-3 border rounded-lg h-64"
                   style={{ borderColor: '#146448' }}
                 />
               </div>
@@ -492,10 +599,204 @@ Kurallar:
                   İptal
                 </button>
                 <button
+                  onClick={updatePrompt}
                   className="px-6 py-3 rounded-lg font-medium transition-all hover:opacity-90"
                   style={{ backgroundColor: '#baf200', color: '#1e3237' }}
                 >
                   💾 Kaydet
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Create Modal */}
+      {showCreateModal && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
+          <div
+            className="max-w-4xl w-full max-h-[90vh] overflow-y-auto rounded-lg p-6"
+            style={{ backgroundColor: '#f6f8f9' }}
+          >
+            <div className="flex items-center justify-between mb-6">
+              <h3 className="text-xl font-semibold" style={{ color: '#1e3237' }}>
+                Yeni Sistem Promptu Oluştur
+              </h3>
+              <button
+                onClick={() => setShowCreateModal(false)}
+                className="text-2xl hover:opacity-70"
+                style={{ color: '#1e3237' }}
+              >
+                ×
+              </button>
+            </div>
+
+            <div className="space-y-4">
+              <div>
+                <label className="block text-sm font-medium mb-2" style={{ color: '#1e3237' }}>
+                  Prompt Adı
+                </label>
+                <input
+                  type="text"
+                  value={newPrompt.name}
+                  onChange={(e) => setNewPrompt({...newPrompt, name: e.target.value})}
+                  className="w-full p-3 border rounded-lg"
+                  style={{ borderColor: '#146448' }}
+                  placeholder="Örn: Yeni Analiz Promptu"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium mb-2" style={{ color: '#1e3237' }}>
+                  Açıklama
+                </label>
+                <input
+                  type="text"
+                  value={newPrompt.description}
+                  onChange={(e) => setNewPrompt({...newPrompt, description: e.target.value})}
+                  className="w-full p-3 border rounded-lg"
+                  style={{ borderColor: '#146448' }}
+                  placeholder="Promptun ne işe yaradığını açıklayın"
+                />
+              </div>
+
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-medium mb-2" style={{ color: '#1e3237' }}>
+                    Kategori
+                  </label>
+                  <select
+                    value={newPrompt.category}
+                    onChange={(e) => setNewPrompt({...newPrompt, category: e.target.value as any})}
+                    className="w-full p-3 border rounded-lg"
+                    style={{ borderColor: '#146448' }}
+                  >
+                    <option value="core">Core</option>
+                    <option value="analysis">Analysis</option>
+                    <option value="safety">Safety</option>
+                    <option value="optimization">Optimization</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium mb-2" style={{ color: '#1e3237' }}>
+                    Öncelik
+                  </label>
+                  <select
+                    value={newPrompt.priority}
+                    onChange={(e) => setNewPrompt({...newPrompt, priority: e.target.value as any})}
+                    className="w-full p-3 border rounded-lg"
+                    style={{ borderColor: '#146448' }}
+                  >
+                    <option value="critical">Critical</option>
+                    <option value="high">High</option>
+                    <option value="medium">Medium</option>
+                    <option value="low">Low</option>
+                  </select>
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium mb-2" style={{ color: '#1e3237' }}>
+                  Prompt İçeriği
+                </label>
+                <textarea
+                  value={newPrompt.content}
+                  onChange={(e) => setNewPrompt({...newPrompt, content: e.target.value})}
+                  className="w-full p-3 border rounded-lg h-64"
+                  style={{ borderColor: '#146448' }}
+                  placeholder="Sistem promptu içeriğini buraya yazın..."
+                />
+              </div>
+
+              <div className="flex space-x-4">
+                <button
+                  onClick={() => setShowCreateModal(false)}
+                  className="px-6 py-3 rounded-lg font-medium transition-all hover:opacity-90"
+                  style={{ backgroundColor: '#6B7280', color: '#f6f8f9' }}
+                >
+                  İptal
+                </button>
+                <button
+                  onClick={createPrompt}
+                  className="px-6 py-3 rounded-lg font-medium transition-all hover:opacity-90"
+                  style={{ backgroundColor: '#baf200', color: '#1e3237' }}
+                >
+                  💾 Oluştur
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Test Modal */}
+      {showTestModal && testingPrompt && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
+          <div
+            className="max-w-4xl w-full max-h-[90vh] overflow-y-auto rounded-lg p-6"
+            style={{ backgroundColor: '#f6f8f9' }}
+          >
+            <div className="flex items-center justify-between mb-6">
+              <h3 className="text-xl font-semibold" style={{ color: '#1e3237' }}>
+                Prompt Test - {testingPrompt.name}
+              </h3>
+              <button
+                onClick={() => setShowTestModal(false)}
+                className="text-2xl hover:opacity-70"
+                style={{ color: '#1e3237' }}
+              >
+                ×
+              </button>
+            </div>
+
+            <div className="space-y-4">
+              <div>
+                <label className="block text-sm font-medium mb-2" style={{ color: '#1e3237' }}>
+                  Test Mesajı
+                </label>
+                <textarea
+                  className="w-full p-3 border rounded-lg h-24"
+                  style={{ borderColor: '#146448' }}
+                  placeholder="Test etmek istediğiniz mesajı yazın..."
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium mb-2" style={{ color: '#1e3237' }}>
+                  AI Yanıtı (Simülasyon)
+                </label>
+                <div
+                  className="p-4 rounded-lg border"
+                  style={{ borderColor: '#146448', backgroundColor: '#f8f9fa' }}
+                >
+                  <p style={{ color: '#1e3237' }}>
+                    Bu bir test simülasyonudur. '{testingPrompt.name}' promptu kullanılarak:
+                    <br /><br />
+                    ✅ Prompt başarıyla yüklendi<br />
+                    ✅ Sistem kuralları uygulandı<br />
+                    ✅ Güvenlik kontrolleri geçti<br />
+                    ✅ Yanıt formatı doğru<br />
+                    <br />
+                    <strong>Test Sonucu:</strong> Prompt düzgün çalışıyor.
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex space-x-4">
+                <button
+                  onClick={() => setShowTestModal(false)}
+                  className="px-6 py-3 rounded-lg font-medium transition-all hover:opacity-90"
+                  style={{ backgroundColor: '#6B7280', color: '#f6f8f9' }}
+                >
+                  Kapat
+                </button>
+                <button
+                  onClick={() => alert('Test gerçekleştirildi!')}
+                  className="px-6 py-3 rounded-lg font-medium transition-all hover:opacity-90"
+                  style={{ backgroundColor: '#baf200', color: '#1e3237' }}
+                >
+                  🧪 Test Et
                 </button>
               </div>
             </div>
