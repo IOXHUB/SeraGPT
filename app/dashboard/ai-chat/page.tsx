@@ -270,17 +270,296 @@ Başlayalım! ${flowQuestions[0].question}`,
     setInputValue('');
     setIsTyping(true);
 
-    // Simulate AI response
+    // Handle analysis flow
+    if (analysisFlow?.isActive) {
+      await handleAnalysisResponse(inputValue);
+    } else {
+      // Regular chat response
+      setTimeout(() => {
+        const aiMessage: ChatMessage = {
+          id: (Date.now() + 1).toString(),
+          role: 'assistant',
+          content: `Merhaba! "${inputValue}" konusunda size yardımcı olmaktan mutluluk duyarım. Bu konu hakkında detaylı bilgi verebilir ve size özel öneriler geliştirebilirim.
+
+Eğer analiz yapmak isterseniz, yukarıdaki analiz kartlarından birini seçebilirsiniz.`,
+          timestamp: new Date(),
+        };
+        setMessages(prev => [...prev, aiMessage]);
+        setIsTyping(false);
+      }, 1500);
+    }
+  };
+
+  const handleAnalysisResponse = async (userInput: string) => {
+    if (!analysisFlow) {
+      setIsTyping(false);
+      return;
+    }
+
+    const currentQuestion = analysisFlow.questions[analysisFlow.currentStep];
+    let processedValue = userInput;
+
+    // Validate input based on question type
+    if (currentQuestion.type === 'number') {
+      const numValue = parseFloat(userInput);
+      if (isNaN(numValue)) {
+        setTimeout(() => {
+          const errorMessage: ChatMessage = {
+            id: (Date.now() + 1).toString(),
+            role: 'assistant',
+            content: `Lütfen geçerli bir sayı girin. ${currentQuestion.question}`,
+            timestamp: new Date(),
+            isAnalysisStep: true
+          };
+          setMessages(prev => [...prev, errorMessage]);
+          setIsTyping(false);
+        }, 1000);
+        return;
+      }
+      processedValue = numValue.toString();
+    }
+
+    // Validate required fields and custom validation
+    if (currentQuestion.validation && !currentQuestion.validation(processedValue)) {
+      setTimeout(() => {
+        const errorMessage: ChatMessage = {
+          id: (Date.now() + 1).toString(),
+          role: 'assistant',
+          content: `Girdiğiniz değer geçerli değil. ${currentQuestion.question}`,
+          timestamp: new Date(),
+          isAnalysisStep: true
+        };
+        setMessages(prev => [...prev, errorMessage]);
+        setIsTyping(false);
+      }, 1000);
+      return;
+    }
+
+    // Save the answer
+    const updatedFlow = {
+      ...analysisFlow,
+      collectedData: {
+        ...analysisFlow.collectedData,
+        [currentQuestion.id]: processedValue
+      },
+      currentStep: analysisFlow.currentStep + 1
+    };
+
+    setAnalysisFlow(updatedFlow);
+
     setTimeout(() => {
-      const aiMessage: ChatMessage = {
+      if (updatedFlow.currentStep >= updatedFlow.questions.length) {
+        // All questions answered, process analysis
+        processAnalysis(updatedFlow);
+      } else {
+        // Ask next question
+        const nextQuestion = updatedFlow.questions[updatedFlow.currentStep];
+        const nextMessage: ChatMessage = {
+          id: (Date.now() + 1).toString(),
+          role: 'assistant',
+          content: `Teşekkürler!
+
+**İlerleme:** ${updatedFlow.currentStep}/${updatedFlow.questions.length}
+
+${nextQuestion.question}${nextQuestion.options ? `\n\nSeçenekler: ${nextQuestion.options.join(', ')}` : ''}`,
+          timestamp: new Date(),
+          isAnalysisStep: true,
+          stepType: 'collecting'
+        };
+        setMessages(prev => [...prev, nextMessage]);
+      }
+      setIsTyping(false);
+    }, 1500);
+  };
+
+  const processAnalysis = async (flow: AnalysisFlow) => {
+    // Check token balance
+    if (userTokens <= 0) {
+      const tokenMessage: ChatMessage = {
         id: (Date.now() + 1).toString(),
         role: 'assistant',
-        content: `Merhaba! "${inputValue}" konusunda size yardımcı olmaktan mutluluk duyarım. Bu konu hakkında detaylı bilgi verebilir ve size özel öneriler geliştirebilirim. Ne öğrenmek istiyorsunuz?`,
+        content: `⚠️ **Yetersiz Token**
+
+Analizi başlatmak için en az 1 token gerekiyor.
+Mevcut bakiyeniz: ${userTokens}
+
+Token satın almak için [Token İşlemleri](/dashboard/token-islemleri) sayfasını ziyaret edebilirsiniz.`,
         timestamp: new Date(),
+        isAnalysisStep: true,
+        stepType: 'completed'
       };
-      setMessages(prev => [...prev, aiMessage]);
+      setMessages(prev => [...prev, tokenMessage]);
+      setAnalysisFlow(null);
       setIsTyping(false);
-    }, 2000);
+      return;
+    }
+
+    // Deduct token
+    setUserTokens(prev => prev - 1);
+
+    // Show processing message
+    const processingMessage: ChatMessage = {
+      id: (Date.now() + 1).toString(),
+      role: 'assistant',
+      content: `✅ **Analiz Başlatılıyor**
+
+Tüm bilgiler toplandı! 1 token düşürüldü.
+Kalan token: ${userTokens - 1}
+
+🔄 ${getAnalysisTitle(flow.type)} hazırlanıyor...
+
+Bu işlem 2-5 dakika sürebilir. Lütfen bekleyin.`,
+      timestamp: new Date(),
+      isAnalysisStep: true,
+      stepType: 'processing'
+    };
+    setMessages(prev => [...prev, processingMessage]);
+
+    // Simulate API call
+    setTimeout(async () => {
+      try {
+        const analysisResult = await callAnalysisAPI(flow);
+
+        const resultMessage: ChatMessage = {
+          id: (Date.now() + 2).toString(),
+          role: 'assistant',
+          content: `🎉 **${getAnalysisTitle(flow.type)} Tamamlandı!**
+
+${analysisResult.summary}
+
+**Ana Bulgular:**
+${analysisResult.keyFindings.map((finding: string) => `• ${finding}`).join('\n')}
+
+**Öneriler:**
+${analysisResult.recommendations.map((rec: string) => `• ${rec}`).join('\n')}
+
+📄 **Detaylı rapor PDF olarak hazırlandı.**
+🔗 [Raporu İndir](${analysisResult.pdfUrl})
+
+Başka bir analiz yapmak isterseniz yukarıdaki kartları kullanabilirsiniz!`,
+          timestamp: new Date(),
+          isAnalysisStep: true,
+          stepType: 'completed',
+          analysisData: analysisResult
+        };
+
+        setMessages(prev => [...prev, resultMessage]);
+        setAnalysisFlow(null);
+      } catch (error) {
+        const errorMessage: ChatMessage = {
+          id: (Date.now() + 2).toString(),
+          role: 'assistant',
+          content: `❌ **Analiz Hatası**
+
+Üzgünüz, analiz işlemi sırasında bir hata oluştu.
+Token iadesi yapıldı.
+
+Lütfen daha sonra tekrar deneyin veya destek ekibimizle iletişime geçin.`,
+          timestamp: new Date(),
+          isAnalysisStep: true,
+          stepType: 'completed'
+        };
+
+        setMessages(prev => [...prev, errorMessage]);
+        setUserTokens(prev => prev + 1); // Refund token
+        setAnalysisFlow(null);
+      }
+      setIsTyping(false);
+    }, 5000);
+  };
+
+  const callAnalysisAPI = async (flow: AnalysisFlow) => {
+    // Simulate API call to backend
+    const apiEndpoints = {
+      roi: '/api/analysis/roi',
+      climate: '/api/analysis/climate',
+      equipment: '/api/analysis/equipment',
+      market: '/api/analysis/market',
+      layout: '/api/analysis/layout'
+    };
+
+    // Mock successful response
+    return {
+      success: true,
+      summary: getMockSummary(flow),
+      keyFindings: getMockFindings(flow),
+      recommendations: getMockRecommendations(flow),
+      pdfUrl: `/api/analysis/${flow.type}/download?id=${Date.now()}`,
+      analysisId: `${flow.type}_${Date.now()}`
+    };
+  };
+
+  const getMockSummary = (flow: AnalysisFlow) => {
+    const summaries = {
+      roi: `${flow.collectedData.size}m² sera için ${flow.collectedData.budget} TL bütçe ile ROI analizi tamamlandı.`,
+      climate: `${flow.collectedData.location} konumu için ${flow.collectedData.crop} üretimi iklim analizi tamamlandı.`,
+      equipment: `${flow.collectedData.size}m² ${flow.collectedData.type} sera için ekipman analizi tamamlandı.`,
+      market: `${flow.collectedData.crop} için ${flow.collectedData.region} bölgesi pazar analizi tamamlandı.`,
+      layout: `${flow.collectedData.size}m² alan için yerleşim planı analizi tamamlandı.`
+    };
+    return summaries[flow.type];
+  };
+
+  const getMockFindings = (flow: AnalysisFlow) => {
+    const findings = {
+      roi: [
+        '5 yıl içinde %127 ROI bekleniyor',
+        'Geri ödeme süresi 2.8 yıl',
+        'Net bugünkü değer 485.000 TL pozitif'
+      ],
+      climate: [
+        'Seçilen bölge üretim için uygun',
+        'Yıllık ortalama sıcaklık ideal aralıkta',
+        'Enerji maliyeti %15 azaltılabilir'
+      ],
+      equipment: [
+        'Toplam ekipman maliyeti hesaplandı',
+        'Kurulum süresi 12-16 hafta',
+        'A+ enerji verimliliği sağlanabilir'
+      ],
+      market: [
+        'Hedef pazar büyüklüğü uygun',
+        'Fiyat trendi pozitif',
+        'Rekabet seviyesi orta'
+      ],
+      layout: [
+        'Optimal yerleşim planı oluşturuldu',
+        'Alan kullanım verimliliği %85',
+        'Lojistik akış optimize edildi'
+      ]
+    };
+    return findings[flow.type];
+  };
+
+  const getMockRecommendations = (flow: AnalysisFlow) => {
+    const recommendations = {
+      roi: [
+        'LED aydınlatma sistemi kullanın',
+        'Otomatik iklim kontrol sistemi ekleyin',
+        'Devlet teşviklerini değerlendirin'
+      ],
+      climate: [
+        'Enerji perde sistemi kurun',
+        'Doğal havalandırmayı artırın',
+        'Su geri kazanım sistemi ekleyin'
+      ],
+      equipment: [
+        'Aşamalı kurulum yapın',
+        'Bakım anlaşması yapın',
+        'Genişleme için yer bırakın'
+      ],
+      market: [
+        'Sözleşmeli üretim düşünün',
+        'Organik sertifika alın',
+        'Direkt satış kanalları oluşturun'
+      ],
+      layout: [
+        'Gelecek genişleme alanı bırakın',
+        'Araç parkı alanı planlayın',
+        'Depo alanını optimize edin'
+      ]
+    };
+    return recommendations[flow.type];
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
