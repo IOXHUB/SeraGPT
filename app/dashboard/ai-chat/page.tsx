@@ -230,6 +230,22 @@ export default function AIChatPage() {
     const flowQuestions = analysisFlows[analysisType]?.questions;
     if (!flowQuestions) return;
 
+    // Create new chat session for analysis if none exists
+    if (!currentChatId) {
+      const newChatId = Date.now().toString();
+      const newChat: ChatSession = {
+        id: newChatId,
+        title: getAnalysisTitle(analysisType),
+        lastMessage: 'Analiz başlatıldı...',
+        date: new Date().toLocaleDateString('tr-TR'),
+        messageCount: 0,
+        messages: []
+      };
+
+      setChatSessions(prev => [newChat, ...prev]);
+      setCurrentChatId(newChatId);
+    }
+
     const flow: AnalysisFlow = {
       type: analysisType,
       currentStep: 0,
