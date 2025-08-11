@@ -58,8 +58,15 @@ export default function AIChatPage() {
   const [favoriteMessages, setFavoriteMessages] = useState<Set<string>>(new Set());
   const [editingMessageId, setEditingMessageId] = useState<string | null>(null);
   const [editValue, setEditValue] = useState('');
+  const [isRecordingVoice, setIsRecordingVoice] = useState(false);
+  const [uploadedFiles, setUploadedFiles] = useState<File[]>([]);
+  const [replyingToMessage, setReplyingToMessage] = useState<string | null>(null);
+  const [analysisProgress, setAnalysisProgress] = useState(0);
+  const [currentSummary, setCurrentSummary] = useState('');
+  const [voiceEnabled, setVoiceEnabled] = useState(false);
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   // Mock data - Chat sessions
   const [chatSessions, setChatSessions] = useState<ChatSession[]>([
