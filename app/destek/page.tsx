@@ -1,527 +1,133 @@
 'use client';
 
-import { useState } from 'react';
-import { motion } from 'framer-motion';
 import Link from 'next/link';
-import SupportTicketModal from '../../components/SupportTicketModal';
 
 export default function DestekPage() {
-  const [activeSection, setActiveSection] = useState('quick-start');
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const sidebarSections = [
+  const supportOptions = [
     {
-      title: 'Destek',
-      id: 'destek',
-      icon: '❓',
-      items: [
-        { id: 'quick-start', title: 'Hızlı Başlangıç', href: '#quick-start' },
-        { id: 'account-setup', title: 'Hesap Kurulumu', href: '#account-setup' },
-        { id: 'first-analysis', title: 'İlk Analiz', href: '#first-analysis' },
-        { id: 'pdf-reports', title: 'PDF Raporları', href: '#pdf-reports' },
-        { id: 'troubleshooting', title: 'Sorun Giderme', href: '#troubleshooting' }
-      ]
+      id: 'quick-start',
+      title: 'Hızlı Başlangıç',
+      description: 'SeraGPT platformunu kullanmaya başlayın',
+      icon: (
+        <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M11,7V13H13V7H11M11,15V17H13V15H11Z"/>
+        </svg>
+      )
+    },
+    {
+      id: 'account-setup',
+      title: 'Hesap Kurulumu',
+      description: 'Hesabınızı kurun ve optimize edin',
+      icon: (
+        <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z"/>
+        </svg>
+      )
+    },
+    {
+      id: 'analysis-help',
+      title: 'Analiz Desteği',
+      description: 'Analiz süreçleri ve raporlarla ilgili yardım',
+      icon: (
+        <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M19,3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3M5,5H19V19H5V5M7,10V16H9V10H7M11,8V16H13V8H11M15,12V16H17V12H15Z"/>
+        </svg>
+      )
+    },
+    {
+      id: 'technical-support',
+      title: 'Teknik Destek',
+      description: 'Platform kullanımında karşılaştığınız sorunlar',
+      icon: (
+        <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M22.7 19L13.6 9.9C14.5 7.6 14 4.9 12.1 3C10.1 1 7.1 0.6 4.7 1.7L9 6L6 9L1.6 4.7C0.4 7.1 0.9 10.1 2.9 12.1C4.8 14 7.5 14.5 9.8 13.6L18.9 22.7C19.3 23.1 19.9 23.1 20.3 22.7L22.6 20.4C23.1 20 23.1 19.3 22.7 19Z"/>
+        </svg>
+      )
+    },
+    {
+      id: 'billing-support',
+      title: 'Faturalandırma',
+      description: 'Ödeme ve abonelik işlemleri',
+      icon: (
+        <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M11.8,10.9C9.53,10.31 8.8,9.7 8.8,8.75C8.8,7.66 9.81,6.9 11.5,6.9C13.28,6.9 13.94,7.75 14,9H16.21C16.14,7.28 15.09,5.7 13,5.19V3H10V5.16C8.06,5.58 6.5,6.84 6.5,8.77C6.5,11.08 8.41,12.23 11.2,12.9C13.7,13.5 14.2,14.38 14.2,15.31C14.2,16 13.71,17.1 11.5,17.1C9.44,17.1 8.63,16.18 8.5,15H6.32C6.44,17.19 8.08,18.42 10,18.83V21H13V18.85C14.95,18.5 16.5,17.35 16.5,15.3C16.5,12.46 14.07,11.5 11.8,10.9Z"/>
+        </svg>
+      )
+    },
+    {
+      id: 'live-chat',
+      title: 'Canlı Sohbet',
+      description: 'Uzmanlarımızla anlık görüşme',
+      icon: (
+        <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12,3C17.5,3 22,6.58 22,11C22,15.42 17.5,19 12,19C10.76,19 9.57,18.82 8.47,18.5C5.55,21 2,21 2,21C4.33,18.67 4.7,17.1 4.75,16.5C3.05,15.07 2,13.13 2,11C2,6.58 6.5,3 12,3Z"/>
+        </svg>
+      )
     }
   ];
 
-  const contentData = {
-    'quick-start': {
-      title: 'SeraGPT ile Başlayın',
-      subtitle: 'Help Center / Destek',
-      description: 'SeraGPT, sera yatırımı için güçlü bir analiz ve danışmanlık platformudur. Kolayca analiz oluşturabilir, uzman görüşleri alabilir ve projenizi dakikalar içinde başlatabilirsiniz.',
-      steps: [
-        {
-          title: '1. Ücretsiz Hesap Oluşturun',
-          items: [
-            'SeraGPT Paneline git',
-            'Ücretsiz hesabınızı oluşturun',
-            'E-posta doğrulaması yapın'
-          ]
-        },
-        {
-          title: '2. İlk Analizinizi Başlatın',
-          items: [
-            'Lokasyon bilgilerinizi girin',
-            'Hedef ürün ve sera tipini seçin',
-            'Analizinizi başlatın ve PDF raporunuzu alın'
-          ]
-        },
-        {
-          title: '3. Uzman Desteği Alın',
-          items: [
-            'Raporunuz hazır olduğunda uzmanlarımızla iletişime geçin',
-            'Projenizi detaylı görüşün',
-            'Anahtar teslim çözümler için fiyat teklifi alın'
-          ]
-        }
-      ]
-    },
-    'account-setup': {
-      title: 'Hesap Kurulumu',
-      subtitle: 'Help Center / Destek',
-      description: 'SeraGPT hesabınızı kurmak ve optimize etmek için rehber.',
-      steps: [
-        {
-          title: 'Hesap Oluşturma',
-          items: [
-            'E-posta adresinizi doğrulayın',
-            'Güçlü bir şifre belirleyin',
-            'Profil bilgilerinizi tamamlayın'
-          ]
-        },
-        {
-          title: 'Profil Ayarları',
-          items: [
-            'İş bilgilerinizi ekleyin',
-            'İlgi alanlarınızı belirtin',
-            'Bildirim tercihlerinizi ayarlayın'
-          ]
-        }
-      ]
-    },
-    'consultation-types': {
-      title: 'Danışmanlık Türleri',
-      subtitle: 'Help Center / Danışmanlık',
-      description: 'SeraGPT uzmanları size farklı alanlarda profesyonel danışmanlık hizmeti sunar.',
-      steps: [
-        {
-          title: 'Teknik Danışmanlık',
-          items: [
-            'Sera tasarımı ve mühendislik çözümleri',
-            'İklim kontrol sistemleri optimizasyonu',
-            'Enerji verimliliği danışmanlığı'
-          ]
-        },
-        {
-          title: 'Finansal Danışmanlık',
-          items: [
-            'Yatırım planlaması ve ROI analizi',
-            'Teşvik ve hibe başvuru desteği',
-            'Maliyet optimizasyonu stratejileri'
-          ]
-        },
-        {
-          title: 'Operasyonel Danışmanlık',
-          items: [
-            'Üretim planlama ve yönetimi',
-            'Pazarlama ve satış stratejileri',
-            'Kalite kontrol ve sertifikasyon'
-          ]
-        }
-      ]
-    },
-    'project-planning': {
-      title: 'Anahtar Teslim Proje Planlama',
-      subtitle: 'Help Center / Anahtar Teslim Sera',
-      description: 'Sera projenizi baştan sona profesyonel ekibimizle planlayın ve hayata geçirin.',
-      steps: [
-        {
-          title: 'Proje Başlangıcı',
-          items: [
-            'İhtiyaç analizi ve fizibilite çalışması',
-            'Saha incelemesi ve uygunluk değerlendirmesi',
-            'Ön tasarım ve kavramsal çözümler'
-          ]
-        },
-        {
-          title: 'Detay Tasarım',
-          items: [
-            'Yapısal mühendislik hesapları',
-            'Mekanik ve elektrik sistem tasarımı',
-            '3D modelleme ve görselleştirme'
-          ]
-        },
-        {
-          title: 'Uygulama',
-          items: [
-            'İnşaat ve montaj yönetimi',
-            'Kalite kontrol ve test süreçleri',
-            'Devreye alma ve kullanıcı eğitimi'
-          ]
-        }
-      ]
-    }
-  };
-
-  const currentContent = contentData[activeSection as keyof typeof contentData] || contentData['quick-start'];
-
   return (
-    <div className="min-h-screen" style={{ backgroundColor: '#146448' }}>
-      {/* Header - matching homepage */}
-      <header className="py-4" style={{ backgroundColor: '#146448' }}>
-        <div className="max-w-[1200px] mx-auto px-6">
-          <div className="flex items-center justify-between">
-            {/* Logo */}
-            <div className="flex items-center">
-              <Link href="/">
-                <img
-                  src="https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2F01c1e8a05ef6424b912d584875377957?format=webp&width=800"
-                  alt="SeraGPT Logo"
-                  className="h-12 w-auto object-contain"
-                />
+    <div className="min-h-screen bg-white">
+      {/* Header */}
+      <div className="bg-white border-b border-gray-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16">
+            <div className="flex items-center space-x-4">
+              <Link href="/" className="text-gray-600 hover:text-gray-900">
+                ← Ana Sayfa
               </Link>
-            </div>
-
-            {/* Navigation */}
-            <nav className="hidden md:flex items-center space-x-8">
-              <Link
-                href="/danismanlik"
-                className="font-medium transition-opacity hover:opacity-70"
-                style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '400' }}
-              >
-                Danışmanlık
-              </Link>
-              <Link
-                href="/anahtar-teslim-proje"
-                className="font-medium transition-opacity hover:opacity-70"
-                style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '400' }}
-              >
-                Anahtar Teslim Proje
-              </Link>
-              <Link
-                href="/destek"
-                className="font-medium transition-opacity hover:opacity-70"
-                style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '400' }}
-              >
-                Destek
-              </Link>
-              <Link
-                href="/blog"
-                className="font-medium transition-opacity hover:opacity-70"
-                style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '400' }}
-              >
-                Blog
-              </Link>
-            </nav>
-
-            {/* CTA Button */}
-            <div className="hidden md:flex items-center">
-              <Link
-                href="/auth/login"
-                className="px-6 py-3 rounded-xl font-medium transition-all hover:opacity-90"
-                style={{
-                  backgroundColor: '#baf200',
-                  color: '#1e3237',
-                  fontSize: '14px',
-                  fontWeight: '600'
-                }}
-              >
-                Ücretsiz Başla
-              </Link>
-            </div>
-          </div>
-        </div>
-      </header>
-
-      {/* Main Content Background */}
-      <div style={{ backgroundColor: '#f6f8f9', minHeight: '100vh' }}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <div className="flex flex-col lg:flex-row gap-8">
-            {/* Sidebar */}
-            <div className="w-full lg:w-64 flex-shrink-0">
-              <div className="bg-white rounded-xl shadow-sm p-4 border border-gray-100">
-                {sidebarSections.map((section) => (
-                  <div key={section.id} className="mb-6">
-                    <div className="flex items-center space-x-2 mb-3">
-                      <span className="text-lg">{section.icon}</span>
-                      <h3 className="font-semibold" style={{ color: '#1e3237' }}>{section.title}</h3>
-                    </div>
-                    <div className="space-y-1 ml-6">
-                      {section.items.map((item) => (
-                        <button
-                          key={item.id}
-                          onClick={() => setActiveSection(item.id)}
-                          className={`block w-full text-left px-3 py-2 text-sm rounded-lg transition-all duration-200 ${
-                            activeSection === item.id
-                              ? 'text-white font-medium'
-                              : 'hover:bg-gray-50'
-                          }`}
-                          style={{
-                            backgroundColor: activeSection === item.id ? '#146448' : 'transparent',
-                            color: activeSection === item.id ? '#ffffff' : '#1e3237'
-                          }}
-                        >
-                          {item.title}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-                ))}
-                <div className="mt-8 pt-6 border-t border-gray-200">
-                  <motion.button
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    onClick={() => setIsModalOpen(true)}
-                    className="w-full py-3 px-4 rounded-lg font-medium transition-colors flex items-center justify-center space-x-2"
-                    style={{ backgroundColor: '#baf200', color: '#1e3237' }}
-                  >
-                    <span className="text-lg">🎫</span>
-                    <span>Destek Kaydı Aç</span>
-                  </motion.button>
-                  <p className="text-xs text-gray-500 text-center mt-2">
-                    Özel sorununuz için destek talebi oluşturun
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* Main Content */}
-            <div className="flex-1">
-              <div className="bg-white rounded-xl shadow-sm p-8 border border-gray-100">
-                {/* Breadcrumb */}
-                <div className="text-sm text-gray-500 mb-6">
-                  {currentContent.subtitle}
-                </div>
-
-                {/* Title */}
-                <h1 className="text-3xl font-bold mb-6" style={{ color: '#1e3237' }}>
-                  {currentContent.title}
-                </h1>
-
-                {/* Description */}
-                <p className="text-lg mb-8 leading-relaxed opacity-80" style={{ color: '#1e3237' }}>
-                  {currentContent.description}
-                </p>
-
-                {/* Content Steps */}
-                <div className="space-y-8">
-                  {currentContent.steps.map((step, index) => (
-                    <motion.div
-                      key={index}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.3, delay: index * 0.1 }}
-                      className="border-l-4 pl-6"
-                      style={{ borderColor: '#146448' }}
-                    >
-                      <h2 className="text-xl font-semibold mb-4" style={{ color: '#1e3237' }}>
-                        {step.title}
-                      </h2>
-                      <div className="space-y-2">
-                        {step.items.map((item, itemIndex) => (
-                          <div key={itemIndex} className="flex items-start space-x-3">
-                            <div 
-                              className="flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center mt-0.5"
-                              style={{ backgroundColor: '#baf200' }}
-                            >
-                              <span className="text-xs font-medium" style={{ color: '#1e3237' }}>
-                                {itemIndex + 1}
-                              </span>
-                            </div>
-                            <p className="text-gray-700">{item}</p>
-                          </div>
-                        ))}
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
-
-                {/* Next Steps */}
-                <div className="mt-12 p-6 rounded-lg" style={{ backgroundColor: '#f6f8f9' }}>
-                  <h3 className="font-semibold mb-4" style={{ color: '#1e3237' }}>Sonraki Adımlar</h3>
-                  <div className="space-y-2">
-                    <p className="text-gray-700">
-                      • Hesabınızı özelleştirin ve farklı türde analizler deneyin
-                    </p>
-                    <p className="text-gray-700">
-                      • Uzman danışmanlık hizmetlerimizden faydalanın
-                    </p>
-                    <p className="text-gray-700">
-                      • Anahtar teslim sera projelerimizi keşfedin
-                    </p>
-                  </div>
-                </div>
-              </div>
+              <h1 className="text-xl font-semibold text-gray-900">Destek</h1>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Footer - matching homepage */}
-      <footer className="py-12" style={{ backgroundColor: '#146448' }}>
-        <div className="max-w-[1200px] mx-auto px-6">
-          <div className="grid md:grid-cols-4 gap-8">
-            
-            {/* Company Info */}
-            <div>
-              <div className="mb-4">
-                <img
-                  src="https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2F01c1e8a05ef6424b912d584875377957?format=webp&width=800"
-                  alt="SeraGPT Logo"
-                  className="h-12 w-auto object-contain"
-                />
-              </div>
-              <p 
-                className="leading-relaxed"
-                style={{ 
-                  color: '#f6f8f9', 
-                  fontSize: '14px', 
-                  fontWeight: '400' 
-                }}
-              >
-                AI destekli sera analiz platformu. Doğru yatırım, doğru analizle başlar.
-              </p>
-            </div>
+      {/* Content */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className="text-center mb-8">
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">Size Nasıl Yardımcı Olabiliriz?</h2>
+          <p className="text-gray-600">SeraGPT platformunu kullanırken ihtiyacınız olan desteği bulun</p>
+        </div>
 
-            {/* Services */}
-            <div>
-              <h3 
-                className="mb-4"
-                style={{ 
-                  color: '#f6f8f9', 
-                  fontSize: '14px', 
-                  fontWeight: '600' 
-                }}
-              >
-                Hizmetler
-              </h3>
-              <ul className="space-y-2">
-                <li>
-                  <Link 
-                    href="/auth/login" 
-                    className="transition-opacity hover:opacity-70"
-                    style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '400' }}
-                  >
-                    Ücretsiz Analiz Başlat
-                  </Link>
-                </li>
-                <li>
-                  <Link 
-                    href="/danismanlik" 
-                    className="transition-opacity hover:opacity-70"
-                    style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '400' }}
-                  >
-                    Danışmanlık AL
-                  </Link>
-                </li>
-                <li>
-                  <Link 
-                    href="/anahtar-teslim-proje" 
-                    className="transition-opacity hover:opacity-70"
-                    style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '400' }}
-                  >
-                    Anahtar Teslim Sera Teklifi İste
-                  </Link>
-                </li>
-              </ul>
-            </div>
-
-            {/* Support */}
-            <div>
-              <h3 
-                className="mb-4"
-                style={{ 
-                  color: '#f6f8f9', 
-                  fontSize: '14px', 
-                  fontWeight: '600' 
-                }}
-              >
-                Destek
-              </h3>
-              <ul className="space-y-2">
-                <li>
-                  <Link 
-                    href="/auth/login" 
-                    className="transition-opacity hover:opacity-70"
-                    style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '400' }}
-                  >
-                    Kullanıcı Paneli Giriş
-                  </Link>
-                </li>
-                <li>
-                  <Link 
-                    href="/destek" 
-                    className="transition-opacity hover:opacity-70"
-                    style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '400' }}
-                  >
-                    Destek Kaydı Aç
-                  </Link>
-                </li>
-                <li>
-                  <Link 
-                    href="/privacy" 
-                    className="transition-opacity hover:opacity-70"
-                    style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '400' }}
-                  >
-                    Gizlilik Politikası
-                  </Link>
-                </li>
-                <li>
-                  <Link 
-                    href="/terms" 
-                    className="transition-opacity hover:opacity-70"
-                    style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '400' }}
-                  >
-                    Kullanım Koşulları
-                  </Link>
-                </li>
-              </ul>
-            </div>
-
-            {/* Contact */}
-            <div>
-              <h3 
-                className="mb-4"
-                style={{ 
-                  color: '#f6f8f9', 
-                  fontSize: '14px', 
-                  fontWeight: '600' 
-                }}
-              >
-                İletişim
-              </h3>
-              <div className="space-y-2">
-                <p 
-                  style={{ 
-                    color: '#f6f8f9', 
-                    fontSize: '14px', 
-                    fontWeight: '400' 
-                  }}
-                >
-                  info@seragpt.com
-                </p>
-                <p 
-                  style={{ 
-                    color: '#f6f8f9', 
-                    fontSize: '14px', 
-                    fontWeight: '400' 
-                  }}
-                >
-                  0850 303 0 GPT
-                </p>
-                <p 
-                  style={{ 
-                    color: '#f6f8f9', 
-                    fontSize: '14px', 
-                    fontWeight: '400' 
-                  }}
-                >
-                  Türkiye
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* Bottom */}
-          <div className="border-t border-white/20 mt-8 pt-8 text-center">
-            <p 
-              style={{ 
-                color: '#f6f8f9', 
-                fontSize: '14px', 
-                fontWeight: '400' 
-              }}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {supportOptions.map((option) => (
+            <button
+              key={option.id}
+              className="bg-white border border-gray-200 rounded-lg p-6 hover:border-gray-300 hover:shadow-md transition-all duration-200 text-left group"
             >
-              © 2025 SeraGPT. Tüm hakları saklıdır.
-            </p>
+              <div className="flex flex-col items-center text-center space-y-4">
+                <div className="text-black group-hover:text-gray-700 transition-colors">
+                  {option.icon}
+                </div>
+                <div>
+                  <h3 className="text-lg font-medium text-gray-900 mb-2">
+                    {option.title}
+                  </h3>
+                  <p className="text-sm text-gray-600">
+                    {option.description}
+                  </p>
+                </div>
+              </div>
+            </button>
+          ))}
+        </div>
+
+        {/* Contact Section */}
+        <div className="mt-12 text-center">
+          <div className="bg-gray-50 rounded-lg p-8">
+            <h3 className="text-xl font-semibold text-gray-900 mb-4">Hala Yardıma İhtiyacınız Var?</h3>
+            <p className="text-gray-600 mb-6">Doğrudan bizimle iletişime geçin</p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <button className="bg-[#146448] text-white px-6 py-3 rounded-lg font-medium hover:bg-[#146448]/90 transition-colors">
+                Destek Talebi Oluştur
+              </button>
+              <button className="bg-gray-100 text-gray-700 px-6 py-3 rounded-lg font-medium hover:bg-gray-200 transition-colors">
+                E-posta Gönder
+              </button>
+            </div>
           </div>
         </div>
-      </footer>
-
-      {/* Support Ticket Modal */}
-      <SupportTicketModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-      />
+      </div>
     </div>
   );
 }
