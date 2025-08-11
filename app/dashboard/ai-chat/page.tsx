@@ -60,7 +60,7 @@ export default function AIChatPage() {
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [inputValue, setInputValue] = useState('');
   const [isTyping, setIsTyping] = useState(false);
-  const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   const [currentChatId, setCurrentChatId] = useState<string | null>(null);
   const [isRecording, setIsRecording] = useState(false);
   const [menuPopupOpen, setMenuPopupOpen] = useState(false);
@@ -594,7 +594,10 @@ Lütfen daha sonra tekrar deneyin veya destek ekibimizle iletişime geçin.`,
   // Track window size for responsive behavior
   useEffect(() => {
     const checkScreenSize = () => {
-      setIsDesktop(window.innerWidth >= 1024);
+      const desktop = window.innerWidth >= 1024;
+      setIsDesktop(desktop);
+      // Sidebar always open on desktop, closed on mobile
+      setSidebarOpen(desktop);
     };
 
     // Set initial value
@@ -688,19 +691,21 @@ Lütfen daha sonra tekrar deneyin veya destek ekibimizle iletişime geçin.`,
             {sidebarOpen && (
               <>
                 {/* Mobile Overlay */}
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  className="fixed inset-0 bg-black/70 z-50 md:hidden"
-                  onClick={() => setSidebarOpen(false)}
-                />
+                {!isDesktop && (
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    className="fixed inset-0 bg-black/70 z-50 lg:hidden"
+                    onClick={() => setSidebarOpen(false)}
+                  />
+                )}
 
                 <motion.div
-                  initial={{ x: -300, opacity: 0 }}
+                  initial={isDesktop ? false : { x: -300, opacity: 0 }}
                   animate={{ x: 0, opacity: 1 }}
-                  exit={{ x: -300, opacity: 0 }}
-                  className="w-64 sm:w-72 bg-[#1e3237] border-r border-[#f6f8f9]/20 flex flex-col h-full fixed md:relative z-[60] md:z-auto max-w-[70vw] min-w-0 shadow-2xl"
+                  exit={isDesktop ? false : { x: -300, opacity: 0 }}
+                  className="w-64 sm:w-72 bg-[#1e3237] border-r border-[#f6f8f9]/20 flex flex-col h-full fixed lg:relative z-[60] lg:z-auto max-w-[70vw] min-w-0 shadow-2xl"
                   style={{ backgroundColor: 'rgba(30, 50, 55, 0.98)' }}
                 >
                 {/* Sidebar Header - Logo */}
@@ -1054,44 +1059,91 @@ Lütfen daha sonra tekrar deneyin veya destek ekibimizle iletişime geçin.`,
 
               {/* Fixed Input at Bottom */}
               <div className="sticky bottom-0 bg-[#146448]/95 backdrop-blur border-t border-white/10">
-                <form 
-                  className="mx-auto w-full max-w-[900px] px-4 py-3 flex items-end gap-2"
-                  onSubmit={(e) => {
-                    e.preventDefault();
-                    handleSendMessage();
-                  }}
-                >
-                  <textarea 
-                    ref={inputRef}
-                    rows={1} 
-                    id="chat-input"
-                    value={inputValue}
-                    onChange={(e) => {
-                      setInputValue(e.target.value);
-                      // Auto-resize
-                      const textarea = e.target as HTMLTextAreaElement;
-                      textarea.style.height = 'auto';
-                      const newHeight = Math.min(textarea.scrollHeight, 120);
-                      textarea.style.height = newHeight + 'px';
-                    }}
-                    onKeyDown={(e) => {
-                      if (e.key === 'Enter' && !e.shiftKey) {
-                        e.preventDefault();
-                        handleSendMessage();
-                      }
-                    }}
-                    className="flex-1 resize-none bg-transparent outline-none text-[15px] leading-[1.55] placeholder-white/50 text-white border-none focus:ring-0"
-                    placeholder="SeraGPT'ye bir mesaj yazın…"
-                    style={{ minHeight: '24px', maxHeight: '120px' }}
-                  />
-                  <button 
-                    type="submit"
-                    disabled={!inputValue.trim()}
-                    className="shrink-0 rounded-lg bg-white/10 px-4 py-2 hover:bg-white/15 transition-colors disabled:opacity-50 text-white"
-                  >
-                    Gönder
-                  </button>
-                </form>
+                <div className="mx-auto w-full max-w-[900px] px-4 py-3">
+                  {/* Input Area */}
+                  <div className="mb-3">
+                    <div className="relative">
+                      <textarea
+                        ref={inputRef}
+                        value={inputValue}
+                        onChange={(e) => {
+                          setInputValue(e.target.value);
+                          // Auto-resize with max 4 lines
+                          const textarea = e.target as HTMLTextAreaElement;
+                          textarea.style.height = 'auto';
+                          const maxHeight = 24 * 4; // 4 lines × 24px line height
+                          const newHeight = Math.min(textarea.scrollHeight, maxHeight);
+                          textarea.style.height = newHeight + 'px';
+                        }}
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter' && !e.shiftKey) {
+                            e.preventDefault();
+                            handleSendMessage();
+                          }
+                        }}
+                        placeholder="SeraGPT'ye bir mesaj yazın..."
+                        className="w-full p-3 pr-12 bg-white/95 border border-[#baf200]/30 rounded-lg resize-none focus:ring-2 focus:ring-[#baf200] focus:border-[#baf200] placeholder-[#1e3237]/50 text-[#1e3237] overflow-hidden transition-all duration-200"
+                        rows={1}
+                        style={{
+                          minHeight: '48px',
+                          maxHeight: '96px', // 4 lines
+                          lineHeight: '24px'
+                        }}
+                      />
+
+                      {/* Send Button */}
+                      <button
+                        onClick={handleSendMessage}
+                        disabled={!inputValue.trim()}
+                        className="absolute right-2 top-1/2 transform -translate-y-1/2 p-2 bg-[#baf200] hover:bg-[#baf200]/80 text-[#1e3237] rounded-lg transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed focus:ring-2 focus:ring-[#baf200] focus:outline-none"
+                        aria-label="Mesaj gönder"
+                      >
+                        <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Bottom Action Icons */}
+                  <div className="flex items-center justify-center space-x-6 py-2"
+                       style={{ paddingBottom: 'max(12px, env(safe-area-inset-bottom))' }}>
+
+                    {/* File Upload */}
+                    <button className="p-3 hover:bg-[#f6f8f9]/10 rounded-xl transition-colors focus:ring-2 focus:ring-[#baf200] focus:outline-none group">
+                      <svg className="w-6 h-6 text-[#f6f8f9] group-hover:text-[#baf200] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13" />
+                      </svg>
+                    </button>
+
+                    {/* Voice Recording */}
+                    <button
+                      className="p-3 hover:bg-[#f6f8f9]/10 rounded-xl transition-colors focus:ring-2 focus:ring-[#baf200] focus:outline-none group"
+                      onClick={() => setIsRecording(!isRecording)}
+                    >
+                      <svg className={`w-6 h-6 transition-all duration-200 ${isRecording ? 'text-[#baf200] animate-pulse' : 'text-[#f6f8f9] group-hover:text-[#baf200]'}`} fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 1a3 3 0 013 3v8a3 3 0 01-6 0V4a3 3 0 013-3zM19 10v2a7 7 0 01-14 0v-2a1 1 0 012 0v2a5 5 0 0010 0v-2a1 1 0 012 0z"/>
+                      </svg>
+                    </button>
+
+                    {/* Voice Chat */}
+                    <button className="p-3 hover:bg-[#f6f8f9]/10 rounded-xl transition-colors focus:ring-2 focus:ring-[#baf200] focus:outline-none group">
+                      <svg className="w-6 h-6 text-[#f6f8f9] group-hover:text-[#baf200] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                      </svg>
+                    </button>
+
+                    {/* New Chat */}
+                    <button
+                      onClick={handleNewChat}
+                      className="p-3 hover:bg-[#f6f8f9]/10 rounded-xl transition-colors focus:ring-2 focus:ring-[#baf200] focus:outline-none group"
+                    >
+                      <svg className="w-6 h-6 text-[#f6f8f9] group-hover:text-[#baf200] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
 
