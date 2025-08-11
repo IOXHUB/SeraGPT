@@ -103,7 +103,7 @@ export default function AIChatPage() {
       id: 'market',
       title: 'Pazar ve Ticaret Verileri',
       description: 'Bölgesel ve ürüne göre pazar trendleri',
-      icon: '📊',
+      icon: '���',
       color: 'bg-green-500',
     },
     {
@@ -211,11 +211,21 @@ export default function AIChatPage() {
           {/* Sidebar */}
           <AnimatePresence>
             {sidebarOpen && (
-              <motion.div
-                initial={{ x: -300, opacity: 0 }}
-                animate={{ x: 0, opacity: 1 }}
-                exit={{ x: -300, opacity: 0 }}
-                className="w-80 lg:w-80 md:w-72 sm:w-64 bg-[#1e3237] border-r border-[#f6f8f9]/10 flex flex-col h-full"
+              <>
+                {/* Mobile Overlay */}
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  className="fixed inset-0 bg-black/50 z-40 md:hidden"
+                  onClick={() => setSidebarOpen(false)}
+                />
+
+                <motion.div
+                  initial={{ x: -300, opacity: 0 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  exit={{ x: -300, opacity: 0 }}
+                  className="w-80 md:w-80 bg-[#1e3237] border-r border-[#f6f8f9]/10 flex flex-col h-full fixed md:relative z-50 md:z-auto"
               >
                 {/* Sidebar Header */}
                 <div className="p-4 border-b border-[#f6f8f9]/10 bg-[#146448] text-white">
@@ -291,7 +301,8 @@ export default function AIChatPage() {
                     </div>
                   </div>
                 </div>
-              </motion.div>
+                </motion.div>
+              </>
             )}
           </AnimatePresence>
 
