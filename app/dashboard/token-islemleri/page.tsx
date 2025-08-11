@@ -37,7 +37,7 @@ export default function TokenIslemleriPage() {
     {
       id: 'usage',
       title: 'Kullanım İstatistikleri',
-      description: 'Token kullanım raporlar��nı inceleyin',
+      description: 'Token kullanım raporlarını inceleyin',
       icon: (
         <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
           <path d="M22,21H2V3H4V19H6V10H10V19H12V6H16V19H18V14H22V21Z"/>
@@ -67,16 +67,16 @@ export default function TokenIslemleriPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen" style={{ backgroundColor: '#146448' }}>
       {/* Header */}
-      <div className="bg-white border-b border-gray-200">
+      <div className="border-b" style={{ backgroundColor: '#146448', borderBottomColor: '#f6f8f9' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center space-x-4">
-              <Link href="/dashboard/ai-chat" className="text-gray-600 hover:text-gray-900">
+              <Link href="/dashboard/ai-chat" className="hover:opacity-70 transition-opacity" style={{ color: '#f6f8f9' }}>
                 ← Geri
               </Link>
-              <h1 className="text-xl font-semibold text-gray-900">Token İşlemleri</h1>
+              <h1 className="text-xl font-semibold" style={{ color: '#f6f8f9' }}>Token İşlemleri</h1>
             </div>
           </div>
         </div>
@@ -88,17 +88,18 @@ export default function TokenIslemleriPage() {
           {tokenOperations.map((operation) => (
             <button
               key={operation.id}
-              className="bg-white border border-gray-200 rounded-lg p-6 hover:border-gray-300 hover:shadow-md transition-all duration-200 text-left group"
+              className="rounded-lg p-6 hover:shadow-lg transition-all duration-200 text-left group border"
+              style={{ backgroundColor: '#f6f8f9', borderColor: '#146448' }}
             >
               <div className="flex flex-col items-center text-center space-y-4">
-                <div className="text-black group-hover:text-gray-700 transition-colors">
+                <div className="transition-colors" style={{ color: '#1e3237' }}>
                   {operation.icon}
                 </div>
                 <div>
-                  <h3 className="text-lg font-medium text-gray-900 mb-2">
+                  <h3 className="text-lg font-medium mb-2" style={{ color: '#1e3237' }}>
                     {operation.title}
                   </h3>
-                  <p className="text-sm text-gray-600">
+                  <p className="text-sm opacity-70" style={{ color: '#1e3237' }}>
                     {operation.description}
                   </p>
                 </div>
