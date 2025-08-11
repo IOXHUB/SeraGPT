@@ -385,14 +385,50 @@ export default function AIChatPage() {
                 {messages.map((message) => (
                   <div
                     key={message.id}
-                    className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
+                    className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'} group`}
                   >
-                    <div className={`max-w-[70%] p-3 rounded-lg ${
-                      message.role === 'user' 
-                        ? 'bg-[#baf200] text-[#146448]' 
+                    <div className={`max-w-[70%] p-3 rounded-lg relative ${
+                      message.role === 'user'
+                        ? 'bg-[#baf200] text-[#146448]'
                         : 'bg-white/10 text-[#f6f8f9]'
                     }`}>
                       {message.content}
+
+                      {/* Message Actions */}
+                      <div className={`opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex space-x-1 mt-2 ${
+                        message.role === 'user' ? 'justify-end' : 'justify-start'
+                      }`}>
+                        <button
+                          onClick={() => navigator.clipboard.writeText(message.content)}
+                          className="p-1.5 bg-white/10 border border-white/20 rounded hover:bg-white/20 transition-colors text-xs"
+                          title="Kopyala"
+                        >
+                          ⎘
+                        </button>
+                        <button
+                          className="p-1.5 bg-white/10 border border-white/20 rounded hover:bg-white/20 transition-colors text-xs"
+                          title="Alıntıla"
+                        >
+                          ❝
+                        </button>
+                        {message.role === 'assistant' && (
+                          <button
+                            className="p-1.5 bg-white/10 border border-white/20 rounded hover:bg-white/20 transition-colors text-xs"
+                            title="Paylaş"
+                          >
+                            ⤴
+                          </button>
+                        )}
+                        <button
+                          onClick={() => {
+                            setMessages(prev => prev.filter(m => m.id !== message.id));
+                          }}
+                          className="p-1.5 bg-red-500/20 border border-red-500/30 rounded hover:bg-red-500/30 transition-colors text-xs"
+                          title="Sil"
+                        >
+                          ✕
+                        </button>
+                      </div>
                     </div>
                   </div>
                 ))}
