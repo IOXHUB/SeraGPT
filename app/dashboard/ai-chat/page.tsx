@@ -684,9 +684,9 @@ export default function AIChatPage() {
           </nav>
           
           {/* Alt menü - Ayarlar */}
-          <div className="p-4 border-t border-white/10 mb-5">
+          <div className="p-4 border-t border-white/10 mb-5 relative">
             <button
-              className="w-full bg-[#baf200] border-l-4 border-[#baf200] rounded-lg p-3 hover:bg-[#baf200]/80 transition-colors relative"
+              className="w-full bg-[#baf200] border-l-4 border-[#baf200] rounded-lg p-3 hover:bg-[#baf200]/80 transition-colors"
               onClick={() => setMenuPopupOpen(!menuPopupOpen)}
             >
               <div className="flex items-center justify-between">
@@ -697,46 +697,46 @@ export default function AIChatPage() {
                   <span className="text-sm font-medium text-black">Ayarlar</span>
                 </div>
               </div>
+            </button>
 
-              {/* Settings Menu Popup */}
-              {menuPopupOpen && (
-                <div className="absolute bottom-full left-0 right-0 mb-2 bg-white rounded-lg shadow-xl border border-gray-200 z-50">
-                  <div className="p-4 border-b border-gray-200">
-                    <div className="flex items-center justify-between">
-                      <h3 className="text-sm font-medium text-gray-900">Dashboard Menü</h3>
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          setMenuPopupOpen(false);
-                        }}
-                        className="text-gray-400 hover:text-gray-600"
-                      >
-                        ×
-                      </button>
-                    </div>
-                  </div>
-                  <div className="py-2 max-h-80 overflow-y-auto">
-                    {dashboardMenuItems.map((item) => (
-                      <button
-                        key={item.id}
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          if (item.modal) {
-                            setActiveModal(item.id);
-                          } else if (item.href) {
-                            window.location.href = item.href;
-                          }
-                          setMenuPopupOpen(false);
-                        }}
-                        className="w-full px-4 py-3 text-left text-sm text-gray-700 hover:bg-gray-100 border-b border-gray-100 last:border-b-0"
-                      >
-                        {item.title}
-                      </button>
-                    ))}
+            {/* Settings Menu Popup - Taşındı button dışına */}
+            {menuPopupOpen && (
+              <div className="absolute bottom-full left-4 right-4 mb-2 bg-white rounded-lg shadow-xl border border-gray-200 z-50">
+                <div className="p-4 border-b border-gray-200">
+                  <div className="flex items-center justify-between">
+                    <h3 className="text-sm font-medium text-gray-900">Dashboard Menü</h3>
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setMenuPopupOpen(false);
+                      }}
+                      className="text-gray-400 hover:text-gray-600"
+                    >
+                      ×
+                    </button>
                   </div>
                 </div>
-              )}
-            </button>
+                <div className="py-2 max-h-80 overflow-y-auto">
+                  {dashboardMenuItems.map((item) => (
+                    <button
+                      key={item.id}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        if (item.modal) {
+                          setActiveModal(item.id);
+                        } else if (item.href) {
+                          window.location.href = item.href;
+                        }
+                        setMenuPopupOpen(false);
+                      }}
+                      className="w-full px-4 py-3 text-left text-sm text-gray-700 hover:bg-gray-100 border-b border-gray-100 last:border-b-0"
+                    >
+                      {item.title}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         </aside>
 
