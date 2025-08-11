@@ -963,7 +963,7 @@ Lütfen daha sonra tekrar deneyin veya destek ekibimizle iletişime geçin.`,
                   <div className="flex flex-col items-center justify-center h-full min-h-[400px] py-8 mx-auto w-full max-w-[900px] px-4">
                     <div className="text-center mb-8 max-w-2xl mx-auto">
                       <h1 className="font-bold text-[#f6f8f9] mb-6 text-3xl md:text-4xl lg:text-5xl text-center">
-                        AI Dashboard'a Hoşgeldiniz
+                        <p>Hoşgeldiniz</p>
                       </h1>
 
                       <div className="mb-8 text-center">
