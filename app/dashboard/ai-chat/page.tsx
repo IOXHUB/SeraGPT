@@ -184,7 +184,7 @@ export default function AIChatPage() {
     layout: {
       questions: [
         { id: 'size', question: 'Sera büyüklüğü (m²)?', type: 'number', required: true },
-        { id: 'shape', question: 'Arazi şekli nasıl?', type: 'select', options: ['Kare', 'Dikdörtgen', 'Düzensiz'], required: true },
+        { id: 'shape', question: 'Arazi şekli nasıl?', type: 'select', options: ['Kare', 'Dikd��rtgen', 'Düzensiz'], required: true },
         { id: 'orientation', question: 'Arazi yönelimi?', type: 'select', options: ['Kuzey-Güney', 'Doğu-Batı', 'Esnek'], required: true },
         { id: 'slope', question: 'Arazi eğimi var mı?', type: 'select', options: ['Düz', 'Hafif Eğimli', 'Eğimli'], required: true }
       ]
@@ -711,22 +711,9 @@ Lütfen daha sonra tekrar deneyin veya destek ekibimizle iletişime geçin.`,
                 {/* Sidebar Header - Logo */}
                 <div className="p-4 border-b border-[#f6f8f9]/10 bg-[#146448] text-white">
                   <div className="flex items-center justify-center">
-                    <img
-                      src="https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2F01c1e8a05ef6424b912d584875377957?format=webp&width=800"
-                      alt="SeraGPT Logo - AI Destekli Sera Yatırım Danışmanı"
-                      className="h-12 w-auto object-contain max-w-full"
-                      loading="eager"
-                      onError={(e) => {
-                        console.log('Logo loading error');
-                        (e.target as HTMLImageElement).style.display = 'none';
-                        // Show fallback text
-                        const fallback = document.createElement('div');
-                        fallback.className = 'text-[#baf200] font-bold text-xl';
-                        fallback.textContent = 'SeraGPT';
-                        (e.target as HTMLImageElement).parentNode?.appendChild(fallback);
-                      }}
-                      onLoad={() => console.log('Logo loaded successfully')}
-                    />
+                    <div className="text-[#baf200] font-bold text-xl">
+                      SeraGPT
+                    </div>
                   </div>
                   <div className="mt-3 text-center text-xs text-[#baf200] leading-4"
                        role="status"
