@@ -1,212 +1,11 @@
 'use client';
 
 import { useState } from 'react';
-import { motion } from 'framer-motion';
 import Link from 'next/link';
 import ConsultingRequestModal from '../../components/ConsultingRequestModal';
 
 export default function DanismanlikPage() {
-  const [activeSection, setActiveSection] = useState('project-consulting');
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
-  const sidebarSections = [
-    {
-      title: 'Proje Danışmanlığı',
-      id: 'consulting',
-      icon: '🎯',
-      items: [
-        { id: 'project-consulting', title: 'Proje Danışmanlığı Hizmeti', href: '#project-consulting' },
-        { id: 'preliminary-meeting', title: 'Ön Görüşme', href: '#preliminary-meeting' },
-        { id: 'data-analysis', title: 'Veri Analizi', href: '#data-analysis' },
-        { id: 'custom-report', title: 'Özel Rapor Hazırlama', href: '#custom-report' },
-        { id: 'qa-support', title: 'Soru-Cevap Desteği', href: '#qa-support' },
-        { id: 'implementation-guidance', title: 'Uygulama Yönlendirmesi', href: '#implementation-guidance' }
-      ]
-    },
-    {
-      title: 'Fiyatlandırma',
-      id: 'pricing',
-      icon: '💰',
-      items: [
-        { id: 'pricing-plans', title: 'Fiyatlandırma Planları', href: '#pricing-plans' },
-        { id: 'starter-consulting', title: 'Starter Danışmanlık', href: '#starter-consulting' },
-        { id: 'project-reporting', title: 'Proje Raporlama Paketi', href: '#project-reporting' },
-        { id: 'corporate-consulting', title: 'Kurumsal Danışmanlık', href: '#corporate-consulting' }
-      ]
-    },
-    {
-      title: 'Hedef Kitle',
-      id: 'target-audience',
-      icon: '👥',
-      items: [
-        { id: 'target-groups', title: 'Hedef Gruplar', href: '#target-groups' },
-        { id: 'investment-advisors', title: 'Yatırımcı Danışmanları', href: '#investment-advisors' },
-        { id: 'corporate-projects', title: 'Kurumsal Projeler', href: '#corporate-projects' },
-        { id: 'engineering-offices', title: 'Mühendislik Ofisleri', href: '#engineering-offices' }
-      ]
-    }
-  ];
-
-  const contentData = {
-    'project-consulting': {
-      title: 'Proje Danışmanlığı Hizmeti',
-      subtitle: 'Help Center / Danışmanlık',
-      description: 'Kullanıcının AI çıktısından daha fazlasına ihtiyacı varsa, tecrübeli mühendisler tarafından birebir proje danışmanlığı sunulur. 20+ yıl deneyimli uzman ekibimizle sera yatırımınızı en verimli şekilde planlayın.',
-      steps: [
-        {
-          title: '1. Ön Görüşme',
-          items: [
-            'Zoom/telefon ile proje ihtiyacı belirlenir',
-            'Lokasyon değerlendirmesi yapılır',
-            'Hedef ve beklentiler netleştirilir',
-            'Proje kapsamı ve sınırları çizilir'
-          ]
-        },
-        {
-          title: '2. Veri Analizi',
-          items: [
-            'Kullanıcının sunduğu veriler manuel olarak değerlendirilir',
-            'İklim verileri detaylı analiz edilir',
-            'Toprak ve saha koşulları incelenir',
-            'Pazar araştırması ve karlılık analizi yapılır'
-          ]
-        },
-        {
-          title: '3. Özel Rapor',
-          items: [
-            'Kullanıcıya özel oluşturulmuş PDF raporlar',
-            'Teknik çizimler ve 3D görselleştirmeler',
-            'Alternatif çözüm senaryoları sunumu',
-            'Maliyet analizi ve ROI hesaplamaları'
-          ]
-        },
-        {
-          title: '4. Soru-Cevap Desteği',
-          items: [
-            'Belirli bir süre (7 gün) teknik soru-cevap desteği',
-            'E-posta ve telefon üzerinden danışmanlık',
-            'Rapor detaylarının açıklanması',
-            'İlave sorular için uzman görüşü'
-          ]
-        },
-        {
-          title: '5. Uygulama Yönlendirmesi',
-          items: [
-            'Kurulum sürecinde yönlendirme',
-            'Altyapı hazırlıkları konusunda rehberlik',
-            'Satın alma süreçlerinde destek',
-            'Tedarikçi önerileri ve değerlendirme'
-          ]
-        }
-      ]
-    },
-    'preliminary-meeting': {
-      title: 'Ön Görüşme Süreci',
-      subtitle: 'Help Center / Danışmanlık',
-      description: 'Proje danışmanlığının ilk adımı olan ön görüşmede, uzman mühendislerimiz projenizin ihtiyaçlarını detaylı şekilde analiz eder.',
-      steps: [
-        {
-          title: 'Görüşme Hazırlığı',
-          items: [
-            'Ön bilgi formunun doldurulması',
-            'Saha fotoğrafları ve dokümanların hazırlanması',
-            'Bütçe ve zaman planının belirlenmesi',
-            'Hedef ürün ve kapasitesinin netleştirilmesi'
-          ]
-        },
-        {
-          title: 'Görüşme İçeriği',
-          items: [
-            'Proje hedeflerinin detaylı analizi',
-            'Saha koşullarının değerlendirilmesi',
-            'Teknik gereksinimlerin belirlenmesi',
-            'İlk önerilerin sunulması'
-          ]
-        }
-      ]
-    },
-    'pricing-plans': {
-      title: 'Fiyatlandırma Planları',
-      subtitle: 'Help Center / Danışmanlık',
-      description: 'Proje danışmanlığı hizmetlerimiz için esnek fiyatlandırma seçenekleri sunuyoruz. İhtiyacınıza uygun paketi seçebilirsiniz.',
-      steps: [
-        {
-          title: 'Starter Danışmanlık - 11.950₺',
-          items: [
-            'Temel proje değerlendirmesi',
-            '1 saatlik detaylı görüşme',
-            'Basit fizibilite raporu',
-            '3 gün soru-cevap desteği'
-          ]
-        },
-        {
-          title: 'Proje Raporlama + Görüşme Paketi - 44.900₺',
-          items: [
-            'Kapsamlı proje analizi ve raporlama',
-            'Detaylı teknik çizimler',
-            'Alternatif çözüm senaryoları',
-            '7 gün soru-cevap desteği',
-            'Uygulama sürecinde yönlendirme'
-          ]
-        },
-        {
-          title: 'Kurumsal Proje Danışmanlığı - Teklif Usulü',
-          items: [
-            'Büyük ölçekli projeler için özel fiyatlandırma',
-            'Uzun vadeli danışmanlık anlaşmaları',
-            'Saha ziyaretleri dahil',
-            'Sürekli teknik destek'
-          ]
-        }
-      ]
-    },
-    'target-groups': {
-      title: 'Hedef Kitle',
-      subtitle: 'Help Center / Danışmanlık',
-      description: 'Proje danışmanlığı hizmetimiz, sera yatırımı konusunda profesyonel destek ihtiyacı olan farklı grupları hedeflemektedir.',
-      steps: [
-        {
-          title: 'Yatırımcı Danışmanları',
-          items: [
-            'Sera yatırımı planlayan danışmanlık firmaları',
-            'Portföy yöneticileri',
-            'Yatırım bankalarının tarım departmanları',
-            'Özel sektör yatırım uzmanları'
-          ]
-        },
-        {
-          title: 'Kurumsal Projeler',
-          items: [
-            'Büyük ölçekli gıda üretim şirketleri',
-            'Devlet destekli tarım projeleri',
-            'Uluslararası kalkınma projeleri',
-            'Holding şirketlerinin tarım kolları'
-          ]
-        },
-        {
-          title: 'Ziraat Mühendisliği Ofisleri',
-          items: [
-            'Serbest mühendislik büroları',
-            'Tarımsal proje geliştirme şirketleri',
-            'Teknik danışmanlık firmaları',
-            'Sera teknolojileri uzmanları'
-          ]
-        },
-        {
-          title: 'Girişimciler',
-          items: [
-            'Sera altyapısı kurmak isteyen küçük ölçekli girişimciler',
-            'Orta ölçekli tarım işletmeleri',
-            'Aile işletmeleri',
-            'Yeni nesil çiftçiler'
-          ]
-        }
-      ]
-    }
-  };
-
-  const currentContent = contentData[activeSection as keyof typeof contentData] || contentData['project-consulting'];
 
   return (
     <div className="min-h-screen" style={{ backgroundColor: '#146448' }}>
@@ -269,129 +68,297 @@ export default function DanismanlikPage() {
         </div>
       </header>
 
-      {/* Main Content Background */}
-      <div style={{ backgroundColor: '#f6f8f9', minHeight: '100vh' }}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <div className="flex flex-col lg:flex-row gap-8">
-            {/* Sidebar */}
-            <div className="w-full lg:w-64 flex-shrink-0">
-              <div className="bg-white rounded-xl shadow-sm p-4 border border-gray-100">
-                {sidebarSections.map((section) => (
-                  <div key={section.id} className="mb-6">
-                    <div className="flex items-center space-x-2 mb-3">
-                      <span className="text-lg">{section.icon}</span>
-                      <h3 className="font-semibold" style={{ color: '#1e3237' }}>{section.title}</h3>
-                    </div>
-                    <div className="space-y-1 ml-6">
-                      {section.items.map((item) => (
-                        <button
-                          key={item.id}
-                          onClick={() => setActiveSection(item.id)}
-                          className={`block w-full text-left px-3 py-2 text-sm rounded-lg transition-all duration-200 ${
-                            activeSection === item.id
-                              ? 'text-white font-medium'
-                              : 'hover:bg-gray-50'
-                          }`}
-                          style={{
-                            backgroundColor: activeSection === item.id ? '#146448' : 'transparent',
-                            color: activeSection === item.id ? '#ffffff' : '#1e3237'
-                          }}
-                        >
-                          {item.title}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-                ))}
-                <div className="mt-8 pt-6 border-t border-gray-200">
-                  <motion.button
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    onClick={() => setIsModalOpen(true)}
-                    className="w-full py-3 px-4 rounded-lg font-medium transition-colors flex items-center justify-center space-x-2"
-                    style={{ backgroundColor: '#baf200', color: '#1e3237' }}
+      {/* 📋 Proje Danışmanlık Hizmetimiz Section */}
+      <section className="py-20">
+        <div className="max-w-[1200px] mx-auto px-6 text-center">
+          <div className="max-w-[800px] mx-auto">
+            {/* Main title */}
+            <div className="max-w-[576px] mx-auto mb-16">
+              <h2
+                className="leading-tight text-center mb-12"
+                style={{
+                  color: '#f6f8f9',
+                  fontSize: '36px',
+                  fontWeight: '600'
+                }}
+              >
+                Proje Danışmanlık Hizmetimiz
+              </h2>
+            </div>
+
+            {/* Consultation Packages */}
+            <div className="grid lg:grid-cols-2 gap-12 mb-16 max-w-[1000px] mx-auto">
+              {/* Package 1: Ön Fizibilite */}
+              <div className="text-left">
+                <div
+                  className="bg-white/5 rounded-xl p-8 border-2"
+                  style={{ borderColor: '#baf200' }}
+                >
+                  <h3
+                    className="mb-6 text-center"
+                    style={{
+                      color: '#baf200',
+                      fontSize: '24px',
+                      fontWeight: '600'
+                    }}
                   >
-                    <span className="text-lg">🎯</span>
-                    <span>Danışmanlık Talep Et</span>
-                  </motion.button>
-                  <p className="text-xs text-gray-500 text-center mt-2">
-                    Uzman danışmanlarımızla iletişime geçin
-                  </p>
+                    1. Ön Fizibilite Paketi
+                  </h3>
+
+                  <div className="space-y-4 mb-8">
+                    <div className="flex items-start space-x-3">
+                      <span style={{ color: '#baf200', fontSize: '16px' }}>•</span>
+                      <p style={{ color: '#f6f8f9', fontSize: '16px', fontWeight: '400' }}>
+                        Lokasyon, iklim ve ürün analizi
+                      </p>
+                    </div>
+                    <div className="flex items-start space-x-3">
+                      <span style={{ color: '#baf200', fontSize: '16px' }}>•</span>
+                      <p style={{ color: '#f6f8f9', fontSize: '16px', fontWeight: '400' }}>
+                        Tahmini yatırım maliyeti
+                      </p>
+                    </div>
+                    <div className="flex items-start space-x-3">
+                      <span style={{ color: '#baf200', fontSize: '16px' }}>•</span>
+                      <p style={{ color: '#f6f8f9', fontSize: '16px', fontWeight: '400' }}>
+                        Beklenen ROI (yatırım geri dönüş süresi)
+                      </p>
+                    </div>
+                    <div className="flex items-start space-x-3">
+                      <span style={{ color: '#baf200', fontSize: '16px' }}>•</span>
+                      <p style={{ color: '#f6f8f9', fontSize: '16px', fontWeight: '400' }}>
+                        Uygun sera tipleri önerisi
+                      </p>
+                    </div>
+                    <div className="flex items-start space-x-3">
+                      <span style={{ color: '#baf200', fontSize: '16px' }}>•</span>
+                      <p style={{ color: '#f6f8f9', fontSize: '16px', fontWeight: '400' }}>
+                        Devlet teşvik ve hibe uygunluğu değerlendirmesi
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="border-t border-white/20 pt-6">
+                    <div className="flex justify-between items-center mb-2">
+                      <span style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '500' }}>
+                        Teslim Süresi:
+                      </span>
+                      <span style={{ color: '#baf200', fontSize: '14px', fontWeight: '600' }}>
+                        5 iş günü
+                      </span>
+                    </div>
+                    <div className="mt-4">
+                      <p style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '400' }}>
+                        <strong style={{ color: '#baf200' }}>Amaç:</strong> Yatırımcıya "başlamaya değer mi?" sorusunun cevabını vermek
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            {/* Main Content */}
-            <div className="flex-1">
-              <div className="bg-white rounded-xl shadow-sm p-8 border border-gray-100">
-                {/* Breadcrumb */}
-                <div className="text-sm text-gray-500 mb-6">
-                  {currentContent.subtitle}
-                </div>
+              {/* Package 2: Teknik Projelendirme */}
+              <div className="text-left">
+                <div
+                  className="bg-white/5 rounded-xl p-8 border-2"
+                  style={{ borderColor: '#baf200' }}
+                >
+                  <h3
+                    className="mb-6 text-center"
+                    style={{
+                      color: '#baf200',
+                      fontSize: '24px',
+                      fontWeight: '600'
+                    }}
+                  >
+                    2. Teknik Projelendirme Paketi
+                  </h3>
 
-                {/* Title */}
-                <h1 className="text-3xl font-bold mb-6" style={{ color: '#1e3237' }}>
-                  {currentContent.title}
-                </h1>
+                  <div className="space-y-4 mb-8">
+                    <div className="flex items-start space-x-3">
+                      <span style={{ color: '#baf200', fontSize: '16px' }}>•</span>
+                      <p style={{ color: '#f6f8f9', fontSize: '16px', fontWeight: '400' }}>
+                        Ön Fizibilite + detaylı teknik çizimler
+                      </p>
+                    </div>
+                    <div className="flex items-start space-x-3">
+                      <span style={{ color: '#baf200', fontSize: '16px' }}>•</span>
+                      <p style={{ color: '#f6f8f9', fontSize: '16px', fontWeight: '400' }}>
+                        Ekipman listesi ve marka/model önerileri
+                      </p>
+                    </div>
+                    <div className="flex items-start space-x-3">
+                      <span style={{ color: '#baf200', fontSize: '16px' }}>•</span>
+                      <p style={{ color: '#f6f8f9', fontSize: '16px', fontWeight: '400' }}>
+                        Isıtma, soğutma, sulama, otomasyon projeleri
+                      </p>
+                    </div>
+                    <div className="flex items-start space-x-3">
+                      <span style={{ color: '#baf200', fontSize: '16px' }}>•</span>
+                      <p style={{ color: '#f6f8f9', fontSize: '16px', fontWeight: '400' }}>
+                        Enerji ve su tüketim hesapları
+                      </p>
+                    </div>
+                    <div className="flex items-start space-x-3">
+                      <span style={{ color: '#baf200', fontSize: '16px' }}>•</span>
+                      <p style={{ color: '#f6f8f9', fontSize: '16px', fontWeight: '400' }}>
+                        Üretim kapasitesi planı
+                      </p>
+                    </div>
+                  </div>
 
-                {/* Description */}
-                <p className="text-lg mb-8 leading-relaxed opacity-80" style={{ color: '#1e3237' }}>
-                  {currentContent.description}
-                </p>
-
-                {/* Content Steps */}
-                <div className="space-y-8">
-                  {currentContent.steps.map((step, index) => (
-                    <motion.div
-                      key={index}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.3, delay: index * 0.1 }}
-                      className="border-l-4 pl-6"
-                      style={{ borderColor: '#146448' }}
-                    >
-                      <h2 className="text-xl font-semibold mb-4" style={{ color: '#1e3237' }}>
-                        {step.title}
-                      </h2>
-                      <div className="space-y-2">
-                        {step.items.map((item, itemIndex) => (
-                          <div key={itemIndex} className="flex items-start space-x-3">
-                            <div 
-                              className="flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center mt-0.5"
-                              style={{ backgroundColor: '#baf200' }}
-                            >
-                              <span className="text-xs font-medium" style={{ color: '#1e3237' }}>
-                                {itemIndex + 1}
-                              </span>
-                            </div>
-                            <p className="text-gray-700">{item}</p>
-                          </div>
-                        ))}
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
-
-                {/* Next Steps */}
-                <div className="mt-12 p-6 rounded-lg" style={{ backgroundColor: '#f6f8f9' }}>
-                  <h3 className="font-semibold mb-4" style={{ color: '#1e3237' }}>Sonraki Adımlar</h3>
-                  <div className="space-y-2">
-                    <p className="text-gray-700">
-                      • Size uygun danışmanlık paketini seçin
-                    </p>
-                    <p className="text-gray-700">
-                      • Ön görüşme için randevu alın
-                    </p>
-                    <p className="text-gray-700">
-                      • Proje detaylarınızı uzmanlarımızla paylaşın
-                    </p>
+                  <div className="border-t border-white/20 pt-6">
+                    <div className="flex justify-between items-center mb-2">
+                      <span style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '500' }}>
+                        Teslim Süresi:
+                      </span>
+                      <span style={{ color: '#baf200', fontSize: '14px', fontWeight: '600' }}>
+                        10–15 iş günü
+                      </span>
+                    </div>
+                    <div className="mt-4">
+                      <p style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '400' }}>
+                        <strong style={{ color: '#baf200' }}>Amaç:</strong> Yatırımın tüm teknik altyapısını netleştirmek
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
+
+            {/* CTA Button - Updated to open modal */}
+            <div className="mb-6">
+              <button
+                onClick={() => setIsModalOpen(true)}
+                className="hero-cta-button inline-block px-8 py-4 rounded-xl font-medium transition-all hover:opacity-90 hover:scale-105 transform"
+                style={{
+                  backgroundColor: '#baf200',
+                  color: '#1e3237',
+                  fontSize: '16px',
+                  fontWeight: '600'
+                }}
+              >
+                DANIŞMANLIK TALEBİ OLUŞTUR
+              </button>
+            </div>
+
+            {/* Bottom note */}
+            <p
+              className="text-center"
+              style={{
+                color: '#f6f8f9',
+                fontSize: '14px',
+                fontWeight: '400'
+              }}
+            >
+              Profesyonel danışmanlık ile doğru adımları atın.
+            </p>
           </div>
         </div>
-      </div>
+      </section>
+
+      {/* 🎁 Referanslar Section */}
+      <section className="py-16">
+        <div className="max-w-[1200px] mx-auto px-6 text-center">
+          <div className="max-w-[800px] mx-auto flex flex-col">
+            <h2
+              className="mx-auto mb-8"
+              style={{
+                color: '#f6f8f9',
+                fontSize: '36px',
+                fontWeight: '600'
+              }}
+            >
+              Referanslarımız
+            </h2>
+
+            <div className="max-w-[576px] mx-auto mb-12">
+              <p
+                className="leading-relaxed text-center"
+                style={{
+                  color: '#f6f8f9',
+                  fontSize: '20px',
+                  fontWeight: '400'
+                }}
+              >
+                Fikir aşamasından projelendirmeye; Kurulum'dan üretim danışmanlığına kadar profesyonel hizmet
+              </p>
+            </div>
+
+            {/* Image Gallery - 900px with horizontal scrolling */}
+            <div className="max-w-[900px] mx-auto mb-8 relative">
+              <div className="overflow-x-auto scrollbar-hide" id="gallery-container">
+                <div className="flex space-x-4 pb-4" style={{ width: 'fit-content' }}>
+                  <div className="flex-shrink-0 w-[580px] h-[300px] rounded-xl overflow-hidden">
+                    <img
+                      src="https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2F9d3332e2ad3c411884d29aa35f7a626d"
+                      alt="Sera Projesi 1"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="flex-shrink-0 w-[580px] h-[300px] rounded-xl overflow-hidden">
+                    <div className="w-full h-full bg-gradient-to-br from-green-400 via-green-500 to-green-600 flex items-center justify-center">
+                      <div className="text-center text-white">
+                        <div className="text-4xl mb-2">🌱</div>
+                        <p className="text-lg font-semibold">Domates Serası</p>
+                        <p className="text-sm opacity-90">Antalya - 5000m²</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex-shrink-0 w-[580px] h-[300px] rounded-xl overflow-hidden">
+                    <div className="w-full h-full bg-gradient-to-br from-blue-400 via-blue-500 to-blue-600 flex items-center justify-center">
+                      <div className="text-center text-white">
+                        <div className="text-4xl mb-2">🥒</div>
+                        <p className="text-lg font-semibold">Salatalık Serası</p>
+                        <p className="text-sm opacity-90">İzmir - 3000m²</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Navigation Arrows */}
+              <button
+                className="absolute left-4 top-1/2 transform -translate-y-1/2 w-10 h-10 rounded-full flex items-center justify-center transition-all hover:scale-110"
+                style={{ backgroundColor: '#baf200' }}
+                onClick={() => {
+                  const container = document.getElementById('gallery-container');
+                  container?.scrollBy({ left: -300, behavior: 'smooth' });
+                }}
+              >
+                <svg className="w-6 h-6" style={{ color: '#1e3237' }} fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clipRule="evenodd" />
+                </svg>
+              </button>
+
+              <button
+                className="absolute right-4 top-1/2 transform -translate-y-1/2 w-10 h-10 rounded-xl flex items-center justify-center transition-all hover:scale-110"
+                style={{ backgroundColor: '#baf200' }}
+                onClick={() => {
+                  const container = document.getElementById('gallery-container');
+                  container?.scrollBy({ left: 300, behavior: 'smooth' });
+                }}
+              >
+                <svg className="w-6 h-6" style={{ color: '#1e3237' }} fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
+                </svg>
+              </button>
+            </div>
+
+            <button
+              onClick={() => setIsModalOpen(true)}
+              className="inline-block px-8 py-4 rounded-xl font-medium transition-all hover:opacity-90 mx-auto"
+              style={{
+                backgroundColor: '#baf200',
+                color: '#1e3237',
+                fontSize: '16px',
+                fontWeight: '600'
+              }}
+            >
+              Proje Danışmanlığı
+            </button>
+          </div>
+        </div>
+      </section>
 
       {/* Footer - matching homepage */}
       <footer className="py-12" style={{ backgroundColor: '#146448' }}>
@@ -567,7 +534,7 @@ export default function DanismanlikPage() {
                 fontWeight: '400' 
               }}
             >
-              �� 2025 SeraGPT. Tüm hakları saklıdır.
+              © 2025 SeraGPT. Tüm hakları saklıdır.
             </p>
           </div>
         </div>
