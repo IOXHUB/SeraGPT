@@ -234,6 +234,69 @@ export default function AIChatPage() {
     return <div className="whitespace-pre-wrap">{content}</div>;
   };
 
+  // Voice recording functions
+  const handleVoiceRecord = async () => {
+    if (!isRecordingVoice) {
+      setIsRecordingVoice(true);
+      // Simulate voice recording
+      setTimeout(() => {
+        setIsRecordingVoice(false);
+        setInputValue(prev => prev + " [Sesli mesaj metni]");
+      }, 3000);
+    } else {
+      setIsRecordingVoice(false);
+    }
+  };
+
+  // File upload handler
+  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = Array.from(e.target.files || []);
+    setUploadedFiles(prev => [...prev, ...files]);
+
+    // Add file info to chat
+    files.forEach(file => {
+      const fileMessage: ChatMessage = {
+        id: Date.now().toString() + Math.random(),
+        role: 'user',
+        content: `�� Dosya yüklendi: ${file.name} (${(file.size / 1024).toFixed(1)} KB)`,
+        timestamp: new Date(),
+        attachments: [file]
+      };
+      setMessages(prev => [...prev, fileMessage]);
+    });
+  };
+
+  // Text-to-speech function
+  const speakMessage = (text: string) => {
+    if ('speechSynthesis' in window) {
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = 'tr-TR';
+      utterance.rate = 0.9;
+      speechSynthesis.speak(utterance);
+    }
+  };
+
+  // Generate summary
+  const generateSummary = () => {
+    const summary = `📋 Sohbet Özeti:
+• Toplam ${messages.length} mesaj
+• ${favoriteMessages.size} favorili mesaj
+• Başlangıç: ${messages[0]?.timestamp.toLocaleString() || 'Bilinmiyor'}
+• Son: ${messages[messages.length-1]?.timestamp.toLocaleString() || 'Bilinmiyor'}
+
+🎯 Ana Konular: ${messages.filter(m => m.role === 'user').slice(0, 3).map(m => m.content.substring(0, 50)).join(', ')}...`;
+
+    setCurrentSummary(summary);
+
+    const summaryMessage: ChatMessage = {
+      id: Date.now().toString(),
+      role: 'assistant',
+      content: summary,
+      timestamp: new Date(),
+    };
+    setMessages(prev => [...prev, summaryMessage]);
+  };
+
   const filteredMessages = searchQuery.trim()
     ? messages.filter(msg =>
         msg.content.toLowerCase().includes(searchQuery.toLowerCase())
