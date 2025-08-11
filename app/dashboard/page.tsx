@@ -1151,14 +1151,81 @@ export default function DashboardPage() {
                 )}
 
                 {activeModal === 'user' && (
-                  <div className="text-center py-12">
-                    <div className="text-6xl mb-4">👤</div>
-                    <h3 className="text-xl font-semibold mb-2" style={{ color: '#1e3237' }}>
-                      Kullanıcı İşlemleri
-                    </h3>
-                    <p className="opacity-70" style={{ color: '#1e3237' }}>
-                      Bu modal yakında kullanıma açılacak
-                    </p>
+                  <div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                      {userOperations.map((operation) => (
+                        <button
+                          key={operation.id}
+                          className={`rounded-lg p-6 hover:shadow-lg transition-all duration-200 text-left group border ${
+                            operation.id === 'logout'
+                              ? 'border-red-300 hover:border-red-400'
+                              : 'border-[#146448] hover:shadow-md'
+                          }`}
+                          style={{ backgroundColor: '#f6f8f9' }}
+                        >
+                          <div
+                            className={`flex flex-col items-center text-center rounded-lg p-4 ${
+                              operation.id === 'logout' ? 'bg-red-100' : ''
+                            }`}
+                            style={{ backgroundColor: operation.id === 'logout' ? '#fee2e2' : '#baf200' }}
+                          >
+                            <div
+                              className="transition-colors mb-3"
+                              style={{ color: operation.id === 'logout' ? '#dc2626' : '#1e3237' }}
+                            >
+                              {operation.icon}
+                            </div>
+                            <div>
+                              <h3
+                                className="text-lg font-medium mb-2"
+                                style={{ color: operation.id === 'logout' ? '#dc2626' : '#1e3237' }}
+                              >
+                                {operation.title}
+                              </h3>
+                              <p
+                                className="text-sm opacity-70"
+                                style={{ color: operation.id === 'logout' ? '#dc2626' : '#1e3237' }}
+                              >
+                                {operation.description}
+                              </p>
+                            </div>
+                          </div>
+                        </button>
+                      ))}
+                    </div>
+
+                    {/* User Info Card */}
+                    <div className="rounded-lg p-6 border" style={{ backgroundColor: '#146448', borderColor: '#146448' }}>
+                      <h3 className="text-lg font-semibold mb-4" style={{ color: '#f6f8f9' }}>
+                        Hesap Bilgileri
+                      </h3>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                          <p className="text-sm opacity-80" style={{ color: '#f6f8f9' }}>Ad Soyad</p>
+                          <p className="font-medium" style={{ color: '#baf200' }}>{user?.name || 'Volkan Şimşirkaya'}</p>
+                        </div>
+                        <div>
+                          <p className="text-sm opacity-80" style={{ color: '#f6f8f9' }}>E-posta</p>
+                          <p className="font-medium" style={{ color: '#baf200' }}>{user?.email || 'volkan@seragpt.com'}</p>
+                        </div>
+                        <div>
+                          <p className="text-sm opacity-80" style={{ color: '#f6f8f9' }}>Hesap Türü</p>
+                          <p className="font-medium" style={{ color: '#baf200' }}>Premium Kullanıcı</p>
+                        </div>
+                        <div>
+                          <p className="text-sm opacity-80" style={{ color: '#f6f8f9' }}>Kayıt Tarihi</p>
+                          <p className="font-medium" style={{ color: '#baf200' }}>25 Aralık 2024</p>
+                        </div>
+                        <div>
+                          <p className="text-sm opacity-80" style={{ color: '#f6f8f9' }}>Token Bakiyesi</p>
+                          <p className="font-medium" style={{ color: '#baf200' }}>{userTokens} Token</p>
+                        </div>
+                        <div>
+                          <p className="text-sm opacity-80" style={{ color: '#f6f8f9' }}>Son Giriş</p>
+                          <p className="font-medium" style={{ color: '#baf200' }}>Bugün, 14:30</p>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 )}
 
