@@ -888,20 +888,7 @@ Lütfen daha sonra tekrar deneyin veya destek ekibimizle iletişime geçin.`,
                 </div>
               </div>
 
-              <div className="flex items-center space-x-3">
-                <div className="flex items-center space-x-3 bg-[#f6f8f9]/10 rounded-lg px-3 py-2">
-                  <div className="w-6 h-6 bg-[#baf200] rounded-full flex items-center justify-center">
-                    <span className="text-[#1e3237] text-xs font-bold">
-                      {user?.email?.charAt(0).toUpperCase() || 'T'}
-                    </span>
-                  </div>
-                  <div className="flex items-center">
-                    <p className="text-sm font-medium text-[#f6f8f9]">Test Kullanıcı</p>
-                  </div>
-                  <div className="text-[#baf200] text-sm font-medium">
-                    Token: {userTokens}
-                  </div>
-                </div>
+              <div className="flex items-center">
               </div>
             </div>
 
