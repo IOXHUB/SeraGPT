@@ -153,16 +153,78 @@ export default function ErrorLogsPage() {
   };
 
   const markAsResolved = async (logId: string) => {
-    setErrorLogs(prev => prev.map(log => 
-      log.id === logId 
-        ? { 
-            ...log, 
-            resolved: true, 
+    setErrorLogs(prev => prev.map(log =>
+      log.id === logId
+        ? {
+            ...log,
+            resolved: true,
             resolvedBy: user?.email || 'admin',
             resolvedAt: new Date().toISOString()
           }
         : log
     ));
+
+    if (selectedLog?.id === logId) {
+      setSelectedLog(prev => prev ? {
+        ...prev,
+        resolved: true,
+        resolvedBy: user?.email || 'admin',
+        resolvedAt: new Date().toISOString()
+      } : null);
+    }
+
+    alert('Hata çözüldü olarak işaretlendi!');
+  };
+
+  const deleteLog = async (logId: string) => {
+    if (!confirm('Bu hata kaydını silmek istediğinizden emin misiniz?')) return;
+
+    setErrorLogs(prev => prev.filter(log => log.id !== logId));
+
+    if (selectedLog?.id === logId) {
+      setSelectedLog(null);
+    }
+
+    alert('Hata kaydı silindi!');
+  };
+
+  const exportLogs = () => {
+    const data = {
+      exportDate: new Date().toISOString(),
+      filters: { level: filterLevel, resolved: filterResolved, search: searchTerm },
+      totalLogs: filteredLogs.length,
+      logs: filteredLogs
+    };
+
+    const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `error-logs-${new Date().toISOString().split('T')[0]}.json`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+
+    alert('Hata kayıtları dışa aktarıldı!');
+  };
+
+  const clearAllResolved = async () => {
+    if (!confirm('Çözülmüş tüm hata kayıtlarını silmek istediğinizden emin misiniz?')) return;
+
+    const resolvedCount = errorLogs.filter(log => log.resolved).length;
+    setErrorLogs(prev => prev.filter(log => !log.resolved));
+
+    if (selectedLog?.resolved) {
+      setSelectedLog(null);
+    }
+
+    alert(`${resolvedCount} çözülmüş hata kaydı silindi!`);
+  };
+
+  const reloadLogs = async () => {
+    await loadErrorLogs();
+    alert('Hata kayıtları yenilendi!');
   };
 
   const filteredLogs = errorLogs.filter(log => {
@@ -215,7 +277,21 @@ export default function ErrorLogsPage() {
             </div>
             <div className="flex items-center space-x-3">
               <button
-                onClick={loadErrorLogs}
+                onClick={clearAllResolved}
+                className="px-4 py-2 rounded-lg font-medium transition-all hover:opacity-90 mr-2"
+                style={{ backgroundColor: '#EF4444', color: '#f6f8f9' }}
+              >
+                🗑️ Çözülenleri Sil
+              </button>
+              <button
+                onClick={exportLogs}
+                className="px-4 py-2 rounded-lg font-medium transition-all hover:opacity-90 mr-2"
+                style={{ backgroundColor: '#146448', color: '#f6f8f9' }}
+              >
+                📥 Dışa Aktar
+              </button>
+              <button
+                onClick={reloadLogs}
                 className="px-4 py-2 rounded-lg font-medium transition-all hover:opacity-90"
                 style={{ backgroundColor: '#baf200', color: '#1e3237' }}
               >
@@ -387,18 +463,30 @@ export default function ErrorLogsPage() {
                       </div>
                     </div>
 
-                    {!log.resolved && (
+                    <div className="ml-4 flex space-x-2">
+                      {!log.resolved && (
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            markAsResolved(log.id);
+                          }}
+                          className="px-3 py-2 rounded-lg font-medium transition-all hover:opacity-90"
+                          style={{ backgroundColor: '#10B981', color: '#f6f8f9' }}
+                        >
+                          ✓ Çöz
+                        </button>
+                      )}
                       <button
                         onClick={(e) => {
                           e.stopPropagation();
-                          markAsResolved(log.id);
+                          deleteLog(log.id);
                         }}
-                        className="ml-4 px-3 py-2 rounded-lg font-medium transition-all hover:opacity-90"
-                        style={{ backgroundColor: '#10B981', color: '#f6f8f9' }}
+                        className="px-3 py-2 rounded-lg font-medium transition-all hover:opacity-90"
+                        style={{ backgroundColor: '#EF4444', color: '#f6f8f9' }}
                       >
-                        ✓ Çöz
+                        🗑️
                       </button>
-                    )}
+                    </div>
                   </div>
                 </div>
               ))}
@@ -495,10 +583,18 @@ export default function ErrorLogsPage() {
                     </button>
                   )}
                   <button
+                    onClick={() => exportLogs()}
                     className="px-4 py-2 rounded-lg font-medium transition-all hover:opacity-90"
                     style={{ backgroundColor: '#baf200', color: '#1e3237' }}
                   >
                     📥 Dışa Aktar
+                  </button>
+                  <button
+                    onClick={() => deleteLog(selectedLog.id)}
+                    className="px-4 py-2 rounded-lg font-medium transition-all hover:opacity-90 ml-2"
+                    style={{ backgroundColor: '#EF4444', color: '#f6f8f9' }}
+                  >
+                    🗑️ Sil
                   </button>
                 </div>
               </div>
