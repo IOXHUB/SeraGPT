@@ -327,7 +327,7 @@ export default function AIChatPage() {
                 </div>
 
                 {/* Menu Popup Button */}
-                <div className="p-4 border-t border-[#f6f8f9]/10 bg-[#1e3237] relative">
+                <div className="p-4 border-t border-[#f6f8f9]/10 bg-[#1e3237] relative menu-popup-container">
                   <button
                     onClick={() => setMenuPopupOpen(!menuPopupOpen)}
                     className="w-full p-3 bg-[#146448] hover:bg-[#146448]/80 rounded-lg transition-colors flex items-center justify-between group"
