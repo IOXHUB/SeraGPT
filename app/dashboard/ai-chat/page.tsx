@@ -375,6 +375,10 @@ export default function AIChatPage() {
                                   window.location.href = '/dashboard/token-islemleri';
                                 } else if (item.id === 'ai-assistant') {
                                   window.location.href = '/dashboard/ai-asistan-islemleri';
+                                } else if (item.id === 'analysis') {
+                                  window.location.href = '/dashboard/analysis';
+                                } else if (item.id === 'settings') {
+                                  window.location.href = '/dashboard/settings';
                                 } else if (item.id === 'support') {
                                   window.location.href = '/destek';
                                 } else if (item.id === 'consulting') {
@@ -383,7 +387,7 @@ export default function AIChatPage() {
                                   window.location.href = '/anahtar-teslim-proje';
                                 } else if (item.id === 'homepage') {
                                   window.location.href = '/';
-                                } else if (item.id === 'dashboard') {
+                                } else if (item.id === 'old-dashboard') {
                                   window.location.href = '/dashboard';
                                 }
                                 setMenuPopupOpen(false);
