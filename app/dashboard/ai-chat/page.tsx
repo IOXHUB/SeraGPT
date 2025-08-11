@@ -17,6 +17,9 @@ interface ChatMessage {
   content: string;
   timestamp: Date;
   attachments?: any[];
+  analysisData?: any;
+  isAnalysisStep?: boolean;
+  stepType?: 'start' | 'collecting' | 'processing' | 'completed';
 }
 
 interface ChatSession {
