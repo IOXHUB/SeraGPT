@@ -92,7 +92,7 @@ export default function AIChatPage() {
       id: '3',
       title: 'Yatırım Geri Dönüş (ROI) Analizi',
       lastMessage: 'Sohbet Başlatıldı...',
-      date: 'Şubat Başında',
+      date: 'Şubat Ba��ında',
       messageCount: 0,
       messages: []
     }
@@ -820,7 +820,7 @@ Lütfen daha sonra tekrar deneyin veya destek ekibimizle iletişime geçin.`,
                 </div>
               </div>
 
-              <div className="flex items-center">
+              <div className="flex items-center right-menu-container">
                 {/* Right Hamburger Menu */}
                 <button
                   onClick={() => setMenuPopupOpen(!menuPopupOpen)}
