@@ -458,8 +458,10 @@ export default function AIChatPage() {
             {/* Welcome State or Messages */}
             {!currentChatId && messages.length === 0 ? (
               // Welcome Content
-              <div className="flex-1 p-4 lg:p-8 bg-[#146448] overflow-y-auto">
-                <div className="max-w-4xl mx-auto">
+              <div className="flex-1 p-4 lg:p-8 bg-[#146448] overflow-y-auto overscroll-contain">
+                <div className="max-w-4xl mx-auto px-safe"
+                     style={{ marginLeft: 'max(16px, env(safe-area-inset-left))',
+                             marginRight: 'max(16px, env(safe-area-inset-right))' }}>
                   
                   <div className="text-center mb-8">
                     <h1 className="text-3xl font-bold text-[#f6f8f9] mb-2">
