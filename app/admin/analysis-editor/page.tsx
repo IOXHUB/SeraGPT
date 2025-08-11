@@ -34,8 +34,16 @@ export default function AnalysisEditorPage() {
   const [analysisTypes, setAnalysisTypes] = useState<AnalysisType[]>([]);
   const [selectedAnalysis, setSelectedAnalysis] = useState<AnalysisType | null>(null);
   const [editingAnalysis, setEditingAnalysis] = useState<AnalysisType | null>(null);
+  const [showCreateModal, setShowCreateModal] = useState(false);
+  const [showTestModal, setShowTestModal] = useState(false);
+  const [testingAnalysis, setTestingAnalysis] = useState<AnalysisType | null>(null);
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [dataLoading, setDataLoading] = useState(true);
+  const [newAnalysis, setNewAnalysis] = useState({
+    name: '',
+    description: '',
+    category: 'roi' as 'roi' | 'climate' | 'equipment' | 'market' | 'layout'
+  });
 
   const categories = [
     { id: 'all', title: 'Tümü', icon: '📊' },
@@ -290,9 +298,77 @@ export default function AnalysisEditorPage() {
     }
   };
 
-  const filteredAnalysisTypes = selectedCategory === 'all' 
-    ? analysisTypes 
+  const filteredAnalysisTypes = selectedCategory === 'all'
+    ? analysisTypes
     : analysisTypes.filter(at => at.category === selectedCategory);
+
+  const createAnalysis = async () => {
+    if (!newAnalysis.name || !newAnalysis.description) {
+      alert('Lütfen ad ve açıklama alanlarını doldurun');
+      return;
+    }
+
+    const analysis: AnalysisType = {
+      id: `analysis-${Date.now()}`,
+      name: newAnalysis.name,
+      description: newAnalysis.description,
+      category: newAnalysis.category,
+      isActive: true,
+      version: '1.0.0',
+      lastModified: new Date().toISOString().split('T')[0],
+      usage: 0,
+      accuracy: 0,
+      parameters: []
+    };
+
+    setAnalysisTypes(prev => [analysis, ...prev]);
+    setNewAnalysis({ name: '', description: '', category: 'roi' });
+    setShowCreateModal(false);
+    alert('Analiz türü başarıyla oluşturuldu!');
+  };
+
+  const updateAnalysis = async () => {
+    if (!editingAnalysis) return;
+
+    setAnalysisTypes(prev => prev.map(a =>
+      a.id === editingAnalysis.id
+        ? { ...editingAnalysis, lastModified: new Date().toISOString().split('T')[0] }
+        : a
+    ));
+
+    setSelectedAnalysis(editingAnalysis);
+    setEditingAnalysis(null);
+    alert('Analiz türü başarıyla güncellendi!');
+  };
+
+  const testAnalysis = async (analysis: AnalysisType) => {
+    setTestingAnalysis(analysis);
+    setShowTestModal(true);
+  };
+
+  const toggleAnalysisStatus = async (analysisId: string) => {
+    setAnalysisTypes(prev => prev.map(a =>
+      a.id === analysisId ? { ...a, isActive: !a.isActive } : a
+    ));
+
+    if (selectedAnalysis?.id === analysisId) {
+      setSelectedAnalysis(prev => prev ? { ...prev, isActive: !prev.isActive } : null);
+    }
+
+    alert('Analiz durumu güncellendi!');
+  };
+
+  const deleteAnalysis = async (analysisId: string) => {
+    if (!confirm('Bu analiz türünü silmek istediğinizden emin misiniz?')) return;
+
+    setAnalysisTypes(prev => prev.filter(a => a.id !== analysisId));
+
+    if (selectedAnalysis?.id === analysisId) {
+      setSelectedAnalysis(null);
+    }
+
+    alert('Analiz türü silindi!');
+  };
 
   if (loading || dataLoading) {
     return (
@@ -333,6 +409,7 @@ export default function AnalysisEditorPage() {
             </div>
             <div className="flex items-center space-x-3">
               <button
+                onClick={() => setShowCreateModal(true)}
                 className="px-4 py-2 rounded-lg font-medium transition-all hover:opacity-90"
                 style={{ backgroundColor: '#baf200', color: '#1e3237' }}
               >
@@ -574,10 +651,18 @@ export default function AnalysisEditorPage() {
                     📝 Düzenle
                   </button>
                   <button
+                    onClick={() => testAnalysis(selectedAnalysis)}
                     className="px-4 py-2 rounded-lg font-medium transition-all hover:opacity-90"
                     style={{ backgroundColor: '#baf200', color: '#1e3237' }}
                   >
                     🧪 Test Et
+                  </button>
+                  <button
+                    onClick={() => toggleAnalysisStatus(selectedAnalysis.id)}
+                    className="px-4 py-2 rounded-lg font-medium transition-all hover:opacity-90 ml-2"
+                    style={{ backgroundColor: selectedAnalysis.isActive ? '#EF4444' : '#10B981', color: '#f6f8f9' }}
+                  >
+                    {selectedAnalysis.isActive ? '⏸️ Deaktif Et' : '▶️ Aktif Et'}
                   </button>
                 </div>
               </div>
@@ -620,10 +705,11 @@ export default function AnalysisEditorPage() {
                   <label className="block text-sm font-medium mb-2" style={{ color: '#1e3237' }}>
                     Analiz Adı
                   </label>
-                  <input 
-                    type="text" 
+                  <input
+                    type="text"
                     value={editingAnalysis.name}
-                    className="w-full p-3 border rounded-lg" 
+                    onChange={(e) => setEditingAnalysis({...editingAnalysis, name: e.target.value})}
+                    className="w-full p-3 border rounded-lg"
                     style={{ borderColor: '#146448' }}
                   />
                 </div>
@@ -632,7 +718,12 @@ export default function AnalysisEditorPage() {
                   <label className="block text-sm font-medium mb-2" style={{ color: '#1e3237' }}>
                     Kategori
                   </label>
-                  <select className="w-full p-3 border rounded-lg" style={{ borderColor: '#146448' }}>
+                  <select
+                    value={editingAnalysis.category}
+                    onChange={(e) => setEditingAnalysis({...editingAnalysis, category: e.target.value as any})}
+                    className="w-full p-3 border rounded-lg"
+                    style={{ borderColor: '#146448' }}
+                  >
                     <option value="roi">ROI Analizi</option>
                     <option value="climate">İklim Analizi</option>
                     <option value="equipment">Ekipman Analizi</option>
@@ -646,9 +737,10 @@ export default function AnalysisEditorPage() {
                 <label className="block text-sm font-medium mb-2" style={{ color: '#1e3237' }}>
                   Açıklama
                 </label>
-                <textarea 
+                <textarea
                   value={editingAnalysis.description}
-                  className="w-full p-3 border rounded-lg h-20" 
+                  onChange={(e) => setEditingAnalysis({...editingAnalysis, description: e.target.value})}
+                  className="w-full p-3 border rounded-lg h-20"
                   style={{ borderColor: '#146448' }}
                 />
               </div>
@@ -711,6 +803,7 @@ export default function AnalysisEditorPage() {
                   İptal
                 </button>
                 <button
+                  onClick={updateAnalysis}
                   className="px-6 py-3 rounded-lg font-medium transition-all hover:opacity-90"
                   style={{ backgroundColor: '#baf200', color: '#1e3237' }}
                 >
