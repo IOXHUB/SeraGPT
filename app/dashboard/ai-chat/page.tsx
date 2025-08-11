@@ -359,7 +359,7 @@ export default function AIChatPage() {
                         SOHBETLER
                       </h3>
                       <div className="space-y-2">
-                        <p className="text-xs text-[#f6f8f9]/40 px-2">Henüz sohbet geçmişi yok</p>
+                        <p className="text-xs text-[#f6f8f9]/40 px-2">Hen��z sohbet geçmişi yok</p>
                       </div>
                     </div>
                   </div>
@@ -378,8 +378,8 @@ export default function AIChatPage() {
                         </svg>
                       </div>
                       <div className="text-left">
-                        <p>Menü</p>
-                        <p className="text-xs text-[#4a4a4a]">Tüm özellikler</p>
+                        <p className="mb-0">Menü</p>
+                        <p className="text-xs text-[#4a4a4a] -mt-1">Tüm özellikler</p>
                       </div>
                     </div>
                     <svg
