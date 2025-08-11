@@ -437,6 +437,13 @@ export default function BackupSystemPage() {
             </div>
             <div className="flex items-center space-x-3">
               <button
+                onClick={exportBackupList}
+                className="px-4 py-2 rounded-lg font-medium transition-all hover:opacity-90"
+                style={{ backgroundColor: '#146448', color: '#f6f8f9' }}
+              >
+                📥 Dışa Aktar
+              </button>
+              <button
                 onClick={() => createManualBackup('database')}
                 disabled={isCreatingBackup}
                 className={`px-4 py-2 rounded-lg font-medium transition-all ${
@@ -617,7 +624,31 @@ export default function BackupSystemPage() {
 
           {activeTab === 'backups' && (
             <div>
-              <h3 className="text-xl font-semibold mb-6" style={{ color: '#f6f8f9' }}>Tüm Yedeklemeler</h3>
+              <div className="flex items-center justify-between mb-6">
+                <h3 className="text-xl font-semibold" style={{ color: '#f6f8f9' }}>Tüm Yedeklemeler</h3>
+                <div className="flex space-x-2">
+                  <button
+                    onClick={() => {
+                      if (confirm('Tüm başarısız yedekleri silmek istediğinizden emin misiniz?')) {
+                        const failedCount = backupRecords.filter(b => b.status === 'failed').length;
+                        setBackupRecords(prev => prev.filter(b => b.status !== 'failed'));
+                        alert(`${failedCount} başarısız yedek silindi!`);
+                      }
+                    }}
+                    className="px-3 py-2 rounded-lg font-medium transition-all hover:opacity-90"
+                    style={{ backgroundColor: '#EF4444', color: '#f6f8f9' }}
+                  >
+                    🗑️ Başarısızları Sil
+                  </button>
+                  <button
+                    onClick={() => loadBackupData()}
+                    className="px-3 py-2 rounded-lg font-medium transition-all hover:opacity-90"
+                    style={{ backgroundColor: '#146448', color: '#f6f8f9' }}
+                  >
+                    🔄 Yenile
+                  </button>
+                </div>
+              </div>
               <div className="space-y-4">
                 {backupRecords.map((backup) => (
                   <div key={backup.id} className="rounded-lg p-6" style={{ backgroundColor: '#f6f8f9' }}>
@@ -722,7 +753,16 @@ export default function BackupSystemPage() {
 
           {activeTab === 'schedule' && (
             <div>
-              <h3 className="text-xl font-semibold mb-6" style={{ color: '#f6f8f9' }}>Zamanlanmış Yedeklemeler</h3>
+              <div className="flex items-center justify-between mb-6">
+                <h3 className="text-xl font-semibold" style={{ color: '#f6f8f9' }}>Zamanlanmış Yedeklemeler</h3>
+                <button
+                  onClick={createNewSchedule}
+                  className="px-4 py-2 rounded-lg font-medium transition-all hover:opacity-90"
+                  style={{ backgroundColor: '#baf200', color: '#1e3237' }}
+                >
+                  ➕ Yeni Zamanlama
+                </button>
+              </div>
               <div className="space-y-4">
                 {backupSchedules.map((schedule) => (
                   <div key={schedule.id} className="rounded-lg p-6" style={{ backgroundColor: '#f6f8f9' }}>
@@ -744,7 +784,11 @@ export default function BackupSystemPage() {
                           </span>
                         </div>
 
-                        <div className="grid grid-cols-2 md:grid-cols-5 gap-4 text-sm">
+                        <div className="grid grid-cols-2 md:grid-cols-6 gap-4 text-sm">
+                          <div>
+                            <p className="opacity-70" style={{ color: '#1e3237' }}>Tür</p>
+                            <p className="font-medium" style={{ color: '#146448' }}>{getTypeName(schedule.type)}</p>
+                          </div>
                           <div>
                             <p className="opacity-70" style={{ color: '#1e3237' }}>Sıklık</p>
                             <p className="font-medium" style={{ color: '#146448' }}>
@@ -759,7 +803,7 @@ export default function BackupSystemPage() {
                           <div>
                             <p className="opacity-70" style={{ color: '#1e3237' }}>Son Çalışma</p>
                             <p className="font-medium" style={{ color: '#146448' }}>
-                              {schedule.lastRun 
+                              {schedule.lastRun
                                 ? new Date(schedule.lastRun).toLocaleDateString('tr-TR')
                                 : 'Henüz çalışmadı'}
                             </p>
