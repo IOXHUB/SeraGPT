@@ -721,16 +721,11 @@ export default function AIChatPage() {
                         key={item.id}
                         onClick={(e) => {
                           e.stopPropagation();
-                          if (item.id === 'user') window.location.href = '/dashboard/kullanici-islemleri';
-                          else if (item.id === 'tokens') window.location.href = '/dashboard/token-islemleri';
-                          else if (item.id === 'ai-assistant') window.location.href = '/dashboard/ai-asistan-islemleri';
-                          else if (item.id === 'analysis') window.location.href = '/dashboard/analysis';
-                          else if (item.id === 'settings') window.location.href = '/dashboard/settings';
-                          else if (item.id === 'support') window.location.href = '/destek';
-                          else if (item.id === 'consulting') window.location.href = '/danismanlik';
-                          else if (item.id === 'turnkey') window.location.href = '/anahtar-teslim-proje';
-                          else if (item.id === 'homepage') window.location.href = '/';
-                          else if (item.id === 'old-dashboard') window.location.href = '/dashboard';
+                          if (item.modal) {
+                            setActiveModal(item.id);
+                          } else if (item.href) {
+                            window.location.href = item.href;
+                          }
                           setMenuPopupOpen(false);
                         }}
                         className="w-full px-4 py-3 text-left text-sm text-gray-700 hover:bg-gray-100 border-b border-gray-100 last:border-b-0"
