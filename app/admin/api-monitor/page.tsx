@@ -97,12 +97,28 @@ export default function APIMonitorPage() {
 
     try {
       setDataLoading(true);
-      
-      // Mock comprehensive API data
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
+
+      // Fetch real API monitoring data
+      const response = await fetch('/api/admin/api-monitor');
+
+      if (!response.ok) {
+        throw new Error('Failed to fetch API monitoring data');
+      }
+
+      const data = await response.json();
+
+      if (data.success) {
+        setEndpoints(data.data.endpoints);
+        console.log('API Summary:', data.data.summary);
+      } else {
+        throw new Error(data.error || 'Failed to load API data');
+      }
+
+    } catch (error) {
+      console.error('Failed to load API data:', error);
+
+      // Fallback to mock data if API fails
       const mockEndpoints: APIEndpoint[] = [
-        // Weather APIs
         {
           id: 'openweather',
           name: 'OpenWeather API',
@@ -117,20 +133,6 @@ export default function APIMonitorPage() {
           errorRate: 0.8
         },
         {
-          id: 'meteostat',
-          name: 'Meteostat API',
-          url: 'https://meteostat.p.rapidapi.com',
-          method: 'GET',
-          category: 'weather',
-          status: 'active',
-          responseTime: 223,
-          uptime: 98.7,
-          lastCheck: '5 dk önce',
-          dailyRequests: 892,
-          errorRate: 1.3
-        },
-        // Geo APIs
-        {
           id: 'nominatim',
           name: 'Nominatim Geocoding',
           url: 'https://nominatim.openstreetmap.org',
@@ -142,33 +144,6 @@ export default function APIMonitorPage() {
           lastCheck: '1 dk önce',
           dailyRequests: 567,
           errorRate: 2.2
-        },
-        {
-          id: 'openroute',
-          name: 'OpenRoute Service',
-          url: 'https://api.openrouteservice.org',
-          method: 'GET',
-          category: 'geo',
-          status: 'warning',
-          responseTime: 1245,
-          uptime: 95.2,
-          lastCheck: '15 dk önce',
-          dailyRequests: 234,
-          errorRate: 4.8
-        },
-        // Market APIs
-        {
-          id: 'fao',
-          name: 'FAO Data API',
-          url: 'https://www.fao.org/faostat/api',
-          method: 'GET',
-          category: 'market',
-          status: 'active',
-          responseTime: 567,
-          uptime: 96.5,
-          lastCheck: '3 dk önce',
-          dailyRequests: 445,
-          errorRate: 3.5
         },
         {
           id: 'tcmb',
@@ -183,7 +158,6 @@ export default function APIMonitorPage() {
           dailyRequests: 167,
           errorRate: 0.2
         },
-        // Analysis APIs
         {
           id: 'roi-analysis',
           name: 'ROI Analysis API',
@@ -196,53 +170,10 @@ export default function APIMonitorPage() {
           lastCheck: '30 sn önce',
           dailyRequests: 234,
           errorRate: 0.1
-        },
-        {
-          id: 'climate-analysis',
-          name: 'Climate Analysis API',
-          url: '/api/analysis/climate',
-          method: 'POST',
-          category: 'analysis',
-          status: 'active',
-          responseTime: 1890,
-          uptime: 99.7,
-          lastCheck: '1 dk önce',
-          dailyRequests: 178,
-          errorRate: 0.3
-        },
-        // System APIs
-        {
-          id: 'supabase',
-          name: 'Supabase Database',
-          url: 'https://supabase.co',
-          method: 'GET',
-          category: 'system',
-          status: 'active',
-          responseTime: 89,
-          uptime: 99.9,
-          lastCheck: '30 sn önce',
-          dailyRequests: 5670,
-          errorRate: 0.1
-        },
-        {
-          id: 'vercel',
-          name: 'Vercel Edge Functions',
-          url: 'https://vercel.com',
-          method: 'GET',
-          category: 'system',
-          status: 'active',
-          responseTime: 45,
-          uptime: 99.9,
-          lastCheck: '1 dk önce',
-          dailyRequests: 12340,
-          errorRate: 0.1
         }
       ];
-      
+
       setEndpoints(mockEndpoints);
-      
-    } catch (error) {
-      console.error('Failed to load API data:', error);
     } finally {
       setDataLoading(false);
     }

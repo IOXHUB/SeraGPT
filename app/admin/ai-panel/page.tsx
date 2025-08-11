@@ -100,10 +100,33 @@ export default function AIPanelPage() {
 
     try {
       setDataLoading(true);
-      
-      // Mock AI system data
-      await new Promise(resolve => setTimeout(resolve, 1200));
-      
+
+      // Fetch real AI statistics from API
+      const response = await fetch('/api/admin/ai-stats');
+
+      if (!response.ok) {
+        throw new Error('Failed to fetch AI statistics');
+      }
+
+      const data = await response.json();
+
+      if (data.success) {
+        setAiStats(data.data.systemStats);
+        setModels(data.data.models);
+
+        // Update analysis performance data if available
+        if (data.data.analysisPerformance) {
+          // Store analysis performance for use in models tab
+          analysisTypes.splice(0, analysisTypes.length, ...data.data.analysisPerformance);
+        }
+      } else {
+        throw new Error(data.error || 'Failed to load AI data');
+      }
+
+    } catch (error) {
+      console.error('Failed to load AI data:', error);
+
+      // Fallback to mock data if API fails
       const mockStats: AISystemStats = {
         totalRequests: 45230,
         successRate: 98.7,
@@ -143,24 +166,11 @@ export default function AIPanelPage() {
           tokensUsed: 650000,
           cost: 456.78,
           lastUpdate: '1 gün önce'
-        },
-        {
-          name: 'Custom-SeraGPT-v1',
-          version: '1.0.0',
-          status: 'training',
-          accuracy: 91.5,
-          responseTime: 2.1,
-          tokensUsed: 340000,
-          cost: 890.12,
-          lastUpdate: '12 saat önce'
         }
       ];
-      
+
       setAiStats(mockStats);
       setModels(mockModels);
-      
-    } catch (error) {
-      console.error('Failed to load AI data:', error);
     } finally {
       setDataLoading(false);
     }
