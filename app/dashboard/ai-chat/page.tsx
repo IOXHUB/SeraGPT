@@ -503,8 +503,11 @@ export default function AIChatPage() {
               </div>
             ) : (
               // Chat Messages
-              <div className="flex-1 overflow-y-auto p-3 lg:p-4 bg-[#146448]">
-                <div className="max-w-4xl mx-auto space-y-4">
+              <div className="flex-1 overflow-y-auto p-3 lg:p-4 bg-[#146448] overscroll-contain"
+                   style={{ scrollBehavior: 'smooth' }}>
+                <div className="max-w-4xl mx-auto space-y-4 px-safe"
+                     style={{ marginLeft: 'max(16px, env(safe-area-inset-left))',
+                             marginRight: 'max(16px, env(safe-area-inset-right))' }}>
                 {messages.map((message) => (
                   <motion.div
                     key={message.id}
