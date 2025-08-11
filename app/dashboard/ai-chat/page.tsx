@@ -508,19 +508,24 @@ export default function AIChatPage() {
                      style={{ marginLeft: 'max(16px, env(safe-area-inset-left))',
                              marginRight: 'max(16px, env(safe-area-inset-right))' }}>
 
-                  <div className="text-center mb-4">
-                    <h1 className="font-bold text-[#f6f8f9] mb-2"
-                        style={{ fontSize: 'clamp(20px, 4vw, 32px)', lineHeight: 'clamp(24px, 5vw, 40px)' }}>
+                  <div className="text-center mb-6">
+                    <h1 className="font-bold text-[#f6f8f9] mb-3"
+                        style={{ fontSize: 'clamp(22px, 4vw, 36px)', lineHeight: 'clamp(26px, 5vw, 44px)' }}>
                       Hoş Geldiniz, Test Kullanıcı!
                     </h1>
-                    <p className="text-[#f6f8f9]/80"
+                    <p className="text-[#f6f8f9]/90 mb-2"
+                       style={{ fontSize: 'clamp(15px, 2.8vw, 20px)', lineHeight: 'clamp(20px, 3.8vw, 28px)' }}>
+                      Aşağıdan Analiz Başlatabilirsiniz yada menüden düzenlemek istediğiniz geçmiş analizlerinden birini seçin.
+                    </p>
+                    <p className="text-[#baf200] font-medium"
                        style={{ fontSize: 'clamp(14px, 2.5vw, 18px)', lineHeight: 'clamp(18px, 3.5vw, 24px)' }}>
-                      Bugün size nasıl yardımcı olabilirim?
+                      Tam havamdayım, çalışalım. Ya siz? Yazalım.
                     </p>
                   </div>
 
-                  {/* Analysis Cards Grid - 3 rows, 2 columns - Compact */}
-                  <div className="grid grid-cols-2 gap-3 max-w-xl mx-auto">
+                  {/* Analysis Cards Grid - 3 rows, 2 columns - Centered */}
+                  <div className="grid grid-cols-2 gap-3 justify-center items-center"
+                       style={{ maxWidth: '480px', margin: '0 auto' }}>
                     {analysisOptions.map((option) => (
                       <button
                         key={option.id}
