@@ -476,7 +476,7 @@ export default function AIChatPage() {
 
                 <div className="flex items-center space-x-3">
                   <div className="ml-3 text-white text-lg font-semibold">
-                    <p>Hoşgeldiniz</p>
+                    <p className="text-white">Hoşgeldiniz</p>
                   </div>
                 </div>
               </div>
