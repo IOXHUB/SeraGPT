@@ -74,7 +74,7 @@ export default function AIChatPage() {
   const [chatSessions, setChatSessions] = useState<ChatSession[]>([
     {
       id: '1',
-      title: 'Yat��rım Geri Dön��ş (ROI) Analizi',
+      title: 'Yatırım Geri Dön��ş (ROI) Analizi',
       lastMessage: 'Sohbet Başlatıldı...',
       date: 'Şubat Başında',
       messageCount: 0,
@@ -184,7 +184,7 @@ export default function AIChatPage() {
     {
       id: 'security',
       title: 'Güvenlik Ayarları',
-      description: '��ifre değiştirme ve güvenlik seçenekleri',
+      description: 'Şifre değiştirme ve güvenlik seçenekleri',
       icon: (
         <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
           <path d="M12,1L3,5V11C3,16.55 6.84,21.74 12,23C17.16,21.74 21,16.55 21,11V5L12,1M12,7C13.4,7 14.8,8.6 14.8,10V11.5C15.4,11.5 16,12.4 16,13V16C16,17.4 15.4,18 14.8,18H9.2C8.6,18 8,17.4 8,16V13C8,12.4 8.6,11.5 9.2,11.5V10C9.2,8.6 10.6,7 12,7M12,8.2C11.2,8.2 10.5,8.7 10.5,10V11.5H13.5V10C13.5,8.7 12.8,8.2 12,8.2Z"/>
@@ -703,7 +703,7 @@ export default function AIChatPage() {
             </button>
 
             {/* Settings Menu Popup - Taşındı button dışına */}
-            {(menuPopupOpen || true) && (
+            {menuPopupOpen && (
               <div className="absolute bottom-full left-4 right-4 mb-2 bg-white rounded-lg shadow-xl border border-gray-200 z-[60]" onLoad={() => console.log('Popup render edildi')}>
                 <div className="p-4 border-b border-gray-200">
                   <div className="flex items-center justify-between">
