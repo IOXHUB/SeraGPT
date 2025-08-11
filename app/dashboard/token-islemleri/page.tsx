@@ -74,10 +74,14 @@ export default function TokenIslemleriPage() {
       {/* Header */}
       <div className="border-b" style={{ backgroundColor: '#146448', borderBottomColor: '#f6f8f9' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
+          <div className="flex items-center h-16">
             <div className="flex items-center space-x-4">
-              <Link href="/dashboard/ai-chat" className="hover:opacity-70 transition-opacity" style={{ color: '#f6f8f9' }}>
-                ← Geri
+              <Link
+                href="/dashboard/ai-chat"
+                className="flex items-center justify-center w-10 h-10 rounded-lg hover:opacity-70 transition-opacity text-xl font-semibold"
+                style={{ backgroundColor: '#baf200', color: '#1e3237' }}
+              >
+                ←
               </Link>
               <h1 className="text-xl font-semibold" style={{ color: '#f6f8f9' }}>Token İşlemleri</h1>
             </div>
