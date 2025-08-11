@@ -233,8 +233,14 @@ export default function AIChatPage() {
 
   return (
     <ClientOnly>
-      <div className="flex flex-col h-screen bg-[#146448] overflow-hidden">
-        <div className="flex flex-1 min-h-0">
+      <div className="flex flex-col h-screen bg-[#146448] overflow-hidden"
+           style={{
+             height: '100dvh',
+             minHeight: '100svh',
+             overscrollBehavior: 'contain'
+           }}>
+        <div className="flex flex-1 min-h-0 max-w-full mx-auto"
+             style={{ maxWidth: 'min(100vw, 1200px)' }}>
           {/* Sidebar */}
           <AnimatePresence>
             {sidebarOpen && (
