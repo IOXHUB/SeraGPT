@@ -314,24 +314,24 @@ export default function AIChatPage() {
                 </div>
 
                 {/* Menu Popup Button */}
-                <div className="p-4 border-t border-[#f6f8f9]/10 bg-[#baf200] relative menu-popup-container">
+                <div className="p-4 border-t border-[#f6f8f9]/10 bg-[#146448] relative menu-popup-container">
                   <button
                     onClick={() => setMenuPopupOpen(!menuPopupOpen)}
-                    className="w-full p-3 bg-[#146448] hover:bg-[#146448]/80 rounded-lg transition-colors flex items-center justify-between group"
+                    className="w-full p-3 bg-[#baf200] hover:bg-[#baf200]/80 rounded-lg transition-colors flex items-center justify-between group"
                   >
                     <div className="flex items-center space-x-3">
-                      <div className="w-8 h-8 bg-[#baf200] rounded-full flex items-center justify-center">
-                        <svg className="w-4 h-4 text-[#1e3237]" fill="currentColor" viewBox="0 0 20 20">
+                      <div className="w-8 h-8 bg-[#146448] rounded-full flex items-center justify-center">
+                        <svg className="w-4 h-4 text-[#7ed321]" fill="currentColor" viewBox="0 0 20 20">
                           <path fillRule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clipRule="evenodd" />
                         </svg>
                       </div>
                       <div className="text-left">
                         <p>Menü</p>
-                        <p className="text-xs text-[#f6f8f9]/60">Tüm özellikler</p>
+                        <p className="text-xs text-[#4a4a4a]">Tüm özellikler</p>
                       </div>
                     </div>
                     <svg
-                      className={`w-4 h-4 text-[#f6f8f9]/60 transition-transform ${menuPopupOpen ? 'rotate-180' : ''}`}
+                      className={`w-4 h-4 text-black transition-transform ${menuPopupOpen ? 'rotate-180' : ''}`}
                       fill="none" stroke="currentColor" viewBox="0 0 24 24"
                     >
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
