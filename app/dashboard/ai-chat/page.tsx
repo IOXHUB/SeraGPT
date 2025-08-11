@@ -546,7 +546,7 @@ Lütfen daha sonra tekrar deneyin veya destek ekibimizle iletişime geçin.`,
         'Su geri kazanım sistemi ekleyin'
       ],
       equipment: [
-        'Aşamalı kurulum yapın',
+        'Aşamalı kurulum yap��n',
         'Bakım anlaşması yapın',
         'Genişleme için yer bırak��n'
       ],
@@ -917,7 +917,7 @@ Lütfen daha sonra tekrar deneyin veya destek ekibimizle iletişime geçin.`,
               <main className="flex-1 overflow-y-auto">
                 {!currentChatId && messages.length === 0 ? (
                   // Welcome State
-                  <div className="flex flex-col items-center justify-center h-full min-h-[400px] py-8">
+                  <div className="flex flex-col items-center justify-center h-full min-h-[400px] py-8 mx-auto w-full max-w-[900px] px-4">
                     <div className="text-center mb-8 max-w-2xl">
                       <h1 className="font-bold text-[#f6f8f9] mb-6 text-3xl md:text-4xl lg:text-5xl">
                         Hoş Geldiniz, Test Kullanıcı!
