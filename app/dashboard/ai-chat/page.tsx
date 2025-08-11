@@ -92,7 +92,7 @@ export default function AIChatPage() {
       id: '3',
       title: 'Yatırım Geri Dönüş (ROI) Analizi',
       lastMessage: 'Sohbet Başlatıldı...',
-      date: 'Şubat Ba��ında',
+      date: 'Şubat Başında',
       messageCount: 0,
       messages: []
     }
@@ -155,7 +155,7 @@ export default function AIChatPage() {
         { id: 'crop', question: 'Hangi ürünü yetiştireceksiniz?', type: 'select', options: ['Domates', 'Salatalık', 'Biber', 'Patlıcan', 'Marul', 'Çilek'], required: true },
         { id: 'budget', question: 'Başlangıç bütçeniz ne kadar? (TL)', type: 'number', required: true, validation: (v: number) => v >= 50000 },
         { id: 'automation', question: 'Otomasyon seviyesi tercihiniz?', type: 'select', options: ['Temel', 'Orta', 'İleri', 'Tam Otomatik'], required: true },
-        { id: 'timeline', question: 'Proje süresi kaç yıl?', type: 'number', required: true, validation: (v: number) => v >= 1 && v <= 20 }
+        { id: 'timeline', question: 'Proje süresi kaç y��l?', type: 'number', required: true, validation: (v: number) => v >= 1 && v <= 20 }
       ]
     },
     climate: {
@@ -192,7 +192,20 @@ export default function AIChatPage() {
   };
 
   const handleNewChat = () => {
-    setCurrentChatId(null);
+    // Create new chat session
+    const newChatId = Date.now().toString();
+    const newChat: ChatSession = {
+      id: newChatId,
+      title: 'Yeni Sohbet',
+      lastMessage: 'Sohbet başlatıldı...',
+      date: new Date().toLocaleDateString('tr-TR'),
+      messageCount: 0,
+      messages: []
+    };
+
+    // Add to chat sessions
+    setChatSessions(prev => [newChat, ...prev]);
+    setCurrentChatId(newChatId);
     setMessages([]);
   };
 
