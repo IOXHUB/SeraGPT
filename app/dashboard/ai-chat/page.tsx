@@ -203,12 +203,57 @@ export default function AIChatPage() {
 
   const handleAnalysisClick = (optionId: string) => {
     const option = analysisOptions.find(opt => opt.id === optionId);
-    if (option) {
-      setInputValue(`${option.title} hakkında bilgi almak istiyorum. Bu analiz nasıl çalışır?`);
-      if (inputRef.current) {
-        inputRef.current.focus();
-      }
+    if (option && option.id !== 'reports') {
+      // Start analysis flow
+      startAnalysisFlow(option.id as 'roi' | 'climate' | 'equipment' | 'market' | 'layout');
+    } else if (option?.id === 'reports') {
+      // Navigate to reports page
+      window.location.href = '/dashboard/reports';
     }
+  };
+
+  const startAnalysisFlow = (analysisType: 'roi' | 'climate' | 'equipment' | 'market' | 'layout') => {
+    const flowQuestions = analysisFlows[analysisType]?.questions;
+    if (!flowQuestions) return;
+
+    const flow: AnalysisFlow = {
+      type: analysisType,
+      currentStep: 0,
+      collectedData: {},
+      isActive: true,
+      questions: flowQuestions as any
+    };
+
+    setAnalysisFlow(flow);
+
+    // Add initial AI message
+    const initialMessage: ChatMessage = {
+      id: Date.now().toString(),
+      role: 'assistant',
+      content: `Merhaba! ${getAnalysisTitle(analysisType)} için size yardımcı olacağım.
+
+Bu analiz için ${flowQuestions.length} adımda bilgi toplamamız gerekiyor. Analiz tamamlandığında 1 token kullanılacak.
+
+Mevcut token bakiyeniz: ${userTokens}
+
+Başlayalım! ${flowQuestions[0].question}`,
+      timestamp: new Date(),
+      isAnalysisStep: true,
+      stepType: 'start'
+    };
+
+    setMessages(prev => [...prev, initialMessage]);
+  };
+
+  const getAnalysisTitle = (type: string) => {
+    const titles = {
+      roi: 'ROI (Yatırım Geri Dönüş) Analizi',
+      climate: 'İklim Analizi',
+      equipment: 'Ekipman Analizi',
+      market: 'Pazar Analizi',
+      layout: 'Yerleşim Planı Analizi'
+    };
+    return titles[type as keyof typeof titles] || type;
   };
 
   const handleSendMessage = async () => {
