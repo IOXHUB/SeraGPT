@@ -359,7 +359,7 @@ export default function AIChatPage() {
                         SOHBETLER
                       </h3>
                       <div className="space-y-2">
-                        <p className="text-xs text-[#f6f8f9]/40 px-2">Hen��z sohbet geçmişi yok</p>
+                        <p className="text-xs text-[#f6f8f9]/40 px-2">Henüz sohbet geçmişi yok</p>
                       </div>
                     </div>
                   </div>
@@ -383,7 +383,7 @@ export default function AIChatPage() {
                       </div>
                     </div>
                     <svg
-                      className={`w-4 h-4 text-black transition-transform ${menuPopupOpen ? 'rotate-180' : ''}`}
+                      className={`w-6 h-6 text-black transition-transform ${menuPopupOpen ? 'rotate-180' : ''}`}
                       fill="none" stroke="currentColor" viewBox="0 0 24 24"
                     >
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
