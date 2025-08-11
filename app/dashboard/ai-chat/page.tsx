@@ -737,9 +737,9 @@ Lütfen daha sonra tekrar deneyin veya destek ekibimizle iletişime geçin.`,
                 {/* Sidebar Header - Logo */}
                 <div className="p-4 border-b border-[#f6f8f9]/10 bg-[#146448] text-white">
                   <div className="flex items-center justify-center">
-                    <div className="text-[#baf200] font-bold text-xl">
-                      SeraGPT
-                    </div>
+                    <svg className="h-10 w-auto" viewBox="0 0 200 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <text x="10" y="35" className="fill-[#baf200] text-2xl font-bold" style={{fontFamily: 'system-ui, sans-serif'}}>SeraGPT</text>
+                    </svg>
                   </div>
                   <div className="mt-3 text-center text-xs text-[#baf200] leading-4"
                        role="status"
