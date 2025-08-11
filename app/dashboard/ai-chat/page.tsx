@@ -580,7 +580,7 @@ export default function AIChatPage() {
                         {message.content}
                       </p>
                       <p className={`mt-2 ${
-                        message.role === 'user' ? 'text-[#1e3237]/60' : 'text-white/60'
+                        message.role === 'user' ? 'text-[#1e3237]/60' : 'text-[#ffffff]/60'
                       }`}
                          style={{ fontSize: 'clamp(11px, 2vw, 12px)', lineHeight: 'clamp(14px, 2.5vw, 16px)' }}>
                         {message.timestamp.toLocaleTimeString('tr-TR')}
