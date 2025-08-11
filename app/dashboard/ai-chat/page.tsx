@@ -53,7 +53,7 @@ export default function AIChatPage() {
   const [chatSessions, setChatSessions] = useState<ChatSession[]>([
     {
       id: '1',
-      title: 'Yatırım Geri Dönü�� (ROI) Analizi',
+      title: 'Yatırım Geri Dönüş (ROI) Analizi',
       lastMessage: 'Sohbet Başlatıldı...',
       date: 'Şubat Başında',
       messageCount: 0,
@@ -575,7 +575,7 @@ export default function AIChatPage() {
                         ? 'bg-[#baf200] text-[#1e3237]'
                         : 'bg-[#f6f8f9]/10 text-[#ffffff] border border-[#f6f8f9]/20'
                     }`}>
-                      <p className="whitespace-pre-wrap"
+                      <p className={`whitespace-pre-wrap ${message.role === 'assistant' ? 'text-[#ffffff]' : ''}`}
                          style={{ fontSize: 'clamp(14px, 2.5vw, 16px)', lineHeight: 'clamp(18px, 3.5vw, 24px)' }}>
                         {message.content}
                       </p>
