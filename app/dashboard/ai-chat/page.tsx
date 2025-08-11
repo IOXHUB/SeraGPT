@@ -754,7 +754,7 @@ export default function AIChatPage() {
         {/* Menu popup overlay - popup açıkken arka plan tıklaması */}
         {menuPopupOpen && (
           <div
-            className="fixed inset-0 z-40"
+            className="fixed inset-0 z-[45]"
             onClick={() => setMenuPopupOpen(false)}
           />
         )}
