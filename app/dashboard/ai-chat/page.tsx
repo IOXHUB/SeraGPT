@@ -265,11 +265,14 @@ export default function AIChatPage() {
                   <div className="flex items-center justify-center">
                     <img
                       src="https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2F01c1e8a05ef6424b912d584875377957?format=webp&width=800"
-                      alt="SeraGPT Logo"
+                      alt="SeraGPT Logo - AI Destekli Sera Yatırım Danışmanı"
                       className="h-10 w-auto object-contain"
+                      loading="eager"
                     />
                   </div>
-                  <div className="mt-3 text-center text-xs text-[#baf200] leading-4">
+                  <div className="mt-3 text-center text-xs text-[#baf200] leading-4"
+                       role="status"
+                       aria-live="polite">
                     AI Dashboard
                   </div>
                 </div>
