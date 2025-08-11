@@ -1,8 +1,11 @@
 'use client';
 
 import Link from 'next/link';
+import { useState } from 'react';
 
 export default function AIAsistanIslemleriPage() {
+  const [selectedOperation, setSelectedOperation] = useState<string | null>(null);
+
   const aiOperations = [
     {
       id: 'chat-history',
