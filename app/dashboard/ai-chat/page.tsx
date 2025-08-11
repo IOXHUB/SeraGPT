@@ -590,9 +590,24 @@ Lütfen daha sonra tekrar deneyin veya destek ekibimizle iletişime geçin.`,
     }
   }, []);
 
+  // Track window size for responsive behavior
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsDesktop(window.innerWidth >= 1024);
+    };
+
+    // Set initial value
+    checkScreenSize();
+
+    // Add event listener
+    window.addEventListener('resize', checkScreenSize);
+
+    return () => window.removeEventListener('resize', checkScreenSize);
+  }, []);
+
   // Close sidebar on mobile when message is sent
   useEffect(() => {
-    if (messages.length > 0 && window.innerWidth < 768) {
+    if (messages.length > 0 && typeof window !== 'undefined' && window.innerWidth < 768) {
       setSidebarOpen(false);
     }
   }, [messages]);
