@@ -135,7 +135,7 @@ export default function AIChatPage() {
   // Dashboard menu items
   const dashboardMenuItems = [
     { id: 'user', title: 'Kullanıcı İşlemleri' },
-    { id: 'tokens', title: 'Token ��şlemleri' },
+    { id: 'tokens', title: 'Token İşlemleri' },
     { id: 'ai-assistant', title: 'AI Asistan İşlemleri' },
     { id: 'analysis', title: 'Tüm Analizler' },
     { id: 'settings', title: 'Hesap Ayarları' },
@@ -939,14 +939,16 @@ Lütfen daha sonra tekrar deneyin veya destek ekibimizle iletişime geçin.`,
                       </div>
                     </div>
                   ) : (
-                    // Chat Messages
-                    <div className="py-4 space-y-4">
-                      {messages.map((message) => (
+                    // Chat Messages - Chronological Flow
+                    <div className="flex-1 overflow-y-auto py-4 space-y-4">
+                      {messages.map((message, index) => (
                         <motion.div
                           key={message.id}
                           initial={{ opacity: 0, y: 20 }}
                           animate={{ opacity: 1, y: 0 }}
-                          className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'} mb-4`}
+                          transition={{ delay: index * 0.1 }}
+                          className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
+                          style={{ marginBottom: '14px' }}
                         >
                           {message.isAnalysisStep && message.stepType === 'completed' && message.analysisData ? (
                             // Analysis Result Card
