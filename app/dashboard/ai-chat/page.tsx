@@ -705,7 +705,7 @@ Lütfen daha sonra tekrar deneyin veya destek ekibimizle iletişime geçin.`,
                   initial={isDesktop ? false : { x: -300, opacity: 0 }}
                   animate={{ x: 0, opacity: 1 }}
                   exit={isDesktop ? false : { x: -300, opacity: 0 }}
-                  className="w-64 sm:w-72 bg-[#1e3237] border-r border-[#f6f8f9]/20 flex flex-col h-full fixed lg:relative z-[60] lg:z-auto max-w-[70vw] min-w-0 shadow-2xl"
+                  className="w-64 sm:w-72 bg-[#1e3237] border-r border-[#f6f8f9]/20 flex flex-col h-full fixed lg:relative z-40 lg:z-auto max-w-[70vw] min-w-0 shadow-2xl"
                   style={{ backgroundColor: 'rgba(30, 50, 55, 0.98)' }}
                 >
                 {/* Sidebar Header - Logo */}
