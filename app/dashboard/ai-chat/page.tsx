@@ -308,7 +308,7 @@ Eğer analiz yapmak isterseniz, yukarıdaki analiz kartlarından birini seçebil
           const errorMessage: ChatMessage = {
             id: (Date.now() + 1).toString(),
             role: 'assistant',
-            content: `Lütfen geçerli bir say�� girin. ${currentQuestion.question}`,
+            content: `Lütfen geçerli bir sayı girin. ${currentQuestion.question}`,
             timestamp: new Date(),
             isAnalysisStep: true
           };
@@ -452,7 +452,7 @@ Başka bir analiz yapmak isterseniz yukarıdaki kartları kullanabilirsiniz!`,
           role: 'assistant',
           content: `❌ **Analiz Hatası**
 
-Üzgünüz, analiz işlemi sıras��nda bir hata oluştu.
+Üzgünüz, analiz işlemi sırasında bir hata oluştu.
 Token iadesi yapıldı.
 
 Lütfen daha sonra tekrar deneyin veya destek ekibimizle iletişime geçin.`,
@@ -486,7 +486,8 @@ Lütfen daha sonra tekrar deneyin veya destek ekibimizle iletişime geçin.`,
       keyFindings: getMockFindings(flow),
       recommendations: getMockRecommendations(flow),
       pdfUrl: `/api/analysis/${flow.type}/download?id=${Date.now()}`,
-      analysisId: `${flow.type}_${Date.now()}`
+      analysisId: `${flow.type}_${Date.now()}`,
+      type: flow.type
     };
   };
 
@@ -510,7 +511,7 @@ Lütfen daha sonra tekrar deneyin veya destek ekibimizle iletişime geçin.`,
       ],
       climate: [
         'Seçilen bölge üretim için uygun',
-        'Yıllık ortalama sıcaklık ideal aral��kta',
+        'Yıllık ortalama sıcaklık ideal aralıkta',
         'Enerji maliyeti %15 azaltılabilir'
       ],
       equipment: [
@@ -670,7 +671,7 @@ Lütfen daha sonra tekrar deneyin veya destek ekibimizle iletişime geçin.`,
 
   return (
     <ClientOnly>
-      <div className="flex flex-col h-screen bg-[#146448] overflow-hidden"
+      <div className="flex h-screen bg-[#146448] overflow-hidden"
            style={{
              height: '100vh',
              minHeight: '100vh',
@@ -892,208 +893,185 @@ Lütfen daha sonra tekrar deneyin veya destek ekibimizle iletişime geçin.`,
               </div>
             </div>
 
-            {/* Chat Container - Responsive Layout */}
-            <div className="flex-1 flex flex-col bg-[#146448] overflow-hidden relative">
-              {/* Chat Messages Area - Always Centered */}
-              <div className="flex-1 flex justify-center overflow-hidden" style={{ paddingBottom: '120px' }}>
-                <div className="w-full max-w-[900px] flex flex-col h-full px-3 md:px-6 relative"
-                     style={{
-                       marginLeft: isDesktop && sidebarOpen ? '0' : '0',
-                       transition: 'margin-left 0.3s ease-in-out'
-                     }}>
-                  {!currentChatId && messages.length === 0 ? (
-                    // Welcome State - Perfect Center
-                    <div className="flex flex-col items-center justify-center h-full min-h-[400px] py-8">
-                      <div className="text-center mb-8 max-w-2xl">
-                        <h1 className="font-bold text-[#f6f8f9] mb-6 text-3xl md:text-4xl lg:text-5xl">
-                          Hoş Geldiniz, Test Kullanıcı!
-                        </h1>
+            {/* Chat Container - Full Height */}
+            <div className="min-h-[100dvh] bg-[#146448] text-white flex flex-col">
+              <main className="flex-1">
+                {!currentChatId && messages.length === 0 ? (
+                  // Welcome State
+                  <div className="flex flex-col items-center justify-center h-full min-h-[400px] py-8">
+                    <div className="text-center mb-8 max-w-2xl">
+                      <h1 className="font-bold text-[#f6f8f9] mb-6 text-3xl md:text-4xl lg:text-5xl">
+                        Hoş Geldiniz, Test Kullanıcı!
+                      </h1>
 
-                        <div className="mb-8">
-                          <p className="text-[#f6f8f9]/90 mb-4 text-base md:text-lg">
-                            Aşağıdan Analiz Başlatabilirsiniz yada menüden düzenlemek istediğiniz geçmiş analizlerinden birini seçin.
-                          </p>
-                          <p className="text-[#baf200] font-medium text-sm md:text-base">
-                            Tam havamdayım, çalışalım. Ya siz? Yazalım.
-                          </p>
-                        </div>
-                      </div>
-
-                      <div className="grid grid-cols-2 gap-3 md:gap-4 max-w-md md:max-w-lg w-full px-4">
-                        {analysisOptions.map((option) => (
-                          <button
-                            key={option.id}
-                            onClick={() => handleAnalysisClick(option.id)}
-                            className="h-20 md:h-24 p-3 bg-white/95 hover:bg-white rounded-lg md:rounded-xl text-center transition-all hover:scale-105 group flex flex-col justify-center items-center border border-[#baf200]/20 hover:border-[#baf200]/40 shadow-sm"
-                          >
-                            <div className="w-full h-full flex flex-col justify-center items-center">
-                              <h3 className="font-semibold text-[#1e3237] mb-1 group-hover:text-[#146448] transition-colors text-xs md:text-sm lg:text-base">
-                                {option.title}
-                              </h3>
-                              <p className="text-[#1e3237]/70 leading-tight text-xs">
-                                {option.description}
-                              </p>
-                            </div>
-                          </button>
-                        ))}
+                      <div className="mb-8">
+                        <p className="text-[#f6f8f9]/90 mb-4 text-base md:text-lg">
+                          Aşağıdan Analiz Başlatabilirsiniz yada menüden düzenlemek istediğiniz geçmiş analizlerinden birini seçin.
+                        </p>
+                        <p className="text-[#baf200] font-medium text-sm md:text-base">
+                          Tam havamdayım, çalışalım. Ya siz? Yazalım.
+                        </p>
                       </div>
                     </div>
-                  ) : (
-                    // Chat Messages - Chronological Flow
-                    <div className="flex-1 overflow-y-auto py-4 space-y-4">
-                      {messages.map((message, index) => (
-                        <motion.div
-                          key={message.id}
-                          initial={{ opacity: 0, y: 20 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ delay: index * 0.1 }}
-                          className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
-                          style={{ marginBottom: '14px' }}
+
+                    <div className="grid grid-cols-2 gap-3 md:gap-4 max-w-md md:max-w-lg w-full px-4">
+                      {analysisOptions.map((option) => (
+                        <button
+                          key={option.id}
+                          onClick={() => handleAnalysisClick(option.id)}
+                          className="h-20 md:h-24 p-3 bg-white/95 hover:bg-white rounded-lg md:rounded-xl text-center transition-all hover:scale-105 group flex flex-col justify-center items-center border border-[#baf200]/20 hover:border-[#baf200]/40 shadow-sm"
                         >
-                          {message.isAnalysisStep && message.stepType === 'completed' && message.analysisData ? (
-                            // Analysis Result Card
-                            <div className="w-full max-w-[85%]">
-                              <div className="bg-gradient-to-r from-[#baf200]/20 to-[#baf200]/10 border border-[#baf200]/30 rounded-lg p-4">
-                                <div className="flex items-center space-x-3 mb-4">
-                                  <div className="w-8 h-8 bg-[#baf200] rounded-full flex items-center justify-center">
-                                    <svg className="w-5 h-5 text-[#1e3237]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                    </svg>
-                                  </div>
-                                  <div>
-                                    <h3 className="text-[#ffffff] font-semibold">Analiz Tamamlandı!</h3>
-                                    <p className="text-[#baf200] text-sm">{message.timestamp.toLocaleTimeString('tr-TR')}</p>
-                                  </div>
-                                </div>
-
-                                <div className="text-[#ffffff] mb-4" style={{ lineHeight: '1.5' }}>
-                                  {message.content}
-                                </div>
-
-                                <div className="flex flex-wrap gap-2">
-                                  <button
-                                    onClick={() => window.open(message.analysisData.pdfUrl, '_blank')}
-                                    className="bg-[#baf200] hover:bg-[#baf200]/80 text-[#1e3237] px-3 py-1.5 rounded text-sm font-medium transition-colors"
-                                  >
-                                    PDF İndir
-                                  </button>
-                                  <button
-                                    onClick={() => navigator.clipboard.writeText(message.content)}
-                                    className="bg-[#f6f8f9]/20 hover:bg-[#f6f8f9]/30 text-[#ffffff] px-3 py-1.5 rounded text-sm transition-colors"
-                                  >
-                                    Kopyala
-                                  </button>
-                                  <button
-                                    onClick={() => window.location.href = '/dashboard/reports'}
-                                    className="bg-[#f6f8f9]/20 hover:bg-[#f6f8f9]/30 text-[#ffffff] px-3 py-1.5 rounded text-sm transition-colors"
-                                  >
-                                    Tüm Raporlar
-                                  </button>
-                                </div>
+                          <div className="w-full h-full flex flex-col justify-center items-center">
+                            <h3 className="font-semibold text-[#1e3237] mb-1 group-hover:text-[#146448] transition-colors text-xs md:text-sm lg:text-base">
+                              {option.title}
+                            </h3>
+                            <p className="text-[#1e3237]/70 leading-tight text-xs">
+                              {option.description}
+                            </p>
+                          </div>
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                ) : (
+                  // Chat Messages with Rich Content
+                  <div className="mx-auto w-full max-w-[900px] px-4 py-6 space-y-3" id="messages">
+                    {messages.map((message, index) => (
+                      <motion.article
+                        key={message.id}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: index * 0.1 }}
+                        className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
+                      >
+                        <div className={`message ${message.role === 'user' ? 'message-user' : 'message-ai'} group hover:bg-white/5 transition-colors rounded-lg p-3`} style={{ maxWidth: '70%' }}>
+                          {/* Message Body */}
+                          <div className={`message-body prose-chat ${
+                            message.role === 'user' ? 'text-[#BAF200]' : 'text-[#F6F8F9]'
+                          }`} style={{ wordBreak: 'break-word' }}>
+                            {/* Rich Content Rendering */}
+                            {message.content.includes('```') ? (
+                              // Code block content
+                              <div className="space-y-2">
+                                {message.content.split('```').map((part, i) => 
+                                  i % 2 === 0 ? (
+                                    <p key={i} className="m-0">{part}</p>
+                                  ) : (
+                                    <pre key={i} className="bg-black/25 border border-white/5 text-[#E5E7EB] rounded-lg p-3 overflow-auto my-2">
+                                      <code className="language-bash">{part}</code>
+                                    </pre>
+                                  )
+                                )}
                               </div>
-                            </div>
-                          ) : message.isAnalysisStep && message.stepType === 'processing' ? (
-                            // Processing Card
-                            <div className="max-w-[70%]">
-                              <div className="bg-[#f6f8f9]/10 border border-[#baf200]/30 rounded-lg p-4">
-                                <div className="flex items-center space-x-3 mb-3">
-                                  <div className="w-6 h-6 bg-[#baf200] rounded-full flex items-center justify-center animate-pulse">
-                                    <svg className="w-4 h-4 text-[#1e3237]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-                                    </svg>
-                                  </div>
-                                  <div className="flex space-x-1">
-                                    <div className="w-2 h-2 bg-[#baf200] rounded-full animate-bounce"></div>
-                                    <div className="w-2 h-2 bg-[#baf200] rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
-                                    <div className="w-2 h-2 bg-[#baf200] rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
-                                  </div>
-                                </div>
-                                <p className="text-[#ffffff]" style={{ lineHeight: '1.5' }}>
-                                  {message.content}
-                                </p>
-                                <p className="text-[#ffffff]/60 mt-2 text-sm">
-                                  {message.timestamp.toLocaleTimeString('tr-TR')}
-                                </p>
+                            ) : message.content.includes('\n•') || message.content.includes('\n-') ? (
+                              // List content
+                              <div className="space-y-2">
+                                {message.content.split('\n').map((line, i) => {
+                                  if (line.startsWith('•') || line.startsWith('-')) {
+                                    return <li key={i} className="ml-4">{line.substring(1).trim()}</li>
+                                  }
+                                  return line && <p key={i} className="m-0">{line}</p>
+                                })}
                               </div>
-                            </div>
-                          ) : (
-                            // Regular Message Bubble - Clean Minimal Design
-                            <div className={`max-w-[70%] rounded-[10px] ${
-                              message.role === 'user'
-                                ? 'bg-[#baf200] text-[#1e3237]'
-                                : 'bg-[#f6f8f9]/10 text-[#ffffff] border border-[#f6f8f9]/20'
-                            }`}
-                                 style={{
-                                   padding: '10px 14px',
-                                   lineHeight: '1.5'
-                                 }}>
+                            ) : (
+                              // Regular text
                               <div className="whitespace-pre-wrap break-words">
                                 {message.content}
                               </div>
-                              <div className={`mt-2 text-xs ${
-                                message.role === 'user' ? 'text-[#1e3237]/60' : 'text-[#ffffff]/60'
-                              }`}>
-                                {message.timestamp.toLocaleTimeString('tr-TR')}
+                            )}
+                            
+                            {/* Analysis Result Files */}
+                            {message.isAnalysisStep && message.stepType === 'completed' && message.analysisData && (
+                              <div className="mt-4 space-y-2">
+                                <a href={message.analysisData.pdfUrl} className="file-chip inline-flex items-center space-x-2 px-3 py-2 bg-white/6 border border-white/8 rounded-lg hover:bg-white/10 transition-colors" download>
+                                  <span className="file-name text-sm">{getAnalysisTitle(message.analysisData.type || 'roi')}_rapor.pdf</span>
+                                  <span className="file-size text-xs opacity-70">1.2 MB</span>
+                                </a>
                               </div>
-                            </div>
-                          )}
-                        </motion.div>
-                      ))}
+                            )}
+                          </div>
 
-                      {isTyping && (
-                        <motion.div
-                          initial={{ opacity: 0, y: 20 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          className="flex justify-start"
-                          style={{ marginBottom: '14px' }}
-                        >
-                          <div className="max-w-[70%] bg-[#f6f8f9]/10 text-[#f6f8f9] border border-[#f6f8f9]/20 rounded-[10px]"
-                               style={{
-                                 padding: '10px 14px',
-                                 lineHeight: '1.5'
-                               }}>
+                          {/* Message Actions */}
+                          <footer className={`message-actions opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex space-x-1 mt-2 ${
+                            message.role === 'user' ? 'justify-end' : 'justify-start'
+                          }`}>
+                            <button 
+                              onClick={() => navigator.clipboard.writeText(message.content)}
+                              className="p-1.5 bg-white/6 border border-white/8 rounded hover:bg-white/10 transition-colors text-xs"
+                              title="Kopyala"
+                            >
+                              ⎘
+                            </button>
+                            <button 
+                              className="p-1.5 bg-white/6 border border-white/8 rounded hover:bg-white/10 transition-colors text-xs"
+                              title="Alıntıla"
+                            >
+                              ❝
+                            </button>
+                            {message.role === 'assistant' && (
+                              <button 
+                                className="p-1.5 bg-white/6 border border-white/8 rounded hover:bg-white/10 transition-colors text-xs"
+                                title="Paylaş"
+                              >
+                                ⤴
+                              </button>
+                            )}
+                            <button 
+                              onClick={() => {
+                                setMessages(prev => prev.filter(m => m.id !== message.id));
+                              }}
+                              className="p-1.5 bg-red-500/15 border border-red-500/20 rounded hover:bg-red-500/25 transition-colors text-xs"
+                              title="Sil"
+                            >
+                              ✕
+                            </button>
+                          </footer>
+                        </div>
+                      </motion.article>
+                    ))}
+
+                    {isTyping && (
+                      <motion.article
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="flex justify-start"
+                      >
+                        <div className="message message-ai p-3" style={{ maxWidth: '70%' }}>
+                          <div className="message-body prose-chat text-[#F6F8F9]" style={{ wordBreak: 'break-word' }}>
                             <div className="flex space-x-1">
                               <div className="w-2 h-2 bg-[#baf200] rounded-full animate-bounce"></div>
                               <div className="w-2 h-2 bg-[#baf200] rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
                               <div className="w-2 h-2 bg-[#baf200] rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
                             </div>
                           </div>
-                        </motion.div>
-                      )}
-                      <div ref={messagesEndRef} />
-                    </div>
-                  )}
-                </div>
-              </div>
-            </div>
+                        </div>
+                      </motion.article>
+                    )}
+                    <div ref={messagesEndRef} />
+                  </div>
+                )}
+              </main>
 
-          </div>
-        </div>
-
-        {/* Fixed Input Area at Bottom */}
-        <div className="fixed bottom-0 left-0 right-0 bg-[#146448] border-t border-[#f6f8f9]/10 z-40">
-          <div className="flex justify-center">
-            <div className="w-full max-w-[900px] p-3 md:p-4"
-                 style={{
-                   marginLeft: isDesktop && sidebarOpen ? '0' : '0',
-                   transition: 'margin-left 0.3s ease-in-out',
-                   paddingLeft: 'max(12px, env(safe-area-inset-left))',
-                   paddingRight: 'max(12px, env(safe-area-inset-right))'
-                 }}>
-
-              {/* Input Area */}
-              <div className="mb-3">
-                <div className="relative">
-                  <textarea
+              {/* Fixed Input at Bottom */}
+              <div className="sticky bottom-0 bg-[#146448]/95 backdrop-blur border-t border-white/10">
+                <form 
+                  className="mx-auto w-full max-w-[900px] px-4 py-3 flex items-end gap-2"
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    handleSendMessage();
+                  }}
+                >
+                  <textarea 
                     ref={inputRef}
+                    rows={1} 
+                    id="chat-input"
                     value={inputValue}
                     onChange={(e) => {
                       setInputValue(e.target.value);
-                      // Auto-resize with max 4 lines
+                      // Auto-resize
                       const textarea = e.target as HTMLTextAreaElement;
                       textarea.style.height = 'auto';
-                      const maxHeight = 24 * 4; // 4 lines × 24px line height
-                      const newHeight = Math.min(textarea.scrollHeight, maxHeight);
+                      const newHeight = Math.min(textarea.scrollHeight, 120);
                       textarea.style.height = newHeight + 'px';
                     }}
                     onKeyDown={(e) => {
@@ -1102,72 +1080,69 @@ Lütfen daha sonra tekrar deneyin veya destek ekibimizle iletişime geçin.`,
                         handleSendMessage();
                       }
                     }}
-                    placeholder="SeraGPT'ye bir mesaj yazın..."
-                    className="w-full p-3 pr-12 bg-white/95 border border-[#baf200]/30 rounded-lg resize-none focus:ring-2 focus:ring-[#baf200] focus:border-[#baf200] placeholder-[#1e3237]/50 text-[#1e3237] overflow-hidden transition-all duration-200"
-                    rows={1}
-                    style={{
-                      minHeight: '48px',
-                      maxHeight: '96px', // 4 lines
-                      lineHeight: '24px'
-                    }}
+                    className="flex-1 resize-none bg-transparent outline-none text-[15px] leading-[1.55] placeholder-white/50 text-white border-none focus:ring-0"
+                    placeholder="SeraGPT'ye bir mesaj yazın…"
+                    style={{ minHeight: '24px', maxHeight: '120px' }}
                   />
-
-                  {/* Send Button */}
-                  <button
-                    onClick={handleSendMessage}
+                  <button 
+                    type="submit"
                     disabled={!inputValue.trim()}
-                    className="absolute right-2 top-1/2 transform -translate-y-1/2 p-2 bg-[#baf200] hover:bg-[#baf200]/80 text-[#1e3237] rounded-lg transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed focus:ring-2 focus:ring-[#baf200] focus:outline-none"
-                    aria-label="Mesaj gönder"
+                    className="shrink-0 rounded-lg bg-white/10 px-4 py-2 hover:bg-white/15 transition-colors disabled:opacity-50 text-white"
                   >
-                    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
-                    </svg>
+                    Gönder
                   </button>
-                </div>
-              </div>
-
-              {/* Bottom Action Icons */}
-              <div className="flex items-center justify-center space-x-6 py-2"
-                   style={{ paddingBottom: 'max(12px, env(safe-area-inset-bottom))' }}>
-
-                {/* File Upload */}
-                <button className="p-3 hover:bg-[#f6f8f9]/10 rounded-xl transition-colors focus:ring-2 focus:ring-[#baf200] focus:outline-none group">
-                  <svg className="w-6 h-6 text-[#f6f8f9] group-hover:text-[#baf200] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13" />
-                  </svg>
-                </button>
-
-                {/* Voice Recording */}
-                <button
-                  className="p-3 hover:bg-[#f6f8f9]/10 rounded-xl transition-colors focus:ring-2 focus:ring-[#baf200] focus:outline-none group"
-                  onClick={() => setIsRecording(!isRecording)}
-                >
-                  <svg className={`w-6 h-6 transition-all duration-200 ${isRecording ? 'text-[#baf200] animate-pulse' : 'text-[#f6f8f9] group-hover:text-[#baf200]'}`} fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 1a3 3 0 013 3v8a3 3 0 01-6 0V4a3 3 0 013-3zM19 10v2a7 7 0 01-14 0v-2a1 1 0 012 0v2a5 5 0 0010 0v-2a1 1 0 012 0z"/>
-                  </svg>
-                </button>
-
-                {/* Voice Chat */}
-                <button className="p-3 hover:bg-[#f6f8f9]/10 rounded-xl transition-colors focus:ring-2 focus:ring-[#baf200] focus:outline-none group">
-                  <svg className="w-6 h-6 text-[#f6f8f9] group-hover:text-[#baf200] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                  </svg>
-                </button>
-
-                {/* New Chat */}
-                <button
-                  onClick={handleNewChat}
-                  className="p-3 hover:bg-[#f6f8f9]/10 rounded-xl transition-colors focus:ring-2 focus:ring-[#baf200] focus:outline-none group"
-                >
-                  <svg className="w-6 h-6 text-[#f6f8f9] group-hover:text-[#baf200] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                  </svg>
-                </button>
+                </form>
               </div>
             </div>
+
           </div>
         </div>
       </div>
+
+      {/* Custom Styles */}
+      <style jsx>{`
+        .message { max-width: 70%; }
+        .message .message-body { word-break: break-word; }
+        
+        /* User text */
+        .message-user .message-body { color: #BAF200; }
+        
+        /* AI text */
+        .message-ai .message-body { color: #F6F8F9; }
+        
+        /* Code blocks - #146448 background with contrast */
+        .prose-chat pre {
+          background: rgb(0 0 0 / .25);
+          border: 1px solid rgb(255 255 255 / .05);
+          color: #E5E7EB;
+          border-radius: .5rem;
+          padding: .75rem .9rem;
+          overflow: auto;
+          margin: .5rem 0;
+        }
+        
+        /* Image card */
+        .image-card {
+          background: rgb(255 255 255 / .06);
+          border: 1px solid rgb(255 255 255 / .08);
+        }
+        
+        /* File chip */
+        .file-chip {
+          background: rgb(255 255 255 / .06);
+          border: 1px solid rgb(255 255 255 / .08);
+        }
+        
+        /* Action buttons */
+        .message-actions button {
+          background: rgb(255 255 255 / .06);
+          border: 1px solid rgb(255 255 255 / .08);
+        }
+        .message-actions button.danger {
+          background: rgb(239 68 68 / .15);
+          border-color: rgb(239 68 68 / .2);
+        }
+      `}</style>
     </ClientOnly>
   );
 }
