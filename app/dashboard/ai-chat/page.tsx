@@ -100,18 +100,18 @@ export default function AIChatPage() {
     { id: 'reports', title: 'Raporlarım', description: 'Önceki analizlerinizi görün' }
   ];
 
-  // Dashboard menu items
+  // Dashboard menu items - Updated for modal system
   const dashboardMenuItems = [
-    { id: 'user', title: 'Kullanıcı İşlemleri' },
-    { id: 'tokens', title: 'Token İşlemleri' },
-    { id: 'ai-assistant', title: 'AI Asistan İşlemleri' },
-    { id: 'analysis', title: 'Tüm Analizler' },
-    { id: 'settings', title: 'Hesap Ayarları' },
-    { id: 'support', title: 'Destek' },
-    { id: 'consulting', title: 'Danışmanlık' },
-    { id: 'turnkey', title: 'Anahtar Teslim' },
-    { id: 'homepage', title: 'Anasayfaya Çıkış' },
-    { id: 'old-dashboard', title: 'Eski Dashboard' }
+    { id: 'user', title: 'Kullanıcı İşlemleri', modal: true },
+    { id: 'tokens', title: 'Token İşlemleri', modal: true },
+    { id: 'ai-assistant', title: 'AI Asistan İşlemleri', modal: true },
+    { id: 'analysis', title: 'Tüm Analizler', modal: true },
+    { id: 'settings', title: 'Hesap Ayarları', modal: true },
+    { id: 'support', title: 'Destek', modal: false, href: '/destek' },
+    { id: 'consulting', title: 'Danışmanlık', modal: false, href: '/danismanlik' },
+    { id: 'turnkey', title: 'Anahtar Teslim', modal: false, href: '/anahtar-teslim-proje' },
+    { id: 'homepage', title: 'Anasayfaya Çıkış', modal: false, href: '/' },
+    { id: 'main-dashboard', title: 'Ana Dashboard', modal: false, href: '/dashboard' }
   ];
 
   const handleNewChat = () => {
@@ -547,7 +547,7 @@ export default function AIChatPage() {
                   </h1>
                   <div className="mb-8 text-center">
                     <p className="text-[#f6f8f9]/90 mb-4 text-base md:text-lg text-center">
-                      A��ağıdan Analiz Başlatabilirsiniz yada menüden düzenlemek istediğiniz geçmiş analizlerinden birini seçin.
+                      Aşağıdan Analiz Başlatabilirsiniz yada menüden düzenlemek istediğiniz geçmiş analizlerinden birini seçin.
                     </p>
                     <p className="text-[#baf200] font-medium text-sm md:text-base text-center">
                       Tam havamdayım, çalışalım. Ya siz?
