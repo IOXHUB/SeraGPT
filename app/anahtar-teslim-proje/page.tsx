@@ -1,252 +1,11 @@
 'use client';
 
 import { useState } from 'react';
-import { motion } from 'framer-motion';
 import Link from 'next/link';
 import TurnkeyProjectModal from '../../components/TurnkeyProjectModal';
 
 export default function AnahtarTeslimProjePage() {
-  const [activeSection, setActiveSection] = useState('turnkey-service');
   const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const sidebarSections = [
-    {
-      title: 'Anahtar Teslim Hizmeti',
-      id: 'turnkey',
-      icon: '🏗️',
-      items: [
-        { id: 'turnkey-service', title: 'Anahtar Teslim Sera Hizmeti', href: '#turnkey-service' },
-        { id: 'discovery', title: 'Keşif', href: '#discovery' },
-        { id: 'project-design', title: 'Projelendirme', href: '#project-design' },
-        { id: 'proposal', title: 'Tekliflendirme', href: '#proposal' },
-        { id: 'installation', title: 'Kurulum', href: '#installation' },
-        { id: 'training-commissioning', title: 'Eğitim & Devreye Alma', href: '#training-commissioning' }
-      ]
-    },
-    {
-      title: 'Hizmet Bileşenleri',
-      id: 'service-components',
-      icon: '🛠️',
-      items: [
-        { id: 'service-overview', title: 'Hizmet Bileşenleri', href: '#service-overview' },
-        { id: 'construction', title: 'Sera Konstrüksiyonu', href: '#construction' },
-        { id: 'automation', title: 'Otomasyon Sistemi', href: '#automation' },
-        { id: 'heating-systems', title: 'ISITMAX Isıtma Sistemleri', href: '#heating-systems' },
-        { id: 'irrigation', title: 'Sulama Sistemleri', href: '#irrigation' }
-      ]
-    },
-    {
-      title: 'Partnerler & Hedef Kitle',
-      id: 'partners',
-      icon: '🤝',
-      items: [
-        { id: 'business-partners', title: 'İş Ortaklarımız', href: '#business-partners' },
-        { id: 'target-audience', title: 'Hedef Kitle', href: '#target-audience' },
-        { id: 'government-subsidies', title: 'Devlet Teşvikleri', href: '#government-subsidies' },
-        { id: 'corporate-clients', title: 'Kurumsal Müşteriler', href: '#corporate-clients' }
-      ]
-    }
-  ];
-
-  const contentData = {
-    'turnkey-service': {
-      title: 'Anahtar Teslim Sera Hizmeti',
-      subtitle: 'Help Center / Anahtar Teslim Proje',
-      description: 'Kullanıcının yatırım fikrini baştan sona anahtar teslim şekilde uygulamak. Demonte veya sabit sera konstrüksiyonundan otomasyon sistemine, ısıtmadan sulamaya kadar tüm bileşenleri ile eksiksiz hizmet.',
-      steps: [
-        {
-          title: '1. Keşif',
-          items: [
-            'Lokasyon verileri alınır',
-            'Saha ziyaretleri yapılır',
-            'Toprak ve iklim analizi',
-            'Çevresel faktörlerin değerlendirilmesi'
-          ]
-        },
-        {
-          title: '2. Projelendirme',
-          items: [
-            'İklim verilerine göre sera modeli tasarlanır',
-            'Zemin koşulları değerlendirilir',
-            'Ürün hedefi belirlenir',
-            'Yatırım bütçesine uygun çözümler geliştirilir'
-          ]
-        },
-        {
-          title: '3. Tekliflendirme',
-          items: [
-            'Detaylı malzeme listesi hazırlanır',
-            'Kurulum süreci planlanır',
-            'Teslim süresi belirlenir',
-            'Şeffaf fiyat detayları sunulur'
-          ]
-        },
-        {
-          title: '4. Kurulum',
-          items: [
-            'Isıtma sistemleri kurulur',
-            'Otomasyon altyapısı tamamlanır',
-            'Sulama sistemleri monte edilir',
-            'Diğer altyapılar entegre edilir'
-          ]
-        },
-        {
-          title: '5. Eğitim & Devreye Alma',
-          items: [
-            'Personel eğitimi verilir',
-            'İlk ürün aşamasında destek sağlanır',
-            'Sistem optimizasyonu yapılır',
-            'Garanti ve bakım programı başlatılır'
-          ]
-        }
-      ]
-    },
-    'discovery': {
-      title: 'Keşif Süreci',
-      subtitle: 'Help Center / Anahtar Teslim Proje',
-      description: 'Projenin başarısı için kritik olan keşif aşamasında, saha koşulları detaylı şekilde incelenir ve en uygun çözümler için temel veriler toplanır.',
-      steps: [
-        {
-          title: 'Saha İncelemesi',
-          items: [
-            'Lokasyon koordinatları ve erişim yolları',
-            'Mevcut altyapı durumu (elektrik, su, doğalgaz)',
-            'Topografik özellikler ve eğim analizi',
-            'Çevredeki yapılar ve gölgeleme faktörleri'
-          ]
-        },
-        {
-          title: 'Veri Toplama',
-          items: [
-            'İklim verileri ve meteorolojik ölçümler',
-            'Toprak analizi ve drenaj durumu',
-            'Su kaynakları ve kalitesi',
-            'Yasal izinler ve zoning durumu'
-          ]
-        }
-      ]
-    },
-    'service-overview': {
-      title: 'Hizmet Bileşenleri',
-      subtitle: 'Help Center / Anahtar Teslim Proje',
-      description: 'Anahtar teslim sera projelerimizde sunduğumuz kapsamlı hizmet bileşenleri ile tam entegre çözümler sağlıyoruz.',
-      steps: [
-        {
-          title: 'Yapısal Sistemler',
-          items: [
-            'Demonte veya sabit sera konstrüksiyonu',
-            'Galvanizli çelik çerçeve sistemleri',
-            'Polikarbon veya cam örtü malzemeleri',
-            'Havalandırma ve çatı sistemleri'
-          ]
-        },
-        {
-          title: 'Teknolojik Sistemler',
-          items: [
-            'Otomasyon sistemi (ısı, sulama, nem, ışık kontrol)',
-            'ISITMAX ısıtma sistemleri',
-            'Sulama sistemleri (damla, sisleme, sprey)',
-            'Bitki türüne özel yerleşim ve üretim tasarımı'
-          ]
-        },
-        {
-          title: 'Destek Hizmetleri',
-          items: [
-            'Kurulum sonrası teknik destek',
-            'Garanti ve bakım hizmetleri',
-            'Personel eğitimi programları',
-            'Sistem optimizasyonu danışmanlığı'
-          ]
-        }
-      ]
-    },
-    'business-partners': {
-      title: 'İş Ortaklarımız',
-      subtitle: 'Help Center / Anahtar Teslim Proje',
-      description: 'Anahtar teslim projelerimizde güvenilir ve deneyimli iş ortaklarımızla birlikte çalışarak en kaliteli çözümleri sunuyoruz.',
-      steps: [
-        {
-          title: 'Ana Çözüm Ortakları',
-          items: [
-            'Eminel Tarım - Anahtar teslim projelerde ana çözüm ortağı',
-            'ISITMAX - Sera ısıtma sistemleri uzmanı',
-            'IOX Modular Systems - Modüler sera teknolojileri',
-            'Sertifikalı montaj ve kurulum ekipleri'
-          ]
-        },
-        {
-          title: 'Teknoloji Ortakları',
-          items: [
-            'Otomasyon sistemleri tedarikçileri',
-            'İklim kontrol teknolojileri sağlayıcıları',
-            'Sulama ekipmanları üreticileri',
-            'Sera örtü malzemeleri tedarikçileri'
-          ]
-        }
-      ]
-    },
-    'target-audience': {
-      title: 'Hedef Kitle',
-      subtitle: 'Help Center / Anahtar Teslim Proje',
-      description: 'Anahtar teslim sera hizmetimiz, farklı ölçeklerde ve amaçlarda sera yatırımı planlayan geniş bir kitleye hitap etmektedir.',
-      steps: [
-        {
-          title: 'Devlet Destekli Projeler',
-          items: [
-            'Devlet teşvikli sera yatırımcıları',
-            'TKDK destekli tarım projeleri',
-            'Kalkınma ajansı hibelerinden yararlananlar',
-            'Tarım ve Orman Bakanlığı projelerı'
-          ]
-        },
-        {
-          title: 'Kurumsal Müşteriler',
-          items: [
-            'Kurumsal gıda ve ürün tedarik zinciri firmaları',
-            'Büyük ölçekli perakende zincirleri',
-            'Kooperatifler ve tarım birlikleri',
-            'Yurt dışına üretim planlayan profesyonel üreticiler'
-          ]
-        },
-        {
-          title: 'Özel Sektör',
-          items: [
-            'Tarımsal holding şirketleri',
-            'Yatırım fonları ve sermaye şirketleri',
-            'Aile işletmeleri ve girişimciler',
-            'İhracat odaklı üretici kooperatifleri'
-          ]
-        }
-      ]
-    },
-    'heating-systems': {
-      title: 'ISITMAX Isıtma Sistemleri',
-      subtitle: 'Help Center / Anahtar Teslim Proje',
-      description: 'İş ortağımız ISITMAX ile sera projelerinizde enerji verimliliği yüksek, çevre dostu ısıtma çözümleri sunuyoruz.',
-      steps: [
-        {
-          title: 'Sistem Özellikleri',
-          items: [
-            'Yüksek enerji verimliliği',
-            'Çevre dostu teknolojiler',
-            'Otomatik kontrol sistemleri',
-            'Düşük işletme maliyetleri'
-          ]
-        },
-        {
-          title: 'Kurulum ve Destek',
-          items: [
-            'Profesyonel montaj hizmeti',
-            'Sistem optimizasyonu',
-            'Periyodik bakım programları',
-            '7/24 teknik destek'
-          ]
-        }
-      ]
-    }
-  };
-
-  const currentContent = contentData[activeSection as keyof typeof contentData] || contentData['turnkey-service'];
 
   return (
     <div className="min-h-screen" style={{ backgroundColor: '#146448' }}>
@@ -309,129 +68,225 @@ export default function AnahtarTeslimProjePage() {
         </div>
       </header>
 
-      {/* Main Content Background */}
-      <div style={{ backgroundColor: '#f6f8f9', minHeight: '100vh' }}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <div className="flex flex-col lg:flex-row gap-8">
-            {/* Sidebar */}
-            <div className="w-full lg:w-64 flex-shrink-0">
-              <div className="bg-white rounded-xl shadow-sm p-4 border border-gray-100">
-                {sidebarSections.map((section) => (
-                  <div key={section.id} className="mb-6">
-                    <div className="flex items-center space-x-2 mb-3">
-                      <span className="text-lg">{section.icon}</span>
-                      <h3 className="font-semibold" style={{ color: '#1e3237' }}>{section.title}</h3>
-                    </div>
-                    <div className="space-y-1 ml-6">
-                      {section.items.map((item) => (
-                        <button
-                          key={item.id}
-                          onClick={() => setActiveSection(item.id)}
-                          className={`block w-full text-left px-3 py-2 text-sm rounded-lg transition-all duration-200 ${
-                            activeSection === item.id
-                              ? 'text-white font-medium'
-                              : 'hover:bg-gray-50'
-                          }`}
-                          style={{
-                            backgroundColor: activeSection === item.id ? '#146448' : 'transparent',
-                            color: activeSection === item.id ? '#ffffff' : '#1e3237'
-                          }}
-                        >
-                          {item.title}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-                ))}
-                <div className="mt-8 pt-6 border-t border-gray-200">
-                  <motion.button
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    onClick={() => setIsModalOpen(true)}
-                    className="w-full py-3 px-4 rounded-lg font-medium transition-colors flex items-center justify-center space-x-2"
-                    style={{ backgroundColor: '#baf200', color: '#1e3237' }}
+      {/* 💥 Anahtar Teslim Sera Kurulumu Section */}
+      <section className="py-20">
+        <div className="max-w-[1200px] mx-auto px-6 text-center">
+          <div className="max-w-[800px] mx-auto">
+            {/* Main title */}
+            <div className="max-w-[576px] mx-auto mb-16">
+              <h2
+                className="leading-tight text-center mb-8"
+                style={{
+                  color: '#f6f8f9',
+                  fontSize: '36px',
+                  fontWeight: '600'
+                }}
+              >
+                Anahtar Teslim Sera Kurulumu
+              </h2>
+
+              <div
+                className="space-y-6 text-center"
+                style={{
+                  color: '#f6f8f9',
+                  fontSize: '16px',
+                  fontWeight: '400'
+                }}
+              >
+                <p style={{ color: '#f6f8f9', fontSize: '16px', fontWeight: '400' }}>
+                  Sera yatırımınız için SeraGPT ile analiz yaptınız. Şimdi sıra, bu verileri sahaya taşımakta. ISITMAX ve XXXXX İspanya ortaklığıyla yürüttüğümüz anahtar teslim proje sistemimizde:
+                </p>
+
+                <div className="bg-white/10 rounded-xl p-6 backdrop-blur-sm">
+                  <p style={{ color: '#f6f8f9', fontSize: '16px', fontWeight: '400' }}>Keşif, projelendirme ve süpervizörlük hizmetleri ISITMAX tarafından. Tüm imalat, ekipman, otomasyon ve saha kurulum süreçleri ise XXXXX Spain tarafından sağlanır</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Key Benefits Grid */}
+            <div className="grid md:grid-cols-3 gap-6 mb-16 max-w-[800px] mx-auto">
+              <div
+                className="p-6 rounded-xl border-2 border-white/20 bg-white/5 backdrop-blur-sm"
+                style={{ borderColor: '#baf200' }}
+              >
+                <h4
+                  className="font-semibold mb-3"
+                  style={{ color: '#baf200', fontSize: '18px' }}
+                >
+                  Türkiye Avantajı
+                </h4>
+                <p style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '400' }}>
+                  Yerinde planlama ve süpervizörlük hizmetleri
+                </p>
+              </div>
+
+              <div
+                className="p-6 rounded-xl border-2 border-white/20 bg-white/5 backdrop-blur-sm"
+                style={{ borderColor: '#baf200' }}
+              >
+                <h4
+                  className="font-semibold mb-3"
+                  style={{ color: '#baf200', fontSize: '18px' }}
+                >
+                  Avrupa Standardı
+                </h4>
+                <p style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '400' }}>
+                  Kaliteli malzeme ve profesyonel kurulum
+                </p>
+              </div>
+
+              <div
+                className="p-6 rounded-xl border-2 border-white/20 bg-white/5 backdrop-blur-sm"
+                style={{ borderColor: '#baf200' }}
+              >
+                <h4
+                  className="font-semibold mb-3"
+                  style={{ color: '#baf200', fontSize: '18px' }}
+                >
+                  Tek Elden Yönetim
+                </h4>
+                <p style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '400' }}>
+                  Zamanında teslim edilen projeler
+                </p>
+              </div>
+            </div>
+
+            {/* Two Column Layout for Services and Target */}
+            <div className="grid lg:grid-cols-2 gap-12 mb-16 max-w-[900px] mx-auto">
+              {/* Service Scope */}
+              <div className="text-center">
+                <h3
+                  className="mb-6"
+                  style={{
+                    color: '#f6f8f9',
+                    fontSize: '24px',
+                    fontWeight: '600'
+                  }}
+                >
+                  Hizmet Kapsamı
+                </h3>
+                <div
+                  className="space-y-4 bg-white/5 rounded-xl p-6"
+                  style={{
+                    color: '#f6f8f9',
+                    fontSize: '14px',
+                    fontWeight: '400'
+                  }}
+                >
+                  <p style={{ color: '#f6f8f9' }}>Yerinde keşif ve teknik analiz (ISITMAX)</p>
+                  <p style={{ color: '#f6f8f9' }}>Statik & yapısal proje çizimleri</p>
+                  <p style={{ color: '#f6f8f9' }}>XXXXX menşeli otomasyon, ekipman ve kurulum hizmeti</p>
+                  <p style={{ color: '#f6f8f9' }}>ISITMAX süpervizörlüğünde şantiye yönetimi</p>
+                  <p style={{ color: '#f6f8f9' }}>Tam kapsamlı fiyat teklifi ve mühendislik dosyası (PDF)</p>
+                </div>
+              </div>
+
+              {/* Target Audience */}
+              <div className="text-center">
+                <h3
+                  className="mb-6"
+                  style={{
+                    color: '#f6f8f9',
+                    fontSize: '24px',
+                    fontWeight: '600'
+                  }}
+                >
+                  Kimler İçin Uygun?
+                </h3>
+                <div
+                  className="space-y-4 bg-white/5 rounded-xl p-6"
+                  style={{
+                    color: '#f6f8f9',
+                    fontSize: '14px',
+                    fontWeight: '400'
+                  }}
+                >
+                  <p style={{ color: '#f6f8f9' }}>1.000 m² ve üzeri yatırım düşünen profesyonel üreticiler</p>
+                  <p style={{ color: '#f6f8f9' }}>Hibe/destek başvurusu için teknik dosya gereksinimi olanlar</p>
+                  <p style={{ color: '#f6f8f9' }}>Sera projelerinde uzun ömür, otomasyon ve enerji verimliliğini öncelikleyen yatırımcılar</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Experience Stats */}
+            <div className="mb-16">
+              <h3
+                className="mb-8 text-center"
+                style={{
+                  color: '#f6f8f9',
+                  fontSize: '24px',
+                  fontWeight: '600'
+                }}
+              >
+                Güvence ve Tecrübe
+              </h3>
+              <div className="grid md:grid-cols-3 gap-6 max-w-[600px] mx-auto">
+                <div className="text-center">
+                  <div
+                    className="text-4xl font-bold mb-2"
+                    style={{ color: '#baf200' }}
                   >
-                    <span className="text-lg">🏗️</span>
-                    <span>Proje Teklifi Al</span>
-                  </motion.button>
-                  <p className="text-xs text-gray-500 text-center mt-2">
-                    Ücretsiz keşif ve teklif hizmeti
+                    500+
+                  </div>
+                  <p style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '400' }}>
+                    Tamamlanmış Sera Projesi
+                  </p>
+                </div>
+                <div className="text-center">
+                  <div
+                    className="text-4xl font-bold mb-2"
+                    style={{ color: '#baf200' }}
+                  >
+                    3
+                  </div>
+                  <p style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '400' }}>
+                    Ülkede Uygulanan Sistem
+                  </p>
+                </div>
+                <div className="text-center">
+                  <div
+                    className="text-4xl font-bold mb-2"
+                    style={{ color: '#baf200' }}
+                  >
+                    %100
+                  </div>
+                  <p style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '400' }}>
+                    Standartlara Uygunluk
                   </p>
                 </div>
               </div>
             </div>
 
-            {/* Main Content */}
-            <div className="flex-1">
-              <div className="bg-white rounded-xl shadow-sm p-8 border border-gray-100">
-                {/* Breadcrumb */}
-                <div className="text-sm text-gray-500 mb-6">
-                  {currentContent.subtitle}
-                </div>
-
-                {/* Title */}
-                <h1 className="text-3xl font-bold mb-6" style={{ color: '#1e3237' }}>
-                  {currentContent.title}
-                </h1>
-
-                {/* Description */}
-                <p className="text-lg mb-8 leading-relaxed opacity-80" style={{ color: '#1e3237' }}>
-                  {currentContent.description}
-                </p>
-
-                {/* Content Steps */}
-                <div className="space-y-8">
-                  {currentContent.steps.map((step, index) => (
-                    <motion.div
-                      key={index}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.3, delay: index * 0.1 }}
-                      className="border-l-4 pl-6"
-                      style={{ borderColor: '#146448' }}
-                    >
-                      <h2 className="text-xl font-semibold mb-4" style={{ color: '#1e3237' }}>
-                        {step.title}
-                      </h2>
-                      <div className="space-y-2">
-                        {step.items.map((item, itemIndex) => (
-                          <div key={itemIndex} className="flex items-start space-x-3">
-                            <div 
-                              className="flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center mt-0.5"
-                              style={{ backgroundColor: '#baf200' }}
-                            >
-                              <span className="text-xs font-medium" style={{ color: '#1e3237' }}>
-                                {itemIndex + 1}
-                              </span>
-                            </div>
-                            <p className="text-gray-700">{item}</p>
-                          </div>
-                        ))}
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
-
-                {/* Next Steps */}
-                <div className="mt-12 p-6 rounded-lg" style={{ backgroundColor: '#f6f8f9' }}>
-                  <h3 className="font-semibold mb-4" style={{ color: '#1e3237' }}>Sonraki Adımlar</h3>
-                  <div className="space-y-2">
-                    <p className="text-gray-700">
-                      • Ücretsiz saha değerlendirmesi için başvuru yapın
-                    </p>
-                    <p className="text-gray-700">
-                      • Keşif ve ön fizibilite raporu alın
-                    </p>
-                    <p className="text-gray-700">
-                      • Anahtar teslim proje teklifinizi inceleyin
-                    </p>
-                  </div>
-                </div>
-              </div>
+            {/* CTA Button - Updated to open modal */}
+            <div className="mb-6">
+              <button
+                onClick={() => setIsModalOpen(true)}
+                className="hero-cta-button inline-block px-8 py-4 rounded-xl font-medium transition-all hover:opacity-90 hover:scale-105 transform"
+                style={{
+                  backgroundColor: '#baf200',
+                  color: '#1e3237',
+                  fontSize: '16px',
+                  fontWeight: '600'
+                }}
+              >
+                KURUMSAL TEKLİF AL
+              </button>
             </div>
+
+            {/* Bottom slogan */}
+            <p
+              className="text-center"
+              style={{
+                color: '#f6f8f9',
+                fontSize: '14px',
+                fontWeight: '400'
+              }}
+            >
+              Profesyonel sera kurulumunda güvenilir ortaklık.
+            </p>
           </div>
         </div>
-      </div>
+      </section>
 
       {/* Footer - matching homepage */}
       <footer className="py-12" style={{ backgroundColor: '#146448' }}>
