@@ -840,9 +840,9 @@ Lütfen daha sonra tekrar deneyin veya destek ekibimizle iletişime geçin.`,
                 </button>
 
                 <div className="flex items-center">
-                  <div className="text-[#baf200] font-bold text-xl">
-                    SeraGPT
-                  </div>
+                  <svg className="h-8 w-auto" viewBox="0 0 160 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <text x="5" y="28" className="fill-[#baf200] text-xl font-bold" style={{fontFamily: 'system-ui, sans-serif'}}>SeraGPT</text>
+                  </svg>
                 </div>
               </div>
 
