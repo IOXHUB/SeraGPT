@@ -105,12 +105,12 @@ export default function AIAsistanIslemleriPage() {
               className="rounded-lg p-6 hover:shadow-lg transition-all duration-200 text-left group border"
               style={{ backgroundColor: '#f6f8f9', borderColor: '#146448' }}
             >
-              <div className="flex flex-col items-center text-center space-y-4">
-                <div className="transition-colors" style={{ color: '#1e3237' }}>
+              <div className="flex flex-col items-center text-center" style={{ backgroundColor: '#baf200', borderRadius: '8px', padding: '16px' }}>
+                <div className="transition-colors mb-2" style={{ color: '#1e3237' }}>
                   {operation.icon}
                 </div>
                 <div>
-                  <h3 className="text-lg font-medium mb-2" style={{ color: '#1e3237' }}>
+                  <h3 className="text-lg font-medium mb-1" style={{ color: '#1e3237' }}>
                     {operation.title}
                   </h3>
                   <p className="text-sm opacity-70" style={{ color: '#1e3237' }}>
