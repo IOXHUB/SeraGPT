@@ -487,10 +487,12 @@ export default function AIChatPage() {
                             {option.icon}
                           </div>
                           <div className="flex-1">
-                            <h3 className="font-semibold text-[#1e3237] text-sm mb-1 group-hover:text-[#146448] transition-colors">
+                            <h3 className="font-semibold text-[#1e3237] mb-1 group-hover:text-[#146448] transition-colors"
+                                style={{ fontSize: 'clamp(13px, 2.5vw, 16px)', lineHeight: 'clamp(16px, 3vw, 20px)' }}>
                               {option.title}
                             </h3>
-                            <p className="text-xs text-[#1e3237]/70 leading-relaxed">
+                            <p className="text-[#1e3237]/70 leading-relaxed"
+                               style={{ fontSize: 'clamp(11px, 2vw, 14px)', lineHeight: 'clamp(14px, 2.5vw, 18px)' }}>
                               {option.description}
                             </p>
                           </div>
