@@ -714,8 +714,13 @@ Lütfen daha sonra tekrar deneyin veya destek ekibimizle iletişime geçin.`,
                     <img
                       src="https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2F01c1e8a05ef6424b912d584875377957?format=webp&width=800"
                       alt="SeraGPT Logo - AI Destekli Sera Yatırım Danışmanı"
-                      className="h-10 w-auto object-contain"
+                      className="h-12 w-auto object-contain max-w-full"
                       loading="eager"
+                      onError={(e) => {
+                        console.log('Logo loading error');
+                        (e.target as HTMLImageElement).style.display = 'none';
+                      }}
+                      onLoad={() => console.log('Logo loaded successfully')}
                     />
                   </div>
                   <div className="mt-3 text-center text-xs text-[#baf200] leading-4"
