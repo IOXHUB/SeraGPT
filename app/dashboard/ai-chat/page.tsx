@@ -516,7 +516,7 @@ export default function AIChatPage() {
           </header>
 
           {/* CONTENT */}
-          <main className="flex-1 overflow-y-auto p-4 bg-[#146448]" style={{paddingBottom: '140px'}}>
+          <main className="flex-1 overflow-y-auto p-4 bg-[#146448]" style={{paddingBottom: '160px'}}>
             {!currentChatId && messages.length === 0 ? (
               // Welcome State
               <div className="flex flex-col items-center justify-center h-full min-h-[400px] text-center">
