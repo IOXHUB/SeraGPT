@@ -696,7 +696,7 @@ Lütfen daha sonra tekrar deneyin veya destek ekibimizle iletişime geçin.`,
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    className="fixed inset-0 bg-black/70 z-50 lg:hidden"
+                    className="fixed inset-0 bg-black/70 z-45 lg:hidden"
                     onClick={() => setSidebarOpen(false)}
                   />
                 )}
