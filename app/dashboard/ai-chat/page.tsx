@@ -468,13 +468,13 @@ export default function AIChatPage() {
                   aria-label={sidebarOpen ? 'Kenar çubuğunu kapat' : 'Kenar çubuğunu aç'}
                   aria-expanded={sidebarOpen}
                 >
-                  <svg className="w-5 h-5 text-[#f6f8f9]" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <svg className="w-7 h-7 text-[#f6f8f9]" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
                   </svg>
                 </button>
 
                 <div className="flex items-center space-x-3">
-                  <div className="ml-3 text-[#f6f8f9] text-lg">
+                  <div className="ml-3 text-white text-lg font-semibold">
                     <p>Hoşgeldiniz</p>
                   </div>
                 </div>
@@ -492,11 +492,16 @@ export default function AIChatPage() {
                   </div>
                 </div>
 
-                <button className="p-2 hover:bg-[#f6f8f9]/10 rounded-lg transition-colors">
-                  <svg className="w-5 h-5 text-[#f6f8f9]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 17h5l-5 5v-5zM9 1h6l5 5v7" />
-                  </svg>
-                </button>
+                <div className="relative">
+                  <button
+                    className="p-2 hover:bg-[#f6f8f9]/10 rounded-lg transition-colors focus:ring-2 focus:ring-[#baf200] focus:outline-none"
+                    onClick={() => setMenuPopupOpen(!menuPopupOpen)}
+                  >
+                    <svg className="w-6 h-6 text-[#f6f8f9]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
+                    </svg>
+                  </button>
+                </div>
               </div>
             </div>
 
