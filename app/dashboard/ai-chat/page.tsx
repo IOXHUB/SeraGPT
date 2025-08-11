@@ -140,7 +140,7 @@ export default function AIChatPage() {
     { id: 'analysis', title: 'Tüm Analizler' },
     { id: 'settings', title: 'Hesap Ayarları' },
     { id: 'support', title: 'Destek' },
-    { id: 'consulting', title: 'Danışmanlık' },
+    { id: 'consulting', title: 'Danışmanl��k' },
     { id: 'turnkey', title: 'Anahtar Teslim' },
     { id: 'homepage', title: 'Anasayfaya Çıkış' },
     { id: 'old-dashboard', title: 'Eski Dashboard' },
@@ -1197,28 +1197,9 @@ Lütfen daha sonra tekrar deneyin veya destek ekibimizle iletişime geçin.`,
                    paddingRight: 'max(12px, env(safe-area-inset-right))'
                  }}>
 
-              {/* Input Row */}
-              <div className="flex items-end space-x-3 mb-3">
-                {/* Attachment Icons */}
-                <div className="flex space-x-2">
-                  <button className="p-2 hover:bg-[#f6f8f9]/10 rounded-lg transition-colors focus:ring-2 focus:ring-[#baf200] focus:outline-none group">
-                    <svg className="w-5 h-5 text-[#f6f8f9] group-hover:text-[#baf200] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13" />
-                    </svg>
-                  </button>
-
-                  <button
-                    className="p-2 hover:bg-[#f6f8f9]/10 rounded-lg transition-colors focus:ring-2 focus:ring-[#baf200] focus:outline-none group"
-                    onClick={() => setIsRecording(!isRecording)}
-                  >
-                    <svg className={`w-5 h-5 transition-all duration-200 ${isRecording ? 'text-[#baf200] animate-pulse' : 'text-[#f6f8f9] group-hover:text-[#baf200]'}`} fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M12 1a3 3 0 013 3v8a3 3 0 01-6 0V4a3 3 0 013-3zM19 10v2a7 7 0 01-14 0v-2a1 1 0 012 0v2a5 5 0 0010 0v-2a1 1 0 012 0z"/>
-                    </svg>
-                  </button>
-                </div>
-
-                {/* Input Area */}
-                <div className="flex-1 relative">
+              {/* Input Area */}
+              <div className="mb-3">
+                <div className="relative">
                   <textarea
                     ref={inputRef}
                     value={inputValue}
