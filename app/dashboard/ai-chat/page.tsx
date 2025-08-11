@@ -446,7 +446,7 @@ export default function AIChatPage() {
           </nav>
           
           {/* Alt menü - Ayarlar */}
-          <div className="p-4 border-t border-white/10 mb-4">
+          <div className="p-4 border-t border-white/10 mb-5">
             <button
               className="w-full bg-[#baf200] border-l-4 border-[#baf200] rounded-lg p-3 hover:bg-[#baf200]/80 transition-colors relative"
               onClick={() => setMenuPopupOpen(!menuPopupOpen)}
