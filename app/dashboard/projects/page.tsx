@@ -245,6 +245,246 @@ export default function ProjectsPage() {
             </table>
           </div>
         </div>
+
+        {/* Modal Content */}
+        {selectedProject && modalType && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+            <div className="rounded-lg p-8 max-w-2xl w-full mx-4 max-h-[80vh] overflow-y-auto" style={{ backgroundColor: '#f6f8f9' }}>
+              <div className="flex justify-between items-center mb-6">
+                <h2 className="text-xl font-semibold" style={{ color: '#1e3237' }}>
+                  {modalType === 'view' && 'Proje Detayları'}
+                  {modalType === 'edit' && 'Proje Düzenle'}
+                  {modalType === 'delete' && 'Proje Sil'}
+                </h2>
+                <button
+                  onClick={() => { setSelectedProject(null); setModalType(null); }}
+                  className="text-gray-500 hover:text-gray-700 text-2xl"
+                >
+                  ×
+                </button>
+              </div>
+
+              {/* View Project */}
+              {modalType === 'view' && (
+                <div>
+                  <div className="space-y-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div className="p-4 rounded-lg" style={{ backgroundColor: '#146448' }}>
+                        <h4 className="font-medium mb-2" style={{ color: '#f6f8f9' }}>Proje Bilgileri</h4>
+                        <div className="space-y-2 text-sm" style={{ color: '#f6f8f9' }}>
+                          <p><strong>Ad:</strong> {selectedProject.name}</p>
+                          <p><strong>Lokasyon:</strong> {selectedProject.location}</p>
+                          <p><strong>Alan:</strong> {selectedProject.size}</p>
+                          <p><strong>Ürün:</strong> {selectedProject.crop}</p>
+                          <p><strong>Durum:</strong> {selectedProject.status}</p>
+                        </div>
+                      </div>
+                      <div className="p-4 rounded-lg" style={{ backgroundColor: '#146448' }}>
+                        <h4 className="font-medium mb-2" style={{ color: '#f6f8f9' }}>Finansal Bilgiler</h4>
+                        <div className="space-y-2 text-sm" style={{ color: '#f6f8f9' }}>
+                          <p><strong>Yatırım:</strong> {selectedProject.investment}</p>
+                          <p><strong>Beklenen Getiri:</strong> {selectedProject.expectedReturn}</p>
+                          <p><strong>ROI:</strong> {selectedProject.roi}</p>
+                          <p><strong>İlerleme:</strong> %{selectedProject.progress}</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="p-4 rounded-lg" style={{ backgroundColor: '#146448' }}>
+                      <h4 className="font-medium mb-2" style={{ color: '#f6f8f9' }}>Zaman Çizelgesi</h4>
+                      <div className="grid grid-cols-2 gap-4 text-sm" style={{ color: '#f6f8f9' }}>
+                        <p><strong>Başlangıç:</strong> {selectedProject.startDate}</p>
+                        <p><strong>Bitiş:</strong> {selectedProject.endDate}</p>
+                      </div>
+                    </div>
+                    <div className="p-4 rounded-lg border" style={{ borderColor: '#146448' }}>
+                      <h4 className="font-medium mb-2" style={{ color: '#1e3237' }}>Proje İlerleme Durumu</h4>
+                      <div className="w-full bg-gray-200 rounded-full h-3 mb-2">
+                        <div
+                          className="h-3 rounded-full"
+                          style={{ backgroundColor: '#146448', width: `${selectedProject.progress}%` }}
+                        />
+                      </div>
+                      <p className="text-sm" style={{ color: '#1e3237' }}>%{selectedProject.progress} tamamlandı</p>
+                    </div>
+                  </div>
+                  <div className="mt-6 flex justify-end space-x-3">
+                    <button
+                      onClick={() => setModalType('edit')}
+                      className="py-2 px-4 rounded-lg font-medium"
+                      style={{ backgroundColor: '#baf200', color: '#1e3237' }}
+                    >
+                      Düzenle
+                    </button>
+                    <button
+                      onClick={() => { setSelectedProject(null); setModalType(null); }}
+                      className="py-2 px-4 rounded-lg font-medium border"
+                      style={{ borderColor: '#146448', color: '#1e3237' }}
+                    >
+                      Kapat
+                    </button>
+                  </div>
+                </div>
+              )}
+
+              {/* Edit Project */}
+              {modalType === 'edit' && (
+                <div>
+                  <div className="space-y-4 mb-6">
+                    <div className="p-4 rounded-lg" style={{ backgroundColor: '#146448' }}>
+                      <h4 className="font-medium mb-2" style={{ color: '#f6f8f9' }}>Proje Düzenleme</h4>
+                      <p className="text-sm opacity-90" style={{ color: '#f6f8f9' }}>
+                        Proje bilgilerini güncelleyin.
+                      </p>
+                    </div>
+                    <div className="space-y-4">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                          <label className="text-sm font-medium" style={{ color: '#1e3237' }}>Proje Adı</label>
+                          <input
+                            type="text"
+                            defaultValue={selectedProject.name}
+                            className="w-full p-3 rounded-lg border mt-1"
+                            style={{ borderColor: '#146448' }}
+                          />
+                        </div>
+                        <div>
+                          <label className="text-sm font-medium" style={{ color: '#1e3237' }}>Lokasyon</label>
+                          <input
+                            type="text"
+                            defaultValue={selectedProject.location}
+                            className="w-full p-3 rounded-lg border mt-1"
+                            style={{ borderColor: '#146448' }}
+                          />
+                        </div>
+                      </div>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                          <label className="text-sm font-medium" style={{ color: '#1e3237' }}>Alan (m²)</label>
+                          <input
+                            type="text"
+                            defaultValue={selectedProject.size}
+                            className="w-full p-3 rounded-lg border mt-1"
+                            style={{ borderColor: '#146448' }}
+                          />
+                        </div>
+                        <div>
+                          <label className="text-sm font-medium" style={{ color: '#1e3237' }}>Ürün</label>
+                          <select className="w-full p-3 rounded-lg border mt-1" style={{ borderColor: '#146448' }}>
+                            <option value="Domates" selected={selectedProject.crop === 'Domates'}>Domates</option>
+                            <option value="Salatalık" selected={selectedProject.crop === 'Salatalık'}>Salatalık</option>
+                            <option value="Biber" selected={selectedProject.crop === 'Biber'}>Biber</option>
+                            <option value="Marul" selected={selectedProject.crop === 'Marul'}>Marul</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                          <label className="text-sm font-medium" style={{ color: '#1e3237' }}>Durum</label>
+                          <select className="w-full p-3 rounded-lg border mt-1" style={{ borderColor: '#146448' }}>
+                            <option value="Planlama" selected={selectedProject.status === 'Planlama'}>Planlama</option>
+                            <option value="Başlatıldı" selected={selectedProject.status === 'Başlatıldı'}>Başlatıldı</option>
+                            <option value="Devam Ediyor" selected={selectedProject.status === 'Devam Ediyor'}>Devam Ediyor</option>
+                            <option value="Tamamlandı" selected={selectedProject.status === 'Tamamlandı'}>Tamamlandı</option>
+                          </select>
+                        </div>
+                        <div>
+                          <label className="text-sm font-medium" style={{ color: '#1e3237' }}>İlerleme (%)</label>
+                          <input
+                            type="number"
+                            min="0"
+                            max="100"
+                            defaultValue={selectedProject.progress}
+                            className="w-full p-3 rounded-lg border mt-1"
+                            style={{ borderColor: '#146448' }}
+                          />
+                        </div>
+                      </div>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                          <label className="text-sm font-medium" style={{ color: '#1e3237' }}>Başlangıç Tarihi</label>
+                          <input
+                            type="date"
+                            className="w-full p-3 rounded-lg border mt-1"
+                            style={{ borderColor: '#146448' }}
+                          />
+                        </div>
+                        <div>
+                          <label className="text-sm font-medium" style={{ color: '#1e3237' }}>Bitiş Tarihi</label>
+                          <input
+                            type="date"
+                            className="w-full p-3 rounded-lg border mt-1"
+                            style={{ borderColor: '#146448' }}
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex justify-end space-x-3">
+                    <button
+                      onClick={() => { setSelectedProject(null); setModalType(null); }}
+                      className="py-2 px-4 rounded-lg font-medium border"
+                      style={{ borderColor: '#146448', color: '#1e3237' }}
+                    >
+                      İptal
+                    </button>
+                    <button
+                      className="py-2 px-4 rounded-lg font-medium"
+                      style={{ backgroundColor: '#baf200', color: '#1e3237' }}
+                    >
+                      Değişiklikleri Kaydet
+                    </button>
+                  </div>
+                </div>
+              )}
+
+              {/* Delete Project */}
+              {modalType === 'delete' && (
+                <div>
+                  <div className="space-y-4 mb-6">
+                    <div className="p-4 rounded-lg bg-red-50 border border-red-200">
+                      <h4 className="font-medium mb-2 text-red-800">⚠️ Proje Silme Onayı</h4>
+                      <p className="text-sm text-red-700">
+                        Bu projeyi silmek istediğinizden emin misiniz? Bu işlem geri alınamaz.
+                      </p>
+                    </div>
+                    <div className="p-4 rounded-lg" style={{ backgroundColor: '#146448' }}>
+                      <h4 className="font-medium mb-2" style={{ color: '#f6f8f9' }}>Silinecek Proje:</h4>
+                      <div className="space-y-1 text-sm" style={{ color: '#f6f8f9' }}>
+                        <p><strong>Ad:</strong> {selectedProject.name}</p>
+                        <p><strong>Lokasyon:</strong> {selectedProject.location}</p>
+                        <p><strong>Durum:</strong> {selectedProject.status}</p>
+                        <p><strong>İlerleme:</strong> %{selectedProject.progress}</p>
+                      </div>
+                    </div>
+                    <div className="p-4 rounded-lg border border-yellow-300 bg-yellow-50">
+                      <h4 className="font-medium mb-2 text-yellow-800">📋 Silme işlemi şunları da kaldıracak:</h4>
+                      <ul className="text-sm text-yellow-700 space-y-1">
+                        <li>• Tüm proje analizleri</li>
+                        <li>• İlgili raporlar</li>
+                        <li>• Finansal veriler</li>
+                        <li>• Dosya ve belgeler</li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div className="flex justify-end space-x-3">
+                    <button
+                      onClick={() => { setSelectedProject(null); setModalType(null); }}
+                      className="py-2 px-4 rounded-lg font-medium border"
+                      style={{ borderColor: '#146448', color: '#1e3237' }}
+                    >
+                      İptal
+                    </button>
+                    <button
+                      className="py-2 px-4 rounded-lg font-medium bg-red-600 text-white hover:bg-red-700"
+                    >
+                      Projeyi Sil
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        )}
       </div>
     </DashboardLayout>
   );
