@@ -52,7 +52,7 @@ export default function AIChatPage() {
   const [chatSessions, setChatSessions] = useState<ChatSession[]>([
     {
       id: '1',
-      title: 'Yatırım Geri Dönüş (ROI) Analizi',
+      title: 'Yatır��m Geri Dönüş (ROI) Analizi',
       lastMessage: 'Sohbet Başlatıldı...',
       date: 'Şubat Başında',
       messageCount: 0,
@@ -184,9 +184,9 @@ export default function AIChatPage() {
   }, [messages]);
 
   return (
-    <DashboardLayout>
-      <ClientOnly>
-        <div className="flex h-full bg-[#146448] relative">
+    <ClientOnly>
+      <div className="flex flex-col h-screen bg-[#146448] overflow-hidden">
+        <div className="flex flex-1 min-h-0">
           {/* Sidebar */}
           <AnimatePresence>
             {sidebarOpen && (
@@ -194,7 +194,7 @@ export default function AIChatPage() {
                 initial={{ x: -300, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
                 exit={{ x: -300, opacity: 0 }}
-                className="w-80 bg-[#1e3237] border-r border-[#f6f8f9]/10 flex flex-col"
+                className="w-80 lg:w-80 md:w-72 sm:w-64 bg-[#1e3237] border-r border-[#f6f8f9]/10 flex flex-col h-full"
               >
                 {/* Sidebar Header */}
                 <div className="p-4 border-b border-[#f6f8f9]/10 bg-[#146448] text-white">
@@ -275,10 +275,10 @@ export default function AIChatPage() {
           </AnimatePresence>
 
           {/* Main Chat Area */}
-          <div className="flex-1 flex flex-col relative">
+          <div className="flex-1 flex flex-col min-w-0 h-full">
             
             {/* Chat Header */}
-            <div className="flex items-center justify-between p-4 border-b border-[#f6f8f9]/10 bg-[#146448]">
+            <div className="flex items-center justify-between p-3 lg:p-4 border-b border-[#f6f8f9]/10 bg-[#146448] flex-shrink-0">
               <div className="flex items-center space-x-3">
                 <button
                   onClick={() => setSidebarOpen(!sidebarOpen)}
@@ -312,7 +312,7 @@ export default function AIChatPage() {
             {/* Welcome State or Messages */}
             {!currentChatId && messages.length === 0 ? (
               // Welcome Content
-              <div className="flex-1 p-8 bg-[#146448] overflow-y-auto">
+              <div className="flex-1 p-4 lg:p-8 bg-[#146448] overflow-y-auto">
                 <div className="max-w-4xl mx-auto">
                   
                   <div className="text-center mb-8">
@@ -328,7 +328,7 @@ export default function AIChatPage() {
                   </div>
 
                   {/* Analysis Cards Grid */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 lg:gap-4 mb-8">
                     {analysisOptions.map((option) => (
                       <button
                         key={option.id}
@@ -361,7 +361,8 @@ export default function AIChatPage() {
               </div>
             ) : (
               // Chat Messages
-              <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-[#146448]">
+              <div className="flex-1 overflow-y-auto p-3 lg:p-4 bg-[#146448]">
+                <div className="max-w-4xl mx-auto space-y-4">
                 {messages.map((message) => (
                   <motion.div
                     key={message.id}
@@ -369,7 +370,7 @@ export default function AIChatPage() {
                     animate={{ opacity: 1, y: 0 }}
                     className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
                   >
-                    <div className={`max-w-3xl p-4 rounded-lg ${
+                    <div className={`max-w-xs sm:max-w-md lg:max-w-2xl p-3 lg:p-4 rounded-lg ${
                       message.role === 'user' 
                         ? 'bg-[#baf200] text-[#1e3237]' 
                         : 'bg-[#f6f8f9]/10 text-[#f6f8f9] border border-[#f6f8f9]/20'
@@ -383,14 +384,14 @@ export default function AIChatPage() {
                     </div>
                   </motion.div>
                 ))}
-                
+
                 {isTyping && (
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     className="flex justify-start"
                   >
-                    <div className="max-w-3xl p-4 rounded-lg bg-[#f6f8f9]/10 text-[#f6f8f9] border border-[#f6f8f9]/20">
+                    <div className="max-w-xs sm:max-w-md lg:max-w-2xl p-3 lg:p-4 rounded-lg bg-[#f6f8f9]/10 text-[#f6f8f9] border border-[#f6f8f9]/20">
                       <div className="flex space-x-1">
                         <div className="w-2 h-2 bg-[#baf200] rounded-full animate-bounce"></div>
                         <div className="w-2 h-2 bg-[#baf200] rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
@@ -400,23 +401,30 @@ export default function AIChatPage() {
                   </motion.div>
                 )}
                 <div ref={messagesEndRef} />
+                </div>
               </div>
             )}
 
             {/* Input Area */}
-            <div className="p-4 border-t border-[#f6f8f9]/10 bg-[#146448]">
+            <div className="p-3 lg:p-4 border-t border-[#f6f8f9]/10 bg-[#146448] flex-shrink-0">
               <div className="max-w-4xl mx-auto">
-                <div className="flex items-end space-x-3">
+                <div className="flex items-end space-x-2 lg:space-x-3">
                   <div className="flex-1 relative">
                     <textarea
                       ref={inputRef}
                       value={inputValue}
-                      onChange={(e) => setInputValue(e.target.value)}
+                      onChange={(e) => {
+                        setInputValue(e.target.value);
+                        // Auto-resize textarea
+                        const textarea = e.target as HTMLTextAreaElement;
+                        textarea.style.height = 'auto';
+                        textarea.style.height = Math.min(textarea.scrollHeight, 120) + 'px';
+                      }}
                       onKeyPress={handleKeyPress}
                       placeholder="SeraGPT'ye bir mesaj yazın..."
-                      className="w-full p-4 pr-12 bg-white/90 border border-[#f6f8f9]/20 rounded-xl resize-none focus:ring-2 focus:ring-[#baf200] focus:border-transparent placeholder-[#1e3237]/50 text-[#1e3237]"
+                      className="w-full p-3 lg:p-4 pr-12 bg-white/90 border border-[#f6f8f9]/20 rounded-xl resize-none focus:ring-2 focus:ring-[#baf200] focus:border-transparent placeholder-[#1e3237]/50 text-[#1e3237] text-sm lg:text-base"
                       rows={1}
-                      style={{ minHeight: '52px', maxHeight: '120px' }}
+                      style={{ minHeight: '50px', maxHeight: '120px' }}
                     />
                     <button
                       onClick={handleSendMessage}
@@ -439,7 +447,7 @@ export default function AIChatPage() {
             </div>
           </div>
         </div>
-      </ClientOnly>
-    </DashboardLayout>
+      </div>
+    </ClientOnly>
   );
 }
