@@ -548,7 +548,7 @@ Lütfen daha sonra tekrar deneyin veya destek ekibimizle iletişime geçin.`,
       equipment: [
         'Aşamalı kurulum yapın',
         'Bakım anlaşması yapın',
-        'Genişleme için yer bırakın'
+        'Genişleme için yer bırak��n'
       ],
       market: [
         'Sözleşmeli üretim düşünün',
@@ -873,8 +873,12 @@ Lütfen daha sonra tekrar deneyin veya destek ekibimizle iletişime geçin.`,
           {/* Main Chat Area */}
           <div className="flex-1 flex flex-col min-w-0 h-full max-w-full overflow-hidden">
             
-            {/* Dashboard Header */}
-            <div className="flex items-center justify-between p-3 lg:p-4 border-b border-[#f6f8f9]/10 bg-[#146448] flex-shrink-0">
+            {/* Fixed Dashboard Header */}
+            <div className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between p-3 lg:p-4 border-b border-[#f6f8f9]/10 bg-[#146448] flex-shrink-0"
+                 style={{
+                   paddingLeft: isDesktop && sidebarOpen ? '288px' : '12px',
+                   transition: 'padding-left 0.3s ease-in-out'
+                 }}>
               <div className="flex items-center space-x-3">
                 <button
                   onClick={() => setSidebarOpen(!sidebarOpen)}
@@ -898,9 +902,9 @@ Lütfen daha sonra tekrar deneyin veya destek ekibimizle iletişime geçin.`,
               </div>
             </div>
 
-            {/* Chat Container - Full Height */}
-            <div className="min-h-[100dvh] bg-[#146448] text-white flex flex-col">
-              <main className="flex-1">
+            {/* Chat Container - Scrollable */}
+            <div className="flex-1 bg-[#146448] text-white flex flex-col overflow-hidden" style={{ paddingTop: '70px', paddingBottom: '140px' }}>
+              <main className="flex-1 overflow-y-auto">
                 {!currentChatId && messages.length === 0 ? (
                   // Welcome State
                   <div className="flex flex-col items-center justify-center h-full min-h-[400px] py-8">
@@ -939,7 +943,7 @@ Lütfen daha sonra tekrar deneyin veya destek ekibimizle iletişime geçin.`,
                     </div>
                   </div>
                 ) : (
-                  // Chat Messages with Rich Content
+                  // Chat Messages with Rich Content - Scrollable
                   <div className="mx-auto w-full max-w-[900px] px-4 py-6 space-y-3" id="messages">
                     {messages.map((message, index) => (
                       <motion.article
@@ -958,7 +962,7 @@ Lütfen daha sonra tekrar deneyin veya destek ekibimizle iletişime geçin.`,
                             {message.content.includes('```') ? (
                               // Code block content
                               <div className="space-y-2">
-                                {message.content.split('```').map((part, i) => 
+                                {message.content.split('```').map((part, i) =>
                                   i % 2 === 0 ? (
                                     <p key={i} className="m-0">{part}</p>
                                   ) : (
@@ -984,7 +988,7 @@ Lütfen daha sonra tekrar deneyin veya destek ekibimizle iletişime geçin.`,
                                 {message.content}
                               </div>
                             )}
-                            
+
                             {/* Analysis Result Files */}
                             {message.isAnalysisStep && message.stepType === 'completed' && message.analysisData && (
                               <div className="mt-4 space-y-2">
@@ -1000,28 +1004,28 @@ Lütfen daha sonra tekrar deneyin veya destek ekibimizle iletişime geçin.`,
                           <footer className={`message-actions opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex space-x-1 mt-2 ${
                             message.role === 'user' ? 'justify-end' : 'justify-start'
                           }`}>
-                            <button 
+                            <button
                               onClick={() => navigator.clipboard.writeText(message.content)}
                               className="p-1.5 bg-white/6 border border-white/8 rounded hover:bg-white/10 transition-colors text-xs"
                               title="Kopyala"
                             >
                               ⎘
                             </button>
-                            <button 
+                            <button
                               className="p-1.5 bg-white/6 border border-white/8 rounded hover:bg-white/10 transition-colors text-xs"
                               title="Alıntıla"
                             >
                               ❝
                             </button>
                             {message.role === 'assistant' && (
-                              <button 
+                              <button
                                 className="p-1.5 bg-white/6 border border-white/8 rounded hover:bg-white/10 transition-colors text-xs"
                                 title="Paylaş"
                               >
                                 ⤴
                               </button>
                             )}
-                            <button 
+                            <button
                               onClick={() => {
                                 setMessages(prev => prev.filter(m => m.id !== message.id));
                               }}
@@ -1058,7 +1062,11 @@ Lütfen daha sonra tekrar deneyin veya destek ekibimizle iletişime geçin.`,
               </main>
 
               {/* Fixed Input at Bottom */}
-              <div className="sticky bottom-0 bg-[#146448]/95 backdrop-blur border-t border-white/10">
+              <div className="fixed bottom-0 left-0 right-0 z-40 bg-[#146448]/95 backdrop-blur border-t border-white/10"
+                   style={{
+                     paddingLeft: isDesktop && sidebarOpen ? '288px' : '0px',
+                     transition: 'padding-left 0.3s ease-in-out'
+                   }}>
                 <div className="mx-auto w-full max-w-[900px] px-4 py-3">
                   {/* Input Area */}
                   <div className="mb-3">
