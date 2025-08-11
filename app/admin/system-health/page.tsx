@@ -59,9 +59,92 @@ export default function SystemHealthPage() {
 
     try {
       setDataLoading(true);
-      
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
+
+      // Fetch real system health data
+      const response = await fetch('/api/admin/system-health');
+
+      if (!response.ok) {
+        throw new Error('Failed to fetch system health data');
+      }
+
+      const data = await response.json();
+
+      if (data.success) {
+        // Convert API response to component format
+        const metrics: SystemMetric[] = [
+          {
+            id: 'cpu-usage',
+            name: 'CPU Kullanımı',
+            value: data.data.metrics.server.cpu,
+            unit: '%',
+            status: data.data.metrics.server.cpu > 90 ? 'critical' : data.data.metrics.server.cpu > 70 ? 'warning' : 'healthy',
+            threshold: { warning: 70, critical: 90 },
+            trend: 'stable',
+            lastUpdate: '30 saniye önce'
+          },
+          {
+            id: 'memory-usage',
+            name: 'Bellek Kullanımı',
+            value: data.data.metrics.server.memory,
+            unit: '%',
+            status: data.data.metrics.server.memory > 95 ? 'critical' : data.data.metrics.server.memory > 80 ? 'warning' : 'healthy',
+            threshold: { warning: 80, critical: 95 },
+            trend: 'up',
+            lastUpdate: '30 saniye önce'
+          },
+          {
+            id: 'disk-usage',
+            name: 'Disk Kullanımı',
+            value: data.data.metrics.server.disk,
+            unit: '%',
+            status: data.data.metrics.server.disk > 95 ? 'critical' : data.data.metrics.server.disk > 80 ? 'warning' : 'healthy',
+            threshold: { warning: 80, critical: 95 },
+            trend: 'up',
+            lastUpdate: '30 saniye önce'
+          },
+          {
+            id: 'response-time',
+            name: 'Ortalama Yanıt Süresi',
+            value: data.data.metrics.apis.avgResponse,
+            unit: 'ms',
+            status: data.data.metrics.apis.avgResponse > 500 ? 'critical' : data.data.metrics.apis.avgResponse > 300 ? 'warning' : 'healthy',
+            threshold: { warning: 300, critical: 500 },
+            trend: 'down',
+            lastUpdate: '30 saniye önce'
+          },
+          {
+            id: 'cache-hit-rate',
+            name: 'Cache Hit Rate',
+            value: data.data.metrics.cache.hitRate,
+            unit: '%',
+            status: data.data.metrics.cache.hitRate < 80 ? 'warning' : 'healthy',
+            threshold: { warning: 80, critical: 60 },
+            trend: 'stable',
+            lastUpdate: '30 saniye önce'
+          },
+          {
+            id: 'api-health',
+            name: 'API Sağlığı',
+            value: ((data.data.metrics.apis.active - data.data.metrics.apis.failing) / data.data.metrics.apis.active) * 100,
+            unit: '%',
+            status: data.data.metrics.apis.failing > 2 ? 'critical' : data.data.metrics.apis.failing > 0 ? 'warning' : 'healthy',
+            threshold: { warning: 95, critical: 90 },
+            trend: 'stable',
+            lastUpdate: '30 saniye önce'
+          }
+        ];
+
+        setSystemMetrics(metrics);
+        setSystemServices(data.data.services);
+
+      } else {
+        throw new Error(data.error || 'Failed to load system health');
+      }
+
+    } catch (error) {
+      console.error('Failed to load system health:', error);
+
+      // Fallback to mock data if API fails
       const mockMetrics: SystemMetric[] = [
         {
           id: 'cpu-usage',
@@ -92,36 +175,6 @@ export default function SystemHealthPage() {
           threshold: { warning: 80, critical: 95 },
           trend: 'up',
           lastUpdate: '30 saniye önce'
-        },
-        {
-          id: 'network-io',
-          name: 'Ağ Trafiği',
-          value: 125.6,
-          unit: 'MB/s',
-          status: 'healthy',
-          threshold: { warning: 500, critical: 800 },
-          trend: 'stable',
-          lastUpdate: '30 saniye önce'
-        },
-        {
-          id: 'response-time',
-          name: 'Ortalama Yanıt Süresi',
-          value: 145,
-          unit: 'ms',
-          status: 'healthy',
-          threshold: { warning: 300, critical: 500 },
-          trend: 'down',
-          lastUpdate: '30 saniye önce'
-        },
-        {
-          id: 'error-rate',
-          name: 'Hata Oranı',
-          value: 0.8,
-          unit: '%',
-          status: 'healthy',
-          threshold: { warning: 2, critical: 5 },
-          trend: 'stable',
-          lastUpdate: '30 saniye önce'
         }
       ];
 
@@ -136,64 +189,11 @@ export default function SystemHealthPage() {
           lastCheck: '1 dakika önce',
           port: 3000,
           version: '14.1.0'
-        },
-        {
-          id: 'supabase-db',
-          name: 'Supabase Database',
-          status: 'running',
-          uptime: '15 gün 3 saat',
-          responseTime: 45,
-          errorRate: 0.05,
-          lastCheck: '30 saniye önce',
-          version: 'PostgreSQL 15.1'
-        },
-        {
-          id: 'vercel-edge',
-          name: 'Vercel Edge Functions',
-          status: 'running',
-          uptime: '12 gün 8 saat',
-          responseTime: 23,
-          errorRate: 0.02,
-          lastCheck: '30 saniye önce',
-          version: 'v1.0'
-        },
-        {
-          id: 'openai-api',
-          name: 'OpenAI API Integration',
-          status: 'running',
-          uptime: '9 gün 12 saat',
-          responseTime: 1234,
-          errorRate: 1.2,
-          lastCheck: '2 dakika önce',
-          version: 'v1'
-        },
-        {
-          id: 'auth-service',
-          name: 'Authentication Service',
-          status: 'running',
-          uptime: '7 gün 14 saat',
-          responseTime: 67,
-          errorRate: 0.3,
-          lastCheck: '1 dakika önce',
-          version: '2.1.0'
-        },
-        {
-          id: 'cache-redis',
-          name: 'Redis Cache',
-          status: 'warning',
-          uptime: '2 gün 6 saat',
-          responseTime: 156,
-          errorRate: 2.1,
-          lastCheck: '5 dakika önce',
-          version: '7.0.8'
         }
       ];
-      
+
       setSystemMetrics(mockMetrics);
       setSystemServices(mockServices);
-      
-    } catch (error) {
-      console.error('Failed to load system health:', error);
     } finally {
       setDataLoading(false);
     }

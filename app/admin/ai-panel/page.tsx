@@ -216,10 +216,14 @@ export default function AIPanelPage() {
             </div>
             <div className="flex items-center space-x-3">
               <button
-                className="px-4 py-2 rounded-lg font-medium transition-all hover:opacity-90"
+                onClick={loadAIData}
+                disabled={dataLoading}
+                className={`px-4 py-2 rounded-lg font-medium transition-all ${
+                  dataLoading ? 'opacity-50 cursor-not-allowed' : 'hover:opacity-90'
+                }`}
                 style={{ backgroundColor: '#baf200', color: '#1e3237' }}
               >
-                🔄 Modelleri Yenile
+                {dataLoading ? '🔄 Yenileniyor...' : '🔄 Modelleri Yenile'}
               </button>
             </div>
           </div>
