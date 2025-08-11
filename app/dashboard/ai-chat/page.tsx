@@ -864,10 +864,10 @@ Lütfen daha sonra tekrar deneyin veya destek ekibimizle iletişime geçin.`,
                   </svg>
                 </button>
 
-                <div className="flex items-center space-x-3">
-                  <div className="ml-3 text-white text-lg font-semibold">
-                    <p className="text-white">Hoşgeldiniz</p>
-                  </div>
+                <div className="flex items-center">
+                  <p className="text-white text-base font-semibold" style={{ fontSize: '16px', fontWeight: '600' }}>
+                    AI ASISTAN
+                  </p>
                 </div>
               </div>
 
@@ -878,7 +878,7 @@ Lütfen daha sonra tekrar deneyin veya destek ekibimizle iletişime geçin.`,
                       {user?.email?.charAt(0).toUpperCase() || 'T'}
                     </span>
                   </div>
-                  <div>
+                  <div className="flex items-center">
                     <p className="text-sm font-medium text-[#f6f8f9]">Test Kullanıcı</p>
                   </div>
                 </div>
