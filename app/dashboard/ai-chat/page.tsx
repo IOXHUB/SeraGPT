@@ -626,7 +626,7 @@ export default function AIChatPage() {
                  }}>
               <div className="max-w-4xl mx-auto w-full max-w-full">
                 <div className="flex items-end space-x-2 lg:space-x-3 max-w-full">
-                  <div className="flex-1 relative">
+                  <div className="flex-1 relative min-w-0 max-w-full">
                     <textarea
                       ref={inputRef}
                       value={inputValue}
@@ -645,13 +645,15 @@ export default function AIChatPage() {
                         }
                       }}
                       placeholder="SeraGPT'ye bir mesaj yazın..."
-                      className="w-full p-3 lg:p-4 pr-12 bg-white/90 border border-[#f6f8f9]/20 rounded-xl resize-none focus:ring-2 focus:ring-[#baf200] focus:border-transparent placeholder-[#1e3237]/50 text-[#1e3237] overflow-hidden transition-all duration-200"
+                      className="w-full p-3 lg:p-4 pr-12 bg-white/90 border border-[#f6f8f9]/20 rounded-xl resize-none focus:ring-2 focus:ring-[#baf200] focus:border-transparent placeholder-[#1e3237]/50 text-[#1e3237] overflow-hidden transition-all duration-200 max-w-full"
                       rows={1}
                       style={{
                         minHeight: '50px',
                         maxHeight: '120px',
                         fontSize: 'clamp(14px, 2.5vw, 16px)',
-                        lineHeight: 'clamp(20px, 3.5vw, 24px)'
+                        lineHeight: 'clamp(20px, 3.5vw, 24px)',
+                        width: '100%',
+                        maxWidth: '100%'
                       }}
                     />
                     <button
