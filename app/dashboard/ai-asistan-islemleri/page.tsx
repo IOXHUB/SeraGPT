@@ -117,6 +117,328 @@ export default function AIAsistanIslemleriPage() {
             </button>
           ))}
         </div>
+
+        {/* Modal Content */}
+        {selectedOperation && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+            <div className="rounded-lg p-8 max-w-lg w-full mx-4 max-h-[80vh] overflow-y-auto" style={{ backgroundColor: '#f6f8f9' }}>
+              <div className="flex justify-between items-center mb-6">
+                <h2 className="text-xl font-semibold" style={{ color: '#1e3237' }}>
+                  {selectedOperation === 'chat-history' && 'Sohbet Geçmişi'}
+                  {selectedOperation === 'model-settings' && 'Model Ayarları'}
+                  {selectedOperation === 'prompts' && 'Prompt Yönetimi'}
+                  {selectedOperation === 'analysis' && 'Analiz İşlemleri'}
+                  {selectedOperation === 'training' && 'Model Eğitimi'}
+                  {selectedOperation === 'export' && 'Veri Dışa Aktarma'}
+                </h2>
+                <button
+                  onClick={() => setSelectedOperation(null)}
+                  className="text-gray-500 hover:text-gray-700 text-2xl"
+                >
+                  ×
+                </button>
+              </div>
+
+              {/* Chat History */}
+              {selectedOperation === 'chat-history' && (
+                <div>
+                  <div className="space-y-3 mb-6">
+                    <div className="p-4 rounded-lg" style={{ backgroundColor: '#146448' }}>
+                      <div className="flex justify-between items-start mb-2">
+                        <h4 className="font-medium" style={{ color: '#f6f8f9' }}>Sera ROI Analizi Sohbeti</h4>
+                        <span className="text-xs opacity-80" style={{ color: '#f6f8f9' }}>15 Ocak 2025</span>
+                      </div>
+                      <p className="text-sm opacity-90" style={{ color: '#f6f8f9' }}>
+                        "Antalya'da 1000 m² domates serası için ROI hesaplaması yap..."
+                      </p>
+                    </div>
+                    <div className="p-4 rounded-lg" style={{ backgroundColor: '#146448' }}>
+                      <div className="flex justify-between items-start mb-2">
+                        <h4 className="font-medium" style={{ color: '#f6f8f9' }}>İklim Uygunluk Danışmanlığı</h4>
+                        <span className="text-xs opacity-80" style={{ color: '#f6f8f9' }}>14 Ocak 2025</span>
+                      </div>
+                      <p className="text-sm opacity-90" style={{ color: '#f6f8f9' }}>
+                        "İzmir'de salatalık yetiştirmek için iklim koşulları nasıl?"
+                      </p>
+                    </div>
+                    <div className="p-4 rounded-lg" style={{ backgroundColor: '#146448' }}>
+                      <div className="flex justify-between items-start mb-2">
+                        <h4 className="font-medium" style={{ color: '#f6f8f9' }}>Ekipman Seçimi Danışmanlığı</h4>
+                        <span className="text-xs opacity-80" style={{ color: '#f6f8f9' }}>13 Ocak 2025</span>
+                      </div>
+                      <p className="text-sm opacity-90" style={{ color: '#f6f8f9' }}>
+                        "Hidroponik sistem için gerekli ekipmanları listele..."
+                      </p>
+                    </div>
+                  </div>
+                  <button
+                    className="w-full py-3 px-4 rounded-lg font-medium transition-all"
+                    style={{ backgroundColor: '#baf200', color: '#1e3237' }}
+                  >
+                    Tüm Sohbetleri Görüntüle
+                  </button>
+                </div>
+              )}
+
+              {/* Model Settings */}
+              {selectedOperation === 'model-settings' && (
+                <div>
+                  <div className="space-y-4 mb-6">
+                    <div className="p-4 rounded-lg border" style={{ borderColor: '#146448' }}>
+                      <h4 className="font-medium mb-2" style={{ color: '#1e3237' }}>Tercih Edilen Model</h4>
+                      <select className="w-full p-2 rounded-lg border" style={{ borderColor: '#146448' }}>
+                        <option value="gpt-4">GPT-4 (Önerilen)</option>
+                        <option value="gpt-3.5">GPT-3.5 Turbo</option>
+                        <option value="claude">Claude</option>
+                      </select>
+                    </div>
+                    <div className="p-4 rounded-lg border" style={{ borderColor: '#146448' }}>
+                      <h4 className="font-medium mb-2" style={{ color: '#1e3237' }}>Yanıt Stili</h4>
+                      <div className="space-y-2">
+                        <label className="flex items-center">
+                          <input type="radio" name="style" value="detailed" className="mr-2" defaultChecked />
+                          <span style={{ color: '#1e3237' }}>Detaylı ve Teknik</span>
+                        </label>
+                        <label className="flex items-center">
+                          <input type="radio" name="style" value="simple" className="mr-2" />
+                          <span style={{ color: '#1e3237' }}>Basit ve Öz</span>
+                        </label>
+                        <label className="flex items-center">
+                          <input type="radio" name="style" value="conversational" className="mr-2" />
+                          <span style={{ color: '#1e3237' }}>Sohbet Tarzı</span>
+                        </label>
+                      </div>
+                    </div>
+                    <div className="p-4 rounded-lg border" style={{ borderColor: '#146448' }}>
+                      <h4 className="font-medium mb-2" style={{ color: '#1e3237' }}>Dil Tercihi</h4>
+                      <select className="w-full p-2 rounded-lg border" style={{ borderColor: '#146448' }}>
+                        <option value="tr">Türkçe</option>
+                        <option value="en">English</option>
+                        <option value="auto">Otomatik Algıla</option>
+                      </select>
+                    </div>
+                  </div>
+                  <button
+                    className="w-full py-3 px-4 rounded-lg font-medium transition-all"
+                    style={{ backgroundColor: '#baf200', color: '#1e3237' }}
+                  >
+                    Ayarları Kaydet
+                  </button>
+                </div>
+              )}
+
+              {/* Prompts Management */}
+              {selectedOperation === 'prompts' && (
+                <div>
+                  <div className="space-y-3 mb-6">
+                    <div className="p-4 rounded-lg" style={{ backgroundColor: '#146448' }}>
+                      <div className="flex justify-between items-start mb-2">
+                        <h4 className="font-medium" style={{ color: '#f6f8f9' }}>ROI Analiz Promptu</h4>
+                        <button className="text-xs px-2 py-1 rounded" style={{ backgroundColor: '#baf200', color: '#1e3237' }}>
+                          Düzenle
+                        </button>
+                      </div>
+                      <p className="text-sm opacity-90" style={{ color: '#f6f8f9' }}>
+                        "Sera yatırımı için detaylı ROI analizi yap. Başlangıç maliyeti, işletme giderleri..."
+                      </p>
+                    </div>
+                    <div className="p-4 rounded-lg" style={{ backgroundColor: '#146448' }}>
+                      <div className="flex justify-between items-start mb-2">
+                        <h4 className="font-medium" style={{ color: '#f6f8f9' }}>İklim Analiz Promptu</h4>
+                        <button className="text-xs px-2 py-1 rounded" style={{ backgroundColor: '#baf200', color: '#1e3237' }}>
+                          Düzenle
+                        </button>
+                      </div>
+                      <p className="text-sm opacity-90" style={{ color: '#f6f8f9' }}>
+                        "Belirtilen bölge için iklim uygunluk analizi yap. Sıcaklık, nem, yağış..."
+                      </p>
+                    </div>
+                    <div className="p-4 rounded-lg" style={{ backgroundColor: '#146448' }}>
+                      <div className="flex justify-between items-start mb-2">
+                        <h4 className="font-medium" style={{ color: '#f6f8f9' }}>Ekipman Önerisi Promptu</h4>
+                        <button className="text-xs px-2 py-1 rounded" style={{ backgroundColor: '#baf200', color: '#1e3237' }}>
+                          Düzenle
+                        </button>
+                      </div>
+                      <p className="text-sm opacity-90" style={{ color: '#f6f8f9' }}>
+                        "Sera tipi ve büyüklüğe göre gerekli ekipmanları listele ve maliyetlerini hesapla..."
+                      </p>
+                    </div>
+                  </div>
+                  <button
+                    className="w-full py-3 px-4 rounded-lg font-medium transition-all"
+                    style={{ backgroundColor: '#baf200', color: '#1e3237' }}
+                  >
+                    Yeni Prompt Oluştur
+                  </button>
+                </div>
+              )}
+
+              {/* Analysis Operations */}
+              {selectedOperation === 'analysis' && (
+                <div>
+                  <div className="space-y-3 mb-6">
+                    <div className="p-4 rounded-lg" style={{ backgroundColor: '#146448' }}>
+                      <div className="flex justify-between items-start mb-2">
+                        <h4 className="font-medium" style={{ color: '#f6f8f9' }}>Aktif Analizler</h4>
+                        <span className="text-xs px-2 py-1 rounded" style={{ backgroundColor: '#baf200', color: '#1e3237' }}>
+                          3 Aktif
+                        </span>
+                      </div>
+                      <p className="text-sm opacity-90" style={{ color: '#f6f8f9' }}>
+                        ROI: 2 analiz • İklim: 1 analiz • Beklemede: 0
+                      </p>
+                    </div>
+                    <div className="p-4 rounded-lg border" style={{ borderColor: '#146448' }}>
+                      <h4 className="font-medium mb-2" style={{ color: '#1e3237' }}>Hızlı İşlemler</h4>
+                      <div className="space-y-2">
+                        <button className="w-full text-left p-2 rounded border hover:bg-gray-50" style={{ borderColor: '#146448' }}>
+                          <span style={{ color: '#1e3237' }}>Tüm Analizleri Durdur</span>
+                        </button>
+                        <button className="w-full text-left p-2 rounded border hover:bg-gray-50" style={{ borderColor: '#146448' }}>
+                          <span style={{ color: '#1e3237' }}>Bekleyen İşlemleri İptal Et</span>
+                        </button>
+                        <button className="w-full text-left p-2 rounded border hover:bg-gray-50" style={{ borderColor: '#146448' }}>
+                          <span style={{ color: '#1e3237' }}>Analiz Geçmişini Temizle</span>
+                        </button>
+                      </div>
+                    </div>
+                    <div className="p-4 rounded-lg border" style={{ borderColor: '#146448' }}>
+                      <h4 className="font-medium mb-2" style={{ color: '#1e3237' }}>Otomatik İşlemler</h4>
+                      <div className="space-y-2">
+                        <label className="flex items-center">
+                          <input type="checkbox" className="mr-2" defaultChecked />
+                          <span style={{ color: '#1e3237' }}>Analiz tamamlandığında e-posta gönder</span>
+                        </label>
+                        <label className="flex items-center">
+                          <input type="checkbox" className="mr-2" />
+                          <span style={{ color: '#1e3237' }}>Raporları otomatik kaydet</span>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                  <button
+                    className="w-full py-3 px-4 rounded-lg font-medium transition-all"
+                    style={{ backgroundColor: '#baf200', color: '#1e3237' }}
+                  >
+                    Analizleri Yönet
+                  </button>
+                </div>
+              )}
+
+              {/* Training */}
+              {selectedOperation === 'training' && (
+                <div>
+                  <div className="space-y-4 mb-6">
+                    <div className="p-4 rounded-lg" style={{ backgroundColor: '#146448' }}>
+                      <h4 className="font-medium mb-2" style={{ color: '#f6f8f9' }}>Model Eğitimi</h4>
+                      <p className="text-sm opacity-90" style={{ color: '#f6f8f9' }}>
+                        SeraGPT'yi kendi verilerinizle eğiterek daha kişiselleştirilmiş sonuçlar alın.
+                      </p>
+                    </div>
+                    <div className="p-4 rounded-lg border" style={{ borderColor: '#146448' }}>
+                      <h4 className="font-medium mb-2" style={{ color: '#1e3237' }}>Eğitim Verileri</h4>
+                      <div className="space-y-2">
+                        <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
+                          <span className="text-sm" style={{ color: '#1e3237' }}>sera_maliyetleri.csv</span>
+                          <span className="text-xs" style={{ color: '#146448' }}>Yüklendi</span>
+                        </div>
+                        <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
+                          <span className="text-sm" style={{ color: '#1e3237' }}>iklim_verileri.json</span>
+                          <span className="text-xs" style={{ color: '#146448' }}>Yüklendi</span>
+                        </div>
+                        <button className="w-full p-2 border-2 border-dashed rounded hover:bg-gray-50" style={{ borderColor: '#146448' }}>
+                          <span className="text-sm" style={{ color: '#1e3237' }}>+ Yeni Veri Ekle</span>
+                        </button>
+                      </div>
+                    </div>
+                    <div className="p-4 rounded-lg border" style={{ borderColor: '#146448' }}>
+                      <h4 className="font-medium mb-2" style={{ color: '#1e3237' }}>Eğitim Parametreleri</h4>
+                      <div className="space-y-2">
+                        <div>
+                          <label className="text-sm" style={{ color: '#1e3237' }}>Epoch Sayısı</label>
+                          <input type="number" defaultValue="3" className="w-full p-2 rounded border mt-1" style={{ borderColor: '#146448' }} />
+                        </div>
+                        <div>
+                          <label className="text-sm" style={{ color: '#1e3237' }}>Learning Rate</label>
+                          <input type="number" step="0.0001" defaultValue="0.0001" className="w-full p-2 rounded border mt-1" style={{ borderColor: '#146448' }} />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <button
+                    className="w-full py-3 px-4 rounded-lg font-medium transition-all"
+                    style={{ backgroundColor: '#baf200', color: '#1e3237' }}
+                  >
+                    Eğitimi Başlat
+                  </button>
+                </div>
+              )}
+
+              {/* Export */}
+              {selectedOperation === 'export' && (
+                <div>
+                  <div className="space-y-4 mb-6">
+                    <div className="p-4 rounded-lg" style={{ backgroundColor: '#146448' }}>
+                      <h4 className="font-medium mb-2" style={{ color: '#f6f8f9' }}>Veri Dışa Aktarma</h4>
+                      <p className="text-sm opacity-90" style={{ color: '#f6f8f9' }}>
+                        AI analiz sonuçlarınızı farklı formatlarda indirin ve paylaşın.
+                      </p>
+                    </div>
+                    <div className="p-4 rounded-lg border" style={{ borderColor: '#146448' }}>
+                      <h4 className="font-medium mb-3" style={{ color: '#1e3237' }}>Dışa Aktarılabilir Veriler</h4>
+                      <div className="space-y-2">
+                        <label className="flex items-center">
+                          <input type="checkbox" className="mr-2" defaultChecked />
+                          <span style={{ color: '#1e3237' }}>ROI Analiz Raporları (5 adet)</span>
+                        </label>
+                        <label className="flex items-center">
+                          <input type="checkbox" className="mr-2" defaultChecked />
+                          <span style={{ color: '#1e3237' }}>İklim Analiz Sonuçları (3 adet)</span>
+                        </label>
+                        <label className="flex items-center">
+                          <input type="checkbox" className="mr-2" />
+                          <span style={{ color: '#1e3237' }}>Sohbet Geçmişi</span>
+                        </label>
+                        <label className="flex items-center">
+                          <input type="checkbox" className="mr-2" />
+                          <span style={{ color: '#1e3237' }}>Model Ayarları</span>
+                        </label>
+                      </div>
+                    </div>
+                    <div className="p-4 rounded-lg border" style={{ borderColor: '#146448' }}>
+                      <h4 className="font-medium mb-3" style={{ color: '#1e3237' }}>Format Seçimi</h4>
+                      <div className="grid grid-cols-2 gap-2">
+                        <button className="p-3 rounded border text-center hover:bg-gray-50" style={{ borderColor: '#146448' }}>
+                          <div className="text-2xl mb-1">📄</div>
+                          <div className="text-sm" style={{ color: '#1e3237' }}>PDF</div>
+                        </button>
+                        <button className="p-3 rounded border text-center hover:bg-gray-50" style={{ borderColor: '#146448' }}>
+                          <div className="text-2xl mb-1">📊</div>
+                          <div className="text-sm" style={{ color: '#1e3237' }}>Excel</div>
+                        </button>
+                        <button className="p-3 rounded border text-center hover:bg-gray-50" style={{ borderColor: '#146448' }}>
+                          <div className="text-2xl mb-1">📋</div>
+                          <div className="text-sm" style={{ color: '#1e3237' }}>CSV</div>
+                        </button>
+                        <button className="p-3 rounded border text-center hover:bg-gray-50" style={{ borderColor: '#146448' }}>
+                          <div className="text-2xl mb-1">🗃️</div>
+                          <div className="text-sm" style={{ color: '#1e3237' }}>JSON</div>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <button
+                    className="w-full py-3 px-4 rounded-lg font-medium transition-all"
+                    style={{ backgroundColor: '#baf200', color: '#1e3237' }}
+                  >
+                    Verileri Dışa Aktar
+                  </button>
+                </div>
+              )}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
