@@ -794,7 +794,28 @@ Lütfen daha sonra tekrar deneyin veya destek ekibimizle iletişime geçin.`,
                         SOHBETLER
                       </h3>
                       <div className="space-y-2">
-                        <p className="text-xs text-[#f6f8f9]/40 px-2">Henüz sohbet geçmişi yok</p>
+                        {chatSessions.filter(chat => chat.messageCount > 0).length > 0 ? (
+                          chatSessions.filter(chat => chat.messageCount > 0).map((chat) => (
+                            <button
+                              key={chat.id}
+                              onClick={() => handleSelectChat(chat.id)}
+                              className={`w-full p-3 rounded-lg text-left transition-colors group focus:ring-2 focus:ring-[#baf200] focus:outline-none ${
+                                currentChatId === chat.id
+                                  ? 'bg-[#baf200]/20 border border-[#baf200]/30'
+                                  : 'bg-[#146448]/50 hover:bg-[#f6f8f9]/10'
+                              }`}
+                            >
+                              <div className="text-sm font-medium text-[#f6f8f9] group-hover:text-[#baf200] transition-colors truncate">
+                                {chat.title}
+                              </div>
+                              <div className="text-xs text-[#f6f8f9]/60 mt-1 truncate">
+                                {chat.lastMessage}
+                              </div>
+                            </button>
+                          ))
+                        ) : (
+                          <p className="text-xs text-[#f6f8f9]/40 px-2">Henüz sohbet geçmişi yok</p>
+                        )}
                       </div>
                     </div>
                   </div>
