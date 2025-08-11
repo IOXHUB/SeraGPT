@@ -1017,25 +1017,24 @@ Lütfen daha sonra tekrar deneyin veya destek ekibimizle iletişime geçin.`,
                               </div>
                             </div>
                           ) : (
-                            // Regular Message Bubble
-                            <div className={`chat-message max-w-[70%] rounded-lg ${
+                            // Regular Message Bubble - Clean Minimal Design
+                            <div className={`max-w-[70%] rounded-[10px] ${
                               message.role === 'user'
-                                ? 'bg-[#baf200] text-[#1e3237] ml-auto'
+                                ? 'bg-[#baf200] text-[#1e3237]'
                                 : 'bg-[#f6f8f9]/10 text-[#ffffff] border border-[#f6f8f9]/20'
                             }`}
                                  style={{
                                    padding: '10px 14px',
-                                   lineHeight: '1.5',
-                                   borderRadius: '10px'
+                                   lineHeight: '1.5'
                                  }}>
-                              <p className="whitespace-pre-wrap">
+                              <div className="whitespace-pre-wrap break-words">
                                 {message.content}
-                              </p>
-                              <p className={`mt-2 text-xs ${
+                              </div>
+                              <div className={`mt-2 text-xs ${
                                 message.role === 'user' ? 'text-[#1e3237]/60' : 'text-[#ffffff]/60'
                               }`}>
                                 {message.timestamp.toLocaleTimeString('tr-TR')}
-                              </p>
+                              </div>
                             </div>
                           )}
                         </motion.div>
