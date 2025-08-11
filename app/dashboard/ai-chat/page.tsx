@@ -349,6 +349,25 @@ export default function AIChatPage() {
     }
   };
 
+  // Track window size for responsive behavior
+  useEffect(() => {
+    const checkScreenSize = () => {
+      const desktop = window.innerWidth >= 1024;
+      // Sidebar always open on desktop, controlled by user on mobile
+      if (desktop) {
+        setSidebarOpen(true);
+      }
+    };
+
+    // Set initial value
+    checkScreenSize();
+
+    // Add event listener
+    window.addEventListener('resize', checkScreenSize);
+
+    return () => window.removeEventListener('resize', checkScreenSize);
+  }, []);
+
   useEffect(() => {
     if (messagesEndRef.current) {
       messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
@@ -360,7 +379,9 @@ export default function AIChatPage() {
       <div className="flex h-screen bg-[#146448]">
         
         {/* SIDEBAR */}
-        <aside className={`${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0 transition-transform duration-300 fixed lg:relative z-40 flex flex-col w-64 bg-[#146448] border-r border-white/10 h-full`}>
+        <aside className="lg:translate-x-0 transition-transform duration-300 fixed lg:relative z-40 flex flex-col w-64 bg-[#146448] border-r border-white/10 h-full" style={{
+          transform: typeof window !== 'undefined' && window.innerWidth >= 1024 ? 'translateX(0)' : (sidebarOpen ? 'translateX(0)' : 'translateX(-100%)')
+        }}>
           {/* Üst logo alanı */}
           <div className="h-16 flex items-center px-4 border-b border-white/10">
             <img 
@@ -666,7 +687,7 @@ export default function AIChatPage() {
 
           {/* FOOTER (chat input) - Fixed within main area */}
           <footer className="fixed bottom-0 z-30 bg-[#146448] border-t border-white/10 p-4" style={{
-            left: typeof window !== 'undefined' && window.innerWidth >= 1024 && sidebarOpen ? '256px' : '0px',
+            left: typeof window !== 'undefined' && window.innerWidth >= 1024 ? '256px' : '0px',
             right: '0px',
             transition: 'left 0.3s ease-in-out'
           }}>
