@@ -892,10 +892,15 @@ Lütfen daha sonra tekrar deneyin veya destek ekibimizle iletişime geçin.`,
               </div>
             </div>
 
-            {/* Chat Container - Modern Layout */}
-            <div className="flex-1 flex bg-[#146448] overflow-hidden" style={{ paddingBottom: '120px' }}>
-              <div className="w-full flex justify-center items-center px-4">
-                <div className="w-full max-w-5xl flex flex-col items-center justify-center min-h-full">
+            {/* Chat Container - Responsive Layout */}
+            <div className="flex-1 flex flex-col bg-[#146448] overflow-hidden relative">
+              {/* Chat Messages Area - Always Centered */}
+              <div className="flex-1 flex justify-center overflow-hidden" style={{ paddingBottom: '120px' }}>
+                <div className="w-full max-w-[900px] flex flex-col h-full px-3 md:px-6 relative"
+                     style={{
+                       marginLeft: isDesktop && sidebarOpen ? '0' : '0',
+                       transition: 'margin-left 0.3s ease-in-out'
+                     }}>
                   {!currentChatId && messages.length === 0 ? (
                     // Welcome State - Centered between sidebar and chat area
                     <div className="flex flex-col items-center justify-center w-full py-8">
