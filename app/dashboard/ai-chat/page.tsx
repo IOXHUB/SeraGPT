@@ -66,6 +66,7 @@ export default function AIChatPage() {
   const [menuPopupOpen, setMenuPopupOpen] = useState(false);
   const [analysisFlow, setAnalysisFlow] = useState<AnalysisFlow | null>(null);
   const [userTokens, setUserTokens] = useState(5); // Mock token count
+  const [isDesktop, setIsDesktop] = useState(false);
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
