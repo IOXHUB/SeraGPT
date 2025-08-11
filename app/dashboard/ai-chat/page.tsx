@@ -45,6 +45,7 @@ export default function AIChatPage() {
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [currentChatId, setCurrentChatId] = useState<string | null>(null);
   const [isRecording, setIsRecording] = useState(false);
+  const [menuPopupOpen, setMenuPopupOpen] = useState(false);
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
