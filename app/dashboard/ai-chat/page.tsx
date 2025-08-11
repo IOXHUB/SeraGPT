@@ -1175,7 +1175,7 @@ Lütfen daha sonra tekrar deneyin veya destek ekibimizle iletişime geçin.`,
           <div className="flex justify-center">
             <div className="chat-container w-full max-w-[900px] p-3"
                  style={{
-                   marginLeft: sidebarOpen ? '250px' : '0',
+                   marginLeft: window.innerWidth >= 1024 && sidebarOpen ? '250px' : '0',
                    transition: 'margin-left 0.3s ease-in-out',
                    paddingLeft: 'max(12px, env(safe-area-inset-left))',
                    paddingRight: 'max(12px, env(safe-area-inset-right))'
