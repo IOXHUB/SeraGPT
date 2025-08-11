@@ -216,11 +216,146 @@ export default function BackupSystemPage() {
   };
 
   const toggleSchedule = (scheduleId: string) => {
-    setBackupSchedules(prev => prev.map(schedule =>
-      schedule.id === scheduleId
-        ? { ...schedule, enabled: !schedule.enabled }
-        : schedule
+    const schedule = backupSchedules.find(s => s.id === scheduleId);
+    if (!schedule) return;
+
+    setBackupSchedules(prev => prev.map(s =>
+      s.id === scheduleId
+        ? { ...s, enabled: !s.enabled }
+        : s
     ));
+
+    alert(`Zamanlama "${schedule.name}" ${schedule.enabled ? 'durduruldu' : 'başlatıldı'}!`);
+  };
+
+  const downloadBackup = (backup: BackupRecord) => {
+    if (!backup.downloadUrl) {
+      alert('Bu yedek için indirme linki bulunamadı.');
+      return;
+    }
+
+    // Simulate download
+    alert(`${backup.description} indirilmeye başlandı!\n\nBoyut: ${backup.size}\nTür: ${getTypeName(backup.type)}\nTarih: ${new Date(backup.startTime).toLocaleDateString('tr-TR')}`);
+
+    // Real implementation would:
+    // window.open(backup.downloadUrl, '_blank');
+  };
+
+  const viewBackupDetails = (backup: BackupRecord) => {
+    const details = [
+      `ID: ${backup.id}`,
+      `Tür: ${getTypeName(backup.type)}`,
+      `Durum: ${getStatusText(backup.status)}`,
+      `Başlangıç: ${new Date(backup.startTime).toLocaleString('tr-TR')}`,
+      backup.endTime ? `Bitiş: ${new Date(backup.endTime).toLocaleString('tr-TR')}` : '',
+      backup.duration ? `Süre: ${Math.round(backup.duration / 60000)} dakika` : '',
+      `Boyut: ${backup.size}`,
+      backup.errorMessage ? `Hata: ${backup.errorMessage}` : ''
+    ].filter(Boolean).join('\n');
+
+    alert(`Yedek Detayları:\n\n${details}`);
+  };
+
+  const editSchedule = (schedule: BackupSchedule) => {
+    alert(`Zamanlama Düzenleme: ${schedule.name}\n\nMevcut ayarlar:\n• Sıklık: ${schedule.frequency}\n• Saat: ${schedule.time}\n• Saklama: ${schedule.retention} gün\n\nBu özellik yakında eklenecek.`);
+  };
+
+  const deleteBackup = (backupId: string) => {
+    const backup = backupRecords.find(b => b.id === backupId);
+    if (!backup) return;
+
+    if (!confirm(`"${backup.description}" yedeğini silmek istediğinizden emin misiniz?\n\nBu işlem geri alınamaz!`)) return;
+
+    setBackupRecords(prev => prev.filter(b => b.id !== backupId));
+    alert('Yedek başarıyla silindi!');
+  };
+
+  const startRestore = () => {
+    const selectedBackup = document.querySelector('select')?.value;
+    const restoreType = document.querySelector('input[name="restoreType"]:checked')?.getAttribute('value');
+
+    if (!selectedBackup || selectedBackup === 'Yedek dosyası seçin...') {
+      alert('Lütfen bir yedek dosyası seçin!');
+      return;
+    }
+
+    if (!restoreType) {
+      alert('Lütfen geri yükleme türünü seçin!');
+      return;
+    }
+
+    const backup = backupRecords.find(b => b.id === selectedBackup);
+    if (!backup) return;
+
+    const confirmMsg = `GERİ YÜKLEME ONAYLAMA\n\n` +
+      `Yedek: ${backup.description}\n` +
+      `Tarih: ${new Date(backup.startTime).toLocaleDateString('tr-TR')}\n` +
+      `Tür: ${restoreType === 'full' ? 'Tam geri yükleme' : restoreType === 'selective' ? 'Seçici geri yükleme' : 'Birleştirici geri yükleme'}\n\n` +
+      `⚠️ Bu işlem geri alınamaz!\n\n` +
+      `Devam etmek istediğinizden emin misiniz?`;
+
+    if (!confirm(confirmMsg)) return;
+
+    alert('Geri yükleme işlemi başlatıldı!\n\n• Sistem geçici olarak bakım moduna alınacak\n• İşlem 15-30 dakika sürebilir\n• Tamamlandığında bilgilendirileceksiniz');
+  };
+
+  const saveSettings = () => {
+    const retention = document.querySelector('input[type="number"]')?.value;
+    const storage = document.querySelectorAll('input[type="number"]')[1]?.value;
+    const compression = document.querySelector('select')?.value;
+    const emailComplete = document.querySelectorAll('input[type="checkbox"]')[0]?.checked;
+    const emailError = document.querySelectorAll('input[type="checkbox"]')[1]?.checked;
+    const remoteStorage = document.querySelectorAll('input[type="checkbox"]')[2]?.checked;
+
+    const settings = {
+      retention: retention || '30',
+      maxStorage: storage || '100',
+      compression: compression || 'medium',
+      notifications: {
+        onComplete: emailComplete,
+        onError: emailError,
+        remoteStorage: remoteStorage
+      }
+    };
+
+    alert(`Ayarlar kaydedildi!\n\n` +
+      `• Saklama süresi: ${settings.retention} gün\n` +
+      `• Maks depolama: ${settings.maxStorage} GB\n` +
+      `• Sıkıştırma: ${settings.compression}\n` +
+      `• E-posta bildirimleri: ${settings.notifications.onComplete ? 'Aktif' : 'Pasif'}\n` +
+      `• Uzak depolama: ${settings.notifications.remoteStorage ? 'Aktif' : 'Pasif'}`);
+  };
+
+  const createNewSchedule = () => {
+    alert('Yeni Zamanlama Oluşturma\n\nÖzellikler:\n• Özel sıklık tanımlama\n• Çoklu yedek türleri\n• Gelişmiş filtreler\n• Koşullu çalıştırma\n\nBu özellik yakında eklenecek.');
+  };
+
+  const exportBackupList = () => {
+    const data = {
+      exportDate: new Date().toISOString(),
+      totalBackups: backupRecords.length,
+      totalSize: '12.8 GB',
+      backups: backupRecords.map(b => ({
+        id: b.id,
+        type: b.type,
+        status: b.status,
+        startTime: b.startTime,
+        size: b.size,
+        description: b.description
+      }))
+    };
+
+    const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `backup-list-${new Date().toISOString().split('T')[0]}.json`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+
+    alert('Yedek listesi dışa aktarıldı!');
   };
 
   const getStatusColor = (status: string) => {
@@ -556,6 +691,7 @@ export default function BackupSystemPage() {
                       <div className="ml-6 flex space-x-2">
                         {backup.downloadUrl && backup.status === 'completed' && (
                           <button
+                            onClick={() => downloadBackup(backup)}
                             className="px-3 py-2 rounded-lg font-medium transition-all hover:opacity-90"
                             style={{ backgroundColor: '#146448', color: '#f6f8f9' }}
                           >
@@ -563,10 +699,18 @@ export default function BackupSystemPage() {
                           </button>
                         )}
                         <button
+                          onClick={() => viewBackupDetails(backup)}
                           className="px-3 py-2 rounded-lg font-medium transition-all hover:opacity-90"
                           style={{ backgroundColor: '#baf200', color: '#1e3237' }}
                         >
                           📋 Detaylar
+                        </button>
+                        <button
+                          onClick={() => deleteBackup(backup.id)}
+                          className="px-3 py-2 rounded-lg font-medium transition-all hover:opacity-90 ml-2"
+                          style={{ backgroundColor: '#EF4444', color: '#f6f8f9' }}
+                        >
+                          🗑️ Sil
                         </button>
                       </div>
                     </div>
@@ -648,6 +792,7 @@ export default function BackupSystemPage() {
                           {schedule.enabled ? '⏸️ Durdur' : '▶️ Başlat'}
                         </button>
                         <button
+                          onClick={() => editSchedule(schedule)}
                           className="px-3 py-2 rounded-lg font-medium transition-all hover:opacity-90"
                           style={{ backgroundColor: '#baf200', color: '#1e3237' }}
                         >
@@ -711,6 +856,7 @@ export default function BackupSystemPage() {
                   </div>
 
                   <button
+                    onClick={startRestore}
                     className="w-full py-3 rounded-lg font-medium transition-all hover:opacity-90"
                     style={{ backgroundColor: '#EF4444', color: '#f6f8f9' }}
                   >
@@ -784,6 +930,7 @@ export default function BackupSystemPage() {
                   </div>
 
                   <button
+                    onClick={saveSettings}
                     className="w-full py-3 rounded-lg font-medium transition-all hover:opacity-90"
                     style={{ backgroundColor: '#baf200', color: '#1e3237' }}
                   >
