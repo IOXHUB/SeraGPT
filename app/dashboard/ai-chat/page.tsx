@@ -704,7 +704,7 @@ export default function AIChatPage() {
 
             {/* Settings Menu Popup - Taşındı button dışına */}
             {menuPopupOpen && (
-              <div className="absolute bottom-full left-4 right-4 mb-2 bg-white rounded-lg shadow-xl border border-gray-200 z-[60]">
+              <div className="absolute bottom-full left-4 right-4 mb-2 bg-white rounded-lg shadow-xl border border-gray-200 z-[60]" onLoad={() => console.log('Popup render edildi')}>
                 <div className="p-4 border-b border-gray-200">
                   <div className="flex items-center justify-between">
                     <h3 className="text-sm font-medium text-gray-900">Dashboard Menü</h3>
@@ -1235,7 +1235,7 @@ export default function AIChatPage() {
                             </div>
                             <div className="mt-6 text-center">
                               <p className="text-sm opacity-70" style={{ color: '#1e3237' }}>
-                                Toplam ₺149.98 harcadın��z
+                                Toplam ₺149.98 harcadınız
                               </p>
                             </div>
                           </div>
