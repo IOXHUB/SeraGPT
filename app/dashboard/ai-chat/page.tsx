@@ -135,7 +135,7 @@ export default function AIChatPage() {
   // Dashboard menu items
   const dashboardMenuItems = [
     { id: 'user', title: 'Kullanıcı İşlemleri' },
-    { id: 'tokens', title: 'Token İşlemleri' },
+    { id: 'tokens', title: 'Token ��şlemleri' },
     { id: 'ai-assistant', title: 'AI Asistan İşlemleri' },
     { id: 'analysis', title: 'Tüm Analizler' },
     { id: 'settings', title: 'Hesap Ayarları' },
@@ -902,35 +902,35 @@ Lütfen daha sonra tekrar deneyin veya destek ekibimizle iletişime geçin.`,
                        transition: 'margin-left 0.3s ease-in-out'
                      }}>
                   {!currentChatId && messages.length === 0 ? (
-                    // Welcome State - Centered between sidebar and chat area
-                    <div className="flex flex-col items-center justify-center w-full py-8">
-                      <div className="text-center mb-8">
-                        <h1 className="font-bold text-[#f6f8f9] mb-6 text-4xl lg:text-5xl">
+                    // Welcome State - Perfect Center
+                    <div className="flex flex-col items-center justify-center h-full min-h-[400px] py-8">
+                      <div className="text-center mb-8 max-w-2xl">
+                        <h1 className="font-bold text-[#f6f8f9] mb-6 text-3xl md:text-4xl lg:text-5xl">
                           Hoş Geldiniz, Test Kullanıcı!
                         </h1>
 
-                        <div className="max-w-2xl mx-auto mb-8">
-                          <p className="text-[#f6f8f9]/90 mb-4 text-lg lg:text-xl">
+                        <div className="mb-8">
+                          <p className="text-[#f6f8f9]/90 mb-4 text-base md:text-lg">
                             Aşağıdan Analiz Başlatabilirsiniz yada menüden düzenlemek istediğiniz geçmiş analizlerinden birini seçin.
                           </p>
-                          <p className="text-[#baf200] font-medium text-base lg:text-lg">
+                          <p className="text-[#baf200] font-medium text-sm md:text-base">
                             Tam havamdayım, çalışalım. Ya siz? Yazalım.
                           </p>
                         </div>
                       </div>
 
-                      <div className="grid grid-cols-2 gap-4 max-w-lg">
+                      <div className="grid grid-cols-2 gap-3 md:gap-4 max-w-md md:max-w-lg w-full px-4">
                         {analysisOptions.map((option) => (
                           <button
                             key={option.id}
                             onClick={() => handleAnalysisClick(option.id)}
-                            className="h-24 p-3 bg-white/95 hover:bg-white rounded-xl text-center transition-all hover:scale-105 hover:shadow-lg group flex flex-col justify-center items-center border border-[#baf200]/20 hover:border-[#baf200]/40"
+                            className="h-20 md:h-24 p-3 bg-white/95 hover:bg-white rounded-lg md:rounded-xl text-center transition-all hover:scale-105 group flex flex-col justify-center items-center border border-[#baf200]/20 hover:border-[#baf200]/40 shadow-sm"
                           >
                             <div className="w-full h-full flex flex-col justify-center items-center">
-                              <h3 className="font-semibold text-[#1e3237] mb-1 group-hover:text-[#146448] transition-colors text-sm lg:text-base">
+                              <h3 className="font-semibold text-[#1e3237] mb-1 group-hover:text-[#146448] transition-colors text-xs md:text-sm lg:text-base">
                                 {option.title}
                               </h3>
-                              <p className="text-[#1e3237]/70 leading-tight text-xs lg:text-sm">
+                              <p className="text-[#1e3237]/70 leading-tight text-xs">
                                 {option.description}
                               </p>
                             </div>
