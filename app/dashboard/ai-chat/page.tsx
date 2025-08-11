@@ -901,26 +901,27 @@ Lütfen daha sonra tekrar deneyin veya destek ekibimizle iletişime geçin.`,
               // Welcome Content
               <div className="flex-1 p-3 lg:p-4 bg-[#146448] overflow-hidden flex flex-col">
 
-                {/* Hero Title - Separated and Top-Aligned */}
-                <div className="pt-8 pb-4 text-center">
-                  <h1 className="font-bold text-[#f6f8f9] mb-3"
-                      style={{ fontSize: 'clamp(28px, 5vw, 42px)', lineHeight: 'clamp(32px, 6vw, 50px)' }}>
-                    Hoş Geldiniz, Test Kullanıcı!
-                  </h1>
-                </div>
+                {/* Content Container - Perfectly Centered */}
+                <div className="flex-1 flex flex-col justify-center items-center w-full">
 
-                {/* Content Container - Centered */}
-                <div className="flex-1 flex flex-col justify-center items-center max-w-5xl mx-auto w-full px-4">
+                  {/* Hero Title */}
+                  <div className="text-center mb-8">
+                    <h1 className="font-bold text-[#f6f8f9] mb-6"
+                        style={{ fontSize: 'clamp(28px, 5vw, 42px)', lineHeight: 'clamp(32px, 6vw, 50px)' }}>
+                      Hoş Geldiniz, Test Kullanıcı!
+                    </h1>
 
-                  <div className="text-center mb-8 max-w-2xl">
-                    <p className="text-[#f6f8f9]/90 mb-3"
-                       style={{ fontSize: 'clamp(16px, 3vw, 20px)', lineHeight: 'clamp(22px, 4vw, 28px)' }}>
-                      Aşağıdan Analiz Başlatabilirsiniz yada menüden düzenlemek istediğiniz geçmiş analizlerinden birini seçin.
-                    </p>
-                    <p className="text-[#baf200] font-medium"
-                       style={{ fontSize: 'clamp(15px, 2.8vw, 19px)', lineHeight: 'clamp(20px, 3.8vw, 26px)' }}>
-                      Tam havamdayım, çalışalım. Ya siz? Yazalım.
-                    </p>
+                    {/* Description */}
+                    <div className="max-w-2xl mx-auto mb-8">
+                      <p className="text-[#f6f8f9]/90 mb-4"
+                         style={{ fontSize: 'clamp(16px, 3vw, 20px)', lineHeight: 'clamp(22px, 4vw, 28px)' }}>
+                        Aşağıdan Analiz Başlatabilirsiniz yada menüden düzenlemek istediğiniz geçmiş analizlerinden birini seçin.
+                      </p>
+                      <p className="text-[#baf200] font-medium"
+                         style={{ fontSize: 'clamp(15px, 2.8vw, 19px)', lineHeight: 'clamp(20px, 3.8vw, 26px)' }}>
+                        Tam havamdayım, çalışalım. Ya siz? Yazalım.
+                      </p>
+                    </div>
                   </div>
 
                   {/* Analysis Cards Grid - Perfectly Centered */}
