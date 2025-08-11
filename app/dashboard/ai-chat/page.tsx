@@ -656,8 +656,9 @@ Lütfen daha sonra tekrar deneyin veya destek ekibimizle iletişime geçin.`,
     <ClientOnly>
       <div className="flex flex-col h-screen bg-[#146448] overflow-hidden"
            style={{
-             height: 'calc(var(--vh, 1vh) * 100)',
-             minHeight: '100svh',
+             height: '100vh',
+             minHeight: '100vh',
+             maxHeight: '100vh',
              overscrollBehavior: 'contain',
              touchAction: 'manipulation',
              maxWidth: '100vw',
