@@ -1274,14 +1274,111 @@ export default function DashboardPage() {
                 )}
 
                 {activeModal === 'settings' && (
-                  <div className="text-center py-12">
-                    <div className="text-6xl mb-4">⚙️</div>
-                    <h3 className="text-xl font-semibold mb-2" style={{ color: '#1e3237' }}>
-                      Hesap Ayarları
-                    </h3>
-                    <p className="opacity-70" style={{ color: '#1e3237' }}>
-                      Bu modal yakında kullanıma açılacak
-                    </p>
+                  <div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                      {settingsCategories.map((category) => (
+                        <button
+                          key={category.id}
+                          className="rounded-lg p-6 hover:shadow-lg transition-all duration-200 text-left group border border-[#146448] hover:shadow-md"
+                          style={{ backgroundColor: '#f6f8f9' }}
+                        >
+                          <div
+                            className="flex flex-col items-center text-center rounded-lg p-4"
+                            style={{ backgroundColor: '#baf200' }}
+                          >
+                            <div className="transition-colors mb-3" style={{ color: '#1e3237' }}>
+                              {category.icon}
+                            </div>
+                            <div>
+                              <h3 className="text-lg font-medium mb-2" style={{ color: '#1e3237' }}>
+                                {category.title}
+                              </h3>
+                              <p className="text-sm opacity-70" style={{ color: '#1e3237' }}>
+                                {category.description}
+                              </p>
+                            </div>
+                          </div>
+                        </button>
+                      ))}
+                    </div>
+
+                    {/* Quick Settings */}
+                    <div className="space-y-6">
+                      <div className="rounded-lg p-6 border" style={{ backgroundColor: '#146448', borderColor: '#146448' }}>
+                        <h3 className="text-lg font-semibold mb-4" style={{ color: '#f6f8f9' }}>
+                          Hızlı Ayarlar
+                        </h3>
+                        <div className="space-y-4">
+                          <div className="flex items-center justify-between">
+                            <div>
+                              <p className="font-medium" style={{ color: '#f6f8f9' }}>E-posta Bildirimleri</p>
+                              <p className="text-sm opacity-80" style={{ color: '#f6f8f9' }}>Yeni analiz sonuçları için bildirim al</p>
+                            </div>
+                            <button
+                              className="w-12 h-6 rounded-full relative focus:outline-none transition-colors"
+                              style={{ backgroundColor: '#baf200' }}
+                            >
+                              <div
+                                className="w-5 h-5 bg-white rounded-full absolute top-0.5 transition-transform transform translate-x-6"
+                                style={{ backgroundColor: '#1e3237' }}
+                              ></div>
+                            </button>
+                          </div>
+
+                          <div className="flex items-center justify-between">
+                            <div>
+                              <p className="font-medium" style={{ color: '#f6f8f9' }}>Otomatik Kaydetme</p>
+                              <p className="text-sm opacity-80" style={{ color: '#f6f8f9' }}>Analizleri otomatik olarak kaydet</p>
+                            </div>
+                            <button
+                              className="w-12 h-6 rounded-full relative focus:outline-none transition-colors"
+                              style={{ backgroundColor: '#baf200' }}
+                            >
+                              <div
+                                className="w-5 h-5 bg-white rounded-full absolute top-0.5 transition-transform transform translate-x-6"
+                                style={{ backgroundColor: '#1e3237' }}
+                              ></div>
+                            </button>
+                          </div>
+
+                          <div className="flex items-center justify-between">
+                            <div>
+                              <p className="font-medium" style={{ color: '#f6f8f9' }}>Karanlık Mod</p>
+                              <p className="text-sm opacity-80" style={{ color: '#f6f8f9' }}>Gece kullanımı için karanlık tema</p>
+                            </div>
+                            <button
+                              className="w-12 h-6 rounded-full relative focus:outline-none transition-colors bg-gray-300"
+                            >
+                              <div className="w-5 h-5 bg-white rounded-full absolute top-0.5 left-0.5 transition-transform"></div>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Account Actions */}
+                      <div className="rounded-lg p-6 border" style={{ backgroundColor: '#f6f8f9', borderColor: '#146448' }}>
+                        <h3 className="text-lg font-semibold mb-4" style={{ color: '#1e3237' }}>
+                          Hesap İşlemleri
+                        </h3>
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                          <button
+                            className="p-3 rounded-lg font-medium transition-all hover:opacity-90"
+                            style={{ backgroundColor: '#baf200', color: '#1e3237' }}
+                          >
+                            Şifre Değiştir
+                          </button>
+                          <button
+                            className="p-3 rounded-lg font-medium transition-all hover:opacity-90"
+                            style={{ backgroundColor: '#146448', color: '#f6f8f9' }}
+                          >
+                            Verileri Dışa Aktar
+                          </button>
+                          <button className="p-3 bg-red-100 text-red-700 rounded-lg font-medium hover:bg-red-200 transition-all">
+                            Hesabı Sil
+                          </button>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 )}
 
