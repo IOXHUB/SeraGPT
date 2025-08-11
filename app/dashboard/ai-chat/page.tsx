@@ -238,9 +238,24 @@ export default function AIChatPage() {
                   animate={{ x: 0, opacity: 1 }}
                   exit={{ x: -300, opacity: 0 }}
                   className="w-80 md:w-80 bg-[#1e3237] border-r border-[#f6f8f9]/10 flex flex-col h-full fixed md:relative z-50 md:z-auto"
-              >
-                {/* Sidebar Header */}
+                >
+                {/* Sidebar Header - Logo */}
                 <div className="p-4 border-b border-[#f6f8f9]/10 bg-[#146448] text-white">
+                  <div className="flex items-center justify-center">
+                    <img
+                      src="https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2F01c1e8a05ef6424b912d584875377957?format=webp&width=800"
+                      alt="SeraGPT Logo"
+                      className="h-10 w-auto object-contain"
+                    />
+                  </div>
+                  <div className="mt-3 text-center">
+                    <h2 className="text-lg font-bold text-[#f6f8f9]">SeraGPT</h2>
+                    <p className="text-xs text-[#baf200]">AI Dashboard</p>
+                  </div>
+                </div>
+
+                {/* Quick Actions */}
+                <div className="p-4 border-b border-[#f6f8f9]/10 bg-[#146448]">
                   <button
                     onClick={handleNewChat}
                     className="w-full bg-[#baf200] text-[#1e3237] py-3 px-4 rounded-lg font-medium hover:bg-[#baf200]/90 transition-colors flex items-center justify-center space-x-2"
