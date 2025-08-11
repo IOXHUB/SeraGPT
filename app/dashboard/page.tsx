@@ -168,6 +168,16 @@ export default function DashboardPage() {
     { id: 'homepage', title: 'Anasayfaya Çıkış', modal: false, href: '/' }
   ];
 
+  // Token purchase handler
+  const handleTokenPurchase = (packageId: string) => {
+    const selectedPackage = tokenPackages.find(p => p.id === packageId);
+    if (selectedPackage) {
+      // Redirect to iyzico payment with package details
+      const iyzicoPay = `/api/payment/iyzico?tokens=${selectedPackage.amount}&price=${selectedPackage.price}`;
+      window.location.href = iyzicoPay;
+    }
+  };
+
   // Helper functions for new features
   const toggleFavorite = (messageId: string) => {
     setFavoriteMessages(prev => {
