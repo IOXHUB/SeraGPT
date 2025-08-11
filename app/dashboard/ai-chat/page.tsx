@@ -483,11 +483,11 @@ export default function AIChatPage() {
             {/* Welcome State or Messages */}
             {!currentChatId && messages.length === 0 ? (
               // Welcome Content
-              <div className="flex-1 p-4 lg:p-8 bg-[#146448] overflow-y-auto overscroll-contain">
+              <div className="flex-1 p-4 lg:p-8 bg-[#146448] overflow-y-auto overscroll-contain" style={{ paddingBottom: '120px' }}>
                 <div className="max-w-4xl mx-auto px-safe"
                      style={{ marginLeft: 'max(16px, env(safe-area-inset-left))',
                              marginRight: 'max(16px, env(safe-area-inset-right))' }}>
-                  
+
                   <div className="text-center mb-8">
                     <h1 className="font-bold text-[#f6f8f9] mb-2"
                         style={{ fontSize: 'clamp(24px, 5vw, 48px)', lineHeight: 'clamp(28px, 6vw, 56px)' }}>
@@ -495,32 +495,27 @@ export default function AIChatPage() {
                     </h1>
                     <p className="text-[#f6f8f9]/80"
                        style={{ fontSize: 'clamp(16px, 3vw, 20px)', lineHeight: 'clamp(20px, 4vw, 28px)' }}>
-                      Bugün size nasıl yardımcı olabilirim? Aşağıdaki analizlerden birini seçerek başlayabilirsiniz:
+                      Bugün size nasıl yardımcı olabilirim?
                     </p>
                   </div>
 
-                  {/* Analysis Cards Grid */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 lg:gap-4 mb-8">
+                  {/* Analysis Cards Grid - 2 columns */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-6 mb-8 max-w-2xl mx-auto">
                     {analysisOptions.map((option) => (
                       <button
                         key={option.id}
                         onClick={() => handleAnalysisClick(option.id)}
-                        className="p-4 bg-white/90 hover:bg-white rounded-xl text-left transition-all hover:scale-105 hover:shadow-lg group"
+                        className="aspect-square p-6 bg-white/90 hover:bg-white rounded-xl text-center transition-all hover:scale-105 hover:shadow-lg group flex flex-col justify-center items-center"
                       >
-                        <div className="flex items-start space-x-3">
-                          <div className={`w-10 h-10 ${option.color} rounded-lg flex items-center justify-center text-white text-lg flex-shrink-0`}>
-                            {option.icon}
-                          </div>
-                          <div className="flex-1">
-                            <h3 className="font-semibold text-[#1e3237] mb-1 group-hover:text-[#146448] transition-colors"
-                                style={{ fontSize: 'clamp(13px, 2.5vw, 16px)', lineHeight: 'clamp(16px, 3vw, 20px)' }}>
-                              {option.title}
-                            </h3>
-                            <p className="text-[#1e3237]/70 leading-relaxed"
-                               style={{ fontSize: 'clamp(11px, 2vw, 14px)', lineHeight: 'clamp(14px, 2.5vw, 18px)' }}>
-                              {option.description}
-                            </p>
-                          </div>
+                        <div className="w-full h-full flex flex-col justify-center items-center">
+                          <h3 className="font-semibold text-[#1e3237] mb-3 group-hover:text-[#146448] transition-colors"
+                              style={{ fontSize: 'clamp(16px, 3vw, 20px)', lineHeight: 'clamp(20px, 4vw, 28px)' }}>
+                            {option.title}
+                          </h3>
+                          <p className="text-[#1e3237]/70 leading-relaxed"
+                             style={{ fontSize: 'clamp(13px, 2.5vw, 16px)', lineHeight: 'clamp(16px, 3vw, 22px)' }}>
+                            {option.description}
+                          </p>
                         </div>
                       </button>
                     ))}
