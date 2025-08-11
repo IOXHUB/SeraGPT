@@ -991,7 +991,7 @@ Lütfen daha sonra tekrar deneyin veya destek ekibimizle iletişime geçin.`,
             <div className="flex-1 flex justify-center bg-[#146448] overflow-hidden">
               <div className="chat-container w-full max-w-[900px] flex flex-col overflow-hidden"
                    style={{
-                     marginLeft: sidebarOpen ? '250px' : '0',
+                     marginLeft: window.innerWidth >= 1024 && sidebarOpen ? '250px' : '0',
                      transition: 'margin-left 0.3s ease-in-out'
                    }}>
 
