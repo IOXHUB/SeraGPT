@@ -97,6 +97,7 @@ export default function KullaniciIslemleriPage() {
           {userOperations.map((operation) => (
             <button
               key={operation.id}
+              onClick={operation.action}
               className="rounded-lg p-6 hover:shadow-lg transition-all duration-200 text-left group border"
               style={{ backgroundColor: '#f6f8f9', borderColor: '#146448' }}
             >
@@ -116,6 +117,326 @@ export default function KullaniciIslemleriPage() {
             </button>
           ))}
         </div>
+
+        {/* Modal Content */}
+        {selectedOperation && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+            <div className="rounded-lg p-8 max-w-lg w-full mx-4 max-h-[80vh] overflow-y-auto" style={{ backgroundColor: '#f6f8f9' }}>
+              <div className="flex justify-between items-center mb-6">
+                <h2 className="text-xl font-semibold" style={{ color: '#1e3237' }}>
+                  {selectedOperation === 'profile' && 'Profil Yönetimi'}
+                  {selectedOperation === 'security' && 'Güvenlik Ayarları'}
+                  {selectedOperation === 'notifications' && 'Bildirim Tercihleri'}
+                  {selectedOperation === 'subscription' && 'Abonelik Yönetimi'}
+                  {selectedOperation === 'activity' && 'Hesap Aktivitesi'}
+                  {selectedOperation === 'data' && 'Veri Yönetimi'}
+                </h2>
+                <button
+                  onClick={() => setSelectedOperation(null)}
+                  className="text-gray-500 hover:text-gray-700 text-2xl"
+                >
+                  ×
+                </button>
+              </div>
+
+              {/* Profile Management */}
+              {selectedOperation === 'profile' && (
+                <div>
+                  <div className="space-y-4 mb-6">
+                    <div className="p-4 rounded-lg" style={{ backgroundColor: '#146448' }}>
+                      <h4 className="font-medium mb-2" style={{ color: '#f6f8f9' }}>Kişisel Bilgiler</h4>
+                      <p className="text-sm opacity-90" style={{ color: '#f6f8f9' }}>
+                        Ad, soyad, e-posta ve telefon bilgilerinizi güncelleyin.
+                      </p>
+                    </div>
+                    <div className="space-y-3">
+                      <div>
+                        <label className="text-sm font-medium" style={{ color: '#1e3237' }}>Ad Soyad</label>
+                        <input type="text" placeholder="Volkan Şimşirkaya" className="w-full p-3 rounded-lg border mt-1" style={{ borderColor: '#146448' }} />
+                      </div>
+                      <div>
+                        <label className="text-sm font-medium" style={{ color: '#1e3237' }}>E-posta</label>
+                        <input type="email" placeholder="volkan@seragpt.com" className="w-full p-3 rounded-lg border mt-1" style={{ borderColor: '#146448' }} />
+                      </div>
+                      <div>
+                        <label className="text-sm font-medium" style={{ color: '#1e3237' }}>Telefon</label>
+                        <input type="tel" placeholder="+90 5XX XXX XX XX" className="w-full p-3 rounded-lg border mt-1" style={{ borderColor: '#146448' }} />
+                      </div>
+                      <div>
+                        <label className="text-sm font-medium" style={{ color: '#1e3237' }}>Bio</label>
+                        <textarea placeholder="Kendiniz hakkında..." className="w-full p-3 rounded-lg border mt-1 h-20" style={{ borderColor: '#146448' }}></textarea>
+                      </div>
+                    </div>
+                  </div>
+                  <button
+                    className="w-full py-3 px-4 rounded-lg font-medium transition-all"
+                    style={{ backgroundColor: '#baf200', color: '#1e3237' }}
+                  >
+                    Profili Güncelle
+                  </button>
+                </div>
+              )}
+
+              {/* Security Settings */}
+              {selectedOperation === 'security' && (
+                <div>
+                  <div className="space-y-4 mb-6">
+                    <div className="p-4 rounded-lg" style={{ backgroundColor: '#146448' }}>
+                      <h4 className="font-medium mb-2" style={{ color: '#f6f8f9' }}>Hesap Güvenliği</h4>
+                      <p className="text-sm opacity-90" style={{ color: '#f6f8f9' }}>
+                        Şifrenizi değiştirin ve iki faktörlü doğrulamayı etkinleştirin.
+                      </p>
+                    </div>
+                    <div className="space-y-4">
+                      <div className="p-4 rounded-lg border" style={{ borderColor: '#146448' }}>
+                        <h4 className="font-medium mb-2" style={{ color: '#1e3237' }}>Şifre Değiştir</h4>
+                        <div className="space-y-3">
+                          <input type="password" placeholder="Mevcut şifre" className="w-full p-3 rounded-lg border" style={{ borderColor: '#146448' }} />
+                          <input type="password" placeholder="Yeni şifre" className="w-full p-3 rounded-lg border" style={{ borderColor: '#146448' }} />
+                          <input type="password" placeholder="Yeni şifre (tekrar)" className="w-full p-3 rounded-lg border" style={{ borderColor: '#146448' }} />
+                        </div>
+                        <button className="mt-3 w-full py-2 px-4 rounded-lg font-medium" style={{ backgroundColor: '#baf200', color: '#1e3237' }}>
+                          Şifreyi Güncelle
+                        </button>
+                      </div>
+                      <div className="p-4 rounded-lg border" style={{ borderColor: '#146448' }}>
+                        <h4 className="font-medium mb-2" style={{ color: '#1e3237' }}>İki Faktörlü Doğrulama</h4>
+                        <div className="flex items-center justify-between">
+                          <div>
+                            <p className="text-sm" style={{ color: '#1e3237' }}>2FA Durumu</p>
+                            <p className="text-xs opacity-70" style={{ color: '#1e3237' }}>Hesabınızı daha güvenli hale getirin</p>
+                          </div>
+                          <button className="py-2 px-4 rounded-lg font-medium" style={{ backgroundColor: '#146448', color: '#f6f8f9' }}>
+                            Etkinleştir
+                          </button>
+                        </div>
+                      </div>
+                      <div className="p-4 rounded-lg border" style={{ borderColor: '#146448' }}>
+                        <h4 className="font-medium mb-2" style={{ color: '#1e3237' }}>Aktif Oturumlar</h4>
+                        <div className="space-y-2">
+                          <div className="flex justify-between items-center p-2 bg-gray-50 rounded">
+                            <div>
+                              <p className="text-sm font-medium" style={{ color: '#1e3237' }}>Bu Cihaz</p>
+                              <p className="text-xs opacity-70" style={{ color: '#1e3237' }}>Son erişim: Şimdi</p>
+                            </div>
+                            <span className="text-xs px-2 py-1 rounded" style={{ backgroundColor: '#baf200', color: '#1e3237' }}>Aktif</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* Notifications */}
+              {selectedOperation === 'notifications' && (
+                <div>
+                  <div className="space-y-4 mb-6">
+                    <div className="p-4 rounded-lg" style={{ backgroundColor: '#146448' }}>
+                      <h4 className="font-medium mb-2" style={{ color: '#f6f8f9' }}>Bildirim Ayarları</h4>
+                      <p className="text-sm opacity-90" style={{ color: '#f6f8f9' }}>
+                        Hangi bildirimleri almak istediğinizi seçin.
+                      </p>
+                    </div>
+                    <div className="space-y-4">
+                      <div className="p-4 rounded-lg border" style={{ borderColor: '#146448' }}>
+                        <h4 className="font-medium mb-3" style={{ color: '#1e3237' }}>E-posta Bildirimleri</h4>
+                        <div className="space-y-3">
+                          <label className="flex items-center justify-between">
+                            <span style={{ color: '#1e3237' }}>Analiz tamamlandığında</span>
+                            <input type="checkbox" className="ml-2" defaultChecked />
+                          </label>
+                          <label className="flex items-center justify-between">
+                            <span style={{ color: '#1e3237' }}>Token satın alımında</span>
+                            <input type="checkbox" className="ml-2" defaultChecked />
+                          </label>
+                          <label className="flex items-center justify-between">
+                            <span style={{ color: '#1e3237' }}>Haftalık rapor</span>
+                            <input type="checkbox" className="ml-2" />
+                          </label>
+                          <label className="flex items-center justify-between">
+                            <span style={{ color: '#1e3237' }}>Yeni özellik duyuruları</span>
+                            <input type="checkbox" className="ml-2" defaultChecked />
+                          </label>
+                        </div>
+                      </div>
+                      <div className="p-4 rounded-lg border" style={{ borderColor: '#146448' }}>
+                        <h4 className="font-medium mb-3" style={{ color: '#1e3237' }}>Push Bildirimleri</h4>
+                        <div className="space-y-3">
+                          <label className="flex items-center justify-between">
+                            <span style={{ color: '#1e3237' }}>Tarayıcı bildirimleri</span>
+                            <input type="checkbox" className="ml-2" />
+                          </label>
+                          <label className="flex items-center justify-between">
+                            <span style={{ color: '#1e3237' }}>Mobil bildirimler</span>
+                            <input type="checkbox" className="ml-2" />
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <button
+                    className="w-full py-3 px-4 rounded-lg font-medium transition-all"
+                    style={{ backgroundColor: '#baf200', color: '#1e3237' }}
+                  >
+                    Ayarları Kaydet
+                  </button>
+                </div>
+              )}
+
+              {/* Subscription */}
+              {selectedOperation === 'subscription' && (
+                <div>
+                  <div className="space-y-4 mb-6">
+                    <div className="p-4 rounded-lg" style={{ backgroundColor: '#146448' }}>
+                      <h4 className="font-medium mb-2" style={{ color: '#f6f8f9' }}>Mevcut Plan</h4>
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <p className="text-lg font-bold" style={{ color: '#baf200' }}>👑 Admin Plan</p>
+                          <p className="text-sm opacity-90" style={{ color: '#f6f8f9' }}>Sınırsız erişim</p>
+                        </div>
+                        <span className="text-xs px-2 py-1 rounded" style={{ backgroundColor: '#baf200', color: '#1e3237' }}>Aktif</span>
+                      </div>
+                    </div>
+                    <div className="space-y-3">
+                      <div className="p-4 rounded-lg border" style={{ borderColor: '#146448' }}>
+                        <h4 className="font-medium mb-2" style={{ color: '#1e3237' }}>Plan Özellikleri</h4>
+                        <ul className="space-y-1 text-sm" style={{ color: '#1e3237' }}>
+                          <li>✅ Sınırsız analiz</li>
+                          <li>✅ Sınırsız token</li>
+                          <li>✅ Öncelikli destek</li>
+                          <li>✅ Gelişmiş raporlar</li>
+                          <li>✅ API erişimi</li>
+                        </ul>
+                      </div>
+                      <div className="p-4 rounded-lg border" style={{ borderColor: '#146448' }}>
+                        <h4 className="font-medium mb-2" style={{ color: '#1e3237' }}>Fatura Geçmişi</h4>
+                        <div className="space-y-2">
+                          <div className="flex justify-between items-center text-sm">
+                            <span style={{ color: '#1e3237' }}>Ocak 2025</span>
+                            <span style={{ color: '#146448' }}>Ücretsiz</span>
+                          </div>
+                          <div className="flex justify-between items-center text-sm">
+                            <span style={{ color: '#1e3237' }}>Aralık 2024</span>
+                            <span style={{ color: '#146448' }}>Ücretsiz</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <button
+                    className="w-full py-3 px-4 rounded-lg font-medium transition-all"
+                    style={{ backgroundColor: '#baf200', color: '#1e3237' }}
+                  >
+                    Plan Yönetimi
+                  </button>
+                </div>
+              )}
+
+              {/* Activity */}
+              {selectedOperation === 'activity' && (
+                <div>
+                  <div className="space-y-4 mb-6">
+                    <div className="p-4 rounded-lg" style={{ backgroundColor: '#146448' }}>
+                      <h4 className="font-medium mb-2" style={{ color: '#f6f8f9' }}>Hesap Aktivitesi</h4>
+                      <p className="text-sm opacity-90" style={{ color: '#f6f8f9' }}>
+                        Hesabınızdaki son giriş ve işlem kayıtları.
+                      </p>
+                    </div>
+                    <div className="space-y-3">
+                      <div className="p-3 rounded-lg" style={{ backgroundColor: '#146448' }}>
+                        <div className="flex justify-between items-start mb-1">
+                          <h4 className="font-medium text-sm" style={{ color: '#f6f8f9' }}>Başarılı Giriş</h4>
+                          <span className="text-xs opacity-80" style={{ color: '#f6f8f9' }}>15 Ocak 2025, 14:30</span>
+                        </div>
+                        <p className="text-xs opacity-90" style={{ color: '#f6f8f9' }}>IP: 192.168.1.1 • Chrome, Windows</p>
+                      </div>
+                      <div className="p-3 rounded-lg" style={{ backgroundColor: '#146448' }}>
+                        <div className="flex justify-between items-start mb-1">
+                          <h4 className="font-medium text-sm" style={{ color: '#f6f8f9' }}>ROI Analizi Başlatıldı</h4>
+                          <span className="text-xs opacity-80" style={{ color: '#f6f8f9' }}>15 Ocak 2025, 14:25</span>
+                        </div>
+                        <p className="text-xs opacity-90" style={{ color: '#f6f8f9' }}>Antalya domates serası analizi</p>
+                      </div>
+                      <div className="p-3 rounded-lg" style={{ backgroundColor: '#146448' }}>
+                        <div className="flex justify-between items-start mb-1">
+                          <h4 className="font-medium text-sm" style={{ color: '#f6f8f9' }}>Profil Güncellendi</h4>
+                          <span className="text-xs opacity-80" style={{ color: '#f6f8f9' }}>14 Ocak 2025, 16:45</span>
+                        </div>
+                        <p className="text-xs opacity-90" style={{ color: '#f6f8f9' }}>Telefon numarası eklendi</p>
+                      </div>
+                      <div className="p-3 rounded-lg" style={{ backgroundColor: '#146448' }}>
+                        <div className="flex justify-between items-start mb-1">
+                          <h4 className="font-medium text-sm" style={{ color: '#f6f8f9' }}>Başarılı Giriş</h4>
+                          <span className="text-xs opacity-80" style={{ color: '#f6f8f9' }}>14 Ocak 2025, 09:15</span>
+                        </div>
+                        <p className="text-xs opacity-90" style={{ color: '#f6f8f9' }}>IP: 192.168.1.1 • Safari, macOS</p>
+                      </div>
+                    </div>
+                  </div>
+                  <button
+                    className="w-full py-3 px-4 rounded-lg font-medium transition-all"
+                    style={{ backgroundColor: '#baf200', color: '#1e3237' }}
+                  >
+                    Tam Geçmişi Görüntüle
+                  </button>
+                </div>
+              )}
+
+              {/* Data Management */}
+              {selectedOperation === 'data' && (
+                <div>
+                  <div className="space-y-4 mb-6">
+                    <div className="p-4 rounded-lg" style={{ backgroundColor: '#146448' }}>
+                      <h4 className="font-medium mb-2" style={{ color: '#f6f8f9' }}>Veri Yönetimi</h4>
+                      <p className="text-sm opacity-90" style={{ color: '#f6f8f9' }}>
+                        Verilerinizi dışa aktarın veya hesabınızı silin.
+                      </p>
+                    </div>
+                    <div className="space-y-4">
+                      <div className="p-4 rounded-lg border" style={{ borderColor: '#146448' }}>
+                        <h4 className="font-medium mb-2" style={{ color: '#1e3237' }}>Veri Dışa Aktarma</h4>
+                        <p className="text-sm mb-3 opacity-70" style={{ color: '#1e3237' }}>
+                          Tüm verilerinizi indirin
+                        </p>
+                        <div className="space-y-2">
+                          <label className="flex items-center">
+                            <input type="checkbox" className="mr-2" defaultChecked />
+                            <span className="text-sm" style={{ color: '#1e3237' }}>Profil bilgileri</span>
+                          </label>
+                          <label className="flex items-center">
+                            <input type="checkbox" className="mr-2" defaultChecked />
+                            <span className="text-sm" style={{ color: '#1e3237' }}>Analiz sonuçları</span>
+                          </label>
+                          <label className="flex items-center">
+                            <input type="checkbox" className="mr-2" defaultChecked />
+                            <span className="text-sm" style={{ color: '#1e3237' }}>Sohbet geçmişi</span>
+                          </label>
+                          <label className="flex items-center">
+                            <input type="checkbox" className="mr-2" />
+                            <span className="text-sm" style={{ color: '#1e3237' }}>İşlem geçmişi</span>
+                          </label>
+                        </div>
+                        <button className="mt-3 w-full py-2 px-4 rounded-lg font-medium" style={{ backgroundColor: '#baf200', color: '#1e3237' }}>
+                          Verileri İndir
+                        </button>
+                      </div>
+                      <div className="p-4 rounded-lg border border-red-300 bg-red-50">
+                        <h4 className="font-medium mb-2 text-red-800">Hesap Silme</h4>
+                        <p className="text-sm mb-3 text-red-700">
+                          Bu işlem geri alınamaz. Tüm verileriniz kalıcı olarak silinir.
+                        </p>
+                        <button className="w-full py-2 px-4 rounded-lg font-medium bg-red-600 text-white hover:bg-red-700">
+                          Hesabımı Sil
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
