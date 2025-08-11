@@ -216,6 +216,18 @@ export default function AIChatPage() {
     }
   }, [messages]);
 
+  // Close menu popup when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (menuPopupOpen && !(event.target as Element)?.closest('.menu-popup-container')) {
+        setMenuPopupOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [menuPopupOpen]);
+
   return (
     <ClientOnly>
       <div className="flex flex-col h-screen bg-[#146448] overflow-hidden">
