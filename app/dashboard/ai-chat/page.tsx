@@ -91,7 +91,7 @@ export default function AIChatPage() {
       id: '3',
       title: 'Yatırım Geri Dönüş (ROI) Analizi',
       lastMessage: 'Sohbet Başlatıldı...',
-      date: 'Şubat Ba��ında',
+      date: 'Şubat Başında',
       messageCount: 0,
       messages: []
     }
@@ -144,6 +144,51 @@ export default function AIChatPage() {
     { id: 'homepage', title: 'Anasayfaya Çıkış' },
     { id: 'old-dashboard', title: 'Eski Dashboard' },
   ];
+
+  // Analysis flow definitions
+  const analysisFlows = {
+    roi: {
+      questions: [
+        { id: 'location', question: 'Hangi şehir/bölgede sera kuracaksınız?', type: 'text', required: true },
+        { id: 'size', question: 'Sera büyüklüğü kaç m² olacak? (min 100m²)', type: 'number', required: true, validation: (v: number) => v >= 100 },
+        { id: 'crop', question: 'Hangi ürünü yetiştireceksiniz?', type: 'select', options: ['Domates', 'Salatalık', 'Biber', 'Patlıcan', 'Marul', 'Çilek'], required: true },
+        { id: 'budget', question: 'Başlangıç bütçeniz ne kadar? (TL)', type: 'number', required: true, validation: (v: number) => v >= 50000 },
+        { id: 'automation', question: 'Otomasyon seviyesi tercihiniz?', type: 'select', options: ['Temel', 'Orta', 'İleri', 'Tam Otomatik'], required: true },
+        { id: 'timeline', question: 'Proje süresi kaç yıl?', type: 'number', required: true, validation: (v: number) => v >= 1 && v <= 20 }
+      ]
+    },
+    climate: {
+      questions: [
+        { id: 'location', question: 'Sera konumunuzun koordinatları nedir? (Şehir adı da yazabilirsiniz)', type: 'text', required: true },
+        { id: 'crop', question: 'Hangi ürün için iklim analizi yapılacak?', type: 'select', options: ['Domates', 'Salatalık', 'Biber', 'Marul', 'Çilek', 'Aromatik Bitkiler'], required: true },
+        { id: 'season', question: 'Hangi dönem için analiz yapılacak?', type: 'select', options: ['Yıl Boyu', 'Kış Dönemi', 'Yaz Dönemi', 'İlkbahar', 'Sonbahar'], required: true }
+      ]
+    },
+    equipment: {
+      questions: [
+        { id: 'size', question: 'Sera büyüklüğü kaç m²?', type: 'number', required: true, validation: (v: number) => v >= 100 },
+        { id: 'type', question: 'Sera tipi tercihiniz?', type: 'select', options: ['Cam', 'Polikarbonat', 'Plastik', 'Yüksek Teknoloji'], required: true },
+        { id: 'automation', question: 'Otomasyon seviyesi?', type: 'select', options: ['Temel', 'Orta', 'İleri', 'Tam Otomatik'], required: true },
+        { id: 'budget', question: 'Bütçe kategoriniz?', type: 'select', options: ['Ekonomik', 'Standart', 'Premium', 'Lüks'], required: true },
+        { id: 'crop', question: 'Üretim sistemi?', type: 'select', options: ['Toprak', 'Hidroponik', 'Aeroponik', 'Substrat'], required: true }
+      ]
+    },
+    market: {
+      questions: [
+        { id: 'crop', question: 'Hangi ürün için pazar analizi?', type: 'text', required: true },
+        { id: 'region', question: 'Hedef pazar bölgesi?', type: 'text', required: true },
+        { id: 'capacity', question: 'Yıllık üretim kapasitesi (ton)?', type: 'number', required: true }
+      ]
+    },
+    layout: {
+      questions: [
+        { id: 'size', question: 'Sera büyüklüğü (m²)?', type: 'number', required: true },
+        { id: 'shape', question: 'Arazi şekli nasıl?', type: 'select', options: ['Kare', 'Dikdörtgen', 'Düzensiz'], required: true },
+        { id: 'orientation', question: 'Arazi yönelimi?', type: 'select', options: ['Kuzey-Güney', 'Doğu-Batı', 'Esnek'], required: true },
+        { id: 'slope', question: 'Arazi eğimi var mı?', type: 'select', options: ['Düz', 'Hafif Eğimli', 'Eğimli'], required: true }
+      ]
+    }
+  };
 
   const handleNewChat = () => {
     setCurrentChatId(null);
