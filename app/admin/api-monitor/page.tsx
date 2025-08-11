@@ -115,9 +115,9 @@ export default function APIMonitorPage() {
       }
 
     } catch (error) {
-      console.error('Failed to load API data:', error);
+      console.error('Completely failed to load API data:', error);
 
-      // Fallback to mock data if API fails
+      // Fallback to enhanced mock data if API fails
       const mockEndpoints: APIEndpoint[] = [
         {
           id: 'openweather',
@@ -170,6 +170,97 @@ export default function APIMonitorPage() {
           lastCheck: '30 sn önce',
           dailyRequests: 234,
           errorRate: 0.1
+        },
+        {
+          id: 'climate-analysis',
+          name: 'Climate Analysis API',
+          url: '/api/analysis/climate',
+          method: 'POST',
+          category: 'analysis',
+          status: 'active',
+          responseTime: 1890,
+          uptime: 98.5,
+          lastCheck: '1 dk önce',
+          dailyRequests: 156,
+          errorRate: 1.5
+        },
+        {
+          id: 'equipment-analysis',
+          name: 'Equipment Analysis API',
+          url: '/api/analysis/equipment',
+          method: 'POST',
+          category: 'analysis',
+          status: 'warning',
+          responseTime: 3210,
+          uptime: 96.2,
+          lastCheck: '3 dk önce',
+          dailyRequests: 89,
+          errorRate: 3.8
+        },
+        {
+          id: 'market-analysis',
+          name: 'Market Analysis API',
+          url: '/api/analysis/market',
+          method: 'POST',
+          category: 'analysis',
+          status: 'active',
+          responseTime: 2560,
+          uptime: 97.9,
+          lastCheck: '45 sn önce',
+          dailyRequests: 123,
+          errorRate: 2.1
+        },
+        {
+          id: 'layout-analysis',
+          name: 'Layout Analysis API',
+          url: '/api/analysis/layout',
+          method: 'POST',
+          category: 'analysis',
+          status: 'active',
+          responseTime: 4120,
+          uptime: 94.7,
+          lastCheck: '2 dk önce',
+          dailyRequests: 67,
+          errorRate: 5.3
+        },
+        {
+          id: 'auth-status',
+          name: 'Auth Status API',
+          url: '/api/auth/status',
+          method: 'GET',
+          category: 'auth',
+          status: 'active',
+          responseTime: 234,
+          uptime: 99.9,
+          lastCheck: '30 sn önce',
+          dailyRequests: 2456,
+          errorRate: 0.1
+        },
+        {
+          id: 'system-health',
+          name: 'System Health API',
+          url: '/api/admin/system-health',
+          method: 'GET',
+          category: 'system',
+          status: 'active',
+          responseTime: 123,
+          uptime: 99.8,
+          lastCheck: '1 dk önce',
+          dailyRequests: 345,
+          errorRate: 0.2
+        },
+        {
+          id: 'test-email',
+          name: 'Email Test API',
+          url: '/api/test-email',
+          method: 'POST',
+          category: 'system',
+          status: 'maintenance',
+          responseTime: 1567,
+          uptime: 87.4,
+          lastCheck: '5 dk önce',
+          dailyRequests: 45,
+          errorRate: 12.6
         }
       ];
 
