@@ -97,6 +97,7 @@ export default function AIAsistanIslemleriPage() {
           {aiOperations.map((operation) => (
             <button
               key={operation.id}
+              onClick={operation.action}
               className="rounded-lg p-6 hover:shadow-lg transition-all duration-200 text-left group border"
               style={{ backgroundColor: '#f6f8f9', borderColor: '#146448' }}
             >
