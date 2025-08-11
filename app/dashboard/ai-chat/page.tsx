@@ -90,7 +90,7 @@ export default function AIChatPage() {
       id: 'climate',
       title: 'İklim Uyumu ve Risk Skoru',
       description: 'Lokasyon bazlı iklim uygunluğu raporu',
-      icon: '🌡️',
+      icon: '��️',
       color: 'bg-blue-500',
     },
     {
@@ -314,19 +314,86 @@ export default function AIChatPage() {
                   </div>
                 </div>
 
-                {/* User Info */}
-                <div className="p-4 border-t border-[#f6f8f9]/10 bg-[#1e3237]">
-                  <div className="flex items-center space-x-3">
-                    <div className="w-8 h-8 bg-[#baf200] rounded-full flex items-center justify-center">
-                      <span className="text-[#1e3237] text-sm font-bold">
-                        {user?.email?.charAt(0).toUpperCase() || 'T'}
-                      </span>
+                {/* Menu Popup Button */}
+                <div className="p-4 border-t border-[#f6f8f9]/10 bg-[#1e3237] relative">
+                  <button
+                    onClick={() => setMenuPopupOpen(!menuPopupOpen)}
+                    className="w-full p-3 bg-[#146448] hover:bg-[#146448]/80 rounded-lg transition-colors flex items-center justify-between group"
+                  >
+                    <div className="flex items-center space-x-3">
+                      <div className="w-8 h-8 bg-[#baf200] rounded-full flex items-center justify-center">
+                        <svg className="w-4 h-4 text-[#1e3237]" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clipRule="evenodd" />
+                        </svg>
+                      </div>
+                      <div className="text-left">
+                        <p className="text-sm font-medium text-[#f6f8f9]">Dashboard Menü</p>
+                        <p className="text-xs text-[#f6f8f9]/60">Tüm özellikler</p>
+                      </div>
                     </div>
-                    <div>
-                      <p className="text-sm font-medium text-[#f6f8f9]">Test Kullanıcı</p>
-                      <p className="text-xs text-[#f6f8f9]/60">test@seragpt.com</p>
-                    </div>
-                  </div>
+                    <svg
+                      className={`w-4 h-4 text-[#f6f8f9]/60 transition-transform ${menuPopupOpen ? 'rotate-180' : ''}`}
+                      fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </button>
+
+                  {/* Menu Popup */}
+                  <AnimatePresence>
+                    {menuPopupOpen && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                        className="absolute bottom-full left-4 right-4 mb-2 bg-white rounded-xl shadow-2xl border border-[#f6f8f9]/20 p-2 z-[100]"
+                      >
+                        {dashboardMenuItems.map((item) => (
+                          <a
+                            key={item.id}
+                            href={item.href}
+                            className={`flex items-center space-x-3 p-3 rounded-lg transition-colors ${
+                              item.active
+                                ? 'bg-[#146448] text-white'
+                                : 'hover:bg-gray-50 text-gray-700'
+                            }`}
+                            onClick={() => setMenuPopupOpen(false)}
+                          >
+                            <span className="text-lg">{item.icon}</span>
+                            <span className="font-medium">{item.title}</span>
+                            {item.active && (
+                              <div className="ml-auto w-2 h-2 bg-[#baf200] rounded-full"></div>
+                            )}
+                          </a>
+                        ))}
+
+                        <div className="border-t border-gray-200 mt-2 pt-2">
+                          <div className="flex items-center space-x-3 p-3">
+                            <div className="w-8 h-8 bg-[#baf200] rounded-full flex items-center justify-center">
+                              <span className="text-[#1e3237] text-sm font-bold">
+                                {user?.email?.charAt(0).toUpperCase() || 'T'}
+                              </span>
+                            </div>
+                            <div>
+                              <p className="text-sm font-medium text-gray-700">Test Kullanıcı</p>
+                              <p className="text-xs text-gray-500">test@seragpt.com</p>
+                            </div>
+                          </div>
+
+                          <a
+                            href="/auth/login"
+                            className="flex items-center space-x-3 p-3 rounded-lg hover:bg-red-50 text-red-600 transition-colors"
+                            onClick={() => setMenuPopupOpen(false)}
+                          >
+                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                            </svg>
+                            <span className="font-medium">Çıkış Yap</span>
+                          </a>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </div>
                 </motion.div>
               </>
