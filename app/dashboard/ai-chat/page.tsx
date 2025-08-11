@@ -616,15 +616,16 @@ export default function AIChatPage() {
             )}
 
             {/* Input Area */}
-            <div className="sticky bottom-0 border-t border-[#f6f8f9]/10 bg-[#146448] flex-shrink-0"
+            <div className="sticky bottom-0 border-t border-[#f6f8f9]/10 bg-[#146448] flex-shrink-0 max-w-full"
                  style={{
                    paddingTop: '12px',
                    paddingBottom: 'max(12px, env(safe-area-inset-bottom))',
                    paddingLeft: 'max(12px, env(safe-area-inset-left))',
-                   paddingRight: 'max(12px, env(safe-area-inset-right))'
+                   paddingRight: 'max(12px, env(safe-area-inset-right))',
+                   width: '100%'
                  }}>
-              <div className="max-w-4xl mx-auto">
-                <div className="flex items-end space-x-2 lg:space-x-3">
+              <div className="max-w-4xl mx-auto w-full max-w-full">
+                <div className="flex items-end space-x-2 lg:space-x-3 max-w-full">
                   <div className="flex-1 relative">
                     <textarea
                       ref={inputRef}
