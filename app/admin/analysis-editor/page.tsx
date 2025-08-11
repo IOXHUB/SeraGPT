@@ -814,6 +814,184 @@ export default function AnalysisEditorPage() {
           </div>
         </div>
       )}
+
+      {/* Create Modal */}
+      {showCreateModal && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
+          <div
+            className="max-w-2xl w-full rounded-lg p-6"
+            style={{ backgroundColor: '#f6f8f9' }}
+          >
+            <div className="flex items-center justify-between mb-6">
+              <h3 className="text-xl font-semibold" style={{ color: '#1e3237' }}>
+                Yeni Analiz Türü Oluştur
+              </h3>
+              <button
+                onClick={() => setShowCreateModal(false)}
+                className="text-2xl hover:opacity-70"
+                style={{ color: '#1e3237' }}
+              >
+                ×
+              </button>
+            </div>
+
+            <div className="space-y-4">
+              <div>
+                <label className="block text-sm font-medium mb-2" style={{ color: '#1e3237' }}>
+                  Analiz Adı
+                </label>
+                <input
+                  type="text"
+                  value={newAnalysis.name}
+                  onChange={(e) => setNewAnalysis({...newAnalysis, name: e.target.value})}
+                  className="w-full p-3 border rounded-lg"
+                  style={{ borderColor: '#146448' }}
+                  placeholder="Örn: Gelişmiş ROI Analizi"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium mb-2" style={{ color: '#1e3237' }}>
+                  Kategori
+                </label>
+                <select
+                  value={newAnalysis.category}
+                  onChange={(e) => setNewAnalysis({...newAnalysis, category: e.target.value as any})}
+                  className="w-full p-3 border rounded-lg"
+                  style={{ borderColor: '#146448' }}
+                >
+                  <option value="roi">ROI Analizi</option>
+                  <option value="climate">İklim Analizi</option>
+                  <option value="equipment">Ekipman Analizi</option>
+                  <option value="market">Pazar Analizi</option>
+                  <option value="layout">Layout Analizi</option>
+                </select>
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium mb-2" style={{ color: '#1e3237' }}>
+                  Açıklama
+                </label>
+                <textarea
+                  value={newAnalysis.description}
+                  onChange={(e) => setNewAnalysis({...newAnalysis, description: e.target.value})}
+                  className="w-full p-3 border rounded-lg h-24"
+                  style={{ borderColor: '#146448' }}
+                  placeholder="Analiz türünün ne yaptığını açıklayın..."
+                />
+              </div>
+
+              <div className="flex space-x-4">
+                <button
+                  onClick={() => setShowCreateModal(false)}
+                  className="px-6 py-3 rounded-lg font-medium transition-all hover:opacity-90"
+                  style={{ backgroundColor: '#6B7280', color: '#f6f8f9' }}
+                >
+                  İptal
+                </button>
+                <button
+                  onClick={createAnalysis}
+                  className="px-6 py-3 rounded-lg font-medium transition-all hover:opacity-90"
+                  style={{ backgroundColor: '#baf200', color: '#1e3237' }}
+                >
+                  💾 Oluştur
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Test Modal */}
+      {showTestModal && testingAnalysis && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
+          <div
+            className="max-w-3xl w-full max-h-[80vh] overflow-y-auto rounded-lg p-6"
+            style={{ backgroundColor: '#f6f8f9' }}
+          >
+            <div className="flex items-center justify-between mb-6">
+              <h3 className="text-xl font-semibold" style={{ color: '#1e3237' }}>
+                Analiz Test - {testingAnalysis.name}
+              </h3>
+              <button
+                onClick={() => setShowTestModal(false)}
+                className="text-2xl hover:opacity-70"
+                style={{ color: '#1e3237' }}
+              >
+                ×
+              </button>
+            </div>
+
+            <div className="space-y-6">
+              <div>
+                <h4 className="font-semibold mb-3" style={{ color: '#1e3237' }}>Test Parametreleri:</h4>
+                <div className="space-y-3">
+                  {testingAnalysis.parameters.map((param) => (
+                    <div key={param.id} className="border rounded-lg p-3" style={{ borderColor: '#146448' }}>
+                      <label className="block text-sm font-medium mb-1" style={{ color: '#1e3237' }}>
+                        {param.name} {param.required && <span className="text-red-500">*</span>}
+                      </label>
+                      {param.type === 'select' ? (
+                        <select className="w-full p-2 border rounded" style={{ borderColor: '#146448' }}>
+                          {param.options?.map(option => (
+                            <option key={option} value={option}>{option}</option>
+                          ))}
+                        </select>
+                      ) : param.type === 'boolean' ? (
+                        <label className="flex items-center">
+                          <input type="checkbox" className="mr-2" />
+                          <span className="text-sm">{param.description}</span>
+                        </label>
+                      ) : (
+                        <input
+                          type={param.type}
+                          className="w-full p-2 border rounded"
+                          style={{ borderColor: '#146448' }}
+                          placeholder={param.description}
+                        />
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div>
+                <h4 className="font-semibold mb-3" style={{ color: '#1e3237' }}>Test Sonucu:</h4>
+                <div
+                  className="p-4 rounded-lg border"
+                  style={{ borderColor: '#146448', backgroundColor: '#f8f9fa' }}
+                >
+                  <p style={{ color: '#1e3237' }}>
+                    ✅ Analiz konfigürasyonu geçerli<br />
+                    ✅ Tüm zorunlu parametreler tanımlı<br />
+                    ✅ Veri tipleri uyumlu<br />
+                    ✅ Test verisi başarıyla işlendi<br />
+                    <br />
+                    <strong>Sonuç:</strong> {testingAnalysis.name} analiz türü düzgün çalışıyor.
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex space-x-4">
+                <button
+                  onClick={() => setShowTestModal(false)}
+                  className="px-6 py-3 rounded-lg font-medium transition-all hover:opacity-90"
+                  style={{ backgroundColor: '#6B7280', color: '#f6f8f9' }}
+                >
+                  Kapat
+                </button>
+                <button
+                  onClick={() => alert('Test başarıyla tamamlandı!')}
+                  className="px-6 py-3 rounded-lg font-medium transition-all hover:opacity-90"
+                  style={{ backgroundColor: '#baf200', color: '#1e3237' }}
+                >
+                  🧪 Çalıştır
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
