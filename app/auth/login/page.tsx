@@ -83,12 +83,20 @@ export default function AuthPage() {
         return;
       }
 
-      const result = await authService.testAuthConnection();
+      // Add timeout for connection test
+      const timeoutPromise = new Promise((_, reject) =>
+        setTimeout(() => reject(new Error('Connection timeout after 5 seconds')), 5000)
+      );
+
+      const testPromise = authService.testAuthConnection();
+
+      const result = await Promise.race([testPromise, timeoutPromise]) as { success: boolean; message: string };
+
       setConnectionTest({ tested: true, success: result.success });
       if (!result.success) {
         console.warn('Auth connection test failed:', result.message);
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error('Connection test error:', error);
 
       // In development environments, don't show connection errors
@@ -99,7 +107,12 @@ export default function AuthPage() {
         window.location.hostname.includes('localhost')
       );
 
-      setConnectionTest({ tested: true, success: isDev });
+      // If it's a timeout or network error, show connection problem
+      if (error.message?.includes('timeout') || error.message?.includes('fetch')) {
+        setConnectionTest({ tested: true, success: false });
+      } else {
+        setConnectionTest({ tested: true, success: isDev });
+      }
     }
   };
 
