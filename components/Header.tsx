@@ -10,24 +10,24 @@ export default function Header() {
   const { user, loading, signOut, isAdmin } = useAuth();
 
   return (
-    <header className="w-full bg-gray-50">
-      <div className="navbar-footer-container">
+    <header className="w-full" style={{ backgroundColor: '#146448' }}>
+      <div className="header-footer-container">
         {/* Logo - clickable to homepage */}
         <div className="flex items-center space-x-3">
           <a href="/" className="flex items-center space-x-3">
-<SeraGPTLogo size="md" priority />
+            <SeraGPTLogo size="md" priority />
           </a>
         </div>
 
         {/* Center navigation - 3 main services */}
         <nav className="hidden md:flex items-center space-x-8">
-          <a href="/destek" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
+          <a href="/destek" className="text-white hover:text-[#baf200] font-medium transition-colors">
             Destek Kaydı Aç
           </a>
-          <a href="/danismanlik" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
+          <a href="/danismanlik" className="text-white hover:text-[#baf200] font-medium transition-colors">
             Proje Danışmanlığı
           </a>
-          <a href="/anahtar-teslim-proje" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
+          <a href="/anahtar-teslim-proje" className="text-white hover:text-[#baf200] font-medium transition-colors">
             Anahtar Teslim Sera Teklifi Al
           </a>
         </nav>
@@ -39,17 +39,17 @@ export default function Header() {
               {user ? (
                 // For logged in users - show Dashboard and optional Admin
                 <div className="flex items-center space-x-4">
-                  <a href="/dashboard/direct" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
+                  <a href="/dashboard/direct" className="text-white hover:text-[#baf200] font-medium transition-colors">
                     Dashboard
                   </a>
                   {isAdmin() && (
-                    <a href="/admin/auth" className="text-purple-700 hover:text-purple-900 font-medium transition-colors">
+                    <a href="/admin/auth" className="text-[#baf200] hover:text-white font-medium transition-colors">
                       👑 Admin
                     </a>
                   )}
                   <button
                     onClick={signOut}
-                    className="text-gray-700 hover:text-gray-900 font-medium transition-colors"
+                    className="text-white hover:text-[#baf200] font-medium transition-colors"
                   >
                     Çıkış
                   </button>
@@ -57,10 +57,10 @@ export default function Header() {
               ) : (
                 // For logged out users - show Login or Sign Up CTA
                 <>
-                  <a href="/auth/login" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
+                  <a href="/auth/login" className="text-white hover:text-[#baf200] font-medium transition-colors">
                     Giriş Yap
                   </a>
-                  <a href="/auth/login" className="bg-gray-600 text-white px-6 py-2 rounded-xl font-semibold hover:bg-gray-800 transition-colors">
+                  <a href="/auth/login" className="px-6 py-2 rounded-xl font-semibold transition-colors" style={{ backgroundColor: '#baf200', color: '#146448' }}>
                     Ücretsiz Başla
                   </a>
                 </>
@@ -71,10 +71,11 @@ export default function Header() {
 
         {/* Mobile menu button - hamburger icon */}
         <button
-          className="md:hidden p-2"
+          className="md:hidden p-2 rounded-lg transition-colors"
+          style={{ backgroundColor: '#baf200' }}
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
-          <svg className="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-6 h-6" style={{ color: '#1e3237' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
             {isMobileMenuOpen ? (
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
             ) : (
@@ -91,28 +92,29 @@ export default function Header() {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
           transition={{ duration: 0.2 }}
-          className="md:hidden bg-gray-50 border-t border-gray-200"
+          className="md:hidden border-t border-white/20"
+          style={{ backgroundColor: '#146448' }}
         >
-          <div className="text-section-container py-4 space-y-4">
+          <div className="px-6 py-4 space-y-4">
             {/* Center navigation links */}
             <div className="space-y-3">
               <a
                 href="/destek"
-                className="block text-gray-700 hover:text-gray-900 font-medium transition-colors py-2"
+                className="block text-white hover:text-[#baf200] font-medium transition-colors py-2"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Destek Kaydı Aç
               </a>
               <a
                 href="/danismanlik"
-                className="block text-gray-700 hover:text-gray-900 font-medium transition-colors py-2"
+                className="block text-white hover:text-[#baf200] font-medium transition-colors py-2"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Proje Danışmanlığı
               </a>
               <a
                 href="/anahtar-teslim-proje"
-                className="block text-gray-700 hover:text-gray-900 font-medium transition-colors py-2"
+                className="block text-white hover:text-[#baf200] font-medium transition-colors py-2"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Anahtar Teslim Sera Teklifi Al
@@ -120,7 +122,7 @@ export default function Header() {
             </div>
 
             {/* Divider */}
-            <div className="border-t border-gray-200 my-4"></div>
+            <div className="border-t border-white/20 my-4"></div>
 
             {/* Right menu actions */}
             <div className="space-y-3">
@@ -131,7 +133,7 @@ export default function Header() {
                     <>
                       <a
                         href="/dashboard/direct"
-                        className="block text-gray-700 hover:text-gray-900 font-medium transition-colors py-2"
+                        className="block text-white hover:text-[#baf200] font-medium transition-colors py-2"
                         onClick={() => setIsMobileMenuOpen(false)}
                       >
                         Dashboard
@@ -139,7 +141,7 @@ export default function Header() {
                       {isAdmin() && (
                         <a
                           href="/admin/auth"
-                          className="block text-purple-700 hover:text-purple-900 font-medium transition-colors py-2"
+                          className="block text-[#baf200] hover:text-white font-medium transition-colors py-2"
                           onClick={() => setIsMobileMenuOpen(false)}
                         >
                           👑 Admin Panel
@@ -150,7 +152,7 @@ export default function Header() {
                           signOut();
                           setIsMobileMenuOpen(false);
                         }}
-                        className="block w-full text-left text-gray-700 hover:text-gray-900 font-medium transition-colors py-2"
+                        className="block w-full text-left text-white hover:text-[#baf200] font-medium transition-colors py-2"
                       >
                         Çıkış Yap
                       </button>
@@ -160,14 +162,15 @@ export default function Header() {
                     <>
                       <a
                         href="/auth/login"
-                        className="block text-gray-700 hover:text-gray-900 font-medium transition-colors py-2"
+                        className="block text-white hover:text-[#baf200] font-medium transition-colors py-2"
                         onClick={() => setIsMobileMenuOpen(false)}
                       >
                         Giriş Yap
                       </a>
                       <a
                         href="/auth/login"
-                        className="block bg-gray-600 hover:bg-gray-800 text-white px-4 py-3 rounded-xl font-medium transition-colors text-center"
+                        className="block px-4 py-3 rounded-xl font-medium transition-colors text-center mx-4"
+                        style={{ backgroundColor: '#baf200', color: '#146448' }}
                         onClick={() => setIsMobileMenuOpen(false)}
                       >
                         Ücretsiz Başla
