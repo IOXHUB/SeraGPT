@@ -351,9 +351,9 @@ export default function AuthPage() {
           <h2 className="text-3xl font-bold text-gray-900 mx-auto mb-2">
             {isLogin ? 'Hoş Geldiniz' : 'Hesap Oluşturun'}
           </h2>
-          <p className="text-gray-600">
-            {isLogin 
-              ? 'SeraGPT hesabınıza giriş yapın' 
+          <p className="text-gray-600" style={{ margin: '0 auto' }}>
+            {isLogin
+              ? 'SeraGPT hesabınıza giriş yapın'
               : 'SeraGPT ile tarımsal analizlerinize başlayın'
             }
           </p>
