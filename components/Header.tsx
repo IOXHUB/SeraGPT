@@ -39,7 +39,17 @@ export default function Header() {
 
         {/* Right menu - conditional based on user state */}
         <div className="hidden md:flex items-center space-x-4">
-          {isClient && !loading && (
+          {!isClient ? (
+            // SSR fallback - show guest menu to prevent hydration mismatch
+            <>
+              <a href="/auth/login" className="font-medium transition-colors hover:text-[#baf200]" style={{ color: '#f6f8f9' }}>
+                Giriş Yap
+              </a>
+              <a href="/auth/login" className="px-6 py-2 rounded-xl font-semibold transition-colors" style={{ backgroundColor: '#baf200', color: '#146448' }}>
+                Ücretsiz Başla
+              </a>
+            </>
+          ) : !loading ? (
             <>
               {user ? (
                 // For logged in users - show Dashboard and optional Admin
@@ -72,7 +82,7 @@ export default function Header() {
                 </>
               )}
             </>
-          )}
+          ) : null}
         </div>
 
         {/* Mobile menu button - hamburger icon */}
@@ -132,7 +142,26 @@ export default function Header() {
 
             {/* Right menu actions */}
             <div className="space-y-3">
-              {isClient && !loading && (
+              {!isClient ? (
+                // SSR fallback for mobile menu
+                <>
+                  <a
+                    href="/auth/login"
+                    className="block text-white hover:text-[#baf200] font-medium transition-colors py-2"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    Giriş Yap
+                  </a>
+                  <a
+                    href="/auth/login"
+                    className="block px-4 py-3 rounded-xl font-medium transition-colors text-center mx-4"
+                    style={{ backgroundColor: '#baf200', color: '#146448' }}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    Ücretsiz Başla
+                  </a>
+                </>
+              ) : !loading ? (
                 <>
                   {user ? (
                     // For logged in users - show Dashboard and optional Admin
@@ -184,7 +213,7 @@ export default function Header() {
                     </>
                   )}
                 </>
-              )}
+              ) : null}
             </div>
           </div>
         </motion.div>
