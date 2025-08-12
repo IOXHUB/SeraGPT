@@ -105,7 +105,7 @@ export function useAuth(): AuthContextType {
           window.location.hostname.includes('localhost')
         );
 
-        if (isDev) {
+        if (isDev && false) { // DISABLED for security test
           // Import and initialize development mock system
           const { DevMockSystem, MOCK_TOKENS } = await import('@/lib/utils/dev-mock-system');
 
