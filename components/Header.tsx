@@ -39,7 +39,7 @@ export default function Header() {
               {user ? (
                 // For logged in users - show Dashboard and optional Admin
                 <div className="flex items-center space-x-4">
-                  <a href="/dashboard/direct" className="text-white hover:text-[#baf200] font-medium transition-colors">
+                  <a href="/dashboard/direct" className="font-medium transition-colors hover:text-[#baf200]" style={{ color: '#f6f8f9' }}>
                     Dashboard
                   </a>
                   {isAdmin() && (
@@ -49,7 +49,8 @@ export default function Header() {
                   )}
                   <button
                     onClick={signOut}
-                    className="text-white hover:text-[#baf200] font-medium transition-colors"
+                    className="font-medium transition-colors hover:text-[#baf200]"
+                    style={{ color: '#f6f8f9' }}
                   >
                     Çıkış
                   </button>
