@@ -20,12 +20,20 @@ export default function DashboardLayout({ children, title, subtitle }: Dashboard
     // Check for user in localStorage for dev
     if (typeof window !== 'undefined') {
       const devUser = localStorage.getItem('seragpt_user');
+      console.log('DashboardLayout Auth Debug:', {
+        hasLocalStorageUser: !!devUser,
+        localStorage: devUser
+      });
       if (devUser) {
         try {
-          setUser(JSON.parse(devUser));
+          const parsedUser = JSON.parse(devUser);
+          setUser(parsedUser);
+          console.log('Dashboard User Set:', parsedUser);
         } catch (e) {
           console.warn('Invalid user data in localStorage');
         }
+      } else {
+        console.warn('No user in localStorage - dashboard accessible without auth!');
       }
     }
   }, []);
