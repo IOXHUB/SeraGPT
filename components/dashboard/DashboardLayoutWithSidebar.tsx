@@ -188,7 +188,7 @@ export default function DashboardLayout({ children, title, subtitle }: Dashboard
         sidebarCollapsed ? 'lg:ml-16' : 'lg:ml-64'
       }`}>
         {/* Top Header - Homepage Style */}
-        <header className="bg-[#146448] border-b border-[#146448]/20 sticky top-0 z-30 shadow-sm">
+        <header className="bg-[#146448] border-b border-[#146448]/20 sticky top-0 z-20 shadow-sm">
           <div className="max-w-[1200px] mx-auto px-6">
             <div className="flex items-center justify-between h-16">
               {/* Mobile menu button and user info */}
