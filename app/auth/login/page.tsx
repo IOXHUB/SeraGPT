@@ -39,7 +39,7 @@ export default function AuthPage() {
     } else if (error === 'pkce_error') {
       setMessage(errorMessage ?
         `❌ ${errorMessage}` :
-        '��� E-posta doğrulama süresi dolmuş. Lütfen tekrar kayıt olmayı deneyin.'
+        '❌ E-posta doğrulama süresi dolmuş. Lütfen tekrar kayıt olmayı deneyin.'
       );
     } else if (error === 'missing_code') {
       setMessage('❌ Doğrulama kodu eksik. Lütfen e-posta linkini tekrar kullanın.');
@@ -223,7 +223,7 @@ export default function AuthPage() {
     try {
       console.log('📝 Starting enhanced signup process...');
       
-      setMessage('��� 1/3 - Hesap bilgileri hazırlanıyor...');
+      setMessage('📝 1/3 - Hesap bilgileri hazırlanıyor...');
       await new Promise(resolve => setTimeout(resolve, 1000));
 
       setMessage('⚡ 2/3 - Hesap oluşturuluyor...');
@@ -353,7 +353,7 @@ export default function AuthPage() {
           </h2>
           <p className="text-gray-600">
             {isLogin 
-              ? 'SeraGPT hesab��nıza giriş yapın' 
+              ? 'SeraGPT hesabınıza giriş yapın' 
               : 'SeraGPT ile tarımsal analizlerinize başlayın'
             }
           </p>
@@ -545,7 +545,8 @@ export default function AuthPage() {
                 Henüz hesabınız yok mu?{' '}
                 <button
                   onClick={() => switchMode(false)}
-                  className="font-medium text-blue-600 hover:text-blue-500 transition-colors"
+                  className="font-medium transition-colors"
+                  style={{ color: 'rgba(37, 99, 235, 1)' }}
                 >
                   Ücretsiz kayıt olun
                 </button>
