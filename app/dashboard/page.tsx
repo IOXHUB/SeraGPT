@@ -44,14 +44,20 @@ interface AnalysisFlow {
 
 export default function DashboardPage() {
   const { user, loading } = useAuth();
+  const [mounted, setMounted] = useState(false);
+
+  // Prevent hydration mismatch
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // Auth guard - redirect if not authenticated
   useEffect(() => {
-    if (!loading && !user) {
+    if (mounted && !loading && !user) {
       console.log('🚫 Dashboard access denied - redirecting to login');
       window.location.href = '/auth/login';
     }
-  }, [user, loading]);
+  }, [user, loading, mounted]);
 
   // Show loading while checking auth
   if (loading) {
