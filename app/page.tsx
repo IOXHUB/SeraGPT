@@ -96,7 +96,7 @@ export default function Homepage() {
         </section>
 
         {/* Nasıl Çalışır Introduction */}
-        <section className="py-16">
+        <section style={{ padding: '30px 0' }}>
           <div className="max-w-[1700px] mx-auto px-6">
             <div className="max-w-[896px] mx-auto">
               <h2
