@@ -2,6 +2,8 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import Header from '../../components/Header';
+import Footer from '../../components/Footer';
 
 export default function DestekPage() {
   const [showTicketModal, setShowTicketModal] = useState(false);
@@ -28,44 +30,62 @@ export default function DestekPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#f6f8f9]">
-      {/* Header */}
-      <header className="bg-[#146448] py-6">
-        <div className="max-w-[1200px] mx-auto px-6">
-          <div className="flex items-center justify-between mb-8">
-            <Link href="/" className="text-white text-lg font-medium hover:text-[#baf200] transition-colors">
-              ← Ana Sayfa
-            </Link>
-            <div className="flex items-center space-x-6">
-              <Link href="/danismanlik" className="text-white hover:text-[#baf200] transition-colors">
-                Proje Danışmanlığı
-              </Link>
-              <Link href="/anahtar-teslim-proje" className="text-white hover:text-[#baf200] transition-colors">
-                Anahtar Teslim Sera
-              </Link>
+    <div className="min-h-screen">
+      <Header />
+
+      <div style={{ backgroundColor: '#146448' }}>
+        {/* Hero Section */}
+        <section className="py-20">
+          <div className="max-w-[1700px] mx-auto px-6">
+            <div className="max-w-[896px] mx-auto text-center">
+              <div className="max-w-[576px] mx-auto mb-8">
+                <h1
+                  className="leading-tight text-center"
+                  style={{
+                    color: '#f6f8f9',
+                    fontSize: '36px',
+                    fontWeight: '600',
+                    fontFamily: '-apple-system, "system-ui", Inter, "Segoe UI", Roboto, "Noto Sans", Ubuntu, sans-serif'
+                  }}
+                >
+                  Destek Kaydı Aç
+                </h1>
+              </div>
+
+              <div className="max-w-[576px] mx-auto mb-12">
+                <p
+                  className="leading-relaxed text-center"
+                  style={{
+                    color: '#f6f8f9',
+                    fontSize: '14px',
+                    fontWeight: '400',
+                    fontFamily: '-apple-system, "system-ui", Inter, "Segoe UI", Roboto, "Noto Sans", Ubuntu, sans-serif'
+                  }}
+                >
+                  Teknik sorunlarınız için destek kaydı oluşturun. Uzman ekibimiz 24 saat içinde size dönüş yapacaktır.
+                </p>
+              </div>
+
+              <button
+                onClick={() => setShowTicketModal(true)}
+                className="px-8 py-4 rounded-xl font-medium transition-all hover:opacity-90"
+                style={{
+                  backgroundColor: '#baf200',
+                  color: '#146448',
+                  fontSize: '16px',
+                  fontWeight: '600',
+                  fontFamily: '-apple-system, "system-ui", Inter, "Segoe UI", Roboto, "Noto Sans", Ubuntu, sans-serif'
+                }}
+              >
+                Yeni Destek Kaydı Oluştur
+              </button>
             </div>
           </div>
-          
-          <div className="text-center max-w-[896px] mx-auto flex flex-col">
-            <h1 className="text-4xl font-bold text-white mb-4 mx-auto">
-              Destek Kaydı Aç
-            </h1>
-            <p className="text-xl text-white/90 max-w-[576px] mx-auto mb-8">
-              Teknik sorunlarınız için destek kaydı oluşturun.
-              Uzman ekibimiz 24 saat içinde size dönüş yapacaktır.
-            </p>
-            <button
-              onClick={() => setShowTicketModal(true)}
-              className="bg-[#baf200] text-[#146448] px-8 py-4 rounded-xl font-bold text-lg hover:bg-[#a5e600] transition-colors mx-auto"
-            >
-              Yeni Destek Kaydı Oluştur
-            </button>
-          </div>
-        </div>
-      </header>
+        </section>
+      </div>
 
       {/* Main Content */}
-      <main className="py-16">
+      <main className="py-16" style={{ backgroundColor: '#f6f8f9' }}>
         <div className="max-w-[1200px] mx-auto px-6">
           
           {/* Support Categories */}
@@ -289,6 +309,8 @@ export default function DestekPage() {
           </div>
         </div>
       )}
+
+      <Footer />
     </div>
   );
 }
