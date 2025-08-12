@@ -19,19 +19,16 @@ export default function Header() {
           </a>
         </div>
 
-        {/* Center navigation - 4 links */}
+        {/* Center navigation - 3 main services */}
         <nav className="hidden md:flex items-center space-x-8">
-          <a href="/yardim" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
-            ❓ Yardım
+          <a href="/destek" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
+            Destek Kaydı Aç
           </a>
           <a href="/danismanlik" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
-            👨‍🔬 Danışmanlık
+            Proje Danışmanlığı
           </a>
           <a href="/anahtar-teslim-proje" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
-            Anahtar Teslim Proje
-          </a>
-          <a href="/destek" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
-            🎫 Destek Talebi
+            Anahtar Teslim Sera Teklifi Al
           </a>
         </nav>
 
