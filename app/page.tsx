@@ -45,7 +45,7 @@ export default function Homepage() {
                     fontFamily: '-apple-system, "system-ui", Inter, "Segoe UI", Roboto, "Noto Sans", Ubuntu, sans-serif'
                   }}
                 >
-                  SeraGPT, lokasyona özel veri, iklim analizi ve pazar verilerini birleştirerek yatırım geri dönüşünüzü anında hesaplar. 5 ücretsiz rapor hakkınızla riskleri minimize edin, fırsatları görün ve yatırımınızı emin adımlarla başlatın.
+                  SeraGPT, kurumsal yatırımcılardan mevcut sera sahiplerine ve yeni girişimcilere kadar her kullanıcı için kişiselleştirilmiş bir başlangıç noktası sunar.
                 </p>
               </div>
 
