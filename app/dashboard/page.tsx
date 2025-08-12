@@ -572,7 +572,7 @@ export default function DashboardPage() {
       const aiMessage: ChatMessage = {
         id: (Date.now() + 1).toString(),
         role: 'assistant',
-        content: `Merhaba! "${inputValue}" konusunda size yardımcı olmaktan mutluluk duyarım. Bu konu hakkında detaylı bilgi verebilir ve size özel öneriler geli��tirebilirim.`,
+        content: `Merhaba! "${inputValue}" konusunda size yardımcı olmaktan mutluluk duyarım. Bu konu hakkında detaylı bilgi verebilir ve size özel öneriler geliştirebilirim.`,
         timestamp: new Date(),
       };
       setMessages(prev => [...prev, aiMessage]);
@@ -624,6 +624,16 @@ export default function DashboardPage() {
       window.location.href = '/auth/login';
     }
   }, [user, loading, mounted]);
+
+  // Prevent access in incognito/unauthorized state
+  if (!loading && !user) {
+    window.location.href = '/auth/login';
+    return (
+      <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: '#146448' }}>
+        <div className="text-white text-lg">Yönlendiriliyor...</div>
+      </div>
+    );
+  }
 
   // Show loading while checking auth
   if (loading) {
