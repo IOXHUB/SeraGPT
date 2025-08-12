@@ -5,163 +5,19 @@ import Link from 'next/link';
 
 export default function ConsultancyPage() {
   const [showContactModal, setShowContactModal] = useState(false);
-  const [selectedService, setSelectedService] = useState('');
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     phone: '',
     company: '',
     projectType: '',
+    projectLocation: '',
     projectSize: '',
-    location: '',
     budget: '',
     timeline: '',
     message: '',
-    serviceType: 'consultation'
+    serviceType: 'project-consultancy'
   });
-
-  const consultancyServices = [
-    {
-      id: 'feasibility',
-      title: 'Fizibilite Çalışmaları',
-      icon: '📊',
-      description: 'Detaylı fizibilite raporları ve yatırım analizi',
-      features: [
-        'Kapsamlı pazar araştırması',
-        'Finansal projeksiyon ve ROI analizi',
-        'Risk değerlendirmesi',
-        'Teknik fizibilite çalışması',
-        'Yatırım geri dönüş hesaplama'
-      ],
-      duration: '2-4 hafta',
-      price: 'Proje büyüklüğüne göre'
-    },
-    {
-      id: 'site-analysis',
-      title: 'Yerinde Keşif ve Analiz',
-      icon: '🔍',
-      description: 'Uzman ekibimizle sahada detaylı inceleme',
-      features: [
-        'Toprak analizi ve uygunluk testi',
-        'İklim ve mikroiklim değerlendirmesi',
-        'Altyapı durum analizi',
-        'Lojistik ve erişim değerlendirmesi',
-        'Yasal uygunluk kontrolü'
-      ],
-      duration: '1-2 hafta',
-      price: '₺15,000 - ₺25,000'
-    },
-    {
-      id: 'investment',
-      title: 'Yatırım Danışmanlığı',
-      icon: '💰',
-      description: 'Stratejik yatırım planlaması ve finansman desteği',
-      features: [
-        'Yatırım stratejisi geliştirme',
-        'Finansman kaynaklarının belirlenmesi',
-        'Teşvik ve hibeler konusunda rehberlik',
-        'Yatırımcı bulma desteği',
-        'İş planı hazırlama'
-      ],
-      duration: '3-6 hafta',
-      price: 'Danışmanlık paketine göre'
-    },
-    {
-      id: 'marketing',
-      title: 'Pazarlama Yönetimi',
-      icon: '📈',
-      description: '��rün pazarlama ve satış kanalı geliştirme',
-      features: [
-        'Pazar konumlandırma stratejisi',
-        'Satış kanalları gelişimi',
-        'Marka oluşturma ve tanıtım',
-        'Fiyatlama stratejisi',
-        'Müşteri portföyü oluşturma'
-      ],
-      duration: 'Sürekli destek',
-      price: 'Aylık paket seçenekleri'
-    },
-    {
-      id: 'technical',
-      title: 'Teknik Danışmanlık',
-      icon: '⚙️',
-      description: 'Sera teknolojileri ve zirai danışmanlık',
-      features: [
-        'Sera tasarımı ve mühendislik',
-        'Teknoloji seçimi ve entegrasyon',
-        'Zirai yöntemler ve optimizasyon',
-        'Kalite kontrol sistemleri',
-        'Sürdürülebilirlik danışmanlığı'
-      ],
-      duration: 'Proje süresince',
-      price: 'Uzmanlık alanına göre'
-    },
-    {
-      id: 'operational',
-      title: 'Operasyonel Danışmanlık',
-      icon: '🏭',
-      description: 'İşletme yönetimi ve süreç optimizasyonu',
-      features: [
-        'İş süreçleri optimizasyonu',
-        'Personel yönetimi ve eğitim',
-        'Operasyonel maliyet kontrolü',
-        'Kalite yönetim sistemleri',
-        'Performans izleme ve analiz'
-      ],
-      duration: '6-12 ay',
-      price: 'Operasyon büyüklüğüne göre'
-    }
-  ];
-
-  const turnkeyServices = [
-    {
-      title: 'Sera Tasarımı ve İnşaatı',
-      description: 'Modern sera tesisleri için komple tasarım ve inşaat',
-      icon: '🏗️'
-    },
-    {
-      title: 'Teknoloji Entegrasyonu',
-      description: 'İleri teknoloji sistemlerinin kurulumu ve devreye alınması',
-      icon: '🤖'
-    },
-    {
-      title: 'Zirai Danışmanlık',
-      description: 'Üretim sürecinde teknik danışmanlık ve rehberlik',
-      icon: '🌱'
-    },
-    {
-      title: 'Servis ve Bakım',
-      description: 'Sürekli teknik destek ve bakım hizmetleri',
-      icon: '🔧'
-    }
-  ];
-
-  const projectTypes = [
-    'Cam Sera (1,000-5,000 m²)',
-    'Cam Sera (5,000+ m²)',
-    'Polikarbon Sera',
-    'Plastik Tünel Sera',
-    'Hidroponik Sistem',
-    'Aeroponik Sistem',
-    'Dikey Tarım Sistemi',
-    'Organik Üretim Sistemi'
-  ];
-
-  const budgetRanges = [
-    '₺100,000 - ₺500,000',
-    '₺500,000 - ₺1,000,000',
-    '₺1,000,000 - ₺5,000,000',
-    '₺5,000,000 - ₺10,000,000',
-    '₺10,000,000+'
-  ];
-
-  const timelineOptions = [
-    '1-3 ay',
-    '3-6 ay',
-    '6-12 ay',
-    '1-2 yıl',
-    '2+ yıl'
-  ];
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -171,20 +27,10 @@ export default function ConsultancyPage() {
     }));
   };
 
-  const handleServiceSelect = (serviceId: string) => {
-    setSelectedService(serviceId);
-    setFormData(prev => ({
-      ...prev,
-      serviceType: serviceId
-    }));
-    setShowContactModal(true);
-  };
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    // Here you would typically send the data to your backend
-    alert('Danışmanlık talebiniz başarıyla gönderildi! En kısa sürede size dönüş yapacağız.');
+    console.log('Danışmanlık talebi:', formData);
+    alert('Danışmanlık talebiniz başarıyla gönderildi! 24 saat içinde size dönüş yapacağız.');
     setShowContactModal(false);
     setFormData({
       name: '',
@@ -192,40 +38,63 @@ export default function ConsultancyPage() {
       phone: '',
       company: '',
       projectType: '',
+      projectLocation: '',
       projectSize: '',
-      location: '',
       budget: '',
       timeline: '',
       message: '',
-      serviceType: 'consultation'
+      serviceType: 'project-consultancy'
     });
   };
+
+  const projectTypes = [
+    'Cam Sera (1,000-5,000 m²)',
+    'Cam Sera (5,000+ m²)',
+    'Polikarbon Sera',
+    'Plastik Tünel Sera',
+    'Hidroponik Sistem',
+    'Organik Üretim Sistemi'
+  ];
+
+  const budgetRanges = [
+    '₺100,000 - ₺500,000',
+    '₺500,000 - ₺1,000,000',
+    '₺1,000,000 - ₺5,000,000',
+    '₺5,000,000+'
+  ];
+
+  const timelineOptions = [
+    '1-3 ay',
+    '3-6 ay',
+    '6-12 ay',
+    '1+ yıl'
+  ];
 
   return (
     <div className="min-h-screen bg-[#f6f8f9]">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-[#146448] to-[#0f4f37] text-white py-20">
-        <div className="body-container">
-          <div className="text-center text-container mx-auto">
+      <section className="bg-[#146448] text-white py-20">
+        <div className="max-w-[1200px] mx-auto px-6">
+          <div className="text-center max-w-[896px] mx-auto">
             <h1 className="text-4xl font-bold mb-6">
-              👨‍🔬 Profesyonel Sera Danışmanlığ��
+              Mühendis Danışmanlığı
             </h1>
-            <p className="text-xl mb-8 opacity-90">
-              20 yıllık tecrübemiz ve 500+ başarılı projemizle sera yatırımınızda 
-              yanınızdayız. Bütüncül yaklaşımla başarıya ulaşın.
+            <p className="text-xl mb-8 opacity-90 max-w-[576px] mx-auto">
+              20 yıllık tecrübemiz ve 500+ başarılı projemizden edindiğimiz deneyimle, 
+              sera yatırımınızda yanınızdayız.
             </p>
             
             {/* Key Stats */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
-              <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12 max-w-[896px] mx-auto">
+              <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6">
                 <div className="text-3xl font-bold text-[#baf200]">20+</div>
                 <div className="text-sm opacity-90">Yıllık Tecrübe</div>
               </div>
-              <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
+              <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6">
                 <div className="text-3xl font-bold text-[#baf200]">500+</div>
                 <div className="text-sm opacity-90">Başarılı Proje</div>
               </div>
-              <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
+              <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6">
                 <div className="text-3xl font-bold text-[#baf200]">98%</div>
                 <div className="text-sm opacity-90">Müşteri Memnuniyeti</div>
               </div>
@@ -234,149 +103,124 @@ export default function ConsultancyPage() {
             <div className="mt-8">
               <button
                 onClick={() => setShowContactModal(true)}
-                className="bg-[#baf200] text-[#146448] px-8 py-4 rounded-2xl font-bold hover:bg-[#baf200]/90 transition-all duration-300 hover:scale-105 shadow-xl"
+                className="bg-[#baf200] text-[#146448] px-8 py-4 rounded-xl font-bold hover:bg-[#a5e600] transition-colors"
               >
-                🚀 Ücretsiz Danışmanlık Talep Et
+                Danışmanlık Talep Et
               </button>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Services Overview */}
+      {/* Service Description */}
       <section className="py-16 bg-white">
-        <div className="body-container">
-          <div className="text-center mb-12">
-            <h2 className="text-2xl font-bold text-[#146448] mb-4">🎯 Danışmanlık Hizmetlerimiz</h2>
-            <p className="text-gray-600 text-container mx-auto">
-              Her aşamada profesyonel destek ile başarılı sera yatırımları gerçekleştirin
-            </p>
-          </div>
+        <div className="max-w-[1200px] mx-auto px-6">
+          <div className="max-w-[896px] mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-2xl font-bold text-[#146448] mb-4">Proje Danışmanlığı Hizmetimiz</h2>
+              <p className="text-gray-600 max-w-[576px] mx-auto">
+                SeraGPT'den alınan raporlar yeterli gelmediğinde, yerinde keşif yaparak kapsamlı 
+                projelendirme desteği, yatırım danışmanlığı ve pazarlama yönetimi konularında 
+                bütüncül yaklaşımla hizmet sunuyoruz.
+              </p>
+            </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {consultancyServices.map((service) => (
-              <div key={service.id} className="bg-white border border-gray-200 rounded-2xl p-6 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group">
-                <div className="text-center mb-6">
-                  <div className="text-4xl mb-4 group-hover:scale-110 transition-transform">
-                    {service.icon}
-                  </div>
-                  <h3 className="text-xl font-bold text-[#146448] mb-2">
-                    {service.title}
-                  </h3>
-                  <p className="text-gray-600 text-sm">
-                    {service.description}
-                  </p>
-                </div>
-
-                <div className="space-y-3 mb-6">
-                  {service.features.map((feature, index) => (
-                    <div key={index} className="flex items-start space-x-2">
-                      <div className="w-2 h-2 bg-[#baf200] rounded-full mt-2 flex-shrink-0"></div>
-                      <span className="text-sm text-gray-700">{feature}</span>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="border-t border-gray-100 pt-4 mb-6">
-                  <div className="flex justify-between items-center text-sm mb-2">
-                    <span className="text-gray-500">Süre:</span>
-                    <span className="font-medium text-[#146448]">{service.duration}</span>
-                  </div>
-                  <div className="flex justify-between items-center text-sm">
-                    <span className="text-gray-500">Fiyat:</span>
-                    <span className="font-medium text-[#146448]">{service.price}</span>
-                  </div>
-                </div>
-
-                <button
-                  onClick={() => handleServiceSelect(service.id)}
-                  className="w-full bg-[#146448] text-white py-3 rounded-2xl hover:bg-[#0f4f37] transition-all duration-300 font-medium group-hover:bg-[#baf200] group-hover:text-[#146448]"
-                >
-                  Teklif Al
-                </button>
+            <div className="grid md:grid-cols-3 gap-8">
+              <div className="bg-[#f6f8f9] rounded-xl p-6 border border-gray-200">
+                <div className="text-4xl mb-4 text-center">🔍</div>
+                <h3 className="text-xl font-bold text-[#146448] mb-3 text-center">Yerinde Keşif</h3>
+                <p className="text-gray-600 text-center">
+                  Proje lokasyonunda detaylı inceleme ve analiz çalışması
+                </p>
               </div>
-            ))}
+
+              <div className="bg-[#f6f8f9] rounded-xl p-6 border border-gray-200">
+                <div className="text-4xl mb-4 text-center">📋</div>
+                <h3 className="text-xl font-bold text-[#146448] mb-3 text-center">Projelendirme</h3>
+                <p className="text-gray-600 text-center">
+                  Teknik planlar, ekipman seçimi ve detaylı mühendislik desteği
+                </p>
+              </div>
+
+              <div className="bg-[#f6f8f9] rounded-xl p-6 border border-gray-200">
+                <div className="text-4xl mb-4 text-center">💼</div>
+                <h3 className="text-xl font-bold text-[#146448] mb-3 text-center">Yatırım Danışmanlığı</h3>
+                <p className="text-gray-600 text-center">
+                  Finansman, hibeler ve pazarlama stratejileri konusunda rehberlik
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Turnkey Partnership */}
+      {/* Serapoli Partnership */}
       <section className="py-16 bg-[#f6f8f9]">
-        <div className="body-container">
-          <div className="text-center mb-12">
-            <h2 className="text-2xl font-bold text-[#146448] mb-4">🔗 Serapoli Ortaklığı ile Anahtar Teslim Çözümler</h2>
-            <p className="text-gray-600 text-container mx-auto">
-              İspanyol çözüm ortağımız Serapoli ile birlikte tek elden anahtar teslim proje hizmeti sunuyoruz
-            </p>
-          </div>
+        <div className="max-w-[1200px] mx-auto px-6">
+          <div className="max-w-[896px] mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-2xl font-bold text-[#146448] mb-4">Serapoli Ortaklığı</h2>
+              <p className="text-gray-600 max-w-[576px] mx-auto">
+                İspanyol çözüm ortağımız Serapoli ile birlikte tek elden anahtar teslim hizmet sunuyoruz
+              </p>
+            </div>
 
-          <div className="bg-white rounded-3xl p-8 border border-gray-200 shadow-lg">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              <div>
-                <div className="flex items-center space-x-4 mb-6">
-                  <div className="w-16 h-16 bg-gradient-to-br from-[#146448] to-[#baf200] rounded-2xl flex items-center justify-center text-2xl">
-                    🤝
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-bold text-[#146448]">Serapoli Ortaklığı</h3>
-                    <p className="text-gray-600">İspanya merkezli teknoloji lideri</p>
-                  </div>
-                </div>
+            <div className="bg-white rounded-xl p-8 border border-gray-200 shadow-sm">
+              <div className="grid lg:grid-cols-2 gap-8 items-center">
+                <div>
+                  <h3 className="text-xl font-bold text-[#146448] mb-4">Anahtar Teslim Sera Çözümleri</h3>
+                  <p className="text-gray-600 mb-6 max-w-[576px]">
+                    Danışmanlık hizmetimize ek olarak imalat, montaj, kurulum, zirai danışmanlık 
+                    ve servis hizmetleri içinde proje teklifi vermekteyiz. Yurtiçi ve yurtdışı 
+                    bir çok başarılı mega sera yatırımı ile güven duyarak, profesyonel hizmet 
+                    alacağınızdan emin olabilirsiniz.
+                  </p>
 
-                <p className="text-gray-700 mb-6 leading-relaxed">
-                  Çözüm ortağımız İspanyol firması Serapoli ile birlikte çalışarak tek elden 
-                  anahtar teslim hizmet sunuyoruz. Danışmanlık hizmetimize ek olarak imalat, 
-                  montaj, kurulum, zirai danışmanlık ve servis hizmetleri için kapsamlı 
-                  proje teklifleri hazırlıyoruz.
-                </p>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
-                  {turnkeyServices.map((service, index) => (
-                    <div key={index} className="flex items-center space-x-3 p-3 bg-[#f6f8f9] rounded-xl">
-                      <div className="text-2xl">{service.icon}</div>
-                      <div>
-                        <div className="font-medium text-[#146448] text-sm">{service.title}</div>
-                        <div className="text-xs text-gray-600">{service.description}</div>
-                      </div>
+                  <div className="space-y-3">
+                    <div className="flex items-center space-x-3">
+                      <div className="w-2 h-2 bg-[#baf200] rounded-full"></div>
+                      <span className="text-gray-700">İmalat ve Montaj</span>
                     </div>
-                  ))}
-                </div>
-
-                <button
-                  onClick={() => {
-                    setFormData(prev => ({ ...prev, serviceType: 'turnkey' }));
-                    setShowContactModal(true);
-                  }}
-                  className="bg-gradient-to-r from-[#146448] to-[#baf200] text-white px-8 py-4 rounded-2xl font-bold hover:shadow-lg transition-all duration-300"
-                >
-                  Anahtar Teslim Proje Teklifi Al
-                </button>
-              </div>
-
-              <div className="bg-gradient-to-br from-[#146448] to-[#0f4f37] rounded-2xl p-8 text-white">
-                <h4 className="text-xl font-bold mb-6">🏆 Referans Projelerimiz</h4>
-                
-                <div className="space-y-4">
-                  <div className="bg-white/10 rounded-xl p-4 backdrop-blur-sm">
-                    <div className="font-medium mb-1">Antalya Mega Sera Kompleksi</div>
-                    <div className="text-sm opacity-90">25,000 m² • Domates Üretimi • 2023</div>
-                  </div>
-                  
-                  <div className="bg-white/10 rounded-xl p-4 backdrop-blur-sm">
-                    <div className="font-medium mb-1">Mersin Organik Sera Projesi</div>
-                    <div className="text-sm opacity-90">15,000 m² • Organik Salatalık • 2022</div>
-                  </div>
-                  
-                  <div className="bg-white/10 rounded-xl p-4 backdrop-blur-sm">
-                    <div className="font-medium mb-1">İzmir Teknoloji Sera Tesisi</div>
-                    <div className="text-sm opacity-90">30,000 m² • Hidroponik Sistem • 2024</div>
+                    <div className="flex items-center space-x-3">
+                      <div className="w-2 h-2 bg-[#baf200] rounded-full"></div>
+                      <span className="text-gray-700">Kurulum ve Devreye Alma</span>
+                    </div>
+                    <div className="flex items-center space-x-3">
+                      <div className="w-2 h-2 bg-[#baf200] rounded-full"></div>
+                      <span className="text-gray-700">Zirai Danışmanlık</span>
+                    </div>
+                    <div className="flex items-center space-x-3">
+                      <div className="w-2 h-2 bg-[#baf200] rounded-full"></div>
+                      <span className="text-gray-700">Servis ve Bakım Hizmetleri</span>
+                    </div>
                   </div>
                 </div>
 
-                <div className="mt-6 pt-6 border-t border-white/20">
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-[#baf200]">70,000+ m²</div>
-                    <div className="text-sm opacity-90">Toplam Tamamlanan Proje Alanı</div>
+                <div className="bg-[#146448] rounded-xl p-6 text-white">
+                  <h4 className="text-lg font-bold mb-4">🏆 Başarılı Projelerimiz</h4>
+                  
+                  <div className="space-y-3">
+                    <div className="bg-white/10 rounded-lg p-3">
+                      <div className="font-medium">Antalya Sera Kompleksi</div>
+                      <div className="text-sm opacity-90">25,000 m² • Modern Cam Sera</div>
+                    </div>
+                    
+                    <div className="bg-white/10 rounded-lg p-3">
+                      <div className="font-medium">Mersin Organik Sera</div>
+                      <div className="text-sm opacity-90">15,000 m² • Hidroponik Sistem</div>
+                    </div>
+                    
+                    <div className="bg-white/10 rounded-lg p-3">
+                      <div className="font-medium">İzmir Teknoloji Sera</div>
+                      <div className="text-sm opacity-90">20,000 m² • Akıllı Otomasyon</div>
+                    </div>
+                  </div>
+
+                  <div className="mt-6 pt-4 border-t border-white/20">
+                    <div className="text-center">
+                      <div className="text-2xl font-bold text-[#baf200]">60,000+ m²</div>
+                      <div className="text-sm opacity-90">Toplam Proje Alanı</div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -387,88 +231,69 @@ export default function ConsultancyPage() {
 
       {/* Why Choose Us */}
       <section className="py-16 bg-white">
-        <div className="body-container">
-          <div className="text-center mb-12">
-            <h2 className="text-2xl font-bold text-[#146448] mb-4">✨ Neden Bizi Seçmelisiniz?</h2>
-            <p className="text-gray-600 text-container mx-auto">
-              Güven duyabileceğiniz, profesyonel hizmet almanızı garanti eden özelliklerimiz
-            </p>
-          </div>
+        <div className="max-w-[1200px] mx-auto px-6">
+          <div className="max-w-[896px] mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-2xl font-bold text-[#146448] mb-4">Neden Bizi Seçmelisiniz?</h2>
+              <p className="text-gray-600 max-w-[576px] mx-auto">
+                Güven duyabileceğiniz, profesyonel hizmet almanızı garanti eden özelliklerimiz
+              </p>
+            </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {[
-              {
-                icon: '🎯',
-                title: '20 Yıl Tecrübe',
-                description: 'Sera tarımında köklü deneyim ve uzmanlık'
-              },
-              {
-                icon: '📊',
-                title: '500+ Başarılı Proje',
-                description: 'Kanıtlanmış başarı sicili ve referanslar'
-              },
-              {
-                icon: '🤝',
-                title: 'Bütüncül Yaklaşım',
-                description: 'Fizibilite\'den işletmeye kadar tam destek'
-              },
-              {
-                icon: '🌍',
-                title: 'Uluslararası Ortaklık',
-                description: 'Serapoli ile global teknoloji erişimi'
-              },
-              {
-                icon: '⚡',
-                title: 'Hızlı Çözüm',
-                description: 'Proaktif yaklaşım ve zamanında teslimat'
-              },
-              {
-                icon: '🛡️',
-                title: 'Garanti ve Destek',
-                description: 'Sürekli teknik destek ve garanti kapsamı'
-              },
-              {
-                icon: '💡',
-                title: 'İnovatif Teknoloji',
-                description: 'En güncel teknolojiler ve yenilikçi çözümler'
-              },
-              {
-                icon: '📈',
-                title: 'ROI Odaklı',
-                description: 'Karlılık ve verimlilik odaklı planlama'
-              }
-            ].map((item, index) => (
-              <div key={index} className="text-center p-6 bg-[#f6f8f9] rounded-2xl hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
-                <div className="text-4xl mb-4">{item.icon}</div>
-                <h3 className="font-bold text-[#146448] mb-2">{item.title}</h3>
-                <p className="text-gray-600 text-sm">{item.description}</p>
-              </div>
-            ))}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {[
+                {
+                  icon: '🎯',
+                  title: '20 Yıl Tecrübe',
+                  description: 'Sera tarımında köklü deneyim'
+                },
+                {
+                  icon: '📊',
+                  title: '500+ Proje',
+                  description: 'Kanıtlanmış başarı sicili'
+                },
+                {
+                  icon: '🤝',
+                  title: 'Bütüncül Yaklaşım',
+                  description: 'Baştan sona tam destek'
+                },
+                {
+                  icon: '🌍',
+                  title: 'Uluslararası Ortaklık',
+                  description: 'Serapoli ile global çözümler'
+                }
+              ].map((item, index) => (
+                <div key={index} className="text-center p-6 bg-[#f6f8f9] rounded-xl border border-gray-200">
+                  <div className="text-4xl mb-4">{item.icon}</div>
+                  <h3 className="font-bold text-[#146448] mb-2">{item.title}</h3>
+                  <p className="text-gray-600 text-sm">{item.description}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 bg-gradient-to-br from-[#146448] to-[#0f4f37] text-white">
-        <div className="body-container">
-          <div className="text-center text-container mx-auto">
+      <section className="py-16 bg-[#146448] text-white">
+        <div className="max-w-[1200px] mx-auto px-6">
+          <div className="text-center max-w-[576px] mx-auto">
             <h2 className="text-2xl font-bold mb-4">
-              Hayalinizdeki Sera Projesini Gerçekleştirin
+              Sera Projenizi Gerçekleştirin
             </h2>
             <p className="text-xl mb-8 opacity-90">
-              Uzman ekibimizle ücretsiz ön görüşme yapın ve projeniz için en uygun 
-              çözümü keşfedin. 24 saat içinde size dönüş yapacağız.
+              20 yıllık tecrübemizle hayalinizdeki sera projesini birlikte hayata geçirelim
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button
                 onClick={() => setShowContactModal(true)}
-                className="bg-[#baf200] text-[#146448] px-8 py-4 rounded-2xl font-bold hover:bg-[#baf200]/90 transition-all duration-300 hover:scale-105"
+                className="bg-[#baf200] text-[#146448] px-8 py-4 rounded-xl font-bold hover:bg-[#a5e600] transition-colors"
               >
-                📞 Ücretsiz Danışmanlık
+                Danışmanlık Talep Et
               </button>
               <Link href="/yardim">
-                <button className="bg-white/10 text-white px-8 py-4 rounded-2xl font-bold hover:bg-white/20 transition-colors border border-white/30">
-                  ❓ Sıkça Sorulan Sorular
+                <button className="bg-white/10 text-white px-8 py-4 rounded-xl font-bold hover:bg-white/20 transition-colors border border-white/30">
+                  Sıkça Sorulan Sorular
                 </button>
               </Link>
             </div>
@@ -479,16 +304,16 @@ export default function ConsultancyPage() {
       {/* Contact Modal */}
       {showContactModal && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
-          <div className="bg-white rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+          <div className="bg-white rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
             <div className="p-6 border-b border-gray-200">
               <div className="flex items-center justify-between">
                 <div>
-                  <h3 className="text-xl font-bold text-[#146448]">🚀 Danışmanlık Talebiniz</h3>
-                  <p className="text-gray-600 text-sm">Detaylarınızı paylaşın, size özel çözüm geliştirelim</p>
+                  <h3 className="text-xl font-bold text-[#146448]">Danışmanlık Talebi</h3>
+                  <p className="text-gray-600 text-sm">Proje detaylarınızı paylaşın, size özel çözüm geliştirelim</p>
                 </div>
                 <button
                   onClick={() => setShowContactModal(false)}
-                  className="p-2 hover:bg-gray-100 rounded-xl transition-colors"
+                  className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
                 >
                   ✕
                 </button>
@@ -507,7 +332,7 @@ export default function ConsultancyPage() {
                     value={formData.name}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#baf200] focus:border-[#baf200] transition-colors"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#baf200] focus:border-[#baf200]"
                     placeholder="Adınızı ve soyadınızı girin"
                   />
                 </div>
@@ -522,7 +347,7 @@ export default function ConsultancyPage() {
                     value={formData.email}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#baf200] focus:border-[#baf200] transition-colors"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#baf200] focus:border-[#baf200]"
                     placeholder="E-posta adresinizi girin"
                   />
                 </div>
@@ -539,7 +364,7 @@ export default function ConsultancyPage() {
                     value={formData.phone}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#baf200] focus:border-[#baf200] transition-colors"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#baf200] focus:border-[#baf200]"
                     placeholder="Telefon numaranızı girin"
                   />
                 </div>
@@ -553,7 +378,7 @@ export default function ConsultancyPage() {
                     name="company"
                     value={formData.company}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#baf200] focus:border-[#baf200] transition-colors"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#baf200] focus:border-[#baf200]"
                     placeholder="Şirket adınızı girin (opsiyonel)"
                   />
                 </div>
@@ -569,7 +394,7 @@ export default function ConsultancyPage() {
                     value={formData.projectType}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#baf200] focus:border-[#baf200] transition-colors"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#baf200] focus:border-[#baf200]"
                   >
                     <option value="">Proje türünü seçin</option>
                     {projectTypes.map((type, index) => (
@@ -580,15 +405,15 @@ export default function ConsultancyPage() {
 
                 <div>
                   <label className="block text-sm font-medium text-[#146448] mb-2">
-                    Proje Büyüklüğü
+                    Proje Lokasyonu
                   </label>
                   <input
                     type="text"
-                    name="projectSize"
-                    value={formData.projectSize}
+                    name="projectLocation"
+                    value={formData.projectLocation}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#baf200] focus:border-[#baf200] transition-colors"
-                    placeholder="Örn: 5,000 m²"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#baf200] focus:border-[#baf200]"
+                    placeholder="İl/İlçe bilgisi"
                   />
                 </div>
               </div>
@@ -596,15 +421,15 @@ export default function ConsultancyPage() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium text-[#146448] mb-2">
-                    Proje Lokasyonu
+                    Proje Büyüklüğü
                   </label>
                   <input
                     type="text"
-                    name="location"
-                    value={formData.location}
+                    name="projectSize"
+                    value={formData.projectSize}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#baf200] focus:border-[#baf200] transition-colors"
-                    placeholder="İl/İlçe bilgisi"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#baf200] focus:border-[#baf200]"
+                    placeholder="Örn: 5,000 m²"
                   />
                 </div>
 
@@ -616,7 +441,7 @@ export default function ConsultancyPage() {
                     name="budget"
                     value={formData.budget}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#baf200] focus:border-[#baf200] transition-colors"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#baf200] focus:border-[#baf200]"
                   >
                     <option value="">Bütçe aralığınızı seçin</option>
                     {budgetRanges.map((range, index) => (
@@ -634,7 +459,7 @@ export default function ConsultancyPage() {
                   name="timeline"
                   value={formData.timeline}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#baf200] focus:border-[#baf200] transition-colors"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#baf200] focus:border-[#baf200]"
                 >
                   <option value="">Ne zaman başlamayı planlıyorsunuz?</option>
                   {timelineOptions.map((option, index) => (
@@ -645,26 +470,26 @@ export default function ConsultancyPage() {
 
               <div>
                 <label className="block text-sm font-medium text-[#146448] mb-2">
-                  Proje Detayları ve Özel İstekleriniz
+                  Proje Detayları ve İhtiyaçlarınız
                 </label>
                 <textarea
                   name="message"
                   value={formData.message}
                   onChange={handleInputChange}
                   rows={4}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#baf200] focus:border-[#baf200] transition-colors"
-                  placeholder="Projeniz hakkında detaylı bilgi verin, özel isteklerinizi belirtin..."
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#baf200] focus:border-[#baf200]"
+                  placeholder="Projeniz hakkında detaylı bilgi verin, özel ihtiyaçlarınızı belirtin..."
                 />
               </div>
 
-              <div className="bg-[#f6f8f9] rounded-xl p-4">
+              <div className="bg-[#f6f8f9] rounded-lg p-4">
                 <div className="flex items-start space-x-3">
                   <div className="text-2xl">💡</div>
                   <div>
-                    <h4 className="font-medium text-[#146448] mb-1">Ücretsiz Ön Değerlendirme</h4>
+                    <h4 className="font-medium text-[#146448] mb-1">20 Yıllık Tecrübe</h4>
                     <p className="text-sm text-gray-600">
                       Talebinizi aldıktan sonra 24 saat içinde uzman ekibimiz size dönüş yapacak 
-                      ve ücretsiz ön değerlendirme sunacaktır.
+                      ve 500+ projeden edindiğimiz deneyimle size özel çözüm önerileri sunacaktır.
                     </p>
                   </div>
                 </div>
@@ -674,15 +499,15 @@ export default function ConsultancyPage() {
                 <button
                   type="button"
                   onClick={() => setShowContactModal(false)}
-                  className="px-6 py-3 bg-gray-200 text-gray-700 rounded-xl hover:bg-gray-300 transition-colors"
+                  className="px-6 py-3 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors"
                 >
                   İptal
                 </button>
                 <button
                   type="submit"
-                  className="flex-1 bg-gradient-to-r from-[#146448] to-[#baf200] text-white py-3 rounded-xl font-medium hover:shadow-lg transition-all duration-300"
+                  className="flex-1 bg-[#146448] text-white py-3 rounded-lg font-medium hover:bg-[#0f4f37] transition-colors"
                 >
-                  🚀 Danışmanlık Talebini Gönder
+                  Danışmanlık Talebini Gönder
                 </button>
               </div>
             </form>
