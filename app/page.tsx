@@ -504,7 +504,7 @@ export default function Homepage() {
                         </span>
                       </div>
                       <div className="flex items-center space-x-2">
-                        <span style={{ color: '#baf200', fontSize: '14px' }}>✓</span>
+                        <span style={{ color: '#baf200', fontSize: '14px' }}>���</span>
                         <span style={{ color: '#f6f8f9', fontSize: '12px', fontWeight: '400', fontFamily: '-apple-system, "system-ui", Inter, "Segoe UI", Roboto, "Noto Sans", Ubuntu, sans-serif' }}>
                           Gelirde %7–18 artış
                         </span>
@@ -820,6 +820,8 @@ export default function Homepage() {
           </div>
         </section>
       </div>
+
+      <Footer />
     </div>
   );
 }
