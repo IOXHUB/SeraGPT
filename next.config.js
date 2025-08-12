@@ -23,12 +23,6 @@ const nextConfig = {
           { key: 'Content-Type', value: 'application/json; charset=utf-8' },
         ],
       },
-      {
-        source: '/(.*)',
-        headers: [
-          { key: 'Content-Type', value: 'text/html; charset=utf-8' },
-        ],
-      },
     ];
   },
 }
