@@ -97,7 +97,7 @@ export default function DashboardPage() {
     { id: 'equipment', title: 'Ekipman Listesi', description: 'Mühendis onaylı ekipmanlar' },
     { id: 'market', title: 'Pazar Analizi', description: 'Ticaret ve fiyat verileri' },
     { id: 'layout', title: 'Yerleşim Planı', description: '2D/3D sera tasarımları' },
-    { id: 'reports', title: 'Raporlar��m', description: 'Önceki analizlerinizi görün' }
+    { id: 'reports', title: 'Raporlar��m', description: 'Önceki analizlerinizi g��rün' }
   ];
 
   // Token packages for purchase
@@ -763,11 +763,7 @@ export default function DashboardPage() {
                         key={item.id}
                         onClick={(e) => {
                           e.stopPropagation();
-                          if (item.modal) {
-                            setActiveModal(item.id);
-                          } else if (item.href) {
-                            window.location.href = item.href;
-                          }
+                          window.location.href = item.href;
                           setMenuPopupOpen(false);
                         }}
                         className="w-full px-4 py-3 text-left text-sm text-gray-700 hover:bg-gray-100 border-b border-gray-100 last:border-b-0"
