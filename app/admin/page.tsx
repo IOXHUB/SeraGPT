@@ -113,33 +113,54 @@ export default function AdminDashboard() {
 
     try {
       setDataLoading(true);
-      
-      // Mock comprehensive admin data
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      const mockStats: AdminStats = {
-        totalUsers: 1847,
-        activeUsers: 892,
-        totalAnalyses: 5634,
-        systemHealth: 99.9,
-        apiCalls: 45230,
-        revenue: 128450,
-        errorCount: 12,
-        backupStatus: 'completed'
-      };
 
-      const mockSystemStatus = {
-        server: { status: 'healthy', cpu: 45, memory: 67, disk: 23 },
-        database: { status: 'healthy', connections: 23, queries: 1245 },
-        apis: { active: 12, failing: 1, avgResponse: 145 },
-        cache: { hitRate: 94.5, size: '2.3GB', evictions: 45 }
-      };
-      
-      setStats(mockStats);
-      setSystemStatus(mockSystemStatus);
-      
+      // Fetch real admin data from API
+      const response = await fetch('/api/admin/dashboard');
+
+      if (!response.ok) {
+        throw new Error('Failed to fetch admin data');
+      }
+
+      const data = await response.json();
+
+      if (data.success) {
+        setStats(data.data.stats || {
+          totalUsers: 0,
+          activeUsers: 0,
+          totalAnalyses: 0,
+          systemHealth: 0,
+          apiCalls: 0,
+          revenue: 0,
+          errorCount: 0,
+          backupStatus: 'unknown'
+        });
+        setSystemStatus(data.data.systemStatus || {
+          server: { status: 'unknown', cpu: 0, memory: 0, disk: 0 },
+          database: { status: 'unknown', connections: 0, queries: 0 },
+          apis: { active: 0, failing: 0, avgResponse: 0 },
+          cache: { hitRate: 0, size: '0GB', evictions: 0 }
+        });
+      }
+
     } catch (error) {
       console.error('Failed to load admin data:', error);
+      // Set empty states on error
+      setStats({
+        totalUsers: 0,
+        activeUsers: 0,
+        totalAnalyses: 0,
+        systemHealth: 0,
+        apiCalls: 0,
+        revenue: 0,
+        errorCount: 0,
+        backupStatus: 'error'
+      });
+      setSystemStatus({
+        server: { status: 'error', cpu: 0, memory: 0, disk: 0 },
+        database: { status: 'error', connections: 0, queries: 0 },
+        apis: { active: 0, failing: 0, avgResponse: 0 },
+        cache: { hitRate: 0, size: '0GB', evictions: 0 }
+      });
     } finally {
       setDataLoading(false);
     }
