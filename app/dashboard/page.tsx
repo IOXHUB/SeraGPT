@@ -55,15 +55,6 @@ export default function DashboardPage() {
   // Sadece mevcut sayfalar - 404 olmayan linkler
   const menuGroups = [
     {
-      id: 'overview',
-      title: 'Genel Bakış',
-      icon: '🏠',
-      color: '#146448',
-      items: [
-        { id: 'overview', title: 'Ana Sayfa', href: '/dashboard', icon: '📊' }
-      ]
-    },
-    {
       id: 'analysis',
       title: 'Analizler',
       icon: '🔬',

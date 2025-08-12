@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useAuth } from '@/lib/hooks/useAuth';
 import SeraGPTLogo from '@/components/ui/SeraGPTLogo';
 
 interface DashboardLayoutProps {
@@ -10,33 +11,21 @@ interface DashboardLayoutProps {
 }
 
 export default function DashboardLayout({ children, title, subtitle }: DashboardLayoutProps) {
+  const { user, loading, signOut } = useAuth();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [analysisDropdownOpen, setAnalysisDropdownOpen] = useState(false);
-  const [user, setUser] = useState<any>(null);
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
-    // Check for user in localStorage for dev
-    if (typeof window !== 'undefined') {
-      const devUser = localStorage.getItem('seragpt_user');
-      console.log('DashboardLayout Auth Debug:', {
-        hasLocalStorageUser: !!devUser,
-        localStorage: devUser
-      });
-      if (devUser) {
-        try {
-          const parsedUser = JSON.parse(devUser);
-          setUser(parsedUser);
-          console.log('Dashboard User Set:', parsedUser);
-        } catch (e) {
-          console.warn('Invalid user data in localStorage');
-        }
-      } else {
-        console.warn('No user in localStorage - dashboard accessible without auth!');
-      }
-    }
   }, []);
+
+  useEffect(() => {
+    if (mounted && !loading && !user) {
+      console.log('🚫 DashboardLayout access denied - redirecting to login');
+      window.location.href = '/auth/login';
+    }
+  }, [user, loading, mounted]);
 
   // Click outside handler for dropdown
   useEffect(() => {
@@ -55,25 +44,30 @@ export default function DashboardLayout({ children, title, subtitle }: Dashboard
 
   const handleLogout = async () => {
     try {
-      // Clear localStorage
-      if (typeof window !== 'undefined') {
-        localStorage.removeItem('seragpt_user');
-      }
-      // Redirect to login
+      await signOut();
       window.location.href = '/auth/login';
     } catch (error) {
       console.error('Logout error:', error);
-      // Force redirect even if logout fails
       window.location.href = '/auth/login';
     }
   };
 
   // Don't render user-dependent UI during SSR
-  if (!mounted) {
+  if (!mounted || loading) {
     return (
       <div className="min-h-screen" style={{ backgroundColor: '#146448' }}>
         <div className="flex items-center justify-center min-h-screen">
-          <div className="text-white text-lg">Loading...</div>
+          <div className="text-white text-lg">🔐 Yükleniyor...</div>
+        </div>
+      </div>
+    );
+  }
+
+  if (!user) {
+    return (
+      <div className="min-h-screen" style={{ backgroundColor: '#146448' }}>
+        <div className="flex items-center justify-center min-h-screen">
+          <div className="text-white text-lg">Giriş yapmanız gerekiyor...</div>
         </div>
       </div>
     );
@@ -138,7 +132,7 @@ export default function DashboardLayout({ children, title, subtitle }: Dashboard
               {/* User Info */}
               <div className="flex items-center space-x-3">
                 <span className="text-white font-medium">
-                  👤 {user?.user_metadata?.full_name || user?.email || 'Giriş Yapılmadı'}
+                  👤 {user?.email?.split('@')[0] || 'Kullanıcı'}
                 </span>
                 <span className="px-3 py-1 text-xs font-medium bg-[#baf200] text-[#1e3237] rounded-full">
                   Premium
@@ -199,7 +193,7 @@ export default function DashboardLayout({ children, title, subtitle }: Dashboard
                 <div className="flex items-center justify-between px-4 py-2">
                   <div className="flex items-center space-x-3">
                     <h2 className="text-lg font-semibold text-white">
-                      👤 {user?.user_metadata?.full_name || user?.email || 'Giriş Yapılmadı'}
+                      👤 {user?.email?.split('@')[0] || 'Kullanıcı'}
                     </h2>
                     <span className="px-2 py-1 text-xs font-medium bg-[#baf200] text-[#1e3237] rounded-full">
                       Premium
