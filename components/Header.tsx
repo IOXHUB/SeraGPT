@@ -97,32 +97,25 @@ export default function Header() {
             {/* Center navigation links */}
             <div className="space-y-3">
               <a
-                href="/yardim"
+                href="/destek"
                 className="block text-gray-700 hover:text-gray-900 font-medium transition-colors py-2"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                ❓ Yardım
+                Destek Kaydı Aç
               </a>
               <a
                 href="/danismanlik"
                 className="block text-gray-700 hover:text-gray-900 font-medium transition-colors py-2"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                👨‍🔬 Danışmanlık
+                Proje Danışmanlığı
               </a>
               <a
                 href="/anahtar-teslim-proje"
                 className="block text-gray-700 hover:text-gray-900 font-medium transition-colors py-2"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                Anahtar Teslim Proje
-              </a>
-              <a
-                href="/destek"
-                className="block text-gray-700 hover:text-gray-900 font-medium transition-colors py-2"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                🎫 Destek Talebi
+                Anahtar Teslim Sera Teklifi Al
               </a>
             </div>
 
