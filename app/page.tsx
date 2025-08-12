@@ -62,7 +62,7 @@ export default function TestNewPage() {
                   {user ? (
                     <div className="flex items-center space-x-4">
                       <Link
-                        href="/dashboard/direct"
+                        href="/dashboard"
                         className="px-6 py-3 rounded-xl font-medium transition-all hover:opacity-90"
                         style={{
                           backgroundColor: '#baf200',
@@ -854,7 +854,7 @@ export default function TestNewPage() {
                     <div className="flex items-start space-x-3">
                       <span style={{ color: '#baf200', fontSize: '16px' }}>•</span>
                       <p style={{ color: '#f6f8f9', fontSize: '16px', fontWeight: '400' }}>
-                        Tahmini yatırım maliyeti
+                        Tahmini yatır��m maliyeti
                       </p>
                     </div>
                     <div className="flex items-start space-x-3">
