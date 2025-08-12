@@ -35,6 +35,9 @@ export default function Header() {
           <a href="/anahtar-teslim-proje" className="font-medium transition-colors hover:text-[#baf200]" style={{ color: '#f6f8f9 !important' }}>
             <p style={{ color: '#f6f8f9 !important' }}>Anahtar Teslim Sera</p>
           </a>
+          <a href="/blog" className="font-medium transition-colors hover:text-[#baf200]" style={{ color: '#f6f8f9 !important' }}>
+            <p style={{ color: '#f6f8f9 !important' }}>Blog</p>
+          </a>
         </nav>
 
         {/* Right menu - conditional based on user state */}
@@ -134,6 +137,13 @@ export default function Header() {
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Anahtar Teslim Sera Teklifi Al
+              </a>
+              <a
+                href="/blog"
+                className="block text-white hover:text-[#baf200] font-medium transition-colors py-2"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Blog
               </a>
             </div>
 
