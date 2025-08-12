@@ -30,6 +30,21 @@ export default function DashboardLayout({ children, title, subtitle }: Dashboard
     }
   }, []);
 
+  // Click outside handler for dropdown
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as Element;
+      if (analysisDropdownOpen && !target.closest('[data-dropdown="analysis"]')) {
+        setAnalysisDropdownOpen(false);
+      }
+    };
+
+    if (analysisDropdownOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+      return () => document.removeEventListener('mousedown', handleClickOutside);
+    }
+  }, [analysisDropdownOpen]);
+
   const handleLogout = async () => {
     try {
       // Clear localStorage
