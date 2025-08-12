@@ -648,9 +648,9 @@ export default function DashboardPage() {
       <div className="flex h-screen bg-[#146448] overflow-hidden">
         
         {/* SIDEBAR */}
-        <aside className="lg:translate-x-0 transition-transform duration-300 fixed lg:relative z-40 flex flex-col w-64 bg-[#146448] border-r border-white/10 h-full" style={{
-          transform: typeof window !== 'undefined' && window.innerWidth >= 1024 ? 'translateX(0)' : (sidebarOpen ? 'translateX(0)' : 'translateX(-100%)')
-        }}>
+        <aside className={`lg:translate-x-0 transition-transform duration-300 fixed lg:relative z-40 flex flex-col w-64 bg-[#146448] border-r border-white/10 h-full ${
+          sidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
+        }`}>
           {/* Üst logo alanı */}
           <div className="h-16 flex items-center px-4 border-b border-white/10">
             <img 
