@@ -125,7 +125,7 @@ export default function Header() {
                 className="block text-gray-700 hover:text-gray-900 font-medium transition-colors py-2"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                Destek
+                🎫 Destek Talebi
               </a>
             </div>
 
