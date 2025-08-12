@@ -1,13 +1,11 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useAuth } from '@/lib/hooks/useAuth';
 import DashboardLayout from '@/components/dashboard/DashboardLayout';
-import { MockAnalysisService, AnalysisFormData } from '@/lib/services/mock-analysis-service';
 
-export const dynamic = 'force-dynamic';
-
-interface ROIFormData extends AnalysisFormData {
+interface AnalysisFormData {
+  type: 'roi';
   location: {
     city: string;
     district?: string;
@@ -24,343 +22,337 @@ interface ROIFormData extends AnalysisFormData {
 }
 
 export default function ROIAnalysisPage() {
-  const { user, hasTokens, consumeToken } = useAuth();
-  const [currentStep, setCurrentStep] = useState(1);
-  const [loading, setLoading] = useState(false);
-  const [previewLoading, setPreviewLoading] = useState(false);
-  const [preview, setPreview] = useState<any>(null);
-  const [formData, setFormData] = useState<ROIFormData>({
+  const { user, loading, signOut } = useAuth();
+  const [formData, setFormData] = useState<AnalysisFormData>({
     type: 'roi',
-    location: {
-      city: 'antalya'
-    },
-    cropType: 'domates',
-    greenhouseSize: 1000,
-    investment: {
-      total: 200000,
-      equipment: 120000,
-      construction: 80000
-    },
-    targetProduction: 80,
+    location: { city: '' },
+    cropType: '',
+    greenhouseSize: 0,
+    investment: { total: 0, equipment: 0, construction: 0 },
+    targetProduction: 0,
     operationPeriod: 5
   });
+  const [preview, setPreview] = useState<any>(null);
+  const [isAnalyzing, setIsAnalyzing] = useState(false);
 
-  // Load analysis preview when form data changes
-  useEffect(() => {
-    if (currentStep === 2) {
-      loadPreview();
-    }
-  }, [currentStep]);
+  const cities = [
+    'Antalya', 'Mersin', 'Adana', 'İzmir', 'Muğla', 'Aydın',
+    'Manisa', 'Ankara', 'Konya', 'İstanbul', 'Bursa', 'Sakarya'
+  ];
 
-  const loadPreview = async () => {
-    setPreviewLoading(true);
-    try {
-      const previewData = await MockAnalysisService.getAnalysisPreview('roi', formData);
-      setPreview(previewData);
-    } catch (error) {
-      console.error('Preview yüklenirken hata:', error);
-    } finally {
-      setPreviewLoading(false);
-    }
-  };
+  const cropTypes = [
+    'Domates', 'Biber', 'Patlıcan', 'Salatalık', 'Çilek',
+    'Marul', 'Roka', 'Maydanoz', 'Fesleğen', 'Çiçek'
+  ];
 
   const handleInputChange = (field: string, value: any) => {
-    setFormData(prev => ({
-      ...prev,
-      [field]: value
-    }));
+    if (field.includes('.')) {
+      const [parent, child] = field.split('.');
+      setFormData(prev => ({
+        ...prev,
+        [parent]: {
+          ...prev[parent as keyof AnalysisFormData],
+          [child]: value
+        }
+      }));
+    } else {
+      setFormData(prev => ({ ...prev, [field]: value }));
+    }
   };
 
-  const handleInvestmentChange = (field: string, value: number) => {
-    setFormData(prev => ({
-      ...prev,
-      investment: {
-        ...prev.investment,
-        [field]: value
+  const generatePreview = async () => {
+    try {
+      const response = await fetch('/api/analysis/preview', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${await user?.getIdToken()}`
+        },
+        body: JSON.stringify({ type: 'roi', data: formData })
+      });
+
+      if (!response.ok) {
+        throw new Error('Preview generation failed');
       }
-    }));
+
+      const previewData = await response.json();
+      setPreview(previewData);
+    } catch (error) {
+      console.error('Preview generation failed:', error);
+      alert('Önizleme oluşturulamadı. Lütfen tekrar deneyin.');
+    }
   };
 
-  const handleNext = () => {
-    setCurrentStep(2);
-  };
-
-  const handleSubmit = async () => {
-    if (!hasTokens(1)) {
-      alert('Analiz oluşturmak için yeterli token\'iniz bulunmuyor.');
+  const startAnalysis = async () => {
+    if (!user) {
+      alert('Analiz yapmak için giriş yapmanız gerekiyor');
       return;
     }
 
-    setLoading(true);
     try {
-      // Consume token
-      await consumeToken(1, 'analysis_created');
+      setIsAnalyzing(true);
       
-      // Create analysis
-      const result = await MockAnalysisService.createAnalysis(formData);
+      const response = await fetch('/api/analysis/create', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${await user.getIdToken()}`
+        },
+        body: JSON.stringify(formData)
+      });
+
+      if (!response.ok) {
+        throw new Error('Analysis creation failed');
+      }
+
+      const result = await response.json();
       
-      alert(`ROI Analizi başlatıldı! Analiz ID: ${result.id}`);
-      
-      // Redirect to analyses list or result page
-      window.location.href = '/dashboard/analysis';
-      
-    } catch (error: any) {
-      console.error('Analiz oluşturulurken hata:', error);
-      alert('Analiz oluşturulurken hata oluştu: ' + error.message);
+      if (result.success) {
+        alert('Analiz başlatıldı! Sonuçları Analizlerim sayfasından takip edebilirsiniz.');
+        window.location.href = '/dashboard/analysis';
+      } else {
+        throw new Error(result.error || 'Analysis failed');
+      }
+    } catch (error) {
+      console.error('Analysis failed:', error);
+      alert('Analiz başlatılamadı. Lütfen tekrar deneyin.');
     } finally {
-      setLoading(false);
+      setIsAnalyzing(false);
     }
   };
 
-  const cities = [
-    { value: 'antalya', label: 'Antalya' },
-    { value: 'mersin', label: 'Mersin' },
-    { value: 'adana', label: 'Adana' },
-    { value: 'izmir', label: 'İzmir' },
-    { value: 'bursa', label: 'Bursa' },
-    { value: 'konya', label: 'Konya' }
-  ];
+  const isFormValid = () => {
+    return formData.location.city &&
+           formData.cropType &&
+           formData.greenhouseSize > 0 &&
+           formData.investment.total > 0 &&
+           formData.targetProduction > 0;
+  };
 
-  const crops = [
-    { value: 'domates', label: 'Domates' },
-    { value: 'salatalik', label: 'Salatalık' },
-    { value: 'biber', label: 'Biber' },
-    { value: 'marul', label: 'Marul' },
-    { value: 'patlican', label: 'Patlıcan' }
-  ];
-
-  return (
-    <DashboardLayout 
-      title="ROI Simülasyonu" 
-      subtitle="Sera yatırımı geri dönüş analizi"
-    >
-      <div className="space-y-6">
-        {/* Progress Steps */}
-        <div className="bg-white rounded-lg border p-6">
-          <div className="flex items-center space-x-4">
-            <div className={`flex items-center justify-center w-8 h-8 rounded-full ${
-              currentStep >= 1 ? 'bg-green-600 text-white' : 'bg-gray-200 text-gray-600'
-            }`}>
-              {currentStep > 1 ? '✓' : '1'}
-            </div>
-            <div className={`flex-1 h-1 ${
-              currentStep > 1 ? 'bg-green-600' : 'bg-gray-200'
-            }`}></div>
-            <div className={`flex items-center justify-center w-8 h-8 rounded-full ${
-              currentStep >= 2 ? 'bg-green-600 text-white' : 'bg-gray-200 text-gray-600'
-            }`}>
-              {currentStep > 2 ? '✓' : '2'}
-            </div>
-            <div className={`flex-1 h-1 ${
-              currentStep > 2 ? 'bg-green-600' : 'bg-gray-200'
-            }`}></div>
-            <div className={`flex items-center justify-center w-8 h-8 rounded-full ${
-              currentStep >= 3 ? 'bg-green-600 text-white' : 'bg-gray-200 text-gray-600'
-            }`}>
-              3
-            </div>
-          </div>
-          <div className="flex justify-between mt-2 text-sm text-gray-600">
-            <span>Sera Bilgileri</span>
-            <span>Önizleme</span>
-            <span>Sonuç</span>
+  if (loading) {
+    return (
+      <DashboardLayout user={user} signOut={signOut}>
+        <div className="p-8">
+          <div className="animate-pulse space-y-6">
+            <div className="h-8 bg-gray-200 rounded w-1/4"></div>
+            <div className="h-96 bg-gray-200 rounded"></div>
           </div>
         </div>
+      </DashboardLayout>
+    );
+  }
 
-        {/* Step 1: Form */}
-        {currentStep === 1 && (
-          <div className="bg-white rounded-lg border p-6">
-            <h2 className="text-lg font-semibold mb-4">Sera Bilgileri</h2>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Konum
-                </label>
-                <select 
-                  className="w-full border border-gray-300 rounded-lg px-3 py-2"
-                  value={formData.location.city}
-                  onChange={(e) => handleInputChange('location', { city: e.target.value })}
-                >
-                  {cities.map(city => (
-                    <option key={city.value} value={city.value}>{city.label}</option>
-                  ))}
-                </select>
-              </div>
-              
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Ürün Türü
-                </label>
-                <select 
-                  className="w-full border border-gray-300 rounded-lg px-3 py-2"
-                  value={formData.cropType}
-                  onChange={(e) => handleInputChange('cropType', e.target.value)}
-                >
-                  {crops.map(crop => (
-                    <option key={crop.value} value={crop.value}>{crop.label}</option>
-                  ))}
-                </select>
-              </div>
-              
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Sera Boyutu (m²)
-                </label>
-                <input
-                  type="number"
-                  className="w-full border border-gray-300 rounded-lg px-3 py-2"
-                  value={formData.greenhouseSize}
-                  onChange={(e) => handleInputChange('greenhouseSize', parseInt(e.target.value))}
-                  min="100"
-                  max="10000"
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Hedef Üretim (ton/yıl)
-                </label>
-                <input
-                  type="number"
-                  className="w-full border border-gray-300 rounded-lg px-3 py-2"
-                  value={formData.targetProduction}
-                  onChange={(e) => handleInputChange('targetProduction', parseInt(e.target.value))}
-                  min="1"
-                  max="500"
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Toplam Yatırım (₺)
-                </label>
-                <input
-                  type="number"
-                  className="w-full border border-gray-300 rounded-lg px-3 py-2"
-                  value={formData.investment.total}
-                  onChange={(e) => handleInvestmentChange('total', parseInt(e.target.value))}
-                  min="50000"
-                  max="2000000"
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  İşletme Süresi (yıl)
-                </label>
-                <select 
-                  className="w-full border border-gray-300 rounded-lg px-3 py-2"
-                  value={formData.operationPeriod}
-                  onChange={(e) => handleInputChange('operationPeriod', parseInt(e.target.value))}
-                >
-                  <option value={3}>3 Yıl</option>
-                  <option value={5}>5 Yıl</option>
-                  <option value={10}>10 Yıl</option>
-                  <option value={15}>15 Yıl</option>
-                </select>
-              </div>
-            </div>
-
-            <div className="mt-6 flex justify-end">
-              <button
-                onClick={handleNext}
-                className="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-lg transition-colors"
-              >
-                Devam Et
-              </button>
-            </div>
+  return (
+    <DashboardLayout user={user} signOut={signOut}>
+      <div className="p-8">
+        <div className="max-w-4xl mx-auto">
+          <div className="mb-8">
+            <h1 className="text-3xl font-bold mb-2" style={{ color: '#1e3237' }}>
+              ROI Analizi
+            </h1>
+            <p className="text-gray-600">
+              Sera yatırımınızın karlılığını ve geri dönüş süresini analiz edin
+            </p>
           </div>
-        )}
 
-        {/* Step 2: Preview */}
-        {currentStep === 2 && (
-          <div className="bg-white rounded-lg border p-6">
-            <h2 className="text-lg font-semibold mb-4">Analiz Önizleme</h2>
-            
-            {previewLoading ? (
-              <div className="flex items-center justify-center py-8">
-                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-green-600"></div>
-                <span className="ml-2 text-gray-600">Önizleme yükleniyor...</span>
-              </div>
-            ) : preview ? (
-              <div className="space-y-4">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                  <div className="bg-green-50 rounded-lg p-4">
-                    <div className="text-sm text-gray-600">Tahmini ROI</div>
-                    <div className="text-xl font-bold text-green-600">{preview.estimatedROI}</div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {/* Form */}
+            <div className="rounded-lg p-6" style={{ backgroundColor: '#f6f8f9' }}>
+              <h2 className="text-xl font-semibold mb-6" style={{ color: '#1e3237' }}>
+                Analiz Parametreleri
+              </h2>
+
+              <div className="space-y-6">
+                {/* Lokasyon */}
+                <div>
+                  <label className="block text-sm font-medium mb-2" style={{ color: '#1e3237' }}>
+                    Şehir
+                  </label>
+                  <select
+                    value={formData.location.city}
+                    onChange={(e) => handleInputChange('location.city', e.target.value)}
+                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  >
+                    <option value="">Şehir seçin</option>
+                    {cities.map(city => (
+                      <option key={city} value={city}>{city}</option>
+                    ))}
+                  </select>
+                </div>
+
+                {/* Ürün Türü */}
+                <div>
+                  <label className="block text-sm font-medium mb-2" style={{ color: '#1e3237' }}>
+                    Ürün Türü
+                  </label>
+                  <select
+                    value={formData.cropType}
+                    onChange={(e) => handleInputChange('cropType', e.target.value)}
+                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  >
+                    <option value="">Ürün türü seçin</option>
+                    {cropTypes.map(crop => (
+                      <option key={crop} value={crop}>{crop}</option>
+                    ))}
+                  </select>
+                </div>
+
+                {/* Sera Büyüklüğü */}
+                <div>
+                  <label className="block text-sm font-medium mb-2" style={{ color: '#1e3237' }}>
+                    Sera Büyüklüğü (m²)
+                  </label>
+                  <input
+                    type="number"
+                    value={formData.greenhouseSize}
+                    onChange={(e) => handleInputChange('greenhouseSize', Number(e.target.value))}
+                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    placeholder="Örn: 1000"
+                  />
+                </div>
+
+                {/* Yatırım Tutarları */}
+                <div>
+                  <label className="block text-sm font-medium mb-2" style={{ color: '#1e3237' }}>
+                    Toplam Yatırım (₺)
+                  </label>
+                  <input
+                    type="number"
+                    value={formData.investment.total}
+                    onChange={(e) => handleInputChange('investment.total', Number(e.target.value))}
+                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    placeholder="Örn: 500000"
+                  />
+                </div>
+
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium mb-2" style={{ color: '#1e3237' }}>
+                      Ekipman (₺)
+                    </label>
+                    <input
+                      type="number"
+                      value={formData.investment.equipment}
+                      onChange={(e) => handleInputChange('investment.equipment', Number(e.target.value))}
+                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    />
                   </div>
-                  <div className="bg-blue-50 rounded-lg p-4">
-                    <div className="text-sm text-gray-600">Geri Dönüş Süresi</div>
-                    <div className="text-xl font-bold text-blue-600">{preview.paybackPeriod}</div>
-                  </div>
-                  <div className="bg-yellow-50 rounded-lg p-4">
-                    <div className="text-sm text-gray-600">Risk Seviyesi</div>
-                    <div className="text-xl font-bold text-yellow-600">{preview.riskLevel}</div>
-                  </div>
-                  <div className="bg-purple-50 rounded-lg p-4">
-                    <div className="text-sm text-gray-600">Güven Oranı</div>
-                    <div className="text-xl font-bold text-purple-600">{preview.confidence}%</div>
+                  <div>
+                    <label className="block text-sm font-medium mb-2" style={{ color: '#1e3237' }}>
+                      İnşaat (₺)
+                    </label>
+                    <input
+                      type="number"
+                      value={formData.investment.construction}
+                      onChange={(e) => handleInputChange('investment.construction', Number(e.target.value))}
+                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    />
                   </div>
                 </div>
 
-                <div className="bg-gray-50 rounded-lg p-4">
-                  <h3 className="font-medium text-gray-900 mb-2">Analiz Parametreleri</h3>
-                  <div className="grid grid-cols-2 gap-4 text-sm">
-                    <div>
-                      <span className="text-gray-600">Konum:</span>
-                      <span className="ml-2 font-medium">{cities.find(c => c.value === formData.location.city)?.label}</span>
+                {/* Hedef Üretim */}
+                <div>
+                  <label className="block text-sm font-medium mb-2" style={{ color: '#1e3237' }}>
+                    Hedef Üretim (kg/yıl)
+                  </label>
+                  <input
+                    type="number"
+                    value={formData.targetProduction}
+                    onChange={(e) => handleInputChange('targetProduction', Number(e.target.value))}
+                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    placeholder="Örn: 100000"
+                  />
+                </div>
+
+                {/* Analiz Süresi */}
+                <div>
+                  <label className="block text-sm font-medium mb-2" style={{ color: '#1e3237' }}>
+                    Analiz Süresi (yıl)
+                  </label>
+                  <select
+                    value={formData.operationPeriod}
+                    onChange={(e) => handleInputChange('operationPeriod', Number(e.target.value))}
+                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  >
+                    <option value={3}>3 yıl</option>
+                    <option value={5}>5 yıl</option>
+                    <option value={10}>10 yıl</option>
+                    <option value={15}>15 yıl</option>
+                  </select>
+                </div>
+
+                {/* Butonlar */}
+                <div className="flex space-x-4">
+                  <button
+                    onClick={generatePreview}
+                    disabled={!isFormValid()}
+                    className={`flex-1 py-3 px-6 rounded-lg font-medium transition-all ${
+                      isFormValid()
+                        ? 'hover:opacity-90'
+                        : 'opacity-50 cursor-not-allowed'
+                    }`}
+                    style={{ backgroundColor: '#146448', color: '#f6f8f9' }}
+                  >
+                    📊 Önizleme
+                  </button>
+                  <button
+                    onClick={startAnalysis}
+                    disabled={!isFormValid() || isAnalyzing}
+                    className={`flex-1 py-3 px-6 rounded-lg font-medium transition-all ${
+                      isFormValid() && !isAnalyzing
+                        ? 'hover:opacity-90'
+                        : 'opacity-50 cursor-not-allowed'
+                    }`}
+                    style={{ backgroundColor: '#baf200', color: '#1e3237' }}
+                  >
+                    {isAnalyzing ? '⏳ Analiz Ediliyor...' : '🚀 Analizi Başlat'}
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/* Önizleme */}
+            <div className="rounded-lg p-6" style={{ backgroundColor: '#f6f8f9' }}>
+              <h2 className="text-xl font-semibold mb-6" style={{ color: '#1e3237' }}>
+                Analiz Önizleme
+              </h2>
+
+              {preview ? (
+                <div className="space-y-4">
+                  <div className="p-4 rounded-lg" style={{ backgroundColor: '#ffffff' }}>
+                    <h3 className="font-semibold mb-2" style={{ color: '#1e3237' }}>
+                      Temel Bilgiler
+                    </h3>
+                    <div className="text-sm space-y-1">
+                      <p><strong>Lokasyon:</strong> {formData.location.city}</p>
+                      <p><strong>Ürün:</strong> {formData.cropType}</p>
+                      <p><strong>Alan:</strong> {formData.greenhouseSize.toLocaleString()} m²</p>
+                      <p><strong>Yatırım:</strong> ₺{formData.investment.total.toLocaleString()}</p>
                     </div>
-                    <div>
-                      <span className="text-gray-600">Ürün:</span>
-                      <span className="ml-2 font-medium">{crops.find(c => c.value === formData.cropType)?.label}</span>
-                    </div>
-                    <div>
-                      <span className="text-gray-600">Sera Boyutu:</span>
-                      <span className="ml-2 font-medium">{formData.greenhouseSize.toLocaleString()} m²</span>
-                    </div>
-                    <div>
-                      <span className="text-gray-600">Toplam Yatırım:</span>
-                      <span className="ml-2 font-medium">₺{formData.investment.total.toLocaleString()}</span>
+                  </div>
+
+                  <div className="p-4 rounded-lg" style={{ backgroundColor: '#ffffff' }}>
+                    <h3 className="font-semibold mb-2" style={{ color: '#1e3237' }}>
+                      Ön Hesaplamalar
+                    </h3>
+                    <div className="text-sm space-y-1">
+                      <p><strong>Tahmini ROI:</strong> {preview.estimatedROI || 'Hesaplanıyor...'}%</p>
+                      <p><strong>Geri Ödeme Süresi:</strong> {preview.paybackPeriod || 'Hesaplanıyor...'} yıl</p>
+                      <p><strong>Yıllık Gelir:</strong> ₺{preview.annualRevenue?.toLocaleString() || 'Hesaplanıyor...'}</p>
                     </div>
                   </div>
                 </div>
-              </div>
-            ) : null}
-
-            <div className="mt-6 flex justify-between">
-              <button
-                onClick={() => setCurrentStep(1)}
-                className="bg-gray-500 hover:bg-gray-600 text-white px-6 py-2 rounded-lg transition-colors"
-              >
-                Geri Dön
-              </button>
-              <button
-                onClick={handleSubmit}
-                disabled={loading || !hasTokens(1)}
-                className="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-lg transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed"
-              >
-                {loading ? (
-                  <div className="flex items-center">
-                    <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
-                    Analiz Oluşturuluyor...
-                  </div>
-                ) : (
-                  `Analizi Başlat (1 Token)`
-                )}
-              </button>
+              ) : (
+                <div className="text-center py-12">
+                  <div className="text-4xl mb-4">📊</div>
+                  <p className="text-gray-600">
+                    Parametreleri doldurun ve önizleme için butona tıklayın
+                  </p>
+                </div>
+              )}
             </div>
-
-            {!hasTokens(1) && (
-              <div className="mt-4 p-3 bg-red-50 border border-red-200 rounded-lg">
-                <p className="text-sm text-red-700">
-                  ⚠️ Bu analizi oluşturmak için yeterli token'iniz bulunmuyor. 
-                  <a href="/dashboard/tokens" className="font-medium underline ml-1">Token satın alın</a>
-                </p>
-              </div>
-            )}
           </div>
-        )}
+        </div>
       </div>
     </DashboardLayout>
   );
