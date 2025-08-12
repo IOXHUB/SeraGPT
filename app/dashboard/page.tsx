@@ -111,11 +111,11 @@ export default function DashboardPage() {
     }
   ];
 
-  // Quick Action Buttons for Dashboard
+  // Sadece mevcut sayfalara yönlendiren hızlı eylemler
   const quickActions = [
-    { id: 'new-roi', title: 'Yeni ROI Analizi', description: 'Yatırım geri dönüşü hesapla', href: '/dashboard/analysis/roi', icon: '💰', color: '#059669' },
-    { id: 'climate-check', title: 'İklim Kontrolü', description: 'Bölgenizi analiz edin', href: '/dashboard/analysis/climate', icon: '🌡️', color: '#2563eb' },
-    { id: 'market-data', title: 'Piyasa Verileri', description: 'Güncel fiyat bilgileri', href: '/dashboard/data/market', icon: '📈', color: '#dc2626' },
+    { id: 'new-roi', title: 'ROI Analizi', description: 'Yatırım geri dönüşü hesapla', href: '/dashboard/analysis/roi', icon: '💰', color: '#059669' },
+    { id: 'climate-check', title: 'İklim Analizi', description: 'Bölge uygunluğu kontrol et', href: '/dashboard/analysis/climate', icon: '🌡️', color: '#2563eb' },
+    { id: 'ai-chat', title: 'AI Asistan', description: 'SeraGPT ile sohbet et', href: '/dashboard/ai-chat', icon: '🤖', color: '#dc2626' },
     { id: 'my-reports', title: 'Raporlarım', description: 'PDF raporları görüntüle', href: '/dashboard/reports', icon: '📊', color: '#7c3aed' }
   ];
 
