@@ -122,6 +122,53 @@ export default function AITrainingPage() {
     }
   };
 
+  const handleCreateTraining = async () => {
+    if (!newTrainingForm.name || !newTrainingForm.datasetId) {
+      alert('Lütfen eğitim adı ve veri seti seçin');
+      return;
+    }
+
+    setIsCreatingTraining(true);
+    try {
+      const response = await fetch('/api/admin/ai-training', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newTrainingForm),
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        // Add new training to jobs list
+        setJobs(prev => [result.data, ...prev]);
+        setShowNewTrainingModal(false);
+        // Reset form
+        setNewTrainingForm({
+          name: '',
+          type: 'fine-tuning',
+          datasetId: '',
+          epochs: 5,
+          learningRate: 0.001,
+          batchSize: 32
+        });
+        alert('✅ Yeni eğitim başarıyla başlatıldı!');
+      } else {
+        alert('❌ Eğitim başlatılamadı: ' + result.error);
+      }
+    } catch (error) {
+      console.error('Error creating training:', error);
+      alert('❌ Bir hata oluştu. Lütfen tekrar deneyin.');
+    } finally {
+      setIsCreatingTraining(false);
+    }
+  };
+
+  const openNewTrainingModal = () => {
+    setShowNewTrainingModal(true);
+  };
+
   if (loading || dataLoading) {
     return (
       <div className="min-h-screen" style={{ backgroundColor: '#146448' }}>
