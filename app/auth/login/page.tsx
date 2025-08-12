@@ -39,7 +39,7 @@ export default function AuthPage() {
     } else if (error === 'pkce_error') {
       setMessage(errorMessage ?
         `❌ ${errorMessage}` :
-        '❌ E-posta doğrulama süresi dolmuş. Lütfen tekrar kayıt olmayı deneyin.'
+        '��� E-posta doğrulama süresi dolmuş. Lütfen tekrar kayıt olmayı deneyin.'
       );
     } else if (error === 'missing_code') {
       setMessage('❌ Doğrulama kodu eksik. Lütfen e-posta linkini tekrar kullanın.');
@@ -223,7 +223,7 @@ export default function AuthPage() {
     try {
       console.log('📝 Starting enhanced signup process...');
       
-      setMessage('📝 1/3 - Hesap bilgileri hazırlanıyor...');
+      setMessage('��� 1/3 - Hesap bilgileri hazırlanıyor...');
       await new Promise(resolve => setTimeout(resolve, 1000));
 
       setMessage('⚡ 2/3 - Hesap oluşturuluyor...');
@@ -334,7 +334,7 @@ export default function AuthPage() {
         className="max-w-md w-full"
       >
         {/* Logo and Header */}
-        <div className="text-center mb-8">
+        <div className="text-center mb-8 flex flex-col">
           <motion.div 
             initial={{ scale: 0.9 }}
             animate={{ scale: 1 }}
@@ -348,19 +348,19 @@ export default function AuthPage() {
             />
           </motion.div>
           
-          <h2 className="text-3xl font-bold text-gray-900 mb-2">
+          <h2 className="text-3xl font-bold text-gray-900 mx-auto mb-2">
             {isLogin ? 'Hoş Geldiniz' : 'Hesap Oluşturun'}
           </h2>
           <p className="text-gray-600">
             {isLogin 
-              ? 'SeraGPT hesabınıza giriş yapın' 
+              ? 'SeraGPT hesab��nıza giriş yapın' 
               : 'SeraGPT ile tarımsal analizlerinize başlayın'
             }
           </p>
 
           {/* Connection Status Indicator */}
           {connectionTest.tested && (
-            <div className={`mt-2 text-sm flex items-center justify-center ${
+            <div className={`mx-auto mt-2 text-sm flex items-center justify-center ${
               connectionTest.success ? 'text-green-600' : 'text-red-600'
             }`}>
               <div className={`w-2 h-2 rounded-full mr-2 ${
@@ -518,7 +518,8 @@ export default function AuthPage() {
             <button
               type="submit"
               disabled={loading || authLoading}
-              className="w-full flex justify-center py-4 px-4 border border-transparent rounded-lg text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-75 disabled:cursor-not-allowed transition-colors"
+              className="w-full flex justify-center py-4 px-4 border border-transparent rounded-lg text-sm font-medium disabled:opacity-75 disabled:cursor-not-allowed transition-colors"
+              style={{ backgroundColor: 'rgba(20, 100, 72, 1)', color: 'rgba(186, 242, 0, 1)' }}
             >
               {loading || authLoading ? (
                 <div className="flex items-center">
