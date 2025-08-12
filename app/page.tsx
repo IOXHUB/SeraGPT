@@ -8,6 +8,15 @@ export default function TestNewPage() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { user, loading, isAdmin } = useAuth();
 
+  // Prevent render issues during auth loading
+  if (typeof window !== 'undefined' && loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: '#146448' }}>
+        <div className="text-white text-lg">Yükleniyor...</div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen" style={{ backgroundColor: '#146448' }}>
       {/* Header */}
@@ -238,7 +247,7 @@ export default function TestNewPage() {
                   fontWeight: '600'
                 }}
               >
-                Sera Yatırımı Yapmak İstiyorum, Ama Nereden Başlayacağımı Bilmiyorum!
+                Sera Yatırım�� Yapmak İstiyorum, Ama Nereden Başlayacağımı Bilmiyorum!
               </h1>
             </div>
 
@@ -1206,7 +1215,7 @@ export default function TestNewPage() {
                         <li>• Su kaynağı ve sulama kapasitesi</li>
                         <li>• Enerji kaynakları ve maliyetleri</li>
                       </ul>
-                      <p>Tüm bu veriler yapay zeka ve mühendis ekibimizin de��erlendirmesiyle optimum yatırım modeli olarak raporlanır.</p>
+                      <p>Tüm bu veriler yapay zeka ve mühendis ekibimizin değerlendirmesiyle optimum yatırım modeli olarak raporlanır.</p>
                     </div>
                   </div>
                 </div>
