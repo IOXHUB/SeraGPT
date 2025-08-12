@@ -255,14 +255,14 @@ export default function Homepage() {
                 </div>
               </div>
               
-              {/* Timeline Node */}
-              <div className="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 rounded-full border-4 border-white/20" style={{ backgroundColor: '#baf200' }}></div>
-              
-              <div className="w-1/2 pl-8">
+              {/* Timeline Node - Hidden on mobile */}
+              <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-6 h-6 rounded-full border-4 border-white/20" style={{ backgroundColor: '#baf200' }}></div>
+
+              <div className="w-full md:w-1/2 md:pl-8 mb-6 md:mb-0 md:order-2 order-1">
                 <div className="bg-white/5 rounded-xl p-8 border border-white/20 relative">
-                  {/* Arrow pointing to timeline */}
-                  <div className="absolute top-8 -left-4 w-0 h-0 border-r-[16px] border-r-white/20 border-t-[16px] border-t-transparent border-b-[16px] border-b-transparent"></div>
-                  
+                  {/* Arrow pointing to timeline - Hidden on mobile */}
+                  <div className="hidden md:block absolute top-8 -left-4 w-0 h-0 border-r-[16px] border-r-white/20 border-t-[16px] border-t-transparent border-b-[16px] border-b-transparent"></div>
+
                   <div className="flex items-center mb-6">
                     <div className="w-12 h-12 rounded-full flex items-center justify-center mr-4" style={{ backgroundColor: '#baf200' }}>
                       <span style={{ color: '#146448', fontSize: '20px', fontWeight: '600' }}>2</span>
