@@ -130,11 +130,11 @@ export default function Homepage() {
 
           <div className="relative">
             {/* Timeline Item 1 - Left Side */}
-            <div className="flex items-center mb-16">
-              <div className="w-1/2 pr-8">
+            <div className="flex flex-col md:flex-row md:items-center mb-16">
+              <div className="w-full md:w-1/2 md:pr-8 mb-6 md:mb-0">
                 <div className="bg-white/5 rounded-xl p-8 border border-white/20 relative">
-                  {/* Arrow pointing to timeline */}
-                  <div className="absolute top-8 -right-4 w-0 h-0 border-l-[16px] border-l-white/20 border-t-[16px] border-t-transparent border-b-[16px] border-b-transparent"></div>
+                  {/* Arrow pointing to timeline - Hidden on mobile */}
+                  <div className="hidden md:block absolute top-8 -right-4 w-0 h-0 border-l-[16px] border-l-white/20 border-t-[16px] border-t-transparent border-b-[16px] border-b-transparent"></div>
                   
                   <div className="flex items-center mb-6">
                     <div className="w-12 h-12 rounded-full flex items-center justify-center mr-4" style={{ backgroundColor: '#baf200' }}>
