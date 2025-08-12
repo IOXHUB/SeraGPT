@@ -1,13 +1,18 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import SeraGPTLogo from './ui/SeraGPTLogo';
 import { useAuth } from '../lib/hooks/useAuth';
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isClient, setIsClient] = useState(false);
   const { user, loading, signOut, isAdmin } = useAuth();
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   return (
     <header className="w-full" style={{ backgroundColor: '#146448' }}>
@@ -34,7 +39,7 @@ export default function Header() {
 
         {/* Right menu - conditional based on user state */}
         <div className="hidden md:flex items-center space-x-4">
-          {!loading && (
+          {isClient && !loading && (
             <>
               {user ? (
                 // For logged in users - show Dashboard and optional Admin
@@ -127,7 +132,7 @@ export default function Header() {
 
             {/* Right menu actions */}
             <div className="space-y-3">
-              {!loading && (
+              {isClient && !loading && (
                 <>
                   {user ? (
                     // For logged in users - show Dashboard and optional Admin
