@@ -572,7 +572,7 @@ export default function DashboardPage() {
       const aiMessage: ChatMessage = {
         id: (Date.now() + 1).toString(),
         role: 'assistant',
-        content: `Merhaba! "${inputValue}" konusunda size yardımcı olmaktan mutluluk duyarım. Bu konu hakkında detaylı bilgi verebilir ve size özel öneriler geliştirebilirim.`,
+        content: `Merhaba! "${inputValue}" konusunda size yardımcı olmaktan mutluluk duyarım. Bu konu hakkında detaylı bilgi verebilir ve size özel öneriler geli��tirebilirim.`,
         timestamp: new Date(),
       };
       setMessages(prev => [...prev, aiMessage]);
@@ -994,11 +994,7 @@ export default function DashboardPage() {
           </main>
 
           {/* FOOTER (chat input) - Fixed within main area */}
-          <footer className="fixed bottom-0 z-30 bg-[#146448] border-t border-white/10 p-4" style={{
-            left: typeof window !== 'undefined' && window.innerWidth >= 1024 ? '256px' : '0px',
-            right: '0px',
-            transition: 'left 0.3s ease-in-out'
-          }}>
+          <footer className="fixed bottom-0 z-30 bg-[#146448] border-t border-white/10 p-4 left-0 lg:left-64 right-0 transition-all duration-300">
             <div className="max-w-4xl mx-auto">
               {/* Input Area */}
               <div className="mb-2">
