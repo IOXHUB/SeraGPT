@@ -219,6 +219,7 @@ export default function AITrainingPage() {
                 {dataLoading ? '🔄 Yenileniyor...' : '🔄 Verileri Yenile'}
               </button>
               <button
+                onClick={openNewTrainingModal}
                 className="px-4 py-2 rounded-lg font-medium transition-all hover:opacity-90"
                 style={{ backgroundColor: '#f6f8f9', color: '#1e3237' }}
               >
