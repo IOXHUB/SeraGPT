@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import Header from '../../components/Header';
+import Footer from '../../components/Footer';
 
 export default function DanismanlikPage() {
   const [showContactModal, setShowContactModal] = useState(false);
@@ -25,7 +26,7 @@ export default function DanismanlikPage() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const requestId = `PRJ-${Date.now()}`;
-    alert(`Danışmanlık talebiniz alınd��!\nTalep No: ${requestId}\n\n24 saat içinde uzman ekibimiz size dönüş yapacaktır.`);
+    alert(`Danışmanlık talebiniz alındı!\nTalep No: ${requestId}\n\n24 saat içinde uzman ekibimiz size dönüş yapacaktır.`);
     setShowContactModal(false);
     setFormData({ name: '', email: '', phone: '', company: '', projectType: '', location: '', size: '', message: '' });
   };
@@ -388,7 +389,7 @@ export default function DanismanlikPage() {
                     <div className="flex items-center space-x-3">
                       <span style={{ color: '#baf200', fontSize: '14px' }}>💰</span>
                       <span style={{ color: '#146448', fontSize: '14px', fontWeight: '400', fontFamily: '-apple-system, "system-ui", Inter, "Segoe UI", Roboto, "Noto Sans", Ubuntu, sans-serif' }}>
-                        Gelirde %7���18 artış
+                        Gelirde %7–18 artış
                       </span>
                     </div>
                   </div>
