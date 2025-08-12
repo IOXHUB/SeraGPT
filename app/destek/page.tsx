@@ -11,151 +11,60 @@ export default function SupportPage() {
     subject: '',
     category: '',
     priority: 'medium',
-    description: '',
-    attachments: [] as File[]
+    description: ''
   });
-
-  const [submittedTickets, setSubmittedTickets] = useState([
-    {
-      id: 'SPT-2025-001',
-      subject: 'Dashboard erişim sorunu',
-      category: 'Teknik Destek',
-      status: 'open',
-      priority: 'high',
-      createdAt: '2025-01-15T10:30:00Z',
-      lastUpdate: '2025-01-15T14:20:00Z',
-      assignedTo: 'Ahmet Yılmaz'
-    },
-    {
-      id: 'SPT-2025-002',
-      subject: 'ROI analizi sonuçları hakkında',
-      category: 'Genel Destek',
-      status: 'resolved',
-      priority: 'medium',
-      createdAt: '2025-01-14T09:15:00Z',
-      lastUpdate: '2025-01-14T16:45:00Z',
-      assignedTo: 'Elif Kaya'
-    }
-  ]);
 
   const supportCategories = [
     {
-      id: 'technical',
-      title: 'Teknik Destek',
-      icon: '🔧',
-      description: 'Platform kullanımı, hata raporları, teknik sorunlar',
-      responseTime: '2-4 saat',
-      examples: ['Login sorunu', 'Rapor indirme hatası', 'Platform yavaşlığı']
-    },
-    {
-      id: 'account',
-      title: 'Hesap Yönetimi',
-      icon: '👤',
-      description: 'Hesap ayarları, şifre sıfırlama, profil güncelleme',
-      responseTime: '1-2 saat',
-      examples: ['Şifre sıfırlama', 'E-posta değişikliği', 'Hesap kapatma']
-    },
-    {
-      id: 'billing',
-      title: 'Faturalandırma',
-      icon: '💳',
-      description: 'Ödeme sorunları, fatura talepleri, abonelik işlemleri',
-      responseTime: '4-8 saat',
-      examples: ['Ödeme sorunu', 'Fatura talebi', 'Plan değişikliği']
+      id: 'platform',
+      title: 'Platform Kullanımı',
+      description: 'SeraGPT arayüzü, rapor indirme, hesap işlemleri',
+      responseTime: '2-4 saat'
     },
     {
       id: 'analysis',
-      title: 'Analiz Desteği',
-      icon: '📊',
-      description: 'Rapor yorumlama, analiz sonuçları, öneriler',
-      responseTime: '6-12 saat',
-      examples: ['ROI yorumlama', 'İklim analizi soruları', 'Pazar verileri']
+      title: 'Analiz Raporları',
+      description: 'ROI, iklim, ekipman analizleri hakkında sorular',
+      responseTime: '4-8 saat'
     },
     {
-      id: 'ai',
-      title: 'AI Asistan',
-      icon: '🤖',
-      description: 'SeraGPT kullanımı, AI önerileri, chat sorunları',
-      responseTime: '2-6 saat',
-      examples: ['AI yanıt kalitesi', 'Chat geçmişi', 'Önerileri anlama']
+      id: 'technical',
+      title: 'Teknik Sorular',
+      description: 'Sera teknolojileri, ekipman seçimi konularında',
+      responseTime: '6-12 saat'
     },
     {
       id: 'general',
-      title: 'Genel Destek',
-      icon: '💬',
-      description: 'Diğer sorular, öneriler, genel bilgi talebi',
-      responseTime: '12-24 saat',
-      examples: ['Özellik önerisi', 'Genel soru', 'Görüş bildirme']
+      title: 'Genel Sorular',
+      description: 'Diğer konular, öneriler ve bilgi talepleri',
+      responseTime: '12-24 saat'
     }
   ];
 
   const faqItems = [
     {
-      category: 'technical',
-      question: 'Platform\'a giriş yapamıyorum, ne yapmalıyım?',
-      answer: 'Şifrenizi sıfırlamayı deneyin. Eğer sorun devam ederse, tarayıcı önbelleğinizi temizleyin ve farklı tarayıcı ile deneyin. Sorun çözülmezse destek talebi oluşturun.'
+      question: 'SeraGPT analizleri nasıl yorumlarım?',
+      answer: 'Analizlerimiz 20 yıllık tecrübemiz ve 500+ projeden elde edilen verilerle hazırlanır. Her raporda detaylı açıklamalar ve öneriler yer alır. Anlayamadığınız kısımlar için destek talebi oluşturabilirsiniz.'
     },
     {
-      category: 'analysis',
-      question: 'ROI analizi sonuçlarım gerçekçi görünmüyor, neden?',
-      answer: 'ROI hesaplama girdi verilerinizin doğruluğuna bağlıdır. Maliyet ve gelir projeksiyonlarınızı kontrol edin. Detaylı inceleme için analiz desteği kategorisinden ticket oluşturun.'
+      question: 'Rapor indirirken sorun yaşıyorum',
+      answer: 'Rapor indirme sorunu yaşıyorsanız, tarayıcınızın güncel olduğundan emin olun. Sorun devam ederse platform kullanımı kategorisinden destek talebi oluşturun.'
     },
     {
-      category: 'ai',
-      question: 'SeraGPT yanlış öneriler veriyor, nasıl iyileştirebilirim?',
-      answer: 'Daha spesifik sorular sorun ve mevcut analiz raporlarınızı referans alın. Derin analiz modunu aktifleştirin. Sürekli sorun yaşıyorsanız örneklerle birlikte destek talebi oluşturun.'
+      question: 'Proje danışmanlığı ne zaman gerekli?',
+      answer: 'SeraGPT raporları yeterli gelmediğinde, yerinde keşif ve detaylı projelendirme desteği için proje danışmanlığı hizmetimizden yararlanabilirsiniz.'
     },
     {
-      category: 'billing',
-      question: 'Faturamı nasıl indirebilirim?',
-      answer: 'Dashboard > Hesap Ayarları > Faturalandırma bölümünden geçmiş faturalarınızı görüntüleyebilir ve indirebilirsiniz. Sorun yaşıyorsanız faturalandırma desteği kategorisinden yardım alın.'
-    }
-  ];
-
-  const supportChannels = [
-    {
-      title: 'E-posta Desteği',
-      description: 'En detaylı yardım için',
-      icon: '📧',
-      contact: 'destek@seragpt.com',
-      responseTime: '4-24 saat',
-      availability: '7/24',
-      color: 'from-blue-400 to-blue-600'
-    },
-    {
-      title: 'Canlı Chat',
-      description: 'Anlık yardım için',
-      icon: '💬',
-      contact: 'Chat Başlat',
-      responseTime: '2-5 dakika',
-      availability: 'Hafta içi 09:00-18:00',
-      color: 'from-green-400 to-green-600'
-    },
-    {
-      title: 'Telefon Desteği',
-      description: 'Acil durumlar için',
-      icon: '📞',
-      contact: '+90 312 555 0123',
-      responseTime: 'Anında',
-      availability: 'Hafta içi 09:00-18:00',
-      color: 'from-purple-400 to-purple-600'
-    },
-    {
-      title: 'Video Görüşme',
-      description: 'Uzaktan teknik destek',
-      icon: '📹',
-      contact: 'Randevu Al',
-      responseTime: '30 dakika - 2 saat',
-      availability: 'Hafta içi 10:00-17:00',
-      color: 'from-orange-400 to-orange-600'
+      question: 'Anahtar teslim proje hizmeti nasıl çalışır?',
+      answer: 'İspanyol ortağımız Serapoli ile birlikte imalat, montaj, kurulum, zirai danışmanlık ve servis hizmetlerini tek elden sunuyoruz. Detaylı bilgi için danışmanlık sayfamızı ziyaret edin.'
     }
   ];
 
   const priorityLevels = [
-    { value: 'low', label: 'Düşük', description: 'Genel sorular, öneriler', color: 'text-green-600' },
-    { value: 'medium', label: 'Orta', description: 'Kullanım sorunları, hesap işlemleri', color: 'text-yellow-600' },
-    { value: 'high', label: 'Yüksek', description: 'Önemli teknik sorunlar', color: 'text-orange-600' },
-    { value: 'critical', label: 'Kritik', description: 'Hizmet kesintisi, güvenlik sorunları', color: 'text-red-600' }
+    { value: 'low', label: 'Düşük - Genel sorular', color: 'text-green-600' },
+    { value: 'medium', label: 'Orta - Platform kullanımı', color: 'text-yellow-600' },
+    { value: 'high', label: 'Yüksek - Önemli teknik sorun', color: 'text-orange-600' },
+    { value: 'critical', label: 'Kritik - Acil çözüm gerekli', color: 'text-red-600' }
   ];
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -168,21 +77,11 @@ export default function SupportPage() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    console.log('Destek talebi:', ticketData);
     
-    const newTicket = {
-      id: `SPT-2025-${String(submittedTickets.length + 3).padStart(3, '0')}`,
-      subject: ticketData.subject,
-      category: ticketData.category,
-      status: 'open' as const,
-      priority: ticketData.priority as any,
-      createdAt: new Date().toISOString(),
-      lastUpdate: new Date().toISOString(),
-      assignedTo: 'Otomatik Atama'
-    };
-
-    setSubmittedTickets(prev => [newTicket, ...prev]);
+    const ticketId = `SPT-${new Date().getFullYear()}-${String(Math.floor(Math.random() * 1000)).padStart(3, '0')}`;
     
-    alert(`Destek talebiniz başarıyla oluşturuldu!\n\nTalep Numarası: ${newTicket.id}\n\nSize e-posta ile bilgilendirme gönderilecek ve en kısa sürede uzman ekibimiz tarafından yanıtlanacaktır.`);
+    alert(`Destek talebiniz başarıyla oluşturuldu!\n\nTalep Numarası: ${ticketId}\n\nSize e-posta ile bilgilendirme gönderilecek ve uzman ekibimiz en kısa sürede size dönüş yapacaktır.`);
     
     setShowTicketModal(false);
     setTicketData({
@@ -191,72 +90,50 @@ export default function SupportPage() {
       subject: '',
       category: '',
       priority: 'medium',
-      description: '',
-      attachments: []
+      description: ''
     });
-  };
-
-  const getStatusColor = (status: string) => {
-    switch (status) {
-      case 'open': return 'bg-blue-100 text-blue-800';
-      case 'in-progress': return 'bg-yellow-100 text-yellow-800';
-      case 'resolved': return 'bg-green-100 text-green-800';
-      case 'closed': return 'bg-gray-100 text-gray-800';
-      default: return 'bg-gray-100 text-gray-800';
-    }
-  };
-
-  const getPriorityColor = (priority: string) => {
-    switch (priority) {
-      case 'low': return 'bg-green-100 text-green-800';
-      case 'medium': return 'bg-yellow-100 text-yellow-800';
-      case 'high': return 'bg-orange-100 text-orange-800';
-      case 'critical': return 'bg-red-100 text-red-800';
-      default: return 'bg-gray-100 text-gray-800';
-    }
   };
 
   return (
     <div className="min-h-screen bg-[#f6f8f9]">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-[#146448] to-[#0f4f37] text-white py-20">
-        <div className="body-container">
-          <div className="text-center text-container mx-auto">
+      <section className="bg-[#146448] text-white py-20">
+        <div className="max-w-[1200px] mx-auto px-6">
+          <div className="text-center max-w-[896px] mx-auto">
             <h1 className="text-4xl font-bold mb-6">
-              🎫 Destek Merkezi
+              Destek Merkezi
             </h1>
-            <p className="text-xl mb-8 opacity-90">
+            <p className="text-xl mb-8 opacity-90 max-w-[576px] mx-auto">
               Size yardımcı olmaktan mutluluk duyuyoruz. Sorularınızı cevaplıyor, 
               panel kullanımında ve teknik konularda etkili çözümler sunuyoruz.
             </p>
 
-            {/* Quick Action Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
               <button
                 onClick={() => setShowTicketModal(true)}
-                className="bg-[#baf200] text-[#146448] px-8 py-4 rounded-2xl font-bold hover:bg-[#baf200]/90 transition-all duration-300 hover:scale-105 shadow-xl"
+                className="bg-[#baf200] text-[#146448] px-8 py-4 rounded-xl font-bold hover:bg-[#a5e600] transition-colors"
               >
-                🎫 Yeni Destek Talebi
+                Destek Talebi Oluştur
               </button>
               <Link href="#faq">
-                <button className="bg-white/10 text-white px-8 py-4 rounded-2xl font-bold hover:bg-white/20 transition-colors border border-white/30">
-                  ❓ SSS'ye Göz At
+                <button className="bg-white/10 text-white px-8 py-4 rounded-xl font-bold hover:bg-white/20 transition-colors border border-white/30">
+                  Sıkça Sorulan Sorular
                 </button>
               </Link>
             </div>
 
             {/* Support Stats */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
-              <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
-                <div className="text-3xl font-bold text-[#baf200]">2.5</div>
-                <div className="text-sm opacity-90">Ortalama Yanıt Süresi (saat)</div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12 max-w-[896px] mx-auto">
+              <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6">
+                <div className="text-3xl font-bold text-[#baf200]">4-24</div>
+                <div className="text-sm opacity-90">Saat İçinde Yanıt</div>
               </div>
-              <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
+              <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6">
                 <div className="text-3xl font-bold text-[#baf200]">98%</div>
-                <div className="text-sm opacity-90">İlk Kontakta Çözüm</div>
+                <div className="text-sm opacity-90">Çözüm Oranı</div>
               </div>
-              <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
-                <div className="text-3xl font-bold text-[#baf200]">24/7</div>
+              <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6">
+                <div className="text-3xl font-bold text-[#baf200]">7/24</div>
                 <div className="text-sm opacity-90">E-posta Desteği</div>
               </div>
             </div>
@@ -266,21 +143,18 @@ export default function SupportPage() {
 
       {/* Support Categories */}
       <section className="py-16 bg-white">
-        <div className="body-container">
+        <div className="max-w-[1200px] mx-auto px-6">
           <div className="text-center mb-12">
-            <h2 className="text-2xl font-bold text-[#146448] mb-4">🚀 Destek Kategorileri</h2>
-            <p className="text-gray-600 text-container mx-auto">
+            <h2 className="text-2xl font-bold text-[#146448] mb-4">Destek Kategorileri</h2>
+            <p className="text-gray-600 max-w-[576px] mx-auto">
               Sorunuzun türüne göre en hızlı çözümü almak için doğru kategoriyi seçin
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-[896px] mx-auto">
             {supportCategories.map((category) => (
-              <div key={category.id} className="bg-white border border-gray-200 rounded-2xl p-6 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group">
+              <div key={category.id} className="bg-[#f6f8f9] border border-gray-200 rounded-xl p-6 hover:shadow-lg transition-all duration-300">
                 <div className="text-center mb-4">
-                  <div className="text-4xl mb-3 group-hover:scale-110 transition-transform">
-                    {category.icon}
-                  </div>
                   <h3 className="text-lg font-bold text-[#146448] mb-2">
                     {category.title}
                   </h3>
@@ -292,22 +166,12 @@ export default function SupportPage() {
                   </div>
                 </div>
 
-                <div className="space-y-2 mb-6">
-                  <div className="text-xs font-medium text-gray-500 mb-2">Örnek Konular:</div>
-                  {category.examples.map((example, index) => (
-                    <div key={index} className="flex items-center space-x-2">
-                      <div className="w-1.5 h-1.5 bg-[#baf200] rounded-full flex-shrink-0"></div>
-                      <span className="text-xs text-gray-600">{example}</span>
-                    </div>
-                  ))}
-                </div>
-
                 <button
                   onClick={() => {
                     setTicketData(prev => ({ ...prev, category: category.title }));
                     setShowTicketModal(true);
                   }}
-                  className="w-full bg-[#146448] text-white py-3 rounded-2xl hover:bg-[#0f4f37] transition-all duration-300 font-medium group-hover:bg-[#baf200] group-hover:text-[#146448]"
+                  className="w-full bg-[#146448] text-white py-3 rounded-xl hover:bg-[#0f4f37] transition-colors font-medium"
                 >
                   Talep Oluştur
                 </button>
@@ -317,133 +181,19 @@ export default function SupportPage() {
         </div>
       </section>
 
-      {/* My Tickets Section */}
-      {submittedTickets.length > 0 && (
-        <section className="py-16 bg-[#f6f8f9]">
-          <div className="body-container">
-            <div className="text-center mb-12">
-              <h2 className="text-2xl font-bold text-[#146448] mb-4">📋 Destek Taleplerim</h2>
-              <p className="text-gray-600 text-container mx-auto">
-                Oluşturduğunuz destek taleplerinin durumunu takip edin
-              </p>
-            </div>
-
-            <div className="max-w-4xl mx-auto space-y-4">
-              {submittedTickets.map((ticket) => (
-                <div key={ticket.id} className="bg-white rounded-2xl border border-gray-200 p-6 hover:shadow-lg transition-all duration-300">
-                  <div className="flex flex-col lg:flex-row lg:items-center justify-between space-y-4 lg:space-y-0">
-                    <div className="flex-1">
-                      <div className="flex items-center space-x-3 mb-2">
-                        <h3 className="font-bold text-[#146448]">{ticket.subject}</h3>
-                        <span className={`px-3 py-1 rounded-full text-xs font-medium ${getStatusColor(ticket.status)}`}>
-                          {ticket.status === 'open' ? 'Açık' : 
-                           ticket.status === 'in-progress' ? 'İşlemde' : 
-                           ticket.status === 'resolved' ? 'Çözüldü' : 'Kapatıldı'}
-                        </span>
-                        <span className={`px-3 py-1 rounded-full text-xs font-medium ${getPriorityColor(ticket.priority)}`}>
-                          {ticket.priority === 'low' ? 'Düşük' :
-                           ticket.priority === 'medium' ? 'Orta' :
-                           ticket.priority === 'high' ? 'Yüksek' : 'Kritik'}
-                        </span>
-                      </div>
-                      
-                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-sm text-gray-600">
-                        <div>
-                          <span className="font-medium">Talep ID:</span>
-                          <div className="font-mono text-[#146448]">{ticket.id}</div>
-                        </div>
-                        <div>
-                          <span className="font-medium">Kategori:</span>
-                          <div>{ticket.category}</div>
-                        </div>
-                        <div>
-                          <span className="font-medium">Oluşturulma:</span>
-                          <div>{new Date(ticket.createdAt).toLocaleDateString('tr-TR')}</div>
-                        </div>
-                        <div>
-                          <span className="font-medium">Atanan:</span>
-                          <div>{ticket.assignedTo}</div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="flex space-x-2">
-                      <button className="px-4 py-2 bg-[#146448] text-white rounded-xl hover:bg-[#0f4f37] transition-colors text-sm">
-                        Detaylar
-                      </button>
-                      {ticket.status === 'open' && (
-                        <button className="px-4 py-2 bg-gray-200 text-gray-700 rounded-xl hover:bg-gray-300 transition-colors text-sm">
-                          Güncelle
-                        </button>
-                      )}
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
-
-      {/* Support Channels */}
-      <section className="py-16 bg-white">
-        <div className="body-container">
-          <div className="text-center mb-12">
-            <h2 className="text-2xl font-bold text-[#146448] mb-4">📞 İletişim Kanalları</h2>
-            <p className="text-gray-600 text-container mx-auto">
-              Size en uygun iletişim kanalını seçerek uzman ekibimizle bağlantı kurun
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {supportChannels.map((channel, index) => (
-              <div key={index} className="bg-white border border-gray-200 rounded-2xl p-6 text-center hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group">
-                <div className={`w-16 h-16 bg-gradient-to-br ${channel.color} rounded-2xl flex items-center justify-center text-2xl text-white mx-auto mb-4 group-hover:scale-110 transition-transform`}>
-                  {channel.icon}
-                </div>
-                
-                <h3 className="font-bold text-[#146448] mb-2">{channel.title}</h3>
-                <p className="text-gray-600 text-sm mb-4">{channel.description}</p>
-                
-                <div className="space-y-2 mb-4">
-                  <div className="text-sm">
-                    <span className="text-gray-500">İletişim:</span>
-                    <div className="font-medium text-[#146448]">{channel.contact}</div>
-                  </div>
-                  <div className="text-sm">
-                    <span className="text-gray-500">Yanıt Süresi:</span>
-                    <div className="font-medium text-[#146448]">{channel.responseTime}</div>
-                  </div>
-                  <div className="text-sm">
-                    <span className="text-gray-500">Müsaitlik:</span>
-                    <div className="font-medium text-[#146448]">{channel.availability}</div>
-                  </div>
-                </div>
-
-                <button className="w-full bg-[#146448] text-white py-3 rounded-2xl hover:bg-[#0f4f37] transition-colors font-medium">
-                  {channel.title === 'E-posta Desteği' ? 'E-posta Gönder' :
-                   channel.title === 'Canlı Chat' ? 'Chat Başlat' :
-                   channel.title === 'Telefon Desteği' ? 'Ara' : 'Randevu Al'}
-                </button>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* FAQ Section */}
       <section id="faq" className="py-16 bg-[#f6f8f9]">
-        <div className="body-container">
+        <div className="max-w-[1200px] mx-auto px-6">
           <div className="text-center mb-12">
-            <h2 className="text-2xl font-bold text-[#146448] mb-4">❓ Sıkça Sorulan Sorular</h2>
-            <p className="text-gray-600 text-container mx-auto">
+            <h2 className="text-2xl font-bold text-[#146448] mb-4">Sıkça Sorulan Sorular</h2>
+            <p className="text-gray-600 max-w-[576px] mx-auto">
               En çok sorulan soruların yanıtlarını hızlıca bulun
             </p>
           </div>
 
-          <div className="max-w-4xl mx-auto space-y-4">
+          <div className="max-w-[896px] mx-auto space-y-4">
             {faqItems.map((item, index) => (
-              <details key={index} className="bg-white rounded-2xl border border-gray-200 overflow-hidden group">
+              <details key={index} className="bg-white rounded-xl border border-gray-200 overflow-hidden group">
                 <summary className="px-6 py-4 cursor-pointer hover:bg-gray-50 transition-colors flex items-center justify-between">
                   <h3 className="font-medium text-[#146448] flex-1">{item.question}</h3>
                   <svg className="w-5 h-5 text-[#146448] group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -451,7 +201,7 @@ export default function SupportPage() {
                   </svg>
                 </summary>
                 <div className="px-6 pb-4 text-gray-600 border-t border-gray-100">
-                  <p className="leading-relaxed pt-4">{item.answer}</p>
+                  <p className="leading-relaxed pt-4 max-w-[576px]">{item.answer}</p>
                 </div>
               </details>
             ))}
@@ -459,7 +209,7 @@ export default function SupportPage() {
 
           <div className="text-center mt-8">
             <Link href="/yardim">
-              <button className="bg-[#146448] text-white px-6 py-3 rounded-2xl hover:bg-[#0f4f37] transition-colors">
+              <button className="bg-[#146448] text-white px-6 py-3 rounded-xl hover:bg-[#0f4f37] transition-colors">
                 Tüm Yardım Makalelerini Görüntüle
               </button>
             </Link>
@@ -467,19 +217,58 @@ export default function SupportPage() {
         </div>
       </section>
 
+      {/* Contact Information */}
+      <section className="py-16 bg-white">
+        <div className="max-w-[1200px] mx-auto px-6">
+          <div className="text-center mb-12">
+            <h2 className="text-2xl font-bold text-[#146448] mb-4">İletişim Bilgileri</h2>
+            <p className="text-gray-600 max-w-[576px] mx-auto">
+              Destek ekibimizle iletişime geçmek için aşağıdaki bilgileri kullanabilirsiniz
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-[896px] mx-auto">
+            <div className="text-center p-6">
+              <div className="text-4xl mb-4">📧</div>
+              <h3 className="font-bold text-[#146448] mb-2">E-posta Desteği</h3>
+              <p className="text-gray-600 text-sm mb-4">Ticket sistemi ile profesyonel destek</p>
+              <p className="text-[#146448] font-medium">7/24 E-posta Desteği</p>
+            </div>
+
+            <div className="text-center p-6">
+              <div className="text-4xl mb-4">👨‍🔬</div>
+              <h3 className="font-bold text-[#146448] mb-2">Uzman Danışmanlık</h3>
+              <p className="text-gray-600 text-sm mb-4">20 yıl tecrübe ile proje desteği</p>
+              <Link href="/danismanlik" className="text-[#146448] font-medium hover:underline">
+                Danışmanlık Sayfası
+              </Link>
+            </div>
+
+            <div className="text-center p-6">
+              <div className="text-4xl mb-4">🏗️</div>
+              <h3 className="font-bold text-[#146448] mb-2">Anahtar Teslim Proje</h3>
+              <p className="text-gray-600 text-sm mb-4">Serapoli ortaklığı ile tam hizmet</p>
+              <Link href="/anahtar-teslim-proje" className="text-[#146448] font-medium hover:underline">
+                Proje Sayfası
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Ticket Creation Modal */}
       {showTicketModal && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
-          <div className="bg-white rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+          <div className="bg-white rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
             <div className="p-6 border-b border-gray-200">
               <div className="flex items-center justify-between">
                 <div>
-                  <h3 className="text-xl font-bold text-[#146448]">🎫 Yeni Destek Talebi</h3>
+                  <h3 className="text-xl font-bold text-[#146448]">Destek Talebi Oluştur</h3>
                   <p className="text-gray-600 text-sm">Sorununuzu detaylı açıklayın, en kısa sürede çözüm bulalım</p>
                 </div>
                 <button
                   onClick={() => setShowTicketModal(false)}
-                  className="p-2 hover:bg-gray-100 rounded-xl transition-colors"
+                  className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
                 >
                   ✕
                 </button>
@@ -498,7 +287,7 @@ export default function SupportPage() {
                     value={ticketData.name}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#baf200] focus:border-[#baf200] transition-colors"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#baf200] focus:border-[#baf200]"
                     placeholder="Adınızı ve soyadınızı girin"
                   />
                 </div>
@@ -513,7 +302,7 @@ export default function SupportPage() {
                     value={ticketData.email}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#baf200] focus:border-[#baf200] transition-colors"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#baf200] focus:border-[#baf200]"
                     placeholder="E-posta adresinizi girin"
                   />
                 </div>
@@ -529,7 +318,7 @@ export default function SupportPage() {
                   value={ticketData.subject}
                   onChange={handleInputChange}
                   required
-                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#baf200] focus:border-[#baf200] transition-colors"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#baf200] focus:border-[#baf200]"
                   placeholder="Sorunuzu kısaca özetleyin"
                 />
               </div>
@@ -544,7 +333,7 @@ export default function SupportPage() {
                     value={ticketData.category}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#baf200] focus:border-[#baf200] transition-colors"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#baf200] focus:border-[#baf200]"
                   >
                     <option value="">Kategori seçin</option>
                     {supportCategories.map((category) => (
@@ -564,11 +353,11 @@ export default function SupportPage() {
                     value={ticketData.priority}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#baf200] focus:border-[#baf200] transition-colors"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#baf200] focus:border-[#baf200]"
                   >
                     {priorityLevels.map((level) => (
                       <option key={level.value} value={level.value}>
-                        {level.label} - {level.description}
+                        {level.label}
                       </option>
                     ))}
                   </select>
@@ -585,22 +374,21 @@ export default function SupportPage() {
                   onChange={handleInputChange}
                   required
                   rows={6}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#baf200] focus:border-[#baf200] transition-colors"
-                  placeholder="Sorununuzu mümkün olduğunca detaylı açıklayın. Hangi adımları denediğinizi, hata mesajlarını ve ekran görüntülerini paylaşın."
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#baf200] focus:border-[#baf200]"
+                  placeholder="Sorununuzu mümkün olduğunca detaylı açıklayın. Hangi adımları denediğinizi ve karşılaştığınız hataları belirtin."
                 />
               </div>
 
-              <div className="bg-[#f6f8f9] rounded-xl p-4">
+              <div className="bg-[#f6f8f9] rounded-lg p-4">
                 <div className="flex items-start space-x-3">
                   <div className="text-2xl">💡</div>
                   <div>
-                    <h4 className="font-medium text-[#146448] mb-1">Hızlı Çözüm İpuçları</h4>
-                    <ul className="text-sm text-gray-600 space-y-1">
-                      <li>• Ekran görüntüsü eklemek çözüm süresini %50 hızlandırır</li>
-                      <li>• Hata mesajlarını tam olarak kopyalayın</li>
-                      <li>• Hangi tarayıcı ve işletim sistemi kullandığınızı belirtin</li>
-                      <li>• Sorunu çözmek için denediğiniz adımları listeleyin</li>
-                    </ul>
+                    <h4 className="font-medium text-[#146448] mb-1">Hızlı Çözüm İpucu</h4>
+                    <p className="text-sm text-gray-600">
+                      Sorununuzu detaylı açıklamak çözüm süresini hızlandırır. 
+                      Hangi tarayıcı kullandığınızı ve karşılaştığınız hata mesajlarını 
+                      belirtmeyi unutmayın.
+                    </p>
                   </div>
                 </div>
               </div>
@@ -609,15 +397,15 @@ export default function SupportPage() {
                 <button
                   type="button"
                   onClick={() => setShowTicketModal(false)}
-                  className="px-6 py-3 bg-gray-200 text-gray-700 rounded-xl hover:bg-gray-300 transition-colors"
+                  className="px-6 py-3 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors"
                 >
                   İptal
                 </button>
                 <button
                   type="submit"
-                  className="flex-1 bg-gradient-to-r from-[#146448] to-[#baf200] text-white py-3 rounded-xl font-medium hover:shadow-lg transition-all duration-300"
+                  className="flex-1 bg-[#146448] text-white py-3 rounded-lg font-medium hover:bg-[#0f4f37] transition-colors"
                 >
-                  🎫 Destek Talebini Gönder
+                  Destek Talebini Gönder
                 </button>
               </div>
             </form>
