@@ -15,7 +15,7 @@ export default function Header() {
         {/* Logo - clickable to homepage */}
         <div className="flex items-center space-x-3">
           <a href="/" className="flex items-center space-x-3">
-            <SeraGPTLogo size="md" priority />
+            <SeraGPTLogo size="md" priority variant="white" />
           </a>
         </div>
 
