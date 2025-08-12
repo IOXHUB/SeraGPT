@@ -21,14 +21,14 @@ export default function Header() {
 
         {/* Center navigation - 3 main services */}
         <nav className="hidden md:flex items-center space-x-8" style={{ marginTop: '1px' }}>
-          <a href="/destek" className="text-white hover:text-[#baf200] font-medium transition-colors">
+          <a href="/destek" className="font-medium transition-colors hover:text-[#baf200]" style={{ color: '#f6f8f9' }}>
             <p>Destek</p>
           </a>
-          <a href="/danismanlik" className="text-white hover:text-[#baf200] font-medium transition-colors">
+          <a href="/danismanlik" className="font-medium transition-colors hover:text-[#baf200]" style={{ color: '#f6f8f9' }}>
             <p>Danışmanlık</p>
           </a>
-          <a href="/anahtar-teslim-proje" className="text-white hover:text-[#baf200] font-medium transition-colors">
-            <p>Anahtar Teslim Sera </p>
+          <a href="/anahtar-teslim-proje" className="font-medium transition-colors hover:text-[#baf200]" style={{ color: '#f6f8f9' }}>
+            <p>Anahtar Teslim Sera</p>
           </a>
         </nav>
 
