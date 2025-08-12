@@ -58,7 +58,7 @@ export default function Header() {
               ) : (
                 // For logged out users - show Login or Sign Up CTA
                 <>
-                  <a href="/auth/login" className="text-white hover:text-[#baf200] font-medium transition-colors">
+                  <a href="/auth/login" className="font-medium transition-colors hover:text-[#baf200]" style={{ color: '#f6f8f9' }}>
                     Giriş Yap
                   </a>
                   <a href="/auth/login" className="px-6 py-2 rounded-xl font-semibold transition-colors" style={{ backgroundColor: '#baf200', color: '#146448' }}>
