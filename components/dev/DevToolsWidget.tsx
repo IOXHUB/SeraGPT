@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { MOCK_USERS, DevMockSystem, MockUser } from '../../../seravolkan/lib/utils/dev-mock-system';
+import { MOCK_USERS, DevMockSystem, MockUser } from '@/lib/utils/dev-mock-system';
 
 export default function DevToolsWidget() {
   const [isOpen, setIsOpen] = useState(false);
