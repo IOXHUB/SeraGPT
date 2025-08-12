@@ -52,7 +52,7 @@ export default function DashboardPage() {
     }
   ]);
 
-  // Grouped Menu Structure
+  // Sadece mevcut sayfalar - 404 olmayan linkler
   const menuGroups = [
     {
       id: 'overview',
@@ -60,8 +60,7 @@ export default function DashboardPage() {
       icon: '🏠',
       color: '#146448',
       items: [
-        { id: 'overview', title: 'Ana Sayfa', href: '/dashboard', icon: '📊' },
-        { id: 'quick-analysis', title: 'Hızlı Analiz', href: '/dashboard/analysis/new', icon: '⚡' }
+        { id: 'overview', title: 'Ana Sayfa', href: '/dashboard', icon: '📊' }
       ]
     },
     {
@@ -70,13 +69,12 @@ export default function DashboardPage() {
       icon: '🔬',
       color: '#2563eb',
       items: [
-        { id: 'new-analysis', title: 'Yeni Analiz Başlat', href: '/dashboard/analysis/new', icon: '➕' },
+        { id: 'all-analysis', title: 'Tüm Analizler', href: '/dashboard/analysis', icon: '📋' },
         { id: 'roi-analysis', title: 'ROI Analizi', href: '/dashboard/analysis/roi', icon: '💰' },
         { id: 'climate-analysis', title: 'İklim Analizi', href: '/dashboard/analysis/climate', icon: '🌡️' },
         { id: 'equipment-analysis', title: 'Ekipman Analizi', href: '/dashboard/analysis/equipment', icon: '⚙️' },
         { id: 'market-analysis', title: 'Pazar Analizi', href: '/dashboard/analysis/market', icon: '📈' },
-        { id: 'layout-analysis', title: 'Yerleşim Planı', href: '/dashboard/analysis/layout', icon: '🏗️' },
-        { id: 'my-analysis', title: 'Kayıtlı Analizlerim', href: '/dashboard/analysis', icon: '📋' }
+        { id: 'layout-analysis', title: 'Yerleşim Planı', href: '/dashboard/analysis/layout', icon: '🏗️' }
       ]
     },
     {
@@ -85,32 +83,18 @@ export default function DashboardPage() {
       icon: '📊',
       color: '#059669',
       items: [
-        { id: 'pdf-reports', title: 'PDF Raporlarım', href: '/dashboard/reports', icon: '📄' },
-        { id: 'report-templates', title: 'Rapor Şablonları', href: '/dashboard/reports/templates', icon: '📝' },
-        { id: 'share-center', title: 'Paylaşım Merkezi', href: '/dashboard/reports/share', icon: '🔗' }
+        { id: 'all-reports', title: 'Tüm Raporlar', href: '/dashboard/reports', icon: '📄' }
       ]
     },
     {
-      id: 'projects',
-      title: 'Proje Yönetimi',
+      id: 'management',
+      title: 'Yönetim',
       icon: '📁',
       color: '#7c3aed',
       items: [
-        { id: 'my-projects', title: 'Projelerim', href: '/dashboard/projects', icon: '🗂️' },
-        { id: 'team-management', title: 'Ekip Yönetimi', href: '/dashboard/projects/team', icon: '👥' },
-        { id: 'files-notes', title: 'Dosyalar & Notlar', href: '/dashboard/projects/files', icon: '📎' }
-      ]
-    },
-    {
-      id: 'data',
-      title: 'Piyasa & Veriler',
-      icon: '📡',
-      color: '#dc2626',
-      items: [
-        { id: 'climate-data', title: 'İklim Verileri', href: '/dashboard/data/climate', icon: '🌤️' },
-        { id: 'energy-prices', title: 'Enerji Fiyatları', href: '/dashboard/data/energy', icon: '⚡' },
-        { id: 'market-prices', title: 'Piyasa Fiyatları', href: '/dashboard/data/market', icon: '💱' },
-        { id: 'grants', title: 'Hibe & Teşvikler', href: '/dashboard/data/grants', icon: '🎯' }
+        { id: 'projects', title: 'Projelerim', href: '/dashboard/projects', icon: '🗂️' },
+        { id: 'tokens', title: 'Token Yönetimi', href: '/dashboard/tokens', icon: '🪙' },
+        { id: 'settings', title: 'Hesap Ayarları', href: '/dashboard/settings', icon: '⚙️' }
       ]
     },
     {
@@ -120,24 +104,9 @@ export default function DashboardPage() {
       color: '#ea580c',
       items: [
         { id: 'ai-chat', title: 'AI Asistan', href: '/dashboard/ai-chat', icon: '🤖' },
-        { id: 'faq', title: 'Sık Sorulan Sorular', href: '/dashboard/help', icon: '❓' },
-        { id: 'live-support', title: 'Canlı Destek', href: '/dashboard/support/live', icon: '🎧' },
-        { id: 'consulting', title: 'Mühendis Danışmanlık', href: '/dashboard/consulting', icon: '👨‍🔬' },
-        { id: 'tickets', title: 'Destek Taleplerim', href: '/destek', icon: '🎫' }
-      ]
-    },
-    {
-      id: 'account',
-      title: 'Hesap',
-      icon: '⚙️',
-      color: '#6b7280',
-      items: [
-        { id: 'profile', title: 'Profil Bilgileri', href: '/dashboard/settings', icon: '👤' },
-        { id: 'company', title: 'Şirket Bilgileri', href: '/dashboard/settings/company', icon: '🏢' },
-        { id: 'tokens', title: 'Token Yönetimi', href: '/dashboard/tokens', icon: '🪙' },
-        { id: 'billing', title: 'Ödeme & Abonelik', href: '/dashboard/settings/billing', icon: '💳' },
-        { id: 'api-keys', title: 'API Anahtarları', href: '/dashboard/settings/api', icon: '🔑' },
-        { id: 'security', title: 'Güvenlik', href: '/dashboard/settings/security', icon: '🔒' }
+        { id: 'help', title: 'Yardım', href: '/dashboard/help', icon: '❓' },
+        { id: 'consulting', title: 'Danışmanlık', href: '/dashboard/consulting', icon: '👨‍🔬' },
+        { id: 'support-external', title: 'Destek Talebi', href: '/destek', icon: '🎫' }
       ]
     }
   ];
