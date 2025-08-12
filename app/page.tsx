@@ -31,7 +31,8 @@ export default function Homepage() {
                     fontFamily: '-apple-system, "system-ui", Inter, "Segoe UI", Roboto, "Noto Sans", Ubuntu, sans-serif'
                   }}
                 >
-                  60 Saniyede Sera Yatırım Fizibilitesi
+                  <p>60 Saniyede </p>
+                  <p>Sera Yatırım Fizibilitesi</p>
                 </h1>
               </div>
 
