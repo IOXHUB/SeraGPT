@@ -125,9 +125,9 @@ export default function Homepage() {
       {/* Timeline Section */}
       <section className="py-16 relative">
         <div className="max-w-[1700px] mx-auto px-6">
-          {/* Timeline Line */}
-          <div className="absolute left-1/2 transform -translate-x-1/2 w-1 bg-gradient-to-b from-transparent via-white/20 to-transparent h-full"></div>
-          
+          {/* Timeline Line - Hidden on mobile */}
+          <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-1 bg-gradient-to-b from-transparent via-white/20 to-transparent h-full"></div>
+
           <div className="relative">
             {/* Timeline Item 1 - Left Side */}
             <div className="flex items-center mb-16">
