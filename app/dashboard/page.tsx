@@ -792,7 +792,7 @@ export default function DashboardPage() {
         {/* MAIN */}
         <div className="flex-1 flex flex-col min-w-0">
           {/* HEADER */}
-          <header className="h-16 flex items-center px-4 border-b border-white/10 bg-[#146448]">
+          <header className="h-16 flex items-center justify-between px-4 border-b border-white/10 bg-[#146448]">
             <div className="flex items-center space-x-3">
               <button
                 className="lg:hidden text-white hover:bg-white/10 rounded-lg flex items-center justify-center"
@@ -803,8 +803,25 @@ export default function DashboardPage() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
                 </svg>
               </button>
-              
+
               <h1 className="text-white font-semibold text-lg" style={{ lineHeight: '24px', margin: '0' }}>AI Dashboard</h1>
+            </div>
+
+            {/* User Info & Logout */}
+            <div className="flex items-center space-x-4">
+              <div className="text-white text-sm">
+                <span className="opacity-70">Hoşgeldin, </span>
+                <span className="font-medium">{user?.email || 'Kullanıcı'}</span>
+              </div>
+              <button
+                onClick={async () => {
+                  await signOut();
+                  window.location.href = '/auth/login';
+                }}
+                className="px-3 py-1 bg-red-600 hover:bg-red-700 text-white text-sm rounded transition-colors"
+              >
+                Çıkış
+              </button>
             </div>
           </header>
 
