@@ -45,37 +45,6 @@ interface AnalysisFlow {
 export default function DashboardPage() {
   const { user, loading } = useAuth();
   const [mounted, setMounted] = useState(false);
-
-  // Prevent hydration mismatch
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  // Auth guard - redirect if not authenticated
-  useEffect(() => {
-    if (mounted && !loading && !user) {
-      console.log('🚫 Dashboard access denied - redirecting to login');
-      window.location.href = '/auth/login';
-    }
-  }, [user, loading, mounted]);
-
-  // Show loading while checking auth
-  if (loading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: '#146448' }}>
-        <div className="text-white text-lg">🔐 Authentication kontrolü...</div>
-      </div>
-    );
-  }
-
-  // Show login message if not authenticated
-  if (!user) {
-    return (
-      <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: '#146448' }}>
-        <div className="text-white text-lg">Giriş yapmanız gerekiyor...</div>
-      </div>
-    );
-  }
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [inputValue, setInputValue] = useState('');
   const [isTyping, setIsTyping] = useState(false);
