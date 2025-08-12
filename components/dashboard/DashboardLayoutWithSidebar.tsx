@@ -69,9 +69,11 @@ export default function DashboardLayout({ children, title, subtitle }: Dashboard
     <div className="min-h-screen bg-[#146448]">
       {/* Mobile sidebar backdrop */}
       {sidebarOpen && (
-        <div 
-          className="fixed inset-0 z-50 bg-black bg-opacity-50 lg:hidden"
+        <div
+          className="fixed inset-0 z-40 bg-black bg-opacity-50 lg:hidden"
+          style={{ touchAction: 'none' }}
           onClick={() => setSidebarOpen(false)}
+          onTouchStart={(e) => e.preventDefault()}
         />
       )}
 
