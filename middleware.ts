@@ -15,9 +15,24 @@ export async function middleware(request: NextRequest) {
   console.log(`🔒 [SECURITY] ${request.method} ${pathname} from ${clientIP}`)
 
   try {
-    // Enable auth protection for protected routes
-    const response = await updateSession(request)
-    
+    // Only check auth for protected routes
+    const protectedPaths = ['/dashboard', '/admin'];
+    const isProtectedPath = protectedPaths.some(path => pathname.startsWith(path));
+
+    let response: NextResponse;
+
+    if (isProtectedPath) {
+      // Enable auth protection for protected routes only
+      response = await updateSession(request)
+    } else {
+      // For public routes (homepage, etc.), just proceed without auth check
+      response = NextResponse.next({
+        request: {
+          headers: request.headers,
+        },
+      })
+    }
+
     // Add security headers
     response.headers.set('X-Frame-Options', 'DENY')
     response.headers.set('X-Content-Type-Options', 'nosniff')
@@ -31,7 +46,7 @@ export async function middleware(request: NextRequest) {
   } catch (error) {
     console.error(`❌ [SECURITY] Middleware error for ${pathname}:`, error)
 
-    // On auth error, redirect to login for protected routes
+    // On auth error, redirect to login for protected routes only
     if (pathname.startsWith('/dashboard') || pathname.startsWith('/admin')) {
       console.log(`🚫 [SECURITY] Unauthorized access attempt to ${pathname} - redirecting to login`);
       return NextResponse.redirect(new URL('/auth/login', request.url))
