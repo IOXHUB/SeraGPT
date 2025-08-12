@@ -120,11 +120,9 @@ export default function Homepage() {
                     fontFamily: '-apple-system, "system-ui", Inter, "Segoe UI", Roboto, "Noto Sans", Ubuntu, sans-serif'
                   }}
                 >
-                  <p>
-                    SeraGPT, kurumsal yatırımcılardan mevcut sera sahiplerine
-                    ve yeni girişimcilere kadar her kullanıcı için
-                    kişiselleştirilmiş bir başlangıç noktası sunar.
-                  </p>
+                  SeraGPT, kurumsal yatırımcılardan mevcut sera sahiplerine
+                  ve yeni girişimcilere kadar her kullanıcı için
+                  kişiselleştirilmiş bir başlangıç noktası sunar.
                 </p>
               </div>
             </div>
