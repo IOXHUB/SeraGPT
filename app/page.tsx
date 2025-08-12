@@ -187,11 +187,11 @@ export default function Homepage() {
                 </div>
               </div>
               
-              {/* Timeline Node */}
-              <div className="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 rounded-full border-4 border-white/20" style={{ backgroundColor: '#baf200' }}></div>
-              
+              {/* Timeline Node - Hidden on mobile */}
+              <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-6 h-6 rounded-full border-4 border-white/20" style={{ backgroundColor: '#baf200' }}></div>
+
               {/* Visual Area - Right Side */}
-              <div className="w-1/2 pl-8">
+              <div className="w-full md:w-1/2 md:pl-8">
                 <div className="bg-gradient-to-br from-blue-500/20 to-green-500/20 rounded-xl p-8 border border-white/10 h-64 flex items-center justify-center">
                   <div className="text-center">
                     <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style={{ backgroundColor: '#baf200' }}>
@@ -718,7 +718,7 @@ export default function Homepage() {
                 },
                 {
                   question: "Turnkey greenhouse projelerinde risk yönetimi?",
-                  answer: "Finansal, iklim ve tedarik riskleri için senaryolar; sözleşmesel risk dağıtımı ve uyum kontrolleri."
+                  answer: "Finansal, iklim ve tedarik riskleri için senaryolar; sözleşmesel risk dağ��tımı ve uyum kontrolleri."
                 }
               ].map((faq, index) => (
                 <div key={index} className="bg-white rounded-xl border border-gray-200">
