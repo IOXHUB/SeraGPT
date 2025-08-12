@@ -26,14 +26,14 @@ export default function Header() {
 
         {/* Center navigation - 3 main services */}
         <nav className="hidden md:flex items-center space-x-8" style={{ marginTop: '1px' }}>
-          <a href="/destek" className="font-medium transition-colors hover:text-[#baf200]" style={{ color: '#f6f8f9' }}>
-            <p>Destek</p>
+          <a href="/destek" className="font-medium transition-colors hover:text-[#baf200]" style={{ color: '#f6f8f9 !important' }}>
+            <p style={{ color: '#f6f8f9 !important' }}>Destek</p>
           </a>
-          <a href="/danismanlik" className="font-medium transition-colors hover:text-[#baf200]" style={{ color: '#f6f8f9' }}>
-            <p>Danışmanlık</p>
+          <a href="/danismanlik" className="font-medium transition-colors hover:text-[#baf200]" style={{ color: '#f6f8f9 !important' }}>
+            <p style={{ color: '#f6f8f9 !important' }}>Danışmanlık</p>
           </a>
-          <a href="/anahtar-teslim-proje" className="font-medium transition-colors hover:text-[#baf200]" style={{ color: '#f6f8f9' }}>
-            <p>Anahtar Teslim Sera</p>
+          <a href="/anahtar-teslim-proje" className="font-medium transition-colors hover:text-[#baf200]" style={{ color: '#f6f8f9 !important' }}>
+            <p style={{ color: '#f6f8f9 !important' }}>Anahtar Teslim Sera</p>
           </a>
         </nav>
 
