@@ -11,7 +11,7 @@ export default function Header() {
 
   return (
     <header className="w-full" style={{ backgroundColor: '#146448' }}>
-      <div className="header-footer-container">
+      <div className="header-footer-container" style={{ margin: '20px auto 0' }}>
         {/* Logo - clickable to homepage */}
         <div className="flex items-center space-x-3">
           <a href="/" className="flex items-center space-x-3">
