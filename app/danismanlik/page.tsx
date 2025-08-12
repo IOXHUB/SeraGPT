@@ -752,6 +752,8 @@ export default function DanismanlikPage() {
           </div>
         </div>
       )}
+
+      <Footer />
     </div>
   );
 }
