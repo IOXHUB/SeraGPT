@@ -116,12 +116,16 @@ export default function Homepage() {
                   className="text-center"
                   style={{
                     color: '#f6f8f9',
-                    fontSize: '14px',
+                    fontSize: '16px',
                     fontWeight: '400',
                     fontFamily: '-apple-system, "system-ui", Inter, "Segoe UI", Roboto, "Noto Sans", Ubuntu, sans-serif'
                   }}
                 >
-                  Yatırım sürecine başlamadan önce hedeflerinizi net bir şekilde tanımlamak büyük önem taşır. Kapasiteniz, ürün çeşitliliğiniz, bütçeniz, zaman çizelgeniz ve ulaşmak istediğiniz KPI'ları belirleyerek işe başlayın. SeraGPT, kurumsal yatırımcılardan mevcut sera sahiplerine ve yeni girişimcilere kadar her kullanıcı için kişiselleştirilmiş bir başlangıç noktası sunar.
+                  <p>
+                    SeraGPT, kurumsal yatırımcılardan mevcut sera sahiplerine
+                    ve yeni girişimcilere kadar her kullanıcı için
+                    kişiselleştirilmiş bir başlangıç noktası sunar.
+                  </p>
                 </p>
               </div>
             </div>
