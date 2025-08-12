@@ -272,12 +272,12 @@ export default function DashboardPage() {
 
           {/* CTA Button */}
           <div className="p-4 border-b border-white/10">
-            <button 
-              onClick={() => window.location.href = '/dashboard/analysis/new'}
+            <button
+              onClick={() => window.location.href = '/dashboard/analysis'}
               className="w-full bg-[#baf200] hover:bg-[#baf200]/90 text-[#146448] font-semibold py-3 px-4 rounded-lg transition-colors flex items-center justify-center space-x-2"
             >
               <span className="text-lg">⚡</span>
-              <span>Yeni Analiz Başlat</span>
+              <span>Analizlere Git</span>
             </button>
           </div>
           
