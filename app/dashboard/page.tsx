@@ -4,8 +4,7 @@ import { useState, useRef, useEffect } from 'react';
 import { useAuth } from '@/lib/hooks/useAuth';
 import ClientOnly from '@/components/ui/ClientOnly';
 
-// Force dynamic rendering
-export const dynamic = 'force-dynamic';
+// Dynamic rendering for auth protection
 
 interface ChatMessage {
   id: string;
@@ -813,7 +812,7 @@ export default function DashboardPage() {
                       Aşağıdan Analiz Başlatabilirsiniz yada menüden düzenlemek istediğiniz geçmiş analizlerinden birini seçin.
                     </p>
                     <p className="text-[#baf200] font-medium text-sm md:text-base text-center">
-                      Tam havamdayım, çalışalım. Ya siz?
+                      Tam havamdayım, çalışal��m. Ya siz?
                     </p>
                   </div>
                 </div>
