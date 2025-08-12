@@ -46,17 +46,17 @@ export default function DestekPage() {
             </div>
           </div>
           
-          <div className="text-center max-w-[896px] mx-auto">
-            <h1 className="text-4xl font-bold text-white mb-4">
+          <div className="text-center max-w-[896px] mx-auto flex flex-col">
+            <h1 className="text-4xl font-bold text-white mb-4 mx-auto">
               Destek Kaydı Aç
             </h1>
             <p className="text-xl text-white/90 max-w-[576px] mx-auto mb-8">
-              Teknik sorunlarınız için destek kaydı oluşturun. 
+              Teknik sorunlarınız için destek kaydı oluşturun.
               Uzman ekibimiz 24 saat içinde size dönüş yapacaktır.
             </p>
             <button
               onClick={() => setShowTicketModal(true)}
-              className="bg-[#baf200] text-[#146448] px-8 py-4 rounded-xl font-bold text-lg hover:bg-[#a5e600] transition-colors"
+              className="bg-[#baf200] text-[#146448] px-8 py-4 rounded-xl font-bold text-lg hover:bg-[#a5e600] transition-colors mx-auto"
             >
               Yeni Destek Kaydı Oluştur
             </button>
