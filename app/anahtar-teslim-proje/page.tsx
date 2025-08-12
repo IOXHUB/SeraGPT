@@ -959,6 +959,8 @@ export default function AnahtarTeslimPage() {
           </div>
         </div>
       )}
+
+      <Footer />
     </div>
   );
 }
