@@ -78,7 +78,7 @@ export default function DashboardLayout({ children, title, subtitle }: Dashboard
       )}
 
       {/* Desktop Sidebar */}
-      <div className={`fixed inset-y-0 left-0 z-40 bg-[#f6f8f9] border-r border-[#146448]/20 shadow-lg transition-all duration-300 ease-in-out hidden lg:block ${
+      <div className={`fixed inset-y-0 left-0 z-30 bg-[#f6f8f9] border-r border-[#146448]/20 shadow-lg transition-all duration-300 ease-in-out hidden lg:block ${
         sidebarCollapsed ? 'w-16' : 'w-64'
       }`}>
         <div className="flex flex-col h-full">
