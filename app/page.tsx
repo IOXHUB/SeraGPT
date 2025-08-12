@@ -13,7 +13,7 @@ export default function Homepage() {
   };
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen" style={{ backgroundColor: 'rgba(20, 100, 72, 1)' }}>
       <Header />
       
       <div style={{ backgroundColor: '#146448' }}>
@@ -504,7 +504,7 @@ export default function Homepage() {
                         </span>
                       </div>
                       <div className="flex items-center space-x-2">
-                        <span style={{ color: '#baf200', fontSize: '14px' }}>���</span>
+                        <span style={{ color: '#baf200', fontSize: '14px' }}>✓</span>
                         <span style={{ color: '#f6f8f9', fontSize: '12px', fontWeight: '400', fontFamily: '-apple-system, "system-ui", Inter, "Segoe UI", Roboto, "Noto Sans", Ubuntu, sans-serif' }}>
                           Gelirde %7–18 artış
                         </span>
