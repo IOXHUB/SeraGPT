@@ -31,8 +31,8 @@ export default function Homepage() {
                     fontFamily: '-apple-system, "system-ui", Inter, "Segoe UI", Roboto, "Noto Sans", Ubuntu, sans-serif'
                   }}
                 >
-                  <p>60 Saniyede </p>
-                  <p>Sera Yatırım Fizibilitesi</p>
+                  <p style={{ fontSize: '36px', fontWeight: '400', lineHeight: '24px', marginBottom: '20px' }}>60 Saniyede </p>
+                  <p style={{ fontSize: '36px', fontWeight: '400', lineHeight: '24px' }}>Sera Yatırım Fizibilitesi</p>
                 </h1>
               </div>
 
