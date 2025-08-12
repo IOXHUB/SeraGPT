@@ -244,7 +244,7 @@ export default function DashboardLayout({ children, title, subtitle }: Dashboard
             {dashboardNavItems.map((item) => (
               <div key={item.name} className="relative">
                 {item.dropdown ? (
-                  <div className="relative">
+                  <div className="relative" data-dropdown="analysis">
                     <button
                       onClick={() => setAnalysisDropdownOpen(!analysisDropdownOpen)}
                       className="flex items-center space-x-1 whitespace-nowrap font-medium text-[#1e3237] hover:text-[#146448] transition-colors border-b-2 border-transparent hover:border-[#146448] pb-1"
