@@ -20,15 +20,15 @@ export default function Header() {
         </div>
 
         {/* Center navigation - 3 main services */}
-        <nav className="hidden md:flex items-center space-x-8">
+        <nav className="hidden md:flex items-center space-x-8" style={{ marginTop: '1px' }}>
           <a href="/destek" className="text-white hover:text-[#baf200] font-medium transition-colors">
-            Destek Kaydı Aç
+            <p>Destek</p>
           </a>
           <a href="/danismanlik" className="text-white hover:text-[#baf200] font-medium transition-colors">
-            Proje Danışmanlığı
+            <p>Danışmanlık</p>
           </a>
           <a href="/anahtar-teslim-proje" className="text-white hover:text-[#baf200] font-medium transition-colors">
-            Anahtar Teslim Sera Teklifi Al
+            <p>Anahtar Teslim Sera </p>
           </a>
         </nav>
 
