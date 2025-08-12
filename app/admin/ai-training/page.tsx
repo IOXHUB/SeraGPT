@@ -40,6 +40,16 @@ export default function AITrainingPage() {
   const [jobs, setJobs] = useState<TrainingJob[]>([]);
   const [datasets, setDatasets] = useState<TrainingDataset[]>([]);
   const [dataLoading, setDataLoading] = useState(true);
+  const [showNewTrainingModal, setShowNewTrainingModal] = useState(false);
+  const [isCreatingTraining, setIsCreatingTraining] = useState(false);
+  const [newTrainingForm, setNewTrainingForm] = useState({
+    name: '',
+    type: 'fine-tuning',
+    datasetId: '',
+    epochs: 5,
+    learningRate: 0.001,
+    batchSize: 32
+  });
 
   const tabs = [
     { id: 'jobs', title: 'Eğitim İşleri', icon: '🚀' },
