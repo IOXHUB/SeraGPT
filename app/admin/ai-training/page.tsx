@@ -318,6 +318,7 @@ export default function AITrainingPage() {
                     AI model eğitimi başlatmak için yeni bir eğitim işi oluşturun
                   </p>
                   <button
+                    onClick={openNewTrainingModal}
                     className="px-6 py-3 rounded-lg font-medium transition-all hover:opacity-90"
                     style={{ backgroundColor: '#baf200', color: '#1e3237' }}
                   >
