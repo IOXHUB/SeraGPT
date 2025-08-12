@@ -516,7 +516,7 @@ export default function Homepage() {
                       </div>
                     </div>
                     
-                    <div className="mt-6">
+                    <div className="mt-6" style={{ display: 'flex', flexDirection: 'column' }}>
                       <Link
                         href="/danismanlik"
                         className="px-6 py-3 rounded-xl font-medium transition-all hover:opacity-90"
@@ -525,10 +525,11 @@ export default function Homepage() {
                           color: '#146448',
                           fontSize: '14px',
                           fontWeight: '600',
-                          fontFamily: '-apple-system, "system-ui", Inter, "Segoe UI", Roboto, "Noto Sans", Ubuntu, sans-serif'
+                          fontFamily: '-apple-system, "system-ui", Inter, "Segoe UI", Roboto, "Noto Sans", Ubuntu, sans-serif',
+                          marginRight: 'auto'
                         }}
                       >
-                        Görüşme Planla
+                        <p>Paketleri İncele</p>
                       </Link>
                     </div>
                   </div>
