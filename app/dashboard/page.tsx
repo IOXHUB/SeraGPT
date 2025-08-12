@@ -326,17 +326,18 @@ export default function DashboardPage() {
     }
   ];
 
-  // Dashboard menu items - Updated for modal system
+  // Dashboard menu items - Direct links to working pages
   const dashboardMenuItems = [
-    { id: 'user', title: 'Kullanıcı İşlemleri', modal: true },
-    { id: 'tokens', title: 'Token İşlemleri', modal: true },
-    { id: 'ai-assistant', title: 'AI Asistan İşlemleri', modal: true },
-    { id: 'analysis', title: 'Tüm Analizler', modal: true },
-    { id: 'settings', title: 'Hesap Ayarları', modal: true },
-    { id: 'support', title: 'Destek', modal: false, href: '/destek' },
-    { id: 'consulting', title: 'Danışmanlık', modal: false, href: '/danismanlik' },
-    { id: 'turnkey', title: 'Anahtar Teslim', modal: false, href: '/anahtar-teslim-proje' },
-    { id: 'homepage', title: 'Anasayfaya Çıkış', modal: false, href: '/' }
+    { id: 'tokens', title: 'Token İşlemleri', href: '/dashboard/tokens' },
+    { id: 'analysis', title: 'Tüm Analizler', href: '/dashboard/analysis' },
+    { id: 'reports', title: 'Raporlarım', href: '/dashboard/reports' },
+    { id: 'settings', title: 'Hesap Ayarları', href: '/dashboard/settings' },
+    { id: 'ai-chat', title: 'AI Chat', href: '/dashboard/ai-chat' },
+    { id: 'projects', title: 'Projelerim', href: '/dashboard/projects' },
+    { id: 'help', title: 'Yardım', href: '/dashboard/help' },
+    { id: 'consulting', title: 'Danışmanlık', href: '/dashboard/consulting' },
+    { id: 'support', title: 'Destek', href: '/destek' },
+    { id: 'homepage', title: 'Anasayfaya Çıkış', href: '/' }
   ];
 
   // Token purchase handler
