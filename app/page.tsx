@@ -16,7 +16,7 @@ export default function Homepage() {
     <div className="min-h-screen" style={{ backgroundColor: 'rgba(20, 100, 72, 1)' }}>
       <Header />
       
-      <div style={{ backgroundColor: '#146448' }}>
+      <div>
         {/* Hero Section */}
         <section className="py-20">
           <div className="max-w-[1700px] mx-auto px-6">
