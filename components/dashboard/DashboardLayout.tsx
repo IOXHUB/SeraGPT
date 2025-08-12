@@ -173,9 +173,19 @@ export default function DashboardLayout({ children, title, subtitle }: Dashboard
             </button>
           </div>
 
+          {/* Mobile Menu Backdrop */}
+          {mobileMenuOpen && (
+            <div
+              className="fixed inset-0 z-40 bg-black bg-opacity-50 md:hidden"
+              style={{ touchAction: 'none' }}
+              onClick={() => setMobileMenuOpen(false)}
+              onTouchStart={(e) => e.preventDefault()}
+            />
+          )}
+
           {/* Mobile Menu */}
           {mobileMenuOpen && (
-            <div className="md:hidden mt-4 py-4 border-t border-white/20">
+            <div className="relative z-50 md:hidden mt-4 py-4 border-t border-white/20 bg-[#146448]">
               <div className="space-y-2">
                 {/* User Info Mobile */}
                 <div className="flex items-center justify-between px-4 py-2">
