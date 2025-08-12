@@ -100,11 +100,18 @@ export default function Header() {
             {/* Center navigation links */}
             <div className="space-y-3">
               <a
+                href="/yardim"
+                className="block text-gray-700 hover:text-gray-900 font-medium transition-colors py-2"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                ❓ Yardım
+              </a>
+              <a
                 href="/danismanlik"
                 className="block text-gray-700 hover:text-gray-900 font-medium transition-colors py-2"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                Danışmanlık
+                👨‍🔬 Danışmanlık
               </a>
               <a
                 href="/anahtar-teslim-proje"
