@@ -92,6 +92,12 @@ export function useAuth(): AuthContextType {
       return;
     }
 
+    // Add safety timeout to prevent infinite loading
+    const safetyTimeout = setTimeout(() => {
+      console.warn('Auth check timeout - setting loading to false');
+      setLoading(false);
+    }, 5000);
+
     const getUser = async () => {
       try {
         setLoading(true);
