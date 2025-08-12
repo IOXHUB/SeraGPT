@@ -1,9 +1,13 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { useAuth } from '@/lib/hooks/useAuth';
 
 export default function TestNewPage() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { user, loading, isAdmin } = useAuth();
+
   return (
     <div className="min-h-screen" style={{ backgroundColor: '#146448' }}>
       {/* Header */}
@@ -53,20 +57,170 @@ export default function TestNewPage() {
 
             {/* CTA Button */}
             <div className="hidden md:flex items-center">
-              <Link
-                href="/auth/login"
-                className="px-6 py-3 rounded-xl font-medium transition-all hover:opacity-90"
-                style={{ 
-                  backgroundColor: '#baf200', 
-                  color: '#1e3237', 
-                  fontSize: '14px', 
-                  fontWeight: '600' 
-                }}
-              >
-                Ücretsiz Başla
-              </Link>
+              {!loading && (
+                <>
+                  {user ? (
+                    <div className="flex items-center space-x-4">
+                      <Link
+                        href="/dashboard/direct"
+                        className="px-6 py-3 rounded-xl font-medium transition-all hover:opacity-90"
+                        style={{
+                          backgroundColor: '#baf200',
+                          color: '#1e3237',
+                          fontSize: '14px',
+                          fontWeight: '600'
+                        }}
+                      >
+                        Dashboard
+                      </Link>
+                      {isAdmin() && (
+                        <Link
+                          href="/admin"
+                          className="px-4 py-2 rounded-lg font-medium transition-all hover:opacity-90"
+                          style={{ color: '#f6f8f9', fontSize: '12px' }}
+                        >
+                          👑 Admin
+                        </Link>
+                      )}
+                    </div>
+                  ) : (
+                    <Link
+                      href="/auth/login"
+                      className="px-6 py-3 rounded-xl font-medium transition-all hover:opacity-90"
+                      style={{
+                        backgroundColor: '#baf200',
+                        color: '#1e3237',
+                        fontSize: '14px',
+                        fontWeight: '600'
+                      }}
+                    >
+                      Ücretsiz Başla
+                    </Link>
+                  )}
+                </>
+              )}
             </div>
+
+            {/* Mobile Menu Button */}
+            <button
+              className="md:hidden p-2 rounded-lg"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              style={{ color: '#f6f8f9' }}
+            >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                {isMobileMenuOpen ? (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                ) : (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                )}
+              </svg>
+            </button>
           </div>
+
+          {/* Mobile Menu */}
+          {isMobileMenuOpen && (
+            <div className="md:hidden mt-4 py-4 border-t border-white/20">
+              <div className="space-y-4">
+                {/* Navigation Links */}
+                <div className="space-y-3">
+                  <Link
+                    href="/danismanlik"
+                    className="block font-medium transition-opacity hover:opacity-70 py-2"
+                    style={{ color: '#f6f8f9', fontSize: '16px' }}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    Danışmanlık
+                  </Link>
+                  <Link
+                    href="/anahtar-teslim-proje"
+                    className="block font-medium transition-opacity hover:opacity-70 py-2"
+                    style={{ color: '#f6f8f9', fontSize: '16px' }}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    Anahtar Teslim Proje
+                  </Link>
+                  <Link
+                    href="/destek"
+                    className="block font-medium transition-opacity hover:opacity-70 py-2"
+                    style={{ color: '#f6f8f9', fontSize: '16px' }}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    Destek
+                  </Link>
+                  <Link
+                    href="/blog"
+                    className="block font-medium transition-opacity hover:opacity-70 py-2"
+                    style={{ color: '#f6f8f9', fontSize: '16px' }}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    Blog
+                  </Link>
+                </div>
+
+                {/* Divider */}
+                <div className="border-t border-white/20 my-4"></div>
+
+                {/* User Actions */}
+                <div className="space-y-3">
+                  {!loading && (
+                    <>
+                      {user ? (
+                        <>
+                          <Link
+                            href="/dashboard/direct"
+                            className="block px-6 py-3 rounded-xl font-medium transition-all hover:opacity-90 text-center"
+                            style={{
+                              backgroundColor: '#baf200',
+                              color: '#1e3237',
+                              fontSize: '16px',
+                              fontWeight: '600'
+                            }}
+                            onClick={() => setIsMobileMenuOpen(false)}
+                          >
+                            Dashboard
+                          </Link>
+                          {isAdmin() && (
+                            <Link
+                              href="/admin"
+                              className="block font-medium transition-opacity hover:opacity-70 py-2"
+                              style={{ color: '#f6f8f9', fontSize: '16px' }}
+                              onClick={() => setIsMobileMenuOpen(false)}
+                            >
+                              👑 Admin Panel
+                            </Link>
+                          )}
+                        </>
+                      ) : (
+                        <>
+                          <Link
+                            href="/auth/login"
+                            className="block font-medium transition-opacity hover:opacity-70 py-2"
+                            style={{ color: '#f6f8f9', fontSize: '16px' }}
+                            onClick={() => setIsMobileMenuOpen(false)}
+                          >
+                            Giriş Yap
+                          </Link>
+                          <Link
+                            href="/auth/login"
+                            className="block px-6 py-3 rounded-xl font-medium transition-all hover:opacity-90 text-center"
+                            style={{
+                              backgroundColor: '#baf200',
+                              color: '#1e3237',
+                              fontSize: '16px',
+                              fontWeight: '600'
+                            }}
+                            onClick={() => setIsMobileMenuOpen(false)}
+                          >
+                            Ücretsiz Başla
+                          </Link>
+                        </>
+                      )}
+                    </>
+                  )}
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </header>
 
@@ -653,7 +807,7 @@ export default function TestNewPage() {
         </div>
       </section>
 
-      {/* 4.5. 📋 Proje Danışmanlık Hizmetimiz */}
+      {/* 4.5. �� Proje Danışmanlık Hizmetimiz */}
       <section className="py-20">
         <div className="max-w-[1200px] mx-auto px-6 text-center">
           <div className="max-w-[800px] mx-auto">
