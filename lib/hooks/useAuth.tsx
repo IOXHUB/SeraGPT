@@ -86,9 +86,8 @@ export function useAuth(): AuthContextType {
   }, []);
 
   useEffect(() => {
-    // Skip during SSR/build time
+    // Skip during SSR/build time - keep loading true for consistency
     if (typeof window === 'undefined') {
-      setLoading(false);
       return;
     }
 
