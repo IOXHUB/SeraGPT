@@ -14,10 +14,8 @@ export default function TestNewPage() {
     setMounted(true);
   }, []);
 
-  // Show static content until mounted (prevents hydration mismatch)
-  if (!mounted) {
-    return null; // Simple fallback to prevent hydration mismatch
-  }
+  // Always show content - let auth state load progressively
+  const authLoaded = mounted && !loading;
 
   return (
     <div className="min-h-screen" style={{ backgroundColor: '#146448' }}>
@@ -528,7 +526,7 @@ export default function TestNewPage() {
                                   <span className="font-semibold">₺2.800.000</span>
                                 </div>
                                 <div className="flex justify-between mb-1">
-                                  <span>Yıllık Gelir:</span>
+                                  <span>Y��llık Gelir:</span>
                                   <span className="font-semibold text-green-600">₺1.950.000</span>
                                 </div>
                                 <div className="flex justify-between">
@@ -1282,7 +1280,7 @@ export default function TestNewPage() {
                       <p>Ekipman seçiminde aşağıdaki kriterler uygulanır:</p>
                       <ul className="space-y-2 ml-4">
                         <li>• Enerji verimliliği (A++ veya üzeri)</li>
-                        <li>• Türkiye'de servis ve yedek parça desteği</li>
+                        <li>• T��rkiye'de servis ve yedek parça desteği</li>
                         <li>• Uluslararası kalite belgeleri (CE, ISO, TÜV)</li>
                         <li>• Daha önce kurduğumuz projelerdeki performans verileri</li>
                       </ul>
@@ -1447,7 +1445,7 @@ export default function TestNewPage() {
                         className="mb-4 opacity-80"
                         style={{ color: '#f6f8f9', fontSize: '14px', fontWeight: '400', lineHeight: '1.6' }}
                       >
-                        Değişen iklim koşulları tarımı nasıl etkiliyor? Sera teknolojileri ile sürdürülebilir üretim modelleri ve çözüm önerileri.
+                        Değişen iklim ko��ulları tarımı nasıl etkiliyor? Sera teknolojileri ile sürdürülebilir üretim modelleri ve çözüm önerileri.
                       </p>
                       <div className="flex items-center justify-between">
                         <span
@@ -1636,7 +1634,7 @@ export default function TestNewPage() {
                 fontWeight: '600'
               }}
             >
-              Tüm Blog Yazılarını Görüntüle
+              T��m Blog Yazılarını Görüntüle
             </Link>
           </div>
         </div>
@@ -1748,7 +1746,7 @@ export default function TestNewPage() {
                   fontWeight: '400' 
                 }}
               >
-                AI destekli sera analiz platformu. Doğru yatırım, do��ru analizle başlar.
+                AI destekli sera analiz platformu. Doğru yatırım, doğru analizle başlar.
               </p>
             </div>
 
