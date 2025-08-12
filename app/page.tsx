@@ -8,11 +8,6 @@ export default function TestNewPage() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { user, loading, isAdmin } = useAuth();
 
-  // Debug auth state
-  useEffect(() => {
-    console.log('Homepage Auth State:', { user: !!user, loading, userEmail: user?.email });
-  }, [user, loading]);
-
   return (
     <div className="min-h-screen" style={{ backgroundColor: '#146448' }}>
       {/* Header */}
@@ -340,7 +335,7 @@ export default function TestNewPage() {
                   fontWeight: '400'
                 }}
               >
-                Lokasyon, iklim, bitki türü ve yatırım bütçenizi girin. Size özel analizle geri dönüş süresinden kurulum maliyetine kadar tüm detaylar�� öğrenin.
+                Lokasyon, iklim, bitki türü ve yatırım bütçenizi girin. Size özel analizle geri dönüş süresinden kurulum maliyetine kadar tüm detayları öğrenin.
               </p>
             </div>
 
@@ -618,7 +613,7 @@ export default function TestNewPage() {
                 }}
               >
                 <p style={{ color: '#f6f8f9', fontSize: '16px', fontWeight: '400' }}>
-                  Sera yatır��mınız için SeraGPT ile analiz yaptınız. Şimdi sıra, bu verileri sahaya taşımakta. ISITMAX ve XXXXX İspanya ortaklığıyla yürüttüğümüz anahtar teslim proje sistemimizde:
+                  Sera yatırımınız için SeraGPT ile analiz yaptınız. Şimdi sıra, bu verileri sahaya taşımakta. ISITMAX ve XXXXX İspanya ortaklığıyla yürüttüğümüz anahtar teslim proje sistemimizde:
                 </p>
 
                 <div className="bg-white/10 rounded-xl p-6 backdrop-blur-sm">
@@ -1211,7 +1206,7 @@ export default function TestNewPage() {
                         <li>• Su kaynağı ve sulama kapasitesi</li>
                         <li>• Enerji kaynakları ve maliyetleri</li>
                       </ul>
-                      <p>Tüm bu veriler yapay zeka ve mühendis ekibimizin değerlendirmesiyle optimum yatırım modeli olarak raporlanır.</p>
+                      <p>Tüm bu veriler yapay zeka ve mühendis ekibimizin de��erlendirmesiyle optimum yatırım modeli olarak raporlanır.</p>
                     </div>
                   </div>
                 </div>
@@ -1243,7 +1238,7 @@ export default function TestNewPage() {
                     <div className="space-y-3 text-left" style={{ color: '#f6f8f9', fontSize: '16px', fontWeight: '400' }}>
                       <p>Raporlarımızda TKDK, IPARD ve Ziraat Bankası gibi kurumların kriterleri dikkate alınır.</p>
                       <p>Bölgesel hibe oranları, yatırım bütçesi limitleri ve teknik gereklilikler proje dosyasına eklenir.</p>
-                      <p>Eğer yatırımın��z uygun bulunursa, hibe başvurusu sırasında gerekli teknik çizim ve fizibilite raporları tarafımızdan hazırlanabilir.</p>
+                      <p>Eğer yatırımınız uygun bulunursa, hibe başvurusu sırasında gerekli teknik çizim ve fizibilite raporları tarafımızdan hazırlanabilir.</p>
                     </div>
                   </div>
                 </div>
@@ -1477,7 +1472,7 @@ export default function TestNewPage() {
                         className="mb-3 group-hover:opacity-80 transition-opacity"
                         style={{ color: '#f6f8f9', fontSize: '18px', fontWeight: '600', lineHeight: '1.4' }}
                       >
-                        ROI Maliyet Analizi: Sera Yatır��mınız Ne Zaman Geri Döner?
+                        ROI Maliyet Analizi: Sera Yatırımınız Ne Zaman Geri Döner?
                       </h3>
                       <p
                         className="mb-4 opacity-80"
