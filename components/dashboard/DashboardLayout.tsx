@@ -130,7 +130,7 @@ export default function DashboardLayout({ children, title, subtitle }: Dashboard
               {/* User Info */}
               <div className="flex items-center space-x-3">
                 <span className="text-white font-medium">
-                  {user?.user_metadata?.full_name || user?.email?.split('@')[0] || 'Kullanıcı'}
+                  👤 {user?.user_metadata?.full_name || user?.email || 'Giriş Yapılmadı'}
                 </span>
                 <span className="px-3 py-1 text-xs font-medium bg-[#baf200] text-[#1e3237] rounded-full">
                   Premium
@@ -191,7 +191,7 @@ export default function DashboardLayout({ children, title, subtitle }: Dashboard
                 <div className="flex items-center justify-between px-4 py-2">
                   <div className="flex items-center space-x-3">
                     <h2 className="text-lg font-semibold text-white">
-                      {user?.user_metadata?.full_name || user?.email?.split('@')[0] || 'Kullanıcı'}
+                      👤 {user?.user_metadata?.full_name || user?.email || 'Giriş Yapılmadı'}
                     </h2>
                     <span className="px-2 py-1 text-xs font-medium bg-[#baf200] text-[#1e3237] rounded-full">
                       Premium
