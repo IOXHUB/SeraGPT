@@ -14,30 +14,9 @@ export default function TestNewPage() {
     setMounted(true);
   }, []);
 
-  // Show basic loading until mounted (prevents hydration mismatch)
+  // Show static content until mounted (prevents hydration mismatch)
   if (!mounted) {
-    return (
-      <div className="min-h-screen" style={{ backgroundColor: '#146448' }}>
-        <header className="py-4" style={{ backgroundColor: '#146448' }}>
-          <div className="max-w-[1200px] mx-auto px-6">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center">
-                <img
-                  src="https://cdn.builder.io/api/v1/image/assets%2F2c7ec7c93776440b923d3518963fc941%2F01c1e8a05ef6424b912d584875377957?format=webp&width=800"
-                  alt="SeraGPT Logo"
-                  className="h-12 w-auto object-contain"
-                />
-              </div>
-              <div className="hidden md:flex items-center">
-                <div className="px-6 py-3 rounded-xl" style={{ backgroundColor: '#baf200', color: '#1e3237' }}>
-                  Yükleniyor...
-                </div>
-              </div>
-            </div>
-          </div>
-        </header>
-      </div>
-    );
+    return null; // Simple fallback to prevent hydration mismatch
   }
 
   return (
@@ -1769,7 +1748,7 @@ export default function TestNewPage() {
                   fontWeight: '400' 
                 }}
               >
-                AI destekli sera analiz platformu. Doğru yatırım, doğru analizle başlar.
+                AI destekli sera analiz platformu. Doğru yatırım, do��ru analizle başlar.
               </p>
             </div>
 
