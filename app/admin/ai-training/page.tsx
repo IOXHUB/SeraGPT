@@ -456,6 +456,135 @@ export default function AITrainingPage() {
           )}
         </div>
       </div>
+
+      {/* New Training Modal */}
+      {showNewTrainingModal && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-lg max-w-md w-full max-h-[90vh] overflow-y-auto">
+            <div className="p-6">
+              <div className="flex items-center justify-between mb-6">
+                <h3 className="text-xl font-semibold" style={{ color: '#1e3237' }}>🚀 Yeni AI Eğitimi</h3>
+                <button
+                  onClick={() => setShowNewTrainingModal(false)}
+                  className="text-gray-400 hover:text-gray-600 text-xl"
+                >
+                  ✕
+                </button>
+              </div>
+
+              <div className="space-y-4">
+                <div>
+                  <label className="block text-sm font-medium mb-2" style={{ color: '#1e3237' }}>
+                    Eğitim Adı *
+                  </label>
+                  <input
+                    type="text"
+                    value={newTrainingForm.name}
+                    onChange={(e) => setNewTrainingForm(prev => ({ ...prev, name: e.target.value }))}
+                    placeholder="Örn: Sera Analizi Fine-Tuning"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium mb-2" style={{ color: '#1e3237' }}>
+                    Eğitim Tipi
+                  </label>
+                  <select
+                    value={newTrainingForm.type}
+                    onChange={(e) => setNewTrainingForm(prev => ({ ...prev, type: e.target.value }))}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                  >
+                    <option value="fine-tuning">Fine-Tuning</option>
+                    <option value="training">Tam Eğitim</option>
+                    <option value="transfer-learning">Transfer Learning</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium mb-2" style={{ color: '#1e3237' }}>
+                    Veri Seti *
+                  </label>
+                  <select
+                    value={newTrainingForm.datasetId}
+                    onChange={(e) => setNewTrainingForm(prev => ({ ...prev, datasetId: e.target.value }))}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                  >
+                    <option value="">Veri seti seçin</option>
+                    {datasets.map(dataset => (
+                      <option key={dataset.id} value={dataset.id}>
+                        {dataset.name} ({dataset.samples?.toLocaleString() || 'N/A'} örnek)
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium mb-2" style={{ color: '#1e3237' }}>
+                      Epoch Sayısı
+                    </label>
+                    <input
+                      type="number"
+                      value={newTrainingForm.epochs}
+                      onChange={(e) => setNewTrainingForm(prev => ({ ...prev, epochs: parseInt(e.target.value) || 5 }))}
+                      min="1"
+                      max="100"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium mb-2" style={{ color: '#1e3237' }}>
+                      Batch Size
+                    </label>
+                    <input
+                      type="number"
+                      value={newTrainingForm.batchSize}
+                      onChange={(e) => setNewTrainingForm(prev => ({ ...prev, batchSize: parseInt(e.target.value) || 32 }))}
+                      min="1"
+                      max="256"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium mb-2" style={{ color: '#1e3237' }}>
+                    Learning Rate
+                  </label>
+                  <input
+                    type="number"
+                    value={newTrainingForm.learningRate}
+                    onChange={(e) => setNewTrainingForm(prev => ({ ...prev, learningRate: parseFloat(e.target.value) || 0.001 }))}
+                    step="0.0001"
+                    min="0.0001"
+                    max="0.1"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                  />
+                </div>
+              </div>
+
+              <div className="flex space-x-3 mt-6">
+                <button
+                  onClick={() => setShowNewTrainingModal(false)}
+                  disabled={isCreatingTraining}
+                  className="flex-1 px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors disabled:opacity-50"
+                >
+                  İptal
+                </button>
+                <button
+                  onClick={handleCreateTraining}
+                  disabled={isCreatingTraining || !newTrainingForm.name || !newTrainingForm.datasetId}
+                  className="flex-1 px-4 py-2 rounded-lg font-medium text-white transition-all hover:opacity-90 disabled:opacity-50"
+                  style={{ backgroundColor: '#146448' }}
+                >
+                  {isCreatingTraining ? '🔄 Başlatılıyor...' : '🚀 Eğitimi Başlat'}
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
