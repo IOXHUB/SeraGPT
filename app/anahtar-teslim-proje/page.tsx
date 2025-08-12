@@ -50,17 +50,17 @@ export default function AnahtarTeslimPage() {
             </div>
           </div>
           
-          <div className="text-center max-w-[896px] mx-auto">
-            <h1 className="text-4xl font-bold text-white mb-4">
+          <div className="text-center max-w-[896px] mx-auto flex flex-col">
+            <h1 className="text-4xl font-bold text-white mb-4 mx-auto">
               Anahtar Teslim Sera Teklifi Al
             </h1>
             <p className="text-xl text-white/90 max-w-[576px] mx-auto mb-8">
-              İspanyol ç��züm ortağımız Serapoli ile birlikte tek elden 
+              İspanyol çözüm ortağımız Serapoli ile birlikte tek elden
               anahtar teslim sera projesi gerçekleştirin.
             </p>
             <button
               onClick={() => setShowQuoteModal(true)}
-              className="bg-[#baf200] text-[#146448] px-8 py-4 rounded-xl font-bold text-lg hover:bg-[#a5e600] transition-colors"
+              className="bg-[#baf200] text-[#146448] px-8 py-4 rounded-xl font-bold text-lg hover:bg-[#a5e600] transition-colors mx-auto"
             >
               Teklif Talep Et
             </button>
@@ -169,7 +169,7 @@ export default function AnahtarTeslimPage() {
                 <div className="text-3xl mb-4 text-center">🌱</div>
                 <h3 className="text-lg font-bold text-[#146448] mb-2 text-center">Modern Cam Seralar</h3>
                 <p className="text-gray-600 text-center text-sm mb-4">
-                  1,000 m² ve üzeri profesyonel cam sera projeleri
+                  1,000 m�� ve üzeri profesyonel cam sera projeleri
                 </p>
                 <button
                   onClick={() => {
