@@ -418,9 +418,9 @@ export default function Homepage() {
             </div>
 
             {/* Timeline Item 4A - Right Side */}
-            <div className="flex items-center mb-16">
+            <div className="flex flex-col md:flex-row md:items-center mb-16">
               {/* Visual Area - Left Side */}
-              <div className="w-1/2 pr-8">
+              <div className="w-full md:w-1/2 md:pr-8 mb-6 md:mb-0 md:order-1 order-2">
                 <div className="bg-gradient-to-br from-orange-500/20 to-red-500/20 rounded-xl p-8 border border-white/10 h-64 flex items-center justify-center">
                   <div className="text-center">
                     <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style={{ backgroundColor: '#baf200' }}>
@@ -495,7 +495,7 @@ export default function Homepage() {
                     <div className="flex items-center space-x-2">
                       <span style={{ color: '#baf200', fontSize: '14px' }}>✓</span>
                       <span style={{ color: '#f6f8f9', fontSize: '12px', fontWeight: '400', fontFamily: '-apple-system, "system-ui", Inter, "Segoe UI", Roboto, "Noto Sans", Ubuntu, sans-serif' }}>
-                        İş gücü verimliliğinde %8–15 artış
+                        İş gücü verimliliğinde %8–15 artı��
                       </span>
                     </div>
                     <div className="flex items-center space-x-2">
@@ -518,7 +518,7 @@ export default function Homepage() {
                         fontFamily: '-apple-system, "system-ui", Inter, "Segoe UI", Roboto, "Noto Sans", Ubuntu, sans-serif'
                       }}
                     >
-                      G��rüşme Planla
+                      Görüşme Planla
                     </Link>
                   </div>
                 </div>
