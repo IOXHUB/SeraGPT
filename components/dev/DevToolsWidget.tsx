@@ -6,12 +6,17 @@ import { MOCK_USERS, DevMockSystem, MockUser } from '@/lib/utils/dev-mock-system
 export default function DevToolsWidget() {
   const [isOpen, setIsOpen] = useState(false);
   const [currentUser, setCurrentUser] = useState<MockUser | null>(null);
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   // Force show for development (including fly.dev preview)
   const isDev = process.env.NODE_ENV === 'development' ||
-                typeof window !== 'undefined' && window.location.hostname.includes('fly.dev');
+                (typeof window !== 'undefined' && window.location.hostname.includes('fly.dev'));
 
-  if (!isDev) {
+  if (!isDev || !isClient) {
     return null;
   }
 
