@@ -46,8 +46,8 @@ export async function middleware(request: NextRequest) {
   } catch (error) {
     console.error(`❌ [SECURITY] Middleware error for ${pathname}:`, error)
 
-    // On auth error, redirect to login for protected routes only
-    if (pathname.startsWith('/dashboard') || pathname.startsWith('/admin')) {
+    // On auth error, redirect to login for protected routes only (except admin/direct)
+    if ((pathname.startsWith('/dashboard') || pathname.startsWith('/admin')) && !pathname.startsWith('/admin/direct')) {
       console.log(`🚫 [SECURITY] Unauthorized access attempt to ${pathname} - redirecting to login`);
       return NextResponse.redirect(new URL('/auth/login', request.url))
     }
