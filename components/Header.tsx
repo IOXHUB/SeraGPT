@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+// import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import SeraGPTLogo from './ui/SeraGPTLogo';
 import { useAuth } from '../lib/hooks/useAuth';
