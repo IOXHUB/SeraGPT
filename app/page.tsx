@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import Header from '../components/Header';
-// import Footer from '../components/Footer';
+import Footer from '../components/Footer';
 
 export default function Homepage() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
@@ -94,7 +94,7 @@ export default function Homepage() {
           </div>
         </section>
 
-        {/* Nasıl Çalışır Introduction */}
+        {/* Nasıl Çalı��ır Introduction */}
         <section style={{ padding: '30px 0' }}>
           <div className="max-w-[1700px] mx-auto px-6">
             <div className="max-w-[896px] mx-auto">
@@ -824,7 +824,7 @@ export default function Homepage() {
         </section>
       </div>
 
-      {/* <Footer /> */}
+      <Footer />
     </div>
   );
 }
