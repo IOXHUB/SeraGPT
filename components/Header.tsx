@@ -106,11 +106,7 @@ export default function Header() {
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -20 }}
-          transition={{ duration: 0.2 }}
+        <div
           className="md:hidden border-t border-white/20"
           style={{ backgroundColor: '#146448' }}
         >
@@ -226,7 +222,7 @@ export default function Header() {
               ) : null}
             </div>
           </div>
-        </motion.div>
+        </div>
       )}
     </header>
   );
