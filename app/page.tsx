@@ -2,8 +2,8 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
+// import Header from '../components/Header';
+// import Footer from '../components/Footer';
 
 export default function Homepage() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
@@ -14,7 +14,7 @@ export default function Homepage() {
 
   return (
     <div className="min-h-screen" style={{ backgroundColor: 'rgba(20, 100, 72, 1)' }}>
-      <Header />
+      {/* <Header /> */}
       
       <div>
         {/* Hero Section */}
@@ -824,7 +824,7 @@ export default function Homepage() {
         </section>
       </div>
 
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }
