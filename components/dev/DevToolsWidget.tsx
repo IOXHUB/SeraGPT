@@ -7,6 +7,16 @@ export default function DevToolsWidget() {
   const [isOpen, setIsOpen] = useState(false);
   const [currentUser, setCurrentUser] = useState<MockUser | null>(null);
   const [isClient, setIsClient] = useState(false);
+  const [showNewTrainingModal, setShowNewTrainingModal] = useState(false);
+  const [isCreatingTraining, setIsCreatingTraining] = useState(false);
+  const [newTrainingForm, setNewTrainingForm] = useState({
+    name: '',
+    type: 'fine-tuning',
+    datasetId: '',
+    epochs: 5,
+    learningRate: 0.001,
+    batchSize: 32
+  });
 
   // ALL HOOKS MUST BE CALLED BEFORE ANY EARLY RETURNS
   useEffect(() => {
