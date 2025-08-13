@@ -66,6 +66,51 @@ export default function DevToolsWidget() {
     window.location.reload();
   };
 
+  const handleCreateTraining = async () => {
+    if (!newTrainingForm.name || !newTrainingForm.datasetId) {
+      alert('Lütfen eğitim adı ve veri seti seçin');
+      return;
+    }
+
+    setIsCreatingTraining(true);
+    try {
+      const response = await fetch('/api/admin/ai-training', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newTrainingForm),
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        setShowNewTrainingModal(false);
+        // Reset form
+        setNewTrainingForm({
+          name: '',
+          type: 'fine-tuning',
+          datasetId: '',
+          epochs: 5,
+          learningRate: 0.001,
+          batchSize: 32
+        });
+        alert('✅ Yeni eğitim başarıyla başlatıldı!');
+      } else {
+        alert('❌ Eğitim başlatılamadı: ' + result.error);
+      }
+    } catch (error) {
+      console.error('Error creating training:', error);
+      alert('❌ Bir hata oluştu. Lütfen tekrar deneyin.');
+    } finally {
+      setIsCreatingTraining(false);
+    }
+  };
+
+  const openNewTrainingModal = () => {
+    setShowNewTrainingModal(true);
+  };
+
   return (
     <div className="fixed bottom-4 right-4 z-50">
       {/* Toggle Button */}
