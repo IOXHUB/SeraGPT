@@ -8,19 +8,20 @@ export default function DevToolsWidget() {
   const [currentUser, setCurrentUser] = useState<MockUser | null>(null);
   const [isClient, setIsClient] = useState(false);
 
+  // ALL HOOKS MUST BE CALLED BEFORE ANY EARLY RETURNS
   useEffect(() => {
     setIsClient(true);
   }, []);
 
-  // Force show for development (including fly.dev preview)
-  const isDev = process.env.NODE_ENV === 'development' ||
-                (typeof window !== 'undefined' && window.location.hostname.includes('fly.dev'));
-
-  if (!isDev || !isClient) {
-    return null;
-  }
-
   useEffect(() => {
+    // Only run if client and dev
+    const isDev = process.env.NODE_ENV === 'development' ||
+                  (typeof window !== 'undefined' && window.location.hostname.includes('fly.dev'));
+
+    if (!isDev || !isClient) {
+      return;
+    }
+
     // Get current user on mount
     setCurrentUser(DevMockSystem.getCurrentUser());
 
@@ -34,7 +35,15 @@ export default function DevToolsWidget() {
     return () => {
       window.removeEventListener('dev-user-changed', handleUserChange as EventListener);
     };
-  }, []);
+  }, [isClient]);
+
+  // Force show for development (including fly.dev preview)
+  const isDev = process.env.NODE_ENV === 'development' ||
+                (typeof window !== 'undefined' && window.location.hostname.includes('fly.dev'));
+
+  if (!isDev || !isClient) {
+    return null;
+  }
 
   const handleUserSwitch = (userType: keyof typeof MOCK_USERS) => {
     DevMockSystem.setUser(userType);
