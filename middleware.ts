@@ -15,9 +15,9 @@ export async function middleware(request: NextRequest) {
   console.log(`🔒 [SECURITY] ${request.method} ${pathname} from ${clientIP}`)
 
   try {
-    // Only check auth for protected routes
+    // Only check auth for protected routes (except admin/direct)
     const protectedPaths = ['/dashboard', '/admin'];
-    const isProtectedPath = protectedPaths.some(path => pathname.startsWith(path));
+    const isProtectedPath = protectedPaths.some(path => pathname.startsWith(path)) && !pathname.startsWith('/admin/direct');
 
     let response: NextResponse;
 
