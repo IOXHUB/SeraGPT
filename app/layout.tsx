@@ -27,7 +27,7 @@ export default function RootLayout({
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
       </head>
       <body suppressHydrationWarning className="h-full" style={{ backgroundColor: 'rgba(20, 100, 72, 1)' }}>
-        <DevNavigation />
+        {/* <DevNavigation /> */}
         <ProductionErrorHandler />
         <div className="h-full">
           {children}
