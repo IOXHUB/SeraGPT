@@ -8,7 +8,11 @@ import SeraGPTLogo from './ui/SeraGPTLogo';
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isClient, setIsClient] = useState(false);
-  const { user, loading, signOut, isAdmin } = useAuth();
+  // Temporarily disabled useAuth to prevent client-side exceptions
+  const user = null;
+  const loading = false;
+  const signOut = () => {};
+  const isAdmin = () => false;
 
   useEffect(() => {
     setIsClient(true);
