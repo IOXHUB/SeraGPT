@@ -10,6 +10,9 @@ interface Message {
   content: string;
   timestamp: Date;
   isTyping?: boolean;
+  hasReport?: boolean;
+  reportId?: string;
+  analysisData?: any;
 }
 
 interface ChatSession {
