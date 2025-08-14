@@ -195,6 +195,22 @@ Size nasıl yardımcı olabilirim?`,
           currentSession.context = { ...currentSession.context, ...result.analysisData };
         }
 
+        // If report is generated, create download button
+        if (result.reportGenerated && result.reportId) {
+          currentSession.reportId = result.reportId;
+          currentSession.analysisData = result.analysisData;
+
+          // Add report generation info to response
+          const reportInfo = `\n\n📄 **Rapor Hazır!**\n\nDetaylı analiz raporu oluşturuldu.\n\n` +
+            `**İndirme Seçenekleri:**\n` +
+            `• [PDF Rapor İndir](/api/reports/download/${result.reportId}?format=pdf)\n` +
+            `• [Excel Tablosu](/api/reports/download/${result.reportId}?format=excel)\n` +
+            `• [JSON Veri](/api/reports/download/${result.reportId}?format=json)\n\n` +
+            `Rapor ID: \`${result.reportId}\``;
+
+          return result.response + reportInfo;
+        }
+
         return result.response;
       } else {
         return result.response || 'Analiz sırasında bir hata oluştu. Lütfen tekrar deneyin.';
