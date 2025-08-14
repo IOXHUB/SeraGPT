@@ -17,6 +17,9 @@ interface ChatSession {
   title: string;
   messages: Message[];
   createdAt: Date;
+  context?: any;
+  analysisData?: any;
+  reportId?: string;
 }
 
 export default function ModernChatDashboard() {
@@ -191,7 +194,7 @@ Size nasıl yardımcı olabilirim?`,
 
         return result.response;
       } else {
-        return result.response || 'Analiz sırasında bir hata olu��tu. Lütfen tekrar deneyin.';
+        return result.response || 'Analiz sırasında bir hata oluştu. Lütfen tekrar deneyin.';
       }
     } catch (error) {
       console.error('Error calling analysis API:', error);
