@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-// import Header from '../components/Header';
+import Header from '../components/Header';
 import Footer from '../components/Footer';
 
 export default function Homepage() {
@@ -14,7 +14,7 @@ export default function Homepage() {
 
   return (
     <div className="min-h-screen" style={{ backgroundColor: 'rgba(20, 100, 72, 1)' }}>
-      {/* <Header /> */}
+      <Header />
       
       <div>
         {/* Hero Section */}
@@ -122,7 +122,7 @@ export default function Homepage() {
                 >
                   SeraGPT, kurumsal yatırımcılardan mevcut sera sahiplerine
                   ve yeni girişimcilere kadar her kullanıcı için
-                  ki��iselleştirilmiş bir başlangıç noktası sunar.
+                  kişiselleştirilmiş bir başlangıç noktası sunar.
                 </p>
               </div>
             </div>
