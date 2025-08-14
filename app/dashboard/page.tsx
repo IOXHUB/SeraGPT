@@ -292,26 +292,25 @@ Size nasıl yardımcı olabilirim? 🌱`;
   return (
     <div className="h-screen flex" style={{ backgroundColor: '#146448' }}>
       {/* Sidebar */}
-      <div className={`${sidebarOpen ? 'w-72' : 'w-0'} transition-all duration-300 overflow-hidden bg-black/10 border-r border-white/5`}>
+      <div className={`${sidebarOpen ? 'w-72' : 'w-0'} transition-all duration-300 overflow-hidden border-r border-white/10`}>
         <div className="h-full flex flex-col">
           {/* Sidebar Header */}
-          <div className="p-4 border-b border-white/5">
+          <div className="p-4 border-b border-white/10">
             <div className="flex items-center justify-between mb-3">
-              <h2 className="text-sm font-medium" style={{ color: '#1e3237' }}>SeraGPT</h2>
+              <h2 className="text-sm font-medium text-white">SeraGPT</h2>
               <button
                 onClick={() => setSidebarOpen(false)}
-                className="md:hidden text-xs" style={{ color: '#1e3237' }}
+                className="md:hidden text-xs text-white hover:opacity-70"
               >
                 ×
               </button>
             </div>
             <button
               onClick={createNewSession}
-              className="w-full p-2 rounded-md text-xs font-medium transition-colors"
+              className="w-full p-2 rounded-md text-xs font-medium transition-colors hover:opacity-90"
               style={{
                 backgroundColor: '#baf200',
-                color: '#1e3237',
-                border: '1px solid #baf200'
+                color: '#146448'
               }}
             >
               + Yeni Sohbet
@@ -329,15 +328,11 @@ Size nasıl yardımcı olabilirim? 🌱`;
                     ? 'bg-white/10'
                     : 'hover:bg-white/5'
                 }`}
-                style={{
-                  color: currentSession?.id === session.id ? '#1e3237' : '#1e3237',
-                  opacity: currentSession?.id === session.id ? 1 : 0.7
-                }}
               >
-                <div className="truncate text-xs font-medium">
+                <div className="truncate text-xs font-medium text-white">
                   {session.title}
                 </div>
-                <div className="text-xs opacity-50 mt-1">
+                <div className="text-xs text-white opacity-60 mt-1">
                   {session.messages.length} mesaj
                 </div>
               </button>
@@ -345,13 +340,13 @@ Size nasıl yardımcı olabilirim? 🌱`;
           </div>
 
           {/* User Menu */}
-          <div className="p-3 border-t border-white/5">
+          <div className="p-3 border-t border-white/10">
             <div className="space-y-1">
               {isAdmin && (
                 <Link
                   href="/admin"
                   className="block w-full p-2 rounded-md hover:bg-white/5 transition-colors text-xs"
-                  style={{ color: '#1e3237', opacity: 0.8 }}
+                  style={{ color: '#baf200' }}
                 >
                   👑 Admin
                 </Link>
@@ -359,14 +354,13 @@ Size nasıl yardımcı olabilirim? 🌱`;
               <Link
                 href="/dashboard/settings"
                 className="block w-full p-2 rounded-md hover:bg-white/5 transition-colors text-xs"
-                style={{ color: '#1e3237', opacity: 0.8 }}
+                style={{ color: '#baf200' }}
               >
                 ⚙️ Ayarlar
               </Link>
               <button
                 onClick={signOut}
-                className="w-full p-2 rounded-md hover:bg-white/5 transition-colors text-xs text-left"
-                style={{ color: '#1e3237', opacity: 0.8 }}
+                className="w-full p-2 rounded-md hover:bg-white/5 transition-colors text-xs text-left text-white"
               >
                 🚪 Çıkış
               </button>
@@ -378,20 +372,19 @@ Size nasıl yardımcı olabilirim? 🌱`;
       {/* Main Chat Area */}
       <div className="flex-1 flex flex-col">
         {/* Top Bar */}
-        <div className="h-12 border-b border-white/5 flex items-center justify-between px-4">
+        <div className="h-12 border-b border-white/10 flex items-center justify-between px-4">
           <div className="flex items-center space-x-3">
             <button
               onClick={() => setSidebarOpen(!sidebarOpen)}
-              className="text-xs hover:opacity-70 transition-opacity"
-              style={{ color: '#1e3237' }}
+              className="text-xs hover:opacity-70 transition-opacity text-white"
             >
               ☰
             </button>
-            <h1 className="text-sm font-medium" style={{ color: '#1e3237' }}>
+            <h1 className="text-sm font-medium" style={{ color: '#baf200' }}>
               {currentSession?.title || 'SeraGPT'}
             </h1>
           </div>
-          <div className="text-xs opacity-60" style={{ color: '#1e3237' }}>
+          <div className="text-xs text-white opacity-60">
             {user?.email}
           </div>
         </div>
@@ -405,11 +398,11 @@ Size nasıl yardımcı olabilirim? 🌱`;
                   <div className={`p-3 rounded-lg ${
                     message.type === 'user'
                       ? 'ml-auto'
-                      : 'bg-white/5'
+                      : ''
                   }`}
                   style={{
-                    backgroundColor: message.type === 'user' ? '#baf200' : 'rgba(255,255,255,0.05)',
-                    color: '#1e3237'
+                    backgroundColor: message.type === 'user' ? '#baf200' : 'transparent',
+                    color: message.type === 'user' ? '#146448' : 'white'
                   }}>
                     {message.isTyping ? (
                       <div className="flex space-x-1">
