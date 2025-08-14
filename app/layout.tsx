@@ -28,11 +28,11 @@ export default function RootLayout({
       </head>
       <body suppressHydrationWarning className="h-full" style={{ backgroundColor: 'rgba(20, 100, 72, 1)' }}>
         {/* <DevNavigation /> */}
-        <ProductionErrorHandler />
+        {/* <ProductionErrorHandler /> */}
         <div className="h-full">
           {children}
         </div>
-        <DevToolsWidget />
+        {/* <DevToolsWidget /> */}
         {process.env.NODE_ENV === 'development' && (
           <Script id="suppress-hydration-warnings" strategy="beforeInteractive">
             {`
