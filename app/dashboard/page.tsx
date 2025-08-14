@@ -25,13 +25,13 @@ interface ChatSession {
   reportId?: string;
 }
 
-export default function ModernChatDashboard() {
+export default function Dashboard() {
   const { user, loading, signOut, isAdmin } = useAuth();
   const [sessions, setSessions] = useState<ChatSession[]>([]);
   const [currentSession, setCurrentSession] = useState<ChatSession | null>(null);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [showChat, setShowChat] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
 
@@ -53,48 +53,7 @@ export default function ModernChatDashboard() {
     const defaultSession: ChatSession = {
       id: 'welcome-session',
       title: 'SeraGPT ile Başlayın',
-      messages: [
-        {
-          id: 'welcome-1',
-          type: 'assistant',
-          content: `🌱 **Hoş geldiniz! Ben SeraGPT, sera yatırım uzmanınızım.**
-
-Kurumsal sera yatırımları için kapsamlı analiz ve danışmanlık hizmeti sunuyorum.
-
-## 🎯 **Analiz Hizmetlerimiz**
-
-**📊 Kapsamlı Fizibilite Analizi**
-• ROI hesaplamaları ve finansal projektör
-• İklim uygunluk analizi
-• Pazar araştırması ve rekabet analizi
-• Ekipman ve teknoloji önerileri
-• Risk değerlendirmesi ve zayıflık analizi
-
-**⚡ Hızlı Başlangıç Örnekleri:**
-\`\`\`
-"Antalya'da 10.000m² sera, 2M₺ bütçe, domates üretimi"
-"Mersin'de iklim analizi yap"
-"ROI hesaplama - organik salatalık üretimi"
-"Ekipman önerileri - 5000m² modern sera"
-\`\`\`
-
-**📋 Analiz Süreci:**
-1. **Bilgi Toplama** - Lokasyon, boyut, bütçe, ürün tercihleri
-2. **Veri Analizi** - İklim, pazar, maliyet, risk faktörleri
-3. **Rapor Oluşturma** - Detaylı PDF, Excel, JSON formatları
-4. **Danışmanlık** - Uzman görüşmesi ve uygulama desteği
-
-**🤝 Danışmanlık Paketleri:**
-• **Temel**: Fizibilite + planlama (₺25.000)
-• **Kapsamlı**: Tasarım + tedarik (₺45.000)
-• **Premium**: Anahtar teslim yönetim (₺85.000)
-
----
-
-**💬 Size nasıl yardımcı olabilirim? Hangi analizi yapmak istiyorsunuz?**`,
-          timestamp: new Date()
-        }
-      ],
+      messages: [],
       createdAt: new Date(),
       context: {},
       analysisData: {}
@@ -104,22 +63,37 @@ Kurumsal sera yatırımları için kapsamlı analiz ve danışmanlık hizmeti su
     setCurrentSession(defaultSession);
   };
 
-  const createNewSession = () => {
-    const newSession: ChatSession = {
-      id: `session-${Date.now()}`,
-      title: 'Yeni Sohbet',
-      messages: [],
-      createdAt: new Date()
-    };
+  const startAnalysis = () => {
+    setShowChat(true);
+    if (currentSession && currentSession.messages.length === 0) {
+      const welcomeMessage: Message = {
+        id: 'welcome-1',
+        type: 'assistant',
+        content: `🌱 **Hoş geldiniz! Ben SeraGPT, sera yatırım uzmanınızım.**
 
-    setSessions(prev => [newSession, ...prev]);
-    setCurrentSession(newSession);
-  };
+Kurumsal sera yatırımları için kapsaml�� analiz ve danışmanlık hizmeti sunuyorum.
 
-  const deleteSession = (sessionId: string) => {
-    setSessions(prev => prev.filter(s => s.id !== sessionId));
-    if (currentSession?.id === sessionId) {
-      setCurrentSession(sessions[0] || null);
+**📊 Size nasıl yardımcı olabilirim?**
+
+Analiz için şu bilgileri paylaşın:
+• 📍 **Lokasyon** (hangi şehir/bölge?)
+• 📏 **Sera boyutu** (kaç m²?)
+• 💰 **Yatırım bütçesi** (ne kadar?)
+• 🌱 **Yetiştirilecek ürünler** (domates, salatalık, vb.)
+
+**Örnek:** "Antalya'da 10.000m² sera, 2M₺ bütçe, domates üretimi"
+
+Detaylı bilgi vererek başlayalım! 🚀`,
+        timestamp: new Date()
+      };
+
+      const updatedSession = {
+        ...currentSession,
+        messages: [welcomeMessage]
+      };
+
+      setCurrentSession(updatedSession);
+      setSessions(prev => prev.map(s => s.id === currentSession.id ? updatedSession : s));
     }
   };
 
@@ -192,7 +166,6 @@ Kurumsal sera yatırımları için kapsamlı analiz ve danışmanlık hizmeti su
 
   const generateResponse = async (input: string): Promise<string> => {
     try {
-      // Call the comprehensive analysis API
       const response = await fetch('/api/chat/analysis', {
         method: 'POST',
         headers: {
@@ -209,17 +182,14 @@ Kurumsal sera yatırımları için kapsamlı analiz ve danışmanlık hizmeti su
       const result = await response.json();
 
       if (result.success) {
-        // Update session context with analysis data
         if (currentSession && result.analysisData) {
           currentSession.context = { ...currentSession.context, ...result.analysisData };
         }
 
-        // If report is generated, create download button
         if (result.reportGenerated && result.reportId) {
           currentSession.reportId = result.reportId;
           currentSession.analysisData = result.analysisData;
 
-          // Add report generation info to response
           const reportInfo = `\n\n📄 **Rapor Hazır!**\n\nDetaylı analiz raporu oluşturuldu.\n\n` +
             `**İndirme Seçenekleri:**\n` +
             `• [PDF Rapor İndir](/api/reports/download/${result.reportId}?format=pdf)\n` +
@@ -236,22 +206,6 @@ Kurumsal sera yatırımları için kapsamlı analiz ve danışmanlık hizmeti su
       }
     } catch (error) {
       console.error('Error calling analysis API:', error);
-
-      // Fallback to simple response
-      const lowerInput = input.toLowerCase();
-
-      if (lowerInput.includes('analiz') || lowerInput.includes('fizibilite')) {
-        return `🎯 **Sera Analizi Başlatılıyor**
-
-Kapsamlı analiz için şu bilgileri paylaşın:
-• 📍 Lokasyon (şehir)
-• 📏 Sera boyutu (m²)
-• 💰 Yatırım bütçesi
-• 🌱 Yetiştirilecek ürünler
-
-Örnek: "Antalya'da 5000m² sera, 900.000₺ bütçe, domates üretimi"`;
-      }
-
       return `Merhaba! Size nasıl yardımcı olabilirim?
 
 **🎯 Yapabileceğim analizler:**
@@ -265,11 +219,6 @@ Hangi konuda yardım istiyorsunuz?`;
     }
   };
 
-  const extractNumber = (text: string): number | null => {
-    const match = text.match(/\d+/);
-    return match ? parseInt(match[0]) : null;
-  };
-
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
@@ -279,162 +228,230 @@ Hangi konuda yardım istiyorsunuz?`;
 
   if (loading) {
     return (
-      <div className="flex h-screen items-center justify-center bg-gray-50">
+      <div className="flex h-screen items-center justify-center" style={{ backgroundColor: '#146448' }}>
         <div className="text-center">
-          <div className="mx-auto mb-4 h-8 w-8 animate-spin rounded-full border-4 border-gray-300 border-t-emerald-600"></div>
-          <p className="text-sm text-gray-600">Yükleniyor...</p>
+          <div className="mx-auto mb-4 h-8 w-8 animate-spin rounded-full border-4 border-white/30 border-t-white"></div>
+          <p className="text-sm text-white">Yükleniyor...</p>
         </div>
       </div>
     );
   }
 
-  return (
-    <div className="flex h-screen bg-white">
-      {/* Sidebar */}
-      <div className={`${sidebarOpen ? 'w-80' : 'w-0'} transition-all duration-300 overflow-hidden bg-gray-900 flex flex-col`}>
-        {/* Sidebar Header */}
-        <div className="flex h-16 items-center justify-between px-4 border-b border-gray-700">
-          <div className="flex items-center space-x-3">
-            <div className="h-8 w-8 rounded-lg bg-emerald-600 flex items-center justify-center">
-              <span className="text-white font-bold text-sm">S</span>
-            </div>
-            <span className="text-white font-semibold">SeraGPT</span>
-          </div>
-          <button
-            onClick={() => setSidebarOpen(false)}
-            className="lg:hidden text-gray-400 hover:text-white"
-          >
-            ✕
-          </button>
-        </div>
-
-        {/* New Chat Button */}
-        <div className="p-4">
-          <button
-            onClick={createNewSession}
-            className="w-full flex items-center justify-center space-x-2 rounded-lg border border-gray-600 px-3 py-2 text-sm text-white transition-colors hover:bg-gray-800"
-          >
-            <span>+</span>
-            <span>Yeni Sohbet</span>
-          </button>
-        </div>
-
-        {/* Sessions List */}
-        <div className="flex-1 overflow-y-auto px-4 pb-4">
-          <div className="space-y-2">
-            {sessions.map((session) => (
-              <div
-                key={session.id}
-                className={`group relative rounded-lg px-3 py-2 text-sm transition-colors ${
-                  currentSession?.id === session.id
-                    ? 'bg-gray-800 text-white'
-                    : 'text-gray-300 hover:bg-gray-800 hover:text-white'
-                }`}
-              >
-                <button
-                  onClick={() => setCurrentSession(session)}
-                  className="w-full text-left truncate"
-                >
-                  {session.title}
-                </button>
-                {session.id !== 'welcome-session' && (
-                  <button
-                    onClick={() => deleteSession(session.id)}
-                    className="absolute right-2 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 text-gray-400 hover:text-red-400 transition-opacity"
-                  >
-                    🗑️
-                  </button>
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* User Menu */}
-        <div className="border-t border-gray-700 p-4">
-          <div className="space-y-2">
-            {isAdmin() && (
-              <Link
-                href="/admin"
-                className="flex items-center space-x-2 rounded-lg px-3 py-2 text-sm text-gray-300 transition-colors hover:bg-gray-800 hover:text-white"
-              >
-                <span>👑</span>
-                <span>Admin Panel</span>
-              </Link>
-            )}
-            <Link
-              href="/dashboard/settings"
-              className="flex items-center space-x-2 rounded-lg px-3 py-2 text-sm text-gray-300 transition-colors hover:bg-gray-800 hover:text-white"
-            >
-              <span>⚙️</span>
-              <span>Ayarlar</span>
-            </Link>
-            <button
-              onClick={signOut}
-              className="flex w-full items-center space-x-2 rounded-lg px-3 py-2 text-left text-sm text-gray-300 transition-colors hover:bg-gray-800 hover:text-white"
-            >
-              <span>🚪</span>
-              <span>Çıkış Yap</span>
-            </button>
-          </div>
-        </div>
-      </div>
-
-      {/* Main Content */}
-      <div className="flex flex-1 flex-col">
+  if (!showChat) {
+    return (
+      <div style={{ backgroundColor: '#146448' }} className="min-h-screen">
         {/* Header */}
-        <div className="flex h-16 items-center justify-between border-b border-gray-200 px-4">
-          <div className="flex items-center space-x-4">
-            <button
-              onClick={() => setSidebarOpen(!sidebarOpen)}
-              className="rounded-lg p-2 text-gray-600 hover:bg-gray-100"
-            >
-              ☰
-            </button>
-            <h1 className="text-lg font-semibold text-gray-900">
-              {currentSession?.title || 'SeraGPT'}
-            </h1>
+        <header className="px-4 py-6">
+          <div className="mx-auto" style={{ maxWidth: '1700px' }}>
+            <div className="flex items-center justify-between">
+              <div className="flex items-center space-x-2">
+                <div className="flex items-center">
+                  <span className="text-2xl font-bold text-white">SeraGPT</span>
+                </div>
+              </div>
+              <nav className="hidden md:flex items-center space-x-8">
+                <Link href="/dashboard/settings" className="text-white hover:opacity-80 transition-opacity">
+                  Ayarlar
+                </Link>
+                {isAdmin() && (
+                  <Link href="/admin" className="text-white hover:opacity-80 transition-opacity">
+                    Admin Panel
+                  </Link>
+                )}
+                <button
+                  onClick={signOut}
+                  className="text-white hover:opacity-80 transition-opacity"
+                >
+                  Çıkış Yap
+                </button>
+                <button
+                  onClick={startAnalysis}
+                  style={{ backgroundColor: '#baf200', color: '#146448' }}
+                  className="px-6 py-2 rounded-full font-medium hover:opacity-90 transition-opacity"
+                >
+                  Ücretsiz Başla
+                </button>
+              </nav>
+            </div>
           </div>
-          <div className="text-sm text-gray-500">
-            {user?.email}
+        </header>
+
+        {/* Hero Section */}
+        <main className="px-4 py-20">
+          <div className="mx-auto text-center" style={{ maxWidth: '896px' }}>
+            <h1 className="text-white font-bold mb-6" style={{ fontSize: '36px', lineHeight: '1.2' }}>
+              60 Saniyede Sera Yatırım<br />Fizibilitesi
+            </h1>
+            
+            <div className="mx-auto mb-12" style={{ maxWidth: '576px' }}>
+              <p className="text-white opacity-90" style={{ fontSize: '14px', lineHeight: '1.6' }}>
+                SeraGPT, kurumsal yatırımcılardan mevcut sera sahiplerine ve yeni girişimcilere
+                kadar her kullanıcı için kişiselleştirilmiş bir başlangıç noktası sunar.
+              </p>
+            </div>
+
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
+              <button
+                onClick={startAnalysis}
+                style={{ backgroundColor: '#baf200', color: '#146448' }}
+                className="px-8 py-3 rounded-full font-medium text-lg hover:opacity-90 transition-opacity min-w-48"
+              >
+                Ücretsiz Rapor Al
+              </button>
+              <button
+                onClick={startAnalysis}
+                className="px-8 py-3 rounded-full font-medium text-lg text-white border-2 border-white hover:bg-white/10 transition-colors min-w-48"
+              >
+                Danışmanlık Talep Et
+              </button>
+            </div>
+
+            <p className="text-white opacity-70 text-sm">
+              Not: Kredi kartı gerekmez. 5 ücretsiz token.
+            </p>
+          </div>
+        </main>
+
+        {/* How It Works Section */}
+        <section className="px-4 py-20">
+          <div className="mx-auto text-center" style={{ maxWidth: '896px' }}>
+            <h2 className="text-white font-bold mb-6" style={{ fontSize: '28px' }}>
+              Nasıl Çalışır?
+            </h2>
+            
+            <div className="mx-auto mb-12" style={{ maxWidth: '576px' }}>
+              <p className="text-white opacity-90" style={{ fontSize: '14px', lineHeight: '1.6' }}>
+                SeraGPT, kurumsal yatırımcılardan mevcut sera sahiplerine ve yeni girişimcilere
+                kadar her kullanıcı için kişiselleştirilmiş bir başlangıç noktası sunar.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-8 mt-16">
+              <div className="text-center">
+                <div className="w-16 h-16 rounded-full mx-auto mb-4 flex items-center justify-center" style={{ backgroundColor: '#baf200' }}>
+                  <span className="text-2xl" style={{ color: '#146448' }}>1</span>
+                </div>
+                <h3 className="text-white font-semibold mb-2" style={{ fontSize: '18px' }}>Bilgi Toplama</h3>
+                <p className="text-white opacity-80 text-sm">
+                  Lokasyon, boyut, bütçe ve ürün tercihlerinizi belirtin
+                </p>
+              </div>
+              
+              <div className="text-center">
+                <div className="w-16 h-16 rounded-full mx-auto mb-4 flex items-center justify-center" style={{ backgroundColor: '#baf200' }}>
+                  <span className="text-2xl" style={{ color: '#146448' }}>2</span>
+                </div>
+                <h3 className="text-white font-semibold mb-2" style={{ fontSize: '18px' }}>Analiz</h3>
+                <p className="text-white opacity-80 text-sm">
+                  İklim, pazar, maliyet ve risk faktörlerini analiz ediyoruz
+                </p>
+              </div>
+              
+              <div className="text-center">
+                <div className="w-16 h-16 rounded-full mx-auto mb-4 flex items-center justify-center" style={{ backgroundColor: '#baf200' }}>
+                  <span className="text-2xl" style={{ color: '#146448' }}>3</span>
+                </div>
+                <h3 className="text-white font-semibold mb-2" style={{ fontSize: '18px' }}>Rapor</h3>
+                <p className="text-white opacity-80 text-sm">
+                  Detaylı fizibilite raporu ve önerileri alın
+                </p>
+              </div>
+            </div>
+
+            <div className="mt-12">
+              <button
+                onClick={startAnalysis}
+                style={{ backgroundColor: '#baf200', color: '#146448' }}
+                className="px-8 py-3 rounded-full font-medium text-lg hover:opacity-90 transition-opacity"
+              >
+                Hemen Başla
+              </button>
+            </div>
+          </div>
+        </section>
+      </div>
+    );
+  }
+
+  // Chat Interface
+  return (
+    <div className="flex h-screen" style={{ backgroundColor: '#146448' }}>
+      {/* Main Chat Container */}
+      <div className="flex-1 flex flex-col">
+        {/* Chat Header */}
+        <div className="border-b border-white/20 px-6 py-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-4">
+              <button
+                onClick={() => setShowChat(false)}
+                className="text-white hover:opacity-80 transition-opacity"
+              >
+                ← Geri
+              </button>
+              <h1 className="text-xl font-semibold text-white">
+                SeraGPT Analiz
+              </h1>
+            </div>
+            <div className="flex items-center space-x-4">
+              {isAdmin() && (
+                <Link
+                  href="/admin"
+                  className="text-white hover:opacity-80 transition-opacity text-sm"
+                >
+                  Admin
+                </Link>
+              )}
+              <Link
+                href="/dashboard/settings"
+                className="text-white hover:opacity-80 transition-opacity text-sm"
+              >
+                Ayarlar
+              </Link>
+              <button
+                onClick={signOut}
+                className="text-white hover:opacity-80 transition-opacity text-sm"
+              >
+                Çıkış
+              </button>
+            </div>
           </div>
         </div>
 
         {/* Messages */}
-        <div className="flex-1 overflow-y-auto">
-          <div className="mx-auto max-w-4xl px-4 py-6">
+        <div className="flex-1 overflow-y-auto px-6 py-8">
+          <div className="mx-auto" style={{ maxWidth: '896px' }}>
             <div className="space-y-6">
               {currentSession?.messages.map((message) => (
                 <div key={message.id} className="group">
                   <div className={`flex items-start space-x-4 ${message.type === 'user' ? 'flex-row-reverse space-x-reverse' : ''}`}>
-                    <div className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full ${
+                    <div className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full ${
                       message.type === 'user' 
-                        ? 'bg-emerald-600' 
-                        : 'bg-gray-800'
+                        ? 'bg-white text-black' 
+                        : 'border-2 border-white text-white'
                     }`}>
-                      <span className="text-sm font-medium text-white">
+                      <span className="text-sm font-medium">
                         {message.type === 'user' ? 'V' : 'S'}
                       </span>
                     </div>
                     <div className={`min-w-0 flex-1 ${message.type === 'user' ? 'text-right' : ''}`}>
-                      <div className={`inline-block max-w-4xl rounded-lg px-4 py-3 text-sm ${
+                      <div className={`inline-block max-w-4xl rounded-2xl px-6 py-4 ${
                         message.type === 'user'
-                          ? 'bg-emerald-600 text-white'
-                          : 'bg-gray-100 text-gray-900'
+                          ? 'bg-white text-black'
+                          : 'bg-white/10 text-white border border-white/20'
                       }`}>
                         {message.isTyping ? (
                           <div className="flex space-x-1">
-                            <div className="h-2 w-2 animate-bounce rounded-full bg-gray-500"></div>
-                            <div className="h-2 w-2 animate-bounce rounded-full bg-gray-500" style={{ animationDelay: '0.1s' }}></div>
-                            <div className="h-2 w-2 animate-bounce rounded-full bg-gray-500" style={{ animationDelay: '0.2s' }}></div>
+                            <div className="h-2 w-2 animate-bounce rounded-full bg-current"></div>
+                            <div className="h-2 w-2 animate-bounce rounded-full bg-current" style={{ animationDelay: '0.1s' }}></div>
+                            <div className="h-2 w-2 animate-bounce rounded-full bg-current" style={{ animationDelay: '0.2s' }}></div>
                           </div>
                         ) : (
-                          <div className="whitespace-pre-wrap leading-relaxed">
+                          <div className="whitespace-pre-wrap leading-relaxed" style={{ fontSize: '14px' }}>
                             {message.content}
                           </div>
                         )}
                       </div>
-                      <div className={`mt-1 text-xs text-gray-500 ${message.type === 'user' ? 'text-right' : ''}`}>
+                      <div className={`mt-2 text-xs text-white/60 ${message.type === 'user' ? 'text-right' : ''}`}>
                         {message.timestamp.toLocaleTimeString('tr-TR', { hour: '2-digit', minute: '2-digit' })}
                       </div>
                     </div>
@@ -447,8 +464,8 @@ Hangi konuda yardım istiyorsunuz?`;
         </div>
 
         {/* Input */}
-        <div className="border-t border-gray-200 p-4">
-          <form onSubmit={handleSubmit} className="mx-auto max-w-4xl">
+        <div className="border-t border-white/20 px-6 py-6">
+          <form onSubmit={handleSubmit} className="mx-auto" style={{ maxWidth: '896px' }}>
             <div className="flex space-x-4">
               <div className="flex-1">
                 <textarea
@@ -457,25 +474,25 @@ Hangi konuda yardım istiyorsunuz?`;
                   onChange={(e) => setInput(e.target.value)}
                   onKeyDown={handleKeyDown}
                   placeholder="SeraGPT'ye mesaj yazın..."
-                  className="w-full resize-none rounded-lg border border-gray-300 px-4 py-3 text-sm focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
-                  rows={1}
-                  style={{ minHeight: '48px', maxHeight: '200px' }}
+                  className="w-full resize-none rounded-2xl border-0 px-6 py-4 text-black focus:outline-none focus:ring-2 focus:ring-white/50"
+                  style={{ minHeight: '56px', maxHeight: '200px', fontSize: '14px' }}
                   disabled={isLoading}
                 />
               </div>
               <button
                 type="submit"
                 disabled={!input.trim() || isLoading}
-                className="flex h-12 w-12 items-center justify-center rounded-lg bg-emerald-600 text-white transition-colors hover:bg-emerald-700 disabled:opacity-50 disabled:cursor-not-allowed"
+                style={{ backgroundColor: '#baf200', color: '#146448' }}
+                className="flex h-14 w-14 items-center justify-center rounded-2xl transition-opacity hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {isLoading ? (
-                  <div className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent"></div>
+                  <div className="h-5 w-5 animate-spin rounded-full border-2 border-current border-t-transparent"></div>
                 ) : (
-                  <span>🚀</span>
+                  <span className="text-lg">🚀</span>
                 )}
               </button>
             </div>
-            <div className="mt-2 text-center text-xs text-gray-500">
+            <div className="mt-3 text-center text-xs text-white/60">
               Enter ile gönder • Shift+Enter ile yeni satır
             </div>
           </form>
