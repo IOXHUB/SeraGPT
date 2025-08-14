@@ -62,21 +62,21 @@ export default function SettingsPage() {
   return (
     <div className="min-h-screen" style={{ backgroundColor: '#146448' }}>
       {/* Header */}
-      <div className="border-b border-white/5 p-4">
+      <div className="border-b border-white/10 p-4">
         <div className="max-w-2xl mx-auto flex items-center justify-between">
           <div className="flex items-center space-x-3">
             <Link
               href="/dashboard"
               className="text-xs hover:opacity-70 transition-opacity"
-              style={{ color: '#1e3237' }}
+              style={{ color: '#baf200' }}
             >
               ← Geri
             </Link>
-            <h1 className="text-sm font-medium" style={{ color: '#1e3237' }}>
+            <h1 className="text-sm font-medium" style={{ color: '#baf200' }}>
               Ayarlar
             </h1>
           </div>
-          <div className="text-xs opacity-60" style={{ color: '#1e3237' }}>
+          <div className="text-xs text-white opacity-60">
             {user?.email}
           </div>
         </div>
@@ -87,34 +87,34 @@ export default function SettingsPage() {
         <div className="space-y-6">
           
           {/* Profile Section */}
-          <div className="bg-white/5 rounded-lg p-4 border border-white/5">
-            <h2 className="text-sm font-medium mb-4" style={{ color: '#1e3237' }}>
+          <div className="rounded-lg p-4 border border-white/10">
+            <h2 className="text-sm font-medium mb-4" style={{ color: '#baf200' }}>
               Profil Bilgileri
             </h2>
             <div className="space-y-3">
               <div>
-                <label className="block text-xs mb-1" style={{ color: '#1e3237', opacity: 0.8 }}>
+                <label className="block text-xs mb-1 text-white opacity-80">
                   Ad Soyad
                 </label>
                 <input
                   type="text"
                   value={settings.name}
                   onChange={(e) => setSettings(prev => ({ ...prev, name: e.target.value }))}
-                  className="w-full p-2 rounded-md bg-white/5 border border-white/10 focus:outline-none focus:border-white/20 text-xs"
-                  style={{ color: '#1e3237' }}
+                  className="w-full p-2 rounded-md border border-white/10 focus:outline-none focus:border-white/30 text-xs text-white placeholder-white/50"
+                  style={{ backgroundColor: 'transparent' }}
                   placeholder="Adınızı girin"
                 />
               </div>
               <div>
-                <label className="block text-xs mb-1" style={{ color: '#1e3237', opacity: 0.8 }}>
+                <label className="block text-xs mb-1 text-white opacity-80">
                   E-posta
                 </label>
                 <input
                   type="email"
                   value={settings.email}
                   onChange={(e) => setSettings(prev => ({ ...prev, email: e.target.value }))}
-                  className="w-full p-2 rounded-md bg-white/5 border border-white/10 focus:outline-none focus:border-white/20 text-xs"
-                  style={{ color: '#1e3237' }}
+                  className="w-full p-2 rounded-md border border-white/10 focus:outline-none focus:border-white/30 text-xs text-white placeholder-white/50"
+                  style={{ backgroundColor: 'transparent' }}
                   placeholder="E-posta adresiniz"
                 />
               </div>
@@ -122,32 +122,32 @@ export default function SettingsPage() {
           </div>
 
           {/* Preferences Section */}
-          <div className="bg-white/5 rounded-lg p-4 border border-white/5">
-            <h2 className="text-sm font-medium mb-4" style={{ color: '#1e3237' }}>
+          <div className="rounded-lg p-4 border border-white/10">
+            <h2 className="text-sm font-medium mb-4" style={{ color: '#baf200' }}>
               Tercihler
             </h2>
             <div className="space-y-3">
               <div>
-                <label className="block text-xs mb-1" style={{ color: '#1e3237', opacity: 0.8 }}>
+                <label className="block text-xs mb-1 text-white opacity-80">
                   Dil
                 </label>
                 <select
                   value={settings.language}
                   onChange={(e) => setSettings(prev => ({ ...prev, language: e.target.value }))}
-                  className="w-full p-2 rounded-md bg-white/5 border border-white/10 focus:outline-none focus:border-white/20 text-xs"
-                  style={{ color: '#1e3237' }}
+                  className="w-full p-2 rounded-md border border-white/10 focus:outline-none focus:border-white/30 text-xs text-white"
+                  style={{ backgroundColor: 'transparent' }}
                 >
-                  <option value="tr">Türkçe</option>
-                  <option value="en">English</option>
+                  <option value="tr" style={{ backgroundColor: '#146448', color: 'white' }}>Türkçe</option>
+                  <option value="en" style={{ backgroundColor: '#146448', color: 'white' }}>English</option>
                 </select>
               </div>
               
               <div className="flex items-center justify-between py-2">
                 <div>
-                  <div className="text-xs font-medium" style={{ color: '#1e3237' }}>
+                  <div className="text-xs font-medium text-white">
                     Bildirimler
                   </div>
-                  <div className="text-xs opacity-60" style={{ color: '#1e3237' }}>
+                  <div className="text-xs text-white opacity-60">
                     E-posta bildirimleri al
                   </div>
                 </div>
@@ -164,10 +164,10 @@ export default function SettingsPage() {
 
               <div className="flex items-center justify-between py-2">
                 <div>
-                  <div className="text-xs font-medium" style={{ color: '#1e3237' }}>
+                  <div className="text-xs font-medium text-white">
                     Otomatik Kaydet
                   </div>
-                  <div className="text-xs opacity-60" style={{ color: '#1e3237' }}>
+                  <div className="text-xs text-white opacity-60">
                     Sohbetleri otomatik kaydet
                   </div>
                 </div>
