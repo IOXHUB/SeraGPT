@@ -165,120 +165,63 @@ Size nasıl yardımcı olabilirim?`,
     }
   };
 
-  const generateResponse = (input: string): string => {
-    const lowerInput = input.toLowerCase();
+  const generateResponse = async (input: string): Promise<string> => {
+    try {
+      // Call the comprehensive analysis API
+      const response = await fetch('/api/chat/analysis', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          message: input,
+          sessionId: currentSession?.id || 'default',
+          userId: user?.id || 'anonymous',
+          context: currentSession?.context || {}
+        }),
+      });
 
-    if (lowerInput.includes('analiz') || lowerInput.includes('fizibilite')) {
-      return `🎯 **Sera Fizibilite Analizi Başlatılıyor**
+      const result = await response.json();
 
-📍 **Lokasyon:** ${lowerInput.includes('antalya') ? 'Antalya' : lowerInput.includes('mersin') ? 'Mersin' : lowerInput.includes('muğla') ? 'Muğla' : 'Belirtilen bölge'}
-📏 **Sera Boyutu:** ${extractNumber(input) || '5000'}m²
-🏗️ **Sera Tipi:** Modern cam sera (önerilen)
+      if (result.success) {
+        // Update session context with analysis data
+        if (currentSession && result.analysisData) {
+          currentSession.context = { ...currentSession.context, ...result.analysisData };
+        }
 
-**📊 Hızlı Değerlendirme:**
-• **Başlangıç Yatırımı:** ₺${((extractNumber(input) || 5000) * 180).toLocaleString()}
-• **Yıllık Gelir Potansiyeli:** ₺${((extractNumber(input) || 5000) * 95).toLocaleString()}
-• **Geri Ödeme Süresi:** 2.8-3.5 yıl
-• **ROI:** %28-35
+        return result.response;
+      } else {
+        return result.response || 'Analiz sırasında bir hata olu��tu. Lütfen tekrar deneyin.';
+      }
+    } catch (error) {
+      console.error('Error calling analysis API:', error);
 
-**🌡️ İklim Uygunluğu:** ✅ Bölge sera tarımı için ideal
-**💡 Ürün Önerisi:** Domates + salatalık rotasyonu (en karlı)
+      // Fallback to simple response
+      const lowerInput = input.toLowerCase();
 
-Detaylı rapor için "Tam analiz raporu oluştur" yazın.`;
+      if (lowerInput.includes('analiz') || lowerInput.includes('fizibilite')) {
+        return `🎯 **Sera Analizi Başlatılıyor**
+
+Kapsamlı analiz için şu bilgileri paylaşın:
+• 📍 Lokasyon (şehir)
+• 📏 Sera boyutu (m²)
+• 💰 Yatırım bütçesi
+• 🌱 Yetiştirilecek ürünler
+
+Örnek: "Antalya'da 5000m² sera, 900.000₺ bütçe, domates üretimi"`;
+      }
+
+      return `Merhaba! Size nasıl yardımcı olabilirim?
+
+**🎯 Yapabileceğim analizler:**
+• Sera fizibilite analizi
+• ROI hesaplamaları
+• İklim uygunluk analizi
+• Pazar araştırması
+• Ekipman önerileri
+
+Hangi konuda yardım istiyorsunuz?`;
     }
-
-    if (lowerInput.includes('roi') || lowerInput.includes('hesaplama') || lowerInput.includes('yatırım')) {
-      return `💰 **ROI Hesaplama Merkezi**
-
-**📋 Analiz için gereken bilgiler:**
-1. 📏 Sera büyüklüğü (m²)
-2. 📍 Lokasyon
-3. 🌱 Yetiştirilecek ürün
-4. 💵 Toplam yatırım bütçesi
-
-**📝 Örnek format:**
-"5000m² Antalya sera, domates üretimi, 900.000₺ bütçe"
-
-**📊 Bu bilgilerle size sunabileceğim analizler:**
-• Detaylı CAPEX/OPEX analizi
-• 5 yıllık gelir projeksiyonu  
-• Risk değerlendirmesi
-• Geri ödeme süresi hesabı
-• Karlılık senaryoları
-
-Hangi bilgileri paylaşmak istersiniz?`;
-    }
-
-    if (lowerInput.includes('danışmanlık') || lowerInput.includes('uzman') || lowerInput.includes('destek')) {
-      return `🤝 **Profesyonel Danışmanlık Hizmetleri**
-
-**🎯 Hizmet Paketlerimiz:**
-
-**🥉 TEMEL PAKET - ₺25.000**
-• Fizibilite analizi
-• Temel proje planlaması
-• Maliyet hesaplama
-
-**🥈 KAPSAMLI PAKET - ₺45.000**
-• Detaylı tasarım
-• Tedarikçi rehberi
-• İnşaat yönetimi
-
-**🥇 PREMIUM PAKET - ₺85.000**
-• Anahtar teslim proje yönetimi
-• 2 yıl operasyon desteği
-• Garantili ROI hedefleri
-
-**📞 İletişim:**
-• "Danışmanlık teklifi istiyorum" yazın
-• Hemen görüşme: +90 532 XXX XXXX
-• E-posta: info@seragpt.com
-
-Hangi paket size uygun?`;
-    }
-
-    if (lowerInput.includes('iklim') || lowerInput.includes('hava') || lowerInput.includes('sıcaklık')) {
-      return `🌡️ **İklim Verileri & Analiz**
-
-**📊 Sera İklim Faktörleri:**
-• 🌡️ Ortalama sıcaklık (min/max)
-• 💧 Nem oranları
-• ☀️ Güneşlenme süreleri
-• 💨 Rüzgar hızları ve yönü
-• ❄️ Donlu gün sayıları
-
-**🏆 Türkiye'nin En İdeal Sera Bölgeleri:**
-
-**1. 🥇 Antalya**
-• 12 ay üretim imkanı
-• Yıllık 300+ güneşli gün
-
-**2. 🥈 Mersin** 
-• Yüksek verim potansiyeli
-• Liman avantajı
-
-**3. 🥉 Muğla**
-• Organik üretim için ideal
-• Premium pazar erişimi
-
-Belirli bir şehir için detaylı iklim analizi yapmamı ister misiniz?`;
-    }
-
-    return `Anlıyorum! Size daha iyi yardımcı olabilmek için konuyu biraz daha detaylandırabilir misiniz?
-
-**🔥 Popüler Konular:**
-• 🏗️ Sera fizibilite analizi
-• 💰 Yatırım hesaplamaları  
-• 🌡️ İklim verileri analizi
-• 🤝 Danışmanlık hizmetleri
-• ⚙️ Teknoloji çözümleri
-
-**💡 Öneriler:**
-• "Sera yatırımı hakkında bilgi ver"
-• "En karlı ürünler hangileri?"
-• "Hangi teknolojiler gerekli?"
-
-Size nasıl yardımcı olabilirim? 🌱`;
   };
 
   const extractNumber = (text: string): number | null => {
