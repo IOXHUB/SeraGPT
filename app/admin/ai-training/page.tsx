@@ -42,6 +42,8 @@ export default function AITrainingPage() {
   const [dataLoading, setDataLoading] = useState(true);
   const [showNewTrainingModal, setShowNewTrainingModal] = useState(false);
   const [isCreatingTraining, setIsCreatingTraining] = useState(false);
+  const [showNewDatasetModal, setShowNewDatasetModal] = useState(false);
+  const [isCreatingDataset, setIsCreatingDataset] = useState(false);
   const [newTrainingForm, setNewTrainingForm] = useState({
     name: '',
     type: 'fine-tuning',
@@ -49,6 +51,13 @@ export default function AITrainingPage() {
     epochs: 5,
     learningRate: 0.001,
     batchSize: 32
+  });
+  const [newDatasetForm, setNewDatasetForm] = useState({
+    name: '',
+    type: 'Training',
+    format: 'jsonl',
+    description: '',
+    file: null as File | null
   });
 
   const tabs = [
