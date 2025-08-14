@@ -446,7 +446,7 @@ export default function AITrainingPage() {
                     AI eğitimi için veri setleri yükleyin veya oluşturun
                   </p>
                   <button
-                    onClick={() => alert('Veri seti ekleme özelliği yakında eklenecek!')}
+                    onClick={openNewDatasetModal}
                     className="px-6 py-3 rounded-lg font-medium transition-all hover:opacity-90"
                     style={{ backgroundColor: '#baf200', color: '#1e3237' }}
                   >
