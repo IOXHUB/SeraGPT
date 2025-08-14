@@ -434,9 +434,9 @@ Size nasıl yardımcı olabilirim? 🌱`;
         </div>
 
         {/* Input Area */}
-        <div className="border-t border-white/10 p-6">
-          <form onSubmit={handleSubmit} className="max-w-4xl mx-auto">
-            <div className="flex space-x-4">
+        <div className="border-t border-white/5 p-4">
+          <form onSubmit={handleSubmit} className="max-w-3xl mx-auto">
+            <div className="flex space-x-2">
               <div className="flex-1 relative">
                 <textarea
                   ref={inputRef}
@@ -444,21 +444,29 @@ Size nasıl yardımcı olabilirim? 🌱`;
                   onChange={(e) => setInput(e.target.value)}
                   onKeyDown={handleKeyDown}
                   placeholder="SeraGPT'ye bir mesaj yazın..."
-                  className="w-full p-4 rounded-2xl resize-none bg-white/10 text-white placeholder-white/50 border border-white/20 focus:outline-none focus:border-white/40 focus:ring-0"
+                  className="w-full p-3 rounded-lg resize-none bg-white/5 border border-white/10 focus:outline-none focus:border-white/20 focus:ring-0 text-xs"
                   rows={1}
-                  style={{ minHeight: '56px', maxHeight: '200px' }}
+                  style={{
+                    minHeight: '40px',
+                    maxHeight: '120px',
+                    color: '#1e3237'
+                  }}
                   disabled={isLoading}
                 />
               </div>
               <button
                 type="submit"
                 disabled={!input.trim() || isLoading}
-                className="p-4 rounded-2xl bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                className="p-3 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed transition-colors text-xs font-medium"
+                style={{
+                  backgroundColor: '#baf200',
+                  color: '#1e3237'
+                }}
               >
                 {isLoading ? '⏳' : '🚀'}
               </button>
             </div>
-            <div className="text-xs text-white/40 mt-2 text-center">
+            <div className="text-xs opacity-40 mt-2 text-center" style={{ color: '#1e3237' }}>
               Enter ile gönder • Shift+Enter ile yeni satır
             </div>
           </form>
