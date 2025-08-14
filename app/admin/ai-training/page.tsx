@@ -644,6 +644,119 @@ export default function AITrainingPage() {
           </div>
         </div>
       )}
+
+      {/* New Dataset Modal */}
+      {showNewDatasetModal && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-lg max-w-md w-full max-h-[90vh] overflow-y-auto">
+            <div className="p-6">
+              <div className="flex items-center justify-between mb-6">
+                <h3 className="text-xl font-semibold" style={{ color: '#1e3237' }}>📊 Yeni Veri Seti</h3>
+                <button
+                  onClick={() => setShowNewDatasetModal(false)}
+                  className="text-gray-400 hover:text-gray-600 text-xl"
+                >
+                  ✕
+                </button>
+              </div>
+
+              <div className="space-y-4">
+                <div>
+                  <label className="block text-sm font-medium mb-2" style={{ color: '#1e3237' }}>
+                    Veri Seti Adı *
+                  </label>
+                  <input
+                    type="text"
+                    value={newDatasetForm.name}
+                    onChange={(e) => setNewDatasetForm(prev => ({ ...prev, name: e.target.value }))}
+                    placeholder="Örn: Sera Analizi Dataset v1.0"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium mb-2" style={{ color: '#1e3237' }}>
+                    Veri Seti Tipi
+                  </label>
+                  <select
+                    value={newDatasetForm.type}
+                    onChange={(e) => setNewDatasetForm(prev => ({ ...prev, type: e.target.value }))}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                  >
+                    <option value="Training">Training</option>
+                    <option value="Validation">Validation</option>
+                    <option value="Test">Test</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium mb-2" style={{ color: '#1e3237' }}>
+                    Dosya Formatı
+                  </label>
+                  <select
+                    value={newDatasetForm.format}
+                    onChange={(e) => setNewDatasetForm(prev => ({ ...prev, format: e.target.value }))}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                  >
+                    <option value="jsonl">JSONL</option>
+                    <option value="csv">CSV</option>
+                    <option value="json">JSON</option>
+                    <option value="txt">TXT</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium mb-2" style={{ color: '#1e3237' }}>
+                    Açıklama
+                  </label>
+                  <textarea
+                    value={newDatasetForm.description}
+                    onChange={(e) => setNewDatasetForm(prev => ({ ...prev, description: e.target.value }))}
+                    placeholder="Veri seti hakkında kısa açıklama..."
+                    rows={3}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent resize-none"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium mb-2" style={{ color: '#1e3237' }}>
+                    Veri Dosyası *
+                  </label>
+                  <input
+                    type="file"
+                    onChange={(e) => setNewDatasetForm(prev => ({ ...prev, file: e.target.files?.[0] || null }))}
+                    accept=".jsonl,.csv,.json,.txt"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                  />
+                  {newDatasetForm.file && (
+                    <p className="text-sm text-gray-600 mt-1">
+                      Seçilen dosya: {newDatasetForm.file.name} ({(newDatasetForm.file.size / 1024 / 1024).toFixed(2)} MB)
+                    </p>
+                  )}
+                </div>
+              </div>
+
+              <div className="flex space-x-3 mt-6">
+                <button
+                  onClick={() => setShowNewDatasetModal(false)}
+                  disabled={isCreatingDataset}
+                  className="flex-1 px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors disabled:opacity-50"
+                >
+                  İptal
+                </button>
+                <button
+                  onClick={handleCreateDataset}
+                  disabled={isCreatingDataset || !newDatasetForm.name || !newDatasetForm.file}
+                  className="flex-1 px-4 py-2 rounded-lg font-medium text-white transition-all hover:opacity-90 disabled:opacity-50"
+                  style={{ backgroundColor: '#146448' }}
+                >
+                  {isCreatingDataset ? '🔄 Yükleniyor...' : '📊 Veri Seti Ekle'}
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
