@@ -185,25 +185,26 @@ export default function SettingsPage() {
           </div>
 
           {/* Account Section */}
-          <div className="bg-white/5 rounded-lg p-4 border border-white/5">
-            <h2 className="text-sm font-medium mb-4" style={{ color: '#1e3237' }}>
+          <div className="rounded-lg p-4 border border-white/10">
+            <h2 className="text-sm font-medium mb-4" style={{ color: '#baf200' }}>
               Hesap
             </h2>
             <div className="space-y-3">
               <div className="flex items-center justify-between py-2">
                 <div>
-                  <div className="text-xs font-medium" style={{ color: '#1e3237' }}>
+                  <div className="text-xs font-medium text-white">
                     Hesap Türü
                   </div>
-                  <div className="text-xs opacity-60" style={{ color: '#1e3237' }}>
+                  <div className="text-xs text-white opacity-60">
                     {isAdmin() ? 'Yönetici' : 'Kullanıcı'}
                   </div>
                 </div>
-                <span 
+                <span
                   className="px-2 py-1 rounded-md text-xs font-medium"
-                  style={{ 
-                    backgroundColor: isAdmin() ? '#baf200' : 'rgba(255,255,255,0.1)',
-                    color: '#1e3237'
+                  style={{
+                    backgroundColor: isAdmin() ? '#baf200' : 'transparent',
+                    color: isAdmin() ? '#146448' : 'white',
+                    border: isAdmin() ? 'none' : '1px solid rgba(255,255,255,0.2)'
                   }}
                 >
                   {isAdmin() ? 'Admin' : 'User'}
@@ -211,11 +212,11 @@ export default function SettingsPage() {
               </div>
 
               {isAdmin() && (
-                <div className="pt-2 border-t border-white/5">
+                <div className="pt-2 border-t border-white/10">
                   <Link
                     href="/admin"
-                    className="inline-flex items-center px-3 py-2 rounded-md text-xs font-medium transition-colors hover:opacity-80"
-                    style={{ backgroundColor: '#baf200', color: '#1e3237' }}
+                    className="inline-flex items-center px-3 py-2 rounded-md text-xs font-medium transition-colors hover:opacity-90"
+                    style={{ backgroundColor: '#baf200', color: '#146448' }}
                   >
                     👑 Admin Paneli
                   </Link>
@@ -229,27 +230,23 @@ export default function SettingsPage() {
             <button
               onClick={handleSave}
               disabled={isSaving}
-              className="flex-1 p-2 rounded-md text-xs font-medium transition-colors disabled:opacity-50"
-              style={{ backgroundColor: '#baf200', color: '#1e3237' }}
+              className="flex-1 p-2 rounded-md text-xs font-medium transition-colors disabled:opacity-50 hover:opacity-90"
+              style={{ backgroundColor: '#baf200', color: '#146448' }}
             >
               {isSaving ? '⏳ Kaydediliyor...' : saved ? '✅ Kaydedildi' : '💾 Kaydet'}
             </button>
-            
+
             <button
               onClick={signOut}
-              className="px-4 py-2 rounded-md text-xs font-medium transition-colors border hover:bg-white/5"
-              style={{ 
-                borderColor: 'rgba(255,255,255,0.1)',
-                color: '#1e3237'
-              }}
+              className="px-4 py-2 rounded-md text-xs font-medium transition-colors border border-white/20 hover:bg-white/5 text-white"
             >
               🚪 Çıkış Yap
             </button>
           </div>
 
           {/* Footer */}
-          <div className="text-center pt-4 border-t border-white/5">
-            <p className="text-xs opacity-50" style={{ color: '#1e3237' }}>
+          <div className="text-center pt-4 border-t border-white/10">
+            <p className="text-xs text-white opacity-50">
               SeraGPT v1.0 • © 2025
             </p>
           </div>
