@@ -336,15 +336,15 @@ export default function AdminDashboard() {
                 <div className="space-y-2">
                   <div className="flex justify-between">
                     <span className="text-sm" style={{ color: '#1e3237' }}>CPU</span>
-                    <span className="text-sm font-medium" style={{ color: '#146448' }}>{systemStatus.server.cpu}%</span>
+                    <span className="text-sm font-medium" style={{ color: '#146448' }}>{systemStatus?.server?.cpu || 0}%</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-sm" style={{ color: '#1e3237' }}>Memory</span>
-                    <span className="text-sm font-medium" style={{ color: '#146448' }}>{systemStatus.server.memory}%</span>
+                    <span className="text-sm font-medium" style={{ color: '#146448' }}>{systemStatus?.server?.memory || 0}%</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-sm" style={{ color: '#1e3237' }}>Disk</span>
-                    <span className="text-sm font-medium" style={{ color: '#146448' }}>{systemStatus.server.disk}%</span>
+                    <span className="text-sm font-medium" style={{ color: '#146448' }}>{systemStatus?.server?.disk || 0}%</span>
                   </div>
                 </div>
               </div>
