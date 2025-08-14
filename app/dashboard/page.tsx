@@ -398,28 +398,32 @@ Size nasıl yardımcı olabilirim? 🌱`;
 
         {/* Messages Area */}
         <div className="flex-1 overflow-y-auto">
-          <div className="max-w-4xl mx-auto p-6 space-y-6">
+          <div className="max-w-3xl mx-auto p-4 space-y-4">
             {currentSession?.messages.map((message) => (
               <div key={message.id} className={`flex ${message.type === 'user' ? 'justify-end' : 'justify-start'}`}>
-                <div className={`max-w-[80%] ${message.type === 'user' ? 'order-2' : 'order-1'}`}>
-                  <div className={`p-4 rounded-2xl ${
+                <div className={`max-w-[75%] ${message.type === 'user' ? 'order-2' : 'order-1'}`}>
+                  <div className={`p-3 rounded-lg ${
                     message.type === 'user'
-                      ? 'bg-blue-600 text-white ml-auto'
-                      : 'bg-white/10 text-white'
-                  }`}>
+                      ? 'ml-auto'
+                      : 'bg-white/5'
+                  }`}
+                  style={{
+                    backgroundColor: message.type === 'user' ? '#baf200' : 'rgba(255,255,255,0.05)',
+                    color: '#1e3237'
+                  }}>
                     {message.isTyping ? (
                       <div className="flex space-x-1">
-                        <div className="w-2 h-2 bg-white/60 rounded-full animate-bounce"></div>
-                        <div className="w-2 h-2 bg-white/60 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
-                        <div className="w-2 h-2 bg-white/60 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+                        <div className="w-1.5 h-1.5 rounded-full animate-bounce" style={{ backgroundColor: '#1e3237', opacity: 0.6 }}></div>
+                        <div className="w-1.5 h-1.5 rounded-full animate-bounce" style={{ backgroundColor: '#1e3237', opacity: 0.6, animationDelay: '0.1s' }}></div>
+                        <div className="w-1.5 h-1.5 rounded-full animate-bounce" style={{ backgroundColor: '#1e3237', opacity: 0.6, animationDelay: '0.2s' }}></div>
                       </div>
                     ) : (
-                      <div className="whitespace-pre-wrap text-sm leading-relaxed">
+                      <div className="whitespace-pre-wrap text-xs leading-relaxed">
                         {message.content}
                       </div>
                     )}
                   </div>
-                  <div className={`text-xs text-white/40 mt-1 ${message.type === 'user' ? 'text-right' : 'text-left'}`}>
+                  <div className={`text-xs opacity-40 mt-1 ${message.type === 'user' ? 'text-right' : 'text-left'}`} style={{ color: '#1e3237' }}>
                     {message.timestamp.toLocaleTimeString('tr-TR', { hour: '2-digit', minute: '2-digit' })}
                   </div>
                 </div>
