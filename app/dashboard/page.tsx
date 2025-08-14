@@ -319,21 +319,25 @@ Size nasıl yardımcı olabilirim? 🌱`;
           </div>
 
           {/* Sessions List */}
-          <div className="flex-1 overflow-y-auto p-4 space-y-2">
+          <div className="flex-1 overflow-y-auto p-3 space-y-1">
             {sessions.map((session) => (
               <button
                 key={session.id}
                 onClick={() => setCurrentSession(session)}
-                className={`w-full p-3 rounded-lg text-left transition-colors ${
+                className={`w-full p-2 rounded-md text-left transition-colors ${
                   currentSession?.id === session.id
-                    ? 'bg-white/20 text-white'
-                    : 'text-white/70 hover:bg-white/10 hover:text-white'
+                    ? 'bg-white/10'
+                    : 'hover:bg-white/5'
                 }`}
+                style={{
+                  color: currentSession?.id === session.id ? '#1e3237' : '#1e3237',
+                  opacity: currentSession?.id === session.id ? 1 : 0.7
+                }}
               >
-                <div className="truncate text-sm font-medium">
+                <div className="truncate text-xs font-medium">
                   {session.title}
                 </div>
-                <div className="text-xs opacity-60 mt-1">
+                <div className="text-xs opacity-50 mt-1">
                   {session.messages.length} mesaj
                 </div>
               </button>
