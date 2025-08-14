@@ -1,11 +1,11 @@
 import { Metadata } from 'next'
 import './globals.css'
 import Script from 'next/script'
-import AnalyticsWrapper from '@/components/AnalyticsWrapper'
-import ProductionErrorHandler from '@/components/ProductionErrorHandler'
-import ImageOptimizationProvider from '@/components/providers/ImageOptimizationProvider'
-import DevToolsWidget from '@/components/dev/DevToolsWidget'
-import DevNavigation from '@/components/DevNavigation'
+// import AnalyticsWrapper from '@/components/AnalyticsWrapper'
+// import ProductionErrorHandler from '@/components/ProductionErrorHandler'
+// import ImageOptimizationProvider from '@/components/providers/ImageOptimizationProvider'
+// import DevToolsWidget from '@/components/dev/DevToolsWidget'
+// import DevNavigation from '@/components/DevNavigation'
 
 export const metadata: Metadata = {
   title: 'SeraGPT',
