@@ -378,19 +378,20 @@ Size nasıl yardımcı olabilirim? 🌱`;
       {/* Main Chat Area */}
       <div className="flex-1 flex flex-col">
         {/* Top Bar */}
-        <div className="h-16 border-b border-white/10 flex items-center justify-between px-6">
-          <div className="flex items-center space-x-4">
+        <div className="h-12 border-b border-white/5 flex items-center justify-between px-4">
+          <div className="flex items-center space-x-3">
             <button
               onClick={() => setSidebarOpen(!sidebarOpen)}
-              className="text-white/70 hover:text-white"
+              className="text-xs hover:opacity-70 transition-opacity"
+              style={{ color: '#1e3237' }}
             >
               ☰
             </button>
-            <h1 className="text-white font-medium">
+            <h1 className="text-sm font-medium" style={{ color: '#1e3237' }}>
               {currentSession?.title || 'SeraGPT'}
             </h1>
           </div>
-          <div className="text-white/50 text-sm">
+          <div className="text-xs opacity-60" style={{ color: '#1e3237' }}>
             {user?.email}
           </div>
         </div>
