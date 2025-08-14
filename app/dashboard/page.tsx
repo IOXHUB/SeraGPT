@@ -406,9 +406,9 @@ Size nasıl yardımcı olabilirim? 🌱`;
                   }}>
                     {message.isTyping ? (
                       <div className="flex space-x-1">
-                        <div className="w-1.5 h-1.5 rounded-full animate-bounce" style={{ backgroundColor: '#1e3237', opacity: 0.6 }}></div>
-                        <div className="w-1.5 h-1.5 rounded-full animate-bounce" style={{ backgroundColor: '#1e3237', opacity: 0.6, animationDelay: '0.1s' }}></div>
-                        <div className="w-1.5 h-1.5 rounded-full animate-bounce" style={{ backgroundColor: '#1e3237', opacity: 0.6, animationDelay: '0.2s' }}></div>
+                        <div className="w-1.5 h-1.5 bg-white rounded-full animate-bounce opacity-60"></div>
+                        <div className="w-1.5 h-1.5 bg-white rounded-full animate-bounce opacity-60" style={{ animationDelay: '0.1s' }}></div>
+                        <div className="w-1.5 h-1.5 bg-white rounded-full animate-bounce opacity-60" style={{ animationDelay: '0.2s' }}></div>
                       </div>
                     ) : (
                       <div className="whitespace-pre-wrap text-xs leading-relaxed">
@@ -416,7 +416,7 @@ Size nasıl yardımcı olabilirim? 🌱`;
                       </div>
                     )}
                   </div>
-                  <div className={`text-xs opacity-40 mt-1 ${message.type === 'user' ? 'text-right' : 'text-left'}`} style={{ color: '#1e3237' }}>
+                  <div className={`text-xs opacity-40 mt-1 text-white ${message.type === 'user' ? 'text-right' : 'text-left'}`}>
                     {message.timestamp.toLocaleTimeString('tr-TR', { hour: '2-digit', minute: '2-digit' })}
                   </div>
                 </div>
@@ -427,7 +427,7 @@ Size nasıl yardımcı olabilirim? 🌱`;
         </div>
 
         {/* Input Area */}
-        <div className="border-t border-white/5 p-4">
+        <div className="border-t border-white/10 p-4">
           <form onSubmit={handleSubmit} className="max-w-3xl mx-auto">
             <div className="flex space-x-2">
               <div className="flex-1 relative">
@@ -437,13 +437,13 @@ Size nasıl yardımcı olabilirim? 🌱`;
                   onChange={(e) => setInput(e.target.value)}
                   onKeyDown={handleKeyDown}
                   placeholder="SeraGPT'ye bir mesaj yazın..."
-                  className="w-full p-3 rounded-lg resize-none bg-white/5 border border-white/10 focus:outline-none focus:border-white/20 focus:ring-0 text-xs"
-                  rows={1}
+                  className="w-full p-3 rounded-lg resize-none border border-white/10 focus:outline-none focus:border-white/30 focus:ring-0 text-xs text-white placeholder-white/50"
                   style={{
                     minHeight: '40px',
                     maxHeight: '120px',
-                    color: '#1e3237'
+                    backgroundColor: 'transparent'
                   }}
+                  rows={1}
                   disabled={isLoading}
                 />
               </div>
@@ -453,13 +453,13 @@ Size nasıl yardımcı olabilirim? 🌱`;
                 className="p-3 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed transition-colors text-xs font-medium"
                 style={{
                   backgroundColor: '#baf200',
-                  color: '#1e3237'
+                  color: '#146448'
                 }}
               >
                 {isLoading ? '⏳' : '🚀'}
               </button>
             </div>
-            <div className="text-xs opacity-40 mt-2 text-center" style={{ color: '#1e3237' }}>
+            <div className="text-xs text-white opacity-40 mt-2 text-center">
               Enter ile gönder • Shift+Enter ile yeni satır
             </div>
           </form>
