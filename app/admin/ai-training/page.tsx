@@ -178,6 +178,56 @@ export default function AITrainingPage() {
     setShowNewTrainingModal(true);
   };
 
+  const openNewDatasetModal = () => {
+    setShowNewDatasetModal(true);
+  };
+
+  const handleCreateDataset = async () => {
+    if (!newDatasetForm.name || !newDatasetForm.file) {
+      alert('Lütfen veri seti adı ve dosya seçin');
+      return;
+    }
+
+    setIsCreatingDataset(true);
+    try {
+      const formData = new FormData();
+      formData.append('name', newDatasetForm.name);
+      formData.append('type', newDatasetForm.type);
+      formData.append('format', newDatasetForm.format);
+      formData.append('description', newDatasetForm.description);
+      formData.append('file', newDatasetForm.file);
+
+      const response = await fetch('/api/admin/ai-training/datasets', {
+        method: 'POST',
+        body: formData,
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        // Add new dataset to datasets list
+        setDatasets(prev => [result.data, ...prev]);
+        setShowNewDatasetModal(false);
+        // Reset form
+        setNewDatasetForm({
+          name: '',
+          type: 'Training',
+          format: 'jsonl',
+          description: '',
+          file: null
+        });
+        alert('✅ Yeni veri seti başarıyla eklendi!');
+      } else {
+        alert('❌ Veri seti eklenemedi: ' + result.error);
+      }
+    } catch (error) {
+      console.error('Error creating dataset:', error);
+      alert('❌ Bir hata oluştu. Lütfen tekrar deneyin.');
+    } finally {
+      setIsCreatingDataset(false);
+    }
+  };
+
   if (loading || dataLoading) {
     return (
       <div className="min-h-screen" style={{ backgroundColor: '#146448' }}>
