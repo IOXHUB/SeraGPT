@@ -140,9 +140,9 @@ Size nasıl yardımcı olabilirim?`,
     } : null);
 
     try {
-      await new Promise(resolve => setTimeout(resolve, 1000 + Math.random() * 2000));
+      await new Promise(resolve => setTimeout(resolve, 500));
 
-      const response = generateResponse(input.trim());
+      const response = await generateResponse(input.trim());
       const assistantMessage: Message = {
         id: `msg-${Date.now()}`,
         type: 'assistant',
