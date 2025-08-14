@@ -57,28 +57,47 @@ export default function ModernChatDashboard() {
         {
           id: 'welcome-1',
           type: 'assistant',
-          content: `👋 **Merhaba! Ben SeraGPT'niz.**
+          content: `🌱 **Hoş geldiniz! Ben SeraGPT, sera yatırım uzmanınızım.**
 
-Sera yatırımı ve tarım konularında size yardımcı olmaya hazırım.
+Kurumsal sera yatırımları için kapsamlı analiz ve danışmanlık hizmeti sunuyorum.
 
-**💡 Ne yapabilirim:**
-• Sera fizibilite analizi (60 saniyede!)
-• ROI hesaplamaları ve yatırım planlaması
-• İklim verileri ve pazar analizi
-• Ekipman önerileri ve maliyet optimizasyonu
-• Profesyonel danışmanlık hizmetleri
+## 🎯 **Analiz Hizmetlerimiz**
 
-**🚀 Başlamak için şunları deneyebilirsiniz:**
-• "Antalya'da 5000m² sera yatırımı analizi"
-• "ROI hesaplama yapmak istiyorum"
-• "İklim verilerini analiz et"
-• "Danışmanlık hizmeti almak istiyorum"
+**📊 Kapsamlı Fizibilite Analizi**
+• ROI hesaplamaları ve finansal projektör
+• İklim uygunluk analizi
+• Pazar araştırması ve rekabet analizi
+• Ekipman ve teknoloji önerileri
+• Risk değerlendirmesi ve zayıflık analizi
 
-Size nasıl yardımcı olabilirim?`,
+**⚡ Hızlı Başlangıç Örnekleri:**
+\`\`\`
+"Antalya'da 10.000m² sera, 2M₺ bütçe, domates üretimi"
+"Mersin'de iklim analizi yap"
+"ROI hesaplama - organik salatalık üretimi"
+"Ekipman önerileri - 5000m² modern sera"
+\`\`\`
+
+**📋 Analiz Süreci:**
+1. **Bilgi Toplama** - Lokasyon, boyut, bütçe, ürün tercihleri
+2. **Veri Analizi** - İklim, pazar, maliyet, risk faktörleri
+3. **Rapor Oluşturma** - Detaylı PDF, Excel, JSON formatları
+4. **Danışmanlık** - Uzman görüşmesi ve uygulama desteği
+
+**🤝 Danışmanlık Paketleri:**
+• **Temel**: Fizibilite + planlama (₺25.000)
+• **Kapsamlı**: Tasarım + tedarik (₺45.000)
+• **Premium**: Anahtar teslim yönetim (₺85.000)
+
+---
+
+**💬 Size nasıl yardımcı olabilirim? Hangi analizi yapmak istiyorsunuz?**`,
           timestamp: new Date()
         }
       ],
-      createdAt: new Date()
+      createdAt: new Date(),
+      context: {},
+      analysisData: {}
     };
 
     setSessions([defaultSession]);
