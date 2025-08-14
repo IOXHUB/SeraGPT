@@ -51,11 +51,15 @@ export default function DevToolsWidget() {
     };
   }, [isClient]);
 
-  // Force show for development (including fly.dev preview)
-  const isDev = process.env.NODE_ENV === 'development' ||
-                (typeof window !== 'undefined' && window.location.hostname.includes('fly.dev'));
+  // Force show for development (including fly.dev preview) - with safety checks
+  if (!isClient || typeof window === 'undefined') {
+    return null;
+  }
 
-  if (!isDev || !isClient) {
+  const isDev = (process.env.NODE_ENV === 'development') ||
+                (window?.location?.hostname?.includes('fly.dev'));
+
+  if (!isDev) {
     return null;
   }
 
