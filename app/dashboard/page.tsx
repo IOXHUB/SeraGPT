@@ -345,27 +345,30 @@ Size nasıl yardımcı olabilirim? 🌱`;
           </div>
 
           {/* User Menu */}
-          <div className="p-4 border-t border-white/10">
-            <div className="space-y-2">
+          <div className="p-3 border-t border-white/5">
+            <div className="space-y-1">
               {isAdmin && (
                 <Link
                   href="/admin"
-                  className="block w-full p-2 rounded-lg text-white/70 hover:bg-white/10 hover:text-white transition-colors text-sm"
+                  className="block w-full p-2 rounded-md hover:bg-white/5 transition-colors text-xs"
+                  style={{ color: '#1e3237', opacity: 0.8 }}
                 >
-                  👑 Admin Panel
+                  👑 Admin
                 </Link>
               )}
               <Link
                 href="/dashboard/settings"
-                className="block w-full p-2 rounded-lg text-white/70 hover:bg-white/10 hover:text-white transition-colors text-sm"
+                className="block w-full p-2 rounded-md hover:bg-white/5 transition-colors text-xs"
+                style={{ color: '#1e3237', opacity: 0.8 }}
               >
                 ⚙️ Ayarlar
               </Link>
               <button
                 onClick={signOut}
-                className="w-full p-2 rounded-lg text-white/70 hover:bg-white/10 hover:text-white transition-colors text-sm text-left"
+                className="w-full p-2 rounded-md hover:bg-white/5 transition-colors text-xs text-left"
+                style={{ color: '#1e3237', opacity: 0.8 }}
               >
-                🚪 Çıkış Yap
+                🚪 Çıkış
               </button>
             </div>
           </div>
