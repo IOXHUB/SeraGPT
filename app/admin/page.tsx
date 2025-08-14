@@ -354,11 +354,11 @@ export default function AdminDashboard() {
                 <div className="space-y-2">
                   <div className="flex justify-between">
                     <span className="text-sm" style={{ color: '#1e3237' }}>Bağlantılar</span>
-                    <span className="text-sm font-medium" style={{ color: '#146448' }}>{systemStatus.database.connections}</span>
+                    <span className="text-sm font-medium" style={{ color: '#146448' }}>{systemStatus?.database?.connections || 0}</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-sm" style={{ color: '#1e3237' }}>Sorgular/dk</span>
-                    <span className="text-sm font-medium" style={{ color: '#146448' }}>{systemStatus.database.queries}</span>
+                    <span className="text-sm font-medium" style={{ color: '#146448' }}>{systemStatus?.database?.queries || 0}</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-sm" style={{ color: '#1e3237' }}>Durum</span>
@@ -372,15 +372,15 @@ export default function AdminDashboard() {
                 <div className="space-y-2">
                   <div className="flex justify-between">
                     <span className="text-sm" style={{ color: '#1e3237' }}>Aktif API</span>
-                    <span className="text-sm font-medium" style={{ color: '#146448' }}>{systemStatus.apis.active}</span>
+                    <span className="text-sm font-medium" style={{ color: '#146448' }}>{systemStatus?.apis?.active || 0}</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-sm" style={{ color: '#1e3237' }}>Hatalı</span>
-                    <span className="text-sm font-medium text-red-600">{systemStatus.apis.failing}</span>
+                    <span className="text-sm font-medium text-red-600">{systemStatus?.apis?.failing || 0}</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-sm" style={{ color: '#1e3237' }}>Ort. Yanıt</span>
-                    <span className="text-sm font-medium" style={{ color: '#146448' }}>{systemStatus.apis.avgResponse}ms</span>
+                    <span className="text-sm font-medium" style={{ color: '#146448' }}>{systemStatus?.apis?.avgResponse || 0}ms</span>
                   </div>
                 </div>
               </div>
@@ -390,15 +390,15 @@ export default function AdminDashboard() {
                 <div className="space-y-2">
                   <div className="flex justify-between">
                     <span className="text-sm" style={{ color: '#1e3237' }}>Hit Rate</span>
-                    <span className="text-sm font-medium" style={{ color: '#146448' }}>{systemStatus.cache.hitRate}%</span>
+                    <span className="text-sm font-medium" style={{ color: '#146448' }}>{systemStatus?.cache?.hitRate || 0}%</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-sm" style={{ color: '#1e3237' }}>Boyut</span>
-                    <span className="text-sm font-medium" style={{ color: '#146448' }}>{systemStatus.cache.size}</span>
+                    <span className="text-sm font-medium" style={{ color: '#146448' }}>{systemStatus?.cache?.size || '0GB'}</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-sm" style={{ color: '#1e3237' }}>Evictions</span>
-                    <span className="text-sm font-medium" style={{ color: '#146448' }}>{systemStatus.cache.evictions}</span>
+                    <span className="text-sm font-medium" style={{ color: '#146448' }}>{systemStatus?.cache?.evictions || 0}</span>
                   </div>
                 </div>
               </div>
