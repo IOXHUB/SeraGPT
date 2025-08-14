@@ -292,22 +292,27 @@ Size nasıl yardımcı olabilirim? 🌱`;
   return (
     <div className="h-screen flex" style={{ backgroundColor: '#146448' }}>
       {/* Sidebar */}
-      <div className={`${sidebarOpen ? 'w-80' : 'w-0'} transition-all duration-300 overflow-hidden bg-black/20 border-r border-white/10`}>
+      <div className={`${sidebarOpen ? 'w-72' : 'w-0'} transition-all duration-300 overflow-hidden bg-black/10 border-r border-white/5`}>
         <div className="h-full flex flex-col">
           {/* Sidebar Header */}
-          <div className="p-4 border-b border-white/10">
-            <div className="flex items-center justify-between mb-4">
-              <h2 className="text-lg font-semibold text-white">SeraGPT</h2>
+          <div className="p-4 border-b border-white/5">
+            <div className="flex items-center justify-between mb-3">
+              <h2 className="text-sm font-medium" style={{ color: '#1e3237' }}>SeraGPT</h2>
               <button
                 onClick={() => setSidebarOpen(false)}
-                className="md:hidden text-white/70 hover:text-white"
+                className="md:hidden text-xs" style={{ color: '#1e3237' }}
               >
                 ×
               </button>
             </div>
             <button
               onClick={createNewSession}
-              className="w-full p-3 rounded-lg border border-white/20 text-white hover:bg-white/10 transition-colors"
+              className="w-full p-2 rounded-md text-xs font-medium transition-colors"
+              style={{
+                backgroundColor: '#baf200',
+                color: '#1e3237',
+                border: '1px solid #baf200'
+              }}
             >
               + Yeni Sohbet
             </button>
