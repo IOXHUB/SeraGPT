@@ -24,11 +24,15 @@ export default function DevToolsWidget() {
   }, []);
 
   useEffect(() => {
-    // Only run if client and dev
-    const isDev = process.env.NODE_ENV === 'development' ||
-                  (typeof window !== 'undefined' && window.location.hostname.includes('fly.dev'));
+    // Only run if client and dev - with safety checks
+    if (!isClient || typeof window === 'undefined') {
+      return;
+    }
 
-    if (!isDev || !isClient) {
+    const isDev = (process.env.NODE_ENV === 'development') ||
+                  (window?.location?.hostname?.includes('fly.dev'));
+
+    if (!isDev) {
       return;
     }
 
