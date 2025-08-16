@@ -807,11 +807,18 @@ class AuthService {
   async testAuthConnection(): Promise<{ success: boolean; message: string }> {
     try {
       // For unauthenticated connection test, directly call the API without token
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 5000); // 5 second timeout
+
       const response = await fetch(`${this.baseUrl}/auth/test`, {
         headers: {
           'Content-Type': 'application/json'
-        }
+        },
+        signal: controller.signal,
+        cache: 'no-store'
       });
+
+      clearTimeout(timeoutId);
 
       if (!response.ok) {
         return { success: false, message: `Connection failed: ${response.status} ${response.statusText}` };
@@ -830,7 +837,14 @@ class AuthService {
         message: `Connection successful (Environment: ${data.environment?.NODE_ENV || 'unknown'})`
       };
     } catch (error: any) {
-      return { success: false, message: `Network error: ${error.message}` };
+      // Handle different types of errors
+      if (error.name === 'AbortError') {
+        return { success: false, message: 'Connection timeout - Please check your internet connection' };
+      } else if (error.message?.includes('Failed to fetch')) {
+        return { success: false, message: 'Network error - Unable to reach server' };
+      } else {
+        return { success: false, message: `Connection error: ${error.message}` };
+      }
     }
   }
 

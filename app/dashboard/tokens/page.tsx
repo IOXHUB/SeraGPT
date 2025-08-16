@@ -3,8 +3,8 @@
 import { useState, useEffect } from 'react';
 import { useAuth } from '@/lib/hooks/useAuth';
 import { authService } from '@/lib/services/auth-service';
-import DashboardLayout from '@/components/dashboard/DashboardLayout';
 import { UserTokens, UserActivityLog } from '@/types/auth';
+import ClientOnly from '@/components/ui/ClientOnly';
 
 export const dynamic = 'force-dynamic';
 
@@ -18,16 +18,20 @@ interface TokenPackage {
   description: string;
   features: string[];
   badge?: string;
+  gradient: string;
+  icon: string;
+  savings?: number;
 }
 
 export default function TokensPage() {
-  const { user, tokens, refreshTokens, loading } = useAuth();
+  const { user, tokens, refreshTokens, loading, signOut } = useAuth();
+  const [mounted, setMounted] = useState(false);
   const [tokenHistory, setTokenHistory] = useState<UserActivityLog[]>([]);
   const [dataLoading, setDataLoading] = useState(true);
   const [purchaseLoading, setPurchaseLoading] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [selectedPlan, setSelectedPlan] = useState<string | null>(null);
 
-  // Updated Token packages according to user requirements
   const tokenPackages: TokenPackage[] = [
     {
       id: 'free',
@@ -36,12 +40,14 @@ export default function TokensPage() {
       price: 0,
       badge: 'Ücretsiz',
       description: 'Yeni kullanıcılar için başlangıç paketi',
+      gradient: 'from-gray-400 to-gray-600',
+      icon: '🆓',
       features: [
         '5 analiz token\'ı',
-        'Her rapor 1 token harcar',
-        'AI Asistan ücretsiz kullanım',
-        'Gelişmiş raporlar',
-        'Email desteği'
+        'Temel raporlar',
+        'AI Asistan ücretsiz',
+        'Email desteği',
+        '30 gün geçerlilik'
       ]
     },
     {
@@ -49,14 +55,18 @@ export default function TokensPage() {
       name: 'User',
       tokens: 10,
       price: 890,
-      description: 'Bireysel kullanıcılar için ideal',
+      originalPrice: 1200,
+      savings: 25,
+      description: 'Bireysel kullanıcılar için ideal paket',
+      gradient: 'from-blue-400 to-cyan-600',
+      icon: '👤',
       features: [
         '10 analiz token\'ı',
-        'Her rapor 1 token harcar',
-        'AI Asistan ücretsiz kullanım',
         'Gelişmiş raporlar',
-        'Email desteği',
-        '30 gün geçerlilik'
+        'AI Asistan ücretsiz',
+        'Öncelikli destek',
+        '45 gün geçerlilik',
+        'PDF raporlar'
       ]
     },
     {
@@ -64,17 +74,21 @@ export default function TokensPage() {
       name: 'Pro',
       tokens: 50,
       price: 3500,
+      originalPrice: 5000,
       popular: true,
+      savings: 30,
       badge: 'En Popüler',
-      description: 'Profesyonel kullanıcılar için',
+      description: 'Profesyonel kullanıcılar için güçlü paket',
+      gradient: 'from-green-400 to-emerald-600',
+      icon: '⚡',
       features: [
         '50 analiz token\'ı',
-        'Her rapor 1 token harcar',
-        'AI Asistan ücretsiz kullanım',
         'Premium raporlar',
+        'AI Asistan ücretsiz',
         'Öncelikli email desteği',
-        '60 gün geçerlilik',
-        'Detaylı analizler'
+        '75 gün geçerlilik',
+        'Detaylı analizler',
+        'Telefon desteği'
       ]
     },
     {
@@ -82,20 +96,35 @@ export default function TokensPage() {
       name: 'Premium',
       tokens: 100,
       price: 5500,
+      originalPrice: 8000,
+      savings: 31,
       badge: 'En İyi Değer',
-      description: 'Kurumsal kullanıcılar için',
+      description: 'Kurumsal kullanıcılar için sınırsız güç',
+      gradient: 'from-purple-400 to-violet-600',
+      icon: '👑',
       features: [
         '100 analiz token\'ı',
-        'Her rapor 1 token harcar',
-        'AI Asistan ücretsiz kullanım',
         'Tüm premium özellikler',
+        'AI Asistan ücretsiz',
         '7/24 telefon desteği',
-        '90 gün geçerlilik',
-        'Telefon Desteği',
-        'Gelişmiş Raporlama'
+        '120 gün geçerlilik',
+        'Gelişmiş raporlama',
+        'Özel danışmanlık',
+        'API erişimi'
       ]
     }
   ];
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (mounted && !loading && !user) {
+      console.log('🚫 Tokens access denied - redirecting to login');
+      window.location.href = '/auth/login';
+    }
+  }, [user, loading, mounted]);
 
   useEffect(() => {
     if (user && !loading) {
@@ -110,40 +139,42 @@ export default function TokensPage() {
       setDataLoading(true);
       setError(null);
 
-      // Use mock data consistently to prevent hydration mismatch
       const isDev = process.env.NODE_ENV === 'development';
 
       if (isDev) {
-        // Use mock data in development
         const mockActivity = [
           {
             id: '1',
             activity_type: 'token_used',
             activity_category: 'payment',
-            details: { tokens_consumed: 1, analysis_type: 'roi' },
+            details: { tokens_consumed: 1, analysis_type: 'ROI Analizi', purpose: 'ROI Analizi' },
             created_at: '2024-01-16T14:30:00.000Z'
           },
           {
             id: '2',
             activity_type: 'token_purchased',
             activity_category: 'payment',
-            details: { tokens_purchased: 50, amount_paid: 3500 },
+            details: { tokens_purchased: 50, amount_paid: 3500, package_name: 'Pro' },
             created_at: '2024-01-15T15:00:00.000Z'
           },
           {
             id: '3',
             activity_type: 'token_used',
             activity_category: 'payment',
-            details: { tokens_consumed: 2, analysis_type: 'climate' },
+            details: { tokens_consumed: 1, analysis_type: 'İklim Analizi', purpose: 'İklim Analizi' },
             created_at: '2024-01-16T13:00:00.000Z'
+          },
+          {
+            id: '4',
+            activity_type: 'token_used',
+            activity_category: 'payment',
+            details: { tokens_consumed: 1, analysis_type: 'Pazar Analizi', purpose: 'Pazar Analizi' },
+            created_at: '2024-01-16T10:15:00.000Z'
           }
         ];
         setTokenHistory(mockActivity as any);
       } else {
-        // Load token usage history from API
         const activity = await authService.getUserActivity(user.id, 50, 'payment');
-
-        // Ensure activity is an array before filtering
         const activityArray = Array.isArray(activity) ? activity : [];
         setTokenHistory(activityArray.filter(a =>
           a.activity_type === 'token_used' ||
@@ -154,8 +185,6 @@ export default function TokensPage() {
     } catch (error: any) {
       console.error('Failed to load token data:', error);
       setError('Token verileri yüklenirken hata oluştu');
-
-      // Fallback to empty array to prevent crashes
       setTokenHistory([]);
     } finally {
       setDataLoading(false);
@@ -174,10 +203,8 @@ export default function TokensPage() {
     setPurchaseLoading(packageId);
 
     try {
-      // Simulate purchase process
       await new Promise(resolve => setTimeout(resolve, 2000));
 
-      // Add tokens to user account
       const success = await authService.addTokens(
         user.id, 
         selectedPackage.tokens, 
@@ -185,14 +212,11 @@ export default function TokensPage() {
       );
 
       if (success) {
-        // Refresh token data
         await refreshTokens();
         await loadTokenData();
         
-        // Show success message
-        alert(`✅ ${selectedPackage.tokens} 🧠 token başarıyla hesabınıza eklendi!`);
+        alert(`✅ ${selectedPackage.tokens} 🪙 token başarıyla hesabınıza eklendi!`);
         
-        // Log the purchase
         await authService.logUserActivity(
           user.id,
           'token_purchased',
@@ -200,7 +224,8 @@ export default function TokensPage() {
           {
             package_id: packageId,
             tokens_purchased: selectedPackage.tokens,
-            amount_paid: selectedPackage.price
+            amount_paid: selectedPackage.price,
+            package_name: selectedPackage.name
           }
         );
       } else {
@@ -217,14 +242,19 @@ export default function TokensPage() {
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
-    // Use consistent formatting to prevent hydration mismatch
-    return date.toISOString().split('T')[0] + ' ' + date.toISOString().split('T')[1].split('.')[0];
+    return new Intl.DateTimeFormat('tr-TR', {
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit'
+    }).format(date);
   };
 
   const getActivityIcon = (activityType: string) => {
     switch (activityType) {
       case 'token_purchased': return '💰';
-      case 'token_used': return '🧠';
+      case 'token_used': return '🪙';
       default: return '📝';
     }
   };
@@ -232,205 +262,322 @@ export default function TokensPage() {
   const getActivityDescription = (activity: UserActivityLog) => {
     if (activity.activity_type === 'token_purchased') {
       const tokens = activity.details?.tokens_purchased || 'N/A';
-      const amount = activity.details?.amount_paid || 'N/A';
-      return `${tokens} 🧠 token satın alındı (${amount} TL)`;
+      const packageName = activity.details?.package_name || 'Paket';
+      return `${tokens} token satın alındı (${packageName})`;
     } else if (activity.activity_type === 'token_used') {
       const tokens = activity.details?.tokens_consumed || 1;
-      const purpose = activity.details?.purpose || 'Analiz';
-      return `${tokens} ��� token kullanıldı - ${purpose}`;
+      const purpose = activity.details?.purpose || activity.details?.analysis_type || 'Analiz';
+      return `${tokens} token kullanıldı - ${purpose}`;
     }
     return 'Token aktivitesi';
   };
 
+  const getUsagePercentage = () => {
+    if (!tokens || tokens.total_tokens === 0) return 0;
+    return Math.round((tokens.remaining_tokens / tokens.total_tokens) * 100);
+  };
+
+  const getDaysRemaining = () => {
+    if (!tokens?.expiry_date) return '∞';
+    const now = new Date();
+    const expiry = new Date(tokens.expiry_date);
+    const diffTime = expiry.getTime() - now.getTime();
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    return diffDays > 0 ? diffDays : 0;
+  };
+
+  if (!loading && !user) {
+    window.location.href = '/auth/login';
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#146448] to-[#0f4f37]">
+        <div className="text-white text-lg">Yönlendiriliyor...</div>
+      </div>
+    );
+  }
+
   if (loading || dataLoading) {
     return (
-      <DashboardLayout>
-        <div className="flex items-center justify-center min-h-64">
-          <div className="text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#146448] mx-auto mb-4"></div>
-            <p className="text-[#1e3237]/70">Token bilgileri yükleniyor...</p>
-          </div>
-        </div>
-      </DashboardLayout>
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#146448] to-[#0f4f37]">
+        <div className="text-white text-lg">🔐 Yükleniyor...</div>
+      </div>
+    );
+  }
+
+  if (!user) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#146448] to-[#0f4f37]">
+        <div className="text-white text-lg">Giriş yapmanız gerekiyor...</div>
+      </div>
     );
   }
 
   return (
-    <DashboardLayout 
-      title="Token Yönetimi" 
-      subtitle="Analiz token'lerinizi yönetin ve yeni paketler satın alın"
-    >
-      <div className="space-y-6">
-
-        {/* Current Token Status */}
-        <div className="bg-white rounded-xl p-6 border border-[#146448]/10 shadow-lg">
-          <div className="flex items-center justify-between">
-            <div>
-              <h2 className="text-xl font-bold text-[#1e3237] mb-2">Mevcut Token Durumu</h2>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4">
-                <div className="text-center">
-                  <p className="text-2xl font-bold text-[#146448]">{tokens?.remaining_tokens || 0}</p>
-                  <p className="text-sm text-[#1e3237]/70">Kullanılabilir</p>
+    <ClientOnly>
+      <div className="min-h-screen bg-gradient-to-br from-[#146448] to-[#0f4f37]">
+        {/* Professional Header */}
+        <header className="bg-[#146448]/80 backdrop-blur-sm border-b border-white/10 sticky top-0 z-50">
+          <div className="max-w-7xl mx-auto px-6 py-4">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center space-x-6">
+                <button
+                  onClick={() => window.location.href = '/dashboard'}
+                  className="flex items-center space-x-3 text-white hover:text-[#baf200] transition-colors"
+                >
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                  </svg>
+                  <span className="font-medium">Dashboard'a Dön</span>
+                </button>
+                <div className="h-6 w-px bg-white/20"></div>
+                <h1 className="text-xl font-bold text-white">Token Yönetimi</h1>
+              </div>
+              
+              <div className="flex items-center space-x-4">
+                <div className="text-white text-sm">
+                  <span className="opacity-70">Hoşgeldin, </span>
+                  <span className="font-medium">{user?.email?.split('@')[0] || 'Kullanıcı'}</span>
                 </div>
-                <div className="text-center">
-                  <p className="text-2xl font-bold text-[#1e3237]">{tokens?.used_tokens || 0}</p>
-                  <p className="text-sm text-[#1e3237]/70">Kullanılan</p>
+                <div className="flex items-center space-x-2 bg-white/10 rounded-lg px-3 py-2">
+                  <span className="text-[#baf200]">🪙</span>
+                  <span className="text-white font-medium">{tokens?.remaining_tokens || 0} Token</span>
                 </div>
-                <div className="text-center">
-                  <p className="text-2xl font-bold text-[#146448]">{tokens?.total_tokens || 0}</p>
-                  <p className="text-sm text-[#1e3237]/70">Toplam</p>
-                </div>
-                <div className="text-center">
-                  <p className="text-2xl font-bold text-[#baf200]" suppressHydrationWarning>
-                    {tokens?.expiry_date ? 
-                      Math.ceil((new Date(tokens.expiry_date).getTime() - new Date('2024-01-16T15:00:00.000Z').getTime()) / (1000 * 60 * 60 * 24)) 
-                      : '��'
-                    }
-                  </p>
-                  <p className="text-sm text-[#1e3237]/70">Gün kaldı</p>
-                </div>
+                <button
+                  onClick={async () => {
+                    await signOut();
+                    window.location.href = '/auth/login';
+                  }}
+                  className="px-3 py-1 bg-red-600 hover:bg-red-700 text-white text-sm rounded transition-colors"
+                >
+                  Çıkış
+                </button>
               </div>
             </div>
+          </div>
+        </header>
+
+        {/* Main Content */}
+        <main className="max-w-7xl mx-auto px-6 py-8 space-y-8">
+          
+          {/* Welcome Section & Current Token Status */}
+          <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20">
+            <div className="text-center mb-8">
+              <h2 className="text-4xl font-bold text-white mb-4">🪙 Token Yönetim Merkezi</h2>
+              <p className="text-white/80 text-lg max-w-3xl mx-auto">
+                Analiz token'lerinizi yönetin, kullanım geçmişinizi görüntüleyin ve 
+                ihtiyacınıza göre yeni token paketleri satın alın.
+              </p>
+            </div>
             
-            {tokens && tokens.remaining_tokens > 0 && (
-              <div className="text-right hidden md:block">
-                <div className="w-20 h-20 relative">
-                  <svg className="w-20 h-20 transform -rotate-90" viewBox="0 0 100 100">
-                    <circle 
-                      cx="50" 
-                      cy="50" 
-                      r="40" 
-                      fill="transparent" 
-                      stroke="#e5e7eb" 
-                      strokeWidth="8"
-                    />
-                    <circle 
-                      cx="50" 
-                      cy="50" 
-                      r="40" 
-                      fill="transparent" 
-                      stroke="#146448" 
-                      strokeWidth="8"
-                      strokeDasharray={`${(tokens.remaining_tokens / tokens.total_tokens) * 251.2} 251.2`}
-                      strokeDashoffset="0"
-                    />
-                  </svg>
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="text-lg font-bold text-[#146448]">
-                      {Math.round((tokens.remaining_tokens / tokens.total_tokens) * 100)}%
-                    </span>
+            {/* Token Status Cards */}
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+              <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 text-center border border-white/20 hover:bg-white/15 transition-colors">
+                <div className="w-16 h-16 bg-gradient-to-br from-green-400 to-emerald-600 rounded-2xl flex items-center justify-center mx-auto mb-4 text-2xl">
+                  🪙
+                </div>
+                <div className="text-3xl font-bold text-[#baf200] mb-2">{tokens?.remaining_tokens || 0}</div>
+                <div className="text-white/80 text-sm">Kullanılabilir Token</div>
+              </div>
+              
+              <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 text-center border border-white/20 hover:bg-white/15 transition-colors">
+                <div className="w-16 h-16 bg-gradient-to-br from-blue-400 to-cyan-600 rounded-2xl flex items-center justify-center mx-auto mb-4 text-2xl">
+                  📊
+                </div>
+                <div className="text-3xl font-bold text-[#baf200] mb-2">{tokens?.used_tokens || 0}</div>
+                <div className="text-white/80 text-sm">Kullanılan Token</div>
+              </div>
+
+              <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 text-center border border-white/20 hover:bg-white/15 transition-colors">
+                <div className="w-16 h-16 bg-gradient-to-br from-purple-400 to-violet-600 rounded-2xl flex items-center justify-center mx-auto mb-4 text-2xl">
+                  💎
+                </div>
+                <div className="text-3xl font-bold text-[#baf200] mb-2">{tokens?.total_tokens || 0}</div>
+                <div className="text-white/80 text-sm">Toplam Token</div>
+              </div>
+
+              <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 text-center border border-white/20 hover:bg-white/15 transition-colors">
+                <div className="w-16 h-16 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-2xl flex items-center justify-center mx-auto mb-4 text-2xl">
+                  ⏰
+                </div>
+                <div className="text-3xl font-bold text-[#baf200] mb-2" suppressHydrationWarning>
+                  {getDaysRemaining()}
+                </div>
+                <div className="text-white/80 text-sm">Gün Kaldı</div>
+              </div>
+            </div>
+
+            {/* Token Usage Progress */}
+            {tokens && tokens.total_tokens > 0 && (
+              <div className="mt-8 bg-white/10 rounded-xl p-6 border border-white/20">
+                <div className="flex items-center justify-between mb-4">
+                  <h3 className="text-white font-semibold">Token Kullanım Durumu</h3>
+                  <span className="text-[#baf200] font-bold">{getUsagePercentage()}%</span>
+                </div>
+                <div className="w-full bg-white/20 rounded-full h-4 mb-2">
+                  <div 
+                    className="h-4 bg-gradient-to-r from-[#baf200] to-green-400 rounded-full transition-all duration-500 ease-out"
+                    style={{ width: `${getUsagePercentage()}%` }}
+                  />
+                </div>
+                <div className="flex justify-between text-white/70 text-sm">
+                  <span>{tokens.remaining_tokens} token kaldı</span>
+                  <span>{tokens.total_tokens} toplam token</span>
+                </div>
+              </div>
+            )}
+
+            {/* Low Token Warning */}
+            {tokens && tokens.remaining_tokens <= 5 && tokens.remaining_tokens > 0 && (
+              <div className="mt-6 bg-gradient-to-r from-yellow-500/20 to-orange-500/20 backdrop-blur-sm rounded-xl p-6 border border-yellow-500/30">
+                <div className="flex items-center space-x-4">
+                  <div className="w-16 h-16 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-2xl flex items-center justify-center text-2xl">
+                    ⚠️
+                  </div>
+                  <div>
+                    <h4 className="text-yellow-300 font-bold text-lg mb-2">Token Azalıyor!</h4>
+                    <p className="text-yellow-200 text-sm">
+                      Sadece {tokens.remaining_tokens} token kaldı. Analizlerinize devam etmek için 
+                      yeni token satın almayı düşünün.
+                    </p>
                   </div>
                 </div>
               </div>
             )}
           </div>
 
-          {tokens && tokens.remaining_tokens <= 5 && (
-            <div className="mt-4 p-4 bg-yellow-100 border border-yellow-300 rounded-lg">
-              <div className="flex items-center">
-                <span className="text-yellow-600 mr-2">⚠️</span>
-                <div>
-                  <h4 className="text-sm font-medium text-yellow-800">Token Uyarısı</h4>
-                  <p className="text-sm text-yellow-700 mt-1">
-                    🧠 Token bakiyeniz azalıyor. Analiz yapmaya devam etmek için yeni token satın alın.
-                  </p>
+          {/* Key Information */}
+          <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
+            <h3 className="text-white font-semibold mb-4 text-center">💡 Token Kullanım Bilgileri</h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="flex items-center space-x-3 text-white">
+                <div className="w-8 h-8 bg-[#baf200] rounded-full flex items-center justify-center">
+                  <span className="text-[#146448] text-sm font-bold">1</span>
                 </div>
+                <span className="text-sm">Her analiz raporu 1 token harcar</span>
+              </div>
+              <div className="flex items-center space-x-3 text-white">
+                <div className="w-8 h-8 bg-[#baf200] rounded-full flex items-center justify-center">
+                  <span className="text-[#146448] text-sm">🤖</span>
+                </div>
+                <span className="text-sm">AI Asistan tamamen ücretsiz</span>
+              </div>
+              <div className="flex items-center space-x-3 text-white">
+                <div className="w-8 h-8 bg-[#baf200] rounded-full flex items-center justify-center">
+                  <span className="text-[#146448] text-sm">⚡</span>
+                </div>
+                <span className="text-sm">Tüm analizler aynı fiyat</span>
               </div>
             </div>
-          )}
-        </div>
-
-        {/* Key Info */}
-        <div className="bg-white rounded-lg border border-[#146448]/10 p-4 shadow-lg">
-          <div className="flex items-center space-x-4 text-sm">
-            <div className="flex items-center space-x-2">
-              <div className="w-2 h-2 bg-[#146448] rounded-full"></div>
-              <span className="text-[#1e3237]/70">Her rapor 1 token harcar</span>
-            </div>
-            <div className="flex items-center space-x-2">
-              <div className="w-2 h-2 bg-[#146448] rounded-full"></div>
-              <span className="text-[#1e3237]/70">AI Asistan ücretsiz</span>
-            </div>
-            <div className="flex items-center space-x-2">
-              <div className="w-2 h-2 bg-[#146448] rounded-full"></div>
-              <span className="text-[#1e3237]/70">Tüm analizler aynı fiyat</span>
-            </div>
           </div>
-        </div>
 
-        {/* Token Packages */}
-        <div>
-          <h2 className="text-xl font-bold text-white mb-4">Token Paketleri</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-            {tokenPackages.map((pkg) => (
-              <div 
-                key={pkg.id} 
-                className={`relative bg-white rounded-xl border-2 transition-all duration-300 hover:shadow-xl ${
-                  pkg.popular ? 'border-[#baf200] ring-2 ring-[#baf200]/20' : 'border-[#146448]/10 hover:border-[#146448]'
-                }`}
-              >
-                {pkg.badge && (
-                  <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                    <span className={`text-[#1e3237] text-xs px-3 py-1 rounded-full ${
-                      pkg.popular ? 'bg-[#baf200]' : pkg.price === 0 ? 'bg-[#146448] text-white' : 'bg-[#1e3237] text-white'
-                    }`}>
-                      {pkg.badge}
-                    </span>
-                  </div>
-                )}
-
-                <div className="p-5">
-                  <h3 className="text-lg font-bold text-[#1e3237] mb-2">{pkg.name}</h3>
-                  <p className="text-[#1e3237]/70 text-sm mb-4">{pkg.description}</p>
-                  
-                  <div className="text-center mb-4">
-                    <div className="text-center mb-4">
-                      <div className="text-3xl font-bold text-[#146448] mb-1">
-                        {pkg.tokens}
-                      </div>
-                      <div className="text-sm text-[#1e3237]/60">Token</div>
+          {/* Token Packages */}
+          <div className="space-y-6">
+            <div className="text-center">
+              <h3 className="text-3xl font-bold text-white mb-4">💎 Token Paketleri</h3>
+              <p className="text-white/80 text-lg">İhtiyacınıza uygun paketi seçin ve analizlerinize hız verin</p>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {tokenPackages.map((pkg) => (
+                <div 
+                  key={pkg.id} 
+                  className={`relative bg-white/10 backdrop-blur-sm rounded-2xl p-6 border transition-all duration-300 hover:scale-[1.02] cursor-pointer ${
+                    pkg.popular 
+                      ? 'border-[#baf200] ring-2 ring-[#baf200]/30 hover:ring-[#baf200]/50' 
+                      : 'border-white/20 hover:border-white/40'
+                  } ${selectedPlan === pkg.id ? 'ring-2 ring-[#baf200]' : ''}`}
+                  onClick={() => setSelectedPlan(selectedPlan === pkg.id ? null : pkg.id)}
+                >
+                  {/* Badge */}
+                  {pkg.badge && (
+                    <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 z-10">
+                      <span className={`px-4 py-1 text-xs font-bold rounded-full ${
+                        pkg.popular 
+                          ? 'bg-[#baf200] text-[#146448]' 
+                          : pkg.price === 0 
+                            ? 'bg-gray-600 text-white' 
+                            : 'bg-gradient-to-r from-purple-500 to-violet-600 text-white'
+                      }`}>
+                        {pkg.badge}
+                      </span>
                     </div>
-                    <div className="flex items-center justify-center space-x-2">
+                  )}
+
+                  {/* Package Header */}
+                  <div className="text-center mb-6">
+                    <div className={`w-20 h-20 bg-gradient-to-br ${pkg.gradient} rounded-2xl flex items-center justify-center mx-auto mb-4 text-3xl`}>
+                      {pkg.icon}
+                    </div>
+                    <h4 className="text-2xl font-bold text-white mb-2">{pkg.name}</h4>
+                    <p className="text-white/70 text-sm">{pkg.description}</p>
+                  </div>
+
+                  {/* Tokens & Price */}
+                  <div className="text-center mb-6">
+                    <div className="text-4xl font-bold text-[#baf200] mb-2">{pkg.tokens}</div>
+                    <div className="text-white/60 text-sm mb-4">Token</div>
+                    
+                    <div className="space-y-2">
                       {pkg.price === 0 ? (
-                        <span className="text-2xl font-bold text-[#146448]">Ücretsiz</span>
+                        <div className="text-2xl font-bold text-white">Ücretsiz</div>
                       ) : (
-                        <span className="text-2xl font-bold text-[#1e3237]">
-                          {pkg.price.toLocaleString('tr-TR')} ₺
-                        </span>
+                        <>
+                          <div className="flex items-center justify-center space-x-2">
+                            <span className="text-2xl font-bold text-white">
+                              ₺{pkg.price.toLocaleString('tr-TR')}
+                            </span>
+                            {pkg.originalPrice && (
+                              <span className="text-lg text-white/50 line-through">
+                                ₺{pkg.originalPrice.toLocaleString('tr-TR')}
+                              </span>
+                            )}
+                          </div>
+                          {pkg.savings && (
+                            <div className="text-green-400 text-sm font-medium">
+                              %{pkg.savings} tasarruf!
+                            </div>
+                          )}
+                          <div className="text-white/60 text-sm">
+                            ₺{(pkg.price / pkg.tokens).toFixed(0)}/token
+                          </div>
+                        </>
                       )}
                     </div>
-                    {pkg.price > 0 && (
-                      <div className="text-sm text-[#1e3237]/60 mt-1">
-                        {(pkg.price / pkg.tokens).toFixed(0)} ₺/token
-                      </div>
-                    )}
                   </div>
 
-                  <ul className="space-y-2 mb-6 text-sm">
+                  {/* Features */}
+                  <div className="space-y-3 mb-6">
                     {pkg.features.map((feature, index) => (
-                      <li key={index} className="flex items-start text-[#1e3237]/70">
-                        <span className="text-[#146448] mr-2 mt-0.5">✓</span>
-                        <span>{feature}</span>
-                      </li>
+                      <div key={index} className="flex items-start space-x-3">
+                        <div className="w-5 h-5 bg-[#baf200] rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                          <svg className="w-3 h-3 text-[#146448]" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                          </svg>
+                        </div>
+                        <span className="text-white/80 text-sm">{feature}</span>
+                      </div>
                     ))}
-                  </ul>
+                  </div>
 
+                  {/* Purchase Button */}
                   <button
-                    onClick={() => handlePurchase(pkg.id)}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handlePurchase(pkg.id);
+                    }}
                     disabled={purchaseLoading === pkg.id || pkg.price === 0}
-                    className={`w-full py-2.5 px-4 rounded-lg font-medium transition-all duration-200 text-sm ${
+                    className={`w-full py-3 px-4 rounded-xl font-semibold transition-all duration-300 ${
                       pkg.price === 0
-                        ? 'bg-[#baf200] text-black cursor-default'
+                        ? 'bg-white/20 text-white/60 cursor-default'
                         : pkg.popular
-                        ? 'bg-[#baf200] hover:bg-[#baf200]/90 text-black hover:scale-105'
-                        : 'bg-[#146448] hover:bg-[#146448]/90 text-white hover:scale-105'
-                    } disabled:opacity-50 disabled:cursor-not-allowed`}
+                          ? 'bg-[#baf200] hover:bg-[#baf200]/90 text-[#146448] hover:scale-105 shadow-lg'
+                          : 'bg-white/20 hover:bg-white/30 text-white border border-white/30 hover:border-white/50'
+                    } disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100`}
                   >
                     {pkg.price === 0 ? (
                       'Aktif Paket'
                     ) : purchaseLoading === pkg.id ? (
                       <div className="flex items-center justify-center">
-                        <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-current mr-2"></div>
+                        <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-current mr-2"></div>
                         Satın Alınıyor...
                       </div>
                     ) : (
@@ -438,84 +585,142 @@ export default function TokensPage() {
                     )}
                   </button>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          
-          {/* Usage History */}
-          <div className="bg-white rounded-xl p-6 border border-[#146448]/10 shadow-lg">
-            <h3 className="text-lg font-semibold text-[#1e3237] mb-4">Kullanım Geçmişi</h3>
+          {/* Token History & Tips */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             
-            {tokenHistory.length > 0 ? (
-              <div className="space-y-3 max-h-64 overflow-y-auto">
-                {tokenHistory.slice(0, 10).map((activity, index) => (
-                  <div key={index} className="flex items-center space-x-3 p-3 bg-[#f6f8f9] rounded-lg">
-                    <div className="text-2xl">{getActivityIcon(activity.activity_type)}</div>
-                    <div className="flex-1 min-w-0">
-                      <p className="text-sm font-medium text-[#1e3237]">
-                        {getActivityDescription(activity)}
-                      </p>
-                      <p className="text-xs text-[#1e3237]/60">
-                        {formatDate(activity.created_at)}
-                      </p>
+            {/* Usage History */}
+            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20">
+              <h3 className="text-2xl font-bold text-white mb-6 flex items-center">
+                <span className="mr-3">📊</span>
+                Kullanım Geçmişi
+              </h3>
+              
+              {tokenHistory.length > 0 ? (
+                <div className="space-y-4 max-h-80 overflow-y-auto">
+                  {tokenHistory.slice(0, 10).map((activity, index) => (
+                    <div key={index} className="bg-white/10 rounded-xl p-4 flex items-center space-x-4 hover:bg-white/15 transition-colors">
+                      <div className="w-12 h-12 bg-gradient-to-br from-blue-400 to-cyan-600 rounded-xl flex items-center justify-center text-xl">
+                        {getActivityIcon(activity.activity_type)}
+                      </div>
+                      <div className="flex-1">
+                        <p className="text-white font-medium text-sm">
+                          {getActivityDescription(activity)}
+                        </p>
+                        <p className="text-white/60 text-xs mt-1">
+                          {formatDate(activity.created_at)}
+                        </p>
+                      </div>
+                      {activity.activity_type === 'token_purchased' && (
+                        <div className="text-green-400 font-bold text-sm">
+                          +{activity.details?.tokens_purchased}
+                        </div>
+                      )}
+                      {activity.activity_type === 'token_used' && (
+                        <div className="text-orange-400 font-bold text-sm">
+                          -{activity.details?.tokens_consumed || 1}
+                        </div>
+                      )}
                     </div>
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <div className="text-center py-8 text-[#1e3237]/70">
-                <div className="w-12 h-12 bg-[#146448]/10 rounded-full flex items-center justify-center mx-auto mb-3">
-                  <svg className="w-6 h-6 text-[#146448]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                  </svg>
+                  ))}
                 </div>
-                <p className="text-sm">Henüz token aktivitesi yok</p>
-                <p className="text-xs mt-1">İlk token satın alımınızı yapın</p>
-              </div>
-            )}
-          </div>
+              ) : (
+                <div className="text-center py-12">
+                  <div className="w-20 h-20 bg-white/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                    <span className="text-3xl">📈</span>
+                  </div>
+                  <h4 className="text-xl font-semibold text-white mb-2">Henüz aktivite yok</h4>
+                  <p className="text-white/70 text-sm">İlk token satın alımınızı yapın</p>
+                </div>
+              )}
+            </div>
 
-          {/* Token Tips */}
-          <div className="bg-white rounded-xl p-6 border border-[#146448]/10 shadow-lg">
-            <h3 className="text-lg font-semibold text-[#1e3237] mb-4">Token İpuçları</h3>
-            
-            <div className="space-y-4">
-              <div className="p-4 bg-blue-50 rounded-lg border border-blue-200">
-                <h4 className="font-medium text-blue-900 mb-2">�� Token Tasarrufu</h4>
-                <p className="text-sm text-blue-800">
-                  Büyük paketler satın alarak token başına daha az ödeyebilirsiniz. 
-                  Premium paket en iyi değeri sunar.
-                </p>
-              </div>
+            {/* Token Tips & Info */}
+            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20">
+              <h3 className="text-2xl font-bold text-white mb-6 flex items-center">
+                <span className="mr-3">💡</span>
+                Token İpuçları
+              </h3>
               
-              <div className="p-4 bg-green-50 rounded-lg border border-green-200">
-                <h4 className="font-medium text-green-900 mb-2">AI Ücretsiz</h4>
-                <p className="text-sm text-green-800">
-                  AI Asistan kullanımı tamamen ücretsiz! Raporlar için token gerekir.
-                </p>
-              </div>
-              
-              <div className="p-4 bg-purple-50 rounded-lg border border-purple-200">
-                <h4 className="font-medium text-purple-900 mb-2">Eşit Fiyat</h4>
-                <p className="text-sm text-purple-800">
-                  Tüm raporlar 1 token harcar. ROI, iklim, pazar - hepsi aynı fiyat!
-                </p>
-              </div>
-              
-              <div className="p-4 bg-orange-50 rounded-lg border border-orange-200">
-                <h4 className="font-medium text-orange-900 mb-2">Süre Uyarısı</h4>
-                <p className="text-sm text-orange-800">
-                  Token'lerinizin son kullanma tarihi var. Vaktinde kullanmayı unutmayın!
-                </p>
+              <div className="space-y-4">
+                <div className="bg-gradient-to-r from-blue-500/20 to-cyan-500/20 rounded-xl p-4 border border-blue-500/30">
+                  <h4 className="font-semibold text-blue-300 mb-2 flex items-center">
+                    <span className="mr-2">💰</span>Token Tasarrufu
+                  </h4>
+                  <p className="text-blue-200 text-sm">
+                    Büyük paketler satın alarak token başına daha az ödeyebilirsiniz. 
+                    Premium paket en iyi değeri sunar.
+                  </p>
+                </div>
+                
+                <div className="bg-gradient-to-r from-green-500/20 to-emerald-500/20 rounded-xl p-4 border border-green-500/30">
+                  <h4 className="font-semibold text-green-300 mb-2 flex items-center">
+                    <span className="mr-2">🤖</span>AI Ücretsiz
+                  </h4>
+                  <p className="text-green-200 text-sm">
+                    AI Asistan kullanımı tamamen ücretsiz! Sadece raporlar için token gerekir.
+                  </p>
+                </div>
+                
+                <div className="bg-gradient-to-r from-purple-500/20 to-violet-500/20 rounded-xl p-4 border border-purple-500/30">
+                  <h4 className="font-semibold text-purple-300 mb-2 flex items-center">
+                    <span className="mr-2">⚡</span>Eşit Fiyat
+                  </h4>
+                  <p className="text-purple-200 text-sm">
+                    Tüm raporlar 1 token harcar. ROI, iklim, pazar - hepsi aynı fiyat!
+                  </p>
+                </div>
+                
+                <div className="bg-gradient-to-r from-orange-500/20 to-red-500/20 rounded-xl p-4 border border-orange-500/30">
+                  <h4 className="font-semibold text-orange-300 mb-2 flex items-center">
+                    <span className="mr-2">⏰</span>Süre Uyarısı
+                  </h4>
+                  <p className="text-orange-200 text-sm">
+                    Token'lerinizin son kullanma tarihi var. Vaktinde kullanmayı unutmayın!
+                  </p>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
+          {/* Quick Actions */}
+          <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20">
+            <h3 className="text-2xl font-bold text-white mb-6 text-center">⚡ Hızlı İşlemler</h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <button
+                onClick={() => window.location.href = '/dashboard/analysis'}
+                className="bg-gradient-to-r from-green-400 to-emerald-600 rounded-xl p-6 text-center hover:scale-105 transition-transform"
+              >
+                <div className="text-3xl mb-3">🔬</div>
+                <h4 className="font-bold text-white mb-2">Analiz Yap</h4>
+                <p className="text-white/90 text-sm">Token kullanarak yeni analiz başlat</p>
+              </button>
+              
+              <button
+                onClick={() => window.location.href = '/dashboard/reports'}
+                className="bg-gradient-to-r from-blue-400 to-cyan-600 rounded-xl p-6 text-center hover:scale-105 transition-transform"
+              >
+                <div className="text-3xl mb-3">📊</div>
+                <h4 className="font-bold text-white mb-2">Raporlar</h4>
+                <p className="text-white/90 text-sm">Önceki analizlerinizi görüntüle</p>
+              </button>
+              
+              <button
+                onClick={() => window.location.href = '/dashboard/ai-chat'}
+                className="bg-gradient-to-r from-purple-400 to-violet-600 rounded-xl p-6 text-center hover:scale-105 transition-transform"
+              >
+                <div className="text-3xl mb-3">🤖</div>
+                <h4 className="font-bold text-white mb-2">AI Asistan</h4>
+                <p className="text-white/90 text-sm">Ücretsiz AI desteği al</p>
+              </button>
+            </div>
+          </div>
+
+        </main>
       </div>
-    </DashboardLayout>
+    </ClientOnly>
   );
 }

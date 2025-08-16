@@ -378,5 +378,5 @@ SeraGPTDev.mockUsers           - See all mock users
     }
   };
 
-  console.log('�� SeraGPT Development Tools loaded! Type "SeraGPTDev.help()" for commands');
+  console.log('🚀 SeraGPT Development Tools loaded! Type "SeraGPTDev.help()" for commands');
 }

@@ -69,14 +69,16 @@ export default function DashboardLayout({ children, title, subtitle }: Dashboard
     <div className="min-h-screen bg-[#146448]">
       {/* Mobile sidebar backdrop */}
       {sidebarOpen && (
-        <div 
-          className="fixed inset-0 z-50 bg-black bg-opacity-50 lg:hidden"
+        <div
+          className="fixed inset-0 z-40 bg-black bg-opacity-50 lg:hidden"
+          style={{ touchAction: 'none' }}
           onClick={() => setSidebarOpen(false)}
+          onTouchStart={(e) => e.preventDefault()}
         />
       )}
 
       {/* Desktop Sidebar */}
-      <div className={`fixed inset-y-0 left-0 z-40 bg-[#f6f8f9] border-r border-[#146448]/20 shadow-lg transition-all duration-300 ease-in-out hidden lg:block ${
+      <div className={`fixed inset-y-0 left-0 z-30 bg-[#f6f8f9] border-r border-[#146448]/20 shadow-lg transition-all duration-300 ease-in-out hidden lg:block ${
         sidebarCollapsed ? 'w-16' : 'w-64'
       }`}>
         <div className="flex flex-col h-full">
@@ -186,7 +188,7 @@ export default function DashboardLayout({ children, title, subtitle }: Dashboard
         sidebarCollapsed ? 'lg:ml-16' : 'lg:ml-64'
       }`}>
         {/* Top Header - Homepage Style */}
-        <header className="bg-[#146448] border-b border-[#146448]/20 sticky top-0 z-30 shadow-sm">
+        <header className="bg-[#146448] border-b border-[#146448]/20 sticky top-0 z-20 shadow-sm">
           <div className="max-w-[1200px] mx-auto px-6">
             <div className="flex items-center justify-between h-16">
               {/* Mobile menu button and user info */}

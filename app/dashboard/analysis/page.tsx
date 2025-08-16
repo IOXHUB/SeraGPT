@@ -3,17 +3,22 @@
 import { useState, useEffect } from 'react';
 import { useAuth } from '@/lib/hooks/useAuth';
 import DashboardLayout from '@/components/dashboard/DashboardLayout';
-import { MockAnalysisService } from '@/lib/services/mock-analysis-service';
-import { MockAnalysis } from '@/lib/utils/dev-mock-system';
+import ClientOnly from '@/components/ui/ClientOnly';
 
-export const dynamic = 'force-dynamic';
+interface Analysis {
+  id: string;
+  type: string;
+  title: string;
+  status: 'pending' | 'processing' | 'completed' | 'failed';
+  createdAt: string;
+  progress?: number;
+  result?: any;
+}
 
-export default function AnalysesListPage() {
-  const { user, loading } = useAuth();
-  const [analyses, setAnalyses] = useState<MockAnalysis[]>([]);
+export default function AnalysisPage() {
+  const { user, loading, signOut } = useAuth();
+  const [analyses, setAnalyses] = useState<Analysis[]>([]);
   const [dataLoading, setDataLoading] = useState(true);
-  const [filter, setFilter] = useState<string>('all');
-  const [sortBy, setSortBy] = useState<string>('newest');
 
   useEffect(() => {
     if (user && !loading) {
@@ -23,291 +28,224 @@ export default function AnalysesListPage() {
 
   const loadAnalyses = async () => {
     if (!user) return;
-
+    
     try {
       setDataLoading(true);
-      const userAnalyses = await MockAnalysisService.getUserAnalyses(user.id);
-      setAnalyses(userAnalyses);
+      
+      const response = await fetch('/api/analysis/user', {
+        headers: {
+          'Authorization': `Bearer ${await user.getIdToken()}`
+        }
+      });
+      
+      if (!response.ok) {
+        throw new Error('Failed to fetch analyses');
+      }
+      
+      const data = await response.json();
+      setAnalyses(data.analyses || []);
     } catch (error) {
       console.error('Failed to load analyses:', error);
+      setAnalyses([]);
     } finally {
       setDataLoading(false);
     }
   };
 
-  // Filter and sort analyses
-  const filteredAnalyses = analyses
-    .filter(analysis => {
-      if (filter === 'all') return true;
-      return analysis.type === filter;
-    })
-    .sort((a, b) => {
-      switch (sortBy) {
-        case 'newest':
-          return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
-        case 'oldest':
-          return new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime();
-        case 'title':
-          return a.title.localeCompare(b.title);
-        default:
-          return 0;
+  const deleteAnalysis = async (analysisId: string) => {
+    try {
+      const response = await fetch(`/api/analysis/${analysisId}`, {
+        method: 'DELETE',
+        headers: {
+          'Authorization': `Bearer ${await user?.getIdToken()}`
+        }
+      });
+      
+      if (!response.ok) {
+        throw new Error('Failed to delete analysis');
       }
-    });
-
-  const getStatusBadge = (status: string) => {
-    switch (status) {
-      case 'completed':
-        return <span className="px-2 py-1 text-xs rounded-full bg-green-100 text-green-800">Tamamlandı</span>;
-      case 'in_progress':
-        return <span className="px-2 py-1 text-xs rounded-full bg-blue-100 text-blue-800">İşleniyor</span>;
-      case 'draft':
-        return <span className="px-2 py-1 text-xs rounded-full bg-gray-100 text-gray-800">Taslak</span>;
-      default:
-        return <span className="px-2 py-1 text-xs rounded-full bg-gray-100 text-gray-800">{status}</span>;
+      
+      loadAnalyses();
+    } catch (error) {
+      console.error('Failed to delete analysis:', error);
+      alert('Analiz silinirken hata oluştu');
     }
   };
 
-  const getTypeIcon = (type: string) => {
-    switch (type) {
-      case 'roi': return '📊';
-      case 'climate': return '🌡️';
-      case 'equipment': return '🔧';
-      case 'market': return '📈';
-      case 'layout': return '📐';
-      default: return '📄';
-    }
-  };
-
-  const getTypeName = (type: string) => {
+  const getAnalysisTypeText = (type: string) => {
     switch (type) {
       case 'roi': return 'ROI Analizi';
       case 'climate': return 'İklim Analizi';
-      case 'equipment': return 'Ekipman Listesi';
+      case 'equipment': return 'Ekipman Önerisi';
       case 'market': return 'Pazar Analizi';
-      case 'layout': return 'Teknik Plan';
-      default: return 'Analiz';
+      case 'layout': return 'Layout Planlama';
+      default: return type;
     }
   };
 
-  const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('tr-TR', {
-      day: '2-digit',
-      month: '2-digit',
-      year: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit'
-    });
+  const getStatusColor = (status: string) => {
+    switch (status) {
+      case 'completed': return 'bg-green-100 text-green-700';
+      case 'processing': return 'bg-blue-100 text-blue-700';
+      case 'pending': return 'bg-yellow-100 text-yellow-700';
+      case 'failed': return 'bg-red-100 text-red-700';
+      default: return 'bg-gray-100 text-gray-700';
+    }
+  };
+
+  const getStatusText = (status: string) => {
+    switch (status) {
+      case 'completed': return 'Tamamlandı';
+      case 'processing': return 'İşleniyor';
+      case 'pending': return 'Beklemede';
+      case 'failed': return 'Başarısız';
+      default: return status;
+    }
   };
 
   if (loading || dataLoading) {
     return (
-      <DashboardLayout title="Analizlerim" subtitle="Oluşturduğunuz analiz raporları">
-        <div className="space-y-4">
-          {[1, 2, 3].map(i => (
-            <div key={i} className="bg-[#f6f8f9] rounded-lg border p-6 animate-pulse shadow-lg">
-              <div className="flex items-center space-x-4">
-                <div className="w-12 h-12 bg-gray-200 rounded-lg"></div>
-                <div className="flex-1">
-                  <div className="h-4 bg-gray-200 rounded w-3/4 mb-2"></div>
-                  <div className="h-3 bg-gray-200 rounded w-1/2"></div>
-                </div>
+      <ClientOnly>
+        <DashboardLayout user={user} signOut={signOut}>
+          <div className="p-8">
+            <div className="animate-pulse space-y-6">
+              <div className="h-8 bg-gray-200 rounded w-1/4"></div>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {[1, 2, 3].map(i => (
+                  <div key={i} className="h-48 bg-gray-200 rounded"></div>
+                ))}
               </div>
             </div>
-          ))}
-        </div>
-      </DashboardLayout>
+          </div>
+        </DashboardLayout>
+      </ClientOnly>
     );
   }
 
   return (
-    <DashboardLayout title="Analizlerim" subtitle="Oluşturduğunuz analiz raporları">
-      <div className="space-y-6">
-        {/* Stats Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-          <div className="bg-[#f6f8f9] rounded-lg border p-4 shadow-lg">
-            <div className="text-2xl font-bold text-[#1e3237]">{analyses.length}</div>
-            <div className="text-sm text-[#1e3237]/70">Toplam Analiz</div>
-          </div>
-          <div className="bg-[#f6f8f9] rounded-lg border p-4 shadow-lg">
-            <div className="text-2xl font-bold text-[#146448]">
-              {analyses.filter(a => a.status === 'completed').length}
-            </div>
-            <div className="text-sm text-[#1e3237]/70">Tamamlanan</div>
-          </div>
-          <div className="bg-[#f6f8f9] rounded-lg border p-4 shadow-lg">
-            <div className="text-2xl font-bold text-[#baf200]">
-              {analyses.filter(a => a.status === 'in_progress').length}
-            </div>
-            <div className="text-sm text-[#1e3237]/70">İşleniyor</div>
-          </div>
-          <div className="bg-[#f6f8f9] rounded-lg border p-4 shadow-lg">
-            <div className="text-2xl font-bold text-[#1e3237]/70">
-              {analyses.filter(a => {
-                const created = new Date(a.createdAt);
-                const now = new Date();
-                return created.getMonth() === now.getMonth() && created.getFullYear() === now.getFullYear();
-              }).length}
-            </div>
-            <div className="text-sm text-[#1e3237]/70">Bu Ay</div>
-          </div>
-        </div>
-
-        {/* Filters and Actions */}
-        <div className="bg-[#f6f8f9] rounded-lg border p-4 shadow-lg">
-          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center space-y-4 sm:space-y-0">
-            <div className="flex space-x-4">
-              <select 
-                className="border border-gray-300 rounded-lg px-3 py-2 text-sm"
-                value={filter}
-                onChange={(e) => setFilter(e.target.value)}
-              >
-                <option value="all">Tüm Analizler</option>
-                <option value="roi">ROI Analizi</option>
-                <option value="climate">İklim Analizi</option>
-                <option value="equipment">Ekipman Listesi</option>
-                <option value="market">Pazar Analizi</option>
-                <option value="layout">Teknik Plan</option>
-              </select>
-
-              <select 
-                className="border border-gray-300 rounded-lg px-3 py-2 text-sm"
-                value={sortBy}
-                onChange={(e) => setSortBy(e.target.value)}
-              >
-                <option value="newest">En Yeni</option>
-                <option value="oldest">En Eski</option>
-                <option value="title">Başlığa Göre</option>
-              </select>
+    <ClientOnly>
+      <DashboardLayout user={user} signOut={signOut}>
+        <div className="p-8">
+          <div className="max-w-7xl mx-auto">
+            <div className="flex items-center justify-between mb-8">
+              <h1 className="text-2xl font-bold" style={{ color: '#1e3237' }}>
+                Analizlerim
+              </h1>
+              <div className="flex space-x-4">
+                <a
+                  href="/dashboard/analysis/roi"
+                  className="px-4 py-2 rounded-lg font-medium transition-all hover:opacity-90"
+                  style={{ backgroundColor: '#baf200', color: '#1e3237' }}
+                >
+                  ➕ Yeni Analiz
+                </a>
+              </div>
             </div>
 
-            <div className="flex space-x-2">
-              <a
-                href="/dashboard/demo-reports"
-                className="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg text-sm transition-colors"
-              >
-                🎯 Demo Raporlar
-              </a>
-              <button
-                onClick={loadAnalyses}
-                className="bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-2 rounded-lg text-sm transition-colors"
-              >
-                🔄 Yenile
-              </button>
-              <a
-                href="/dashboard/analysis/roi"
-                className="bg-[#baf200] hover:bg-[#baf200]/90 text-[#1e3237] text-white px-4 py-2 rounded-lg text-sm transition-colors"
-              >
-                + Yeni Analiz
-              </a>
-            </div>
-          </div>
-        </div>
-
-        {/* Analyses List */}
-        {filteredAnalyses.length === 0 ? (
-          <div className="bg-white rounded-lg border p-8 text-center">
-            <div className="text-4xl mb-4">📊</div>
-            <h3 className="text-lg font-medium text-[#1e3237] mb-2">Henüz analiz bulunmuyor</h3>
-            <p className="text-[#1e3237]/70 mb-4">İlk analizinizi oluşturmak için aşağıdaki butonları kullanın</p>
-            <div className="flex flex-wrap justify-center gap-2">
-              <a href="/dashboard/analysis/roi" className="bg-[#baf200] hover:bg-[#baf200]/90 text-[#1e3237] text-white px-4 py-2 rounded-lg text-sm transition-colors">
-                📊 ROI Analizi
-              </a>
-              <a href="/dashboard/analysis/climate" className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm transition-colors">
-                🌡️ İklim Analizi
-              </a>
-              <a href="/dashboard/analysis/equipment" className="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg text-sm transition-colors">
-                🔧 Ekipman Listesi
-              </a>
-            </div>
-          </div>
-        ) : (
-          <div className="space-y-4">
-            {filteredAnalyses.map((analysis) => (
-              <div key={analysis.id} className="bg-white rounded-lg border p-6 hover:shadow-md transition-shadow">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center space-x-4">
-                    <div className="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center text-2xl">
-                      {getTypeIcon(analysis.type)}
+            {analyses.length === 0 ? (
+              <div className="text-center py-12">
+                <div className="text-6xl mb-4">📊</div>
+                <h3 className="text-xl font-semibold mb-2" style={{ color: '#1e3237' }}>
+                  Henüz Analiz Yok
+                </h3>
+                <p className="text-gray-600 mb-6">
+                  İlk analizi oluşturmak için aşağıdaki seçeneklerden birini kullanın
+                </p>
+                <div className="flex justify-center space-x-4">
+                  <a
+                    href="/dashboard/analysis/roi"
+                    className="px-6 py-3 rounded-lg font-medium transition-all hover:opacity-90"
+                    style={{ backgroundColor: '#baf200', color: '#1e3237' }}
+                  >
+                    ROI Analizi
+                  </a>
+                  <a
+                    href="/dashboard/analysis/climate"
+                    className="px-6 py-3 rounded-lg font-medium transition-all hover:opacity-90"
+                    style={{ backgroundColor: '#146448', color: '#f6f8f9' }}
+                  >
+                    İklim Analizi
+                  </a>
+                </div>
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {analyses.map((analysis) => (
+                  <div
+                    key={analysis.id}
+                    className="rounded-lg p-6 border border-gray-200 hover:shadow-lg transition-shadow"
+                    style={{ backgroundColor: '#f6f8f9' }}
+                  >
+                    <div className="flex items-center justify-between mb-4">
+                      <h3 className="font-semibold text-lg" style={{ color: '#1e3237' }}>
+                        {getAnalysisTypeText(analysis.type)}
+                      </h3>
+                      <span className={`px-3 py-1 rounded-full text-xs font-medium ${getStatusColor(analysis.status)}`}>
+                        {getStatusText(analysis.status)}
+                      </span>
                     </div>
-                    <div>
-                      <h3 className="font-medium text-[#1e3237]">{analysis.title}</h3>
-                      <div className="flex items-center space-x-2 mt-1">
-                        <span className="text-sm text-[#1e3237]/70">{getTypeName(analysis.type)}</span>
-                        <span className="text-gray-400">•</span>
-                        <span className="text-sm text-[#1e3237]/70">{formatDate(analysis.createdAt)}</span>
+
+                    <p className="text-sm text-gray-600 mb-4 line-clamp-2">
+                      {analysis.title || 'Analiz detayları'}
+                    </p>
+
+                    {analysis.status === 'processing' && analysis.progress && (
+                      <div className="mb-4">
+                        <div className="flex justify-between text-sm mb-1">
+                          <span style={{ color: '#1e3237' }}>İlerleme</span>
+                          <span style={{ color: '#146448' }}>{analysis.progress}%</span>
+                        </div>
+                        <div className="w-full bg-gray-200 rounded-full h-2">
+                          <div
+                            className="h-2 rounded-full transition-all duration-300"
+                            style={{ backgroundColor: '#baf200', width: `${analysis.progress}%` }}
+                          ></div>
+                        </div>
                       </div>
+                    )}
+
+                    <div className="text-xs text-gray-500 mb-4">
+                      Oluşturulma: {new Date(analysis.createdAt).toLocaleDateString('tr-TR')}
                     </div>
-                  </div>
-                  
-                  <div className="flex items-center space-x-3">
-                    {getStatusBadge(analysis.status)}
-                    
+
                     <div className="flex space-x-2">
-                      {analysis.status === 'completed' && (
-                        <>
-                          <a
-                            href={`/dashboard/reports/${analysis.type}/${analysis.id}`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-[#baf200] hover:text-blue-800 text-sm font-medium"
-                          >
-                            Görüntüle
-                          </a>
-                          <button
-                            onClick={async () => {
-                              try {
-                                window.open(`/dashboard/reports/${analysis.type}/${analysis.id}`, '_blank');
-                                // Küçük bir gecikme sonrası PDF indirme fonksiyonunu tetikle
-                                setTimeout(() => {
-                                  const event = new CustomEvent('triggerPDFDownload');
-                                  window.dispatchEvent(event);
-                                }, 1000);
-                              } catch (error) {
-                                console.error('PDF indirme hatası:', error);
-                                alert('PDF indirme sırasında bir hata oluştu');
-                              }
-                            }}
-                            className="text-[#146448] hover:text-green-800 text-sm font-medium"
-                          >
-                            PDF İndir
-                          </button>
-                        </>
+                      {analysis.status === 'completed' ? (
+                        <a
+                          href={`/dashboard/reports/${analysis.type}/${analysis.id}`}
+                          className="flex-1 py-2 px-3 rounded text-center text-sm font-medium transition-all hover:opacity-90"
+                          style={{ backgroundColor: '#baf200', color: '#1e3237' }}
+                        >
+                          📊 Raporu Görüntüle
+                        </a>
+                      ) : (
+                        <button
+                          disabled
+                          className="flex-1 py-2 px-3 rounded text-center text-sm font-medium opacity-50 cursor-not-allowed"
+                          style={{ backgroundColor: '#e5e7eb', color: '#6b7280' }}
+                        >
+                          {analysis.status === 'processing' ? '⏳ İşleniyor...' : '⏸️ Beklemede'}
+                        </button>
                       )}
+                      
                       <button
-                        className="text-red-600 hover:text-red-800 text-sm font-medium"
-                        onClick={async () => {
+                        onClick={() => {
                           if (confirm('Bu analizi silmek istediğinizden emin misiniz?')) {
-                            try {
-                              await MockAnalysisService.deleteAnalysis(analysis.id);
-                              loadAnalyses();
-                            } catch (error) {
-                              console.error('Silme hatası:', error);
-                              alert('Analiz silinirken bir hata oluştu');
-                            }
+                            deleteAnalysis(analysis.id);
                           }
                         }}
+                        className="py-2 px-3 rounded text-sm font-medium transition-all hover:opacity-90"
+                        style={{ backgroundColor: '#dc2626', color: '#ffffff' }}
                       >
-                        Sil
+                        🗑️
                       </button>
                     </div>
                   </div>
-                </div>
-
-                {/* Progress bar for in-progress analyses */}
-                {analysis.status === 'in_progress' && (
-                  <div className="mt-4">
-                    <div className="w-full bg-gray-200 rounded-full h-2">
-                      <div className="bg-blue-600 h-2 rounded-full animate-pulse" style={{ width: '60%' }}></div>
-                    </div>
-                    <p className="text-sm text-[#1e3237]/70 mt-1">Analiz işleniyor... Yaklaşık 2-3 dakika sürebilir.</p>
-                  </div>
-                )}
+                ))}
               </div>
-            ))}
+            )}
           </div>
-        )}
-      </div>
-    </DashboardLayout>
+        </div>
+      </DashboardLayout>
+    </ClientOnly>
   );
 }

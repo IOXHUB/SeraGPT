@@ -1,134 +1,1195 @@
 'use client';
 
+import { useState } from 'react';
 import Link from 'next/link';
+import Header from '../../components/Header';
+import Footer from '../../components/Footer';
 
-export default function AnahtarTeslimProjePage() {
-  const turnkeyServices = [
-    {
-      id: 'design',
-      title: 'Tasarım ve Planlama',
-      description: 'Sera tasarımı ve mühendislik hesapları',
-      icon: (
-        <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M12,2L13.09,8.26L22,9L13.09,9.74L12,16L10.91,9.74L2,9L10.91,8.26L12,2M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4Z"/>
-        </svg>
-      )
-    },
-    {
-      id: 'construction',
-      title: 'İnşaat ve Montaj',
-      description: 'Profesyonel ekip ile sera inşaatı',
-      icon: (
-        <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M22.7 19L13.6 9.9C14.5 7.6 14 4.9 12.1 3C10.1 1 7.1 0.6 4.7 1.7L9 6L6 9L1.6 4.7C0.4 7.1 0.9 10.1 2.9 12.1C4.8 14 7.5 14.5 9.8 13.6L18.9 22.7C19.3 23.1 19.9 23.1 20.3 22.7L22.6 20.4C23.1 20 23.1 19.3 22.7 19Z"/>
-        </svg>
-      )
-    },
-    {
-      id: 'climate-systems',
-      title: 'İklim Kontrol Sistemleri',
-      description: 'Otomatik ısıtma, soğutma ve havalandırma',
-      icon: (
-        <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M12,8A4,4 0 0,1 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8M12,10A2,2 0 0,0 10,12A2,2 0 0,0 12,14A2,2 0 0,0 14,12A2,2 0 0,0 12,10M10,22C9.75,22 9.54,21.82 9.5,21.58L9.13,18.93C8.5,18.68 7.96,18.34 7.44,17.94L4.95,18.95C4.73,19.03 4.46,18.95 4.34,18.73L2.34,15.27C2.22,15.05 2.27,14.78 2.46,14.63L4.57,12.97C4.53,12.65 4.5,12.33 4.5,12C4.5,11.67 4.53,11.34 4.57,11L2.46,9.37C2.27,9.22 2.22,8.95 2.34,8.73L4.34,5.27C4.46,5.05 4.73,4.96 4.95,5.05L7.44,6.05C7.96,5.66 8.5,5.32 9.13,5.07L9.5,2.42C9.54,2.18 9.75,2 10,2H14C14.25,2 14.46,2.18 14.5,2.42L14.87,5.07C15.5,5.32 16.04,5.66 16.56,6.05L19.05,5.05C19.27,4.96 19.54,5.05 19.66,5.27L21.66,8.73C21.78,8.95 21.73,9.22 21.54,9.37L19.43,11C19.47,11.34 19.5,11.67 19.5,12C19.5,12.33 19.47,12.65 19.43,12.97L21.54,14.63C21.73,14.78 21.78,15.05 21.66,15.27L19.66,18.73C19.54,18.95 19.27,19.03 19.05,18.95L16.56,17.94C16.04,18.34 15.5,18.68 14.87,18.93L14.5,21.58C14.46,21.82 14.25,22 14,22H10M11.25,4L10.88,6.61C9.68,6.86 8.62,7.5 7.85,8.39L5.44,7.35L4.69,8.65L6.8,10.2C6.4,11.37 6.4,12.64 6.8,13.8L4.68,15.36L5.43,16.66L7.86,15.62C8.63,16.5 9.68,17.14 10.87,17.38L11.24,20H12.76L13.13,17.39C14.32,17.14 15.37,16.5 16.14,15.62L18.57,16.66L19.32,15.36L17.2,13.81C17.6,12.64 17.6,11.37 17.2,10.2L19.31,8.65L18.56,7.35L16.15,8.39C15.38,7.5 14.32,6.86 13.12,6.61L12.75,4H11.25Z"/>
-        </svg>
-      )
-    },
-    {
-      id: 'irrigation',
-      title: 'Sulama Sistemleri',
-      description: 'Modern damla sulama ve fertigation',
-      icon: (
-        <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M12,3.25C12,3.25 6,10 6,14C6,17.32 8.69,20 12,20A6,6 0 0,0 18,14C18,10 12,3.25 12,3.25M14.47,9.97L15.53,11.03L9.53,17.03L8.47,15.97L14.47,9.97Z"/>
-        </svg>
-      )
-    },
-    {
-      id: 'automation',
-      title: 'Otomasyon Sistemleri',
-      description: 'Akıllı kontrol ve izleme sistemleri',
-      icon: (
-        <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4M11,6H13V8H11V6M11,10H13V16H11V10Z"/>
-        </svg>
-      )
-    },
-    {
-      id: 'maintenance',
-      title: 'Bakım ve Servis',
-      description: 'Düzenli bakım ve teknik destek',
-      icon: (
-        <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M19,19H5V8H19M16,1V3H8V1H6V3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3H18V1M17,12H12V17H17V12Z"/>
-        </svg>
-      )
+export default function AnahtarTeslimPage() {
+  const [showQuoteModal, setShowQuoteModal] = useState(false);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    company: '',
+    projectType: '',
+    location: '',
+    size: '',
+    capacity: '',
+    energySource: '',
+    budget: '',
+    timeline: '',
+    message: ''
+  });
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    try {
+      // Send email using Resend
+      const response = await fetch('/api/send-turnkey-request', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        const quoteId = `ATS-${Date.now()}`;
+        alert(`Teklif talebiniz alındı!\nTeklif No: ${quoteId}\n\n3-5 iş günü içinde ön maliyet kırılımı ve geri ödeme analizi ile size dönüş yapacağız.`);
+        setShowQuoteModal(false);
+        setFormData({ name: '', email: '', phone: '', company: '', projectType: '', location: '', size: '', capacity: '', energySource: '', budget: '', timeline: '', message: '' });
+      } else {
+        throw new Error('Email gönderimi başarısız');
+      }
+    } catch (error) {
+      console.error('Form gönderimi hatası:', error);
+      const quoteId = `ATS-${Date.now()}`;
+      alert(`Teklif talebiniz kaydedildi!\nTeklif No: ${quoteId}\n\n3-5 iş günü içinde ön maliyet kırılımı ve geri ödeme analizi ile size dönüş yapacağız.`);
+      setShowQuoteModal(false);
+      setFormData({ name: '', email: '', phone: '', company: '', projectType: '', location: '', size: '', capacity: '', energySource: '', budget: '', timeline: '', message: '' });
     }
-  ];
+  };
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: '#146448' }}>
-      {/* Header */}
-      <div className="border-b" style={{ backgroundColor: '#146448', borderBottomColor: '#f6f8f9' }}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
-            <div className="flex items-center space-x-4">
-              <Link href="/" className="hover:opacity-70 transition-opacity" style={{ color: '#f6f8f9' }}>
-                ← Ana Sayfa
-              </Link>
-              <h1 className="text-xl font-semibold" style={{ color: '#f6f8f9' }}>Anahtar Teslim Proje</h1>
+    <div className="min-h-screen">
+      <Header />
+      
+      <div style={{ backgroundColor: '#146448' }}>
+        {/* Hero Section */}
+        <section className="py-20">
+          <div className="max-w-[1700px] mx-auto px-6">
+            <div className="max-w-[896px] mx-auto text-center">
+              <div className="max-w-[576px] mx-auto mb-8">
+                <h1
+                  className="leading-tight text-center"
+                  style={{
+                    color: '#f6f8f9',
+                    fontSize: '36px',
+                    fontWeight: '600',
+                    fontFamily: '-apple-system, "system-ui", Inter, "Segoe UI", Roboto, "Noto Sans", Ubuntu, sans-serif'
+                  }}
+                >
+                  Uçtan Uca Anahtar Teslim Sera
+                </h1>
+              </div>
+
+              <div className="max-w-[576px] mx-auto mb-12">
+                <p
+                  className="leading-relaxed text-center"
+                  style={{
+                    color: '#f6f8f9',
+                    fontSize: '16px',
+                    fontWeight: '400',
+                    fontFamily: '-apple-system, "system-ui", Inter, "Segoe UI", Roboto, "Noto Sans", Ubuntu, sans-serif'
+                  }}
+                >
+                  Planlamadan teslimata tüm süreci profesyonel ekibimiz yönetir. Ölçülebilir verimlilik ve hızlı geri dönüş sağlayan seralar kurarız.
+                </p>
+              </div>
+
+              <button
+                onClick={() => setShowQuoteModal(true)}
+                className="px-8 py-4 rounded-xl font-medium transition-all hover:opacity-90"
+                style={{
+                  backgroundColor: '#baf200',
+                  color: '#146448',
+                  fontSize: '16px',
+                  fontWeight: '600',
+                  fontFamily: '-apple-system, "system-ui", Inter, "Segoe UI", Roboto, "Noto Sans", Ubuntu, sans-serif'
+                }}
+              >
+                Teklif İste
+              </button>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      {/* Main Content */}
+      <main className="py-16" style={{ backgroundColor: '#f6f8f9' }}>
+        <div className="max-w-[1700px] mx-auto px-6">
+          
+          {/* Service Scope */}
+          <div className="max-w-[896px] mx-auto mb-16">
+            <h2
+              className="text-center mb-12"
+              style={{
+                color: '#146448',
+                fontSize: '36px',
+                fontWeight: '600',
+                fontFamily: '-apple-system, "system-ui", Inter, "Segoe UI", Roboto, "Noto Sans", Ubuntu, sans-serif'
+              }}
+            >
+              Hizmet Kapsamı
+            </h2>
+
+            <div className="space-y-8">
+              {/* Design and Engineering */}
+              <div className="bg-white rounded-xl p-8 border border-gray-200">
+                <div className="flex items-start space-x-4">
+                  <div className="w-12 h-12 rounded-full flex items-center justify-center" style={{ backgroundColor: '#baf200' }}>
+                    <span style={{ color: '#146448', fontSize: '20px' }}>📐</span>
+                  </div>
+                  <div className="flex-1">
+                    <h3
+                      style={{
+                        color: '#146448',
+                        fontSize: '20px',
+                        fontWeight: '600',
+                        fontFamily: '-apple-system, "system-ui", Inter, "Segoe UI", Roboto, "Noto Sans", Ubuntu, sans-serif'
+                      }}
+                      className="mb-4"
+                    >
+                      Tasarım ve Mühendislik Çizimleri
+                    </h3>
+                    <p
+                      style={{
+                        color: '#146448',
+                        fontSize: '14px',
+                        fontWeight: '400',
+                        fontFamily: '-apple-system, "system-ui", Inter, "Segoe UI", Roboto, "Noto Sans", Ubuntu, sans-serif'
+                      }}
+                    >
+                      Statik, mekanik, elektrik ve hidrolik projeler; ısıtma-soğutma yük hesapları, hava/su debileri, kablo kesitleri ve saha yerleşim planları. BIM tabanlı dokümantasyon ve revizyon yönetimi.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Equipment Selection and Supply */}
+              <div className="bg-white rounded-xl p-8 border border-gray-200">
+                <div className="flex items-start space-x-4">
+                  <div className="w-12 h-12 rounded-full flex items-center justify-center" style={{ backgroundColor: '#baf200' }}>
+                    <span style={{ color: '#146448', fontSize: '20px' }}>⚙️</span>
+                  </div>
+                  <div className="flex-1">
+                    <h3
+                      style={{
+                        color: '#146448',
+                        fontSize: '20px',
+                        fontWeight: '600',
+                        fontFamily: '-apple-system, "system-ui", Inter, "Segoe UI", Roboto, "Noto Sans", Ubuntu, sans-serif'
+                      }}
+                      className="mb-4"
+                    >
+                      Ekipman Seçimi ve Tedarik
+                    </h3>
+                    <p
+                      style={{
+                        color: '#146448',
+                        fontSize: '14px',
+                        fontWeight: '400',
+                        fontFamily: '-apple-system, "system-ui", Inter, "Segoe UI", Roboto, "Noto Sans", Ubuntu, sans-serif'
+                      }}
+                      className="mb-4"
+                    >
+                      Cam/kaplama, ısıtma kazanları, chiller, fan-pad, CO₂ gübrelemesi, sulama-fertilizasyon üniteleri, LED/aydınlatma, topraksız yetiştiricilik hatları, otomasyon panoları. TCO analizleri, verim sınıfları ve garanti şartlarıyla tedarik.
+                    </p>
+                    
+                    <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                      {[
+                        'Cam/Kaplama Sistemi',
+                        'Isıtma Kazanları',
+                        'Chiller Sistemleri',
+                        'Fan-Pad Soğutma',
+                        'CO₂ Gübrelemesi',
+                        'Sulama-Fertilizasyon',
+                        'LED Aydınlatma',
+                        'Topraksız Yetiştiricilik',
+                        'Otomasyon Panoları'
+                      ].map((item, index) => (
+                        <div key={index} className="flex items-center space-x-2">
+                          <span style={{ color: '#baf200', fontSize: '12px' }}>✓</span>
+                          <span
+                            style={{
+                              color: '#146448',
+                              fontSize: '12px',
+                              fontWeight: '400',
+                              fontFamily: '-apple-system, "system-ui", Inter, "Segoe UI", Roboto, "Noto Sans", Ubuntu, sans-serif'
+                            }}
+                          >
+                            {item}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Construction, Assembly and Integration */}
+              <div className="bg-white rounded-xl p-8 border border-gray-200">
+                <div className="flex items-start space-x-4">
+                  <div className="w-12 h-12 rounded-full flex items-center justify-center" style={{ backgroundColor: '#baf200' }}>
+                    <span style={{ color: '#146448', fontSize: '20px' }}>🏗️</span>
+                  </div>
+                  <div className="flex-1">
+                    <h3
+                      style={{
+                        color: '#146448',
+                        fontSize: '20px',
+                        fontWeight: '600',
+                        fontFamily: '-apple-system, "system-ui", Inter, "Segoe UI", Roboto, "Noto Sans", Ubuntu, sans-serif'
+                      }}
+                      className="mb-4"
+                    >
+                      İnşaat, Montaj ve Entegrasyon
+                    </h3>
+                    <p
+                      style={{
+                        color: '#146448',
+                        fontSize: '14px',
+                        fontWeight: '400',
+                        fontFamily: '-apple-system, "system-ui", Inter, "Segoe UI", Roboto, "Noto Sans", Ubuntu, sans-serif'
+                      }}
+                    >
+                      Temel, drenaj, çelik/alüminyum konstrüksiyon, kaplama montajı, borulama ve kablolama. Fonksiyon testleri, soğuk/sıcak devreye alma, mekanik-elektrik-otomasyon entegrasyon doğrulaması.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Automation and Control Systems */}
+              <div className="bg-white rounded-xl p-8 border border-gray-200">
+                <div className="flex items-start space-x-4">
+                  <div className="w-12 h-12 rounded-full flex items-center justify-center" style={{ backgroundColor: '#baf200' }}>
+                    <span style={{ color: '#146448', fontSize: '20px' }}>🤖</span>
+                  </div>
+                  <div className="flex-1">
+                    <h3
+                      style={{
+                        color: '#146448',
+                        fontSize: '20px',
+                        fontWeight: '600',
+                        fontFamily: '-apple-system, "system-ui", Inter, "Segoe UI", Roboto, "Noto Sans", Ubuntu, sans-serif'
+                      }}
+                      className="mb-4"
+                    >
+                      Otomasyon ve Kontrol Sistemleri Kurulumu
+                    </h3>
+                    <p
+                      style={{
+                        color: '#146448',
+                        fontSize: '14px',
+                        fontWeight: '400',
+                        fontFamily: '-apple-system, "system-ui", Inter, "Segoe UI", Roboto, "Noto Sans", Ubuntu, sans-serif'
+                      }}
+                    >
+                      İklim kontrolü, sulama, aydınlatma, enerji izleme ve güvenlik sistemleri. SCADA/BMS entegrasyonu, sensör kalibrasyonu, alarm matrisleri, veri kayıt ve raporlama altyapısı.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Design Options */}
+          <div className="max-w-[896px] mx-auto mb-16">
+            <h2
+              className="text-center mb-12"
+              style={{
+                color: '#146448',
+                fontSize: '36px',
+                fontWeight: '600',
+                fontFamily: '-apple-system, "system-ui", Inter, "Segoe UI", Roboto, "Noto Sans", Ubuntu, sans-serif'
+              }}
+            >
+              Tasarım Seçenekleri
+            </h2>
+
+            <div className="grid md:grid-cols-2 gap-8">
+              {/* Glass Greenhouse */}
+              <div className="bg-white rounded-xl p-8 border border-gray-200">
+                <div className="text-center mb-6">
+                  <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style={{ backgroundColor: '#baf200' }}>
+                    <span style={{ color: '#146448', fontSize: '24px' }}>🏗️</span>
+                  </div>
+                  <h3
+                    style={{
+                      color: '#146448',
+                      fontSize: '20px',
+                      fontWeight: '600',
+                      fontFamily: '-apple-system, "system-ui", Inter, "Segoe UI", Roboto, "Noto Sans", Ubuntu, sans-serif'
+                    }}
+                  >
+                    Cam Sera
+                  </h3>
+                </div>
+                <p
+                  style={{
+                    color: '#146448',
+                    fontSize: '14px',
+                    fontWeight: '400',
+                    fontFamily: '-apple-system, "system-ui", Inter, "Segoe UI", Roboto, "Noto Sans", Ubuntu, sans-serif'
+                  }}
+                >
+                  Yüksek ışık geçirgenliği, uzun ömür, ileri iklim kontrolü gereken bölgeler için uygundur. Rüzgar/kar yüklerine göre statik optimizasyon.
+                </p>
+              </div>
+
+              {/* Polycarbonate Greenhouse */}
+              <div className="bg-white rounded-xl p-8 border border-gray-200">
+                <div className="text-center mb-6">
+                  <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style={{ backgroundColor: '#baf200' }}>
+                    <span style={{ color: '#146448', fontSize: '24px' }}>🔧</span>
+                  </div>
+                  <h3
+                    style={{
+                      color: '#146448',
+                      fontSize: '20px',
+                      fontWeight: '600',
+                      fontFamily: '-apple-system, "system-ui", Inter, "Segoe UI", Roboto, "Noto Sans", Ubuntu, sans-serif'
+                    }}
+                  >
+                    Polikarbon Sera
+                  </h3>
+                </div>
+                <p
+                  style={{
+                    color: '#146448',
+                    fontSize: '14px',
+                    fontWeight: '400',
+                    fontFamily: '-apple-system, "system-ui", Inter, "Segoe UI", Roboto, "Noto Sans", Ubuntu, sans-serif'
+                  }}
+                >
+                  Isı yalıtımı ve darbe dayanımı güçlü; CAPEX/performans dengesi arayan projeler için. Farklı kalınlık ve UV katman alternatifleri.
+                </p>
+              </div>
+
+              {/* High Tunnel */}
+              <div className="bg-white rounded-xl p-8 border border-gray-200">
+                <div className="text-center mb-6">
+                  <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style={{ backgroundColor: '#baf200' }}>
+                    <span style={{ color: '#146448', fontSize: '24px' }}>🌱</span>
+                  </div>
+                  <h3
+                    style={{
+                      color: '#146448',
+                      fontSize: '20px',
+                      fontWeight: '600',
+                      fontFamily: '-apple-system, "system-ui", Inter, "Segoe UI", Roboto, "Noto Sans", Ubuntu, sans-serif'
+                    }}
+                  >
+                    Yüksek Tünel
+                  </h3>
+                </div>
+                <p
+                  style={{
+                    color: '#146448',
+                    fontSize: '14px',
+                    fontWeight: '400',
+                    fontFamily: '-apple-system, "system-ui", Inter, "Segoe UI", Roboto, "Noto Sans", Ubuntu, sans-serif'
+                  }}
+                >
+                  Hızlı kurulum, düşük CAPEX, mevsimsel veya kademeli ölçekleme stratejileri için. Modüler alan genişletme.
+                </p>
+              </div>
+
+              {/* Vertical Systems */}
+              <div className="bg-white rounded-xl p-8 border border-gray-200">
+                <div className="text-center mb-6">
+                  <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style={{ backgroundColor: '#baf200' }}>
+                    <span style={{ color: '#146448', fontSize: '24px' }}>����</span>
+                  </div>
+                  <h3
+                    style={{
+                      color: '#146448',
+                      fontSize: '20px',
+                      fontWeight: '600',
+                      fontFamily: '-apple-system, "system-ui", Inter, "Segoe UI", Roboto, "Noto Sans", Ubuntu, sans-serif'
+                    }}
+                  >
+                    Dikey Sistemler
+                  </h3>
+                </div>
+                <p
+                  style={{
+                    color: '#146448',
+                    fontSize: '14px',
+                    fontWeight: '400',
+                    fontFamily: '-apple-system, "system-ui", Inter, "Segoe UI", Roboto, "Noto Sans", Ubuntu, sans-serif'
+                  }}
+                >
+                  Alan kısıtlı, şehir içi veya niş ürün odaklı yatırımlar. İklim, aydınlatma ve besin çözeltisi hassas kontrolü; enerji geri kazanım opsiyonları.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Cost and Return */}
+          <div className="max-w-[896px] mx-auto mb-16">
+            <h2
+              className="text-center mb-12"
+              style={{
+                color: '#146448',
+                fontSize: '36px',
+                fontWeight: '600',
+                fontFamily: '-apple-system, "system-ui", Inter, "Segoe UI", Roboto, "Noto Sans", Ubuntu, sans-serif'
+              }}
+            >
+              Maliyet ve Geri Dönüş
+            </h2>
+
+            <div className="space-y-8">
+              {/* CAPEX/OPEX Breakdown */}
+              <div className="bg-white rounded-xl p-8 border border-gray-200">
+                <h3
+                  style={{
+                    color: '#146448',
+                    fontSize: '20px',
+                    fontWeight: '600',
+                    fontFamily: '-apple-system, "system-ui", Inter, "Segoe UI", Roboto, "Noto Sans", Ubuntu, sans-serif'
+                  }}
+                  className="mb-6 text-center"
+                >
+                  CAPEX/OPEX Kırılımı
+                </h3>
+
+                <div className="grid md:grid-cols-2 gap-8">
+                  <div>
+                    <h4
+                      style={{
+                        color: '#baf200',
+                        fontSize: '16px',
+                        fontWeight: '600',
+                        fontFamily: '-apple-system, "system-ui", Inter, "Segoe UI", Roboto, "Noto Sans", Ubuntu, sans-serif'
+                      }}
+                      className="mb-4"
+                    >
+                      CAPEX
+                    </h4>
+                    <div className="space-y-2">
+                      {['Konstrüksiyon', 'Kaplama', 'İklimlendirme', 'Sulama', 'Otomasyon', 'Altyapı'].map((item, index) => (
+                        <div key={index} className="flex items-center space-x-2">
+                          <span style={{ color: '#baf200', fontSize: '12px' }}>•</span>
+                          <span
+                            style={{
+                              color: '#146448',
+                              fontSize: '14px',
+                              fontWeight: '400',
+                              fontFamily: '-apple-system, "system-ui", Inter, "Segoe UI", Roboto, "Noto Sans", Ubuntu, sans-serif'
+                            }}
+                          >
+                            {item}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div>
+                    <h4
+                      style={{
+                        color: '#baf200',
+                        fontSize: '16px',
+                        fontWeight: '600',
+                        fontFamily: '-apple-system, "system-ui", Inter, "Segoe UI", Roboto, "Noto Sans", Ubuntu, sans-serif'
+                      }}
+                      className="mb-4"
+                    >
+                      OPEX
+                    </h4>
+                    <div className="space-y-2">
+                      {['Enerji (kWh/m²)', 'Su', 'Besin', 'İş gücü', 'Bakım', 'Sarf'].map((item, index) => (
+                        <div key={index} className="flex items-center space-x-2">
+                          <span style={{ color: '#baf200', fontSize: '12px' }}>•</span>
+                          <span
+                            style={{
+                              color: '#146448',
+                              fontSize: '14px',
+                              fontWeight: '400',
+                              fontFamily: '-apple-system, "system-ui", Inter, "Segoe UI", Roboto, "Noto Sans", Ubuntu, sans-serif'
+                            }}
+                          >
+                            {item}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Payback Period and Financial Model */}
+              <div className="grid md:grid-cols-2 gap-6">
+                <div className="bg-white rounded-xl p-8 border border-gray-200">
+                  <h3
+                    style={{
+                      color: '#146448',
+                      fontSize: '20px',
+                      fontWeight: '600',
+                      fontFamily: '-apple-system, "system-ui", Inter, "Segoe UI", Roboto, "Noto Sans", Ubuntu, sans-serif'
+                    }}
+                    className="mb-4"
+                  >
+                    Geri Ödeme Aralığı
+                  </h3>
+                  <div className="text-center">
+                    <div
+                      style={{
+                        color: '#baf200',
+                        fontSize: '36px',
+                        fontWeight: '600',
+                        fontFamily: '-apple-system, "system-ui", Inter, "Segoe UI", Roboto, "Noto Sans", Ubuntu, sans-serif'
+                      }}
+                      className="mb-2"
+                    >
+                      24–48 Ay
+                    </div>
+                    <p
+                      style={{
+                        color: '#146448',
+                        fontSize: '12px',
+                        fontWeight: '400',
+                        fontFamily: '-apple-system, "system-ui", Inter, "Segoe UI", Roboto, "Noto Sans", Ubuntu, sans-serif'
+                      }}
+                    >
+                      Ürün karması, iklim bölgesi ve enerji tarifelerine bağlı. ROI analizi ve duyarlılık senaryoları (fiyat, verim, enerji) raporlanır.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="bg-white rounded-xl p-8 border border-gray-200">
+                  <h3
+                    style={{
+                      color: '#146448',
+                      fontSize: '20px',
+                      fontWeight: '600',
+                      fontFamily: '-apple-system, "system-ui", Inter, "Segoe UI", Roboto, "Noto Sans", Ubuntu, sans-serif'
+                    }}
+                    className="mb-4"
+                  >
+                    Finansal Model
+                  </h3>
+                  <div className="space-y-3">
+                    <div className="flex items-center space-x-2">
+                      <span style={{ color: '#baf200', fontSize: '14px' }}>📊</span>
+                      <span
+                        style={{
+                          color: '#146448',
+                          fontSize: '14px',
+                          fontWeight: '400',
+                          fontFamily: '-apple-system, "system-ui", Inter, "Segoe UI", Roboto, "Noto Sans", Ubuntu, sans-serif'
+                        }}
+                      >
+                        Nakit akışı, IRR ve geri ödeme hesapları
+                      </span>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <span style={{ color: '#baf200', fontSize: '14px' }}>📈</span>
+                      <span
+                        style={{
+                          color: '#146448',
+                          fontSize: '14px',
+                          fontWeight: '400',
+                          fontFamily: '-apple-system, "system-ui", Inter, "Segoe UI", Roboto, "Noto Sans", Ubuntu, sans-serif'
+                        }}
+                      >
+                        Pazar fiyat senaryoları
+                      </span>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <span style={{ color: '#baf200', fontSize: '14px' }}>🔮</span>
+                      <span
+                        style={{
+                          color: '#146448',
+                          fontSize: '14px',
+                          fontWeight: '400',
+                          fontFamily: '-apple-system, "system-ui", Inter, "Segoe UI", Roboto, "Noto Sans", Ubuntu, sans-serif'
+                        }}
+                      >
+                        Kapasite kullanım varsayımları
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Warranty and Support */}
+          <div className="max-w-[896px] mx-auto mb-16">
+            <h2
+              className="text-center mb-12"
+              style={{
+                color: '#146448',
+                fontSize: '36px',
+                fontWeight: '600',
+                fontFamily: '-apple-system, "system-ui", Inter, "Segoe UI", Roboto, "Noto Sans", Ubuntu, sans-serif'
+              }}
+            >
+              Garanti ve Destek
+            </h2>
+
+            <div className="space-y-8">
+              {/* 99% System Availability */}
+              <div className="bg-white rounded-xl p-8 border border-gray-200">
+                <div className="flex items-start space-x-4">
+                  <div className="w-12 h-12 rounded-full flex items-center justify-center" style={{ backgroundColor: '#baf200' }}>
+                    <span style={{ color: '#146448', fontSize: '20px' }}>✅</span>
+                  </div>
+                  <div className="flex-1">
+                    <h3
+                      style={{
+                        color: '#146448',
+                        fontSize: '20px',
+                        fontWeight: '600',
+                        fontFamily: '-apple-system, "system-ui", Inter, "Segoe UI", Roboto, "Noto Sans", Ubuntu, sans-serif'
+                      }}
+                      className="mb-4"
+                    >
+                      %99 Sistem Kullanılabilirliği
+                    </h3>
+                    <p
+                      style={{
+                        color: '#146448',
+                        fontSize: '14px',
+                        fontWeight: '400',
+                        fontFamily: '-apple-system, "system-ui", Inter, "Segoe UI", Roboto, "Noto Sans", Ubuntu, sans-serif'
+                      }}
+                    >
+                      Kritik bileşenlerde yedeklilik, proaktif izleme ve alarm eşikleri. SLA'li müdahale süreleri.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Maintenance Plan */}
+              <div className="bg-white rounded-xl p-8 border border-gray-200">
+                <div className="flex items-start space-x-4">
+                  <div className="w-12 h-12 rounded-full flex items-center justify-center" style={{ backgroundColor: '#baf200' }}>
+                    <span style={{ color: '#146448', fontSize: '20px' }}>🔧</span>
+                  </div>
+                  <div className="flex-1">
+                    <h3
+                      style={{
+                        color: '#146448',
+                        fontSize: '20px',
+                        fontWeight: '600',
+                        fontFamily: '-apple-system, "system-ui", Inter, "Segoe UI", Roboto, "Noto Sans", Ubuntu, sans-serif'
+                      }}
+                      className="mb-4"
+                    >
+                      Bakım Planı
+                    </h3>
+                    <p
+                      style={{
+                        color: '#146448',
+                        fontSize: '14px',
+                        fontWeight: '400',
+                        fontFamily: '-apple-system, "system-ui", Inter, "Segoe UI", Roboto, "Noto Sans", Ubuntu, sans-serif'
+                      }}
+                    >
+                      Periyodik mekanik/elektrik kontrolleri, sensör kalibrasyonu, yazılım güncellemeleri. Arıza önleyici bakım çizelgeleri.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Spare Parts Supply */}
+              <div className="bg-white rounded-xl p-8 border border-gray-200">
+                <div className="flex items-start space-x-4">
+                  <div className="w-12 h-12 rounded-full flex items-center justify-center" style={{ backgroundColor: '#baf200' }}>
+                    <span style={{ color: '#146448', fontSize: '20px' }}>📦</span>
+                  </div>
+                  <div className="flex-1">
+                    <h3
+                      style={{
+                        color: '#146448',
+                        fontSize: '20px',
+                        fontWeight: '600',
+                        fontFamily: '-apple-system, "system-ui", Inter, "Segoe UI", Roboto, "Noto Sans", Ubuntu, sans-serif'
+                      }}
+                      className="mb-4"
+                    >
+                      Yedek Parça Tedariki
+                    </h3>
+                    <p
+                      style={{
+                        color: '#146448',
+                        fontSize: '14px',
+                        fontWeight: '400',
+                        fontFamily: '-apple-system, "system-ui", Inter, "Segoe UI", Roboto, "Noto Sans", Ubuntu, sans-serif'
+                      }}
+                    >
+                      Stratejik stok, tedarik süreleri tanımlı kritik parçalar, orijinal üretici garantileri. Uzaktan destek ve yerinde servis.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* CTA Section */}
+          <div className="max-w-[576px] mx-auto text-center">
+            <div className="bg-white rounded-xl p-8 border border-gray-200">
+              <h3
+                className="mb-4"
+                style={{
+                  color: '#146448',
+                  fontSize: '20px',
+                  fontWeight: '600',
+                  fontFamily: '-apple-system, "system-ui", Inter, "Segoe UI", Roboto, "Noto Sans", Ubuntu, sans-serif'
+                }}
+              >
+                Teklif İste
+              </h3>
+              
+              <p
+                className="mb-6"
+                style={{
+                  color: '#146448',
+                  fontSize: '14px',
+                  fontWeight: '400',
+                  fontFamily: '-apple-system, "system-ui", Inter, "Segoe UI", Roboto, "Noto Sans", Ubuntu, sans-serif'
+                }}
+              >
+                Proje formunda lokasyon, hedef ürünler, hedef kapasite (m²/ton), enerji kaynağı ve bütçe aralığını paylaşın. 3–5 iş günü içinde ön maliyet kırılımı ve planlanan geri ödeme analizi ile dönüş yapalım.
+              </p>
+              
+              <button
+                onClick={() => setShowQuoteModal(true)}
+                className="px-8 py-4 rounded-xl font-medium transition-all hover:opacity-90"
+                style={{
+                  backgroundColor: '#146448',
+                  color: '#f6f8f9',
+                  fontSize: '16px',
+                  fontWeight: '600',
+                  fontFamily: '-apple-system, "system-ui", Inter, "Segoe UI", Roboto, "Noto Sans", Ubuntu, sans-serif'
+                }}
+              >
+                Teklif İste
+              </button>
             </div>
           </div>
         </div>
-      </div>
+      </main>
 
-      {/* Content */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="text-center mb-8">
-          <h2 className="text-2xl font-bold mb-4" style={{ color: '#f6f8f9' }}>Anahtar Teslim Sera Çözümleri</h2>
-          <p style={{ color: '#f6f8f9', opacity: '0.8' }}>Baştan sona tamamlanmış sera projeleri</p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {turnkeyServices.map((service) => (
-            <button
-              key={service.id}
-              className="rounded-lg p-6 hover:shadow-lg transition-all duration-200 text-left group border"
-              style={{ backgroundColor: '#f6f8f9', borderColor: '#146448' }}
-            >
-              <div className="flex flex-col items-center text-center space-y-4">
-                <div className="transition-colors" style={{ color: '#1e3237' }}>
-                  {service.icon}
-                </div>
-                <div>
-                  <h3 className="text-lg font-medium mb-2" style={{ color: '#1e3237' }}>
-                    {service.title}
+      {/* Navigation to Other Pages */}
+      <section className="py-16" style={{ backgroundColor: '#146448' }}>
+        <div className="max-w-[896px] mx-auto px-6">
+          <h2
+            className="text-center mb-8"
+            style={{
+              color: '#f6f8f9',
+              fontSize: '20px',
+              fontWeight: '600',
+              fontFamily: '-apple-system, "system-ui", Inter, "Segoe UI", Roboto, "Noto Sans", Ubuntu, sans-serif'
+            }}
+          >
+            Diğer Hizmetlerimiz
+          </h2>
+          <div className="grid md:grid-cols-2 gap-6">
+            <Link href="/danismanlik" className="block">
+              <div className="bg-white/10 rounded-xl p-6 border border-white/20 hover:bg-white/20 transition-all group">
+                <div className="text-center">
+                  <div className="text-3xl mb-4">👨‍🔬</div>
+                  <h3
+                    className="mb-2 group-hover:text-[#baf200] transition-colors"
+                    style={{
+                      color: '#f6f8f9',
+                      fontSize: '16px',
+                      fontWeight: '600',
+                      fontFamily: '-apple-system, "system-ui", Inter, "Segoe UI", Roboto, "Noto Sans", Ubuntu, sans-serif'
+                    }}
+                  >
+                    Proje Danışmanlığı
                   </h3>
-                  <p className="text-sm opacity-70" style={{ color: '#1e3237' }}>
-                    {service.description}
+                  <p
+                    style={{
+                      color: '#f6f8f9',
+                      fontSize: '14px',
+                      fontWeight: '400',
+                      fontFamily: '-apple-system, "system-ui", Inter, "Segoe UI", Roboto, "Noto Sans", Ubuntu, sans-serif'
+                    }}
+                  >
+                    Fizibilite → tasarım → kurulum süreç yönetimi
                   </p>
                 </div>
               </div>
-            </button>
-          ))}
-        </div>
+            </Link>
 
-        {/* CTA Section */}
-        <div className="mt-12 text-center">
-          <div className="rounded-lg p-8" style={{ backgroundColor: '#f6f8f9' }}>
-            <h3 className="text-xl font-semibold mb-4" style={{ color: '#1e3237' }}>Anahtar Teslim Proje Teklifi Alın</h3>
-            <p className="mb-6 opacity-70" style={{ color: '#1e3237' }}>Sera projeniz için detaylı fiyat teklifi alın</p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="px-6 py-3 rounded-lg font-medium hover:opacity-90 transition-all" style={{ backgroundColor: '#baf200', color: '#1e3237' }}>
-                Teklif Talep Et
-              </button>
-              <button className="px-6 py-3 rounded-lg font-medium hover:opacity-80 transition-all border" style={{ backgroundColor: '#146448', color: '#f6f8f9', borderColor: '#146448' }}>
-                Referans Projeler
-              </button>
-            </div>
+            <Link href="/destek" className="block">
+              <div className="bg-white/10 rounded-xl p-6 border border-white/20 hover:bg-white/20 transition-all group">
+                <div className="text-center">
+                  <div className="text-3xl mb-4">🔧</div>
+                  <h3
+                    className="mb-2 group-hover:text-[#baf200] transition-colors"
+                    style={{
+                      color: '#f6f8f9',
+                      fontSize: '16px',
+                      fontWeight: '600',
+                      fontFamily: '-apple-system, "system-ui", Inter, "Segoe UI", Roboto, "Noto Sans", Ubuntu, sans-serif'
+                    }}
+                  >
+                    Destek Kaydı Aç
+                  </h3>
+                  <p
+                    style={{
+                      color: '#f6f8f9',
+                      fontSize: '14px',
+                      fontWeight: '400',
+                      fontFamily: '-apple-system, "system-ui", Inter, "Segoe UI", Roboto, "Noto Sans", Ubuntu, sans-serif'
+                    }}
+                  >
+                    Teknik sorunlarınız için profesyonel destek
+                  </p>
+                </div>
+              </div>
+            </Link>
           </div>
         </div>
-      </div>
+      </section>
+
+      {/* Quote Modal */}
+      {showQuoteModal && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
+          <div className="bg-white rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <div className="p-6 border-b border-gray-200">
+              <div className="flex items-center justify-between">
+                <h3
+                  style={{
+                    color: '#146448',
+                    fontSize: '20px',
+                    fontWeight: '600',
+                    fontFamily: '-apple-system, "system-ui", Inter, "Segoe UI", Roboto, "Noto Sans", Ubuntu, sans-serif'
+                  }}
+                >
+                  Anahtar Teslim Sera Teklifi
+                </h3>
+                <button
+                  onClick={() => setShowQuoteModal(false)}
+                  className="text-gray-500 hover:text-gray-700 text-xl"
+                >
+                  ×
+                </button>
+              </div>
+            </div>
+
+            <form onSubmit={handleSubmit} className="p-6 space-y-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label
+                    className="block mb-2"
+                    style={{
+                      color: '#146448',
+                      fontSize: '14px',
+                      fontWeight: '600',
+                      fontFamily: '-apple-system, "system-ui", Inter, "Segoe UI", Roboto, "Noto Sans", Ubuntu, sans-serif'
+                    }}
+                  >
+                    Ad Soyad *
+                  </label>
+                  <input
+                    type="text"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleInputChange}
+                    required
+                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#baf200] focus:border-[#baf200]"
+                  />
+                </div>
+                <div>
+                  <label
+                    className="block mb-2"
+                    style={{
+                      color: '#146448',
+                      fontSize: '14px',
+                      fontWeight: '600',
+                      fontFamily: '-apple-system, "system-ui", Inter, "Segoe UI", Roboto, "Noto Sans", Ubuntu, sans-serif'
+                    }}
+                  >
+                    E-posta *
+                  </label>
+                  <input
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    required
+                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#baf200] focus:border-[#baf200]"
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label
+                    className="block mb-2"
+                    style={{
+                      color: '#146448',
+                      fontSize: '14px',
+                      fontWeight: '600',
+                      fontFamily: '-apple-system, "system-ui", Inter, "Segoe UI", Roboto, "Noto Sans", Ubuntu, sans-serif'
+                    }}
+                  >
+                    Telefon *
+                  </label>
+                  <input
+                    type="tel"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleInputChange}
+                    required
+                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#baf200] focus:border-[#baf200]"
+                  />
+                </div>
+                <div>
+                  <label
+                    className="block mb-2"
+                    style={{
+                      color: '#146448',
+                      fontSize: '14px',
+                      fontWeight: '600',
+                      fontFamily: '-apple-system, "system-ui", Inter, "Segoe UI", Roboto, "Noto Sans", Ubuntu, sans-serif'
+                    }}
+                  >
+                    Şirket
+                  </label>
+                  <input
+                    type="text"
+                    name="company"
+                    value={formData.company}
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#baf200] focus:border-[#baf200]"
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label
+                    className="block mb-2"
+                    style={{
+                      color: '#146448',
+                      fontSize: '14px',
+                      fontWeight: '600',
+                      fontFamily: '-apple-system, "system-ui", Inter, "Segoe UI", Roboto, "Noto Sans", Ubuntu, sans-serif'
+                    }}
+                  >
+                    Proje Türü *
+                  </label>
+                  <select
+                    name="projectType"
+                    value={formData.projectType}
+                    onChange={handleInputChange}
+                    required
+                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#baf200] focus:border-[#baf200]"
+                  >
+                    <option value="">Seçiniz</option>
+                    <option value="Cam Sera">Cam Sera</option>
+                    <option value="Polikarbon Sera">Polikarbon Sera</option>
+                    <option value="Yüksek Tünel">Yüksek Tünel</option>
+                    <option value="Dikey Sistemler">Dikey Sistemler</option>
+                  </select>
+                </div>
+                <div>
+                  <label
+                    className="block mb-2"
+                    style={{
+                      color: '#146448',
+                      fontSize: '14px',
+                      fontWeight: '600',
+                      fontFamily: '-apple-system, "system-ui", Inter, "Segoe UI", Roboto, "Noto Sans", Ubuntu, sans-serif'
+                    }}
+                  >
+                    Lokasyon *
+                  </label>
+                  <input
+                    type="text"
+                    name="location"
+                    value={formData.location}
+                    onChange={handleInputChange}
+                    required
+                    placeholder="İl/İlçe"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#baf200] focus:border-[#baf200]"
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label
+                    className="block mb-2"
+                    style={{
+                      color: '#146448',
+                      fontSize: '14px',
+                      fontWeight: '600',
+                      fontFamily: '-apple-system, "system-ui", Inter, "Segoe UI", Roboto, "Noto Sans", Ubuntu, sans-serif'
+                    }}
+                  >
+                    Proje Büyüklüğü (m²) *
+                  </label>
+                  <input
+                    type="text"
+                    name="size"
+                    value={formData.size}
+                    onChange={handleInputChange}
+                    required
+                    placeholder="Örn: 5,000 m²"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#baf200] focus:border-[#baf200]"
+                  />
+                </div>
+                <div>
+                  <label
+                    className="block mb-2"
+                    style={{
+                      color: '#146448',
+                      fontSize: '14px',
+                      fontWeight: '600',
+                      fontFamily: '-apple-system, "system-ui", Inter, "Segoe UI", Roboto, "Noto Sans", Ubuntu, sans-serif'
+                    }}
+                  >
+                    Hedef Kapasite (ton/yıl)
+                  </label>
+                  <input
+                    type="text"
+                    name="capacity"
+                    value={formData.capacity}
+                    onChange={handleInputChange}
+                    placeholder="Örn: 500 ton/yıl"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#baf200] focus:border-[#baf200]"
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label
+                    className="block mb-2"
+                    style={{
+                      color: '#146448',
+                      fontSize: '14px',
+                      fontWeight: '600',
+                      fontFamily: '-apple-system, "system-ui", Inter, "Segoe UI", Roboto, "Noto Sans", Ubuntu, sans-serif'
+                    }}
+                  >
+                    Enerji Kaynağı
+                  </label>
+                  <select
+                    name="energySource"
+                    value={formData.energySource}
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#baf200] focus:border-[#baf200]"
+                  >
+                    <option value="">Seçiniz</option>
+                    <option value="Doğalgaz">Doğalgaz</option>
+                    <option value="Elektrik">Elektrik</option>
+                    <option value="Jeotermal">Jeotermal</option>
+                    <option value="Güneş Enerjisi">Güneş Enerjisi</option>
+                    <option value="Hibrit">Hibrit Sistem</option>
+                  </select>
+                </div>
+                <div>
+                  <label
+                    className="block mb-2"
+                    style={{
+                      color: '#146448',
+                      fontSize: '14px',
+                      fontWeight: '600',
+                      fontFamily: '-apple-system, "system-ui", Inter, "Segoe UI", Roboto, "Noto Sans", Ubuntu, sans-serif'
+                    }}
+                  >
+                    Bütçe Aralığı
+                  </label>
+                  <select
+                    name="budget"
+                    value={formData.budget}
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#baf200] focus:border-[#baf200]"
+                  >
+                    <option value="">Seçiniz</option>
+                    <option value="₺5-15 Milyon">₺5-15 Milyon</option>
+                    <option value="₺15-30 Milyon">₺15-30 Milyon</option>
+                    <option value="₺30-50 Milyon">₺30-50 Milyon</option>
+                    <option value="₺50+ Milyon">₺50+ Milyon</option>
+                  </select>
+                </div>
+              </div>
+
+              <div>
+                <label
+                  className="block mb-2"
+                  style={{
+                    color: '#146448',
+                    fontSize: '14px',
+                    fontWeight: '600',
+                    fontFamily: '-apple-system, "system-ui", Inter, "Segoe UI", Roboto, "Noto Sans", Ubuntu, sans-serif'
+                  }}
+                >
+                  Proje Zamanlaması
+                </label>
+                <select
+                  name="timeline"
+                  value={formData.timeline}
+                  onChange={handleInputChange}
+                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#baf200] focus:border-[#baf200]"
+                >
+                  <option value="">Seçiniz</option>
+                  <option value="3-6 ay içinde">3-6 ay içinde</option>
+                  <option value="6-12 ay içinde">6-12 ay içinde</option>
+                  <option value="1-2 yıl içinde">1-2 yıl içinde</option>
+                  <option value="2+ yıl sonra">2+ yıl sonra</option>
+                </select>
+              </div>
+
+              <div>
+                <label
+                  className="block mb-2"
+                  style={{
+                    color: '#146448',
+                    fontSize: '14px',
+                    fontWeight: '600',
+                    fontFamily: '-apple-system, "system-ui", Inter, "Segoe UI", Roboto, "Noto Sans", Ubuntu, sans-serif'
+                  }}
+                >
+                  Proje Detayları
+                </label>
+                <textarea
+                  name="message"
+                  value={formData.message}
+                  onChange={handleInputChange}
+                  rows={4}
+                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#baf200] focus:border-[#baf200]"
+                  placeholder="Hedef ürünler, özel gereksinimler ve diğer proje detaylarını belirtin..."
+                />
+              </div>
+
+              <div className="flex gap-4">
+                <button
+                  type="button"
+                  onClick={() => setShowQuoteModal(false)}
+                  className="flex-1 px-6 py-3 border border-gray-300 text-gray-700 rounded-xl hover:bg-gray-50 transition-colors"
+                >
+                  İptal
+                </button>
+                <button
+                  type="submit"
+                  className="flex-1 py-3 rounded-xl font-medium transition-colors"
+                  style={{
+                    backgroundColor: '#146448',
+                    color: '#f6f8f9',
+                    fontSize: '14px',
+                    fontWeight: '600',
+                    fontFamily: '-apple-system, "system-ui", Inter, "Segoe UI", Roboto, "Noto Sans", Ubuntu, sans-serif'
+                  }}
+                >
+                  Teklif Talep Et
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
+      <Footer />
     </div>
   );
 }

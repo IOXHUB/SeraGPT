@@ -83,12 +83,20 @@ export default function AuthPage() {
         return;
       }
 
-      const result = await authService.testAuthConnection();
+      // Add timeout for connection test
+      const timeoutPromise = new Promise((_, reject) =>
+        setTimeout(() => reject(new Error('Connection timeout after 5 seconds')), 5000)
+      );
+
+      const testPromise = authService.testAuthConnection();
+
+      const result = await Promise.race([testPromise, timeoutPromise]) as { success: boolean; message: string };
+
       setConnectionTest({ tested: true, success: result.success });
       if (!result.success) {
         console.warn('Auth connection test failed:', result.message);
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error('Connection test error:', error);
 
       // In development environments, don't show connection errors
@@ -99,7 +107,12 @@ export default function AuthPage() {
         window.location.hostname.includes('localhost')
       );
 
-      setConnectionTest({ tested: true, success: isDev });
+      // If it's a timeout or network error, show connection problem
+      if (error.message?.includes('timeout') || error.message?.includes('fetch')) {
+        setConnectionTest({ tested: true, success: false });
+      } else {
+        setConnectionTest({ tested: true, success: isDev });
+      }
     }
   };
 
@@ -334,7 +347,7 @@ export default function AuthPage() {
         className="max-w-md w-full"
       >
         {/* Logo and Header */}
-        <div className="text-center mb-8">
+        <div className="text-center mb-8 flex flex-col">
           <motion.div 
             initial={{ scale: 0.9 }}
             animate={{ scale: 1 }}
@@ -348,19 +361,19 @@ export default function AuthPage() {
             />
           </motion.div>
           
-          <h2 className="text-3xl font-bold text-gray-900 mb-2">
+          <h2 className="text-3xl font-bold text-gray-900 mx-auto mb-2">
             {isLogin ? 'Hoş Geldiniz' : 'Hesap Oluşturun'}
           </h2>
-          <p className="text-gray-600">
-            {isLogin 
-              ? 'SeraGPT hesabınıza giriş yapın' 
+          <p className="text-gray-600" style={{ margin: '0 auto' }}>
+            {isLogin
+              ? 'SeraGPT hesabınıza giriş yapın'
               : 'SeraGPT ile tarımsal analizlerinize başlayın'
             }
           </p>
 
           {/* Connection Status Indicator */}
           {connectionTest.tested && (
-            <div className={`mt-2 text-sm flex items-center justify-center ${
+            <div className={`mx-auto mt-2 text-sm flex items-center justify-center ${
               connectionTest.success ? 'text-green-600' : 'text-red-600'
             }`}>
               <div className={`w-2 h-2 rounded-full mr-2 ${
@@ -518,7 +531,8 @@ export default function AuthPage() {
             <button
               type="submit"
               disabled={loading || authLoading}
-              className="w-full flex justify-center py-4 px-4 border border-transparent rounded-lg text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-75 disabled:cursor-not-allowed transition-colors"
+              className="w-full flex justify-center py-4 px-4 border border-transparent rounded-lg text-sm font-medium disabled:opacity-75 disabled:cursor-not-allowed transition-colors"
+              style={{ backgroundColor: 'rgba(20, 100, 72, 1)', color: 'rgba(186, 242, 0, 1)' }}
             >
               {loading || authLoading ? (
                 <div className="flex items-center">
@@ -544,7 +558,8 @@ export default function AuthPage() {
                 Henüz hesabınız yok mu?{' '}
                 <button
                   onClick={() => switchMode(false)}
-                  className="font-medium text-blue-600 hover:text-blue-500 transition-colors"
+                  className="font-medium transition-colors"
+                  style={{ color: 'rgba(37, 99, 235, 1)' }}
                 >
                   Ücretsiz kayıt olun
                 </button>

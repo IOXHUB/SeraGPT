@@ -6,16 +6,36 @@ import { MOCK_USERS, DevMockSystem, MockUser } from '@/lib/utils/dev-mock-system
 export default function DevToolsWidget() {
   const [isOpen, setIsOpen] = useState(false);
   const [currentUser, setCurrentUser] = useState<MockUser | null>(null);
+  const [isClient, setIsClient] = useState(false);
+  const [showNewTrainingModal, setShowNewTrainingModal] = useState(false);
+  const [isCreatingTraining, setIsCreatingTraining] = useState(false);
+  const [newTrainingForm, setNewTrainingForm] = useState({
+    name: '',
+    type: 'fine-tuning',
+    datasetId: '',
+    epochs: 5,
+    learningRate: 0.001,
+    batchSize: 32
+  });
 
-  // Force show for development (including fly.dev preview)
-  const isDev = process.env.NODE_ENV === 'development' ||
-                typeof window !== 'undefined' && window.location.hostname.includes('fly.dev');
-
-  if (!isDev) {
-    return null;
-  }
+  // ALL HOOKS MUST BE CALLED BEFORE ANY EARLY RETURNS
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   useEffect(() => {
+    // Only run if client and dev - with safety checks
+    if (!isClient || typeof window === 'undefined') {
+      return;
+    }
+
+    const isDev = (process.env.NODE_ENV === 'development') ||
+                  (window?.location?.hostname?.includes('fly.dev'));
+
+    if (!isDev) {
+      return;
+    }
+
     // Get current user on mount
     setCurrentUser(DevMockSystem.getCurrentUser());
 
@@ -29,7 +49,19 @@ export default function DevToolsWidget() {
     return () => {
       window.removeEventListener('dev-user-changed', handleUserChange as EventListener);
     };
-  }, []);
+  }, [isClient]);
+
+  // Force show for development (including fly.dev preview) - with safety checks
+  if (!isClient || typeof window === 'undefined') {
+    return null;
+  }
+
+  const isDev = (process.env.NODE_ENV === 'development') ||
+                (window?.location?.hostname?.includes('fly.dev'));
+
+  if (!isDev) {
+    return null;
+  }
 
   const handleUserSwitch = (userType: keyof typeof MOCK_USERS) => {
     DevMockSystem.setUser(userType);
@@ -40,6 +72,51 @@ export default function DevToolsWidget() {
   const handleLogout = () => {
     DevMockSystem.clearUser();
     window.location.reload();
+  };
+
+  const handleCreateTraining = async () => {
+    if (!newTrainingForm.name || !newTrainingForm.datasetId) {
+      alert('Lütfen eğitim adı ve veri seti seçin');
+      return;
+    }
+
+    setIsCreatingTraining(true);
+    try {
+      const response = await fetch('/api/admin/ai-training', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newTrainingForm),
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        setShowNewTrainingModal(false);
+        // Reset form
+        setNewTrainingForm({
+          name: '',
+          type: 'fine-tuning',
+          datasetId: '',
+          epochs: 5,
+          learningRate: 0.001,
+          batchSize: 32
+        });
+        alert('✅ Yeni eğitim başarıyla başlatıldı!');
+      } else {
+        alert('❌ Eğitim başlatılamadı: ' + result.error);
+      }
+    } catch (error) {
+      console.error('Error creating training:', error);
+      alert('❌ Bir hata oluştu. Lütfen tekrar deneyin.');
+    } finally {
+      setIsCreatingTraining(false);
+    }
+  };
+
+  const openNewTrainingModal = () => {
+    setShowNewTrainingModal(true);
   };
 
   return (

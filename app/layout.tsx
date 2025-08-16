@@ -1,11 +1,11 @@
 import { Metadata } from 'next'
 import './globals.css'
 import Script from 'next/script'
-import AnalyticsWrapper from '@/components/AnalyticsWrapper'
-import ProductionErrorHandler from '@/components/ProductionErrorHandler'
-import ImageOptimizationProvider from '@/components/providers/ImageOptimizationProvider'
+// import AnalyticsWrapper from '@/components/AnalyticsWrapper'
+// import ProductionErrorHandler from '@/components/ProductionErrorHandler'
+// import ImageOptimizationProvider from '@/components/providers/ImageOptimizationProvider'
 import DevToolsWidget from '@/components/dev/DevToolsWidget'
-import DevNavigation from '@/components/DevNavigation'
+// import DevNavigation from '@/components/DevNavigation'
 
 export const metadata: Metadata = {
   title: 'SeraGPT',
@@ -19,15 +19,16 @@ export default function RootLayout({
 }) {
   return (
     <html lang="tr" suppressHydrationWarning className="h-full">
-      <head>
+      <head suppressHydrationWarning>
+        <meta charSet="utf-8" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         <link rel="preconnect" href="https://cdn.builder.io" />
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
       </head>
-      <body suppressHydrationWarning className="h-full">
-        <DevNavigation />
-        <ProductionErrorHandler />
+      <body suppressHydrationWarning className="h-full" style={{ backgroundColor: 'rgba(20, 100, 72, 1)' }}>
+        {/* <DevNavigation /> */}
+        {/* <ProductionErrorHandler /> */}
         <div className="h-full">
           {children}
         </div>

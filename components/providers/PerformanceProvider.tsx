@@ -49,10 +49,11 @@ export function PerformanceProvider({ children }: PerformanceProviderProps) {
 
 export function usePerformance() {
   const context = useContext(PerformanceContext);
-  
+
+  // Return safe fallback instead of throwing error
   if (!context) {
-    throw new Error('usePerformance must be used within a PerformanceProvider');
+    return { isInitialized: false };
   }
-  
+
   return context;
 }

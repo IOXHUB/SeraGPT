@@ -1,738 +1,743 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import DashboardLayoutWithSidebar from '@/components/dashboard/DashboardLayoutWithSidebar';
+import { useAuth } from '@/lib/hooks/useAuth';
+import Link from 'next/link';
 
-// Force dynamic rendering to prevent SSR
 export const dynamic = 'force-dynamic';
 
 interface User {
   id: string;
-  name: string;
   email: string;
-  role: 'user' | 'admin';
-  status: 'active' | 'inactive' | 'pending';
-  tokensRemaining: number;
-  tokensPurchased: number;
-  analysesCount: number;
-  joinDate: string;
-  lastActivity: string;
+  fullName: string;
+  role: 'user' | 'premium' | 'admin';
+  status: 'active' | 'suspended' | 'pending' | 'inactive';
+  createdAt: string;
+  lastLoginAt?: string;
+  totalAnalyses: number;
+  subscription: {
+    plan: 'free' | 'basic' | 'premium' | 'enterprise';
+    status: 'active' | 'expired' | 'cancelled';
+    expiresAt?: string;
+  };
+  usage: {
+    analysesThisMonth: number;
+    tokensUsed: number;
+    storageUsed: number;
+  };
+  preferences: {
+    language: string;
+    timezone: string;
+    notifications: boolean;
+  };
 }
 
-interface UserTokenAssignment {
-  userId: string;
-  amount: number;
-  reason: string;
-}
+export default function UsersManagementPage() {
+  const { user, isAdmin, loading } = useAuth();
+  const [users, setUsers] = useState<User[]>([]);
+  const [selectedUser, setSelectedUser] = useState<User | null>(null);
+  const [filterRole, setFilterRole] = useState<string>('all');
+  const [filterStatus, setFilterStatus] = useState<string>('all');
+  const [searchTerm, setSearchTerm] = useState('');
+  const [showCreateModal, setShowCreateModal] = useState(false);
+  const [dataLoading, setDataLoading] = useState(true);
 
-interface NewUser {
-  name: string;
-  email: string;
-  role: 'user' | 'admin';
-  initialTokens: number;
-}
+  const roles = [
+    { id: 'all', title: 'Tüm Roller' },
+    { id: 'user', title: 'Kullanıcı' },
+    { id: 'premium', title: 'Premium' },
+    { id: 'admin', title: 'Admin' }
+  ];
 
-export default function AdminUsersPage() {
-  const [filterStatus, setFilterStatus] = useState('all');
-  const [filterRole, setFilterRole] = useState('all');
-  const [searchQuery, setSearchQuery] = useState('');
-  const [selectedUsers, setSelectedUsers] = useState<string[]>([]);
-  const [showTokenModal, setShowTokenModal] = useState(false);
-  const [showNewUserModal, setShowNewUserModal] = useState(false);
-  const [showNotificationModal, setShowNotificationModal] = useState(false);
-  const [selectedUserForDetail, setSelectedUserForDetail] = useState<User | null>(null);
-  const [tokenAssignment, setTokenAssignment] = useState<UserTokenAssignment>({
-    userId: '',
-    amount: 0,
-    reason: ''
-  });
-  const [newUser, setNewUser] = useState<NewUser>({
-    name: '',
-    email: '',
-    role: 'user',
-    initialTokens: 5
-  });
-  const [notification, setNotification] = useState({
-    title: '',
-    message: '',
-    type: 'info' as 'info' | 'warning' | 'success' | 'error'
-  });
+  const statuses = [
+    { id: 'all', title: 'Tüm Durumlar' },
+    { id: 'active', title: 'Aktif' },
+    { id: 'suspended', title: 'Askıya Alınmış' },
+    { id: 'pending', title: 'Beklemede' },
+    { id: 'inactive', title: 'Pasif' }
+  ];
 
-  // Mock users data - this would come from API in real implementation
-  const [users, setUsers] = useState<User[]>([
-    {
-      id: '1',
-      name: 'Mehmet Yılmaz',
-      email: 'mehmet@example.com',
-      role: 'user',
-      status: 'active',
-      tokensRemaining: 23,
-      tokensPurchased: 100,
-      analysesCount: 15,
-      joinDate: '2024-01-10',
-      lastActivity: '2 saat önce'
-    },
-    {
-      id: '2',
-      name: 'Ayşe Kaya',
-      email: 'ayse@example.com',
-      role: 'user',
-      status: 'active',
-      tokensRemaining: 5,
-      tokensPurchased: 25,
-      analysesCount: 8,
-      joinDate: '2024-01-15',
-      lastActivity: '1 gün önce'
-    },
-    {
-      id: '3',
-      name: 'Ali Demir',
-      email: 'ali@example.com',
-      role: 'admin',
-      status: 'active',
-      tokensRemaining: 500,
-      tokensPurchased: 500,
-      analysesCount: 45,
-      joinDate: '2023-12-01',
-      lastActivity: '30 dk önce'
-    },
-    {
-      id: '4',
-      name: 'Fatma Şen',
-      email: 'fatma@example.com',
-      role: 'user',
-      status: 'pending',
-      tokensRemaining: 5,
-      tokensPurchased: 0,
-      analysesCount: 0,
-      joinDate: '2024-01-18',
-      lastActivity: 'Henüz giriş yapmadı'
-    },
-    {
-      id: '5',
-      name: 'Hasan Öz',
-      email: 'hasan@example.com',
-      role: 'user',
-      status: 'inactive',
-      tokensRemaining: 0,
-      tokensPurchased: 50,
-      analysesCount: 12,
-      joinDate: '2023-11-20',
-      lastActivity: '2 hafta önce'
+  useEffect(() => {
+    if (user && !loading) {
+      loadUsers();
     }
-  ]);
+  }, [user, loading]);
 
-  const filteredUsers = users.filter(user => {
-    const matchesStatus = filterStatus === 'all' || user.status === filterStatus;
-    const matchesRole = filterRole === 'all' || user.role === filterRole;
-    const matchesSearch = user.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         user.email.toLowerCase().includes(searchQuery.toLowerCase());
-    
-    return matchesStatus && matchesRole && matchesSearch;
-  });
+  const loadUsers = async () => {
+    if (!isAdmin()) {
+      window.location.href = '/admin';
+      return;
+    }
 
-  const handleSelectUser = (userId: string) => {
-    setSelectedUsers(prev => 
-      prev.includes(userId) 
-        ? prev.filter(id => id !== userId)
-        : [...prev, userId]
-    );
-  };
-
-  const handleSelectAll = () => {
-    if (selectedUsers.length === filteredUsers.length) {
-      setSelectedUsers([]);
-    } else {
-      setSelectedUsers(filteredUsers.map(user => user.id));
+    try {
+      setDataLoading(true);
+      
+      // Mock users data
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      const mockUsers: User[] = [
+        {
+          id: 'user-001',
+          email: 'ahmet.yilmaz@example.com',
+          fullName: 'Ahmet Yılmaz',
+          role: 'premium',
+          status: 'active',
+          createdAt: '2024-01-15T10:30:00Z',
+          lastLoginAt: '2024-03-15T14:20:00Z',
+          totalAnalyses: 45,
+          subscription: {
+            plan: 'premium',
+            status: 'active',
+            expiresAt: '2024-12-15T00:00:00Z'
+          },
+          usage: {
+            analysesThisMonth: 12,
+            tokensUsed: 85000,
+            storageUsed: 245
+          },
+          preferences: {
+            language: 'tr',
+            timezone: 'Europe/Istanbul',
+            notifications: true
+          }
+        },
+        {
+          id: 'user-002',
+          email: 'fatma.demir@example.com',
+          fullName: 'Fatma Demir',
+          role: 'user',
+          status: 'active',
+          createdAt: '2024-02-20T09:15:00Z',
+          lastLoginAt: '2024-03-14T16:45:00Z',
+          totalAnalyses: 8,
+          subscription: {
+            plan: 'free',
+            status: 'active'
+          },
+          usage: {
+            analysesThisMonth: 3,
+            tokensUsed: 12000,
+            storageUsed: 56
+          },
+          preferences: {
+            language: 'tr',
+            timezone: 'Europe/Istanbul',
+            notifications: false
+          }
+        },
+        {
+          id: 'user-003',
+          email: 'mehmet.kaya@enterprise.com',
+          fullName: 'Mehmet Kaya',
+          role: 'premium',
+          status: 'active',
+          createdAt: '2023-11-10T14:20:00Z',
+          lastLoginAt: '2024-03-15T11:30:00Z',
+          totalAnalyses: 156,
+          subscription: {
+            plan: 'enterprise',
+            status: 'active',
+            expiresAt: '2024-11-10T00:00:00Z'
+          },
+          usage: {
+            analysesThisMonth: 28,
+            tokensUsed: 245000,
+            storageUsed: 1200
+          },
+          preferences: {
+            language: 'tr',
+            timezone: 'Europe/Istanbul',
+            notifications: true
+          }
+        },
+        {
+          id: 'user-004',
+          email: 'ayse.ozkan@example.com',
+          fullName: 'Ayşe Özkan',
+          role: 'user',
+          status: 'suspended',
+          createdAt: '2024-03-01T12:00:00Z',
+          lastLoginAt: '2024-03-10T10:15:00Z',
+          totalAnalyses: 2,
+          subscription: {
+            plan: 'basic',
+            status: 'cancelled'
+          },
+          usage: {
+            analysesThisMonth: 0,
+            tokensUsed: 3500,
+            storageUsed: 12
+          },
+          preferences: {
+            language: 'tr',
+            timezone: 'Europe/Istanbul',
+            notifications: true
+          }
+        },
+        {
+          id: 'user-005',
+          email: 'admin@seragpt.com',
+          fullName: 'System Admin',
+          role: 'admin',
+          status: 'active',
+          createdAt: '2023-01-01T00:00:00Z',
+          lastLoginAt: '2024-03-15T16:00:00Z',
+          totalAnalyses: 0,
+          subscription: {
+            plan: 'enterprise',
+            status: 'active'
+          },
+          usage: {
+            analysesThisMonth: 0,
+            tokensUsed: 0,
+            storageUsed: 0
+          },
+          preferences: {
+            language: 'tr',
+            timezone: 'Europe/Istanbul',
+            notifications: true
+          }
+        }
+      ];
+      
+      setUsers(mockUsers);
+      
+    } catch (error) {
+      console.error('Failed to load users:', error);
+    } finally {
+      setDataLoading(false);
     }
   };
 
-  const handleAssignTokens = () => {
-    if (selectedUsers.length > 0) {
-      setTokenAssignment({
-        userId: selectedUsers[0],
-        amount: 0,
-        reason: ''
-      });
-      setShowTokenModal(true);
+  const getRoleColor = (role: string) => {
+    switch (role) {
+      case 'admin': return '#DC2626';
+      case 'premium': return '#7C3AED';
+      case 'user': return '#059669';
+      default: return '#6B7280';
     }
   };
 
-  const handleTokenAssignmentSubmit = () => {
-    // Simulate API call
-    console.log('Assigning tokens:', tokenAssignment);
-    
-    // Update users with new tokens
-    setUsers(prev => prev.map(user => 
-      selectedUsers.includes(user.id) 
-        ? { ...user, tokensRemaining: user.tokensRemaining + tokenAssignment.amount }
-        : user
-    ));
-    
-    setShowTokenModal(false);
-    setSelectedUsers([]);
-    setTokenAssignment({ userId: '', amount: 0, reason: '' });
-  };
-
-  const handleCreateUser = () => {
-    // Simulate API call
-    const userId = (users.length + 1).toString();
-    const newUserData: User = {
-      id: userId,
-      name: newUser.name,
-      email: newUser.email,
-      role: newUser.role,
-      status: 'active',
-      tokensRemaining: newUser.initialTokens,
-      tokensPurchased: newUser.initialTokens,
-      analysesCount: 0,
-      joinDate: new Date().toISOString().split('T')[0],
-      lastActivity: 'Henüz giriş yapmadı'
-    };
-    
-    setUsers(prev => [...prev, newUserData]);
-    setShowNewUserModal(false);
-    setNewUser({ name: '', email: '', role: 'user', initialTokens: 5 });
-  };
-
-  const handleSendNotification = () => {
-    // Simulate API call
-    console.log('Sending notification to users:', selectedUsers, notification);
-    setShowNotificationModal(false);
-    setSelectedUsers([]);
-    setNotification({ title: '', message: '', type: 'info' });
-  };
-
-  const getStatusColor = (status: User['status']) => {
+  const getStatusColor = (status: string) => {
     switch (status) {
-      case 'active': return 'bg-green-100 text-green-800';
-      case 'inactive': return 'bg-red-100 text-red-800';
-      case 'pending': return 'bg-yellow-100 text-yellow-800';
-      default: return 'bg-gray-100 text-gray-800';
+      case 'active': return '#10B981';
+      case 'suspended': return '#EF4444';
+      case 'pending': return '#F59E0B';
+      case 'inactive': return '#6B7280';
+      default: return '#6B7280';
     }
   };
 
-  const getStatusText = (status: User['status']) => {
+  const getStatusText = (status: string) => {
     switch (status) {
       case 'active': return 'Aktif';
-      case 'inactive': return 'Pasif';
+      case 'suspended': return 'Askıya Alınmış';
       case 'pending': return 'Beklemede';
+      case 'inactive': return 'Pasif';
       default: return 'Bilinmiyor';
     }
   };
 
-  const getRoleColor = (role: User['role']) => {
-    return role === 'admin' ? 'bg-purple-100 text-purple-800' : 'bg-blue-100 text-blue-800';
+  const getPlanText = (plan: string) => {
+    switch (plan) {
+      case 'free': return 'Ücretsiz';
+      case 'basic': return 'Temel';
+      case 'premium': return 'Premium';
+      case 'enterprise': return 'Kurumsal';
+      default: return plan;
+    }
   };
 
-  const getRoleText = (role: User['role']) => {
-    return role === 'admin' ? 'Admin' : 'Kullanıcı';
+  const changeUserStatus = (userId: string, newStatus: string) => {
+    setUsers(prev => prev.map(u => 
+      u.id === userId ? { ...u, status: newStatus as any } : u
+    ));
   };
+
+  const changeUserRole = (userId: string, newRole: string) => {
+    setUsers(prev => prev.map(u => 
+      u.id === userId ? { ...u, role: newRole as any } : u
+    ));
+  };
+
+  const filteredUsers = users.filter(user => {
+    const matchesRole = filterRole === 'all' || user.role === filterRole;
+    const matchesStatus = filterStatus === 'all' || user.status === filterStatus;
+    const matchesSearch = user.fullName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         user.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         user.id.toLowerCase().includes(searchTerm.toLowerCase());
+    return matchesRole && matchesStatus && matchesSearch;
+  });
+
+  if (loading || dataLoading) {
+    return (
+      <div className="min-h-screen" style={{ backgroundColor: '#146448' }}>
+        <div className="p-8">
+          <div className="max-w-7xl mx-auto">
+            <div className="animate-pulse space-y-6">
+              <div className="h-8 bg-white/10 rounded w-1/4"></div>
+              <div className="space-y-4">
+                {[1, 2, 3, 4].map(i => (
+                  <div key={i} className="h-24 bg-white/10 rounded"></div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
-    <DashboardLayoutWithSidebar
-      title="Kullanıcı Yönetimi"
-      subtitle="Sistem kullanıcılarını görüntüleyin ve yönetin"
-    >
-      <div className="space-y-6">
-        {/* Action Buttons */}
-        <div className="flex flex-wrap gap-3 justify-between items-center">
-          <div className="flex flex-wrap gap-3">
-            <button 
-              onClick={() => setShowNewUserModal(true)}
-              className="bg-[#146448] hover:bg-[#146448]/90 text-white px-4 py-2 rounded-lg font-medium transition-colors"
+    <div className="min-h-screen" style={{ backgroundColor: '#146448' }}>
+      <header className="border-b border-white/10 p-6">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-4">
+              <Link 
+                href="/admin" 
+                className="text-2xl hover:opacity-70 transition-opacity"
+                style={{ color: '#f6f8f9' }}
+              >
+                ←
+              </Link>
+              <div>
+                <h1 className="text-2xl font-bold" style={{ color: '#f6f8f9' }}>Kullanıcı Yönetimi</h1>
+                <p style={{ color: '#f6f8f9', opacity: '0.8' }}>Kullanıcı hesapları ve yetkilendirme</p>
+              </div>
+            </div>
+            <div className="flex items-center space-x-3">
+              <button
+                onClick={() => setShowCreateModal(true)}
+                className="px-4 py-2 rounded-lg font-medium transition-all hover:opacity-90"
+                style={{ backgroundColor: '#baf200', color: '#1e3237' }}
+              >
+                ➕ Yeni Kullanıcı
+              </button>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <div className="max-w-7xl mx-auto p-6">
+        {/* Stats */}
+        <div className="mb-8 grid grid-cols-1 md:grid-cols-4 gap-6">
+          <div className="rounded-lg p-6" style={{ backgroundColor: '#f6f8f9' }}>
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm opacity-70" style={{ color: '#1e3237' }}>Toplam Kullanıcı</p>
+                <p className="text-2xl font-bold" style={{ color: '#1e3237' }}>{users.length}</p>
+              </div>
+              <div className="text-2xl">👥</div>
+            </div>
+          </div>
+
+          <div className="rounded-lg p-6" style={{ backgroundColor: '#f6f8f9' }}>
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm opacity-70" style={{ color: '#1e3237' }}>Aktif Kullanıcı</p>
+                <p className="text-2xl font-bold" style={{ color: '#10B981' }}>
+                  {users.filter(u => u.status === 'active').length}
+                </p>
+              </div>
+              <div className="text-2xl">✅</div>
+            </div>
+          </div>
+
+          <div className="rounded-lg p-6" style={{ backgroundColor: '#f6f8f9' }}>
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm opacity-70" style={{ color: '#1e3237' }}>Premium Kullanıcı</p>
+                <p className="text-2xl font-bold" style={{ color: '#7C3AED' }}>
+                  {users.filter(u => u.role === 'premium').length}
+                </p>
+              </div>
+              <div className="text-2xl">⭐</div>
+            </div>
+          </div>
+
+          <div className="rounded-lg p-6" style={{ backgroundColor: '#f6f8f9' }}>
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm opacity-70" style={{ color: '#1e3237' }}>Bu Ay Yeni</p>
+                <p className="text-2xl font-bold" style={{ color: '#1e3237' }}>
+                  {users.filter(u => new Date(u.createdAt).getMonth() === new Date().getMonth()).length}
+                </p>
+              </div>
+              <div className="text-2xl">🆕</div>
+            </div>
+          </div>
+        </div>
+
+        {/* Filters */}
+        <div className="mb-8 space-y-4">
+          <div className="flex flex-wrap gap-4">
+            <select 
+              value={filterRole}
+              onChange={(e) => setFilterRole(e.target.value)}
+              className="px-4 py-2 rounded-lg border"
+              style={{ borderColor: '#146448' }}
             >
-              Yeni Kullanıcı Ekle
-            </button>
-            {selectedUsers.length > 0 && (
-              <>
-                <button 
-                  onClick={handleAssignTokens}
-                  className="bg-[#baf200] hover:bg-[#baf200]/90 text-[#1e3237] px-4 py-2 rounded-lg font-medium transition-colors"
+              {roles.map(role => (
+                <option key={role.id} value={role.id}>{role.title}</option>
+              ))}
+            </select>
+
+            <select 
+              value={filterStatus}
+              onChange={(e) => setFilterStatus(e.target.value)}
+              className="px-4 py-2 rounded-lg border"
+              style={{ borderColor: '#146448' }}
+            >
+              {statuses.map(status => (
+                <option key={status.id} value={status.id}>{status.title}</option>
+              ))}
+            </select>
+
+            <input
+              type="text"
+              placeholder="Ad, e-posta veya ID ara..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="px-4 py-2 border rounded-lg flex-1 max-w-md"
+              style={{ borderColor: '#146448' }}
+            />
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          {/* Users List */}
+          <div className="lg:col-span-2">
+            <h2 className="text-xl font-semibold mb-6" style={{ color: '#f6f8f9' }}>
+              Kullanıcılar ({filteredUsers.length})
+            </h2>
+            <div className="space-y-4">
+              {filteredUsers.map((user) => (
+                <div 
+                  key={user.id} 
+                  className={`rounded-lg p-6 cursor-pointer transition-all ${
+                    selectedUser?.id === user.id ? 'ring-2 ring-white/20' : ''
+                  }`}
+                  style={{ backgroundColor: '#f6f8f9' }}
+                  onClick={() => setSelectedUser(user)}
                 >
-                  Token Ata ({selectedUsers.length})
-                </button>
-                <button 
-                  onClick={() => setShowNotificationModal(true)}
-                  className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-colors"
-                >
-                  Bildirim Gönder ({selectedUsers.length})
-                </button>
-                <button className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg font-medium transition-colors">
-                  Sil ({selectedUsers.length})
-                </button>
-              </>
+                  <div className="flex items-start justify-between">
+                    <div className="flex-1">
+                      <div className="flex items-center space-x-3 mb-2">
+                        <div className="w-10 h-10 rounded-full bg-gradient-to-r from-blue-400 to-purple-500 flex items-center justify-center text-white font-semibold">
+                          {user.fullName.charAt(0).toUpperCase()}
+                        </div>
+                        <div>
+                          <h3 className="font-semibold" style={{ color: '#1e3237' }}>
+                            {user.fullName}
+                          </h3>
+                          <p className="text-sm opacity-70" style={{ color: '#1e3237' }}>
+                            {user.email}
+                          </p>
+                        </div>
+                        <span 
+                          className="px-2 py-1 rounded text-xs font-medium text-white"
+                          style={{ backgroundColor: getRoleColor(user.role) }}
+                        >
+                          {user.role.toUpperCase()}
+                        </span>
+                        <span 
+                          className="px-2 py-1 rounded text-xs font-medium text-white"
+                          style={{ backgroundColor: getStatusColor(user.status) }}
+                        >
+                          {getStatusText(user.status)}
+                        </span>
+                      </div>
+
+                      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
+                        <div>
+                          <p className="opacity-70" style={{ color: '#1e3237' }}>Kayıt Tarihi</p>
+                          <p className="font-medium" style={{ color: '#146448' }}>
+                            {new Date(user.createdAt).toLocaleDateString('tr-TR')}
+                          </p>
+                        </div>
+                        <div>
+                          <p className="opacity-70" style={{ color: '#1e3237' }}>Son Giriş</p>
+                          <p className="font-medium" style={{ color: '#146448' }}>
+                            {user.lastLoginAt 
+                              ? new Date(user.lastLoginAt).toLocaleDateString('tr-TR')
+                              : 'Hiç giriş yapmadı'}
+                          </p>
+                        </div>
+                        <div>
+                          <p className="opacity-70" style={{ color: '#1e3237' }}>Analiz Sayısı</p>
+                          <p className="font-medium" style={{ color: '#146448' }}>{user.totalAnalyses}</p>
+                        </div>
+                        <div>
+                          <p className="opacity-70" style={{ color: '#1e3237' }}>Plan</p>
+                          <p className="font-medium" style={{ color: '#146448' }}>
+                            {getPlanText(user.subscription.plan)}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="ml-4 flex space-x-2">
+                      {user.status === 'active' ? (
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            changeUserStatus(user.id, 'suspended');
+                          }}
+                          className="px-3 py-2 rounded-lg font-medium transition-all hover:opacity-90"
+                          style={{ backgroundColor: '#EF4444', color: '#f6f8f9' }}
+                        >
+                          🚫 Askıya Al
+                        </button>
+                      ) : (
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            changeUserStatus(user.id, 'active');
+                          }}
+                          className="px-3 py-2 rounded-lg font-medium transition-all hover:opacity-90"
+                          style={{ backgroundColor: '#10B981', color: '#f6f8f9' }}
+                        >
+                          ✅ Aktifleştir
+                        </button>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              ))}
+
+              {filteredUsers.length === 0 && (
+                <div className="text-center py-12">
+                  <div className="text-6xl mb-4">👤</div>
+                  <p className="text-xl" style={{ color: '#f6f8f9' }}>Hiç kullanıcı bulunamadı</p>
+                  <p className="opacity-70" style={{ color: '#f6f8f9' }}>
+                    Arama kriterlerinizi değiştirin
+                  </p>
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* User Detail Panel */}
+          <div>
+            <h2 className="text-xl font-semibold mb-6" style={{ color: '#f6f8f9' }}>Kullanıcı Detayı</h2>
+            {selectedUser ? (
+              <div className="rounded-lg p-6 space-y-6" style={{ backgroundColor: '#f6f8f9' }}>
+                <div className="flex items-center space-x-4">
+                  <div className="w-16 h-16 rounded-full bg-gradient-to-r from-blue-400 to-purple-500 flex items-center justify-center text-white text-xl font-semibold">
+                    {selectedUser.fullName.charAt(0).toUpperCase()}
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold" style={{ color: '#1e3237' }}>
+                      {selectedUser.fullName}
+                    </h3>
+                    <p className="text-sm opacity-70" style={{ color: '#1e3237' }}>
+                      {selectedUser.email}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="space-y-4">
+                  <div>
+                    <label className="block text-sm font-medium mb-2" style={{ color: '#1e3237' }}>
+                      Rol
+                    </label>
+                    <select 
+                      value={selectedUser.role}
+                      onChange={(e) => changeUserRole(selectedUser.id, e.target.value)}
+                      className="w-full p-2 border rounded"
+                      style={{ borderColor: '#146448' }}
+                    >
+                      <option value="user">Kullanıcı</option>
+                      <option value="premium">Premium</option>
+                      <option value="admin">Admin</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium mb-2" style={{ color: '#1e3237' }}>
+                      Durum
+                    </label>
+                    <select 
+                      value={selectedUser.status}
+                      onChange={(e) => changeUserStatus(selectedUser.id, e.target.value)}
+                      className="w-full p-2 border rounded"
+                      style={{ borderColor: '#146448' }}
+                    >
+                      <option value="active">Aktif</option>
+                      <option value="suspended">Askıya Alınmış</option>
+                      <option value="pending">Beklemede</option>
+                      <option value="inactive">Pasif</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div>
+                  <h4 className="font-semibold mb-3" style={{ color: '#1e3237' }}>Kullanım İstatistikleri</h4>
+                  <div className="space-y-2 text-sm">
+                    <div className="flex justify-between">
+                      <span style={{ color: '#1e3237' }}>Bu Ay Analiz:</span>
+                      <span className="font-medium" style={{ color: '#146448' }}>
+                        {selectedUser.usage.analysesThisMonth}
+                      </span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span style={{ color: '#1e3237' }}>Token Kullanımı:</span>
+                      <span className="font-medium" style={{ color: '#146448' }}>
+                        {selectedUser.usage.tokensUsed.toLocaleString()}
+                      </span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span style={{ color: '#1e3237' }}>Depolama:</span>
+                      <span className="font-medium" style={{ color: '#146448' }}>
+                        {selectedUser.usage.storageUsed} MB
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                <div>
+                  <h4 className="font-semibold mb-3" style={{ color: '#1e3237' }}>Abonelik Bilgileri</h4>
+                  <div className="space-y-2 text-sm">
+                    <div className="flex justify-between">
+                      <span style={{ color: '#1e3237' }}>Plan:</span>
+                      <span className="font-medium" style={{ color: '#146448' }}>
+                        {getPlanText(selectedUser.subscription.plan)}
+                      </span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span style={{ color: '#1e3237' }}>Durum:</span>
+                      <span className="font-medium" style={{ color: '#146448' }}>
+                        {selectedUser.subscription.status === 'active' ? 'Aktif' : 
+                         selectedUser.subscription.status === 'expired' ? 'Süresi Dolmuş' : 'İptal Edildi'}
+                      </span>
+                    </div>
+                    {selectedUser.subscription.expiresAt && (
+                      <div className="flex justify-between">
+                        <span style={{ color: '#1e3237' }}>Bitiş Tarihi:</span>
+                        <span className="font-medium" style={{ color: '#146448' }}>
+                          {new Date(selectedUser.subscription.expiresAt).toLocaleDateString('tr-TR')}
+                        </span>
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+                <div className="flex space-x-2">
+                  <button
+                    className="px-4 py-2 rounded-lg font-medium transition-all hover:opacity-90"
+                    style={{ backgroundColor: '#146448', color: '#f6f8f9' }}
+                  >
+                    📧 E-posta Gönder
+                  </button>
+                  <button
+                    className="px-4 py-2 rounded-lg font-medium transition-all hover:opacity-90"
+                    style={{ backgroundColor: '#baf200', color: '#1e3237' }}
+                  >
+                    📊 Detaylı Rapor
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <div 
+                className="rounded-lg p-6 text-center"
+                style={{ backgroundColor: '#f6f8f9' }}
+              >
+                <div className="text-4xl mb-4">👤</div>
+                <p style={{ color: '#1e3237' }}>Detayları görmek için bir kullanıcı seçin</p>
+              </div>
             )}
           </div>
         </div>
-
-        {/* Stats Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="bg-white rounded-2xl p-6 shadow-sm border border-gray-200"
-          >
-            <h3 className="text-sm font-medium text-[#1e3237]/70 mb-1">Toplam Kullanıcı</h3>
-            <p className="text-2xl font-bold text-[#1e3237]">{users.length}</p>
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="bg-white rounded-2xl p-6 shadow-sm border border-gray-200"
-          >
-            <h3 className="text-sm font-medium text-[#1e3237]/70 mb-1">Aktif Kullanıcı</h3>
-            <p className="text-2xl font-bold text-green-600">{users.filter(u => u.status === 'active').length}</p>
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="bg-white rounded-2xl p-6 shadow-sm border border-gray-200"
-          >
-            <h3 className="text-sm font-medium text-[#1e3237]/70 mb-1">Bu Ay Katılan</h3>
-            <p className="text-2xl font-bold text-blue-600">{users.filter(u => 
-              new Date(u.joinDate).getMonth() === new Date().getMonth()
-            ).length}</p>
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="bg-white rounded-2xl p-6 shadow-sm border border-gray-200"
-          >
-            <h3 className="text-sm font-medium text-[#1e3237]/70 mb-1">Admin Sayısı</h3>
-            <p className="text-2xl font-bold text-purple-600">{users.filter(u => u.role === 'admin').length}</p>
-          </motion.div>
-        </div>
-
-        {/* Filters and Search */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.5 }}
-          className="bg-white rounded-2xl shadow-sm border border-gray-200 p-6"
-        >
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between space-y-4 md:space-y-0">
-            <div className="flex flex-col md:flex-row md:items-center space-y-4 md:space-y-0 md:space-x-4">
-              <div>
-                <input
-                  type="text"
-                  placeholder="Kullanıcı ara..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#146448] focus:border-transparent"
-                />
-              </div>
-              <div className="flex space-x-4">
-                <select
-                  value={filterStatus}
-                  onChange={(e) => setFilterStatus(e.target.value)}
-                  className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#146448] focus:border-transparent"
-                >
-                  <option value="all">Tüm Durumlar</option>
-                  <option value="active">Aktif</option>
-                  <option value="inactive">Pasif</option>
-                  <option value="pending">Beklemede</option>
-                </select>
-                <select
-                  value={filterRole}
-                  onChange={(e) => setFilterRole(e.target.value)}
-                  className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#146448] focus:border-transparent"
-                >
-                  <option value="all">Tüm Roller</option>
-                  <option value="user">Kullanıcı</option>
-                  <option value="admin">Admin</option>
-                </select>
-              </div>
-            </div>
-          </div>
-        </motion.div>
-
-        {/* Users Table */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.6 }}
-          className="bg-white rounded-2xl shadow-sm border border-gray-200"
-        >
-          <div className="p-6 border-b border-gray-200">
-            <h2 className="text-lg font-semibold text-[#1e3237]">Kullanıcı Listesi</h2>
-          </div>
-          <div className="overflow-x-auto">
-            <table className="w-full">
-              <thead className="bg-gray-50">
-                <tr>
-                  <th className="px-6 py-3 text-left">
-                    <input
-                      type="checkbox"
-                      checked={selectedUsers.length === filteredUsers.length}
-                      onChange={handleSelectAll}
-                      className="rounded border-gray-300 text-[#146448] focus:ring-[#146448]"
-                    />
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-[#1e3237]/70 uppercase tracking-wider">
-                    Kullanıcı
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-[#1e3237]/70 uppercase tracking-wider">
-                    Rol
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-[#1e3237]/70 uppercase tracking-wider">
-                    Durum
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-[#1e3237]/70 uppercase tracking-wider">
-                    Jetonlar
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-[#1e3237]/70 uppercase tracking-wider">
-                    Analizler
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-[#1e3237]/70 uppercase tracking-wider">
-                    Son Aktivite
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-[#1e3237]/70 uppercase tracking-wider">
-                    İşlemler
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="bg-white divide-y divide-gray-200">
-                {filteredUsers.map((user) => (
-                  <tr key={user.id} className="hover:bg-gray-50">
-                    <td className="px-6 py-4">
-                      <input
-                        type="checkbox"
-                        checked={selectedUsers.includes(user.id)}
-                        onChange={() => handleSelectUser(user.id)}
-                        className="rounded border-gray-300 text-[#146448] focus:ring-[#146448]"
-                      />
-                    </td>
-                    <td className="px-6 py-4">
-                      <div className="flex items-center">
-                        <div className="w-10 h-10 bg-gradient-to-br from-[#146448] to-[#1e3237] rounded-full flex items-center justify-center mr-3">
-                          <span className="text-white font-semibold text-sm">
-                            {user.name.charAt(0).toUpperCase()}
-                          </span>
-                        </div>
-                        <div>
-                          <div className="text-sm font-medium text-[#1e3237]">{user.name}</div>
-                          <div className="text-sm text-[#1e3237]/70">{user.email}</div>
-                        </div>
-                      </div>
-                    </td>
-                    <td className="px-6 py-4">
-                      <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getRoleColor(user.role)}`}>
-                        {getRoleText(user.role)}
-                      </span>
-                    </td>
-                    <td className="px-6 py-4">
-                      <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getStatusColor(user.status)}`}>
-                        {getStatusText(user.status)}
-                      </span>
-                    </td>
-                    <td className="px-6 py-4 text-sm text-[#1e3237]">
-                      <div>{user.tokensRemaining} / {user.tokensPurchased}</div>
-                      <div className="text-xs text-[#1e3237]/70">kalan / toplam</div>
-                    </td>
-                    <td className="px-6 py-4 text-sm text-[#1e3237]">
-                      {user.analysesCount}
-                    </td>
-                    <td className="px-6 py-4 text-sm text-[#1e3237]/70">
-                      {user.lastActivity}
-                    </td>
-                    <td className="px-6 py-4 text-sm font-medium">
-                      <div className="flex space-x-2">
-                        <button 
-                          onClick={() => setSelectedUserForDetail(user)}
-                          className="text-[#146448] hover:text-[#146448]/80"
-                        >
-                          Detay
-                        </button>
-                        <button className="text-red-600 hover:text-red-900">
-                          Sil
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </motion.div>
       </div>
 
-      {/* Token Assignment Modal */}
-      {showTokenModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg p-6 w-full max-w-md">
-            <h3 className="text-lg font-semibold text-[#1e3237] mb-4">Token Ata</h3>
-            <div className="space-y-4">
-              <div>
-                <label className="block text-sm font-medium text-[#1e3237] mb-2">
-                  Token Miktarı
-                </label>
-                <input
-                  type="number"
-                  value={tokenAssignment.amount}
-                  onChange={(e) => setTokenAssignment(prev => ({...prev, amount: parseInt(e.target.value) || 0}))}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#146448] focus:border-transparent"
-                  placeholder="Token miktarını girin"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-[#1e3237] mb-2">
-                  Açıklama
-                </label>
-                <textarea
-                  value={tokenAssignment.reason}
-                  onChange={(e) => setTokenAssignment(prev => ({...prev, reason: e.target.value}))}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#146448] focus:border-transparent"
-                  placeholder="Token atama sebebi"
-                  rows={3}
-                />
-              </div>
-            </div>
-            <div className="flex justify-end space-x-3 mt-6">
+      {/* Create User Modal */}
+      {showCreateModal && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
+          <div 
+            className="max-w-md w-full rounded-lg p-6"
+            style={{ backgroundColor: '#f6f8f9' }}
+          >
+            <div className="flex items-center justify-between mb-6">
+              <h3 className="text-xl font-semibold" style={{ color: '#1e3237' }}>
+                Yeni Kullanıcı Oluştur
+              </h3>
               <button
-                onClick={() => setShowTokenModal(false)}
-                className="px-4 py-2 text-[#1e3237] bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors"
+                onClick={() => setShowCreateModal(false)}
+                className="text-2xl hover:opacity-70"
+                style={{ color: '#1e3237' }}
               >
-                İptal
-              </button>
-              <button
-                onClick={handleTokenAssignmentSubmit}
-                className="px-4 py-2 bg-[#146448] text-white rounded-lg hover:bg-[#146448]/90 transition-colors"
-              >
-                Token Ata
+                ×
               </button>
             </div>
-          </div>
-        </div>
-      )}
 
-      {/* New User Modal */}
-      {showNewUserModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg p-6 w-full max-w-md">
-            <h3 className="text-lg font-semibold text-[#1e3237] mb-4">Yeni Kullanıcı Oluştur</h3>
             <div className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-[#1e3237] mb-2">
-                  Ad Soyad
+                <label className="block text-sm font-medium mb-2" style={{ color: '#1e3237' }}>
+                  Tam Ad
                 </label>
-                <input
-                  type="text"
-                  value={newUser.name}
-                  onChange={(e) => setNewUser(prev => ({...prev, name: e.target.value}))}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#146448] focus:border-transparent"
-                  placeholder="Kullanıcı adı"
+                <input 
+                  type="text" 
+                  className="w-full p-3 border rounded-lg" 
+                  style={{ borderColor: '#146448' }}
+                  placeholder="Örn: Ahmet Yılmaz"
                 />
               </div>
+
               <div>
-                <label className="block text-sm font-medium text-[#1e3237] mb-2">
+                <label className="block text-sm font-medium mb-2" style={{ color: '#1e3237' }}>
                   E-posta
                 </label>
-                <input
-                  type="email"
-                  value={newUser.email}
-                  onChange={(e) => setNewUser(prev => ({...prev, email: e.target.value}))}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#146448] focus:border-transparent"
-                  placeholder="E-posta adresi"
+                <input 
+                  type="email" 
+                  className="w-full p-3 border rounded-lg" 
+                  style={{ borderColor: '#146448' }}
+                  placeholder="Örn: ahmet@example.com"
                 />
               </div>
+
               <div>
-                <label className="block text-sm font-medium text-[#1e3237] mb-2">
+                <label className="block text-sm font-medium mb-2" style={{ color: '#1e3237' }}>
                   Rol
                 </label>
-                <select
-                  value={newUser.role}
-                  onChange={(e) => setNewUser(prev => ({...prev, role: e.target.value as 'user' | 'admin'}))}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#146448] focus:border-transparent"
-                >
+                <select className="w-full p-3 border rounded-lg" style={{ borderColor: '#146448' }}>
                   <option value="user">Kullanıcı</option>
+                  <option value="premium">Premium</option>
                   <option value="admin">Admin</option>
                 </select>
               </div>
-              <div>
-                <label className="block text-sm font-medium text-[#1e3237] mb-2">
-                  Başlangıç Token Miktarı
-                </label>
-                <input
-                  type="number"
-                  value={newUser.initialTokens}
-                  onChange={(e) => setNewUser(prev => ({...prev, initialTokens: parseInt(e.target.value) || 0}))}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#146448] focus:border-transparent"
-                  placeholder="Başlangıç token miktarı"
-                />
-              </div>
-            </div>
-            <div className="flex justify-end space-x-3 mt-6">
-              <button
-                onClick={() => setShowNewUserModal(false)}
-                className="px-4 py-2 text-[#1e3237] bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors"
-              >
-                İptal
-              </button>
-              <button
-                onClick={handleCreateUser}
-                className="px-4 py-2 bg-[#146448] text-white rounded-lg hover:bg-[#146448]/90 transition-colors"
-              >
-                Kullanıcı Oluştur
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
 
-      {/* Notification Modal */}
-      {showNotificationModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg p-6 w-full max-w-md">
-            <h3 className="text-lg font-semibold text-[#1e3237] mb-4">Bildirim Gönder</h3>
-            <div className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-[#1e3237] mb-2">
-                  Başlık
+                <label className="block text-sm font-medium mb-2" style={{ color: '#1e3237' }}>
+                  Plan
                 </label>
-                <input
-                  type="text"
-                  value={notification.title}
-                  onChange={(e) => setNotification(prev => ({...prev, title: e.target.value}))}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#146448] focus:border-transparent"
-                  placeholder="Bildirim başlığı"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-[#1e3237] mb-2">
-                  Mesaj
-                </label>
-                <textarea
-                  value={notification.message}
-                  onChange={(e) => setNotification(prev => ({...prev, message: e.target.value}))}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#146448] focus:border-transparent"
-                  placeholder="Bildirim mesajı"
-                  rows={4}
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-[#1e3237] mb-2">
-                  Tip
-                </label>
-                <select
-                  value={notification.type}
-                  onChange={(e) => setNotification(prev => ({...prev, type: e.target.value as any}))}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#146448] focus:border-transparent"
-                >
-                  <option value="info">Bilgi</option>
-                  <option value="success">Başarı</option>
-                  <option value="warning">Uyarı</option>
-                  <option value="error">Hata</option>
+                <select className="w-full p-3 border rounded-lg" style={{ borderColor: '#146448' }}>
+                  <option value="free">Ücretsiz</option>
+                  <option value="basic">Temel</option>
+                  <option value="premium">Premium</option>
+                  <option value="enterprise">Kurumsal</option>
                 </select>
               </div>
-            </div>
-            <div className="flex justify-end space-x-3 mt-6">
-              <button
-                onClick={() => setShowNotificationModal(false)}
-                className="px-4 py-2 text-[#1e3237] bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors"
-              >
-                İptal
-              </button>
-              <button
-                onClick={handleSendNotification}
-                className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-              >
-                Bildirim Gönder
-              </button>
+
+              <div className="flex space-x-4">
+                <button
+                  onClick={() => setShowCreateModal(false)}
+                  className="px-6 py-3 rounded-lg font-medium transition-all hover:opacity-90"
+                  style={{ backgroundColor: '#6B7280', color: '#f6f8f9' }}
+                >
+                  İptal
+                </button>
+                <button
+                  className="px-6 py-3 rounded-lg font-medium transition-all hover:opacity-90"
+                  style={{ backgroundColor: '#baf200', color: '#1e3237' }}
+                >
+                  👤 Oluştur
+                </button>
+              </div>
             </div>
           </div>
         </div>
       )}
-
-      {/* User Detail Modal */}
-      {selectedUserForDetail && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg p-6 w-full max-w-2xl max-h-[90vh] overflow-y-auto">
-            <div className="flex justify-between items-center mb-4">
-              <h3 className="text-lg font-semibold text-[#1e3237]">Kullanıcı Detayları</h3>
-              <button
-                onClick={() => setSelectedUserForDetail(null)}
-                className="text-gray-400 hover:text-gray-600"
-              >
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </button>
-            </div>
-            
-            <div className="grid grid-cols-2 gap-4">
-              <div className="space-y-3">
-                <div>
-                  <label className="text-sm font-medium text-[#1e3237]/70">Ad Soyad</label>
-                  <p className="text-[#1e3237] font-medium">{selectedUserForDetail.name}</p>
-                </div>
-                <div>
-                  <label className="text-sm font-medium text-[#1e3237]/70">E-posta</label>
-                  <p className="text-[#1e3237]">{selectedUserForDetail.email}</p>
-                </div>
-                <div>
-                  <label className="text-sm font-medium text-[#1e3237]/70">Rol</label>
-                  <p className="text-[#1e3237]">{getRoleText(selectedUserForDetail.role)}</p>
-                </div>
-                <div>
-                  <label className="text-sm font-medium text-[#1e3237]/70">Durum</label>
-                  <p className="text-[#1e3237]">{getStatusText(selectedUserForDetail.status)}</p>
-                </div>
-              </div>
-              <div className="space-y-3">
-                <div>
-                  <label className="text-sm font-medium text-[#1e3237]/70">Kalan Tokenlar</label>
-                  <p className="text-[#1e3237] font-medium">{selectedUserForDetail.tokensRemaining}</p>
-                </div>
-                <div>
-                  <label className="text-sm font-medium text-[#1e3237]/70">Satın Alınan Tokenlar</label>
-                  <p className="text-[#1e3237]">{selectedUserForDetail.tokensPurchased}</p>
-                </div>
-                <div>
-                  <label className="text-sm font-medium text-[#1e3237]/70">Toplam Analiz</label>
-                  <p className="text-[#1e3237]">{selectedUserForDetail.analysesCount}</p>
-                </div>
-                <div>
-                  <label className="text-sm font-medium text-[#1e3237]/70">Katılım Tarihi</label>
-                  <p className="text-[#1e3237]">{selectedUserForDetail.joinDate}</p>
-                </div>
-                <div>
-                  <label className="text-sm font-medium text-[#1e3237]/70">Son Aktivite</label>
-                  <p className="text-[#1e3237]">{selectedUserForDetail.lastActivity}</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="flex justify-end space-x-3 mt-6">
-              <button
-                onClick={() => {
-                  setSelectedUsers([selectedUserForDetail.id]);
-                  setSelectedUserForDetail(null);
-                  setShowTokenModal(true);
-                }}
-                className="px-4 py-2 bg-[#baf200] text-[#1e3237] rounded-lg hover:bg-[#baf200]/90 transition-colors"
-              >
-                Token Ata
-              </button>
-              <button
-                onClick={() => {
-                  setSelectedUsers([selectedUserForDetail.id]);
-                  setSelectedUserForDetail(null);
-                  setShowNotificationModal(true);
-                }}
-                className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-              >
-                Bildirim Gönder
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
-    </DashboardLayoutWithSidebar>
+    </div>
   );
 }

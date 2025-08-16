@@ -1,22 +1,103 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useAuth } from '@/lib/hooks/useAuth';
+import Link from 'next/link';
 
 // Force dynamic rendering to prevent SSR
 export const dynamic = 'force-dynamic';
-import { motion } from 'framer-motion';
-import { useAuth } from '@/lib/hooks/useAuth';
-import DashboardLayout from '@/components/dashboard/DashboardLayout';
-import AdminErrorBoundary from '@/components/AdminErrorBoundary';
-import { externalApiService } from '@/lib/services/external-api-service';
+
+interface AdminStats {
+  totalUsers: number;
+  activeUsers: number;
+  totalAnalyses: number;
+  systemHealth: number;
+  apiCalls: number;
+  revenue: number;
+  errorCount: number;
+  backupStatus: string;
+}
 
 export default function AdminDashboard() {
   const { user, isAdmin, loading } = useAuth();
-  const [timeRange, setTimeRange] = useState('7days');
-  const [adminData, setAdminData] = useState<any>(null);
+  const [stats, setStats] = useState<AdminStats | null>(null);
+  const [systemStatus, setSystemStatus] = useState<any>(null);
   const [dataLoading, setDataLoading] = useState(true);
-  const [apiStatusData, setApiStatusData] = useState<any>(null);
-  const [apiLoading, setApiLoading] = useState(false);
+
+  const adminMenuSections = [
+    {
+      id: 'ai-management',
+      title: 'Yapay Zeka Yönetimi',
+      description: 'AI sistemleri, promptlar ve model yönetimi',
+      icon: '🤖',
+      items: [
+        { id: 'ai-panel', title: 'AI Panel', description: 'Model performansı ve ayarları', href: '/admin/ai-panel' },
+        { id: 'prompt-archive', title: 'Prompt Arşivi', description: 'Sistem ve kullanıcı promptları', href: '/admin/prompts' },
+        { id: 'system-prompts', title: 'Sistem Promptları', description: 'Core AI davranış ayarları', href: '/admin/system-prompts' },
+        { id: 'ai-training', title: 'AI Eğitimi', description: 'Model eğitim ve fine-tuning', href: '/admin/ai-training' }
+      ]
+    },
+    {
+      id: 'analysis-management',
+      title: 'Analiz Yönetimi',
+      description: 'Tüm analizlerin detaylı kontrolü',
+      icon: '📊',
+      items: [
+        { id: 'analysis-editor', title: 'Analiz Editörü', description: 'Analiz türlerini düzenle', href: '/admin/analysis-editor' },
+        { id: 'analysis-results', title: 'Analiz Sonuçları', description: 'Tüm analiz sonuçlarını incele', href: '/admin/analysis-results' },
+        { id: 'analysis-templates', title: 'Analiz Şablonları', description: 'Yeni analiz türleri oluştur', href: '/admin/analysis-templates' },
+        { id: 'analysis-performance', title: 'Analiz Performansı', description: 'İstatistikler ve optimizasyon', href: '/admin/analysis-performance' }
+      ]
+    },
+    {
+      id: 'system-monitoring',
+      title: 'Sistem İzleme',
+      description: 'Site sağlığı, performans ve güvenlik',
+      icon: '🔍',
+      items: [
+        { id: 'system-health', title: 'Sistem Sağlığı', description: 'Sunucu durumu ve metrikler', href: '/admin/system-health' },
+        { id: 'api-monitor', title: 'API İzleme', description: 'Dış API durumları ve testler', href: '/admin/api-monitor' },
+        { id: 'error-logs', title: 'Hata Günlükleri', description: 'Sistem hataları ve çözümler', href: '/admin/error-logs' },
+        { id: 'backup-system', title: 'Yedekleme Sistemi', description: 'Otomatik yedekler ve restore', href: '/admin/backup-system' }
+      ]
+    },
+    {
+      id: 'user-content',
+      title: 'Kullanıcı & İçerik',
+      description: 'Kullanıcı yönetimi ve içerik kontrolü',
+      icon: '👥',
+      items: [
+        { id: 'user-management', title: 'Kullanıcı Yönetimi', description: 'Detaylı kullanıcı kontrolleri', href: '/admin/users' },
+        { id: 'content-manager', title: 'İçerik Yöneticisi', description: 'Blog, sayfalar ve medya', href: '/admin/content' },
+        { id: 'seo-manager', title: 'SEO Yöneticisi', description: 'Meta tags, sitemap, robots', href: '/admin/seo' },
+        { id: 'analytics', title: 'Detaylı Analitik', description: 'Kullanım istatistikleri', href: '/admin/analytics' }
+      ]
+    },
+    {
+      id: 'development',
+      title: 'Geliştirici Araçları',
+      description: 'API testleri ve sistem ayarları',
+      icon: '⚙️',
+      items: [
+        { id: 'api-tester', title: 'API Test Merkezi', description: 'Kapsamlı API test araçları', href: '/admin/api-test' },
+        { id: 'database-admin', title: 'Veritabanı Yönetimi', description: 'SQL sorguları ve optimizasyon', href: '/admin/database' },
+        { id: 'cache-manager', title: 'Cache Yöneticisi', description: 'Redis ve cache stratejileri', href: '/admin/cache' },
+        { id: 'deployment', title: 'Deployment', description: 'Vercel, domain ve SSL', href: '/admin/deployment' }
+      ]
+    },
+    {
+      id: 'security-auth',
+      title: 'Güvenlik & Yetkilendirme',
+      description: 'Güvenlik ayarları ve access control',
+      icon: '🔒',
+      items: [
+        { id: 'auth-settings', title: 'Auth Ayarları', description: 'Supabase ve JWT ayarları', href: '/admin/auth' },
+        { id: 'rate-limiting', title: 'Rate Limiting', description: 'API hız limitlği ayarları', href: '/admin/rate-limit' },
+        { id: 'security-logs', title: 'Güvenlik Günlükleri', description: 'Şüpheli aktiviteler', href: '/admin/security-logs' },
+        { id: 'admin-roles', title: 'Admin Rolleri', description: 'Yetki seviyesi yönetimi', href: '/admin/roles' }
+      ]
+    }
+  ];
 
   useEffect(() => {
     if (user && !loading) {
@@ -32,504 +113,299 @@ export default function AdminDashboard() {
 
     try {
       setDataLoading(true);
-      
-      // Mock admin data loading
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      const mockAdminData = {
-        systemStats: [
-          { name: 'Toplam Kullanıcı', value: 847, change: '+12 bu hafta', changeType: 'positive' },
-          { name: 'Aktif Analizler', value: 73, change: '+18 bugün', changeType: 'positive' },
-          { name: 'Jeton Kullanımı', value: 2156, change: '+142 bu hafta', changeType: 'positive' },
-          { name: 'Sistem Durumu', value: '99.9%', change: 'Tüm sistemler aktif', changeType: 'positive' },
-        ],
-        recentUsers: [
-          { name: 'Mehmet Yılmaz', email: 'mehmet@example.com', role: 'user', joinDate: '2 gün önce', status: 'active' },
-          { name: 'Ayşe Kaya', email: 'ayse@example.com', role: 'premium', joinDate: '3 gün önce', status: 'active' },
-          { name: 'Ali Demir', email: 'ali@example.com', role: 'user', joinDate: '1 gün önce', status: 'active' },
-          { name: 'Fatma Şen', email: 'fatma@example.com', role: 'user', joinDate: '4 gün önce', status: 'pending' },
-          { name: 'Mustafa Özkan', email: 'mustafa@example.com', role: 'user', joinDate: '5 gün önce', status: 'active' }
-        ],
-        apiStatus: [
-          { name: 'OpenWeather API', status: 'active', responseTime: '145ms', requests: 2340 },
-          { name: 'FAO Data API', status: 'active', responseTime: '223ms', requests: 1245 },
-          { name: 'TUİK API', status: 'active', responseTime: '334ms', requests: 567 },
-          { name: 'Supabase DB', status: 'active', responseTime: '89ms', requests: 5670 },
-          { name: 'Vercel Hosting', status: 'active', responseTime: '45ms', requests: 12340 },
-        ]
-      };
-      
-      setAdminData(mockAdminData);
-      console.log('🚀 Admin dashboard loaded with mock data');
-      
+
+      // Fetch real admin data from API
+      const response = await fetch('/api/admin/dashboard');
+
+      if (!response.ok) {
+        throw new Error('Failed to fetch admin data');
+      }
+
+      const data = await response.json();
+
+      if (data.success) {
+        setStats(data.data.stats || {
+          totalUsers: 0,
+          activeUsers: 0,
+          totalAnalyses: 0,
+          systemHealth: 0,
+          apiCalls: 0,
+          revenue: 0,
+          errorCount: 0,
+          backupStatus: 'unknown'
+        });
+        setSystemStatus(data.data.systemStatus || {
+          server: { status: 'unknown', cpu: 0, memory: 0, disk: 0 },
+          database: { status: 'unknown', connections: 0, queries: 0 },
+          apis: { active: 0, failing: 0, avgResponse: 0 },
+          cache: { hitRate: 0, size: '0GB', evictions: 0 }
+        });
+      }
+
     } catch (error) {
       console.error('Failed to load admin data:', error);
+      // Set empty states on error
+      setStats({
+        totalUsers: 0,
+        activeUsers: 0,
+        totalAnalyses: 0,
+        systemHealth: 0,
+        apiCalls: 0,
+        revenue: 0,
+        errorCount: 0,
+        backupStatus: 'error'
+      });
+      setSystemStatus({
+        server: { status: 'error', cpu: 0, memory: 0, disk: 0 },
+        database: { status: 'error', connections: 0, queries: 0 },
+        apis: { active: 0, failing: 0, avgResponse: 0 },
+        cache: { hitRate: 0, size: '0GB', evictions: 0 }
+      });
     } finally {
       setDataLoading(false);
-    }
-  };
-
-  const testExternalApis = async () => {
-    setApiLoading(true);
-    try {
-      console.log('🔍 Testing external APIs...');
-      const status = await externalApiService.getApiStatus();
-      setApiStatusData(status);
-      console.log('📊 API Status:', status);
-    } catch (error) {
-      console.error('Failed to test APIs:', error);
-    } finally {
-      setApiLoading(false);
     }
   };
 
   // Redirect non-admin users
   if (!loading && user && !isAdmin()) {
     return (
-      <DashboardLayout title="Erişim Reddedildi" subtitle="Bu sayfaya erişim yetkiniz yok">
-        <div className="bg-red-50 border border-red-200 rounded-lg p-6 text-center">
-          <div className="text-4xl mb-4">🚫</div>
-          <h3 className="text-lg font-medium text-red-800 mb-2">Yetkisiz Erişim</h3>
-          <p className="text-red-600 mb-4">Bu sayfaya erişmek için admin yetkisine sahip olmanız gerekir.</p>
-          <a href="/dashboard" className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg transition-colors">
-            Dashboard'a Dön
-          </a>
+      <div className="min-h-screen" style={{ backgroundColor: '#146448' }}>
+        <div className="flex items-center justify-center min-h-screen p-4">
+          <div className="max-w-md w-full rounded-lg p-8 text-center" style={{ backgroundColor: '#f6f8f9' }}>
+            <div className="text-6xl mb-4">🚫</div>
+            <h3 className="text-xl font-semibold mb-4" style={{ color: '#1e3237' }}>Yetkisiz Erişim</h3>
+            <p className="mb-6" style={{ color: '#1e3237', opacity: '0.7' }}>Bu sayfaya erişmek için admin yetkisine sahip olmanız gerekir.</p>
+            <Link 
+              href="/dashboard" 
+              className="inline-block px-6 py-3 rounded-lg font-medium transition-all hover:opacity-90"
+              style={{ backgroundColor: '#baf200', color: '#1e3237' }}
+            >
+              Dashboard'a Dön
+            </Link>
+          </div>
         </div>
-      </DashboardLayout>
+      </div>
     );
   }
 
-  if (loading || dataLoading || !adminData) {
+  if (loading || dataLoading || !stats) {
     return (
-      <DashboardLayout title="Admin Panel" subtitle="Sistem yönetimi ve istatistikler">
-        <div className="space-y-6">
-          {[1, 2, 3].map(i => (
-            <div key={i} className="bg-white rounded-lg border p-6 animate-pulse">
-              <div className="h-6 bg-gray-200 rounded w-1/4 mb-4"></div>
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-                {[1, 2, 3, 4].map(j => (
-                  <div key={j} className="h-20 bg-gray-200 rounded"></div>
+      <div className="min-h-screen" style={{ backgroundColor: '#146448' }}>
+        <div className="p-8">
+          <div className="max-w-7xl mx-auto">
+            <div className="space-y-6">
+              {[1, 2, 3].map(i => (
+                <div key={i} className="rounded-lg p-6 animate-pulse" style={{ backgroundColor: '#f6f8f9' }}>
+                  <div className="h-6 bg-gray-200 rounded w-1/4 mb-4"></div>
+                  <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+                    {[1, 2, 3, 4].map(j => (
+                      <div key={j} className="h-20 bg-gray-200 rounded"></div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="min-h-screen" style={{ backgroundColor: '#146448' }}>
+      {/* Header */}
+      <header className="border-b border-white/10 p-6">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex items-center justify-between">
+            <div>
+              <h1 className="text-2xl font-bold" style={{ color: '#f6f8f9' }}>Admin Panel</h1>
+              <p style={{ color: '#f6f8f9', opacity: '0.8' }}>SeraGPT yönetim merkezi</p>
+            </div>
+            <div className="flex items-center space-x-4">
+              <Link 
+                href="/dashboard" 
+                className="px-4 py-2 rounded-lg font-medium transition-all hover:opacity-90"
+                style={{ backgroundColor: '#baf200', color: '#1e3237' }}
+              >
+                Dashboard'a Dön
+              </Link>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <div className="max-w-7xl mx-auto p-6">
+        {/* System Overview Stats */}
+        <div className="mb-8">
+          <h2 className="text-xl font-semibold mb-6" style={{ color: '#f6f8f9' }}>Sistem Durumu</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="rounded-lg p-6" style={{ backgroundColor: '#f6f8f9' }}>
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-sm opacity-70" style={{ color: '#1e3237' }}>Toplam Kullanıcı</p>
+                  <p className="text-2xl font-bold" style={{ color: '#1e3237' }}>{stats.totalUsers.toLocaleString()}</p>
+                </div>
+                <div className="text-2xl">👥</div>
+              </div>
+              <p className="text-sm mt-2" style={{ color: '#146448' }}>+{Math.floor(stats.totalUsers * 0.1)} bu hafta</p>
+            </div>
+
+            <div className="rounded-lg p-6" style={{ backgroundColor: '#f6f8f9' }}>
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-sm opacity-70" style={{ color: '#1e3237' }}>Sistem Sağlığı</p>
+                  <p className="text-2xl font-bold" style={{ color: '#1e3237' }}>{stats.systemHealth}%</p>
+                </div>
+                <div className="text-2xl">💚</div>
+              </div>
+              <p className="text-sm mt-2" style={{ color: '#146448' }}>Tüm sistemler aktif</p>
+            </div>
+
+            <div className="rounded-lg p-6" style={{ backgroundColor: '#f6f8f9' }}>
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-sm opacity-70" style={{ color: '#1e3237' }}>API Çağrıları</p>
+                  <p className="text-2xl font-bold" style={{ color: '#1e3237' }}>{stats.apiCalls.toLocaleString()}</p>
+                </div>
+                <div className="text-2xl">⚡</div>
+              </div>
+              <p className="text-sm mt-2" style={{ color: '#146448' }}>Son 24 saat</p>
+            </div>
+
+            <div className="rounded-lg p-6" style={{ backgroundColor: '#f6f8f9' }}>
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-sm opacity-70" style={{ color: '#1e3237' }}>Aylık Gelir</p>
+                  <p className="text-2xl font-bold" style={{ color: '#1e3237' }}>₺{stats.revenue.toLocaleString()}</p>
+                </div>
+                <div className="text-2xl">💰</div>
+              </div>
+              <p className="text-sm mt-2" style={{ color: '#146448' }}>+18% büyüme</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Admin Menu Sections */}
+        <div className="space-y-8">
+          {adminMenuSections.map((section) => (
+            <div key={section.id}>
+              <div className="flex items-center mb-6">
+                <div className="text-3xl mr-4">{section.icon}</div>
+                <div>
+                  <h3 className="text-xl font-semibold" style={{ color: '#f6f8f9' }}>{section.title}</h3>
+                  <p style={{ color: '#f6f8f9', opacity: '0.7' }}>{section.description}</p>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                {section.items.map((item) => (
+                  <Link
+                    key={item.id}
+                    href={item.href}
+                    className="rounded-lg p-6 border border-white/10 hover:border-white/20 transition-all duration-200 hover:scale-105 group"
+                    style={{ backgroundColor: '#f6f8f9' }}
+                  >
+                    <h4 className="font-semibold mb-2 group-hover:opacity-80 transition-opacity" style={{ color: '#1e3237' }}>
+                      {item.title}
+                    </h4>
+                    <p className="text-sm opacity-70" style={{ color: '#1e3237' }}>
+                      {item.description}
+                    </p>
+                    <div className="mt-4 text-right">
+                      <span 
+                        className="text-sm font-medium group-hover:opacity-80 transition-opacity"
+                        style={{ color: '#146448' }}
+                      >
+                        Yönet →
+                      </span>
+                    </div>
+                  </Link>
                 ))}
               </div>
             </div>
           ))}
         </div>
-      </DashboardLayout>
-    );
-  }
 
-  const { systemStats, recentUsers, apiStatus } = adminData;
-
-  const tokenStats = [
-    { name: 'Satılan Jeton', value: '10,247', change: '+456 bu hafta', changeType: 'positive' },
-    { name: 'Kullanılan Jeton', value: '8,932', change: '+234 bu hafta', changeType: 'positive' },
-    { name: 'Aktif Abonelik', value: '156', change: '+12 bu ay', changeType: 'positive' },
-    { name: 'Aylık Gelir', value: '₺25,648', change: '+18% bu ay', changeType: 'positive' },
-  ];
-
-  const analysisStats = [
-    { type: 'ROI Analizi', count: 456, percentage: 35 },
-    { type: 'İklim Analizi', count: 234, percentage: 18 },
-    { type: 'Ekipman Listesi', count: 189, percentage: 15 },
-    { type: 'Pazar Analizi', count: 167, percentage: 13 },
-    { type: 'Teknik Plan', count: 98, percentage: 8 },
-    { type: 'Diğer', count: 156, percentage: 11 },
-  ];
-
-  return (
-    <AdminErrorBoundary>
-      <DashboardLayout title="Admin Panel" subtitle="Sistem yönetimi ve istatistikler">
-        <div className="space-y-8">
-          {/* Time Range Selector */}
-          <div className="flex justify-between items-center">
-            <div>
-              <h1 className="text-2xl font-bold text-gray-900">Admin Dashboard</h1>
-              <p className="text-gray-600">Sistem durumu ve istatistikler</p>
-            </div>
-            <select 
-              className="border border-gray-300 rounded-lg px-4 py-2"
-              value={timeRange}
-              onChange={(e) => setTimeRange(e.target.value)}
-            >
-              <option value="24hours">Son 24 Saat</option>
-              <option value="7days">Son 7 Gün</option>
-              <option value="30days">Son 30 Gün</option>
-              <option value="90days">Son 90 Gün</option>
-            </select>
-          </div>
-
-          {/* System Stats */}
-          <div>
-            <h2 className="text-lg font-semibold text-gray-900 mb-4">Sistem ��statistikleri</h2>
+        {/* System Status Details */}
+        {systemStatus && (
+          <div className="mt-12">
+            <h3 className="text-xl font-semibold mb-6" style={{ color: '#f6f8f9' }}>Detaylı Sistem Durumu</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {systemStats.map((stat: any, index: number) => (
-                <motion.div
-                  key={stat.name}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                  className="bg-white rounded-lg border p-6"
-                >
-                  <h3 className="text-sm font-medium text-gray-600">{stat.name}</h3>
-                  <p className="text-2xl font-bold text-gray-900 mt-2">{stat.value.toLocaleString()}</p>
-                  <p className={`text-sm mt-2 ${
-                    stat.changeType === 'positive' ? 'text-green-600' : 'text-red-600'
-                  }`}>
-                    {stat.change}
-                  </p>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-
-          {/* Token Stats */}
-          <div>
-            <h2 className="text-lg font-semibold text-gray-900 mb-4">Token İstatistikleri</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {tokenStats.map((stat, index) => (
-                <motion.div
-                  key={stat.name}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                  className="bg-white rounded-lg border p-6"
-                >
-                  <h3 className="text-sm font-medium text-gray-600">{stat.name}</h3>
-                  <p className="text-2xl font-bold text-gray-900 mt-2">{stat.value}</p>
-                  <p className={`text-sm mt-2 ${
-                    stat.changeType === 'positive' ? 'text-green-600' : 'text-red-600'
-                  }`}>
-                    {stat.change}
-                  </p>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-
-          {/* Analysis Stats */}
-          <div>
-            <h2 className="text-lg font-semibold text-gray-900 mb-4">Analiz Türleri Dağılımı</h2>
-            <div className="bg-white rounded-lg border p-6">
-              <div className="space-y-4">
-                {analysisStats.map((analysis, index) => (
-                  <div key={analysis.type} className="flex items-center justify-between">
-                    <div className="flex items-center space-x-3">
-                      <div className="w-3 h-3 rounded-full bg-blue-500"></div>
-                      <span className="text-sm font-medium text-gray-900">{analysis.type}</span>
-                    </div>
-                    <div className="flex items-center space-x-4">
-                      <div className="w-32 bg-gray-200 rounded-full h-2">
-                        <div 
-                          className="bg-blue-500 h-2 rounded-full transition-all duration-500"
-                          style={{ width: `${analysis.percentage}%` }}
-                        ></div>
-                      </div>
-                      <span className="text-sm text-gray-600 w-12 text-right">{analysis.count}</span>
-                      <span className="text-sm text-gray-500 w-8 text-right">{analysis.percentage}%</span>
-                    </div>
+              <div className="rounded-lg p-6" style={{ backgroundColor: '#f6f8f9' }}>
+                <h4 className="font-semibold mb-4" style={{ color: '#1e3237' }}>Sunucu</h4>
+                <div className="space-y-2">
+                  <div className="flex justify-between">
+                    <span className="text-sm" style={{ color: '#1e3237' }}>CPU</span>
+                    <span className="text-sm font-medium" style={{ color: '#146448' }}>{systemStatus?.server?.cpu || 0}%</span>
                   </div>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* API Status */}
-          <div>
-            <h2 className="text-lg font-semibold text-gray-900 mb-4">API Durumu</h2>
-            <div className="bg-white rounded-lg border overflow-hidden">
-              <div className="px-6 py-4 border-b border-gray-200">
-                <div className="grid grid-cols-4 gap-4 text-sm font-medium text-gray-600">
-                  <div>Servis</div>
-                  <div>Durum</div>
-                  <div>Yanıt Süresi</div>
-                  <div>İstekler</div>
-                </div>
-              </div>
-              <div className="divide-y divide-gray-200">
-                {apiStatus.map((api) => (
-                  <div key={api.name} className="px-6 py-4">
-                    <div className="grid grid-cols-4 gap-4 items-center">
-                      <div className="text-sm font-medium text-gray-900">{api.name}</div>
-                      <div>
-                        <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
-                          api.status === 'active' 
-                            ? 'bg-green-100 text-green-800'
-                            : api.status === 'warning'
-                            ? 'bg-yellow-100 text-yellow-800'
-                            : 'bg-red-100 text-red-800'
-                        }`}>
-                          {api.status === 'active' ? 'Aktif' : api.status === 'warning' ? 'Uyarı' : 'Hata'}
-                        </span>
-                      </div>
-                      <div className="text-sm text-gray-600">{api.responseTime}</div>
-                      <div className="text-sm text-gray-600">{api.requests.toLocaleString()}</div>
-                    </div>
+                  <div className="flex justify-between">
+                    <span className="text-sm" style={{ color: '#1e3237' }}>Memory</span>
+                    <span className="text-sm font-medium" style={{ color: '#146448' }}>{systemStatus?.server?.memory || 0}%</span>
                   </div>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* Recent Users */}
-          <div>
-            <h2 className="text-lg font-semibold text-gray-900 mb-4">Son Kullanıcılar</h2>
-            <div className="bg-white rounded-lg border overflow-hidden">
-              <div className="px-6 py-4 border-b border-gray-200">
-                <div className="grid grid-cols-4 gap-4 text-sm font-medium text-gray-600">
-                  <div>Kullanıcı</div>
-                  <div>Rol</div>
-                  <div>Katılım</div>
-                  <div>Durum</div>
-                </div>
-              </div>
-              <div className="divide-y divide-gray-200">
-                {recentUsers.map((user, index) => (
-                  <motion.div
-                    key={user.email}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.1 }}
-                    className="px-6 py-4 hover:bg-gray-50"
-                  >
-                    <div className="grid grid-cols-4 gap-4 items-center">
-                      <div>
-                        <div className="text-sm font-medium text-gray-900">{user.name}</div>
-                        <div className="text-sm text-gray-600">{user.email}</div>
-                      </div>
-                      <div>
-                        <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
-                          user.role === 'premium' 
-                            ? 'bg-purple-100 text-purple-800'
-                            : 'bg-gray-100 text-gray-800'
-                        }`}>
-                          {user.role === 'premium' ? 'Premium' : 'Kullanıcı'}
-                        </span>
-                      </div>
-                      <div className="text-sm text-gray-600">{user.joinDate}</div>
-                      <div>
-                        <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
-                          user.status === 'active' 
-                            ? 'bg-green-100 text-green-800'
-                            : 'bg-yellow-100 text-yellow-800'
-                        }`}>
-                          {user.status === 'active' ? 'Aktif' : 'Beklemede'}
-                        </span>
-                      </div>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* External API Services */}
-          <div>
-            <div className="flex justify-between items-center mb-4">
-              <h2 className="text-lg font-semibold text-gray-900">External API Services</h2>
-              <button
-                onClick={testExternalApis}
-                disabled={apiLoading}
-                className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors disabled:opacity-50"
-              >
-                {apiLoading ? '🔄 Test Ediliyor...' : '🧪 API Test Et'}
-              </button>
-            </div>
-
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              {/* Weather & Climate Services */}
-              <div className="bg-white rounded-lg border p-6">
-                <div className="flex items-center mb-4">
-                  <div className="text-2xl mr-3">🌤️</div>
-                  <div>
-                    <h3 className="font-medium text-gray-900">Hava Durumu & İklim</h3>
-                    <p className="text-sm text-gray-600">İklim uyum skoru, ısıtma/soğutma yükleri</p>
+                  <div className="flex justify-between">
+                    <span className="text-sm" style={{ color: '#1e3237' }}>Disk</span>
+                    <span className="text-sm font-medium" style={{ color: '#146448' }}>{systemStatus?.server?.disk || 0}%</span>
                   </div>
                 </div>
-                <div className="space-y-3">
-                  {[
-                    { name: 'Open-Meteo', desc: '16-gün tahmin, saatlik/günlük metrikler', tier: 'FREE' },
-                    { name: 'Meteostat', desc: 'Geçmiş iklim verileri, uzun yıllar ortalaması', tier: 'FREE' },
-                    { name: 'NASA POWER', desc: 'Güneşlenme, radyasyon, yüzey meteorolojisi', tier: 'FREE' },
-                    { name: 'Copernicus ERA5', desc: '1979-günümüz, yüksek çözünürlüklü reanalysis', tier: 'FREE' }
-                  ].map((api, index) => (
-                    <div key={index} className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
-                      <div>
-                        <div className="font-medium text-sm text-gray-900">{api.name}</div>
-                        <div className="text-xs text-gray-600">{api.desc}</div>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <span className="px-2 py-1 text-xs bg-green-100 text-green-800 rounded-full">{api.tier}</span>
-                        <div className={`w-3 h-3 rounded-full ${
-                          apiStatusData?.[api.name]?.status === 'active' ? 'bg-green-500' :
-                          apiStatusData?.[api.name]?.status === 'error' ? 'bg-red-500' : 'bg-gray-400'
-                        }`}></div>
-                      </div>
-                    </div>
-                  ))}
+              </div>
+
+              <div className="rounded-lg p-6" style={{ backgroundColor: '#f6f8f9' }}>
+                <h4 className="font-semibold mb-4" style={{ color: '#1e3237' }}>Veritabanı</h4>
+                <div className="space-y-2">
+                  <div className="flex justify-between">
+                    <span className="text-sm" style={{ color: '#1e3237' }}>Bağlantılar</span>
+                    <span className="text-sm font-medium" style={{ color: '#146448' }}>{systemStatus?.database?.connections || 0}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-sm" style={{ color: '#1e3237' }}>Sorgular/dk</span>
+                    <span className="text-sm font-medium" style={{ color: '#146448' }}>{systemStatus?.database?.queries || 0}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-sm" style={{ color: '#1e3237' }}>Durum</span>
+                    <span className="text-sm font-medium" style={{ color: '#146448' }}>Sağlıklı</span>
+                  </div>
                 </div>
               </div>
 
-              {/* Satellite & Terrain Services */}
-              <div className="bg-white rounded-lg border p-6">
-                <div className="flex items-center mb-4">
-                  <div className="text-2xl mr-3">🛰️</div>
-                  <div>
-                    <h3 className="font-medium text-gray-900">Uydu, Arazi, Toprak</h3>
-                    <p className="text-sm text-gray-600">Parsel uygunluğu, NDVI, toprak sınıfları</p>
+              <div className="rounded-lg p-6" style={{ backgroundColor: '#f6f8f9' }}>
+                <h4 className="font-semibold mb-4" style={{ color: '#1e3237' }}>API Durumu</h4>
+                <div className="space-y-2">
+                  <div className="flex justify-between">
+                    <span className="text-sm" style={{ color: '#1e3237' }}>Aktif API</span>
+                    <span className="text-sm font-medium" style={{ color: '#146448' }}>{systemStatus?.apis?.active || 0}</span>
                   </div>
-                </div>
-                <div className="space-y-3">
-                  {[
-                    { name: 'Sentinel-2', desc: 'NDVI, EVI, NBR; 10-30m çözünürlük', tier: 'FREE' },
-                    { name: 'SoilGrids', desc: 'Küresel toprak haritaları, pH, organik madde', tier: 'FREE' },
-                    { name: 'SRTM DEM', desc: 'Sayısal Yükseklik Modeli (30m)', tier: 'FREE' },
-                    { name: 'PVGIS', desc: 'Güneş potansiyeli, PV üretim simülasyonu', tier: 'FREE' }
-                  ].map((api, index) => (
-                    <div key={index} className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
-                      <div>
-                        <div className="font-medium text-sm text-gray-900">{api.name}</div>
-                        <div className="text-xs text-gray-600">{api.desc}</div>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <span className="px-2 py-1 text-xs bg-green-100 text-green-800 rounded-full">{api.tier}</span>
-                        <div className={`w-3 h-3 rounded-full ${
-                          api.name === 'SoilGrids' && apiStatusData?.['SoilGrids']?.status === 'active' ? 'bg-green-500' :
-                          api.name === 'PVGIS' && apiStatusData?.['PVGIS']?.status === 'active' ? 'bg-green-500' :
-                          'bg-gray-400'
-                        }`}></div>
-                      </div>
-                    </div>
-                  ))}
+                  <div className="flex justify-between">
+                    <span className="text-sm" style={{ color: '#1e3237' }}>Hatalı</span>
+                    <span className="text-sm font-medium text-red-600">{systemStatus?.apis?.failing || 0}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-sm" style={{ color: '#1e3237' }}>Ort. Yanıt</span>
+                    <span className="text-sm font-medium" style={{ color: '#146448' }}>{systemStatus?.apis?.avgResponse || 0}ms</span>
+                  </div>
                 </div>
               </div>
 
-              {/* Market & Financial Services */}
-              <div className="bg-white rounded-lg border p-6">
-                <div className="flex items-center mb-4">
-                  <div className="text-2xl mr-3">📈</div>
-                  <div>
-                    <h3 className="font-medium text-gray-900">Pazar & Finans</h3>
-                    <p className="text-sm text-gray-600">Fiyat trendleri, döviz kurları</p>
+              <div className="rounded-lg p-6" style={{ backgroundColor: '#f6f8f9' }}>
+                <h4 className="font-semibold mb-4" style={{ color: '#1e3237' }}>Cache</h4>
+                <div className="space-y-2">
+                  <div className="flex justify-between">
+                    <span className="text-sm" style={{ color: '#1e3237' }}>Hit Rate</span>
+                    <span className="text-sm font-medium" style={{ color: '#146448' }}>{systemStatus?.cache?.hitRate || 0}%</span>
                   </div>
-                </div>
-                <div className="space-y-3">
-                  {[
-                    { name: 'FAO Data', desc: 'Global tarım fiyat endeksleri', tier: 'FREE' },
-                    { name: 'TÜİK', desc: 'Bölgesel üretim/hasat istatistikleri', tier: 'FREE' },
-                    { name: 'TCMB', desc: 'Güncel döviz kurları', tier: 'FREE' },
-                    { name: 'EPİAŞ', desc: 'Elektrik piyasa verileri (PTF/SMF)', tier: 'FREE' }
-                  ].map((api, index) => (
-                    <div key={index} className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
-                      <div>
-                        <div className="font-medium text-sm text-gray-900">{api.name}</div>
-                        <div className="text-xs text-gray-600">{api.desc}</div>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <span className="px-2 py-1 text-xs bg-green-100 text-green-800 rounded-full">{api.tier}</span>
-                        <div className={`w-3 h-3 rounded-full ${
-                          api.name === 'TCMB' && apiStatusData?.['TCMB']?.status === 'active' ? 'bg-green-500' :
-                          'bg-gray-400'
-                        }`}></div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Geographic Services */}
-              <div className="bg-white rounded-lg border p-6">
-                <div className="flex items-center mb-4">
-                  <div className="text-2xl mr-3">🗺️</div>
-                  <div>
-                    <h3 className="font-medium text-gray-900">Coğrafi Servisler</h3>
-                    <p className="text-sm text-gray-600">Geocoding, mesafe, lojistik rota</p>
+                  <div className="flex justify-between">
+                    <span className="text-sm" style={{ color: '#1e3237' }}>Boyut</span>
+                    <span className="text-sm font-medium" style={{ color: '#146448' }}>{systemStatus?.cache?.size || '0GB'}</span>
                   </div>
-                </div>
-                <div className="space-y-3">
-                  {[
-                    { name: 'Nominatim', desc: 'Geocoding / Reverse geocoding', tier: 'FREE' },
-                    { name: 'OpenRouteService', desc: 'Sürüş mesafesi, süre, isochrone', tier: 'FREE' },
-                    { name: 'Google Maps', desc: 'Yüksek doğruluk, SLA', tier: 'PAID' },
-                    { name: 'Mapbox', desc: 'Harita görselleştirme + erişilebilirlik', tier: 'PAID' }
-                  ].map((api, index) => (
-                    <div key={index} className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
-                      <div>
-                        <div className="font-medium text-sm text-gray-900">{api.name}</div>
-                        <div className="text-xs text-gray-600">{api.desc}</div>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <span className={`px-2 py-1 text-xs rounded-full ${
-                          api.tier === 'FREE' ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800'
-                        }`}>{api.tier}</span>
-                        <div className={`w-3 h-3 rounded-full ${
-                          api.name === 'Nominatim' && apiStatusData?.['Nominatim']?.status === 'active' ? 'bg-green-500' :
-                          'bg-gray-400'
-                        }`}></div>
-                      </div>
-                    </div>
-                  ))}
+                  <div className="flex justify-between">
+                    <span className="text-sm" style={{ color: '#1e3237' }}>Evictions</span>
+                    <span className="text-sm font-medium" style={{ color: '#146448' }}>{systemStatus?.cache?.evictions || 0}</span>
+                  </div>
                 </div>
               </div>
             </div>
-
-            {/* API Status Details */}
-            {apiStatusData && (
-              <div className="mt-6 bg-white rounded-lg border p-6">
-                <h3 className="font-medium text-gray-900 mb-4">API Test Sonuçları</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                  {Object.entries(apiStatusData).map(([apiName, status]: [string, any]) => (
-                    <div key={apiName} className="p-4 border rounded-lg">
-                      <div className="flex justify-between items-center mb-2">
-                        <span className="font-medium text-sm">{apiName}</span>
-                        <span className={`px-2 py-1 text-xs rounded-full ${
-                          status.status === 'active' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
-                        }`}>
-                          {status.status === 'active' ? 'Aktif' : 'Hata'}
-                        </span>
-                      </div>
-                      <div className="text-xs text-gray-600">
-                        <div>Yanıt Süresi: {status.responseTime}</div>
-                        <div>Son Test: {new Date(status.lastChecked).toLocaleTimeString('tr-TR')}</div>
-                        {status.error && <div className="text-red-600 mt-1">Hata: {status.error}</div>}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
           </div>
-
-          {/* Quick Actions */}
-          <div>
-            <h2 className="text-lg font-semibold text-gray-900 mb-4">Hızlı İşlemler</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-              <a href="/admin/users" className="bg-white rounded-lg border p-6 hover:shadow-md transition-shadow">
-                <div className="text-3xl mb-3">👥</div>
-                <h3 className="font-medium text-gray-900">Kullanıcı Yönetimi</h3>
-                <p className="text-sm text-gray-600 mt-1">Kullanıcıları görüntüle ve yönet</p>
-              </a>
-              
-              <a href="/admin/analytics" className="bg-white rounded-lg border p-6 hover:shadow-md transition-shadow">
-                <div className="text-3xl mb-3">📊</div>
-                <h3 className="font-medium text-gray-900">Analitik Raporları</h3>
-                <p className="text-sm text-gray-600 mt-1">Detaylı sistem analitiği</p>
-              </a>
-
-              <a href="/admin/api-test" className="bg-green-50 rounded-lg border-2 border-green-200 p-6 hover:shadow-md transition-shadow">
-                <div className="text-3xl mb-3">🔌</div>
-                <h3 className="font-medium text-green-900">API Test</h3>
-                <p className="text-sm text-green-700 mt-1">Production API'lerini test et</p>
-              </a>
-              
-              <a href="/admin/settings" className="bg-white rounded-lg border p-6 hover:shadow-md transition-shadow">
-                <div className="text-3xl mb-3">��️</div>
-                <h3 className="font-medium text-gray-900">Sistem Ayarları</h3>
-                <p className="text-sm text-gray-600 mt-1">Platform konfigürasyonu</p>
-              </a>
-            </div>
-          </div>
-        </div>
-      </DashboardLayout>
-    </AdminErrorBoundary>
+        )}
+      </div>
+    </div>
   );
 }

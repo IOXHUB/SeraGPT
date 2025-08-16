@@ -86,11 +86,16 @@ export function useAuth(): AuthContextType {
   }, []);
 
   useEffect(() => {
-    // Skip during SSR/build time
+    // Skip during SSR/build time - keep loading true for consistency
     if (typeof window === 'undefined') {
-      setLoading(false);
       return;
     }
+
+    // Add safety timeout to prevent infinite loading
+    const safetyTimeout = setTimeout(() => {
+      console.warn('Auth check timeout - setting loading to false');
+      setLoading(false);
+    }, 5000);
 
     const getUser = async () => {
       try {
@@ -105,7 +110,7 @@ export function useAuth(): AuthContextType {
           window.location.hostname.includes('localhost')
         );
 
-        if (isDev) {
+        if (isDev && window.location.href.includes('localhost')) { // ENABLED for Safari compatibility
           // Import and initialize development mock system
           const { DevMockSystem, MOCK_TOKENS } = await import('@/lib/utils/dev-mock-system');
 
